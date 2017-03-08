@@ -1,2 +1,1 @@
 # playkit-js-providers
-.
