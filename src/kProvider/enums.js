@@ -112,6 +112,39 @@ export class MediaEntryType extends Enum {
 }
 MediaEntryType.initEnum(['Vod', 'Live', 'Unknown']);
 
+export class UIConfType extends Enum {
+}
+UIConfType.initEnum({
+  PLAYER: 1,
+  CONTRIBUTION_WIZARD:2,
+  SIMPLE_EDITOR: 3,
+  ADVANCED_EDITOR: 4,
+  PLAYLIST: 5,
+  APP_STUDIO:6,
+  KRECORD: 7,
+  PLAYER_V3: 8,
+  KMC_ACCOUNT: 9,
+  KMC_ANALYTICS: 10,
+  KMC_CONTENT: 11,
+  KMC_DASHBOARD: 12,
+  KMC_LOGIN: 13,
+  PLAYER_SL: 14,
+  CLIENTSIDE_ENCODER: 15,
+  KMC_GENERAL: 16,
+  KMC_ROLES_AND_PERMISSIONS: 17,
+  CLIPPER: 18,
+  KSR: 19,
+  KUPLOAD:20,
+  WEBCASTING: 21
+});
+
+export class UIConfCreationMode extends Enum {
+}
+UIConfCreationMode.initEnum({
+  WIZARD: 2,
+  ADVANCED:3
+});
+
 
 
 

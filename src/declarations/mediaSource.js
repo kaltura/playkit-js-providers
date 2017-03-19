@@ -1,12 +1,11 @@
 // @flow
-import Drm from './drm'
-import {MediaFormat} from './mediaFormat'
+import Drm from '../declarations/drm'
 
 export default class MediaSource {
 
   id: string;
-  url: string;
-  mediaFormat: MediaFormat;
+  src: string;
+  mimetype: string;
   drmData: Array<Drm>;
 
   constructor(){

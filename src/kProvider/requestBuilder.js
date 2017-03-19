@@ -14,7 +14,8 @@ export default class RequestBuilder {
 
 
   constructor() {
-    this.headers = new Map();
+    if (this.headers == undefined)
+      this.headers = new Map();
     this.headers.set("Content-Type", "application/json");
   }
 
@@ -44,7 +45,9 @@ export default class RequestBuilder {
         }
       };
       request.open(this.method, this.getUrl());
-      request.setRequestHeader("Content-Type", "application/json");
+      this.headers.forEach((value, key) => {
+        request.setRequestHeader(key, value);
+      });
       request.send(this.params);
     });
   }

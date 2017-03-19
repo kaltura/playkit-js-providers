@@ -3,13 +3,7 @@
 
 import MultiRequestBuilder from '../../multiRequestBuilder'
 
-export default class OvpService
-
-{
-
-  static getRequestConfigKeys(): Array<string> {
-    return ["clientTag", "apiVersion", "format"];
-  }
+export default class OvpService {
 
   static getOvpConfigParams(): any {
     return {

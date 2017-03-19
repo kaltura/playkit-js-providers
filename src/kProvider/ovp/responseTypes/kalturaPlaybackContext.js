@@ -1,9 +1,9 @@
 // @flow
-import ServiceResult from '../..//baseServiceResult'
-import KalturaAccessControlMessage from '../..//ovp/responseTypes/kalturaAccessControlMessage'
-import KalturaPlaybackSource from '../..//ovp/responseTypes/kalturaPlaybackSource'
-import KalturaRuleAction from '../..//ovp/responseTypes/kalturaRuleAction'
-import KalturaFlavorAsset from '../..//ovp/responseTypes/kalturaFlavorAsset'
+import ServiceResult from '../../baseServiceResult'
+import KalturaAccessControlMessage from '../../ovp/responseTypes/kalturaAccessControlMessage'
+import KalturaPlaybackSource from '../../ovp/responseTypes/kalturaPlaybackSource'
+import KalturaRuleAction from '../../ovp/responseTypes/kalturaRuleAction'
+import KalturaFlavorAsset from '../../ovp/responseTypes/kalturaFlavorAsset'
 
 
 export default class KalturaPlaybackContext extends ServiceResult {

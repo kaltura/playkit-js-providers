@@ -7,8 +7,8 @@ const libraryName = "Providers";
 module.exports = {
     context: __dirname + "/src",
     entry: {
-        ovpProvider: "provider/kProvider/ovp/ovpProvider.js",
-        ottProvider: "provider/kProvider/ott/OttProvider.js"
+        ovpProvider: "kProvider/ovp/ovpProvider.js",
+        ottProvider: "kProvider/ott/OttProvider.js"
     },
     output: {
         path: path.join(__dirname, "dist"),

@@ -1,12 +1,12 @@
 // @flow
 
-import {endsWith} from '../../../util/stringUtils'
+import {endsWith} from 'PlayKit.js/src/util/stringUtils'
 
 
 export default class PlaySourceUrlBuilder {
 
   baseUrl: string;
-  partnerId: string;
+  partnerId: number;
   entryId: string;
   ks: string;
   uiConfId: string;
@@ -60,5 +60,7 @@ export default class PlaySourceUrlBuilder {
     return playUrl;
 
   }
+
+
 
 }

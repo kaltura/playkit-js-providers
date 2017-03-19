@@ -1,6 +1,6 @@
 // @flow
 
-import {MediaFormat} from '../../../declarations/mediaFormat'
+import {MediaFormat} from '../../declarations/mediaFormat'
 
 
 export default class FormatsHelper {

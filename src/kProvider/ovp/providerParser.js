@@ -1,8 +1,8 @@
 // @flow
 
-import MediaEntry from '../../../declarations/mediaEntry'
-import MediaSource from '../../../declarations/mediaSource'
-import Drm from '../../../declarations/drm'
+import MediaEntry from '../../declarations/mediaEntry'
+import MediaSource from '../../declarations/mediaSource'
+import Drm from '../../declarations/drm'
 import KalturaMediaEntry from './responseTypes/kalturaMediaEntry'
 import KalturaPlaybackContext from './responseTypes/kalturaPlaybackContext'
 import KalturaFlavorAsset from './responseTypes/kalturaFlavorAsset'
@@ -10,21 +10,21 @@ import KalturaMetadataListResponse from './responseTypes/kalturaMetadataListResp
 import KalturaPlaybackSource from './responseTypes/kalturaPlaybackSource'
 import KalturaDrmPlaybackPluginData from './responseTypes/kalturaDrmPlaybackPluginData'
 import FormatsHelper from './formatsHelper'
-import MediaFormat from '../../../declarations/mediaFormat'
+import MediaFormat from '../../declarations/mediaFormat'
 import PlaySourceUrlBuilder from "./playSourceUrlBuilder"
 import XmlParser from '../xmlParser'
 import {MediaEntryType, EntryType} from '../enums'
-
+import * as config from './config'
 
 export default class ProviderParser {
 
-  static getMediaEntry(baseUrl: string, ks: string, partnerID: string, uiConfId: string, entry: KalturaMediaEntry, playbackContext: KalturaPlaybackContext, metadataList: KalturaMetadataListResponse): MediaEntry {
+  static getMediaEntry(ks: string, partnerID: number, uiConfId: string, entry: KalturaMediaEntry, playbackContext: KalturaPlaybackContext, metadataList: KalturaMetadataListResponse): MediaEntry {
     let mediaEntry: MediaEntry = new MediaEntry();
-    let kalturaSources: Array<KalturaPlaybackSource> = playbackContext.sources;
+    let kalturaSources: Array<KalturaformatsHelper.jsPlaybackSource> = playbackContext.sources;
     let sources: Array<MediaSource>;
 
     if (kalturaSources && kalturaSources.length > 0) {
-      sources = this.parseSources(baseUrl, ks, partnerID, uiConfId, entry, playbackContext);
+      sources = this.parseSources(ks, partnerID, uiConfId, entry, playbackContext);
     }
     else
       sources = [];
@@ -42,6 +42,7 @@ export default class ProviderParser {
         type = MediaEntryType.Vod;
         break;
       case EntryType.LIVE_STREAM:
+      case EntryType.LIVE_CHANNEL:
         type = MediaEntryType.Live;
         break;
       default:
@@ -53,23 +54,23 @@ export default class ProviderParser {
     return mediaEntry;
   }
 
-  static parseSources(baseUrl: string, ks: string, partnerID: string, uiConfId: string, entry: KalturaMediaEntry, playbackContext: KalturaPlaybackContext): Array<MediaSource> {
+  static parseSources( ks: string, partnerID: number, uiConfId: string, entry: KalturaMediaEntry, playbackContext: KalturaPlaybackContext): Array<MediaSource> {
     let sources: Array<MediaSource> = [];
     playbackContext.sources.forEach((source) => {
 
       let playUrl: string = "";
       let mediaFormat: MediaFormat = FormatsHelper.getMediaFormat(source.format, source.hasDrmData());
-
+      let mediaSource: MediaSource = new MediaSource();
       // in case playbackSource doesn't have flavors we don't need to build the url and we'll use the provided one.
       if (source.hasFlavorIds()) {
-        let splittedUrl: Array<string> = baseUrl.split("/");
+        let splittedUrl: Array<string> = config.BASE_URL.split("/");
         let baseProtocol: string;
         if (splittedUrl && splittedUrl.length > 0)
           baseProtocol = splittedUrl[0].substring(0, splittedUrl[0].length - 1);
         else
           baseProtocol = "http";
         let urlBuilder: PlaySourceUrlBuilder = new PlaySourceUrlBuilder();
-        urlBuilder.baseUrl = baseUrl;
+        urlBuilder.baseUrl = config.BASE_URL;
         urlBuilder.entryId = entry.id;
         urlBuilder.flavorIds = source.flavorIds;
         urlBuilder.format = source.format;
@@ -85,8 +86,11 @@ export default class ProviderParser {
           if (flavors && flavors.length > 0)
             extension = flavors[0].fileExt;
         }
-        else
+        else {
           extension = mediaFormat.pathExt;
+          mediaSource.mimetype = mediaFormat.mimeType;
+        }
+
         urlBuilder.extension = extension;
         playUrl = urlBuilder.build();
 
@@ -100,8 +104,8 @@ export default class ProviderParser {
         return;
       }
 
-      let mediaSource: MediaSource = new MediaSource();
-      mediaSource.url = playUrl;
+
+      mediaSource.src = playUrl;
       mediaSource.id = entry.id + "_" + source.deliveryProfileId + "," + source.format;
       let drmData: KalturaDrmPlaybackPluginData = source.drm;
       if (source.hasDrmData()) {
@@ -124,8 +128,8 @@ export default class ProviderParser {
         let domParser: DOMParser = new DOMParser();
         metaXml = domParser.parseFromString(meta.xml.replace(/\r?\n|\r/g, ""), 'text/xml');
         let metasObj: Object = XmlParser.xmlToJson(metaXml);
-        let meatKeys = Object.keys(metasObj.metadata);
-        meatKeys.forEach((key) => {
+        let metaKeys = Object.keys(metasObj.metadata);
+        metaKeys.forEach((key) => {
           metadata.set(key, metasObj.metadata[key]["#text"]);
         })
 
