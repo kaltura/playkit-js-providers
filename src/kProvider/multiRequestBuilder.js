@@ -9,6 +9,7 @@ const logger = loggerFactory.getLogger("OvpProvider");
 export default class MultiRequestBuilder extends RequestBuilder {
 
   requests: Array<RequestBuilder> = [];
+  _params: Object = {};
 
   constructor() {
     super();
@@ -16,15 +17,17 @@ export default class MultiRequestBuilder extends RequestBuilder {
 
   add(request: RequestBuilder): MultiRequestBuilder {
     this.requests.push(request);
+
+    let serviceDef: Object = {service: request.service, action: request.action};
+    this.params = Object.assign(this.params, {[this.requests.length]: Object.assign(serviceDef, request.params)});
     return this;
   }
 
   execute(): Promise<any> {
-    Object.assign(this.params, this.buildMultiRequestParams());
     this.params = JSON.stringify(this.params);
     return new Promise((resolve, reject) => {
       this.doHttpRequest().then(data => {
-          let multiResult: MultiRequestResult = new MultiRequestResult(true, data);
+          let multiResult: MultiRequestResult = new MultiRequestResult(data);
           data.forEach((result, index) => {
             let serviceName = this.requests[index].service + "." + this.requests[index].action;
             let serviceResult: ServiceResult = new ServiceResult(result);
@@ -43,24 +46,6 @@ export default class MultiRequestBuilder extends RequestBuilder {
         });
     });
   }
-
-  buildMultiRequestParams(): any {
-    let multiParams = {};
-    let index = 1;
-    this.requests.forEach((request) => {
-      let params = {
-        "service": request.service,
-        "action": request.action
-      }
-      params = Object.assign(params, request.params);
-      multiParams = Object.assign(multiParams, {[index]: params});
-      index++;
-    });
-
-    return multiParams;
-  }
-
-
 }
 
 class MultiRequestResult {
@@ -68,8 +53,8 @@ class MultiRequestResult {
   success: boolean;
   data: Object;
 
-  constructor(success: boolean, data: Object) {
-    this.success = success;
+  constructor(data: Object) {
+    this.success = true;
     this.data = data;
   }
 

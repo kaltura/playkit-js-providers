@@ -2,26 +2,21 @@
 
 
 import MultiRequestBuilder from '../../multiRequestBuilder'
+import * as config from '../config'
+
+const SERVICE_NAME: string = "multirequest";
 
 export default class OvpService {
 
-  static getOvpConfigParams(): any {
-    return {
-      clientTag: "playkit-js",
-      apiVersion: '3.3.0',
-      format: 1
-    };
-  }
-
-  static getMultirequest(baseUrl: string, ks: string, partnerId?: number): MultiRequestBuilder {
-    let ovpParams = this.getOvpConfigParams();
+  static getMultirequest(ks: string, partnerId?: number): MultiRequestBuilder {
+    let ovpParams = config.SERVICE_CONFIG_PARAMAS;
     Object.assign(ovpParams, {ks: ks});
     if (partnerId)
       Object.assign(ovpParams, {partnerId: partnerId});
     let multiReq = new MultiRequestBuilder();
     multiReq.method = "POST";
-    multiReq.service = "multirequest";
-    multiReq.baseUrl = baseUrl;
+    multiReq.service = SERVICE_NAME;
+    multiReq.baseUrl = config.BE_URL;
     multiReq.params = ovpParams;
     return multiReq;
   }

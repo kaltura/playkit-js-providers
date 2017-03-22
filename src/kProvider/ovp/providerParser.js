@@ -54,7 +54,7 @@ export default class ProviderParser {
     return mediaEntry;
   }
 
-  static parseSources( ks: string, partnerID: number, uiConfId: string, entry: KalturaMediaEntry, playbackContext: KalturaPlaybackContext): Array<MediaSource> {
+  static parseSources(ks: string, partnerID: number, uiConfId: string, entry: KalturaMediaEntry, playbackContext: KalturaPlaybackContext): Array<MediaSource> {
     let sources: Array<MediaSource> = [];
     playbackContext.sources.forEach((source) => {
 
@@ -69,15 +69,6 @@ export default class ProviderParser {
           baseProtocol = splittedUrl[0].substring(0, splittedUrl[0].length - 1);
         else
           baseProtocol = "http";
-        let urlBuilder: PlaySourceUrlBuilder = new PlaySourceUrlBuilder();
-        urlBuilder.baseUrl = config.BASE_URL;
-        urlBuilder.entryId = entry.id;
-        urlBuilder.flavorIds = source.flavorIds;
-        urlBuilder.format = source.format;
-        urlBuilder.ks = ks;
-        urlBuilder.partnerId = partnerID;
-        urlBuilder.uiConfId = uiConfId;
-        urlBuilder.protocol = source.getProtocol(baseProtocol);
 
         let extension: string = "";
         if (!mediaFormat) {
@@ -91,11 +82,19 @@ export default class ProviderParser {
           mediaSource.mimetype = mediaFormat.mimeType;
         }
 
-        urlBuilder.extension = extension;
-        playUrl = urlBuilder.build();
+        playUrl = PlaySourceUrlBuilder.build({
+          entryId: entry.id,
+          flavorIds: source.flavorIds,
+          format: source.format,
+          ks: ks,
+          partnerId: partnerID,
+          uiConfId: uiConfId,
+          extension: extension,
+          protocol: source.getProtocol(baseProtocol)
+        });
 
-
-      } else {
+      }
+      else {
         playUrl = source.url;
       }
 
@@ -133,7 +132,7 @@ export default class ProviderParser {
         let metasObj: Object = XmlParser.xmlToJson(metaXml);
         let metaKeys = Object.keys(metasObj.metadata);
         metaKeys.forEach((key) => {
-          metadata[key] =  metasObj.metadata[key]["#text"];
+          metadata[key] = metasObj.metadata[key]["#text"];
         })
 
       })

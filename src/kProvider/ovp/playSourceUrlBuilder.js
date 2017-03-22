@@ -1,66 +1,48 @@
 // @flow
 
 import {endsWith} from 'playkit-js/src/util/stringUtils'
+import * as config from './config'
 
 
 export default class PlaySourceUrlBuilder {
 
-  baseUrl: string;
-  partnerId: number;
-  entryId: string;
-  ks: string;
-  uiConfId: string;
-  format: string;
-  protocol: string;
-  extension: string;
-  flavorIds: string;
-  sessionId: string;
+  static build(urlParams: Object): string {
 
-  constructor() {
-    this.baseUrl = "";
-    this.partnerId = "";
-    this.entryId = "";
-    this.ks = "";
-    this.uiConfId = "";
-    this.format = "";
-    this.protocol = "";
-    this.extension = "";
-    this.flavorIds = "";
-    this.sessionId = "";
-  }
+    let baseUrl: string = config.BASE_URL;
+    let partnerId: number = urlParams.partnerId;
+    let entryId: string = urlParams.entryId;
+    let ks: string = urlParams.ks;
+    let uiConfId: string = urlParams.uiConfId;
+    let format: string = urlParams.format;
+    let protocol: string = urlParams.protocol;
+    let extension: string = urlParams.extension;
+    let flavorIds: string = urlParams.flavorIds;
 
-  validateMandatoryValues(): boolean {
-    return this.baseUrl != "" && this.partnerId != "" && this.entryId != "" && this.extension != "" && this.format != "";
-  }
-
-  build(): string {
-
-    if (!this.validateMandatoryValues()) {
+    if (baseUrl == "" && partnerId == "" && entryId == "" && extension == "" && format == "") {
       return "";
     }
-    let playUrl = this.baseUrl;
-    if (!endsWith(this.baseUrl, "/"))
-      playUrl += "/";
-    playUrl += "p/" + this.partnerId + "/sp/" + this.partnerId + "00" + "/playManifest/entryId/" + this.entryId + "/protocol/" + this.protocol + "/format/" + this.format;
 
-    if (this.flavorIds != "")
-      playUrl += "/falvorIds/" + this.flavorIds;
-    else if (this.uiConfId != "")
-      playUrl += "/uiConfId/" + this.uiConfId;
+    let playUrl = baseUrl;
+    if (!endsWith(baseUrl, "/"))
+      playUrl += "/";
+    playUrl += "p/" + partnerId + "/sp/" + partnerId + "00" + "/playManifest/entryId/" + entryId + "/protocol/" + protocol + "/format/" + format;
+
+    if (flavorIds != "")
+      playUrl += "/falvorIds/" + flavorIds;
+    else if (uiConfId != "")
+      playUrl += "/uiConfId/" + uiConfId;
 
     if (this.ks != "") {
-      playUrl += "/ks/" + this.ks;
+      playUrl += "/ks/" + ks;
     }
 
-    playUrl += "/a." + this.extension;
+    playUrl += "/a." + extension;
 
-    if (this.uiConfId != "" && this.flavorIds != "")
-      playUrl += "?uiConfId=." + this.uiConfId;
+    if (uiConfId != "" && flavorIds != "")
+      playUrl += "?uiConfId=." + uiConfId;
 
     return playUrl;
 
   }
-
-
 
 }

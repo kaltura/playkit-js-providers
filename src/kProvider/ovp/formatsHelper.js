@@ -2,32 +2,27 @@
 
 import {MediaFormat} from '../../declarations/mediaFormat'
 
+const SUPPORTED_FORMATS: Map<string, MediaFormat> = new Map([
+  ["mpegdash", MediaFormat.dash_clear],
+  ["mpegdash+drm", MediaFormat.dash_drm],
+  ["applehttp", MediaFormat.hls_clear],
+  ["url", MediaFormat.mp4_clear],
+  ["url+drm", MediaFormat.wvm_widevine]
+]);
 
 export default class FormatsHelper {
 
-  static getSupportedFormats(): Map<string,MediaFormat> {
-    let supportedFormats: Map<string, MediaFormat> = new Map();
-    supportedFormats.set("mpegdash", MediaFormat.dash_clear);
-    supportedFormats.set("mpegdash+drm", MediaFormat.dash_drm);
-    supportedFormats.set("applehttp", MediaFormat.hls_clear);
-    supportedFormats.set("url", MediaFormat.mp4_clear);
-    supportedFormats.set("url+drm", MediaFormat.wvm_widevine);
-    return supportedFormats;
-  }
-
   static getMediaFormat(format: string, hasDrm: boolean): MediaFormat {
-    let supportedFormats:Map<string,MediaFormat> = this.getSupportedFormats();
-    switch (format){
-      case "mpegdash":
-        return hasDrm ? supportedFormats.get("mpegdash+drm") : supportedFormats.get("mpegdash");
-      case "url":
-        return hasDrm ? supportedFormats.get("url+drm") : supportedFormats.get("url");
-      case "applehttp":
-        return hasDrm ? null : supportedFormats.get("applehttp");
 
+    switch (format) {
+      case "mpegdash":
+        return hasDrm ? SUPPORTED_FORMATS.get("mpegdash+drm") : SUPPORTED_FORMATS.get("mpegdash");
+      case "url":
+        return hasDrm ? SUPPORTED_FORMATS.get("url+drm") : SUPPORTED_FORMATS.get("url");
+      case "applehttp":
+        return hasDrm ? null : SUPPORTED_FORMATS.get("applehttp");
     }
   }
-
 
 }
 

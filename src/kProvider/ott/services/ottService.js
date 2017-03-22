@@ -2,27 +2,20 @@
 
 
 import MultiRequestBuilder from '../../multiRequestBuilder'
+import * as config from '../config'
 
-export default class OttService
+export default class OttService {
 
-{
 
-  static getRequestConfigKeys(): Array<string> {
-    return ["clientTag", "apiVersion", "format"];
-  }
+  static getMultirequest(ks: string): MultiRequestBuilder {
 
-  static getOttConfigParams(): any {
-    return {
-      clientTag: "playkit-js",
-      apiVersion: '3.3.0',
-      format: 1
-    };
-  }
-
-  static getMultirequest(): MultiRequestBuilder {
-
+    let ottParams = config.SERVICE_CONFIG_PARAMAS;
+    Object.assign(ottParams, {ks: ks});
     let multiReq = new MultiRequestBuilder();
-
+    multiReq.method = "POST";
+    multiReq.service = "multirequest";
+    multiReq.baseUrl = config.BE_URL;
+    multiReq.params = ottParams;
     return multiReq;
   }
 

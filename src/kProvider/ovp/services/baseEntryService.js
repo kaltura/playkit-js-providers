@@ -3,12 +3,14 @@
 import OvpService from './ovpService'
 import RequestBuilder from '../../requestBuilder'
 
+const SERVICE_NAME: string = "baseEntry";
+
 export default class BaseEntryService extends OvpService {
 
   static getPlaybackContext(baseUrl: string, ks: string, entryId: string): RequestBuilder {
 
-    let request = new RequestBuilder;
-    request.service = "baseEntry";
+    let request = new RequestBuilder();
+    request.service = SERVICE_NAME;
     request.action = "getPlaybackContext";
     request.method = "POST";
     request.baseUrl = baseUrl;
@@ -22,8 +24,8 @@ export default class BaseEntryService extends OvpService {
 
   static list(baseUrl: string, ks: string, entryId: string): RequestBuilder {
 
-    let request = new RequestBuilder;
-    request.service = "baseEntry";
+    let request = new RequestBuilder();
+    request.service = SERVICE_NAME;
     request.action = "list";
     request.method = "POST";
     request.baseUrl = baseUrl;

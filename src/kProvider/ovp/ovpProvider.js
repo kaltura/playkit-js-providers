@@ -33,8 +33,7 @@ export class OvpProvider {
 
   parseDataFromResponse(data: any): Object {
     logger.info("Data parsing started.");
-    let responsesIndexMap: Map<string,number>;
-    responsesIndexMap = new Map();
+    let responsesIndexMap: Map<string,number> = new Map();
 
     if (this._isAnonymous) {
       this.ks = data[0].ks;
@@ -80,7 +79,7 @@ export class OvpProvider {
   }
 
   getData(entryId: string, uiConfId?: number): Promise<any> {
-    let multiRequest = OvpService.getMultirequest(config.BE_URL, this.ks, this.partnerID);
+    let multiRequest = OvpService.getMultirequest(this.ks, this.partnerID);
 
     multiRequest.tag = "entry-info-multireq";
     if (this._isAnonymous) {
