@@ -38,11 +38,11 @@ export default class ProviderParser {
     let type: MediaEntryType;
 
     switch (entry.type) {
-      case EntryType.MEDIA_CLIP:
+      case EntryType.MEDIA_CLIP.value:
         type = MediaEntryType.Vod;
         break;
-      case EntryType.LIVE_STREAM:
-      case EntryType.LIVE_CHANNEL:
+      case EntryType.LIVE_STREAM.value:
+      case EntryType.LIVE_CHANNEL.value:
         type = MediaEntryType.Live;
         break;
       default:
@@ -121,16 +121,19 @@ export default class ProviderParser {
   }
 
   static parseMetaData(metadataList: KalturaMetadataListResponse): Map<string,string> {
-    let metadata: Map<string,string> = new Map();
+    let metadata: Object = {};
     if (metadataList && metadataList.metas && metadataList.metas.length > 0) {
       metadataList.metas.forEach((meta) => {
         let metaXml: DOMParser;
         let domParser: DOMParser = new DOMParser();
-        metaXml = domParser.parseFromString(meta.xml.replace(/\r?\n|\r/g, ""), 'text/xml');
+        meta.xml = meta.xml.replace(/\r?\n|\r/g, "");
+        meta.xml = meta.xml.replace(/>\s*/g, '>');
+        meta.xml = meta.xml.replace(/>\s*/g, '>');
+        metaXml = domParser.parseFromString(meta.xml, 'text/xml');
         let metasObj: Object = XmlParser.xmlToJson(metaXml);
         let metaKeys = Object.keys(metasObj.metadata);
         metaKeys.forEach((key) => {
-          metadata.set(key, metasObj.metadata[key]["#text"]);
+          metadata[key] =  metasObj.metadata[key]["#text"];
         })
 
       })

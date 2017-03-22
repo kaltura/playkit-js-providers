@@ -1,6 +1,6 @@
 // @flow
 
-import {endsWith} from 'PlayKit.js/src/util/stringUtils'
+import {endsWith} from 'playkit-js/src/util/stringUtils'
 
 
 export default class PlaySourceUrlBuilder {

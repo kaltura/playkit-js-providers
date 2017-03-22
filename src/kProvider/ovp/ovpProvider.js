@@ -12,7 +12,9 @@ import KalturaUiConfResponse from './responseTypes/kalturaUIConfResponse'
 import KalturaMediaEntry from './responseTypes/kalturaMediaEntry'
 import ProviderParser from './providerParser'
 import * as config from './config'
-import loggerFactory from "PlayKit.js/src/util/loggerFactory";
+import loggerFactory from "playkit-js/src/util/loggerFactory";
+import PlayerError from 'playkit-js/src/util/PlayerError'
+import ServiceResult from '../../kProvider/baseServiceResult'
 
 const logger = loggerFactory.getLogger("OvpProvider");
 
@@ -30,12 +32,13 @@ export class OvpProvider {
 
 
   parseDataFromResponse(data: any): Object {
-    logger.info("Data parsing started.")
+    logger.info("Data parsing started.");
     let responsesIndexMap: Map<string,number>;
     responsesIndexMap = new Map();
 
     if (this._isAnonymous) {
       this.ks = data[0].ks;
+      responsesIndexMap.set("anonymoussessionResponse", 0);
       responsesIndexMap.set("baseEntryListResponse", 1);
       responsesIndexMap.set("playbackContextResponse", 2);
       responsesIndexMap.set("metaResponse", 3);
@@ -49,50 +52,36 @@ export class OvpProvider {
       if (data.length > 3 && this._loadUiConf)
         responsesIndexMap.set("uiConfResponse", 3);
     }
+
     let playBackContextResult: KalturaPlaybackContext = new KalturaPlaybackContext(data[responsesIndexMap.get("playbackContextResponse")]);
-    if (playBackContextResult.hasError)
-      logger.error(`GetPlaybackContext service returned an error with error code: <${playBackContextResult.error.code}> and message: <${playBackContextResult.error.message}>.`);
-
     let metadataListResult: KalturaMetadataListResponse = new KalturaMetadataListResponse(data[responsesIndexMap.get("metaResponse")]);
-    if (metadataListResult.hasError)
-      logger.error(`MetaDataList service returned an error with error code: <${metadataListResult.error.code}> and message: <${metadataListResult.error.message}>.`);
-
     let baseEntryList: KalturaBaseEntryListResponse = new KalturaBaseEntryListResponse(data[responsesIndexMap.get("baseEntryListResponse")]);
     let entry: KalturaMediaEntry;
-    if (baseEntryList.hasError)
-      logger.error(`BaseEntryList service returned an error with error code: <${baseEntryList.error.code}> and message: <${baseEntryList.error.message}>.`);
 
     let pluginsJson: Object = {};
     if (this._loadUiConf) {
       let uiConf: KalturaUiConfResponse = new KalturaUiConfResponse(data[responsesIndexMap.get("uiConfResponse")]);
-      if (uiConf.hasError)
-        logger.error(`UiConfGet service returned an error with error code: <${uiConf.error.code}> and message: <${uiConf.error.message}>.`);
-      else
+      if (uiConf && uiConf.config)
         pluginsJson = JSON.parse(uiConf.config).plugins;
     }
 
-    if (!baseEntryList.hasError && !playBackContextResult.hasError) {
-      let mediaEntry: MediaEntry = ProviderParser.getMediaEntry(this.ks, this.partnerID, "", baseEntryList.entries[0], playBackContextResult, metadataListResult);
-      let config: Object = {
-        id: mediaEntry.id,
-        sources: JSON.parse(JSON.stringify(mediaEntry.sources)),
-        duration: mediaEntry.duration,
-        type: mediaEntry.type.name,
-        metadata: mediaEntry.metaData,
-        plugins: pluginsJson
-      };
+    let mediaEntry: MediaEntry = ProviderParser.getMediaEntry(this.ks, this.partnerID, "", baseEntryList.entries[0], playBackContextResult, metadataListResult);
+    let config: Object = {
+      id: mediaEntry.id,
+      sources: JSON.parse(JSON.stringify(mediaEntry.sources)),
+      duration: mediaEntry.duration,
+      type: mediaEntry.type.name,
+      metadata: mediaEntry.metaData,
+      plugins: pluginsJson
+    };
+    logger.info(config);
+    return (config);
 
-      return (config);
-    }
-    else {
-      throw(`Failed to load entry data`);
-    }
   }
 
-
-  getConfig(entryId: string, uiConfId?: number): Promise<any> {
-
+  getData(entryId: string, uiConfId?: number): Promise<any> {
     let multiRequest = OvpService.getMultirequest(config.BE_URL, this.ks, this.partnerID);
+
     multiRequest.tag = "entry-info-multireq";
     if (this._isAnonymous) {
       multiRequest.add(SessionService.anonymousSession(config.BE_URL, this.partnerID))
@@ -102,32 +91,32 @@ export class OvpProvider {
     multiRequest.add(BaseEntryService.list(config.BE_URL, this.ks, entryId));
     multiRequest.add(BaseEntryService.getPlaybackContext(config.BE_URL, this.ks, entryId));
     multiRequest.add(MetaDataService.list(config.BE_URL, this.ks, entryId));
-    if (uiConfId && uiConfId > 0) {
-      this._loadUiConf = true;
+    if (this._loadUiConf)
       multiRequest.add(UiConfService.get(config.BE_URL, this.ks, uiConfId));
-    }
-    else
-      this._loadUiConf = false;
-
-    multiRequest.execute()
-      .then(data => {
-          let config: Object = this.parseDataFromResponse(data);
-          return new Promise((resolve, reject) => {
-              resolve(config);
-            }
-          )
-        },
-        err => {
-          let errorText: string = `Error on multiRequest execution, error <${err}>.`;
-          logger.error(errorText);
-          return new Promise((resolve, reject) => {
-              reject(errorText);
-            }
-          )
-
-        });
+    return multiRequest.execute();
   }
 
+  getConfig(entryId: string, uiConfId?: number): Promise<any> {
+    if (uiConfId && uiConfId > 0)
+      this._loadUiConf = true;
+    else
+      this._loadUiConf = false;
+    return new Promise((resolve, reject) => {
+      this.getData(entryId, uiConfId)
+        .then(response => {
+            if (!response.success)
+              reject(response);
+            else {
+              let config: Object = this.parseDataFromResponse(response.data);
+              resolve(config);
+            }
+          },
+          err => {
+            reject(err);
+
+          });
+    });
+  }
 }
 
 

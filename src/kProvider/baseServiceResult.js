@@ -2,16 +2,15 @@
 
 export default class ServiceResult {
 
-
   hasError: boolean = false;
   error: ServiceError;
+  serviceName: string;
 
-  constructor(response: any) {
-
+  constructor(response: any, logError: boolean = false, name: string = "") {
+    this.serviceName = name;
     if (response.objectType === "KalturaAPIException") {
       this.hasError = true;
       this.error = new ServiceError(response.code, response.message);
-
     }
   }
 

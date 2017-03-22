@@ -49,7 +49,7 @@ MetadataObjectType.initEnum({
   AD_CUE_POINT: "adCuePointMetadata.AdCuePoint",
   ANNOTATION: "annotationMetadata.Annotation",
   CODE_CUE_POINT: "codeCuePointMetadata.CodeCuePoint",
-  THUMB_CUE_POINT	: "thumbCuePointMetadata.thumbCuePoint",
+  THUMB_CUE_POINT: "thumbCuePointMetadata.thumbCuePoint",
   ENTRY: 1,
   CATEGORY: 2,
   USER: 3,
@@ -72,7 +72,7 @@ EntryStatus.initEnum({
   ERROR_IMPORTING: -2,
   ERROR_CONVERTING: -1,
   SCAN_FAILURE: "virusScan.ScanFailure",
-  IMPORT	: 0,
+  IMPORT: 0,
   INFECTED: "virusScan.Infected",
   PRECONVERT: 1,
   READY: 2,
@@ -97,16 +97,17 @@ EntryModerationStatus.initEnum({
 export class EntryType extends Enum {
 }
 EntryType.initEnum({
-  AUTOMATIC: -1,
-  EXTERNAL_MEDIA: "externalMedia.externalMedia",
-  MEDIA_CLIP: 1,
-  MIX: 2,
-  PLAYLIST: 5,
-  DATA: 6,
-  LIVE_STREAM: 7,
-  LIVE_CHANNEL: 8,
-  DOCUMENT: 10
+  AUTOMATIC: {value: -1},
+  EXTERNAL_MEDIA: {value: "externalMedia.externalMedia"},
+  MEDIA_CLIP: {value: 1},
+  MIX: {value: 2},
+  PLAYLIST: {value: 5},
+  DATA: {value: 6},
+  LIVE_STREAM: {value: 7},
+  LIVE_CHANNEL: {value: 8},
+  DOCUMENT: {value: 10}
 });
+
 
 export class MediaEntryType extends Enum {
 }
@@ -116,11 +117,11 @@ export class UIConfType extends Enum {
 }
 UIConfType.initEnum({
   PLAYER: 1,
-  CONTRIBUTION_WIZARD:2,
+  CONTRIBUTION_WIZARD: 2,
   SIMPLE_EDITOR: 3,
   ADVANCED_EDITOR: 4,
   PLAYLIST: 5,
-  APP_STUDIO:6,
+  APP_STUDIO: 6,
   KRECORD: 7,
   PLAYER_V3: 8,
   KMC_ACCOUNT: 9,
@@ -134,7 +135,7 @@ UIConfType.initEnum({
   KMC_ROLES_AND_PERMISSIONS: 17,
   CLIPPER: 18,
   KSR: 19,
-  KUPLOAD:20,
+  KUPLOAD: 20,
   WEBCASTING: 21
 });
 
@@ -142,7 +143,7 @@ export class UIConfCreationMode extends Enum {
 }
 UIConfCreationMode.initEnum({
   WIZARD: 2,
-  ADVANCED:3
+  ADVANCED: 3
 });
 
 
