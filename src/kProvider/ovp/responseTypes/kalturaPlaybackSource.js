@@ -1,15 +1,46 @@
 // @flow
 import KalturaDrmPlaybackPluginData from './kalturaDrmPlaybackPluginData'
 
+/**
+ * Ovp BE playback source
+ * @classdesc
+ */
 export default class KalturaPlaybackSource {
-
+  /**
+   * @member - source format according to delivery profile streamer type (applehttp, mpegdash etc.)
+   * @type {string}
+   */
   format: string;
-  deliveryProfileId: number;
+  /**
+   * @member - delivery profile Id
+   * @type {string}
+   */
+  deliveryProfileId: string;
+  /**
+   * @member - The source URL
+   * @type {string}
+   */
   url: string;
+  /**
+   * @member - comma separated string according to deliveryProfile media protocols ('http,https' etc.)
+   * @type {string}
+   */
   protocols: string;
+  /**
+   * @member - comma separated string of flavor ids
+   * @type {string}
+   */
   flavorIds: string;
+  /**
+   * @member - drm data object containing relevant license url ,scheme name and certificate
+   * @type {Array<KalturaDrmPlaybackPluginData>}
+   */
   drm: Array<KalturaDrmPlaybackPluginData> = [];
 
+  /**
+   * @constructor
+   * @param {Object} The json response
+   */
   constructor(source: Object) {
     this.format = source.format;
     this.deliveryProfileId = source.deliveryProfileId;
@@ -24,14 +55,29 @@ export default class KalturaPlaybackSource {
 
   }
 
+  /**
+   * Checks if source has DRM data
+   * @function hasDrmData
+   * @returns {boolean}
+   */
   hasDrmData(): boolean {
     return this.drm && this.drm.length > 0;
   }
 
+  /**
+   * Checks if source has flavor IDs
+   * @function hasFlavorIds
+   * @returns {boolean}
+   */
   hasFlavorIds(): boolean {
     return this.flavorIds && this.flavorIds.length > 0;
   }
 
+  /**
+   * Returns source desired protocol if supported
+   * @param protocol - the desired protocol for the source (base play url protocol)
+   * @returns {string} - protocol if protocol is in the protocols list - if not empty string returned
+   */
   getProtocol(protocol: string): string {
     let returnValue: string = "";
     if (this.protocols && this.protocols.length > 0) {
@@ -44,6 +90,5 @@ export default class KalturaPlaybackSource {
       return protocol;
     return returnValue;
   }
-
 }
 

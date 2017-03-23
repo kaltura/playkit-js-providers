@@ -3,11 +3,20 @@
 import {endsWith} from 'playkit-js/src/util/stringUtils'
 import * as config from './config'
 
-
+/**
+ * Media source url builder
+ * @classdesc
+ */
 export default class PlaySourceUrlBuilder {
 
+  /**
+   * Returns an source url by given url params
+   * @function build
+   * @param {Object} urlParams
+   * @returns string
+   * @static
+   */
   static build(urlParams: Object): string {
-
     let baseUrl: string = config.BASE_URL;
     let partnerId: number = urlParams.partnerId;
     let entryId: string = urlParams.entryId;
@@ -42,7 +51,5 @@ export default class PlaySourceUrlBuilder {
       playUrl += "?uiConfId=." + uiConfId;
 
     return playUrl;
-
   }
-
 }

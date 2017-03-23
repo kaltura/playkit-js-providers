@@ -1,8 +1,11 @@
 // @flow
 import {MetadataObjectType, MetadataStatus} from '../../enums'
 
+/**
+ * Ovp BE Metadata
+ * @classdesc
+ */
 export default class KalturaMetadata {
-
   id: number;
   metadataProfileId: number;
   metadataProfileVersion: number;
@@ -12,8 +15,16 @@ export default class KalturaMetadata {
   created: Date;
   updated: Date;
   status: MetadataStatus;
+  /**
+   * @member - The Metadata xml - represented as XML string
+   * @type {string}
+   */
   xml: string;
 
+  /**
+   * @constructor
+   * @param {Object} The json response
+   */
   constructor(data: Object) {
     this.id = data.id;
     this.metadataProfileId = data.metadataProfileId;

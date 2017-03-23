@@ -16,9 +16,25 @@ import XmlParser from '../xmlParser'
 import {MediaEntryType, EntryType} from '../enums'
 import * as config from './config'
 
+/**
+ * Ovp provider parser
+ * @classdesc
+ */
 export default class ProviderParser {
 
-  static getMediaEntry(ks: string, partnerID: number, uiConfId: string, entry: KalturaMediaEntry, playbackContext: KalturaPlaybackContext, metadataList: KalturaMetadataListResponse): MediaEntry {
+  /**
+   * Returns parsed media entry by given OVP response objects
+   * @function getMediaEntry
+   * @param {string} ks
+   * @param {number} partnerID
+   * @param {number} uiConfId
+   * @param {string} entry
+   * @param {KalturaPlaybackContext} playbackContext
+   * @param {KalturaMetadataListResponse} metadataList
+   * @returns {MediaEntry}
+   * @static
+   */
+  static getMediaEntry(ks: string, partnerID: number, uiConfId: number, entry: KalturaMediaEntry, playbackContext: KalturaPlaybackContext, metadataList: KalturaMetadataListResponse): MediaEntry {
     let mediaEntry: MediaEntry = new MediaEntry();
     let kalturaSources: Array<KalturaformatsHelper.jsPlaybackSource> = playbackContext.sources;
     let sources: Array<MediaSource>;
@@ -54,7 +70,18 @@ export default class ProviderParser {
     return mediaEntry;
   }
 
-  static parseSources(ks: string, partnerID: number, uiConfId: string, entry: KalturaMediaEntry, playbackContext: KalturaPlaybackContext): Array<MediaSource> {
+  /**
+   * Ovp sources parser
+   * @function parseSources
+   * @param {string} ks
+   * @param {number} partnerID
+   * @param {number} uiConfId
+   * @param {string} entry
+   * @param {KalturaPlaybackContext} playbackContext
+   * @returns {Array.<MediaSource>}
+   * @static
+   */
+  static parseSources(ks: string, partnerID: number, uiConfId: number, entry: KalturaMediaEntry, playbackContext: KalturaPlaybackContext): Array<MediaSource> {
     let sources: Array<MediaSource> = [];
     playbackContext.sources.forEach((source) => {
 
@@ -119,6 +146,13 @@ export default class ProviderParser {
     return sources;
   }
 
+  /**
+   * Ovp metadata parser
+   * @function parseMetaData
+   * @param {KalturaMetadataListResponse} metadataList
+   * @returns {Map<string,string>}
+   * @static
+   */
   static parseMetaData(metadataList: KalturaMetadataListResponse): Map<string,string> {
     let metadata: Object = {};
     if (metadataList && metadataList.metas && metadataList.metas.length > 0) {

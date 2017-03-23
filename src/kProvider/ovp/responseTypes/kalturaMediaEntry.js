@@ -1,19 +1,46 @@
 // @flow
-
 import {EntryType} from '../../enums'
 
+/**
+ * Ovp BE MediaEntry
+ * @classdesc
+ */
 export default class KalturaMediaEntry {
-
+  /**
+   * @member - The entry id
+   * @type {string}
+   */
   id: string;
+  /**
+   * @member - Entry name (Min 1 chars)
+   * @type {string}
+   */
   name: string;
-
-
+  /**
+   * @member - The URL used for playback. This is not the download URL.
+   * @type {string}
+   */
   dataUrl: string;
+  /**
+   * @member - Comma separated flavor params ids that exists for this media entry
+   * @type {string}
+   */
   flavorParamsIds: string;
+  /**
+   * @member - The entry duration
+   * @type {number}
+   */
   duration: number;
+  /**
+   * @member - The type of the entry, this is auto filled by the derived entry object
+   * @type {EntryType}
+   */
   type: EntryType;
 
-
+  /**
+   * @constructor
+   * @param {Object} The json response
+   */
   constructor(entry: Object) {
     this.id = entry.id;
     this.name = entry.name;

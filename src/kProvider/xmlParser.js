@@ -1,8 +1,16 @@
 // @flow
 
-
+/**
+ * Xml parser
+ * @classdesc
+ */
 export default class XmlParser {
-
+  /**
+   * Parses xml string to json object
+   * @param {string} xml
+   * @returns {{}}
+   * @static
+   */
   static xmlToJson(xml: string) {
     let obj = {};
     if (xml.nodeType == 1) {
@@ -34,6 +42,5 @@ export default class XmlParser {
     }
     return obj;
   }
-
 }
 

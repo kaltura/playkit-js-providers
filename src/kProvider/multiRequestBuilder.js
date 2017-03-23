@@ -3,18 +3,36 @@
 import RequestBuilder from './requestBuilder'
 import ServiceResult from './baseServiceResult'
 import loggerFactory from "playkit-js/src/util/loggerFactory";
-
+/**
+ * @constant
+ */
 const logger = loggerFactory.getLogger("OvpProvider");
 
+/**
+ * Multi Request builder
+ * @classdesc
+ */
 export default class MultiRequestBuilder extends RequestBuilder {
 
+  /**
+   * @member - Array of requests
+   * @type {Array<RequestBuilder>}
+   */
   requests: Array<RequestBuilder> = [];
-  _params: Object = {};
 
+  /**
+   * @constructor
+   */
   constructor() {
     super();
   }
 
+  /**
+   * Adds request to requests array
+   * @function add
+   * @param {RequestBuilder} request
+   * @returns {MultiRequestBuilder}
+   */
   add(request: RequestBuilder): MultiRequestBuilder {
     this.requests.push(request);
 
@@ -23,7 +41,12 @@ export default class MultiRequestBuilder extends RequestBuilder {
     return this;
   }
 
-  execute(): Promise<any> {
+  /**
+   * Executes a multi request
+   * @function execute
+   * @returns {Promise}
+   */
+  execute(): Promise<Object> {
     this.params = JSON.stringify(this.params);
     return new Promise((resolve, reject) => {
       this.doHttpRequest().then(data => {
@@ -48,14 +71,29 @@ export default class MultiRequestBuilder extends RequestBuilder {
   }
 }
 
+/**
+ * Multi Request result object
+ * @classdesc
+ */
 class MultiRequestResult {
 
+  /**
+   * @member - Is success
+   * @type {boolean}
+   */
   success: boolean;
+  /**
+   * @member - Multi request response data
+   * @type {Object}
+   */
   data: Object;
 
+  /**
+   * @constructor
+   * @param {Object} data
+   */
   constructor(data: Object) {
     this.success = true;
     this.data = data;
   }
-
 }

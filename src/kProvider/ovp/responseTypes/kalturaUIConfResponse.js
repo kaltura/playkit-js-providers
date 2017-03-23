@@ -2,9 +2,20 @@
 import ServiceResult from '../../baseServiceResult'
 import {UIConfType, UIConfCreationMode} from '../../enums';
 
+/**
+ * Ovp BE Ui config response
+ * @classdesc
+ */
 export default class KalturaUiConfResponse extends ServiceResult {
-
+  /**
+   * @member -Name of the uiConf, this is not a primary key
+   * @type {string}
+   */
   name: string;
+  /**
+   * @member -Name of the uiConf, this is not a primary key
+   * @type {string}
+   */
   description: string;
   objTypeAsString: string;
   width: number;
@@ -14,6 +25,11 @@ export default class KalturaUiConfResponse extends ServiceResult {
   confFilePath: string;
   confFile: string;
   confFileFeatures: string;
+  name: string;
+  /**
+   * @member -plugins configuration represented as Json string
+   * @type {string}
+   */
   config: string;
   confVars: string;
   useCdn: boolean;
@@ -27,6 +43,10 @@ export default class KalturaUiConfResponse extends ServiceResult {
   objType: UIConfType;
   creationMode: UIConfCreationMode;
 
+  /**
+   * @constructor
+   * @param {Object} The json response
+   */
   constructor(data: Object) {
     super(data);
     if (!this.hasError) {

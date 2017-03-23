@@ -5,15 +5,37 @@ import KalturaPlaybackSource from '../../ovp/responseTypes/kalturaPlaybackSource
 import KalturaRuleAction from '../../ovp/responseTypes/kalturaRuleAction'
 import KalturaFlavorAsset from '../../ovp/responseTypes/kalturaFlavorAsset'
 
-
+/**
+ * Ovp BE playback context response
+ * @classdesc
+ */
 export default class KalturaPlaybackContext extends ServiceResult {
-
+  /**
+   * @member - The playback sources
+   * @type {Array<KalturaPlaybackSource>}
+   */
   sources: Array<KalturaPlaybackSource> = [];
+  /**
+   * @member - Array of actions as received from the rules that invalidated
+   * @type {Array<KalturaRuleAction>}
+   */
   actions: Array<KalturaRuleAction> = [];
+  /**
+   * @member - Array of actions as received from the rules that invalidated
+   * @type {Array<KalturaAccessControlMessage>}
+   */
   messages: Array<KalturaAccessControlMessage> = [];
+  /**
+   * @member - The flavor assets
+   * @type {Array<KalturaFlavorAsset>}
+   */
   flavorAssets: Array<KalturaFlavorAsset> = [];
 
-  constructor(response: any) {
+  /**
+   * @constructor
+   * @param {Object} The json response
+   */
+  constructor(response: Object) {
     super(response);
     if (!this.hasError) {
 
@@ -36,6 +58,5 @@ export default class KalturaPlaybackContext extends ServiceResult {
     }
 
   }
-
 }
 

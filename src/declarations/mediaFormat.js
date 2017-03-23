@@ -1,11 +1,8 @@
 // @flow
-
 import {Enum} from 'enumify';
 
 export class MediaFormat extends Enum {
-
 }
-
 MediaFormat.initEnum({
   mp4_clear: {
     get mimeType() {
