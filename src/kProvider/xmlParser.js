@@ -1,4 +1,4 @@
-// @flow
+//@flow
 
 /**
  * Xml parser
@@ -21,7 +21,8 @@ export default class XmlParser {
           obj["@attributes"][attribute.nodeName] = attribute.nodeValue;
         }
       }
-    } else if (xml.nodeType == 3) {
+    }
+    else if (xml.nodeType == 3) {
       obj = xml.nodeValue;
     }
     if (xml.hasChildNodes()) {
@@ -30,7 +31,8 @@ export default class XmlParser {
         let nodeName = item.nodeName;
         if (typeof (obj[nodeName]) == "undefined") {
           obj[nodeName] = this.xmlToJson(item);
-        } else {
+        }
+        else {
           if (typeof (obj[nodeName].push) == "undefined") {
             let old = obj[nodeName];
             obj[nodeName] = [];

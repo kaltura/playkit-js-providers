@@ -1,4 +1,4 @@
-// @flow
+//@flow
 
 import OvpService from './ovpService'
 import RequestBuilder from '../../requestBuilder'
@@ -25,8 +25,12 @@ export default class UiConfService extends OvpService {
     request.action = "get";
     request.method = "POST";
     request.baseUrl = baseUrl;
-    request.tag = "session-startWidget";
-    request.params = {id: uiConfID, ks: ks};
+    request.tag = "uiconf-get";
+    let responseProfileParams = {
+      fields: "config",
+      type: 1
+    };
+    request.params = {id: uiConfID, responseProfile: responseProfileParams, ks: ks};
     return request;
   }
 }

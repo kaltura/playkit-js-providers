@@ -1,4 +1,4 @@
-// @flow
+//@flow
 
 /**
  * Base service result

@@ -1,4 +1,4 @@
-// @flow
+//@flow
 
 import {Scheme} from '../kProvider/enums';
 

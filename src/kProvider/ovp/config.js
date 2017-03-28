@@ -1,4 +1,4 @@
-// @flow
+//@flow
 
 const BE_URL: string = "http://www.kaltura.com/api_v3";
 const BASE_URL: string = "https://cdnapisec.kaltura.com";

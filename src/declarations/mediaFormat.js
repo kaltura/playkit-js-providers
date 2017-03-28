@@ -1,4 +1,4 @@
-// @flow
+//@flow
 import {Enum} from 'enumify';
 
 export class MediaFormat extends Enum {
@@ -39,6 +39,14 @@ MediaFormat.initEnum({
   hls_clear: {
     get mimeType() {
       return "application/x-mpegURL"
+    },
+    get pathExt() {
+      return "m3u8";
+    }
+  },
+  fairplay:{
+    get mimeType() {
+      return "application/vnd.apple.mpegurl"
     },
     get pathExt() {
       return "m3u8";

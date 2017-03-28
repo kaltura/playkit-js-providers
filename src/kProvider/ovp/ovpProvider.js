@@ -1,20 +1,18 @@
-// @flow
+//@flow
 
 import OvpService from './services/ovpService';
 import SessionService from './services/sessionService'
 import BaseEntryService from './services/baseEntryService'
-import MetaDataService from './services/metDataService'
+import MetaDataService from './services/metaDataService'
 import UiConfService from './services/uiConfService'
 import KalturaPlaybackContext from './responseTypes/kalturaPlaybackContext'
 import KalturaMetadataListResponse from './responseTypes/kalturaMetadataListResponse'
 import KalturaBaseEntryListResponse from './responseTypes/kalturaBaseEntryListResponse'
 import KalturaUiConfResponse from './responseTypes/kalturaUIConfResponse'
-import KalturaMediaEntry from './responseTypes/kalturaMediaEntry'
 import ProviderParser from './providerParser'
 import * as config from './config'
 import loggerFactory from "playkit-js/src/util/loggerFactory";
-import PlayerError from 'playkit-js/src/util/PlayerError'
-import ServiceResult from '../../kProvider/baseServiceResult'
+
 /**
  * @constant
  */
@@ -55,6 +53,7 @@ export class OvpProvider {
    */
   constructor(partnerID: number, ks: string = "") {
     this.partnerID = partnerID;
+    this.ks = ks;
     this._isAnonymous = !this.ks;
   }
 
@@ -66,15 +65,19 @@ export class OvpProvider {
    * @returns {Promise}
    */
   getConfig(entryId: string, uiConfId?: number): Promise<Object> {
-    if (uiConfId && uiConfId > 0)
+    if (uiConfId && uiConfId > 0) {
       this._loadUiConf = true;
-    else
+      this.uiConfId = uiConfId;
+    }
+    else {
       this._loadUiConf = false;
+    }
     return new Promise((resolve, reject) => {
       this.getData(entryId, uiConfId)
         .then(response => {
-            if (!response.success)
+            if (!response.success) {
               reject(response);
+            }
             else {
               let config: Object = this.parseDataFromResponse(response.data);
               resolve(config);
@@ -105,8 +108,9 @@ export class OvpProvider {
     multiRequest.add(BaseEntryService.list(config.BE_URL, this.ks, entryId));
     multiRequest.add(BaseEntryService.getPlaybackContext(config.BE_URL, this.ks, entryId));
     multiRequest.add(MetaDataService.list(config.BE_URL, this.ks, entryId));
-    if (this._loadUiConf)
+    if (this._loadUiConf) {
       multiRequest.add(UiConfService.get(config.BE_URL, this.ks, uiConfId));
+    }
     return multiRequest.execute();
   }
 
@@ -120,39 +124,38 @@ export class OvpProvider {
     logger.info("Data parsing started.");
     let responsesIndexMap: Map<string,number> = new Map();
 
+    let index = 0;
     if (this._isAnonymous) {
       this.ks = data[0].ks;
-      responsesIndexMap.set("anonymoussessionResponse", 0);
-      responsesIndexMap.set("baseEntryListResponse", 1);
-      responsesIndexMap.set("playbackContextResponse", 2);
-      responsesIndexMap.set("metaResponse", 3);
-      if (data.length > 4 && this._loadUiConf)
-        responsesIndexMap.set("uiConfResponse", 4);
+      responsesIndexMap.set("anonymoussessionResponse", index++);
     }
-    else {
-      responsesIndexMap.set("baseEntryListResponse", 0);
-      responsesIndexMap.set("playbackContextResponse", 1);
-      responsesIndexMap.set("metaResponse", 2);
-      if (data.length > 3 && this._loadUiConf)
-        responsesIndexMap.set("uiConfResponse", 3);
-    }
+    responsesIndexMap.set("baseEntryListResponse", index++);
+    responsesIndexMap.set("playbackContextResponse", index++);
+    responsesIndexMap.set("metaResponse", index++);
+    if (data.length > index && this._loadUiConf)
+      responsesIndexMap.set("uiConfResponse", index);
 
     let playBackContextResult: KalturaPlaybackContext = new KalturaPlaybackContext(data[responsesIndexMap.get("playbackContextResponse")]);
     let metadataListResult: KalturaMetadataListResponse = new KalturaMetadataListResponse(data[responsesIndexMap.get("metaResponse")]);
     let baseEntryList: KalturaBaseEntryListResponse = new KalturaBaseEntryListResponse(data[responsesIndexMap.get("baseEntryListResponse")]);
-    let entry: KalturaMediaEntry;
 
     let pluginsJson: Object = {};
     if (this._loadUiConf) {
       let uiConf: KalturaUiConfResponse = new KalturaUiConfResponse(data[responsesIndexMap.get("uiConfResponse")]);
-      if (uiConf && uiConf.config)
+      if (uiConf && uiConf.config) {
         pluginsJson = JSON.parse(uiConf.config).plugins;
+      }
     }
 
-    let mediaEntry: MediaEntry = ProviderParser.getMediaEntry(this.ks, this.partnerID, "", baseEntryList.entries[0], playBackContextResult, metadataListResult);
+    let mediaEntry: MediaEntry = ProviderParser.getMediaEntry(this.ks, this.partnerID, this.uiConfId,
+      {
+        entry: baseEntryList.entries[0],
+        playbackContext: playBackContextResult,
+        metadataList: metadataListResult
+      });
     let config: Object = {
       id: mediaEntry.id,
-      sources: JSON.parse(JSON.stringify(mediaEntry.sources)),
+      sources: mediaEntry.sources,
       duration: mediaEntry.duration,
       type: mediaEntry.type.name,
       metadata: mediaEntry.metaData,

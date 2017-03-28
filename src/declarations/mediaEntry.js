@@ -1,4 +1,4 @@
-// @flow
+//@flow
 
 import MediaSource from './mediaSource'
 import {MediaEntryType} from '../kProvider/enums'

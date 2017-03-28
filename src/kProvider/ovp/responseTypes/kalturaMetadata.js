@@ -1,4 +1,4 @@
-// @flow
+//@flow
 import {MetadataObjectType, MetadataStatus} from '../../enums'
 
 /**

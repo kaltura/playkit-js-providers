@@ -1,4 +1,4 @@
-// @flow
+//@flow
 import {Status} from '../../enums'
 
 /**

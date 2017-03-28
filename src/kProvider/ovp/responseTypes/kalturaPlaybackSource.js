@@ -1,4 +1,4 @@
-// @flow
+//@flow
 import KalturaDrmPlaybackPluginData from './kalturaDrmPlaybackPluginData'
 
 /**
@@ -83,11 +83,14 @@ export default class KalturaPlaybackSource {
     if (this.protocols && this.protocols.length > 0) {
       let protocolsArr: Array<string> = this.protocols.split(",");
       protocolsArr.forEach((p) => {
-        if (p == protocol) returnValue = p;
+        if (p == protocol) {
+          returnValue = p;
+        }
       });
     }
-    else if (protocol == "http")
+    else if (protocol == "http") {
       return protocol;
+    }
     return returnValue;
   }
 }

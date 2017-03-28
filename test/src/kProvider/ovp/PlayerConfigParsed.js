@@ -1,4 +1,4 @@
-// @flow
+//@flow
 
 let NoPluginsNoDrm = {
   "id": "1_rsrdfext",

@@ -1,27 +1,14 @@
-// @flow
-
-//import MultiRequestBuilder from '../multiRequestBuilder'
-import OttService from './services/ottService'
+//@flow
 
 export default class OttProvider {
 
-
-
   constructor() {
 
-
-
   }
 
-
-
-
-  getConfig(entryId: string): void {
-
+  getConfig(): void {
 
   }
-
-
 }
 
 

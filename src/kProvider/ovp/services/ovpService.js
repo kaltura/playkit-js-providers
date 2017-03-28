@@ -1,4 +1,4 @@
-// @flow
+//@flow
 
 
 import MultiRequestBuilder from '../../multiRequestBuilder'
@@ -22,8 +22,9 @@ export default class OvpService {
   static getMultirequest(ks: string, partnerId?: number): MultiRequestBuilder {
     let ovpParams = config.SERVICE_CONFIG_PARAMAS;
     Object.assign(ovpParams, {ks: ks});
-    if (partnerId)
+    if (partnerId) {
       Object.assign(ovpParams, {partnerId: partnerId});
+    }
     let multiReq = new MultiRequestBuilder();
     multiReq.method = "POST";
     multiReq.service = SERVICE_NAME;

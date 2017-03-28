@@ -1,4 +1,4 @@
-// @flow
+//@flow
 import HttpRequestExecutor from 'playkit-js/src/util/httpRequestExecutor'
 
 /**
@@ -47,8 +47,9 @@ export default class RequestBuilder {
    * @constructor
    */
   constructor() {
-    if (this.headers == undefined)
+    if (this.headers == undefined) {
       this.headers = new Map();
+    }
     this.headers.set("Content-Type", "application/json");
   }
 

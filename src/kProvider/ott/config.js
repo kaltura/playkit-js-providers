@@ -1,4 +1,4 @@
-// @flow
+//@flow
 
 const BE_URL:string = "";
 const SERVICE_CONFIG_PARAMAS: Object = {

@@ -1,4 +1,4 @@
-// @flow
+//@flow
 
 import {endsWith} from 'playkit-js/src/util/stringUtils'
 import * as config from './config'
@@ -32,14 +32,17 @@ export default class PlaySourceUrlBuilder {
     }
 
     let playUrl = baseUrl;
-    if (!endsWith(baseUrl, "/"))
+    if (!endsWith(baseUrl, "/")) {
       playUrl += "/";
+    }
     playUrl += "p/" + partnerId + "/sp/" + partnerId + "00" + "/playManifest/entryId/" + entryId + "/protocol/" + protocol + "/format/" + format;
 
-    if (flavorIds != "")
+    if (flavorIds != "") {
       playUrl += "/falvorIds/" + flavorIds;
-    else if (uiConfId != "")
+    }
+    else if (uiConfId != "") {
       playUrl += "/uiConfId/" + uiConfId;
+    }
 
     if (this.ks != "") {
       playUrl += "/ks/" + ks;
@@ -47,8 +50,9 @@ export default class PlaySourceUrlBuilder {
 
     playUrl += "/a." + extension;
 
-    if (uiConfId != "" && flavorIds != "")
+    if (uiConfId != "" && flavorIds != "") {
       playUrl += "?uiConfId=." + uiConfId;
+    }
 
     return playUrl;
   }

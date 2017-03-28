@@ -1,4 +1,4 @@
-// @flow
+//@flow
 import ServiceResult from '../../baseServiceResult'
 import KalturaAccessControlMessage from '../../ovp/responseTypes/kalturaAccessControlMessage'
 import KalturaPlaybackSource from '../../ovp/responseTypes/kalturaPlaybackSource'
@@ -40,21 +40,24 @@ export default class KalturaPlaybackContext extends ServiceResult {
     if (!this.hasError) {
 
       let messages = response.messages;
-      if (messages)
+      if (messages) {
         messages.map(message => this.messages.push(new KalturaAccessControlMessage(message)));
+      }
 
       let actions = response.actions;
-      if (actions)
+      if (actions) {
         actions.map(action => this.actions.push(new KalturaRuleAction(action)));
+      }
 
       let sources = response.sources;
-      if (sources)
+      if (sources) {
         sources.map(source => this.sources.push(new KalturaPlaybackSource(source)));
-
+      }
 
       let flavorAssets = response.flavorAssets;
-      if (flavorAssets)
+      if (flavorAssets) {
         flavorAssets.map(flavor => this.flavorAssets.push(new KalturaFlavorAsset(flavor)));
+      }
     }
 
   }

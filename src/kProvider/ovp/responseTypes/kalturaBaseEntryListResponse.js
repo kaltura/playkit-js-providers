@@ -1,4 +1,4 @@
-// @flow
+//@flow
 import ServiceResult from '../..//baseServiceResult'
 import KalturaMediaEntry from '../..//ovp/responseTypes/kalturaMediaEntry'
 

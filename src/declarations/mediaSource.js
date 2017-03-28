@@ -1,4 +1,4 @@
-// @flow
+//@flow
 import Drm from '../declarations/drm'
 
 /**

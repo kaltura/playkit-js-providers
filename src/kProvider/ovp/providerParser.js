@@ -1,4 +1,4 @@
-// @flow
+//@flow
 
 import MediaEntry from '../../declarations/mediaEntry'
 import MediaSource from '../../declarations/mediaSource'
@@ -7,14 +7,18 @@ import KalturaMediaEntry from './responseTypes/kalturaMediaEntry'
 import KalturaPlaybackContext from './responseTypes/kalturaPlaybackContext'
 import KalturaFlavorAsset from './responseTypes/kalturaFlavorAsset'
 import KalturaMetadataListResponse from './responseTypes/kalturaMetadataListResponse'
-import KalturaPlaybackSource from './responseTypes/kalturaPlaybackSource'
-import KalturaDrmPlaybackPluginData from './responseTypes/kalturaDrmPlaybackPluginData'
 import FormatsHelper from './formatsHelper'
 import MediaFormat from '../../declarations/mediaFormat'
 import PlaySourceUrlBuilder from "./playSourceUrlBuilder"
 import XmlParser from '../xmlParser'
 import {MediaEntryType, EntryType} from '../enums'
 import * as config from './config'
+import loggerFactory from "playkit-js/src/util/loggerFactory";
+
+/**
+ * @constant
+ */
+const logger = loggerFactory.getLogger("OvpProvider");
 
 /**
  * Ovp provider parser
@@ -34,16 +38,21 @@ export default class ProviderParser {
    * @returns {MediaEntry}
    * @static
    */
-  static getMediaEntry(ks: string, partnerID: number, uiConfId: number, entry: KalturaMediaEntry, playbackContext: KalturaPlaybackContext, metadataList: KalturaMetadataListResponse): MediaEntry {
+  static getMediaEntry(ks: string, partnerID: number, uiConfId: number, dataObj: {entry: KalturaMediaEntry, playbackContext: KalturaPlaybackContext, metadataList: KalturaMetadataListResponse}): MediaEntry {
     let mediaEntry: MediaEntry = new MediaEntry();
+    let entry = dataObj.entry;
+    let playbackContext = dataObj.playbackContext;
+    let metadataList = dataObj.metadataList;
     let kalturaSources: Array<KalturaformatsHelper.jsPlaybackSource> = playbackContext.sources;
     let sources: Array<MediaSource>;
 
     if (kalturaSources && kalturaSources.length > 0) {
-      sources = this.parseSources(ks, partnerID, uiConfId, entry, playbackContext);
+      sources = this.parseSources(ks, partnerID, uiConfId, dataObj.entry, playbackContext);
     }
-    else
+    else {
       sources = [];
+    }
+
     mediaEntry.sources = sources;
 
     let metadata: Map<string,string> = this.parseMetaData(metadataList);
@@ -92,17 +101,20 @@ export default class ProviderParser {
       if (source.hasFlavorIds()) {
         let splittedUrl: Array<string> = config.BASE_URL.split("/");
         let baseProtocol: string;
-        if (splittedUrl && splittedUrl.length > 0)
+        if (splittedUrl && splittedUrl.length > 0) {
           baseProtocol = splittedUrl[0].substring(0, splittedUrl[0].length - 1);
-        else
+        }
+        else {
           baseProtocol = "http";
+        }
 
         let extension: string = "";
         if (!mediaFormat) {
           let flavorIdsArr = source.flavorIds.split(",");
           let flavors: Array<KalturaFlavorAsset> = playbackContext.flavorAssets.filter(flavor => flavorIdsArr.indexOf(flavor.id) != -1);
-          if (flavors && flavors.length > 0)
+          if (flavors && flavors.length > 0) {
             extension = flavors[0].fileExt;
+          }
         }
         else {
           extension = mediaFormat.pathExt;
@@ -126,14 +138,13 @@ export default class ProviderParser {
       }
 
       if (playUrl == "") {
-        window.console.log("failed to create play url from source, discarding source:" + (entry.id + "_" + source.deliveryProfileId) + ", " + source.format);
+        logger.error(`failed to create play url from source, discarding source: (${entry.id}_${source.deliveryProfileId}), ${source.format}.`);
         return;
       }
 
 
       mediaSource.src = playUrl;
       mediaSource.id = entry.id + "_" + source.deliveryProfileId + "," + source.format;
-      let drmData: KalturaDrmPlaybackPluginData = source.drm;
       if (source.hasDrmData()) {
         let drmParams: Array<Drm> = [];
         source.drm.forEach((drm) => {
