@@ -380,7 +380,7 @@ let AudioEntryWithoutPlugins = {
     }
   ],
   "duration": 0,
-  "type": "Vod",
+  "type": "Audio",
   "metadata": {},
   "plugins": {}
 };
@@ -389,7 +389,7 @@ let ImageEntryWithoutPlugins = {
   "id": "0_84zz779s",
   "sources": [],
   "duration": 0,
-  "type": "Vod",
+  "type": "Image",
   "metadata": {},
   "plugins": {}
 };

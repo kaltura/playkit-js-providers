@@ -36,6 +36,11 @@ export default class KalturaMediaEntry {
    * @type {EntryType}
    */
   type: EntryType;
+  /**
+   * @member - The type of the entry, this is auto filled by the derived entry object (Image, Audio etc.)
+   * @type {MediaType}
+   */
+  entryType: MediaType;
 
   /**
    * @constructor
@@ -46,6 +51,7 @@ export default class KalturaMediaEntry {
     this.name = entry.name;
     this.dataUrl = entry.dataUrl;
     this.type = entry.type;
+    this.entryType = entry.mediaType;
     this.flavorParamsIds = entry.flavorParamsIds;
     this.duration = entry.duration;
   }

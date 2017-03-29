@@ -11,7 +11,7 @@ import FormatsHelper from './formatsHelper'
 import MediaFormat from '../../declarations/mediaFormat'
 import PlaySourceUrlBuilder from "./playSourceUrlBuilder"
 import XmlParser from '../xmlParser'
-import {MediaEntryType, EntryType} from '../enums'
+import {MediaEntryType, EntryType, MediaType} from '../enums'
 import * as config from './config'
 import loggerFactory from "playkit-js/src/util/loggerFactory";
 
@@ -62,18 +62,26 @@ export default class ProviderParser {
 
     let type: MediaEntryType;
 
-    switch (entry.type) {
-      case EntryType.MEDIA_CLIP.value:
-        type = MediaEntryType.Vod;
+    switch (entry.entryType) {
+      case MediaType.IMAGE.value:
+        type = MediaEntryType.Image;
         break;
-      case EntryType.LIVE_STREAM.value:
-      case EntryType.LIVE_CHANNEL.value:
-        type = MediaEntryType.Live;
+      case MediaType.AUDIO.value:
+        type = MediaEntryType.Audio;
         break;
       default:
-        type = MediaEntryType.Unknown;
+        switch (entry.type) {
+          case EntryType.MEDIA_CLIP.value:
+            type = MediaEntryType.Vod;
+            break;
+          case EntryType.LIVE_STREAM.value:
+          case EntryType.LIVE_CHANNEL.value:
+            type = MediaEntryType.Live;
+            break;
+          default:
+            type = MediaEntryType.Unknown;
+        }
     }
-
     mediaEntry.type = type;
 
     return mediaEntry;

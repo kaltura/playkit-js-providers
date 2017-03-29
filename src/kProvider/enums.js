@@ -108,10 +108,22 @@ EntryType.initEnum({
   DOCUMENT: {value: 10}
 });
 
+export class MediaType extends Enum {
+}
+MediaType.initEnum({
+  VIDEO: {value: 1},
+  IMAGE: {value: 2},
+  AUDIO: {value: 5},
+  LIVE_STREAM_FLASH: {value: 201},
+  LIVE_STREAM_WINDOWS_MEDIA: {value: 202},
+  LIVE_STREAM_REAL_MEDIA: {value: 203},
+  LIVE_STREAM_QUICKTIME: {value: 204}
+});
+
 
 export class MediaEntryType extends Enum {
 }
-MediaEntryType.initEnum(['Vod', 'Live', 'Unknown']);
+MediaEntryType.initEnum(['Vod', 'Live', 'Image', 'Audio', 'Unknown']);
 
 export class UIConfType extends Enum {
 }
