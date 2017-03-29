@@ -50,7 +50,7 @@ export default class PlaySourceUrlBuilder {
 
     playUrl += "/a." + extension;
 
-    if (uiConfId != "" && flavorIds != "") {
+    if (uiConfId && flavorIds != "") {
       playUrl += "?uiConfId=." + uiConfId;
     }
 

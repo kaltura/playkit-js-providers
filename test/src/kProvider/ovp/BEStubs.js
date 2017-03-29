@@ -1341,4 +1341,177 @@ let WrongUiConfID = [
   }
 ];
 
-export {AnonymousMocEntryWithoutUIConfNoDrmData, AnonymousMocEntryWithoutUIConfWithDrmData, WrongEntryIDWithoutUIConf, EntryWithUIConfNoDrmData,EntryWithUIConfWithDrmData, WrongUiConfID};
+let AudioEntryWithoutPlugins = [
+  {
+    "partnerId": 1082342,
+    "ks": "YWU4Y2I0ZDk4ZmNiMjUyZjA1NmQ1NmMzMTdjZmFjZWEyODc2NDE0YXwxMDgyMzQyOzEwODIzNDI7MTQ5MDg2MTk1OTswOzE0OTA3NzU1NTkuNzk0MzswO3ZpZXc6Kix3aWRnZXQ6MTs7",
+    "userId": 0,
+    "objectType": "KalturaStartWidgetSessionResponse"
+  },
+  {
+    "objects": [
+      {
+        "mediaType": 5,
+        "dataUrl": "http://cdnapi.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/0_vyzw3ceu/format/url/protocol/http",
+        "flavorParamsIds": "0",
+        "duration": 0,
+        "msDuration": 0,
+        "id": "0_vyzw3ceu",
+        "name": "TEST_WAESP_PLACINGTEST_DUAL",
+        "tags": "dual audio, english, spanish",
+        "type": 1,
+        "objectType": "KalturaMediaEntry"
+      }
+    ],
+    "totalCount": 1,
+    "objectType": "KalturaBaseEntryListResponse"
+  },
+  {
+    "sources": [
+      {
+        "deliveryProfileId": 10081,
+        "format": "url",
+        "protocols": "http,https",
+        "flavorIds": "0_hawbhpz3",
+        "url": "https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/0_vyzw3ceu/flavorIds/0_hawbhpz3/deliveryProfileId/10081/protocol/https/format/url/name/a.xml",
+        "drm": [],
+        "objectType": "KalturaPlaybackSource"
+      },
+      {
+        "deliveryProfileId": 10101,
+        "format": "hdnetworkmanifest",
+        "protocols": "http,https",
+        "flavorIds": "0_hawbhpz3",
+        "url": "https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/0_vyzw3ceu/flavorIds/0_hawbhpz3/deliveryProfileId/10101/protocol/https/format/hdnetworkmanifest/manifest.f4m",
+        "drm": [],
+        "objectType": "KalturaPlaybackSource"
+      },
+      {
+        "deliveryProfileId": 10091,
+        "format": "applehttp",
+        "protocols": "http,https",
+        "flavorIds": "0_hawbhpz3",
+        "url": "https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/0_vyzw3ceu/flavorIds/0_hawbhpz3/deliveryProfileId/10091/protocol/https/format/applehttp/a.m3u8",
+        "drm": [],
+        "objectType": "KalturaPlaybackSource"
+      },
+      {
+        "deliveryProfileId": 11241,
+        "format": "applehttp",
+        "protocols": "http,https",
+        "flavorIds": "0_hawbhpz3",
+        "url": "https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/0_vyzw3ceu/flavorIds/0_hawbhpz3/deliveryProfileId/11241/protocol/https/format/applehttp/a.m3u8",
+        "drm": [],
+        "objectType": "KalturaPlaybackSource"
+      },
+      {
+        "deliveryProfileId": 11611,
+        "format": "mpegdash",
+        "protocols": "http,https",
+        "flavorIds": "0_hawbhpz3",
+        "url": "https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/0_vyzw3ceu/flavorIds/0_hawbhpz3/deliveryProfileId/11611/protocol/https/format/mpegdash/manifest.mpd",
+        "drm": [],
+        "objectType": "KalturaPlaybackSource"
+      },
+      {
+        "deliveryProfileId": 11261,
+        "format": "mpegdash",
+        "protocols": "http,https",
+        "flavorIds": "0_hawbhpz3",
+        "url": "https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/0_vyzw3ceu/flavorIds/0_hawbhpz3/deliveryProfileId/11261/protocol/https/format/mpegdash/manifest.mpd",
+        "drm": [],
+        "objectType": "KalturaPlaybackSource"
+      },
+      {
+        "deliveryProfileId": 11251,
+        "format": "sl",
+        "protocols": "http,https",
+        "flavorIds": "0_hawbhpz3",
+        "url": "https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/0_vyzw3ceu/flavorIds/0_hawbhpz3/deliveryProfileId/11251/protocol/https/format/sl/a.ism",
+        "drm": [],
+        "objectType": "KalturaPlaybackSource"
+      }
+    ],
+    "flavorAssets": [
+      {
+        "flavorParamsId": 0,
+        "width": 0,
+        "height": 0,
+        "bitrate": 0,
+        "frameRate": 0,
+        "isOriginal": true,
+        "isWeb": false,
+        "containerFormat": "copy",
+        "videoCodecId": "",
+        "status": 2,
+        "id": "0_hawbhpz3",
+        "entryId": "0_vyzw3ceu",
+        "partnerId": 1082342,
+        "version": "12",
+        "size": 893,
+        "tags": "source",
+        "fileExt": "xml",
+        "createdAt": 1432905178,
+        "updatedAt": 1432908187,
+        "description": "",
+        "objectType": "KalturaFlavorAsset"
+      }
+    ],
+    "actions": [],
+    "messages": [],
+    "objectType": "KalturaPlaybackContext"
+  },
+  {
+    "objects": [],
+    "totalCount": 0,
+    "objectType": "KalturaMetadataListResponse"
+  }
+];
+
+let ImageEntryWithoutPlugins = [
+  {
+    "partnerId": 1082342,
+    "ks": "YWU4Y2I0ZDk4ZmNiMjUyZjA1NmQ1NmMzMTdjZmFjZWEyODc2NDE0YXwxMDgyMzQyOzEwODIzNDI7MTQ5MDg2MTk1OTswOzE0OTA3NzU1NTkuNzk0MzswO3ZpZXc6Kix3aWRnZXQ6MTs7",
+    "userId": 0,
+    "objectType": "KalturaStartWidgetSessionResponse"
+  },
+  {
+    "objects": [
+      {
+        "mediaType": 2,
+        "dataUrl": "http://cdnbakmi.kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/0_84zz779s/def_height/480/def_width/640/version/100000/type/1",
+        "duration": 0,
+        "msDuration": 0,
+        "id": "0_84zz779s",
+        "name": "Channel HU-TEST-STG-Attila-160203 Thumbnail",
+        "type": 1,
+        "objectType": "KalturaMediaEntry"
+      }
+    ],
+    "totalCount": 1,
+    "objectType": "KalturaBaseEntryListResponse"
+  },
+  {
+    "sources": [],
+    "flavorAssets": [],
+    "actions": [],
+    "messages": [],
+    "objectType": "KalturaPlaybackContext"
+  },
+  {
+    "objects": [],
+    "totalCount": 0,
+    "objectType": "KalturaMetadataListResponse"
+  }
+];
+
+export {
+  AnonymousMocEntryWithoutUIConfNoDrmData,
+  AnonymousMocEntryWithoutUIConfWithDrmData,
+  WrongEntryIDWithoutUIConf,
+  EntryWithUIConfNoDrmData,
+  EntryWithUIConfWithDrmData,
+  WrongUiConfID,
+  AudioEntryWithoutPlugins,
+  ImageEntryWithoutPlugins
+};

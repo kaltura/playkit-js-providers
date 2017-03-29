@@ -29,9 +29,17 @@ describe('OvpProvider', function () {
       }
     );
     provider.getConfig(entryID).then(data => {
-      data.should.deep.equal(parsedData.NoPluginsNoDrm);
-      done();
-    })
+        try {
+          data.should.deep.equal(parsedData.NoPluginsNoDrm);
+          done();
+        }
+        catch (err) {
+          done(err);
+        }
+      },
+      err => {
+        done(err)
+      })
   });
 
   it('should return config without plugins with drm data', (done) => {
@@ -47,9 +55,17 @@ describe('OvpProvider', function () {
       }
     );
     provider.getConfig(entryID).then(data => {
-      data.should.deep.equal(parsedData.NoPluginsWithDrm);
-      done();
-    })
+        try {
+          data.should.deep.equal(parsedData.NoPluginsWithDrm);
+          done();
+        }
+        catch (err) {
+          // done(err);
+        }
+      },
+      err => {
+        done(err)
+      })
   });
 
   it('should return reject when try to get config with wrong entry ID', () => {
@@ -66,7 +82,7 @@ describe('OvpProvider', function () {
 
 
     provider.getConfig(entryID).then(data => {
-
+        done("Get config should throw error")
       },
       err => {
         let expectedData = {success: false, data: mocData.WrongEntryIDWithoutUIConf}
@@ -91,9 +107,17 @@ describe('OvpProvider', function () {
       }
     );
     provider.getConfig(entryID, uiConfID).then(data => {
-      data.should.deep.equal(parsedData.WithPluginsNoDrm);
-      done();
-    })
+        try {
+          data.should.deep.equal(parsedData.WithPluginsNoDrm);
+          done();
+        }
+        catch (err) {
+          done(err);
+        }
+      },
+      err => {
+        done(err)
+      })
   });
 
   it('should return config with plugins and with drm data', (done) => {
@@ -110,9 +134,17 @@ describe('OvpProvider', function () {
       }
     );
     provider.getConfig(entryID, uiConfID).then(data => {
-      data.should.deep.equal(parsedData.WithPluginsWithDrm);
-      done();
-    })
+        try {
+          data.should.deep.equal(parsedData.WithPluginsWithDrm);
+          done();
+        }
+        catch (err) {
+          done(err);
+        }
+      },
+      err => {
+        done(err)
+      })
   });
 
   it('should return reject when try to get config with wrong uiConf ID', () => {
@@ -129,7 +161,7 @@ describe('OvpProvider', function () {
 
 
     provider.getConfig(entryID, uiConfID).then(data => {
-
+        done("Get config should throw error");
       },
       err => {
         let expectedData = {success: false, data: mocData.WrongUiConfID}
@@ -139,6 +171,58 @@ describe('OvpProvider', function () {
       });
 
   });
-  
+
+  it('should return config without plugins and without drm data for audio', (done) => {
+    let partnerId = 1082342;
+    let entryID = "0_vyzw3ceu";
+    provider = new OvpProvider(partnerId);
+    sinon.stub(provider, "getData").callsFake(
+      function () {
+        return new Promise((resolve, reject) => {
+          let response = {success: true, data: mocData.AudioEntryWithoutPlugins};
+          resolve(response);
+        });
+      }
+    );
+    provider.getConfig(entryID).then(data => {
+        try {
+          data.should.deep.equal(parsedData.AudioEntryWithoutPlugins);
+          done();
+        }
+        catch (err) {
+          done(err);
+        }
+      },
+      err => {
+        done(err)
+      })
+  });
+
+  it('should return config without plugins and without drm data for image', (done) => {
+    let partnerId = 1082342;
+    let entryID = "0_vyzw3ceu";
+    provider = new OvpProvider(partnerId);
+    sinon.stub(provider, "getData").callsFake(
+      function () {
+        return new Promise((resolve, reject) => {
+          let response = {success: true, data: mocData.ImageEntryWithoutPlugins};
+          resolve(response);
+        });
+      }
+    );
+    provider.getConfig(entryID).then(data => {
+        try {
+          data.should.deep.equal(parsedData.ImageEntryWithoutPlugins);
+          done();
+        }
+        catch (err) {
+          done(err);
+        }
+      },
+      err => {
+        done(err)
+      })
+  });
+
 });
 
