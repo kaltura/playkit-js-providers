@@ -14,12 +14,12 @@ import PlaySourceUrlBuilder from "./playSourceUrlBuilder"
 import XmlParser from '../xmlParser'
 import {MediaEntryType, EntryType, MediaType} from '../enums'
 import * as config from './config'
-import loggerFactory from "playkit-js/src/util/loggerFactory";
+import Logger from '../../util/logger'
 
 /**
  * @constant
  */
-const logger = loggerFactory.getLogger("OvpProvider");
+const logger = Logger.get("OvpProvider");
 
 /**
  * Ovp provider parser

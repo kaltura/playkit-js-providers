@@ -1,11 +1,11 @@
 //@flow
 import RequestBuilder from './requestBuilder'
 import ServiceResult from './baseServiceResult'
-import loggerFactory from "playkit-js/src/util/loggerFactory";
+import Logger from "../util/logger";
 /**
  * @constant
  */
-const logger = loggerFactory.getLogger("OvpProvider");
+const logger = Logger.get("OvpProvider");
 
 /**
  * Multi Request builder

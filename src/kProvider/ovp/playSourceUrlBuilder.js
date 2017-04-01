@@ -1,6 +1,4 @@
 //@flow
-
-import {endsWith} from 'playkit-js/src/util/stringUtils'
 import * as config from './config'
 
 /**
@@ -10,7 +8,7 @@ import * as config from './config'
 export default class PlaySourceUrlBuilder {
 
   /**
-   * Returns an source url by given url params
+   * Returns source url by given url params
    * @function build
    * @param {Object} urlParams
    * @returns string
@@ -32,7 +30,7 @@ export default class PlaySourceUrlBuilder {
     }
 
     let playUrl = baseUrl;
-    if (!endsWith(baseUrl, "/")) {
+    if (!PlaySourceUrlBuilder.endsWith(baseUrl, "/")) {
       playUrl += "/";
     }
     playUrl += "p/" + partnerId + "/sp/" + partnerId + "00" + "/playManifest/entryId/" + entryId + "/protocol/" + protocol + "/format/" + format;
@@ -55,5 +53,22 @@ export default class PlaySourceUrlBuilder {
     }
 
     return playUrl;
+  }
+
+  /**
+   * Checks if given string end with search string
+   * @param string
+   * @param searchString
+   * @returns {boolean}
+   */
+  static endsWith(string: string, searchString: string): boolean {
+    if (typeof string !== 'string') {
+      return false;
+    }
+    if (typeof searchString !== 'string') {
+      return false;
+    }
+
+    return string.indexOf(searchString, string.length - searchString.length) != -1;
   }
 }

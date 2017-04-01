@@ -1,5 +1,4 @@
 //@flow
-import HttpRequestExecutor from 'playkit-js/src/util/httpRequestExecutor'
 
 /**
  * Request builder
@@ -71,6 +70,26 @@ export default class RequestBuilder {
    * @returns {Promise.<any>}
    */
   doHttpRequest(): Promise<any> {
-    return HttpRequestExecutor.execute(this.getUrl(), this.params, "POST", this.headers);
+    let request = new XMLHttpRequest();
+    return new Promise((resolve, reject) => {
+      request.onreadystatechange = function () {
+        if (request.readyState === 4) {
+          if (request.status === 200) {
+            let jsonResponse = JSON.parse(request.responseText);
+            if (jsonResponse && typeof(jsonResponse) === 'object' && jsonResponse.code && jsonResponse.message)
+              reject(jsonResponse);
+            else
+              resolve(jsonResponse);
+          } else {
+            reject(request.responseText);
+          }
+        }
+      };
+      request.open(this.method, this.getUrl());
+      this.headers.forEach((value, key) => {
+        request.setRequestHeader(key, value);
+      });
+      request.send(this.params);
+    });
   }
 }

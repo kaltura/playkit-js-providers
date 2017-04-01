@@ -1,6 +1,6 @@
 //@flow
+import Logger from '../../util/logger'
 import ProviderParser from './providerParser'
-import loggerFactory from "playkit-js/src/util/loggerFactory";
 import DataLoaderManager from './loaders/dataLoaderManager'
 import MediaEntryLoader from './loaders/mediaEntryLoader'
 import SessionLoader from './loaders/sessionLoader'
@@ -9,7 +9,7 @@ import UiConfigLoader from './loaders/uiConfigLoader'
 /**
  * @constant
  */
-const logger = loggerFactory.getLogger("OvpProvider");
+const logger = Logger.get("OvpProvider");
 /**
  * @constant
  */
