@@ -1,22 +1,35 @@
 //@flow
-
-import OvpService from './services/ovpService';
-import SessionService from './services/sessionService'
-import BaseEntryService from './services/baseEntryService'
-import MetaDataService from './services/metaDataService'
-import UiConfService from './services/uiConfService'
-import KalturaPlaybackContext from './responseTypes/kalturaPlaybackContext'
-import KalturaMetadataListResponse from './responseTypes/kalturaMetadataListResponse'
-import KalturaBaseEntryListResponse from './responseTypes/kalturaBaseEntryListResponse'
-import KalturaUiConfResponse from './responseTypes/kalturaUIConfResponse'
 import ProviderParser from './providerParser'
-import * as config from './config'
 import loggerFactory from "playkit-js/src/util/loggerFactory";
+import DataLoaderManager from './loaders/dataLoaderManager'
+import MediaEntryLoader from './loaders/mediaEntryLoader'
+import SessionLoader from './loaders/sessionLoader'
+import UiConfigLoader from './loaders/uiConfigLoader'
 
 /**
  * @constant
  */
 const logger = loggerFactory.getLogger("OvpProvider");
+/**
+ * @constant
+ */
+const SESSION_LOADER_NAME: string = "session";
+/**
+ * @constant
+ */
+const MEDIA_LOADER_NAME: string = "media";
+/**
+ * @constant
+ */
+const UICONF_LOADER_NAME: string = "uiConf";
+type playerConfig = {
+  id: string,
+  sources: Array,
+  duration: number,
+  type: string,
+  metadata: Object,
+  plugins: Object
+};
 
 /**
  * Ovp provider
@@ -40,11 +53,17 @@ export class OvpProvider {
    */
   _isAnonymous: boolean;
   /**
-   * @member - should load uiConf data
-   * @type {boolean}
+   * @member - uiConf ID
+   * @type {number}
    * @private
    */
-  _loadUiConf: boolean;
+  _uiConfId: number;
+  /**
+   * @member - Data loader
+   * @type {DataLoaderManager}
+   * @private
+   */
+  _dataLoader: DataLoaderManager;
 
   /**
    * @constructor
@@ -55,6 +74,7 @@ export class OvpProvider {
     this.partnerID = partnerID;
     this.ks = ks;
     this._isAnonymous = !this.ks;
+    this._dataLoader = new DataLoaderManager(this.partnerID, this.ks);
   }
 
   /**
@@ -64,106 +84,86 @@ export class OvpProvider {
    * @param {number} uiConfId
    * @returns {Promise}
    */
-  getConfig(entryId: string, uiConfId?: number): Promise<Object> {
-    if (uiConfId && uiConfId > 0) {
-      this._loadUiConf = true;
-      this.uiConfId = uiConfId;
-    }
-    else {
-      this._loadUiConf = false;
-    }
+  getConfig(entryId?: string, uiConfId?: number): Promise<Object> {
+    this._uiConfId = uiConfId;
+    this._dataLoader.reset(this.partnerID, this.ks);
     return new Promise((resolve, reject) => {
-      this.getData(entryId, uiConfId)
-        .then(response => {
-            if (!response.success) {
-              reject(response);
-            }
-            else {
-              let config: Object = this.parseDataFromResponse(response.data);
-              resolve(config);
-            }
-          },
-          err => {
-            reject(err);
-          });
+      if (this.validateParams(entryId, uiConfId)) {
+        if (this._isAnonymous) {
+          this._dataLoader.add(SESSION_LOADER_NAME, SessionLoader, {partnerId: this.partnerID});
+          this.ks = "{1:result:ks}";
+        }
+        this._dataLoader.add(MEDIA_LOADER_NAME, MediaEntryLoader, {entryId: entryId, ks: this.ks});
+        this._dataLoader.add(UICONF_LOADER_NAME, UiConfigLoader, {uiConfId: uiConfId, ks: this.ks});
+        this._dataLoader.getData()
+          .then(response => {
+              resolve(this.parseDataFromResponse(response));
+            },
+            err => {
+              reject(err);
+            });
+      }
+      else {
+        reject({success: false, data: "Missing mandatory parameter"});
+      }
     });
-  }
-
-  /**
-   * Gets data from BE
-   * @function
-   * @param {string} entryId
-   * @param {number} [uiConfId]
-   * @returns {Promise.<any>}
-   */
-  getData(entryId: string, uiConfId?: number): Promise<any> {
-    let multiRequest = OvpService.getMultirequest(this.ks, this.partnerID);
-
-    multiRequest.tag = "entry-info-multireq";
-    if (this._isAnonymous) {
-      multiRequest.add(SessionService.anonymousSession(config.BE_URL, this.partnerID))
-      this.ks = "{1:result:ks}";
-    }
-
-    multiRequest.add(BaseEntryService.list(config.BE_URL, this.ks, entryId));
-    multiRequest.add(BaseEntryService.getPlaybackContext(config.BE_URL, this.ks, entryId));
-    multiRequest.add(MetaDataService.list(config.BE_URL, this.ks, entryId));
-    if (this._loadUiConf) {
-      multiRequest.add(UiConfService.get(config.BE_URL, this.ks, uiConfId));
-    }
-    return multiRequest.execute();
   }
 
   /**
    * Parses BE data to json configuration object
    * @function parseDataFromResponse
-   * @param {Object} data
+   * @param {Map<string,Function>} data
    * @returns {Object}
    */
-  parseDataFromResponse(data: Object): Object {
+  parseDataFromResponse(data: Map<string,Function>): Object {
     logger.info("Data parsing started.");
-    let responsesIndexMap: Map<string,number> = new Map();
-
-    let index = 0;
-    if (this._isAnonymous) {
-      this.ks = data[0].ks;
-      responsesIndexMap.set("anonymoussessionResponse", index++);
-    }
-    responsesIndexMap.set("baseEntryListResponse", index++);
-    responsesIndexMap.set("playbackContextResponse", index++);
-    responsesIndexMap.set("metaResponse", index++);
-    if (data.length > index && this._loadUiConf)
-      responsesIndexMap.set("uiConfResponse", index);
-
-    let playBackContextResult: KalturaPlaybackContext = new KalturaPlaybackContext(data[responsesIndexMap.get("playbackContextResponse")]);
-    let metadataListResult: KalturaMetadataListResponse = new KalturaMetadataListResponse(data[responsesIndexMap.get("metaResponse")]);
-    let baseEntryList: KalturaBaseEntryListResponse = new KalturaBaseEntryListResponse(data[responsesIndexMap.get("baseEntryListResponse")]);
-
-    let pluginsJson: Object = {};
-    if (this._loadUiConf) {
-      let uiConf: KalturaUiConfResponse = new KalturaUiConfResponse(data[responsesIndexMap.get("uiConfResponse")]);
-      if (uiConf && uiConf.config) {
-        pluginsJson = JSON.parse(uiConf.config).plugins;
-      }
-    }
-
-    let mediaEntry: MediaEntry = ProviderParser.getMediaEntry(this.ks, this.partnerID, this.uiConfId,
-      {
-        entry: baseEntryList.entries[0],
-        playbackContext: playBackContextResult,
-        metadataList: metadataListResult
-      });
-    let config: Object = {
-      id: mediaEntry.id,
-      sources: mediaEntry.sources,
-      duration: mediaEntry.duration,
-      type: mediaEntry.type.name,
-      metadata: mediaEntry.metaData,
-      plugins: pluginsJson
+    let config: playerConfig = {
+      id: "",
+      sources: {},
+      duration: 0,
+      type: "Unknown",
+      metadata: {},
+      plugins: {}
     };
+    if (data.has(SESSION_LOADER_NAME)) {
+      let sessionLoader: SessionLoader = data.get(SESSION_LOADER_NAME);
+      this.ks = sessionLoader.ks;
+      this._isAnonymous = !this.ks;
+    }
+    if (data.has(UICONF_LOADER_NAME)) {
+      let uiConfLoader: UiConfigLoader = data.get(UICONF_LOADER_NAME);
+      let pluginsJson: Object = {};
+      if (uiConfLoader.uiConf.config) {
+        pluginsJson = JSON.parse(uiConfLoader.uiConf.config).plugins;
+      }
+      config.plugins = pluginsJson;
+    }
+    if (data.has(MEDIA_LOADER_NAME)) {
+      let mediaLoader: MediaEntryLoader = data.get(MEDIA_LOADER_NAME);
+      let mediaEntry: MediaEntry = ProviderParser.getMediaEntry(this.ks, this.partnerID, this._uiConfId,
+        {
+          entry: mediaLoader.baseEntryList.entries[0],
+          playbackContext: mediaLoader.playBackContextResult,
+          metadataList: mediaLoader.metadataListResult
+        });
+      config.id = mediaEntry.id;
+      config.sources = mediaEntry.sources;
+      config.duration = mediaEntry.duration;
+      config.type = mediaEntry.type.name;
+      config.metadata = mediaEntry.metaData;
+    }
     logger.info(config);
     return (config);
+  }
 
+  /**
+   * Parametrs validation function
+   * @param entryId
+   * @param uiConfId
+   * @returns {boolean}
+   */
+  validateParams(entryId: string, uiConfId: number): boolean {
+    return entryId || uiConfId;
   }
 }
 

@@ -1,5 +1,4 @@
 //@flow
-
 import RequestBuilder from './requestBuilder'
 import ServiceResult from './baseServiceResult'
 import loggerFactory from "playkit-js/src/util/loggerFactory";
@@ -35,9 +34,11 @@ export default class MultiRequestBuilder extends RequestBuilder {
    */
   add(request: RequestBuilder): MultiRequestBuilder {
     this.requests.push(request);
-
+    let requestParams = {};
     let serviceDef: Object = {service: request.service, action: request.action};
-    this.params = Object.assign(this.params, {[this.requests.length]: Object.assign(serviceDef, request.params)});
+    Object.assign(requestParams, {[this.requests.length]: Object.assign(serviceDef, request.params)});
+    Object.assign(requestParams, this.params);
+    this.params = requestParams;
     return this;
   }
 
@@ -51,7 +52,6 @@ export default class MultiRequestBuilder extends RequestBuilder {
       this.params = JSON.stringify(this.params);
     }
     catch (err) {
-      document.getElementById("demo").innerHTML = err.message;
       logger.error(`${err.message}`);
     }
     return new Promise((resolve, reject) => {
@@ -80,7 +80,7 @@ export default class MultiRequestBuilder extends RequestBuilder {
  * Multi Request result object
  * @classdesc
  */
-class MultiRequestResult {
+export class MultiRequestResult {
 
   /**
    * @member - Is success

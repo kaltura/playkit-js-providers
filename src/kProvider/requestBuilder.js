@@ -46,10 +46,9 @@ export default class RequestBuilder {
   /**
    * @constructor
    */
-  constructor() {
-    if (this.headers == undefined) {
-      this.headers = new Map();
-    }
+  constructor(headers: Map<string, string> = new Map()) {
+    //this.params = {};
+    this.headers = headers;
     this.headers.set("Content-Type", "application/json");
   }
 

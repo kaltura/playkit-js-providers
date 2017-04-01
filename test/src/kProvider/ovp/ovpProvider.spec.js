@@ -15,17 +15,21 @@ describe('OvpProvider', function () {
     sandbox.restore();
   });
 
-
   it('should return config without plugins and without drm data', (done) => {
     let partnerId = 1082342;
     let entryID = "1_rsrdfext";
     provider = new OvpProvider(partnerId);
-    sinon.stub(provider, "getData").callsFake(
+
+    sinon.stub(provider._dataLoader._multiRequest, "execute").callsFake(
       function () {
         return new Promise((resolve, reject) => {
           let response = {success: true, data: mocData.AnonymousMocEntryWithoutUIConfNoDrmData};
           resolve(response);
         });
+      }
+    );
+    sinon.stub(provider._dataLoader, "reset").callsFake(
+      function () {
       }
     );
     provider.getConfig(entryID).then(data => {
@@ -46,12 +50,16 @@ describe('OvpProvider', function () {
     let partnerId = 1068292;
     let entryID = "1_rwbj3j0a";
     provider = new OvpProvider(partnerId);
-    sinon.stub(provider, "getData").callsFake(
+    sinon.stub(provider._dataLoader._multiRequest, "execute").callsFake(
       function () {
         return new Promise((resolve, reject) => {
           let response = {success: true, data: mocData.AnonymousMocEntryWithoutUIConfWithDrmData};
           resolve(response);
         });
+      }
+    );
+    sinon.stub(provider._dataLoader, "reset").callsFake(
+      function () {
       }
     );
     provider.getConfig(entryID).then(data => {
@@ -73,14 +81,16 @@ describe('OvpProvider', function () {
     let entryID = "1_rwbj3j0affff";
     provider = new OvpProvider(partnerId);
     let exceptionOccurred = false;
-    sinon.stub(provider, "getData").callsFake(
+    sinon.stub(provider._dataLoader._multiRequest, "execute").callsFake(
       function () {
         return new Promise((resolve, reject) => {
           let response = {success: false, data: mocData.WrongEntryIDWithoutUIConf};
         });
       });
-
-
+    sinon.stub(provider._dataLoader, "reset").callsFake(
+      function () {
+      }
+    );
     provider.getConfig(entryID).then(data => {
         done("Get config should throw error")
       },
@@ -90,7 +100,6 @@ describe('OvpProvider', function () {
         done();
 
       });
-
   });
 
   it('should return config with plugins and without drm data', (done) => {
@@ -98,12 +107,16 @@ describe('OvpProvider', function () {
     let entryID = "1_rsrdfext";
     let uiConfID = 38621471;
     provider = new OvpProvider(partnerId);
-    sinon.stub(provider, "getData").callsFake(
+    sinon.stub(provider._dataLoader._multiRequest, "execute").callsFake(
       function () {
         return new Promise((resolve, reject) => {
           let response = {success: true, data: mocData.EntryWithUIConfNoDrmData};
           resolve(response);
         });
+      }
+    );
+    sinon.stub(provider._dataLoader, "reset").callsFake(
+      function () {
       }
     );
     provider.getConfig(entryID, uiConfID).then(data => {
@@ -125,12 +138,16 @@ describe('OvpProvider', function () {
     let entryID = "1_rwbj3j0a";
     let uiConfID = 38601981;
     provider = new OvpProvider(partnerId);
-    sinon.stub(provider, "getData").callsFake(
+    sinon.stub(provider._dataLoader._multiRequest, "execute").callsFake(
       function () {
         return new Promise((resolve, reject) => {
           let response = {success: true, data: mocData.EntryWithUIConfWithDrmData};
           resolve(response);
         });
+      }
+    );
+    sinon.stub(provider._dataLoader, "reset").callsFake(
+      function () {
       }
     );
     provider.getConfig(entryID, uiConfID).then(data => {
@@ -152,14 +169,16 @@ describe('OvpProvider', function () {
     let entryID = "1_rwbj3j0a";
     let uiConfID = 38601981;
     provider = new OvpProvider(partnerId);
-    sinon.stub(provider, "getData").callsFake(
+    sinon.stub(provider._dataLoader._multiRequest, "execute").callsFake(
       function () {
         return new Promise((resolve, reject) => {
           let response = {success: false, data: mocData.WrongUiConfID};
         });
       });
-
-
+    sinon.stub(provider._dataLoader, "reset").callsFake(
+      function () {
+      }
+    );
     provider.getConfig(entryID, uiConfID).then(data => {
         done("Get config should throw error");
       },
@@ -169,19 +188,22 @@ describe('OvpProvider', function () {
         done();
 
       });
-
   });
 
   it('should return config without plugins and without drm data for audio', (done) => {
     let partnerId = 1082342;
     let entryID = "0_vyzw3ceu";
     provider = new OvpProvider(partnerId);
-    sinon.stub(provider, "getData").callsFake(
+    sinon.stub(provider._dataLoader._multiRequest, "execute").callsFake(
       function () {
         return new Promise((resolve, reject) => {
           let response = {success: true, data: mocData.AudioEntryWithoutPlugins};
           resolve(response);
         });
+      }
+    );
+    sinon.stub(provider._dataLoader, "reset").callsFake(
+      function () {
       }
     );
     provider.getConfig(entryID).then(data => {
@@ -202,12 +224,16 @@ describe('OvpProvider', function () {
     let partnerId = 1082342;
     let entryID = "0_vyzw3ceu";
     provider = new OvpProvider(partnerId);
-    sinon.stub(provider, "getData").callsFake(
+    sinon.stub(provider._dataLoader._multiRequest, "execute").callsFake(
       function () {
         return new Promise((resolve, reject) => {
           let response = {success: true, data: mocData.ImageEntryWithoutPlugins};
           resolve(response);
         });
+      }
+    );
+    sinon.stub(provider._dataLoader, "reset").callsFake(
+      function () {
       }
     );
     provider.getConfig(entryID).then(data => {
@@ -223,6 +249,5 @@ describe('OvpProvider', function () {
         done(err)
       })
   });
-
 });
 

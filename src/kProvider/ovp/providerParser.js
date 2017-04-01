@@ -5,6 +5,7 @@ import MediaSource from '../../declarations/mediaSource'
 import Drm from '../../declarations/drm'
 import KalturaMediaEntry from './responseTypes/kalturaMediaEntry'
 import KalturaPlaybackContext from './responseTypes/kalturaPlaybackContext'
+import KalturaPlaybackSource from './responseTypes/kalturaPlaybackSource'
 import KalturaFlavorAsset from './responseTypes/kalturaFlavorAsset'
 import KalturaMetadataListResponse from './responseTypes/kalturaMetadataListResponse'
 import FormatsHelper from './formatsHelper'
@@ -43,7 +44,7 @@ export default class ProviderParser {
     let entry = dataObj.entry;
     let playbackContext = dataObj.playbackContext;
     let metadataList = dataObj.metadataList;
-    let kalturaSources: Array<KalturaformatsHelper.jsPlaybackSource> = playbackContext.sources;
+    let kalturaSources: Array<KalturaPlaybackSource> = playbackContext.sources;
     let sources: Array<MediaSource>;
 
     if (kalturaSources && kalturaSources.length > 0) {
