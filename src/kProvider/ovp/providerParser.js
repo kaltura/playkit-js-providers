@@ -45,10 +45,12 @@ export default class ProviderParser {
     let playbackContext = dataObj.playbackContext;
     let metadataList = dataObj.metadataList;
     let kalturaSources: Array<KalturaPlaybackSource> = playbackContext.sources;
-    let sources: Array<MediaSource>;
+    let sources: Array<MediaSource> = [];
 
     if (kalturaSources && kalturaSources.length > 0) {
-      sources = this.parseSources(ks, partnerID, uiConfId, dataObj.entry, playbackContext);
+      kalturaSources.forEach((source) => {
+        sources.push(this.parseSource(source,ks, partnerID, uiConfId, dataObj.entry, playbackContext));
+      });
     }
     else {
       sources = [];
@@ -90,7 +92,7 @@ export default class ProviderParser {
 
   /**
    * Ovp sources parser
-   * @function parseSources
+   * @function parseSource
    * @param {string} ks
    * @param {number} partnerID
    * @param {number} uiConfId
@@ -99,10 +101,7 @@ export default class ProviderParser {
    * @returns {Array.<MediaSource>}
    * @static
    */
-  static parseSources(ks: string, partnerID: number, uiConfId: number, entry: KalturaMediaEntry, playbackContext: KalturaPlaybackContext): Array<MediaSource> {
-    let sources: Array<MediaSource> = [];
-    playbackContext.sources.forEach((source) => {
-
+  static parseSource(source: KalturaPlaybackSource, ks: string, partnerID: number, uiConfId: number, entry: KalturaMediaEntry, playbackContext: KalturaPlaybackContext): Array<MediaSource> {
       let playUrl: string = "";
       let mediaFormat: MediaFormat = FormatsHelper.getMediaFormat(source.format, source.hasDrmData());
       let mediaSource: MediaSource = new MediaSource();
@@ -161,9 +160,7 @@ export default class ProviderParser {
         });
         mediaSource.drmData = drmParams;
       }
-      sources.push(mediaSource);
-    });
-    return sources;
+    return mediaSource;
   }
 
   /**
