@@ -16,6 +16,11 @@ export default class ServiceResult {
    * @type {ServiceError}
    */
   error: ServiceError;
+  /**
+   * @member - The service result data
+   * @type {Object}
+   */
+  data: Object;
 
   /**
    * @constructor
@@ -25,6 +30,9 @@ export default class ServiceResult {
     if (response.objectType === "KalturaAPIException") {
       this.hasError = true;
       this.error = new ServiceError(response.code, response.message);
+    }
+    else {
+      this.data = response;
     }
   }
 }

@@ -31,10 +31,10 @@ export default class UiConfigLoader extends BaseLoader {
   /**
    * Sets loader data from response
    * @function
-   * @param {Object} data
+   * @param {Object} results
    */
-  setData(data: Object) {
-    this.uiConf = new KalturaUiConfResponse(data[0]);
+  setData(results: Object) {
+    this.uiConf = new KalturaUiConfResponse(results[0].data);
   }
 
   /**

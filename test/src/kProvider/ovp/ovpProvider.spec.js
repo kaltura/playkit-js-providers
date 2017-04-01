@@ -1,6 +1,7 @@
 import OvpProvider from '../../../../src/kProvider/ovp/ovpProvider'
 import * as mocData from './BEStubs'
 import * as parsedData from './PlayerConfigParsed'
+import {MultiRequestResult} from '../../../../src/kProvider/multiRequestBuilder'
 
 describe('OvpProvider', function () {
 
@@ -23,7 +24,7 @@ describe('OvpProvider', function () {
     sinon.stub(provider._dataLoader._multiRequest, "execute").callsFake(
       function () {
         return new Promise((resolve, reject) => {
-          let response = {success: true, data: mocData.AnonymousMocEntryWithoutUIConfNoDrmData};
+          let response = new MultiRequestResult(mocData.AnonymousMocEntryWithoutUIConfNoDrmData);
           resolve(response);
         });
       }
@@ -53,7 +54,7 @@ describe('OvpProvider', function () {
     sinon.stub(provider._dataLoader._multiRequest, "execute").callsFake(
       function () {
         return new Promise((resolve, reject) => {
-          let response = {success: true, data: mocData.AnonymousMocEntryWithoutUIConfWithDrmData};
+          let response = new MultiRequestResult(mocData.AnonymousMocEntryWithoutUIConfWithDrmData);
           resolve(response);
         });
       }
@@ -84,7 +85,7 @@ describe('OvpProvider', function () {
     sinon.stub(provider._dataLoader._multiRequest, "execute").callsFake(
       function () {
         return new Promise((resolve, reject) => {
-          let response = {success: false, data: mocData.WrongEntryIDWithoutUIConf};
+          let response = new MultiRequestResult(mocData.WrongEntryIDWithoutUIConf);
         });
       });
     sinon.stub(provider._dataLoader, "reset").callsFake(
@@ -110,7 +111,7 @@ describe('OvpProvider', function () {
     sinon.stub(provider._dataLoader._multiRequest, "execute").callsFake(
       function () {
         return new Promise((resolve, reject) => {
-          let response = {success: true, data: mocData.EntryWithUIConfNoDrmData};
+          let response = new MultiRequestResult(mocData.EntryWithUIConfNoDrmData);
           resolve(response);
         });
       }
@@ -141,7 +142,7 @@ describe('OvpProvider', function () {
     sinon.stub(provider._dataLoader._multiRequest, "execute").callsFake(
       function () {
         return new Promise((resolve, reject) => {
-          let response = {success: true, data: mocData.EntryWithUIConfWithDrmData};
+          let response = new MultiRequestResult(mocData.EntryWithUIConfWithDrmData);
           resolve(response);
         });
       }
@@ -172,7 +173,7 @@ describe('OvpProvider', function () {
     sinon.stub(provider._dataLoader._multiRequest, "execute").callsFake(
       function () {
         return new Promise((resolve, reject) => {
-          let response = {success: false, data: mocData.WrongUiConfID};
+          let response = new MultiRequestResult(mocData.WrongUiConfID);
         });
       });
     sinon.stub(provider._dataLoader, "reset").callsFake(
@@ -197,7 +198,7 @@ describe('OvpProvider', function () {
     sinon.stub(provider._dataLoader._multiRequest, "execute").callsFake(
       function () {
         return new Promise((resolve, reject) => {
-          let response = {success: true, data: mocData.AudioEntryWithoutPlugins};
+          let response = new MultiRequestResult(mocData.AudioEntryWithoutPlugins);
           resolve(response);
         });
       }
@@ -227,7 +228,7 @@ describe('OvpProvider', function () {
     sinon.stub(provider._dataLoader._multiRequest, "execute").callsFake(
       function () {
         return new Promise((resolve, reject) => {
-          let response = {success: true, data: mocData.ImageEntryWithoutPlugins};
+          let response = new MultiRequestResult(mocData.ImageEntryWithoutPlugins);
           resolve(response);
         });
       }

@@ -89,12 +89,13 @@ export class OvpProvider {
     this._dataLoader.reset(this.partnerID, this.ks);
     return new Promise((resolve, reject) => {
       if (this.validateParams(entryId, uiConfId)) {
+        let ks:string = this.ks;
         if (this._isAnonymous) {
-          this._dataLoader.add(SESSION_LOADER_NAME, SessionLoader, {partnerId: this.partnerID});
-          this.ks = "{1:result:ks}";
+          ks = "{1:result:ks}";
         }
-        this._dataLoader.add(MEDIA_LOADER_NAME, MediaEntryLoader, {entryId: entryId, ks: this.ks});
-        this._dataLoader.add(UICONF_LOADER_NAME, UiConfigLoader, {uiConfId: uiConfId, ks: this.ks});
+        this._dataLoader.add(SESSION_LOADER_NAME, SessionLoader, {partnerId: this.partnerID});
+        this._dataLoader.add(MEDIA_LOADER_NAME, MediaEntryLoader, {entryId: entryId, ks:ks});
+        this._dataLoader.add(UICONF_LOADER_NAME, UiConfigLoader, {uiConfId: uiConfId, ks:ks});
         this._dataLoader.getData()
           .then(response => {
               resolve(this.parseDataFromResponse(response));

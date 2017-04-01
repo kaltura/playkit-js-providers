@@ -34,10 +34,10 @@ export default class SessionLoader extends BaseLoader {
   /**
    * Sets loader data from response
    * @function
-   * @param {Object} data
+   * @param {Object} results
    */
-  setData(data: Object) {
-    this.ks = data[0].ks;
+  setData(results: Object) {
+    this.ks = results[0].data.ks;
   }
 
   /**

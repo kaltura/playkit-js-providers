@@ -82,7 +82,7 @@ export default class DataLoaderManager {
               this._loaders.forEach(function (value, key) {
                 let loaderDataIndexes = DataLoaderManager._loadersResponseMap.get(key);
                 try {
-                  value.setData(response.data.slice(loaderDataIndexes[0], loaderDataIndexes[loaderDataIndexes.length]));
+                  value.setData(response.results.slice(loaderDataIndexes[0], loaderDataIndexes[loaderDataIndexes.length-1]+1));
                 }
                 catch (err) {
                   reject({success: false, data: err});

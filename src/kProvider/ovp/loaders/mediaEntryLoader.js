@@ -52,12 +52,12 @@ export default class MediaEntryLoader extends BaseLoader {
   /**
    * Sets loader data from response
    * @function
-   * @param {Object} data
+   * @param {Object} results
    */
-  setData(data: Object): void {
-    this.baseEntryList = new KalturaBaseEntryListResponse(data[0]);
-    this.playBackContextResult = new KalturaPlaybackContext(data[1]);
-    this.metadataListResult = new KalturaMetadataListResponse(data[2]);
+  setData(results: Object): void {
+    this.baseEntryList = new KalturaBaseEntryListResponse(results[0].data);
+    this.playBackContextResult = new KalturaPlaybackContext(results[1].data);
+    this.metadataListResult = new KalturaMetadataListResponse(results[2].data);
   }
 
   /**

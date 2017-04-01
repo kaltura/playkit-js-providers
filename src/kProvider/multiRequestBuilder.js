@@ -56,16 +56,7 @@ export default class MultiRequestBuilder extends RequestBuilder {
     }
     return new Promise((resolve, reject) => {
       this.doHttpRequest().then(data => {
-          let multiResult: MultiRequestResult = new MultiRequestResult(data);
-          data.forEach((result, index) => {
-            let serviceResult: ServiceResult = new ServiceResult(result);
-            if (serviceResult.hasError) {
-              logger.error(`${this.requests[index].service}.${this.requests[index].action} returned an error with error code: ${serviceResult.error.code} and message: ${serviceResult.error.message}.`);
-              multiResult.success = false;
-              return false;
-            }
-          });
-          resolve(multiResult);
+          resolve(new MultiRequestResult(data));
         },
         err => {
           let errorText: string = `Error on multiRequest execution, error <${err}>.`;
@@ -74,6 +65,7 @@ export default class MultiRequestBuilder extends RequestBuilder {
         });
     });
   }
+
 }
 
 /**
@@ -91,14 +83,22 @@ export class MultiRequestResult {
    * @member - Multi request response data
    * @type {Object}
    */
-  data: Object;
+  results: Array<ServiceResult> = [];
 
   /**
    * @constructor
-   * @param {Object} data
+   * @param {Object}  response data
    */
-  constructor(data: Object) {
-    this.success = true;
-    this.data = data;
+  constructor(response: Object)
+  {
+    this.success=true;
+    response.forEach((result) => {
+      let serviceResult: ServiceResult = new ServiceResult(result);
+      this.results.push(serviceResult);
+      if (serviceResult.hasError) {
+        logger.error(`Service returned an error with error code: ${serviceResult.error.code} and message: ${serviceResult.error.message}.`);
+        this.success =  this.success ||serviceResult.hasError;
+      }
+    });
   }
 }
