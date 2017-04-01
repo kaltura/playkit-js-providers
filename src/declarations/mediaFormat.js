@@ -4,15 +4,7 @@ import {Enum} from 'enumify';
 export class MediaFormat extends Enum {
 }
 MediaFormat.initEnum({
-  mp4_clear: {
-    get mimeType() {
-      return "video/mp4";
-    },
-    get pathExt() {
-      return "mp4";
-    }
-  },
-  dash_clear: {
+  dash: {
     get mimeType() {
       return "application/dash+xml";
     },
@@ -20,15 +12,15 @@ MediaFormat.initEnum({
       return "mpd";
     }
   },
-  dash_drm: {
+  hls: {
     get mimeType() {
-      return "application/dash+xml";
+      return "application/x-mpegURL";
     },
     get pathExt() {
-      return "mpd";
+      return "m3u8";
     }
   },
-  wvm_widevine: {
+  wvm: {
     get mimeType() {
       return "video/wvm";
     },
@@ -36,15 +28,23 @@ MediaFormat.initEnum({
       return "wvm";
     }
   },
-  hls_clear: {
+  mp4: {
     get mimeType() {
-      return "application/x-mpegURL"
+      return "video/mp4";
     },
     get pathExt() {
-      return "m3u8";
+      return "mp4";
     }
   },
-  fairplay:{
+  mp3: {
+    get mimeType() {
+      return "audio/mpeg";
+    },
+    get pathExt() {
+      return "mp3";
+    }
+  },
+  fairplay: {
     get mimeType() {
       return "application/vnd.apple.mpegurl"
     },
@@ -53,5 +53,6 @@ MediaFormat.initEnum({
     }
   }
 });
+
 
 
