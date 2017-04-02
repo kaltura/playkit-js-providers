@@ -7,8 +7,9 @@ import KalturaPlaybackContext from '../responseTypes/kalturaPlaybackContext'
 import KalturaMetadataListResponse from '../responseTypes/kalturaMetadataListResponse'
 import KalturaBaseEntryListResponse from '../responseTypes/kalturaBaseEntryListResponse'
 import BaseLoader from './baseLoader'
-import * as config from '../config'
+import Configuration from '../config'
 
+const config = Configuration.get();
 /**
  * Media entry loader
  * @classdesc
@@ -45,7 +46,7 @@ export default class MediaEntryLoader extends BaseLoader {
    * @param {Object} params loader params
    */
   constructor(name: string, params: Object) {
-    super(name,MediaEntryLoader.buildRequests(params));
+    super(name, MediaEntryLoader.buildRequests(params));
     this._entryId = params.entryId;
   }
 
@@ -69,9 +70,9 @@ export default class MediaEntryLoader extends BaseLoader {
    */
   static buildRequests(params: Object): RequestBuilder {
     let requests: Array<RequestBuilder> = [];
-    requests.push(BaseEntryService.list(config.BE_URL, params.ks, params.entryId));
-    requests.push(BaseEntryService.getPlaybackContext(config.BE_URL, params.ks, params.entryId));
-    requests.push(MetaDataService.list(config.BE_URL, params.ks, params.entryId));
+    requests.push(BaseEntryService.list(config.beUrl, params.ks, params.entryId));
+    requests.push(BaseEntryService.getPlaybackContext(config.beUrl, params.ks, params.entryId));
+    requests.push(MetaDataService.list(config.beUrl, params.ks, params.entryId));
     return requests;
   }
 

@@ -5,6 +5,7 @@ import DataLoaderManager from './loaders/dataLoaderManager'
 import MediaEntryLoader from './loaders/mediaEntryLoader'
 import SessionLoader from './loaders/sessionLoader'
 import UiConfigLoader from './loaders/uiConfigLoader'
+import Configuration from './config'
 
 /**
  * @constant
@@ -70,11 +71,12 @@ export class OvpProvider {
    * @param {number} partnerID
    * @param {string} [ks=""] - has empty string as default value
    */
-  constructor(partnerID: number, ks: string = "") {
+  constructor(partnerID: number, ks: string = "", config?: Object) {
     this.partnerID = partnerID;
     this.ks = ks;
     this._isAnonymous = !this.ks;
     this._dataLoader = new DataLoaderManager(this.partnerID, this.ks);
+    Configuration.set(config);
   }
 
   /**
@@ -89,13 +91,13 @@ export class OvpProvider {
     this._dataLoader.reset(this.partnerID, this.ks);
     return new Promise((resolve, reject) => {
       if (this.validateParams(entryId, uiConfId)) {
-        let ks:string = this.ks;
+        let ks: string = this.ks;
         if (this._isAnonymous) {
           ks = "{1:result:ks}";
         }
         this._dataLoader.add(SESSION_LOADER_NAME, SessionLoader, {partnerId: this.partnerID});
-        this._dataLoader.add(MEDIA_LOADER_NAME, MediaEntryLoader, {entryId: entryId, ks:ks});
-        this._dataLoader.add(UICONF_LOADER_NAME, UiConfigLoader, {uiConfId: uiConfId, ks:ks});
+        this._dataLoader.add(MEDIA_LOADER_NAME, MediaEntryLoader, {entryId: entryId, ks: ks});
+        this._dataLoader.add(UICONF_LOADER_NAME, UiConfigLoader, {uiConfId: uiConfId, ks: ks});
         this._dataLoader.getData()
           .then(response => {
               resolve(this.parseDataFromResponse(response));

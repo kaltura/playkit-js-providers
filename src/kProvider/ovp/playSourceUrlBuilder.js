@@ -1,5 +1,7 @@
 //@flow
-import * as config from './config'
+import Configuration from './config'
+
+const config = Configuration.get();
 
 /**
  * Media source url builder
@@ -15,7 +17,7 @@ export default class PlaySourceUrlBuilder {
    * @static
    */
   static build(urlParams: Object): string {
-    let baseUrl: string = config.BASE_URL;
+    let baseUrl: string = config.baseUrl;
     let partnerId: number = urlParams.partnerId;
     let entryId: string = urlParams.entryId;
     let ks: string = urlParams.ks;

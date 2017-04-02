@@ -1,9 +1,8 @@
 //@flow
-
-
 import MultiRequestBuilder from '../../multiRequestBuilder'
-import * as config from '../config'
+import Configuration from '../config'
 
+const config = Configuration.get();
 const SERVICE_NAME: string = "multirequest";
 
 /**
@@ -20,7 +19,7 @@ export default class OvpService {
    * @static
    */
   static getMultirequest(ks: string, partnerId?: number): MultiRequestBuilder {
-    let ovpParams = config.SERVICE_CONFIG_PARAMAS;
+    let ovpParams = config.serviceParams;
     Object.assign(ovpParams, {ks: ks});
     if (partnerId) {
       Object.assign(ovpParams, {partnerId: partnerId});
@@ -28,7 +27,7 @@ export default class OvpService {
     let multiReq = new MultiRequestBuilder();
     multiReq.method = "POST";
     multiReq.service = SERVICE_NAME;
-    multiReq.baseUrl = config.BE_URL;
+    multiReq.baseUrl = config.beUrl;
     multiReq.params = ovpParams;
     return multiReq;
   }

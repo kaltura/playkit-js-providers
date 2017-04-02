@@ -13,9 +13,10 @@ import MediaFormat from '../../declarations/mediaFormat'
 import PlaySourceUrlBuilder from "./playSourceUrlBuilder"
 import XmlParser from '../xmlParser'
 import {MediaEntryType, EntryType, MediaType} from '../enums'
-import * as config from './config'
 import Logger from '../../util/logger'
+import Configuration from './config'
 
+const config = Configuration.get();
 /**
  * @constant
  */
@@ -49,7 +50,7 @@ export default class ProviderParser {
 
     if (kalturaSources && kalturaSources.length > 0) {
       kalturaSources.forEach((source) => {
-        sources.push(this.parseSource(source,ks, partnerID, uiConfId, dataObj.entry, playbackContext));
+        sources.push(this.parseSource(source, ks, partnerID, uiConfId, dataObj.entry, playbackContext));
       });
     }
     else {
@@ -102,64 +103,64 @@ export default class ProviderParser {
    * @static
    */
   static parseSource(source: KalturaPlaybackSource, ks: string, partnerID: number, uiConfId: number, entry: KalturaMediaEntry, playbackContext: KalturaPlaybackContext): Array<MediaSource> {
-      let playUrl: string = "";
-      let mediaFormat: MediaFormat = FormatsHelper.getMediaFormat(source.format, source.hasDrmData());
-      let mediaSource: MediaSource = new MediaSource();
-      // in case playbackSource doesn't have flavors we don't need to build the url and we'll use the provided one.
-      if (source.hasFlavorIds()) {
-        let splittedUrl: Array<string> = config.BASE_URL.split("/");
-        let baseProtocol: string;
-        if (splittedUrl && splittedUrl.length > 0) {
-          baseProtocol = splittedUrl[0].substring(0, splittedUrl[0].length - 1);
-        }
-        else {
-          baseProtocol = "http";
-        }
-
-        let extension: string = "";
-        if (!mediaFormat) {
-          let flavorIdsArr = source.flavorIds.split(",");
-          let flavors: Array<KalturaFlavorAsset> = playbackContext.flavorAssets.filter(flavor => flavorIdsArr.indexOf(flavor.id) != -1);
-          if (flavors && flavors.length > 0) {
-            extension = flavors[0].fileExt;
-          }
-        }
-        else {
-          extension = mediaFormat.pathExt;
-          mediaSource.mimetype = mediaFormat.mimeType;
-        }
-
-        playUrl = PlaySourceUrlBuilder.build({
-          entryId: entry.id,
-          flavorIds: source.flavorIds,
-          format: source.format,
-          ks: ks,
-          partnerId: partnerID,
-          uiConfId: uiConfId,
-          extension: extension,
-          protocol: source.getProtocol(baseProtocol)
-        });
-
+    let playUrl: string = "";
+    let mediaFormat: MediaFormat = FormatsHelper.getMediaFormat(source.format, source.hasDrmData());
+    let mediaSource: MediaSource = new MediaSource();
+    // in case playbackSource doesn't have flavors we don't need to build the url and we'll use the provided one.
+    if (source.hasFlavorIds()) {
+      let splittedUrl: Array<string> = config.baseUrl.split("/");
+      let baseProtocol: string;
+      if (splittedUrl && splittedUrl.length > 0) {
+        baseProtocol = splittedUrl[0].substring(0, splittedUrl[0].length - 1);
       }
       else {
-        playUrl = source.url;
+        baseProtocol = "http";
       }
 
-      if (playUrl == "") {
-        logger.error(`failed to create play url from source, discarding source: (${entry.id}_${source.deliveryProfileId}), ${source.format}.`);
-        return;
+      let extension: string = "";
+      if (!mediaFormat) {
+        let flavorIdsArr = source.flavorIds.split(",");
+        let flavors: Array<KalturaFlavorAsset> = playbackContext.flavorAssets.filter(flavor => flavorIdsArr.indexOf(flavor.id) != -1);
+        if (flavors && flavors.length > 0) {
+          extension = flavors[0].fileExt;
+        }
+      }
+      else {
+        extension = mediaFormat.pathExt;
+        mediaSource.mimetype = mediaFormat.mimeType;
       }
 
+      playUrl = PlaySourceUrlBuilder.build({
+        entryId: entry.id,
+        flavorIds: source.flavorIds,
+        format: source.format,
+        ks: ks,
+        partnerId: partnerID,
+        uiConfId: uiConfId,
+        extension: extension,
+        protocol: source.getProtocol(baseProtocol)
+      });
 
-      mediaSource.src = playUrl;
-      mediaSource.id = entry.id + "_" + source.deliveryProfileId + "," + source.format;
-      if (source.hasDrmData()) {
-        let drmParams: Array<Drm> = [];
-        source.drm.forEach((drm) => {
-          drmParams.push(new Drm(drm.licenseURL, drm.scheme));
-        });
-        mediaSource.drmData = drmParams;
-      }
+    }
+    else {
+      playUrl = source.url;
+    }
+
+    if (playUrl == "") {
+      logger.error(`failed to create play url from source, discarding source: (${entry.id}_${source.deliveryProfileId}), ${source.format}.`);
+      return;
+    }
+
+
+    mediaSource.src = playUrl;
+    mediaSource.id = entry.id + "_" + source.deliveryProfileId + "," + source.format;
+    if (source.hasDrmData()) {
+      let drmParams: Array<Drm> = [];
+      source.drm.forEach((drm) => {
+        drmParams.push(new Drm(drm.licenseURL, drm.scheme));
+      });
+      mediaSource.drmData = drmParams;
+    }
     return mediaSource;
   }
 
