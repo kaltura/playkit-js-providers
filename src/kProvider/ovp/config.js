@@ -11,16 +11,15 @@ const defaultConfig: Object = {
 };
 
 export default class Configuration {
-  static config: Object = defaultConfig;
 
   static set(clientConfig: Object) {
     if (clientConfig) {
-      Object.assign(Configuration.config, clientConfig);
+      Object.assign(defaultConfig, clientConfig);
     }
   }
 
   static get(): Object {
-    return Configuration.config;
+    return defaultConfig;
   }
 }
 

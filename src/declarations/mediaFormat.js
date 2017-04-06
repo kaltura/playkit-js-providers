@@ -43,14 +43,6 @@ MediaFormat.initEnum({
     get pathExt() {
       return "mp3";
     }
-  },
-  fairplay: {
-    get mimeType() {
-      return "application/vnd.apple.mpegurl"
-    },
-    get pathExt() {
-      return "m3u8";
-    }
   }
 });
 

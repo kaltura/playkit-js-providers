@@ -45,21 +45,20 @@ export default class DataLoaderManager {
   /**
    * Add loader too execution loaders map
    * @function
-   * @param {string} name
    * @param {Function} loader
    * @param {Object} params
    */
-  add(name: string, loader: Function, params: Object): void {
-    let execution_loader = loader.createLoader(name, params);
+  add(loader: Function, params: Object): void {
+    let execution_loader = loader.createLoader(params);
     if (execution_loader.isValid()) {
-      this._loaders.set(name, execution_loader);
+      this._loaders.set(execution_loader.name, execution_loader);
       execution_loader.getRequests().forEach((request) => {
         this._multiRequest.add(request);
-        if (DataLoaderManager._loadersResponseMap.has(name)) {
-          (DataLoaderManager._loadersResponseMap.get(name)).push(this._multiRequest.requests.length - 1)
+        if (DataLoaderManager._loadersResponseMap.has(execution_loader.name)) {
+          (DataLoaderManager._loadersResponseMap.get(execution_loader.name)).push(this._multiRequest.requests.length - 1)
         }
         else {
-          DataLoaderManager._loadersResponseMap.set(name, [this._multiRequest.requests.length - 1])
+          DataLoaderManager._loadersResponseMap.set(execution_loader.name, [this._multiRequest.requests.length - 1])
         }
       });
     }
@@ -70,7 +69,7 @@ export default class DataLoaderManager {
    * @function
    * @returns {Promise}
    */
-  getData(): Promise<any> {
+  fetchData(): Promise<any> {
     return new Promise((resolve, reject) => {
       this._multiRequest.execute()
         .then(response => {
@@ -79,16 +78,13 @@ export default class DataLoaderManager {
               reject(response);
             }
             else {
-              this._loaders.forEach(function (value, key) {
-                let loaderDataIndexes = DataLoaderManager._loadersResponseMap.get(key);
-                try {
-                  value.setData(response.results.slice(loaderDataIndexes[0], loaderDataIndexes[loaderDataIndexes.length-1]+1));
-                }
-                catch (err) {
-                  reject({success: false, data: err});
-                }
-              });
-              resolve(this._loaders);
+              let preparedData: Object = this.prepareData(response);
+              if (preparedData.success) {
+                resolve(this._loaders);
+              }
+              else {
+                reject({success: false, data: preparedData.error});
+              }
             }
           },
           err => {
@@ -97,16 +93,17 @@ export default class DataLoaderManager {
     });
   }
 
-  /**
-   * Resets data loader manager
-   * @param {number} partnerID
-   * @param {string} ks
-   */
-  reset(partnerID: number, ks: string = ""): void {
-    DataLoaderManager._loadersResponseMap = new Map();
-    this._loaders = new Map();
-    this._multiRequest = OvpService.getMultirequest(ks, partnerID);
-    this._multiResponse = {};
+  prepareData(response: MultiRequestResult): Object {
+    this._loaders.forEach(function (loader, name) {
+      let loaderDataIndexes = DataLoaderManager._loadersResponseMap.get(name);
+      try {
+        loader.setData(response.results.slice(loaderDataIndexes[0], loaderDataIndexes[loaderDataIndexes.length - 1] + 1));
+      }
+      catch (err) {
+        return {success: false, error: err};
+      }
+    });
+    return {success: true, data: this._loaders};
   }
 }
 

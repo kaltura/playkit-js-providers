@@ -8,8 +8,7 @@ import KalturaPlaybackContext from './responseTypes/kalturaPlaybackContext'
 import KalturaPlaybackSource from './responseTypes/kalturaPlaybackSource'
 import KalturaFlavorAsset from './responseTypes/kalturaFlavorAsset'
 import KalturaMetadataListResponse from './responseTypes/kalturaMetadataListResponse'
-import FormatsHelper from './formatsHelper'
-import MediaFormat from '../../declarations/mediaFormat'
+import {MediaFormat} from '../../declarations/mediaFormat'
 import PlaySourceUrlBuilder from "./playSourceUrlBuilder"
 import XmlParser from '../xmlParser'
 import {MediaEntryType, EntryType, MediaType} from '../enums'
@@ -21,6 +20,16 @@ const config = Configuration.get();
  * @constant
  */
 const logger = Logger.get("OvpProvider");
+
+/**
+ * @constant
+ * @type {Map<string, MediaFormat>}
+ */
+const SUPPORTED_FORMATS: Map<string, MediaFormat> = new Map([
+  ["mpegdash", MediaFormat.dash],
+  ["applehttp", MediaFormat.hls],
+  ["url", MediaFormat.mp4]
+]);
 
 /**
  * Ovp provider parser
@@ -104,7 +113,7 @@ export default class ProviderParser {
    */
   static parseSource(source: KalturaPlaybackSource, ks: string, partnerID: number, uiConfId: number, entry: KalturaMediaEntry, playbackContext: KalturaPlaybackContext): Array<MediaSource> {
     let playUrl: string = "";
-    let mediaFormat: MediaFormat = FormatsHelper.getMediaFormat(source.format, source.hasDrmData());
+    let mediaFormat: MediaFormat = SUPPORTED_FORMATS.get(source.format);
     let mediaSource: MediaSource = new MediaSource();
     // in case playbackSource doesn't have flavors we don't need to build the url and we'll use the provided one.
     if (source.hasFlavorIds()) {

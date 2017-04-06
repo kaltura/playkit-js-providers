@@ -4,12 +4,12 @@ import BaseLoader from './baseLoader'
 import Configuration from '../config'
 
 const config = Configuration.get();
-
 /**
  * Media entry loader
  * @classdesc
  */
 export default class SessionLoader extends BaseLoader {
+  static NAME: string = "session";
   /**
    * @member - session ks
    * @type {string}
@@ -28,8 +28,10 @@ export default class SessionLoader extends BaseLoader {
    * @param {string} name loader name.
    * @param {Object} params loader params
    */
-  constructor(name: string, params: Object) {
-    super(name,SessionLoader.buildRequests(params));
+  constructor(params: Object) {
+    super();
+    super.setRequests(this.buildRequests(params));
+    this.name = SessionLoader.NAME;
     this._partnerId = params.partnerId;
   }
 
@@ -49,7 +51,7 @@ export default class SessionLoader extends BaseLoader {
    * @returns {RequestBuilder}
    * @static
    */
-  static buildRequests(params: Object): RequestBuilder {
+  buildRequests(params: Object): RequestBuilder {
     let requests: Array<RequestBuilder> = [];
     requests.push(SessionService.anonymousSession(config.beUrl, params.partnerId));
     return requests;

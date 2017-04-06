@@ -7,6 +7,7 @@ import Configuration from '../config'
 const config = Configuration.get();
 
 export default class UiConfigLoader extends BaseLoader {
+  static NAME: string = "uiConf";
   /**
    * @member - UiConf object
    * @type {KalturaUiConfResponse}
@@ -25,8 +26,10 @@ export default class UiConfigLoader extends BaseLoader {
    * @param {string} name loader name.
    * @param {Object} params loader params
    */
-  constructor(name: string, params: Object) {
-    super(name, UiConfigLoader.buildRequests(params));
+  constructor(params: Object) {
+    super();
+    super.setRequests(this.buildRequests(params));
+    this.name = UiConfigLoader.NAME;
     this._uiConfId = params.uiConfId;
   }
 
@@ -46,7 +49,7 @@ export default class UiConfigLoader extends BaseLoader {
    * @returns {RequestBuilder}
    * @static
    */
-  static buildRequests(params: Object): RequestBuilder {
+  buildRequests(params: Object): RequestBuilder {
     let requests: Array<RequestBuilder> = [];
     requests.push(UiConfService.get(config.beUrl, params.ks, params.uiConfId));
     return requests;

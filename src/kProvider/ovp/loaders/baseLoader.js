@@ -19,12 +19,9 @@ export default class BaseLoader {
 
   /**
    * @constructor
-   * @param {string} name loader name.
    * @param {Array<RequestBuilder>} requests loader requests
    */
-  constructor(name: string, requests: Array<RequestBuilder>) {
-    this._requests = requests;
-    this.name = name;
+  constructor() {
   }
 
   /**
@@ -36,6 +33,10 @@ export default class BaseLoader {
     return this._requests;
   }
 
+  setRequests(requests: Array<RequestBuilder>): void {
+    this._requests = requests;
+  }
+
   /**
    * Factory method to create loader
    * @function
@@ -43,8 +44,8 @@ export default class BaseLoader {
    * @param {Object} params loader params
    * @returns {BaseLoader}
    */
-  static createLoader(name: string, params: Object): BaseLoader {
-    return new this(name, params);
+  static createLoader(params: Object): BaseLoader {
+    return new this(params);
   }
 
   /**
@@ -53,8 +54,8 @@ export default class BaseLoader {
    * @abstract
    * @returns {RequestBuilder}
    */
-  static buildRequests(): RequestBuilder {
-    throw "Not implimented";
+  buildRequests(): RequestBuilder {
+    throw new Error("Not implimented");
   }
 
   /**
@@ -63,7 +64,7 @@ export default class BaseLoader {
    * @abstract
    */
   setData(): void {
-    throw "Not implimented";
+    throw new Error("Not implimented");
   }
 
   /**
@@ -72,6 +73,6 @@ export default class BaseLoader {
    * @abstract
    */
   isValid(): boolean {
-    throw "Not implimented";
+    throw new Error("Not implimented");
   }
 }

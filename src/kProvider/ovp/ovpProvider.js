@@ -11,18 +11,7 @@ import Configuration from './config'
  * @constant
  */
 const logger = Logger.get("OvpProvider");
-/**
- * @constant
- */
-const SESSION_LOADER_NAME: string = "session";
-/**
- * @constant
- */
-const MEDIA_LOADER_NAME: string = "media";
-/**
- * @constant
- */
-const UICONF_LOADER_NAME: string = "uiConf";
+
 type playerConfig = {
   id: string,
   sources: Array,
@@ -75,7 +64,6 @@ export class OvpProvider {
     this.partnerID = partnerID;
     this.ks = ks;
     this._isAnonymous = !this.ks;
-    this._dataLoader = new DataLoaderManager(this.partnerID, this.ks);
     Configuration.set(config);
   }
 
@@ -88,17 +76,18 @@ export class OvpProvider {
    */
   getConfig(entryId?: string, uiConfId?: number): Promise<Object> {
     this._uiConfId = uiConfId;
-    this._dataLoader.reset(this.partnerID, this.ks);
+    this._dataLoader = new DataLoaderManager(this.partnerID, this.ks);
     return new Promise((resolve, reject) => {
       if (this.validateParams(entryId, uiConfId)) {
         let ks: string = this.ks;
         if (this._isAnonymous) {
           ks = "{1:result:ks}";
+          this._dataLoader.add(SessionLoader, {partnerId: this.partnerID});
         }
-        this._dataLoader.add(SESSION_LOADER_NAME, SessionLoader, {partnerId: this.partnerID});
-        this._dataLoader.add(MEDIA_LOADER_NAME, MediaEntryLoader, {entryId: entryId, ks: ks});
-        this._dataLoader.add(UICONF_LOADER_NAME, UiConfigLoader, {uiConfId: uiConfId, ks: ks});
-        this._dataLoader.getData()
+
+        this._dataLoader.add(MediaEntryLoader, {entryId: entryId, ks: ks});
+        this._dataLoader.add(UiConfigLoader, {uiConfId: uiConfId, ks: ks});
+        this._dataLoader.fetchData()
           .then(response => {
               resolve(this.parseDataFromResponse(response));
             },
@@ -128,21 +117,21 @@ export class OvpProvider {
       metadata: {},
       plugins: {}
     };
-    if (data.has(SESSION_LOADER_NAME)) {
-      let sessionLoader: SessionLoader = data.get(SESSION_LOADER_NAME);
+    if (data.has(SessionLoader.NAME)) {
+      let sessionLoader: SessionLoader = data.get(SessionLoader.NAME);
       this.ks = sessionLoader.ks;
       this._isAnonymous = !this.ks;
     }
-    if (data.has(UICONF_LOADER_NAME)) {
-      let uiConfLoader: UiConfigLoader = data.get(UICONF_LOADER_NAME);
+    if (data.has(UiConfigLoader.NAME)) {
+      let uiConfLoader: UiConfigLoader = data.get(UiConfigLoader.NAME);
       let pluginsJson: Object = {};
       if (uiConfLoader.uiConf.config) {
         pluginsJson = JSON.parse(uiConfLoader.uiConf.config).plugins;
       }
       config.plugins = pluginsJson;
     }
-    if (data.has(MEDIA_LOADER_NAME)) {
-      let mediaLoader: MediaEntryLoader = data.get(MEDIA_LOADER_NAME);
+    if (data.has(MediaEntryLoader.NAME)) {
+      let mediaLoader: MediaEntryLoader = data.get(MediaEntryLoader.NAME);
       let mediaEntry: MediaEntry = ProviderParser.getMediaEntry(this.ks, this.partnerID, this._uiConfId,
         {
           entry: mediaLoader.baseEntryList.entries[0],

@@ -10,11 +10,13 @@ import BaseLoader from './baseLoader'
 import Configuration from '../config'
 
 const config = Configuration.get();
+
 /**
  * Media entry loader
  * @classdesc
  */
 export default class MediaEntryLoader extends BaseLoader {
+  static NAME: string = "media";
   /**
    * @member - entry playback context
    * @type {KalturaPlaybackContext}
@@ -45,8 +47,10 @@ export default class MediaEntryLoader extends BaseLoader {
    * @param {string} name loader name.
    * @param {Object} params loader params
    */
-  constructor(name: string, params: Object) {
-    super(name, MediaEntryLoader.buildRequests(params));
+  constructor(params: Object) {
+    super();
+    super.setRequests(this.buildRequests(params));
+    this.name = MediaEntryLoader.NAME;
     this._entryId = params.entryId;
   }
 
@@ -68,7 +72,7 @@ export default class MediaEntryLoader extends BaseLoader {
    * @returns {RequestBuilder}
    * @static
    */
-  static buildRequests(params: Object): RequestBuilder {
+  buildRequests(params: Object): RequestBuilder {
     let requests: Array<RequestBuilder> = [];
     requests.push(BaseEntryService.list(config.beUrl, params.ks, params.entryId));
     requests.push(BaseEntryService.getPlaybackContext(config.beUrl, params.ks, params.entryId));

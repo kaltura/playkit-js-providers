@@ -64,7 +64,7 @@ let NoPluginsWithDrm = {
   "id": "1_rwbj3j0a",
   "sources": [
     {
-      "mimetype": "application/vnd.apple.mpegurl",
+      "mimetype": "application/x-mpegURL",
       "src": "https://cdnapisec.kaltura.com/p/1068292/sp/106829200/playManifest/entryId/1_rwbj3j0a/protocol/https/format/applehttp/falvorIds/1_92dfyrz5,1_9dhh6m0i,1_zudouuah,1_r0wu6y77,1_oz343kla/ks/NTAwZjViZWZjY2NjNTRkNGEyMjU1MTg4OGE1NmUwNDljZWJkMzk1MXwxMDY4MjkyOzEwNjgyOTI7MTQ5MDE3NjE0NjswOzE0OTAwODk3NDYuMDIyNjswO3ZpZXc6Kix3aWRnZXQ6MTs7/a.m3u8",
       "id": "1_rwbj3j0a_11311,applehttp",
       "drmData": [
@@ -235,7 +235,7 @@ let WithPluginsWithDrm = {
   "id": "1_rwbj3j0a",
   "sources": [
     {
-      "mimetype": "application/vnd.apple.mpegurl",
+      "mimetype": "application/x-mpegURL",
       "src": "https://cdnapisec.kaltura.com/p/1068292/sp/106829200/playManifest/entryId/1_rwbj3j0a/protocol/https/format/applehttp/falvorIds/1_92dfyrz5,1_9dhh6m0i,1_zudouuah,1_r0wu6y77,1_oz343kla/ks/ZTFiNzk4MmM5MjJiYzkwODliMzQzZTQ3Y2I4MzIwYTIzMmQzMTMxYnwxMDY4MjkyOzEwNjgyOTI7MTQ5MDI1Mjk5MjswOzE0OTAxNjY1OTIuODUyMTswO3ZpZXc6Kix3aWRnZXQ6MTs7/a.m3u8?uiConfId=.38601981",
       "id": "1_rwbj3j0a_11311,applehttp",
       "drmData": [
