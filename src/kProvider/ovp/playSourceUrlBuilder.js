@@ -18,7 +18,7 @@ export default class PlaySourceUrlBuilder {
    */
   static build(urlParams: Object): string {
     let baseUrl: string = config.baseUrl;
-    let partnerId: number = urlParams.partnerId;
+    let partnerId: string = urlParams.partnerId;
     let entryId: string = urlParams.entryId;
     let ks: string = urlParams.ks;
     let uiConfId: string = urlParams.uiConfId;

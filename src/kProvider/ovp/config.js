@@ -12,7 +12,7 @@ const defaultConfig: Object = {
 
 export default class Configuration {
 
-  static set(clientConfig: Object) {
+  static set(clientConfig?: Object) {
     if (clientConfig) {
       Object.assign(defaultConfig, clientConfig);
     }

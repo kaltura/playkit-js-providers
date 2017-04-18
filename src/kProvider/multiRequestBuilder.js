@@ -89,15 +89,14 @@ export class MultiRequestResult {
    * @constructor
    * @param {Object}  response data
    */
-  constructor(response: Object)
-  {
-    this.success=true;
+  constructor(response: Object) {
+    this.success = true;
     response.forEach((result) => {
       let serviceResult: ServiceResult = new ServiceResult(result);
       this.results.push(serviceResult);
       if (serviceResult.hasError) {
         logger.error(`Service returned an error with error code: ${serviceResult.error.code} and message: ${serviceResult.error.message}.`);
-        this.success =  this.success ||serviceResult.hasError;
+        this.success = this.success || serviceResult.hasError;
       }
     });
   }

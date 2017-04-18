@@ -54,7 +54,7 @@ export default class BaseLoader {
    * @abstract
    * @returns {RequestBuilder}
    */
-  buildRequests(): RequestBuilder {
+  buildRequests(abstractParams: Object): Array<RequestBuilder> {
     throw new Error("Not implimented");
   }
 
@@ -63,7 +63,7 @@ export default class BaseLoader {
    * @function
    * @abstract
    */
-  setData(): void {
+  setData(abstractResults: Object): void {
     throw new Error("Not implimented");
   }
 

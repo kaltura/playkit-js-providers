@@ -11,7 +11,7 @@ export default class XmlParser {
    * @returns {{}}
    * @static
    */
-  static xmlToJson(xml: string) {
+  static xmlToJson(xml: Object) {
     let obj = {};
     if (xml.nodeType == 1) {
       if (xml.attributes.length > 0) {

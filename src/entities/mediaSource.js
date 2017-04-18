@@ -1,5 +1,5 @@
 //@flow
-import Drm from '../declarations/drm'
+import Drm from '../entities/drm'
 
 /**
  * Media source

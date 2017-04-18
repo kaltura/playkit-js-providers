@@ -1,6 +1,6 @@
 //@flow
-import ServiceResult from '../..//baseServiceResult'
-import KalturaMediaEntry from '../..//ovp/responseTypes/kalturaMediaEntry'
+import ServiceResult from '../../baseServiceResult'
+import KalturaMediaEntry from './kalturaMediaEntry'
 
 /**
  * Ovp BE BaseEntryList service response

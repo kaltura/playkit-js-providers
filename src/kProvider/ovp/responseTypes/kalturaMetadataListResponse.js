@@ -1,5 +1,5 @@
 //@flow
-import ServiceResult from '../..//baseServiceResult'
+import ServiceResult from '../../baseServiceResult'
 import KalturaMetadata from './kalturaMetadata'
 
 /**

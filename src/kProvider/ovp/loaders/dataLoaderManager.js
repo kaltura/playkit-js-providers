@@ -1,6 +1,7 @@
 //@flow
 import OvpService from '../services/ovpService'
-import {MultiRequestBuilder, MultiRequestResult} from '../../multiRequestBuilder'
+import MultiRequestBuilder from '../../multiRequestBuilder'
+import {MultiRequestResult} from '../../multiRequestBuilder'
 
 /**
  * Data loaders manager
@@ -55,10 +56,15 @@ export default class DataLoaderManager {
       execution_loader.getRequests().forEach((request) => {
         this._multiRequest.add(request);
         if (DataLoaderManager._loadersResponseMap.has(execution_loader.name)) {
-          (DataLoaderManager._loadersResponseMap.get(execution_loader.name)).push(this._multiRequest.requests.length - 1)
+          let loader = DataLoaderManager._loadersResponseMap.get(execution_loader.name);
+          if (loader != null) {
+            loader.push(this._multiRequest.requests.length - 1);
+          }
         }
         else {
-          DataLoaderManager._loadersResponseMap.set(execution_loader.name, [this._multiRequest.requests.length - 1])
+          if (this._multiRequest.requests != null) {
+            DataLoaderManager._loadersResponseMap.set(execution_loader.name, [this._multiRequest.requests.length - 1]);
+          }
         }
       });
     }
@@ -97,7 +103,9 @@ export default class DataLoaderManager {
     this._loaders.forEach(function (loader, name) {
       let loaderDataIndexes = DataLoaderManager._loadersResponseMap.get(name);
       try {
-        loader.setData(response.results.slice(loaderDataIndexes[0], loaderDataIndexes[loaderDataIndexes.length - 1] + 1));
+        if (loaderDataIndexes != null) {
+          loader.setData(response.results.slice(loaderDataIndexes[0], loaderDataIndexes[loaderDataIndexes.length - 1] + 1));
+        }
       }
       catch (err) {
         return {success: false, error: err};

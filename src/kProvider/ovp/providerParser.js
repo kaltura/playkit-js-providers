@@ -1,19 +1,19 @@
 //@flow
 
-import MediaEntry from '../../declarations/mediaEntry'
-import MediaSource from '../../declarations/mediaSource'
-import Drm from '../../declarations/drm'
 import KalturaMediaEntry from './responseTypes/kalturaMediaEntry'
 import KalturaPlaybackContext from './responseTypes/kalturaPlaybackContext'
 import KalturaPlaybackSource from './responseTypes/kalturaPlaybackSource'
 import KalturaFlavorAsset from './responseTypes/kalturaFlavorAsset'
 import KalturaMetadataListResponse from './responseTypes/kalturaMetadataListResponse'
-import {MediaFormat} from '../../declarations/mediaFormat'
 import PlaySourceUrlBuilder from "./playSourceUrlBuilder"
 import XmlParser from '../xmlParser'
 import {MediaEntryType, EntryType, MediaType} from '../enums'
 import Logger from '../../util/logger'
 import Configuration from './config'
+import {MediaFormat} from '../../entities/mediaFormat'
+import MediaEntry from '../../entities/mediaEntry'
+import Drm from '../../entities/drm'
+import MediaSource from '../../entities/mediaSource'
 
 const config = Configuration.get();
 /**
@@ -73,7 +73,7 @@ export default class ProviderParser {
     mediaEntry.id = entry.id;
     mediaEntry.duration = entry.duration;
 
-    let type: MediaEntryType;
+    let type: MediaEntryType = MediaEntryType.Unknown;
 
     switch (entry.entryType) {
       case MediaType.IMAGE.value:
@@ -108,12 +108,12 @@ export default class ProviderParser {
    * @param {number} uiConfId
    * @param {string} entry
    * @param {KalturaPlaybackContext} playbackContext
-   * @returns {Array.<MediaSource>}
+   * @returns {MediaSource}
    * @static
    */
-  static parseSource(source: KalturaPlaybackSource, ks: string, partnerID: number, uiConfId: number, entry: KalturaMediaEntry, playbackContext: KalturaPlaybackContext): Array<MediaSource> {
+  static parseSource(source: KalturaPlaybackSource, ks: string, partnerID: number, uiConfId: number, entry: KalturaMediaEntry, playbackContext: KalturaPlaybackContext): MediaSource {
     let playUrl: string = "";
-    let mediaFormat: MediaFormat = SUPPORTED_FORMATS.get(source.format);
+    let mediaFormat = SUPPORTED_FORMATS.get(source.format);
     let mediaSource: MediaSource = new MediaSource();
     // in case playbackSource doesn't have flavors we don't need to build the url and we'll use the provided one.
     if (source.hasFlavorIds()) {
@@ -157,7 +157,7 @@ export default class ProviderParser {
 
     if (playUrl == "") {
       logger.error(`failed to create play url from source, discarding source: (${entry.id}_${source.deliveryProfileId}), ${source.format}.`);
-      return;
+      return mediaSource;
     }
 
 
@@ -184,7 +184,7 @@ export default class ProviderParser {
     let metadata: Object = {};
     if (metadataList && metadataList.metas && metadataList.metas.length > 0) {
       metadataList.metas.forEach((meta) => {
-        let metaXml: DOMParser;
+        let metaXml: Object;
         let domParser: DOMParser = new DOMParser();
         meta.xml = meta.xml.replace(/\r?\n|\r/g, "");
         meta.xml = meta.xml.replace(/>\s*/g, '>');

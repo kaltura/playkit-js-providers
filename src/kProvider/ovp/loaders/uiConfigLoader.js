@@ -3,6 +3,7 @@ import UiConfService from '../services/uiConfService'
 import KalturaUiConfResponse from '../responseTypes/kalturaUIConfResponse'
 import BaseLoader from './baseLoader'
 import Configuration from '../config'
+import RequestBuilder from '../../requestBuilder'
 
 const config = Configuration.get();
 
@@ -49,7 +50,7 @@ export default class UiConfigLoader extends BaseLoader {
    * @returns {RequestBuilder}
    * @static
    */
-  buildRequests(params: Object): RequestBuilder {
+  buildRequests(params: Object): Array<RequestBuilder> {
     let requests: Array<RequestBuilder> = [];
     requests.push(UiConfService.get(config.beUrl, params.ks, params.uiConfId));
     return requests;

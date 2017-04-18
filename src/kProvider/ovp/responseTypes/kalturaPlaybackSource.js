@@ -70,7 +70,7 @@ export default class KalturaPlaybackSource {
    * @returns {boolean}
    */
   hasFlavorIds(): boolean {
-    return this.flavorIds && this.flavorIds.length > 0;
+    return !!this.flavorIds && this.flavorIds.length > 0;
   }
 
   /**

@@ -4,7 +4,7 @@ import * as parsedData from './PlayerConfigParsed'
 import {MultiRequestResult} from '../../../../src/kProvider/multiRequestBuilder'
 import MultiRequestBuilder from '../../../../src/kProvider/multiRequestBuilder'
 
-describe.only('OvpProvider.partnerId:1082342', function () {
+describe('OvpProvider.partnerId:1082342', function () {
 
   let provider;
   let sandbox;
@@ -122,7 +122,7 @@ describe.only('OvpProvider.partnerId:1082342', function () {
   });
 });
 
-describe.only('OvpProvider.partnerId:1068292', function () {
+describe('OvpProvider.partnerId:1068292', function () {
 
   let provider;
   let sandbox;

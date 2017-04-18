@@ -72,7 +72,7 @@ export default class MediaEntryLoader extends BaseLoader {
    * @returns {RequestBuilder}
    * @static
    */
-  buildRequests(params: Object): RequestBuilder {
+  buildRequests(params: Object): Array<RequestBuilder> {
     let requests: Array<RequestBuilder> = [];
     requests.push(BaseEntryService.list(config.beUrl, params.ks, params.entryId));
     requests.push(BaseEntryService.getPlaybackContext(config.beUrl, params.ks, params.entryId));
