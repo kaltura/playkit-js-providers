@@ -1,26 +1,23 @@
 //@flow
 import UiConfService from '../services/uiConfService'
 import KalturaUiConfResponse from '../responseTypes/kalturaUIConfResponse'
-import BaseLoader from './baseLoader'
 import Configuration from '../config'
 import RequestBuilder from '../../requestBuilder'
 
 const config = Configuration.get();
 
-export default class UiConfigLoader extends BaseLoader {
-  static NAME: string = "uiConf";
-  /**
-   * @member - UiConf object
-   * @type {KalturaUiConfResponse}
-   * @private
-   */
-  uiConf: KalturaUiConfResponse;
+export default class UiConfigLoader implements ILoader {
+  static get name(): string {
+    return "uiConf";
+  }
   /**
    * @member - uiConf ID
    * @type {number}
    * @private
    */
   _uiConfId: number;
+  _requests: Array<RequestBuilder>;
+  _response: any = {};
 
   /**
    * @constructor
@@ -28,19 +25,24 @@ export default class UiConfigLoader extends BaseLoader {
    * @param {Object} params loader params
    */
   constructor(params: Object) {
-    super();
-    super.setRequests(this.buildRequests(params));
-    this.name = UiConfigLoader.NAME;
+    this.requests = this.buildRequests(params);
     this._uiConfId = params.uiConfId;
   }
 
-  /**
-   * Sets loader data from response
-   * @function
-   * @param {Object} results
-   */
-  setData(results: Object) {
-    this.uiConf = new KalturaUiConfResponse(results[0].data);
+  set requests(requests: Array<RequestBuilder>) {
+    this._requests = requests;
+  }
+
+  get requests(): Array<RequestBuilder> {
+    return this._requests;
+  }
+
+  set response(response: any) {
+    this._response.uiConf = new KalturaUiConfResponse(response[0].data);
+  }
+
+  get response(): any {
+    return this._response;
   }
 
   /**

@@ -3,11 +3,10 @@
 import RequestBuilder from '../../requestBuilder'
 import BaseEntryService from '../services/baseEntryService'
 import MetaDataService from '../services/metaDataService'
+import Configuration from '../config'
 import KalturaPlaybackContext from '../responseTypes/kalturaPlaybackContext'
 import KalturaMetadataListResponse from '../responseTypes/kalturaMetadataListResponse'
 import KalturaBaseEntryListResponse from '../responseTypes/kalturaBaseEntryListResponse'
-import BaseLoader from './baseLoader'
-import Configuration from '../config'
 
 const config = Configuration.get();
 
@@ -15,32 +14,14 @@ const config = Configuration.get();
  * Media entry loader
  * @classdesc
  */
-export default class MediaEntryLoader extends BaseLoader {
-  static NAME: string = "media";
-  /**
-   * @member - entry playback context
-   * @type {KalturaPlaybackContext}
-   * @public
-   */
-  playBackContextResult: KalturaPlaybackContext;
-  /**
-   * @member - entry metadata
-   * @type {KalturaMetadataListResponse}
-   * @public
-   */
-  metadataListResult: KalturaMetadataListResponse;
-  /**
-   * @member - entry data
-   * @type {KalturaBaseEntryListResponse}
-   * @public
-   */
-  baseEntryList: KalturaBaseEntryListResponse;
-  /**
-   * @member - entry id
-   * @type {string}
-   * @private
-   */
+export default class MediaEntryLoader implements ILoader {
+  static get name(): string {
+    return "media";
+  }
+
   _entryId: string;
+  _requests: Array<RequestBuilder>;
+  _response: any = {};
 
   /**
    * @constructor
@@ -48,21 +29,26 @@ export default class MediaEntryLoader extends BaseLoader {
    * @param {Object} params loader params
    */
   constructor(params: Object) {
-    super();
-    super.setRequests(this.buildRequests(params));
-    this.name = MediaEntryLoader.NAME;
+    this.requests = this.buildRequests(params);
     this._entryId = params.entryId;
   }
 
-  /**
-   * Sets loader data from response
-   * @function
-   * @param {Object} results
-   */
-  setData(results: Object): void {
-    this.baseEntryList = new KalturaBaseEntryListResponse(results[0].data);
-    this.playBackContextResult = new KalturaPlaybackContext(results[1].data);
-    this.metadataListResult = new KalturaMetadataListResponse(results[2].data);
+  set requests(requests: Array<RequestBuilder>) {
+    this._requests = requests;
+  }
+
+  get requests(): Array<RequestBuilder> {
+    return this._requests;
+  }
+
+  set response(response: any) {
+    this._response.baseEntryList = new KalturaBaseEntryListResponse(response[0].data);
+    this._response.playBackContextResult = new KalturaPlaybackContext(response[1].data);
+    this._response.metadataListResult = new KalturaMetadataListResponse(response[2].data);
+  }
+
+  get response(): any {
+    return this._response;
   }
 
   /**

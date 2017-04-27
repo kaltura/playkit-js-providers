@@ -32,7 +32,7 @@ export default class DataLoaderManager {
    * @type {Map<string,Function>}
    * @private
    */
-  _loaders: Map<string,Function> = new Map();
+  _loaders: Map<string,ILoader> = new Map();
 
   /**
    * @constructor
@@ -50,23 +50,21 @@ export default class DataLoaderManager {
    * @param {Object} params
    */
   add(loader: Function, params: Object): void {
-    let execution_loader = loader.createLoader(params);
+    let execution_loader = new loader(params);
     if (execution_loader.isValid()) {
-      this._loaders.set(execution_loader.name, execution_loader);
-      execution_loader.getRequests().forEach((request) => {
+      this._loaders.set(loader.name, execution_loader);
+      //Get the start index from the multiReqeust before adding current execution_loader requests
+      let startIndex = this._multiRequest.requests.length;
+      //Get the requests
+      let requests = execution_loader.requests;
+      //Add requests to muktiRequest queue
+      requests.forEach((request) => {
         this._multiRequest.add(request);
-        if (DataLoaderManager._loadersResponseMap.has(execution_loader.name)) {
-          let loader = DataLoaderManager._loadersResponseMap.get(execution_loader.name);
-          if (loader != null) {
-            loader.push(this._multiRequest.requests.length - 1);
-          }
-        }
-        else {
-          if (this._multiRequest.requests != null) {
-            DataLoaderManager._loadersResponseMap.set(execution_loader.name, [this._multiRequest.requests.length - 1]);
-          }
-        }
       });
+      //Create range array of current execution_loader requests
+      let executionLoaderResponseMap = Array.from(new Array(requests.length), (val, index) => index + startIndex);
+      //Add to map
+      DataLoaderManager._loadersResponseMap.set(loader.name, executionLoaderResponseMap);
     }
   }
 
@@ -104,7 +102,7 @@ export default class DataLoaderManager {
       let loaderDataIndexes = DataLoaderManager._loadersResponseMap.get(name);
       try {
         if (loaderDataIndexes != null) {
-          loader.setData(response.results.slice(loaderDataIndexes[0], loaderDataIndexes[loaderDataIndexes.length - 1] + 1));
+          loader.response = (response.results.slice(loaderDataIndexes[0], loaderDataIndexes[loaderDataIndexes.length - 1] + 1));
         }
       }
       catch (err) {

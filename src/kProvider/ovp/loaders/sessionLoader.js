@@ -1,6 +1,5 @@
 //@flow
 import SessionService from '../services/sessionService'
-import BaseLoader from './baseLoader'
 import Configuration from '../config'
 import RequestBuilder from '../../requestBuilder'
 
@@ -9,20 +8,19 @@ const config = Configuration.get();
  * Media entry loader
  * @classdesc
  */
-export default class SessionLoader extends BaseLoader {
-  static NAME: string = "session";
-  /**
-   * @member - session ks
-   * @type {string}
-   * @public
-   */
-  ks: string;
+export default class SessionLoader implements ILoader {
+  static get name(): string {
+    return "session";
+  }
+
   /**
    * @member - partner ID
    * @type {number}
    * @private
    */
   _partnerId: number;
+  _requests: Array<RequestBuilder>;
+  _response: any = {};
 
   /**
    * @constructor
@@ -30,19 +28,24 @@ export default class SessionLoader extends BaseLoader {
    * @param {Object} params loader params
    */
   constructor(params: Object) {
-    super();
-    super.setRequests(this.buildRequests(params));
-    this.name = SessionLoader.NAME;
+    this.requests = this.buildRequests(params);
     this._partnerId = params.partnerId;
   }
 
-  /**
-   * Sets loader data from response
-   * @function
-   * @param {Object} results
-   */
-  setData(results: Object) {
-    this.ks = results[0].data.ks;
+  set requests(requests: Array<RequestBuilder>) {
+    this._requests = requests;
+  }
+
+  get requests(): Array<RequestBuilder> {
+    return this._requests;
+  }
+
+  set response(response: any) {
+    this._response.ks = response[0].data.ks;
+  }
+
+  get response(): any {
+    return this._response;
   }
 
   /**

@@ -122,29 +122,29 @@ export class OvpProvider {
       plugins: {}
     };
     if (data != null) {
-      if (data.has(SessionLoader.NAME)) {
-        let sessionLoader = data.get(SessionLoader.NAME);
-        if (sessionLoader != null) {
-          this.ks = sessionLoader.ks;
+      if (data.has(SessionLoader.name)) {
+        let sessionLoader = data.get(SessionLoader.name);
+        if (sessionLoader != null && sessionLoader.response != null) {
+          this.ks = sessionLoader.response.ks;
           this._isAnonymous = !this.ks;
         }
       }
-      if (data.has(UiConfigLoader.NAME)) {
-        let uiConfLoader = data.get(UiConfigLoader.NAME);
+      if (data.has(UiConfigLoader.name)) {
+        let uiConfLoader = data.get(UiConfigLoader.name);
         let pluginsJson: Object = {};
-        if (uiConfLoader != null && uiConfLoader.uiConf.config) {
-          pluginsJson = JSON.parse(uiConfLoader.uiConf.config).plugins;
+        if (uiConfLoader != null && uiConfLoader.response != null && uiConfLoader.response.uiConf.config) {
+          pluginsJson = JSON.parse(uiConfLoader.response.uiConf.config).plugins;
         }
         config.plugins = pluginsJson;
       }
-      if (data.has(MediaEntryLoader.NAME)) {
-        let mediaLoader = data.get(MediaEntryLoader.NAME);
-        if (mediaLoader != null) {
+      if (data.has(MediaEntryLoader.name)) {
+        let mediaLoader = data.get(MediaEntryLoader.name);
+        if (mediaLoader != null && mediaLoader.response != null) {
           let mediaEntry: MediaEntry = ProviderParser.getMediaEntry(this.ks, this.partnerID, this._uiConfId,
             {
-              entry: mediaLoader.baseEntryList.entries[0],
-              playbackContext: mediaLoader.playBackContextResult,
-              metadataList: mediaLoader.metadataListResult
+              entry: mediaLoader.response.baseEntryList.entries[0],
+              playbackContext: mediaLoader.response.playBackContextResult,
+              metadataList: mediaLoader.response.metadataListResult
             });
           config.id = mediaEntry.id;
           config.sources = mediaEntry.sources;

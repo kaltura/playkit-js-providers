@@ -46,7 +46,6 @@ export default class RequestBuilder {
    * @constructor
    */
   constructor(headers: Map<string, string> = new Map()) {
-    //this.params = {};
     this.headers = headers;
     this.headers.set("Content-Type", "application/json");
   }
