@@ -36,13 +36,8 @@ jspm_packages
 # Optional REPL history
 .node_repl_history
 
-dist
-
-.idea
-.idea/misc.xml
-.idea/modules.xml
-.idea/playkit-js-providers.iml
-.idea/workspace.xml
+dist/
+.idea/
 flow-typed/
 src/
 test/
