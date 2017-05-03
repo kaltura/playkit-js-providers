@@ -10,6 +10,7 @@ export default class UiConfigLoader implements ILoader {
   static get name(): string {
     return "uiConf";
   }
+
   /**
    * @member - uiConf ID
    * @type {number}
@@ -42,7 +43,10 @@ export default class UiConfigLoader implements ILoader {
   }
 
   get response(): any {
-    return this._response;
+    if (this._response != null && this._response.uiConf != null && this._response.uiConf.config != null)
+      return JSON.parse(this._response.uiConf.config).plugins;
+    else
+      return null;
   }
 
   /**

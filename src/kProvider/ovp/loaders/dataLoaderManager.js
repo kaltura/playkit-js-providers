@@ -49,7 +49,7 @@ export default class DataLoaderManager {
    * @param {Function} loader
    * @param {Object} params
    */
-  add(loader: Function, params: Object): void {
+  add(loader: typeof ILoader, params: Object): void {
     let execution_loader = new loader(params);
     if (execution_loader.isValid()) {
       this._loaders.set(loader.name, execution_loader);

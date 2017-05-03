@@ -45,7 +45,7 @@ export default class SessionLoader implements ILoader {
   }
 
   get response(): any {
-    return this._response;
+    return this._response.ks;
   }
 
   /**

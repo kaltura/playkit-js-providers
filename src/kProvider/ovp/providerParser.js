@@ -49,17 +49,17 @@ export default class ProviderParser {
    * @returns {MediaEntry}
    * @static
    */
-  static getMediaEntry(ks: string, partnerID: number, uiConfId: number, dataObj: {entry: KalturaMediaEntry, playbackContext: KalturaPlaybackContext, metadataList: KalturaMetadataListResponse}): MediaEntry {
+  static getMediaEntry(ks: string, partnerID: number, uiConfId: number, mediaEntryResponse: any): MediaEntry {
     let mediaEntry: MediaEntry = new MediaEntry();
-    let entry = dataObj.entry;
-    let playbackContext = dataObj.playbackContext;
-    let metadataList = dataObj.metadataList;
+    let entry = mediaEntryResponse.baseEntryList.entries[0];
+    let playbackContext = mediaEntryResponse.playBackContextResult;
+    let metadataList = mediaEntryResponse.metadataListResult;
     let kalturaSources: Array<KalturaPlaybackSource> = playbackContext.sources;
     let sources: Array<MediaSource> = [];
 
     if (kalturaSources && kalturaSources.length > 0) {
       kalturaSources.forEach((source) => {
-        sources.push(this.parseSource(source, ks, partnerID, uiConfId, dataObj.entry, playbackContext));
+        sources.push(this.parseSource(source, ks, partnerID, uiConfId, entry, playbackContext));
       });
     }
     else {

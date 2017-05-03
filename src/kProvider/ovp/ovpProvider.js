@@ -125,27 +125,22 @@ export class OvpProvider {
       if (data.has(SessionLoader.name)) {
         let sessionLoader = data.get(SessionLoader.name);
         if (sessionLoader != null && sessionLoader.response != null) {
-          this.ks = sessionLoader.response.ks;
+          this.ks = sessionLoader.response;
           this._isAnonymous = !this.ks;
         }
       }
       if (data.has(UiConfigLoader.name)) {
         let uiConfLoader = data.get(UiConfigLoader.name);
         let pluginsJson: Object = {};
-        if (uiConfLoader != null && uiConfLoader.response != null && uiConfLoader.response.uiConf.config) {
-          pluginsJson = JSON.parse(uiConfLoader.response.uiConf.config).plugins;
+        if (uiConfLoader != null) {
+          pluginsJson = uiConfLoader.response;
         }
         config.plugins = pluginsJson;
       }
       if (data.has(MediaEntryLoader.name)) {
         let mediaLoader = data.get(MediaEntryLoader.name);
         if (mediaLoader != null && mediaLoader.response != null) {
-          let mediaEntry: MediaEntry = ProviderParser.getMediaEntry(this.ks, this.partnerID, this._uiConfId,
-            {
-              entry: mediaLoader.response.baseEntryList.entries[0],
-              playbackContext: mediaLoader.response.playBackContextResult,
-              metadataList: mediaLoader.response.metadataListResult
-            });
+          let mediaEntry: MediaEntry = ProviderParser.getMediaEntry(this.ks, this.partnerID, this._uiConfId, mediaLoader.response);
           config.id = mediaEntry.id;
           config.sources = mediaEntry.sources;
           config.duration = mediaEntry.duration;
