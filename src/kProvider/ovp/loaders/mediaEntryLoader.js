@@ -42,7 +42,8 @@ export default class MediaEntryLoader implements ILoader {
   }
 
   set response(response: any) {
-    this._response.baseEntryList = new KalturaBaseEntryListResponse(response[0].data);
+    let mediaEntryResponse: KalturaBaseEntryListResponse = new KalturaBaseEntryListResponse(response[0].data);
+    this._response.entry = mediaEntryResponse.entries[0];
     this._response.playBackContextResult = new KalturaPlaybackContext(response[1].data);
     this._response.metadataListResult = new KalturaMetadataListResponse(response[2].data);
   }

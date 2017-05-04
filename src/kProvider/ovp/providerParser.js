@@ -51,7 +51,7 @@ export default class ProviderParser {
    */
   static getMediaEntry(ks: string, partnerID: number, uiConfId: number, mediaEntryResponse: any): MediaEntry {
     let mediaEntry: MediaEntry = new MediaEntry();
-    let entry = mediaEntryResponse.baseEntryList.entries[0];
+    let entry = mediaEntryResponse.entry;
     let playbackContext = mediaEntryResponse.playBackContextResult;
     let metadataList = mediaEntryResponse.metadataListResult;
     let kalturaSources: Array<KalturaPlaybackSource> = playbackContext.sources;

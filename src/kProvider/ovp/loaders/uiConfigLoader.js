@@ -44,7 +44,12 @@ export default class UiConfigLoader implements ILoader {
 
   get response(): any {
     if (this._response != null && this._response.uiConf != null && this._response.uiConf.config != null)
-      return JSON.parse(this._response.uiConf.config).plugins;
+      try {
+        return JSON.parse(this._response.uiConf.config).plugins;
+      }
+      catch (err) {
+        return null;
+      }
     else
       return null;
   }
