@@ -1,6 +1,6 @@
 //@flow
 
-import {Scheme} from '../kProvider/enums';
+import {Scheme} from '../k-provider/enums';
 
 /**
  * Drm data
