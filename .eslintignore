@@ -1,2 +1,5 @@
-/src/declarations/*.js
-/src/declarations/**/*.js
+/flow-typed/**/*.js
+/coverage
+/dist
+karma.conf.js
+webpack.config.js

@@ -1,9 +1,9 @@
 //@flow
 import ServiceResult from '../../base-service-result'
-import KalturaAccessControlMessage from './/kalturaAccessControlMessage'
-import KalturaPlaybackSource from './/kalturaPlaybackSource'
-import KalturaRuleAction from './/kalturaRuleAction'
-import KalturaFlavorAsset from './/kalturaFlavorAsset'
+import KalturaAccessControlMessage from './kaltura-access-control-message'
+import KalturaPlaybackSource from './kaltura-playback-source'
+import KalturaRuleAction from './kaltura-rule-action'
+import KalturaFlavorAsset from './kaltura-flavor-asset'
 
 /**
  * Ovp BE playback context response

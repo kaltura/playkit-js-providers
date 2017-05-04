@@ -24,7 +24,7 @@ export default class ServiceResult {
 
   /**
    * @constructor
-   * @param response - Service response
+   * @param {Object} response - Service response
    */
   constructor(response: Object) {
     if (response.objectType === "KalturaAPIException") {

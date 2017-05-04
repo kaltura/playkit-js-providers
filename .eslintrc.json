@@ -6,13 +6,35 @@
   ],
   "plugins": [
     "import",
-    "flowtype"
+    "flowtype",
+    "mocha-no-only"
   ],
   "env": {
     "browser": true,
-    "es6": true
+    "es6": true,
+    "mocha": true,
+    "amd": true,
+    "commonjs": true
+  },
+  "globals": {
+    "should": true,
+    "sinon": true
   },
   "rules": {
-    "no-unused-vars": ["error", {"argsIgnorePattern": "abstract"}]
+    "no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "abstract"
+      }
+    ],
+    "mocha-no-only/mocha-no-only": [
+      "error"
+    ],
+    "require-jsdoc": [
+      "error"
+    ],
+    "valid-jsdoc": [
+      "error"
+    ]
   }
 }
