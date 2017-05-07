@@ -40,13 +40,11 @@ export default class ProviderParser {
   /**
    * Returns parsed media entry by given OVP response objects
    * @function getMediaEntry
-   * @param {string} ks
-   * @param {number} partnerID
-   * @param {number} uiConfId
-   * @param {string} entry
-   * @param {KalturaPlaybackContext} playbackContext
-   * @param {KalturaMetadataListResponse} metadataList
-   * @returns {MediaEntry}
+   * @param {string} ks The ks
+   * @param {number} partnerID The partner ID
+   * @param {number} uiConfId The uiConf ID
+   * @param {any} mediaEntryResponse The media entry response
+   * @returns {MediaEntry} The media entry
    * @static
    */
   static getMediaEntry(ks: string, partnerID: number, uiConfId: number, mediaEntryResponse: any): MediaEntry {
@@ -101,14 +99,14 @@ export default class ProviderParser {
   }
 
   /**
-   * Ovp sources parser
-   * @function parseSource
-   * @param {string} ks
-   * @param {number} partnerID
-   * @param {number} uiConfId
-   * @param {string} entry
-   * @param {KalturaPlaybackContext} playbackContext
-   * @returns {MediaSource}
+   *
+   * @param {KalturaPlaybackSource} source The source
+   * @param {string} ks The ks
+   * @param {number} partnerID The partner ID
+   * @param {number} uiConfId The uiConf ID
+   * @param {KalturaMediaEntry} entry The entry
+   * @param {KalturaPlaybackContext} playbackContext The playback context
+   * @returns {MediaSource}  The parsed media source
    * @static
    */
   static parseSource(source: KalturaPlaybackSource, ks: string, partnerID: number, uiConfId: number, entry: KalturaMediaEntry, playbackContext: KalturaPlaybackContext): MediaSource {
@@ -176,8 +174,8 @@ export default class ProviderParser {
   /**
    * Ovp metadata parser
    * @function parseMetaData
-   * @param {KalturaMetadataListResponse} metadataList
-   * @returns {Map<string,string>}
+   * @param {KalturaMetadataListResponse} metadataList The metadata list
+   * @returns {Map<string,string>} Parsed metadata
    * @static
    */
   static parseMetaData(metadataList: KalturaMetadataListResponse): Map<string,string> {

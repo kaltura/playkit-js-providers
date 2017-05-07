@@ -45,7 +45,7 @@ export default class KalturaUiConfResponse extends ServiceResult {
 
   /**
    * @constructor
-   * @param {Object} The json response
+   * @param {Object} data The json response
    */
   constructor(data: Object) {
     super(data);

@@ -55,8 +55,8 @@ class ServiceError {
 
   /**
    * @constructor
-   * @param {string} code
-   * @param {string} message
+   * @param {string} code - The result code
+   * @param {string} message - The result message
    */
   constructor(code: string, message: string) {
     this.code = code;

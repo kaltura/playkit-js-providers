@@ -29,8 +29,8 @@ export default class MultiRequestBuilder extends RequestBuilder {
   /**
    * Adds request to requests array
    * @function add
-   * @param {RequestBuilder} request
-   * @returns {MultiRequestBuilder}
+   * @param {RequestBuilder} request The request
+   * @returns {MultiRequestBuilder} The multiRequest
    */
   add(request: RequestBuilder): MultiRequestBuilder {
     this.requests.push(request);
@@ -45,7 +45,7 @@ export default class MultiRequestBuilder extends RequestBuilder {
   /**
    * Executes a multi request
    * @function execute
-   * @returns {Promise}
+   * @returns {Promise} The multirequest execution promisie
    */
   execute(): Promise<Object> {
     try {
@@ -96,7 +96,8 @@ export class MultiRequestResult {
       this.results.push(serviceResult);
       if (serviceResult.hasError) {
         logger.error(`Service returned an error with error code: ${serviceResult.error.code} and message: ${serviceResult.error.message}.`);
-        this.success = this.success || serviceResult.hasError;
+        this.success = false;
+        return;
       }
     });
   }

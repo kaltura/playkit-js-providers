@@ -13,10 +13,10 @@ export default class BaseEntryService extends OvpService {
   /**
    * Creates an instance of RequestBuilder for baseentry.getPlaybackContext
    * @function getPlaybackContext
-   * @param {string} baseUrl
-   * @param {string} ks
-   * @param {string} entryId
-   * @returns {RequestBuilder}
+   * @param {string} baseUrl The service base URL
+   * @param {string} ks The ks
+   * @param {string} entryId The entry ID
+   * @returns {RequestBuilder} The request builder
    * @static
    */
   static getPlaybackContext(baseUrl: string, ks: string, entryId: string): RequestBuilder {
@@ -35,10 +35,10 @@ export default class BaseEntryService extends OvpService {
   /**
    * Creates an instance of RequestBuilder for baseentry.list
    * @function list
-   * @param {string} baseUrl
-   * @param {string} ks
-   * @param {string} entryId
-   * @returns {RequestBuilder}
+   * @param {string} baseUrl The base URL
+   * @param {string} ks The ks
+   * @param {string} entryId The entry ID
+   * @returns {RequestBuilder} The request builder
    * @static
    */
   static list(baseUrl: string, ks: string, entryId: string): RequestBuilder {
@@ -55,9 +55,9 @@ export default class BaseEntryService extends OvpService {
   /**
    * Gets  baseentry.list service params
    * @function getEntryListReqParams
-   * @param {string} entryId
-   * @param {string} ks
-   * @returns {{ks: string, filter: {redirectFromEntryId: string}, responseProfile: {fields: string, type: number}}}
+   * @param {string} entryId The entry ID
+   * @param {string} ks The ks
+   * @returns {{ks: string, filter: {redirectFromEntryId: string}, responseProfile: {fields: string, type: number}}} The service params object
    * @static
    */
   static getEntryListReqParams(entryId: string, ks: string): any {

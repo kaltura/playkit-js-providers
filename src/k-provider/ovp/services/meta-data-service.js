@@ -13,10 +13,10 @@ export default class MetaDataService extends OvpService {
   /**
    * Creates an instance of RequestBuilder for metadata_metadata.list
    * @function getPlaybackContext
-   * @param {string} baseUrl
-   * @param {string} ks
-   * @param {string} entryId
-   * @returns {RequestBuilder}
+   * @param {string} baseUrl The service base URL
+   * @param {string} ks The ks
+   * @param {string} entryId The entry ID
+   * @returns {RequestBuilder} The request builder
    * @static
    */
   static list(baseUrl: string, ks: string, entryId: string) {

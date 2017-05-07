@@ -12,8 +12,8 @@ export default class PlaySourceUrlBuilder {
   /**
    * Returns source url by given url params
    * @function build
-   * @param {Object} urlParams
-   * @returns string
+   * @param {Object} urlParams The params
+   * @returns {string} The URL
    * @static
    */
   static build(urlParams: Object): string {
@@ -59,9 +59,9 @@ export default class PlaySourceUrlBuilder {
 
   /**
    * Checks if given string end with search string
-   * @param string
-   * @param searchString
-   * @returns {boolean}
+   * @param {string} string The given string
+   * @param {string} searchString The string to search
+   * @returns {boolean} Is  given string end with search string
    */
   static endsWith(string: string, searchString: string): boolean {
     if (typeof string !== 'string') {

@@ -13,9 +13,9 @@ export default class SessionService extends OvpService {
   /**
    * Creates an instance of RequestBuilder for session.startWidgetSession
    * @function anonymousSession
-   * @param {string} baseUrl
-   * @param {string} partnerId
-   * @returns {RequestBuilder}
+   * @param {string} baseUrl The service base URL
+   * @param {string} partnerId The partner ID
+   * @returns {RequestBuilder} The request builder
    * @static
    */
   static anonymousSession(baseUrl: string, partnerId: number) {

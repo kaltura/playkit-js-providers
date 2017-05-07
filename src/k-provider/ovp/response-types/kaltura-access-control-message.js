@@ -18,7 +18,7 @@ export default class KalturaAccessControlMessage {
 
   /**
    * @constructor
-   * @param {Object} The json response
+   * @param {Object} data The json response
    */
   constructor(data: Object) {
     this.message = data.message;

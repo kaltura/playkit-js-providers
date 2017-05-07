@@ -7,8 +7,8 @@
 export default class XmlParser {
   /**
    * Parses xml string to json object
-   * @param {string} xml
-   * @returns {{}}
+   * @param {string} xml The xml to parse
+   * @returns {{}} The parsed xml as Json object
    * @static
    */
   static xmlToJson(xml: Object) {

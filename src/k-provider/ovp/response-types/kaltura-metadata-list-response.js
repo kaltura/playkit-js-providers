@@ -16,7 +16,7 @@ export default class KalturaMetadataListResponse extends ServiceResult {
 
   /**
    * @constructor
-   * @param {Object} The json response
+   * @param {Object} responseObj The response
    */
   constructor(responseObj: Object) {
     super(responseObj);

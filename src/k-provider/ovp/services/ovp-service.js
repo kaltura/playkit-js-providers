@@ -13,9 +13,9 @@ export default class OvpService {
   /**
    * Gets a new instance of MultiRequestBuilder with ovp params
    * @function getMultirequest
-   * @param {string} ks
-   * @param {string} partnerId
-   * @returns {MultiRequestBuilder}
+   * @param {string} ks The ks
+   * @param {string} partnerId The partner ID
+   * @returns {MultiRequestBuilder} The multi request builder
    * @static
    */
   static getMultirequest(ks: string, partnerId?: number): MultiRequestBuilder {

@@ -44,6 +44,7 @@ export default class RequestBuilder {
 
   /**
    * @constructor
+   * @param {Map<string, string>} headers The request headers
    */
   constructor(headers: Map<string, string> = new Map()) {
     this.headers = headers;
@@ -53,7 +54,7 @@ export default class RequestBuilder {
   /**
    * Builds restful service URL
    * @function getUrl
-   * @returns {string}
+   * @returns {string} The service URL
    */
   getUrl(): string {
     if (!this.baseUrl) {
@@ -66,7 +67,7 @@ export default class RequestBuilder {
   /**
    * Executes service
    * @function doHttpRequest
-   * @returns {Promise.<any>}
+   * @returns {Promise.<any>} Service response as promise
    */
   doHttpRequest(): Promise<any> {
     let request = new XMLHttpRequest();

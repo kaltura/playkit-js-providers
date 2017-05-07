@@ -25,7 +25,7 @@ describe('OvpProvider.partnerId:1082342', function () {
 
     sinon.stub(MultiRequestBuilder.prototype, "execute").callsFake(
       function () {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
           let response = new MultiRequestResult(mocData.AnonymousMocEntryWithoutUIConfNoDrmData);
           resolve(response);
         });
@@ -51,7 +51,7 @@ describe('OvpProvider.partnerId:1082342', function () {
     provider = new OvpProvider(partnerId);
     sinon.stub(MultiRequestBuilder.prototype, "execute").callsFake(
       function () {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
           let response = new MultiRequestResult(mocData.EntryWithUIConfNoDrmData);
           resolve(response);
         });
@@ -76,7 +76,7 @@ describe('OvpProvider.partnerId:1082342', function () {
     provider = new OvpProvider(partnerId);
     sinon.stub(MultiRequestBuilder.prototype, "execute").callsFake(
       function () {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
           let response = new MultiRequestResult(mocData.AudioEntryWithoutPlugins);
           resolve(response);
         });
@@ -101,7 +101,7 @@ describe('OvpProvider.partnerId:1082342', function () {
     provider = new OvpProvider(partnerId);
     sinon.stub(MultiRequestBuilder.prototype, "execute").callsFake(
       function () {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
           let response = new MultiRequestResult(mocData.ImageEntryWithoutPlugins);
           resolve(response);
         });
@@ -144,7 +144,7 @@ describe('OvpProvider.partnerId:1068292', function () {
     provider = new OvpProvider(partnerId);
     sinon.stub(MultiRequestBuilder.prototype, "execute").callsFake(
       function () {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
           let response = new MultiRequestResult(mocData.AnonymousMocEntryWithoutUIConfWithDrmData);
           resolve(response);
         });
@@ -163,22 +163,29 @@ describe('OvpProvider.partnerId:1068292', function () {
         done(err)
       })
   });
-
-  it('should return reject when try to get config with wrong entry ID', () => {
+  it('should return reject when try to get config with wrong entry ID', (done) => {
+    debugger;
     let entryID = "1_rwbj3j0affff";
     provider = new OvpProvider(partnerId);
-    let exceptionOccurred = false;
     sinon.stub(MultiRequestBuilder.prototype, "execute").callsFake(
       function () {
         return new Promise((resolve, reject) => {
           let response = new MultiRequestResult(mocData.WrongEntryIDWithoutUIConf);
+          if (response.success) {
+            resolve(response);
+          }
+          else {
+            reject(response);
+          }
+
         });
       });
-    provider.getConfig(entryID).then(data => {
+    provider.getConfig(entryID).then(() => {
+        debugger;
         done("Get config should throw error")
       },
       err => {
-        let expectedData = {success: false, data: mocData.WrongEntryIDWithoutUIConf}
+        let expectedData = {success: false, results: parsedData.entryIDError}
         err.should.deep.equal(expectedData);
         done();
 
@@ -192,7 +199,7 @@ describe('OvpProvider.partnerId:1068292', function () {
     provider = new OvpProvider(partnerId);
     sinon.stub(MultiRequestBuilder.prototype, "execute").callsFake(
       function () {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
           let response = new MultiRequestResult(mocData.EntryWithUIConfWithDrmData);
           resolve(response);
         });
@@ -212,22 +219,23 @@ describe('OvpProvider.partnerId:1068292', function () {
       })
   });
 
-  it('should return reject when try to get config with wrong uiConf ID', () => {
+  it('should return reject when try to get config with wrong uiConf ID', (done) => {
 
     let entryID = "1_rwbj3j0a";
     let uiConfID = 38601981;
     provider = new OvpProvider(partnerId);
     sinon.stub(MultiRequestBuilder.prototype, "execute").callsFake(
       function () {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
           let response = new MultiRequestResult(mocData.WrongUiConfID);
+          resolve(response);
         });
       });
-    provider.getConfig(entryID, uiConfID).then(data => {
+    provider.getConfig(entryID, uiConfID).then(() => {
         done("Get config should throw error");
       },
       err => {
-        let expectedData = {success: false, data: mocData.WrongUiConfID}
+        let expectedData = {success: false, results: parsedData.WrongUiConfID}
         err.should.deep.equal(expectedData);
         done();
 

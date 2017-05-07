@@ -56,8 +56,8 @@ export default class UiConfigLoader implements ILoader {
   /**
    * Builds loader requests
    * @function
-   * @param params
-   * @returns {RequestBuilder}
+   * @param {Object} params Requests parameters
+   * @returns {RequestBuilder} The request builder
    * @static
    */
   buildRequests(params: Object): Array<RequestBuilder> {
@@ -69,7 +69,7 @@ export default class UiConfigLoader implements ILoader {
   /**
    * Loader validation function
    * @function
-   * @returns {boolean}
+   * @returns {boolean} Is valid
    */
   isValid(): boolean {
     return !!this._uiConfId;

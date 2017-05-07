@@ -44,7 +44,7 @@ export default class KalturaMediaEntry {
 
   /**
    * @constructor
-   * @param {Object} The json response
+   * @param {Object} entry The json response
    */
   constructor(entry: Object) {
     this.id = entry.id;

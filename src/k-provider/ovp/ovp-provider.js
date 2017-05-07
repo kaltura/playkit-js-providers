@@ -59,8 +59,9 @@ export class OvpProvider {
 
   /**
    * @constructor
-   * @param {number} partnerID
-   * @param {string} [ks=""] - has empty string as default value
+   * @param {number} partnerID The partner ID
+   * @param {string} [ks=""]  The provider ks (has empty string as default value)
+   * @param {Object} [config]  The provider config(optional)
    */
   constructor(partnerID: number, ks: string = "", config?: Object) {
     this.partnerID = partnerID;
@@ -72,9 +73,9 @@ export class OvpProvider {
   /**
    * Returns player json configuration
    * @function getConfig
-   * @param {string} entryId
-   * @param {number} uiConfId
-   * @returns {Promise}
+   * @param {string} entryId The entry ID
+   * @param {number} uiConfId The uiConf ID
+   * @returns {Promise} The provider config object as promise
    */
   getConfig(entryId?: string, uiConfId?: number): Promise<Object> {
     if (uiConfId != null) {
@@ -108,8 +109,8 @@ export class OvpProvider {
   /**
    * Parses BE data to json configuration object
    * @function parseDataFromResponse
-   * @param {Map<string,Function>} data
-   * @returns {Object}
+   * @param {Map<string,Function>} data The data to parse
+   * @returns {Object} The parsed config object
    */
   parseDataFromResponse(data: Map<string,Function>): Object {
     logger.info("Data parsing started.");
@@ -154,10 +155,10 @@ export class OvpProvider {
   }
 
   /**
-   * Parametrs validation function
-   * @param entryId
-   * @param uiConfId
-   * @returns {boolean}
+   * Parameters validation function
+   * @param {string} entryId The entry ID
+   * @param {number} uiConfId The uiConfID
+   * @returns {boolean} Is valid params
    */
   validateParams(entryId?: string, uiConfId?: number): boolean {
     return !!entryId || !!uiConfId;

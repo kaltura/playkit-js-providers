@@ -21,8 +21,8 @@ export default class Drm {
 
   /**
    * @constructor
-   * @param {string} licenseUrl -
-   * @param {Scheme} scheme
+   * @param {string} licenseUrl - the license URL
+   * @param {Scheme} scheme - the drm scheme
    */
   constructor(licenseUrl: string, scheme: Scheme) {
     this.licenseUrl = licenseUrl;

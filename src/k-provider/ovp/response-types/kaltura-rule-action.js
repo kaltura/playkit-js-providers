@@ -14,7 +14,7 @@ export default class KalturaRuleAction {
 
   /**
    * @constructor
-   * @param {Object} The json response
+   * @param {Object} data The response
    */
   constructor(data: Object) {
     this.type = data.type;

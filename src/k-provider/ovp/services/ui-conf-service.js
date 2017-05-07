@@ -13,10 +13,10 @@ export default class UiConfService extends OvpService {
   /**
    * Creates an instance of RequestBuilder for uiconf.get
    * @function get
-   * @param {string} baseUrl
-   * @param {string} ks
-   * @param {string} uiConfID
-   * @returns {RequestBuilder}
+   * @param {string} baseUrl The service base URL
+   * @param {string} ks The ks
+   * @param {string} uiConfID The uiConf ID
+   * @returns {RequestBuilder} The request builder
    * @static
    */
   static get(baseUrl: string, ks: string, uiConfID: number) {

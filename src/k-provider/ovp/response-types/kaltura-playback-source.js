@@ -39,7 +39,7 @@ export default class KalturaPlaybackSource {
 
   /**
    * @constructor
-   * @param {Object} The json response
+   * @param {Object} source The response
    */
   constructor(source: Object) {
     this.format = source.format;
@@ -58,7 +58,7 @@ export default class KalturaPlaybackSource {
   /**
    * Checks if source has DRM data
    * @function hasDrmData
-   * @returns {boolean}
+   * @returns {boolean} Is source has DRM
    */
   hasDrmData(): boolean {
     return this.drm && this.drm.length > 0;
@@ -67,7 +67,7 @@ export default class KalturaPlaybackSource {
   /**
    * Checks if source has flavor IDs
    * @function hasFlavorIds
-   * @returns {boolean}
+   * @returns {boolean} Is source ha flavor IDs
    */
   hasFlavorIds(): boolean {
     return !!this.flavorIds && this.flavorIds.length > 0;
@@ -75,7 +75,7 @@ export default class KalturaPlaybackSource {
 
   /**
    * Returns source desired protocol if supported
-   * @param protocol - the desired protocol for the source (base play url protocol)
+   * @param {string} protocol - the desired protocol for the source (base play url protocol)
    * @returns {string} - protocol if protocol is in the protocols list - if not empty string returned
    */
   getProtocol(protocol: string): string {

@@ -20,7 +20,7 @@ export default class KalturaDrmPlaybackPluginData {
 
   /**
    * @constructor
-   * @param {Object} The json response
+   * @param {Object} drm The json response
    */
   constructor(drm: any) {
     this.scheme = drm.scheme;

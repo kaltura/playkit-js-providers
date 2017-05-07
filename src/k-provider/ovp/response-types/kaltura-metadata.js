@@ -23,7 +23,7 @@ export default class KalturaMetadata {
 
   /**
    * @constructor
-   * @param {Object} The json response
+   * @param {Object} data The response
    */
   constructor(data: Object) {
     this.id = data.id;

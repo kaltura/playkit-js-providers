@@ -20,7 +20,7 @@ export default class KalturaBaseEntryListResponse extends ServiceResult {
 
   /**
    * @constructor
-   * @param {Object} The json response
+   * @param {Object} responseObj The json response
    */
   constructor(responseObj: Object) {
     super(responseObj);

@@ -36,8 +36,8 @@ export default class DataLoaderManager {
 
   /**
    * @constructor
-   * @param {string} partnerID
-   * @param {string} ks
+   * @param {string} partnerID Then partner ID
+   * @param {string} ks The ks
    */
   constructor(partnerID: number, ks: string = "") {
     this._multiRequest = OvpService.getMultirequest(ks, partnerID);
@@ -46,8 +46,9 @@ export default class DataLoaderManager {
   /**
    * Add loader too execution loaders map
    * @function
-   * @param {Function} loader
-   * @param {Object} params
+   * @param {Function} loader Loader to add
+   * @param {Object} params Loader params
+   * @returns {void}
    */
   add(loader: typeof ILoader, params: Object): void {
     let execution_loader = new loader(params);
@@ -71,7 +72,7 @@ export default class DataLoaderManager {
   /**
    * Get data from all loaders using multi request
    * @function
-   * @returns {Promise}
+   * @returns {Promise} Promise
    */
   fetchData(): Promise<any> {
     return new Promise((resolve, reject) => {

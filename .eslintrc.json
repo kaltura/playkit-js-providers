@@ -21,12 +21,6 @@
     "sinon": true
   },
   "rules": {
-    "no-unused-vars": [
-      "error",
-      {
-        "argsIgnorePattern": "abstract"
-      }
-    ],
     "mocha-no-only/mocha-no-only": [
       "error"
     ],

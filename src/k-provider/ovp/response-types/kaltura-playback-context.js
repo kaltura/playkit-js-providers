@@ -33,7 +33,7 @@ export default class KalturaPlaybackContext extends ServiceResult {
 
   /**
    * @constructor
-   * @param {Object} The json response
+   * @param {Object} response The response
    */
   constructor(response: Object) {
     super(response);

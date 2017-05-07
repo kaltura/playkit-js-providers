@@ -79,7 +79,7 @@ export default class KalturaFlavorAsset {
 
   /**
    * @constructor
-   * @param {Object} The json response
+   * @param {Object} data The json response
    */
   constructor(data: any) {
     this.id = data.id;
