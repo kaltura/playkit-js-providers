@@ -164,7 +164,6 @@ describe('OvpProvider.partnerId:1068292', function () {
       })
   });
   it('should return reject when try to get config with wrong entry ID', (done) => {
-    debugger;
     let entryID = "1_rwbj3j0affff";
     provider = new OvpProvider(partnerId);
     sinon.stub(MultiRequestBuilder.prototype, "execute").callsFake(
@@ -181,7 +180,6 @@ describe('OvpProvider.partnerId:1068292', function () {
         });
       });
     provider.getConfig(entryID).then(() => {
-        debugger;
         done("Get config should throw error")
       },
       err => {
