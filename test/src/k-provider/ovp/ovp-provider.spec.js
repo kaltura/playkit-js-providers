@@ -22,7 +22,6 @@ describe('OvpProvider.partnerId:1082342', function () {
 
   it('should return config without plugins and without drm data', (done) => {
     let entryID = "1_rsrdfext";
-
     sinon.stub(MultiRequestBuilder.prototype, "execute").callsFake(
       function () {
         return new Promise((resolve) => {
@@ -123,7 +122,6 @@ describe('OvpProvider.partnerId:1082342', function () {
 });
 
 describe('OvpProvider.partnerId:1068292', function () {
-
   let provider;
   let sandbox;
   let partnerId = 1068292;
@@ -163,8 +161,8 @@ describe('OvpProvider.partnerId:1068292', function () {
         done(err)
       })
   });
+
   it('should return reject when try to get config with wrong entry ID', (done) => {
-    debugger;
     let entryID = "1_rwbj3j0affff";
     provider = new OvpProvider(partnerId);
     sinon.stub(MultiRequestBuilder.prototype, "execute").callsFake(
@@ -181,19 +179,16 @@ describe('OvpProvider.partnerId:1068292', function () {
         });
       });
     provider.getConfig(entryID).then(() => {
-        debugger;
         done("Get config should throw error")
       },
       err => {
         let expectedData = {success: false, results: parsedData.entryIDError}
         err.should.deep.equal(expectedData);
         done();
-
       });
   });
 
   it('should return config with plugins and with drm data', (done) => {
-
     let entryID = "1_rwbj3j0a";
     let uiConfID = 38601981;
     provider = new OvpProvider(partnerId);
@@ -220,7 +215,6 @@ describe('OvpProvider.partnerId:1068292', function () {
   });
 
   it('should return reject when try to get config with wrong uiConf ID', (done) => {
-
     let entryID = "1_rwbj3j0a";
     let uiConfID = 38601981;
     provider = new OvpProvider(partnerId);
@@ -238,7 +232,6 @@ describe('OvpProvider.partnerId:1068292', function () {
         let expectedData = {success: false, results: parsedData.WrongUiConfID}
         err.should.deep.equal(expectedData);
         done();
-
       });
   });
 });
