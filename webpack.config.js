@@ -9,8 +9,8 @@ let plugins = PROD ? [new webpack.optimize.UglifyJsPlugin({sourceMap: true})] : 
 module.exports = {
   context: __dirname + "/src",
   entry: {
-    "ovp-provider": "k-provider/ovp/ovp-provider.js",
-    "ott-provider": "k-provider/ott/ott-provider.js"
+    "ovpprovider": "k-provider/ovp/ovp-provider.js",
+    "ottprovider": "k-provider/ott/ott-provider.js"
   },
   output: {
     path: path.join(__dirname, "dist"),
