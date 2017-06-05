@@ -4,6 +4,8 @@ const webpack = require("webpack");
 const path = require("path");
 const libraryName = "playkit-js-providers";
 
+let plugins = PROD ? [new webpack.optimize.UglifyJsPlugin({sourceMap: true})] : [];
+
 module.exports = {
   context: __dirname + "/src",
   entry: {
@@ -17,6 +19,7 @@ module.exports = {
     libraryTarget: 'umd'
   },
   devtool: 'source-map',
+  plugins: plugins,
   module: {
     rules: [{
       test: /\.js$/,
