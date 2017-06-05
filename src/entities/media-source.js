@@ -15,7 +15,7 @@ export default class MediaSource {
    * @member - media source URL
    * @type {string}
    */
-  src: string;
+  url: string;
   /**
    * @member - media source mimetype
    * @type {string}

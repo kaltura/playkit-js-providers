@@ -159,7 +159,7 @@ export default class ProviderParser {
     }
 
 
-    mediaSource.src = playUrl;
+    mediaSource.url = playUrl;
     mediaSource.id = entry.id + "_" + source.deliveryProfileId + "," + source.format;
     if (source.hasDrmData()) {
       let drmParams: Array<Drm> = [];
