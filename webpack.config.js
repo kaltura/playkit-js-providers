@@ -2,17 +2,18 @@
 
 const webpack = require("webpack");
 const path = require("path");
-const libraryName = "playkit-js-providers";
+const libraryName = "Providers";
 
 module.exports = {
   context: __dirname + "/src",
   entry: {
     ovpProvider: "k-provider/ovp/ovp-provider.js",
-    ottProvider: "k-provider/ott/ott-provider.js"
+    ottProvider: "k-provider/ott/ott-provider.js",
+    statsService: "k-provider/ovp/services/stats-service.js"
   },
   output: {
     path: path.join(__dirname, "dist"),
-    filename: '[name].js',
+    filename: '[name].min.js',
     library: libraryName,
     libraryTarget: 'umd'
   },
