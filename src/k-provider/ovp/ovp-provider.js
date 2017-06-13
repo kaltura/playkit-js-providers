@@ -1,6 +1,6 @@
 //@flow
 import Logger from '../../util/logger'
-import ProviderParser from './providerParser'
+import ProviderParser from './provider-parser'
 import DataLoaderManager from './loaders/data-loader-manager'
 import MediaEntryLoader from './loaders/media-entry-loader'
 import SessionLoader from './loaders/session-loader'
@@ -89,7 +89,6 @@ export class OvpProvider {
           ks = "{1:result:ks}";
           this._dataLoader.add(SessionLoader, {partnerId: this.partnerID});
         }
-
         this._dataLoader.add(MediaEntryLoader, {entryId: entryId, ks: ks});
         this._dataLoader.add(UiConfigLoader, {uiConfId: uiConfId, ks: ks});
         this._dataLoader.fetchData()
@@ -112,8 +111,8 @@ export class OvpProvider {
    * @param {Map<string,Function>} data The data to parse
    * @returns {Object} The parsed config object
    */
-  parseDataFromResponse(data: Map<string,Function>): Object {
-    logger.info("Data parsing started.");
+  parseDataFromResponse(data: Map<string, Function>): Object {
+    logger.debug("Data parsing started");
     let config: playerConfig = {
       id: "",
       sources: [],
@@ -150,7 +149,7 @@ export class OvpProvider {
         }
       }
     }
-    logger.info(config);
+    logger.debug("Data parsing finished", config);
     return (config);
   }
 

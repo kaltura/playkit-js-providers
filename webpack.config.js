@@ -2,7 +2,6 @@
 
 const webpack = require("webpack");
 const path = require("path");
-const libraryName = "playkit-js-providers";
 const PROD = (process.env.NODE_ENV === 'production');
 
 let plugins = PROD ? [new webpack.optimize.UglifyJsPlugin({sourceMap: true})] : [];
