@@ -13,24 +13,21 @@ export default class StatsService extends OvpService {
   /**
    * Creates an instance of RequestBuilder for stats.collect
    * @function collect
-   * @param {string} baseUrl The service base URL
-   * @param {string} ks The ks
-   * @param {Object} event The event data
-   * @returns {RequestBuilder} The request builder
+   * @param {string} ks - The ks
+   * @param {Object} event - The event data
+   * @param {string} [baseUrl=Configuration.beUrl] - The service base URL
+   * @returns {RequestBuilder} - The request builder
    * @static
    */
-  static collect(baseUrl: string, ks: string, event: Object): RequestBuilder {
+  static collect(ks: string, event: Object, baseUrl: ?string): RequestBuilder {
     let ovpParams = Configuration.get();
-    let serviceParams = ovpParams.serviceParams;
-    Object.assign(serviceParams, {ks: ks});
-
-   // let params =  {format: 1, ks: ks};
-    Object.assign(serviceParams, event);
+    let serviceParams = {};
+    Object.assign(serviceParams, ovpParams.serviceParams, {ks: ks}, event);
     let request = new RequestBuilder();
     request.service = SERVICE_NAME;
     request.action = "collect";
     request.method = "POST";
-    request.baseUrl = baseUrl;
+    request.baseUrl = baseUrl || ovpParams.beUrl;
     request.tag = "stats-collect";
     request.params = JSON.stringify(serviceParams);
     return request;
