@@ -60,7 +60,7 @@ export default class RequestBuilder {
     if (!this.baseUrl) {
       throw new Error("baseUrl is mandatory for request builder");
     }
-    let url = this.baseUrl + '/service/' + this.service + (this.action ? +'/action/' + this.action : '');
+    let url = this.baseUrl + '/service/' + this.service + (this.action ? '/action/' + this.action : '');
     return url;
   }
 
