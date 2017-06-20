@@ -16,6 +16,7 @@ const logger = Logger.get("OvpProvider");
 
 type playerConfig = {
   id: string,
+  session: Object,
   sources: Array<MediaSource>,
   duration: number,
   type: string,
@@ -115,6 +116,10 @@ export class OvpProvider {
     logger.debug("Data parsing started");
     let config: playerConfig = {
       id: "",
+      session: {
+        partnerID: this.partnerID,
+        uiConfID: this._uiConfId,
+      },
       sources: [],
       duration: 0,
       type: "Unknown",
@@ -127,6 +132,7 @@ export class OvpProvider {
         if (sessionLoader != null && sessionLoader.response != null) {
           this.ks = sessionLoader.response;
           this._isAnonymous = !this.ks;
+          config.session.ks = this.ks;
         }
       }
       if (data.has(UiConfigLoader.name)) {
@@ -162,6 +168,7 @@ export class OvpProvider {
   validateParams(entryId?: string, uiConfId?: number): boolean {
     return !!entryId || !!uiConfId;
   }
+
 }
 
 export default OvpProvider;

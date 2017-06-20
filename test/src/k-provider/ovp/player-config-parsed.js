@@ -1,6 +1,11 @@
 //@flow
 let NoPluginsNoDrm = {
   "id": "1_rsrdfext",
+  "session": {
+    "partnerID": 1082342,
+    "ks": "OGM0ZWM0Y2IwOWI5ZjM0MDcyZmQ3YmYxNzBiMGEwNGYxNWQ0ZTcyOXwxMDgyMzQyOzEwODIzNDI7MTQ5MDExNTg5MzswOzE0OTAwMjk0OTMuMTY3ODswO3ZpZXc6Kix3aWRnZXQ6MTs7",
+    "uiConfID": undefined
+  },
   "sources": [
     {
       "mimetype": "video/mp4",
@@ -61,6 +66,11 @@ let NoPluginsNoDrm = {
 
 let NoPluginsWithDrm = {
   "id": "1_rwbj3j0a",
+  "session": {
+    "partnerID": 1068292,
+    "ks": "NTAwZjViZWZjY2NjNTRkNGEyMjU1MTg4OGE1NmUwNDljZWJkMzk1MXwxMDY4MjkyOzEwNjgyOTI7MTQ5MDE3NjE0NjswOzE0OTAwODk3NDYuMDIyNjswO3ZpZXc6Kix3aWRnZXQ6MTs7",
+    "uiConfID": undefined
+  },
   "sources": [
     {
       "mimetype": "application/x-mpegURL",
@@ -101,6 +111,11 @@ let NoPluginsWithDrm = {
 
 let WithPluginsNoDrm = {
   "id": "1_rsrdfext",
+  "session": {
+    "partnerID": 1082342,
+    "ks": "YmQ0N2Q0M2QxZTAyMGIzYTY4YzI1ZDk5ZjI1NjhlZWVkOWZmOGViN3wxMDgyMzQyOzEwODIzNDI7MTQ5MDE5NjMwMDswOzE0OTAxMDk5MDAuOTA0NDswO3ZpZXc6Kix3aWRnZXQ6MTs7",
+    "uiConfID": 38621471
+  },
   "sources": [
     {
       "mimetype": "video/mp4",
@@ -232,6 +247,11 @@ let WithPluginsNoDrm = {
 
 let WithPluginsWithDrm = {
   "id": "1_rwbj3j0a",
+  "session": {
+    "ks": "ZTFiNzk4MmM5MjJiYzkwODliMzQzZTQ3Y2I4MzIwYTIzMmQzMTMxYnwxMDY4MjkyOzEwNjgyOTI7MTQ5MDI1Mjk5MjswOzE0OTAxNjY1OTIuODUyMTswO3ZpZXc6Kix3aWRnZXQ6MTs7",
+    "partnerID": 1068292,
+    "uiConfID": 38601981
+  },
   "sources": [
     {
       "mimetype": "application/x-mpegURL",
@@ -343,6 +363,11 @@ let WithPluginsWithDrm = {
 
 let AudioEntryWithoutPlugins = {
   "id": "0_vyzw3ceu",
+  "session": {
+    "partnerID": 1082342,
+    "ks": "YWU4Y2I0ZDk4ZmNiMjUyZjA1NmQ1NmMzMTdjZmFjZWEyODc2NDE0YXwxMDgyMzQyOzEwODIzNDI7MTQ5MDg2MTk1OTswOzE0OTA3NzU1NTkuNzk0MzswO3ZpZXc6Kix3aWRnZXQ6MTs7",
+    "uiConfID": undefined
+  },
   "sources": [
     {
       "mimetype": "video/mp4",
@@ -386,6 +411,11 @@ let AudioEntryWithoutPlugins = {
 
 let ImageEntryWithoutPlugins = {
   "id": "0_84zz779s",
+  "session": {
+    "partnerID": 1082342,
+    "ks": "YWU4Y2I0ZDk4ZmNiMjUyZjA1NmQ1NmMzMTdjZmFjZWEyODc2NDE0YXwxMDgyMzQyOzEwODIzNDI7MTQ5MDg2MTk1OTswOzE0OTA3NzU1NTkuNzk0MzswO3ZpZXc6Kix3aWRnZXQ6MTs7",
+    "uiConfID": undefined
+  },
   "sources": [],
   "duration": 0,
   "type": "Image",
