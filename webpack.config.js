@@ -2,26 +2,27 @@
 
 const webpack = require("webpack");
 const path = require("path");
-const libraryName = "Providers";
 const PROD = (process.env.NODE_ENV === 'production');
-
-let plugins = PROD ? [new webpack.optimize.UglifyJsPlugin({sourceMap: true})] : [];
 
 module.exports = {
   context: __dirname + "/src",
-  entry: {
+  entry: PROD ? {
+    "ovpProvider.min": "k-provider/ovp/ovp-provider.js",
+    "ottProvider.min": "k-provider/ott/ott-provider.js",
+    "statsService.min": "k-provider/ovp/services/stats-service.js"
+  } : {
     "ovpProvider": "k-provider/ovp/ovp-provider.js",
     "ottProvider": "k-provider/ott/ott-provider.js",
-    statsService: "k-provider/ovp/services/stats-service.js"
+    "statsService": "k-provider/ovp/services/stats-service.js"
   },
   output: {
     path: path.join(__dirname, "dist"),
-    filename: '[name].min.js',
+    filename: '[name].js',
     library: "PlaykitJsProviders",
     libraryTarget: 'umd'
   },
   devtool: 'source-map',
-  plugins: plugins,
+  plugins: PROD ? [new webpack.optimize.UglifyJsPlugin({sourceMap: true})] : [],
   module: {
     rules: [{
       test: /\.js$/,
@@ -33,7 +34,9 @@ module.exports = {
       ]
     }, {
       test: /\.js$/,
-      exclude: /node_modules/,
+      exclude: [
+        /node_modules/
+      ],
       enforce: 'pre',
       use: [{
         loader: 'eslint-loader',

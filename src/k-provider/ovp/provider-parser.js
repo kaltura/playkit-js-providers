@@ -1,5 +1,4 @@
 //@flow
-
 import KalturaMediaEntry from './response-types/kaltura-media-entry'
 import KalturaPlaybackContext from './response-types/kaltura-playback-context'
 import KalturaPlaybackSource from './response-types/kaltura-playback-source'
