@@ -19,7 +19,8 @@ module.exports = {
     path: path.join(__dirname, "dist"),
     filename: '[name].js',
     library: "PlaykitJsProviders",
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
+    devtoolModuleFilenameTemplate: "webpack:///providers/[resource-path]",
   },
   devtool: 'source-map',
   plugins: PROD ? [new webpack.optimize.UglifyJsPlugin({sourceMap: true})] : [],
