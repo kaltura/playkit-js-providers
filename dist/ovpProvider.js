@@ -2702,11 +2702,30 @@ var ProviderParser = function () {
       var playbackContext = mediaEntryResponse.playBackContextResult;
       var metadataList = mediaEntryResponse.metadataListResult;
       var kalturaSources = playbackContext.sources;
-      var sources = [];
-
+      var sources = {
+        progressive: [],
+        dash: [],
+        hls: []
+      };
       if (kalturaSources && kalturaSources.length > 0) {
         kalturaSources.forEach(function (source) {
-          sources.push(_this.parseSource(source, ks, partnerID, uiConfId, entry, playbackContext));
+          var mediaFormat = SUPPORTED_FORMATS.get(source.format);
+          if (mediaFormat && mediaFormat.name) {
+            var parsedSource = _this.parseSource(source, ks, partnerID, uiConfId, entry, playbackContext);
+            switch (mediaFormat.name) {
+              case 'mp4':
+                sources.progressive.push(parsedSource);
+                break;
+              case 'dash':
+                sources.dash.push(parsedSource);
+                break;
+              case 'hls':
+                sources.hls.push(parsedSource);
+                break;
+              default:
+                break;
+            }
+          }
         });
       } else {
         sources = [];
