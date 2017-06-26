@@ -964,6 +964,7 @@ var MediaSources = function () {
    * Maps the source to one of the containers according to his media format.
    * @param {MediaSource} source - The source to add to one of the containers.
    * @param {MediaFormat} mediaFormat - The media format of the source.
+   * @returns {void}
    */
 
   /**
