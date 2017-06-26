@@ -52,11 +52,30 @@ export default class ProviderParser {
     let playbackContext = mediaEntryResponse.playBackContextResult;
     let metadataList = mediaEntryResponse.metadataListResult;
     let kalturaSources: Array<KalturaPlaybackSource> = playbackContext.sources;
-    let sources: Array<MediaSource> = [];
-
+    let sources: Object = {
+      progressive: [],
+      dash: [],
+      hls: []
+    };
     if (kalturaSources && kalturaSources.length > 0) {
       kalturaSources.forEach((source) => {
-        sources.push(this.parseSource(source, ks, partnerID, uiConfId, entry, playbackContext));
+        let mediaFormat = SUPPORTED_FORMATS.get(source.format);
+        if (mediaFormat && mediaFormat.name) {
+          let parsedSource = this.parseSource(source, ks, partnerID, uiConfId, entry, playbackContext);
+          switch (mediaFormat.name) {
+            case 'mp4':
+              sources.progressive.push(parsedSource);
+              break;
+            case 'dash':
+              sources.dash.push(parsedSource);
+              break;
+            case 'hls':
+              sources.hls.push(parsedSource);
+              break;
+            default:
+              break;
+          }
+        }
       });
     }
     else {
@@ -65,7 +84,7 @@ export default class ProviderParser {
 
     mediaEntry.sources = sources;
 
-    let metadata: Map<string,string> = this.parseMetaData(metadataList);
+    let metadata: Map<string, string> = this.parseMetaData(metadataList);
     mediaEntry.metaData = metadata;
     mediaEntry.id = entry.id;
     mediaEntry.duration = entry.duration;
@@ -177,7 +196,7 @@ export default class ProviderParser {
    * @returns {Map<string,string>} Parsed metadata
    * @static
    */
-  static parseMetaData(metadataList: KalturaMetadataListResponse): Map<string,string> {
+  static parseMetaData(metadataList: KalturaMetadataListResponse): Map<string, string> {
     let metadata: Object = {};
     if (metadataList && metadataList.metas && metadataList.metas.length > 0) {
       metadataList.metas.forEach((meta) => {

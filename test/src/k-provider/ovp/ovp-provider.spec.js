@@ -182,7 +182,7 @@ describe('OvpProvider.partnerId:1068292', function () {
         done("Get config should throw error")
       },
       err => {
-        let expectedData = {success: false, results: parsedData.entryIDError}
+        let expectedData = {success: false, results: parsedData.entryIDError};
         err.should.deep.equal(expectedData);
         done();
       });
@@ -229,7 +229,7 @@ describe('OvpProvider.partnerId:1068292', function () {
         done("Get config should throw error");
       },
       err => {
-        let expectedData = {success: false, results: parsedData.WrongUiConfID}
+        let expectedData = {success: false, results: parsedData.WrongUiConfID};
         err.should.deep.equal(expectedData);
         done();
       });
