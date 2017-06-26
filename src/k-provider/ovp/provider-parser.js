@@ -13,6 +13,7 @@ import {MediaFormat} from '../../entities/media-format'
 import MediaEntry from '../../entities/media-entry'
 import Drm from '../../entities/drm'
 import MediaSource from '../../entities/media-source'
+import MediaSources from '../../entities/media-sources'
 
 const config = Configuration.get();
 /**
@@ -52,34 +53,13 @@ export default class ProviderParser {
     let playbackContext = mediaEntryResponse.playBackContextResult;
     let metadataList = mediaEntryResponse.metadataListResult;
     let kalturaSources: Array<KalturaPlaybackSource> = playbackContext.sources;
-    let sources: Object = {
-      progressive: [],
-      dash: [],
-      hls: []
-    };
+    let sources: MediaSources = new MediaSources();
     if (kalturaSources && kalturaSources.length > 0) {
       kalturaSources.forEach((source) => {
+        let parsedSource = this.parseSource(source, ks, partnerID, uiConfId, entry, playbackContext);
         let mediaFormat = SUPPORTED_FORMATS.get(source.format);
-        if (mediaFormat && mediaFormat.name) {
-          let parsedSource = this.parseSource(source, ks, partnerID, uiConfId, entry, playbackContext);
-          switch (mediaFormat.name) {
-            case 'mp4':
-              sources.progressive.push(parsedSource);
-              break;
-            case 'dash':
-              sources.dash.push(parsedSource);
-              break;
-            case 'hls':
-              sources.hls.push(parsedSource);
-              break;
-            default:
-              break;
-          }
-        }
+        sources.map(parsedSource, mediaFormat);
       });
-    }
-    else {
-      sources = {};
     }
 
     mediaEntry.sources = sources;
@@ -175,7 +155,6 @@ export default class ProviderParser {
       logger.error(`failed to create play url from source, discarding source: (${entry.id}_${source.deliveryProfileId}), ${source.format}.`);
       return mediaSource;
     }
-
 
     mediaSource.url = playUrl;
     mediaSource.id = entry.id + "_" + source.deliveryProfileId + "," + source.format;

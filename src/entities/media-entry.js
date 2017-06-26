@@ -1,5 +1,6 @@
 //@flow
 import {MediaEntryType} from '../k-provider/enums'
+import MediaSources from './media-sources'
 
 /**
  * Media entry
@@ -14,9 +15,9 @@ export default class MediaEntry {
   id: string;
   /**
    * @member - entry sources
-   * @type {Object}
+   * @type {MediaSources}
    */
-  sources: Object;
+  sources: MediaSources;
   /**
    * @member - entry duration
    * @type {number}
@@ -31,7 +32,7 @@ export default class MediaEntry {
    * @member - entry metadata
    * @type {Map<string,string>}
    */
-  metaData: Map<string,string>;
+  metaData: Map<string, string>;
 
   /**
    * @constructor

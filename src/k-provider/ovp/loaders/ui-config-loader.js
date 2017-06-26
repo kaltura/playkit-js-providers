@@ -1,6 +1,6 @@
 //@flow
 import UiConfService from '../services/ui-conf-service'
-import KalturaUiConfResponse from '../response-types/kalturaUIConfResponse'
+import KalturaUiConfResponse from '../response-types/kaltura-ui-conf-response'
 import Configuration from '../config'
 import RequestBuilder from '../../request-builder'
 

@@ -412,7 +412,11 @@ let ImageEntryWithoutPlugins = {
     "ks": "YWU4Y2I0ZDk4ZmNiMjUyZjA1NmQ1NmMzMTdjZmFjZWEyODc2NDE0YXwxMDgyMzQyOzEwODIzNDI7MTQ5MDg2MTk1OTswOzE0OTA3NzU1NTkuNzk0MzswO3ZpZXc6Kix3aWRnZXQ6MTs7",
     "uiConfID": undefined
   },
-  "sources": [],
+  "sources": {
+    "dash": [],
+    "hls": [],
+    "progressive": []
+  },
   "duration": 0,
   "type": "Image",
   "metadata": {},
