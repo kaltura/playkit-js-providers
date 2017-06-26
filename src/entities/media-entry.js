@@ -1,5 +1,4 @@
 //@flow
-import MediaSource from './media-source'
 import {MediaEntryType} from '../k-provider/enums'
 
 /**
@@ -15,9 +14,9 @@ export default class MediaEntry {
   id: string;
   /**
    * @member - entry sources
-   * @type {Array<MediaSource>}
+   * @type {Object}
    */
-  sources: Array<MediaSource>;
+  sources: Object;
   /**
    * @member - entry duration
    * @type {number}

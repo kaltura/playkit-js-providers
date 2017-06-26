@@ -712,7 +712,7 @@ exports.LOG_LEVEL = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _jsLogger = __webpack_require__(8);
+var _jsLogger = __webpack_require__(7);
 
 var JsLogger = _interopRequireWildcard(_jsLogger);
 
@@ -916,60 +916,6 @@ exports.MultiRequestResult = function MultiRequestResult(response) {
 
 /***/ }),
 /* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _drm = __webpack_require__(10);
-
-var _drm2 = _interopRequireDefault(_drm);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-/**
- * Media source
- * @classdesc
- */
-var MediaSource =
-
-/**
- * @constructor
- */
-
-/**
- * @member - media source mimetype
- * @type {string}
- */
-
-/**
- * @member - media source ID
- * @type {string}
- */
-function MediaSource() {
-  _classCallCheck(this, MediaSource);
-}
-/**
- * @member - media source drm data
- * @type {Array<Drm>}
- */
-
-/**
- * @member - media source URL
- * @type {string}
- */
-;
-
-exports.default = MediaSource;
-
-/***/ }),
-/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -1236,7 +1182,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1246,7 +1192,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _mediaSource = __webpack_require__(7);
+var _mediaSource = __webpack_require__(10);
 
 var _mediaSource2 = _interopRequireDefault(_mediaSource);
 
@@ -1273,7 +1219,7 @@ var MediaEntry =
 
 /**
  * @member - entry sources
- * @type {Array<MediaSource>}
+ * @type {Object}
  */
 function MediaEntry() {
   _classCallCheck(this, MediaEntry);
@@ -1301,7 +1247,7 @@ function MediaEntry() {
 exports.default = MediaEntry;
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1345,6 +1291,60 @@ function Drm(licenseUrl, scheme) {
 ;
 
 exports.default = Drm;
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _drm = __webpack_require__(9);
+
+var _drm2 = _interopRequireDefault(_drm);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * Media source
+ * @classdesc
+ */
+var MediaSource =
+
+/**
+ * @constructor
+ */
+
+/**
+ * @member - media source mimetype
+ * @type {string}
+ */
+
+/**
+ * @member - media source ID
+ * @type {string}
+ */
+function MediaSource() {
+  _classCallCheck(this, MediaSource);
+}
+/**
+ * @member - media source drm data
+ * @type {Array<Drm>}
+ */
+
+/**
+ * @member - media source URL
+ * @type {string}
+ */
+;
+
+exports.default = MediaSource;
 
 /***/ }),
 /* 11 */
@@ -2642,15 +2642,15 @@ var _config2 = _interopRequireDefault(_config);
 
 var _mediaFormat = __webpack_require__(22);
 
-var _mediaEntry = __webpack_require__(9);
+var _mediaEntry = __webpack_require__(8);
 
 var _mediaEntry2 = _interopRequireDefault(_mediaEntry);
 
-var _drm = __webpack_require__(10);
+var _drm = __webpack_require__(9);
 
 var _drm2 = _interopRequireDefault(_drm);
 
-var _mediaSource = __webpack_require__(7);
+var _mediaSource = __webpack_require__(10);
 
 var _mediaSource2 = _interopRequireDefault(_mediaSource);
 
@@ -2728,7 +2728,7 @@ var ProviderParser = function () {
           }
         });
       } else {
-        sources = [];
+        sources = {};
       }
 
       mediaEntry.sources = sources;
@@ -2992,13 +2992,9 @@ var _config = __webpack_require__(1);
 
 var _config2 = _interopRequireDefault(_config);
 
-var _mediaEntry = __webpack_require__(9);
+var _mediaEntry = __webpack_require__(8);
 
 var _mediaEntry2 = _interopRequireDefault(_mediaEntry);
-
-var _mediaSource = __webpack_require__(7);
-
-var _mediaSource2 = _interopRequireDefault(_mediaSource);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3116,7 +3112,7 @@ var OvpProvider = exports.OvpProvider = function () {
           partnerID: this.partnerID,
           uiConfID: this._uiConfId
         },
-        sources: [],
+        sources: {},
         duration: 0,
         type: "Unknown",
         metadata: {},

@@ -79,7 +79,7 @@ export default class ProviderParser {
       });
     }
     else {
-      sources = [];
+      sources = {};
     }
 
     mediaEntry.sources = sources;
