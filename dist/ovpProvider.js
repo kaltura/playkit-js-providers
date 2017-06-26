@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 24);
+/******/ 	return __webpack_require__(__webpack_require__.s = 25);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -264,7 +264,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.UIConfCreationMode = exports.UIConfType = exports.MediaEntryType = exports.MediaType = exports.EntryType = exports.EntryModerationStatus = exports.EntryStatus = exports.MetadataStatus = exports.MetadataObjectType = exports.Status = exports.KalturaRuleActionType = exports.Scheme = undefined;
 
-var _enumify = __webpack_require__(16);
+var _enumify = __webpack_require__(18);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -925,48 +925,86 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _drm = __webpack_require__(10);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _drm2 = _interopRequireDefault(_drm);
+var _mediaSource = __webpack_require__(12);
+
+var _mediaSource2 = _interopRequireDefault(_mediaSource);
+
+var _mediaFormat = __webpack_require__(11);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 /**
- * Media source
+ * Container for the media sources aggregated by stream format.
  * @classdesc
  */
-var MediaSource =
+var MediaSources = function () {
 
-/**
- * @constructor
- */
+  /**
+   * @constructor
+   */
 
-/**
- * @member - media source mimetype
- * @type {string}
- */
+  /**
+   * Dash media sources container.
+   * @type {Array<MediaSource>}
+   * @public
+   */
+  function MediaSources() {
+    _classCallCheck(this, MediaSources);
 
-/**
- * @member - media source ID
- * @type {string}
- */
-function MediaSource() {
-  _classCallCheck(this, MediaSource);
-}
-/**
- * @member - media source drm data
- * @type {Array<Drm>}
- */
+    this.progressive = [];
+    this.dash = [];
+    this.hls = [];
+  }
 
-/**
- * @member - media source URL
- * @type {string}
- */
-;
+  /**
+   * Maps the source to one of the containers according to his media format.
+   * @param {MediaSource} source - The source to add to one of the containers.
+   * @param {MediaFormat} mediaFormat - The media format of the source.
+   * @returns {void}
+   */
 
-exports.default = MediaSource;
+  /**
+   * Hls media sources container.
+   * @type {Array<MediaSource>}
+   * @public
+   */
+
+  /**
+   * Progressive download media sources container.
+   * @type {Array<MediaSource>}
+   * @public
+   */
+
+
+  _createClass(MediaSources, [{
+    key: 'map',
+    value: function map(source, mediaFormat) {
+      if (mediaFormat) {
+        switch (mediaFormat.name) {
+          case 'mp4':
+            this.progressive.push(source);
+            break;
+          case 'dash':
+            this.dash.push(source);
+            break;
+          case 'hls':
+            this.hls.push(source);
+            break;
+          default:
+            break;
+        }
+      }
+    }
+  }]);
+
+  return MediaSources;
+}();
+
+exports.default = MediaSources;
 
 /***/ }),
 /* 8 */
@@ -1246,11 +1284,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _mediaSource = __webpack_require__(7);
-
-var _mediaSource2 = _interopRequireDefault(_mediaSource);
-
 var _enums = __webpack_require__(2);
+
+var _mediaSources = __webpack_require__(7);
+
+var _mediaSources2 = _interopRequireDefault(_mediaSources);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1273,7 +1311,7 @@ var MediaEntry =
 
 /**
  * @member - entry sources
- * @type {Array<MediaSource>}
+ * @type {MediaSources}
  */
 function MediaEntry() {
   _classCallCheck(this, MediaEntry);
@@ -1348,6 +1386,135 @@ exports.default = Drm;
 
 /***/ }),
 /* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.MediaFormat = undefined;
+
+var _enumify = __webpack_require__(18);
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var MediaFormat = exports.MediaFormat = function (_Enum) {
+  _inherits(MediaFormat, _Enum);
+
+  function MediaFormat() {
+    _classCallCheck(this, MediaFormat);
+
+    return _possibleConstructorReturn(this, (MediaFormat.__proto__ || Object.getPrototypeOf(MediaFormat)).apply(this, arguments));
+  }
+
+  return MediaFormat;
+}(_enumify.Enum);
+
+MediaFormat.initEnum({
+  dash: {
+    get mimeType() {
+      return "application/dash+xml";
+    },
+    get pathExt() {
+      return "mpd";
+    }
+  },
+  hls: {
+    get mimeType() {
+      return "application/x-mpegURL";
+    },
+    get pathExt() {
+      return "m3u8";
+    }
+  },
+  wvm: {
+    get mimeType() {
+      return "video/wvm";
+    },
+    get pathExt() {
+      return "wvm";
+    }
+  },
+  mp4: {
+    get mimeType() {
+      return "video/mp4";
+    },
+    get pathExt() {
+      return "mp4";
+    }
+  },
+  mp3: {
+    get mimeType() {
+      return "audio/mpeg";
+    },
+    get pathExt() {
+      return "mp3";
+    }
+  }
+});
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _drm = __webpack_require__(10);
+
+var _drm2 = _interopRequireDefault(_drm);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * Media source
+ * @classdesc
+ */
+var MediaSource =
+
+/**
+ * @constructor
+ */
+
+/**
+ * @member - media source mimetype
+ * @type {string}
+ */
+
+/**
+ * @member - media source ID
+ * @type {string}
+ */
+function MediaSource() {
+  _classCallCheck(this, MediaSource);
+}
+/**
+ * @member - media source drm data
+ * @type {Array<Drm>}
+ */
+
+/**
+ * @member - media source URL
+ * @type {string}
+ */
+;
+
+exports.default = MediaSource;
+
+/***/ }),
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1464,7 +1631,7 @@ function KalturaFlavorAsset(data) {
 exports.default = KalturaFlavorAsset;
 
 /***/ }),
-/* 12 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1538,7 +1705,7 @@ function KalturaMediaEntry(entry) {
 exports.default = KalturaMediaEntry;
 
 /***/ }),
-/* 13 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1552,7 +1719,7 @@ var _baseServiceResult = __webpack_require__(4);
 
 var _baseServiceResult2 = _interopRequireDefault(_baseServiceResult);
 
-var _kalturaMetadata = __webpack_require__(29);
+var _kalturaMetadata = __webpack_require__(30);
 
 var _kalturaMetadata2 = _interopRequireDefault(_kalturaMetadata);
 
@@ -1603,7 +1770,7 @@ var KalturaMetadataListResponse = function (_ServiceResult) {
 exports.default = KalturaMetadataListResponse;
 
 /***/ }),
-/* 14 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1617,19 +1784,19 @@ var _baseServiceResult = __webpack_require__(4);
 
 var _baseServiceResult2 = _interopRequireDefault(_baseServiceResult);
 
-var _kalturaAccessControlMessage = __webpack_require__(26);
+var _kalturaAccessControlMessage = __webpack_require__(27);
 
 var _kalturaAccessControlMessage2 = _interopRequireDefault(_kalturaAccessControlMessage);
 
-var _kalturaPlaybackSource = __webpack_require__(15);
+var _kalturaPlaybackSource = __webpack_require__(17);
 
 var _kalturaPlaybackSource2 = _interopRequireDefault(_kalturaPlaybackSource);
 
-var _kalturaRuleAction = __webpack_require__(30);
+var _kalturaRuleAction = __webpack_require__(31);
 
 var _kalturaRuleAction2 = _interopRequireDefault(_kalturaRuleAction);
 
-var _kalturaFlavorAsset = __webpack_require__(11);
+var _kalturaFlavorAsset = __webpack_require__(13);
 
 var _kalturaFlavorAsset2 = _interopRequireDefault(_kalturaFlavorAsset);
 
@@ -1722,7 +1889,7 @@ var KalturaPlaybackContext = function (_ServiceResult) {
 exports.default = KalturaPlaybackContext;
 
 /***/ }),
-/* 15 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1734,7 +1901,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _kalturaDrmPlaybackPluginData = __webpack_require__(28);
+var _kalturaDrmPlaybackPluginData = __webpack_require__(29);
 
 var _kalturaDrmPlaybackPluginData2 = _interopRequireDefault(_kalturaDrmPlaybackPluginData);
 
@@ -1857,7 +2024,7 @@ var KalturaPlaybackSource = function () {
 exports.default = KalturaPlaybackSource;
 
 /***/ }),
-/* 16 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2072,7 +2239,7 @@ function copyProperties(target, source) {
 }
 
 /***/ }),
-/* 17 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2229,7 +2396,7 @@ DataLoaderManager._loadersResponseMap = new Map();
 exports.default = DataLoaderManager;
 
 /***/ }),
-/* 18 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2245,11 +2412,11 @@ var _requestBuilder = __webpack_require__(0);
 
 var _requestBuilder2 = _interopRequireDefault(_requestBuilder);
 
-var _baseEntryService = __webpack_require__(32);
+var _baseEntryService = __webpack_require__(33);
 
 var _baseEntryService2 = _interopRequireDefault(_baseEntryService);
 
-var _metaDataService = __webpack_require__(33);
+var _metaDataService = __webpack_require__(34);
 
 var _metaDataService2 = _interopRequireDefault(_metaDataService);
 
@@ -2257,15 +2424,15 @@ var _config = __webpack_require__(1);
 
 var _config2 = _interopRequireDefault(_config);
 
-var _kalturaPlaybackContext = __webpack_require__(14);
+var _kalturaPlaybackContext = __webpack_require__(16);
 
 var _kalturaPlaybackContext2 = _interopRequireDefault(_kalturaPlaybackContext);
 
-var _kalturaMetadataListResponse = __webpack_require__(13);
+var _kalturaMetadataListResponse = __webpack_require__(15);
 
 var _kalturaMetadataListResponse2 = _interopRequireDefault(_kalturaMetadataListResponse);
 
-var _kalturaBaseEntryListResponse = __webpack_require__(27);
+var _kalturaBaseEntryListResponse = __webpack_require__(28);
 
 var _kalturaBaseEntryListResponse2 = _interopRequireDefault(_kalturaBaseEntryListResponse);
 
@@ -2358,7 +2525,7 @@ var MediaEntryLoader = function () {
 exports.default = MediaEntryLoader;
 
 /***/ }),
-/* 19 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2370,7 +2537,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _sessionService = __webpack_require__(34);
+var _sessionService = __webpack_require__(35);
 
 var _sessionService2 = _interopRequireDefault(_sessionService);
 
@@ -2472,7 +2639,7 @@ var SessionLoader = function () {
 exports.default = SessionLoader;
 
 /***/ }),
-/* 20 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2484,13 +2651,13 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _uiConfService = __webpack_require__(36);
+var _uiConfService = __webpack_require__(37);
 
 var _uiConfService2 = _interopRequireDefault(_uiConfService);
 
-var _kalturaUIConfResponse = __webpack_require__(31);
+var _kalturaUiConfResponse = __webpack_require__(32);
 
-var _kalturaUIConfResponse2 = _interopRequireDefault(_kalturaUIConfResponse);
+var _kalturaUiConfResponse2 = _interopRequireDefault(_kalturaUiConfResponse);
 
 var _config = __webpack_require__(1);
 
@@ -2573,7 +2740,7 @@ var UiConfigLoader = function () {
   }, {
     key: 'response',
     set: function set(response) {
-      this._response.uiConf = new _kalturaUIConfResponse2.default(response[0].data);
+      this._response.uiConf = new _kalturaUiConfResponse2.default(response[0].data);
     },
     get: function get() {
       if (this._response != null && this._response.uiConf != null && this._response.uiConf.config != null) try {
@@ -2590,7 +2757,7 @@ var UiConfigLoader = function () {
 exports.default = UiConfigLoader;
 
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2602,31 +2769,31 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _kalturaMediaEntry = __webpack_require__(12);
+var _kalturaMediaEntry = __webpack_require__(14);
 
 var _kalturaMediaEntry2 = _interopRequireDefault(_kalturaMediaEntry);
 
-var _kalturaPlaybackContext = __webpack_require__(14);
+var _kalturaPlaybackContext = __webpack_require__(16);
 
 var _kalturaPlaybackContext2 = _interopRequireDefault(_kalturaPlaybackContext);
 
-var _kalturaPlaybackSource = __webpack_require__(15);
+var _kalturaPlaybackSource = __webpack_require__(17);
 
 var _kalturaPlaybackSource2 = _interopRequireDefault(_kalturaPlaybackSource);
 
-var _kalturaFlavorAsset = __webpack_require__(11);
+var _kalturaFlavorAsset = __webpack_require__(13);
 
 var _kalturaFlavorAsset2 = _interopRequireDefault(_kalturaFlavorAsset);
 
-var _kalturaMetadataListResponse = __webpack_require__(13);
+var _kalturaMetadataListResponse = __webpack_require__(15);
 
 var _kalturaMetadataListResponse2 = _interopRequireDefault(_kalturaMetadataListResponse);
 
-var _playSourceUrlBuilder = __webpack_require__(25);
+var _playSourceUrlBuilder = __webpack_require__(26);
 
 var _playSourceUrlBuilder2 = _interopRequireDefault(_playSourceUrlBuilder);
 
-var _xmlParser = __webpack_require__(37);
+var _xmlParser = __webpack_require__(38);
 
 var _xmlParser2 = _interopRequireDefault(_xmlParser);
 
@@ -2640,7 +2807,7 @@ var _config = __webpack_require__(1);
 
 var _config2 = _interopRequireDefault(_config);
 
-var _mediaFormat = __webpack_require__(22);
+var _mediaFormat = __webpack_require__(11);
 
 var _mediaEntry = __webpack_require__(9);
 
@@ -2650,9 +2817,13 @@ var _drm = __webpack_require__(10);
 
 var _drm2 = _interopRequireDefault(_drm);
 
-var _mediaSource = __webpack_require__(7);
+var _mediaSource = __webpack_require__(12);
 
 var _mediaSource2 = _interopRequireDefault(_mediaSource);
+
+var _mediaSources = __webpack_require__(7);
+
+var _mediaSources2 = _interopRequireDefault(_mediaSources);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2702,14 +2873,13 @@ var ProviderParser = function () {
       var playbackContext = mediaEntryResponse.playBackContextResult;
       var metadataList = mediaEntryResponse.metadataListResult;
       var kalturaSources = playbackContext.sources;
-      var sources = [];
-
+      var sources = new _mediaSources2.default();
       if (kalturaSources && kalturaSources.length > 0) {
         kalturaSources.forEach(function (source) {
-          sources.push(_this.parseSource(source, ks, partnerID, uiConfId, entry, playbackContext));
+          var parsedSource = _this.parseSource(source, ks, partnerID, uiConfId, entry, playbackContext);
+          var mediaFormat = SUPPORTED_FORMATS.get(source.format);
+          sources.map(parsedSource, mediaFormat);
         });
-      } else {
-        sources = [];
       }
 
       mediaEntry.sources = sources;
@@ -2856,83 +3026,8 @@ var ProviderParser = function () {
 exports.default = ProviderParser;
 
 /***/ }),
-/* 22 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.MediaFormat = undefined;
-
-var _enumify = __webpack_require__(16);
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var MediaFormat = exports.MediaFormat = function (_Enum) {
-  _inherits(MediaFormat, _Enum);
-
-  function MediaFormat() {
-    _classCallCheck(this, MediaFormat);
-
-    return _possibleConstructorReturn(this, (MediaFormat.__proto__ || Object.getPrototypeOf(MediaFormat)).apply(this, arguments));
-  }
-
-  return MediaFormat;
-}(_enumify.Enum);
-
-MediaFormat.initEnum({
-  dash: {
-    get mimeType() {
-      return "application/dash+xml";
-    },
-    get pathExt() {
-      return "mpd";
-    }
-  },
-  hls: {
-    get mimeType() {
-      return "application/x-mpegURL";
-    },
-    get pathExt() {
-      return "m3u8";
-    }
-  },
-  wvm: {
-    get mimeType() {
-      return "video/wvm";
-    },
-    get pathExt() {
-      return "wvm";
-    }
-  },
-  mp4: {
-    get mimeType() {
-      return "video/mp4";
-    },
-    get pathExt() {
-      return "mp4";
-    }
-  },
-  mp3: {
-    get mimeType() {
-      return "audio/mpeg";
-    },
-    get pathExt() {
-      return "mp3";
-    }
-  }
-});
-
-/***/ }),
-/* 23 */,
-/* 24 */
+/* 24 */,
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2949,23 +3044,23 @@ var _logger = __webpack_require__(5);
 
 var _logger2 = _interopRequireDefault(_logger);
 
-var _providerParser = __webpack_require__(21);
+var _providerParser = __webpack_require__(23);
 
 var _providerParser2 = _interopRequireDefault(_providerParser);
 
-var _dataLoaderManager = __webpack_require__(17);
+var _dataLoaderManager = __webpack_require__(19);
 
 var _dataLoaderManager2 = _interopRequireDefault(_dataLoaderManager);
 
-var _mediaEntryLoader = __webpack_require__(18);
+var _mediaEntryLoader = __webpack_require__(20);
 
 var _mediaEntryLoader2 = _interopRequireDefault(_mediaEntryLoader);
 
-var _sessionLoader = __webpack_require__(19);
+var _sessionLoader = __webpack_require__(21);
 
 var _sessionLoader2 = _interopRequireDefault(_sessionLoader);
 
-var _uiConfigLoader = __webpack_require__(20);
+var _uiConfigLoader = __webpack_require__(22);
 
 var _uiConfigLoader2 = _interopRequireDefault(_uiConfigLoader);
 
@@ -2977,9 +3072,9 @@ var _mediaEntry = __webpack_require__(9);
 
 var _mediaEntry2 = _interopRequireDefault(_mediaEntry);
 
-var _mediaSource = __webpack_require__(7);
+var _mediaSources = __webpack_require__(7);
 
-var _mediaSource2 = _interopRequireDefault(_mediaSource);
+var _mediaSources2 = _interopRequireDefault(_mediaSources);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3097,7 +3192,7 @@ var OvpProvider = exports.OvpProvider = function () {
           partnerID: this.partnerID,
           uiConfID: this._uiConfId
         },
-        sources: [],
+        sources: new _mediaSources2.default(),
         duration: 0,
         type: "Unknown",
         metadata: {},
@@ -3156,7 +3251,7 @@ var OvpProvider = exports.OvpProvider = function () {
 exports.default = OvpProvider;
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3266,7 +3361,7 @@ var PlaySourceUrlBuilder = function () {
 exports.default = PlaySourceUrlBuilder;
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3308,7 +3403,7 @@ function KalturaAccessControlMessage(data) {
 exports.default = KalturaAccessControlMessage;
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3322,7 +3417,7 @@ var _baseServiceResult = __webpack_require__(4);
 
 var _baseServiceResult2 = _interopRequireDefault(_baseServiceResult);
 
-var _kalturaMediaEntry = __webpack_require__(12);
+var _kalturaMediaEntry = __webpack_require__(14);
 
 var _kalturaMediaEntry2 = _interopRequireDefault(_kalturaMediaEntry);
 
@@ -3378,7 +3473,7 @@ var KalturaBaseEntryListResponse = function (_ServiceResult) {
 exports.default = KalturaBaseEntryListResponse;
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3423,7 +3518,7 @@ function KalturaDrmPlaybackPluginData(drm) {
 exports.default = KalturaDrmPlaybackPluginData;
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3473,7 +3568,7 @@ function KalturaMetadata(data) {
 exports.default = KalturaMetadata;
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3511,7 +3606,7 @@ function KalturaRuleAction(data) {
 exports.default = KalturaRuleAction;
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3602,7 +3697,7 @@ var KalturaUiConfResponse = function (_ServiceResult) {
 exports.default = KalturaUiConfResponse;
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3722,7 +3817,7 @@ var BaseEntryService = function (_OvpService) {
 exports.default = BaseEntryService;
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3798,7 +3893,7 @@ var MetaDataService = function (_OvpService) {
 exports.default = MetaDataService;
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3871,8 +3966,8 @@ var SessionService = function (_OvpService) {
 exports.default = SessionService;
 
 /***/ }),
-/* 35 */,
-/* 36 */
+/* 36 */,
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3950,7 +4045,7 @@ var UiConfService = function (_OvpService) {
 exports.default = UiConfService;
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

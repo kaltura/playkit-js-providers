@@ -13,6 +13,7 @@ import {MediaFormat} from '../../entities/media-format'
 import MediaEntry from '../../entities/media-entry'
 import Drm from '../../entities/drm'
 import MediaSource from '../../entities/media-source'
+import MediaSources from '../../entities/media-sources'
 
 const config = Configuration.get();
 /**
@@ -52,20 +53,18 @@ export default class ProviderParser {
     let playbackContext = mediaEntryResponse.playBackContextResult;
     let metadataList = mediaEntryResponse.metadataListResult;
     let kalturaSources: Array<KalturaPlaybackSource> = playbackContext.sources;
-    let sources: Array<MediaSource> = [];
-
+    let sources: MediaSources = new MediaSources();
     if (kalturaSources && kalturaSources.length > 0) {
       kalturaSources.forEach((source) => {
-        sources.push(this.parseSource(source, ks, partnerID, uiConfId, entry, playbackContext));
+        let parsedSource = this.parseSource(source, ks, partnerID, uiConfId, entry, playbackContext);
+        let mediaFormat = SUPPORTED_FORMATS.get(source.format);
+        sources.map(parsedSource, mediaFormat);
       });
-    }
-    else {
-      sources = [];
     }
 
     mediaEntry.sources = sources;
 
-    let metadata: Map<string,string> = this.parseMetaData(metadataList);
+    let metadata: Map<string, string> = this.parseMetaData(metadataList);
     mediaEntry.metaData = metadata;
     mediaEntry.id = entry.id;
     mediaEntry.duration = entry.duration;
@@ -157,7 +156,6 @@ export default class ProviderParser {
       return mediaSource;
     }
 
-
     mediaSource.url = playUrl;
     mediaSource.id = entry.id + "_" + source.deliveryProfileId + "," + source.format;
     if (source.hasDrmData()) {
@@ -177,7 +175,7 @@ export default class ProviderParser {
    * @returns {Map<string,string>} Parsed metadata
    * @static
    */
-  static parseMetaData(metadataList: KalturaMetadataListResponse): Map<string,string> {
+  static parseMetaData(metadataList: KalturaMetadataListResponse): Map<string, string> {
     let metadata: Object = {};
     if (metadataList && metadataList.metas && metadataList.metas.length > 0) {
       metadataList.metas.forEach((meta) => {

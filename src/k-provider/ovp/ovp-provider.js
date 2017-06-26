@@ -7,8 +7,7 @@ import SessionLoader from './loaders/session-loader'
 import UiConfigLoader from './loaders/ui-config-loader'
 import Configuration from './config'
 import MediaEntry from '../../entities/media-entry'
-import MediaSource from '../../entities/media-source'
-
+import MediaSources from '../../entities/media-sources'
 /**
  * @constant
  */
@@ -17,7 +16,7 @@ const logger = Logger.get("OvpProvider");
 type playerConfig = {
   id: string,
   session: Object,
-  sources: Array<MediaSource>,
+  sources: MediaSources,
   duration: number,
   type: string,
   metadata: Object,
@@ -120,7 +119,7 @@ export class OvpProvider {
         partnerID: this.partnerID,
         uiConfID: this._uiConfId,
       },
-      sources: [],
+      sources: new MediaSources(),
       duration: 0,
       type: "Unknown",
       metadata: {},
