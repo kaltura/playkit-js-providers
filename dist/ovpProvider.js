@@ -264,7 +264,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.UIConfCreationMode = exports.UIConfType = exports.MediaEntryType = exports.MediaType = exports.EntryType = exports.EntryModerationStatus = exports.EntryStatus = exports.MetadataStatus = exports.MetadataObjectType = exports.Status = exports.KalturaRuleActionType = exports.Scheme = undefined;
 
-var _enumify = __webpack_require__(16);
+var _enumify = __webpack_require__(15);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1192,13 +1192,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _mediaSource = __webpack_require__(10);
-
-var _mediaSource2 = _interopRequireDefault(_mediaSource);
-
 var _enums = __webpack_require__(2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1294,60 +1288,6 @@ exports.default = Drm;
 
 /***/ }),
 /* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _drm = __webpack_require__(9);
-
-var _drm2 = _interopRequireDefault(_drm);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-/**
- * Media source
- * @classdesc
- */
-var MediaSource =
-
-/**
- * @constructor
- */
-
-/**
- * @member - media source mimetype
- * @type {string}
- */
-
-/**
- * @member - media source ID
- * @type {string}
- */
-function MediaSource() {
-  _classCallCheck(this, MediaSource);
-}
-/**
- * @member - media source drm data
- * @type {Array<Drm>}
- */
-
-/**
- * @member - media source URL
- * @type {string}
- */
-;
-
-exports.default = MediaSource;
-
-/***/ }),
-/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1464,7 +1404,7 @@ function KalturaFlavorAsset(data) {
 exports.default = KalturaFlavorAsset;
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1538,7 +1478,7 @@ function KalturaMediaEntry(entry) {
 exports.default = KalturaMediaEntry;
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1603,7 +1543,7 @@ var KalturaMetadataListResponse = function (_ServiceResult) {
 exports.default = KalturaMetadataListResponse;
 
 /***/ }),
-/* 14 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1621,7 +1561,7 @@ var _kalturaAccessControlMessage = __webpack_require__(26);
 
 var _kalturaAccessControlMessage2 = _interopRequireDefault(_kalturaAccessControlMessage);
 
-var _kalturaPlaybackSource = __webpack_require__(15);
+var _kalturaPlaybackSource = __webpack_require__(14);
 
 var _kalturaPlaybackSource2 = _interopRequireDefault(_kalturaPlaybackSource);
 
@@ -1629,7 +1569,7 @@ var _kalturaRuleAction = __webpack_require__(30);
 
 var _kalturaRuleAction2 = _interopRequireDefault(_kalturaRuleAction);
 
-var _kalturaFlavorAsset = __webpack_require__(11);
+var _kalturaFlavorAsset = __webpack_require__(10);
 
 var _kalturaFlavorAsset2 = _interopRequireDefault(_kalturaFlavorAsset);
 
@@ -1722,7 +1662,7 @@ var KalturaPlaybackContext = function (_ServiceResult) {
 exports.default = KalturaPlaybackContext;
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1857,7 +1797,7 @@ var KalturaPlaybackSource = function () {
 exports.default = KalturaPlaybackSource;
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2072,7 +2012,7 @@ function copyProperties(target, source) {
 }
 
 /***/ }),
-/* 17 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2229,7 +2169,7 @@ DataLoaderManager._loadersResponseMap = new Map();
 exports.default = DataLoaderManager;
 
 /***/ }),
-/* 18 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2257,11 +2197,11 @@ var _config = __webpack_require__(1);
 
 var _config2 = _interopRequireDefault(_config);
 
-var _kalturaPlaybackContext = __webpack_require__(14);
+var _kalturaPlaybackContext = __webpack_require__(13);
 
 var _kalturaPlaybackContext2 = _interopRequireDefault(_kalturaPlaybackContext);
 
-var _kalturaMetadataListResponse = __webpack_require__(13);
+var _kalturaMetadataListResponse = __webpack_require__(12);
 
 var _kalturaMetadataListResponse2 = _interopRequireDefault(_kalturaMetadataListResponse);
 
@@ -2358,7 +2298,7 @@ var MediaEntryLoader = function () {
 exports.default = MediaEntryLoader;
 
 /***/ }),
-/* 19 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2472,7 +2412,7 @@ var SessionLoader = function () {
 exports.default = SessionLoader;
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2590,7 +2530,7 @@ var UiConfigLoader = function () {
 exports.default = UiConfigLoader;
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2602,23 +2542,23 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _kalturaMediaEntry = __webpack_require__(12);
+var _kalturaMediaEntry = __webpack_require__(11);
 
 var _kalturaMediaEntry2 = _interopRequireDefault(_kalturaMediaEntry);
 
-var _kalturaPlaybackContext = __webpack_require__(14);
+var _kalturaPlaybackContext = __webpack_require__(13);
 
 var _kalturaPlaybackContext2 = _interopRequireDefault(_kalturaPlaybackContext);
 
-var _kalturaPlaybackSource = __webpack_require__(15);
+var _kalturaPlaybackSource = __webpack_require__(14);
 
 var _kalturaPlaybackSource2 = _interopRequireDefault(_kalturaPlaybackSource);
 
-var _kalturaFlavorAsset = __webpack_require__(11);
+var _kalturaFlavorAsset = __webpack_require__(10);
 
 var _kalturaFlavorAsset2 = _interopRequireDefault(_kalturaFlavorAsset);
 
-var _kalturaMetadataListResponse = __webpack_require__(13);
+var _kalturaMetadataListResponse = __webpack_require__(12);
 
 var _kalturaMetadataListResponse2 = _interopRequireDefault(_kalturaMetadataListResponse);
 
@@ -2640,7 +2580,7 @@ var _config = __webpack_require__(1);
 
 var _config2 = _interopRequireDefault(_config);
 
-var _mediaFormat = __webpack_require__(22);
+var _mediaFormat = __webpack_require__(21);
 
 var _mediaEntry = __webpack_require__(8);
 
@@ -2650,7 +2590,7 @@ var _drm = __webpack_require__(9);
 
 var _drm2 = _interopRequireDefault(_drm);
 
-var _mediaSource = __webpack_require__(10);
+var _mediaSource = __webpack_require__(22);
 
 var _mediaSource2 = _interopRequireDefault(_mediaSource);
 
@@ -2875,7 +2815,7 @@ var ProviderParser = function () {
 exports.default = ProviderParser;
 
 /***/ }),
-/* 22 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2886,7 +2826,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.MediaFormat = undefined;
 
-var _enumify = __webpack_require__(16);
+var _enumify = __webpack_require__(15);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -2950,6 +2890,60 @@ MediaFormat.initEnum({
 });
 
 /***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _drm = __webpack_require__(9);
+
+var _drm2 = _interopRequireDefault(_drm);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * Media source
+ * @classdesc
+ */
+var MediaSource =
+
+/**
+ * @constructor
+ */
+
+/**
+ * @member - media source mimetype
+ * @type {string}
+ */
+
+/**
+ * @member - media source ID
+ * @type {string}
+ */
+function MediaSource() {
+  _classCallCheck(this, MediaSource);
+}
+/**
+ * @member - media source drm data
+ * @type {Array<Drm>}
+ */
+
+/**
+ * @member - media source URL
+ * @type {string}
+ */
+;
+
+exports.default = MediaSource;
+
+/***/ }),
 /* 23 */,
 /* 24 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -2968,23 +2962,23 @@ var _logger = __webpack_require__(5);
 
 var _logger2 = _interopRequireDefault(_logger);
 
-var _providerParser = __webpack_require__(21);
+var _providerParser = __webpack_require__(20);
 
 var _providerParser2 = _interopRequireDefault(_providerParser);
 
-var _dataLoaderManager = __webpack_require__(17);
+var _dataLoaderManager = __webpack_require__(16);
 
 var _dataLoaderManager2 = _interopRequireDefault(_dataLoaderManager);
 
-var _mediaEntryLoader = __webpack_require__(18);
+var _mediaEntryLoader = __webpack_require__(17);
 
 var _mediaEntryLoader2 = _interopRequireDefault(_mediaEntryLoader);
 
-var _sessionLoader = __webpack_require__(19);
+var _sessionLoader = __webpack_require__(18);
 
 var _sessionLoader2 = _interopRequireDefault(_sessionLoader);
 
-var _uiConfigLoader = __webpack_require__(20);
+var _uiConfigLoader = __webpack_require__(19);
 
 var _uiConfigLoader2 = _interopRequireDefault(_uiConfigLoader);
 
@@ -3337,7 +3331,7 @@ var _baseServiceResult = __webpack_require__(4);
 
 var _baseServiceResult2 = _interopRequireDefault(_baseServiceResult);
 
-var _kalturaMediaEntry = __webpack_require__(12);
+var _kalturaMediaEntry = __webpack_require__(11);
 
 var _kalturaMediaEntry2 = _interopRequireDefault(_kalturaMediaEntry);
 
