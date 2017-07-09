@@ -1489,6 +1489,16 @@ var MediaSource =
  */
 
 /**
+ * @member - media source height
+ * @type {number}
+ */
+
+/**
+ * @member - media source bandwidth
+ * @type {number}
+ */
+
+/**
  * @member - media source mimetype
  * @type {string}
  */
@@ -1500,6 +1510,16 @@ var MediaSource =
 function MediaSource() {
   _classCallCheck(this, MediaSource);
 }
+/**
+ * @member - media source label
+ * @type {string}
+ */
+
+/**
+ * @member - media source width
+ * @type {number}
+ */
+
 /**
  * @member - media source drm data
  * @type {Array<Drm>}
@@ -2864,27 +2884,19 @@ var ProviderParser = function () {
      * @param {any} mediaEntryResponse The media entry response
      * @returns {MediaEntry} The media entry
      * @static
+     * @public
      */
     value: function getMediaEntry(ks, partnerID, uiConfId, mediaEntryResponse) {
-      var _this = this;
-
       var mediaEntry = new _mediaEntry2.default();
       var entry = mediaEntryResponse.entry;
       var playbackContext = mediaEntryResponse.playBackContextResult;
       var metadataList = mediaEntryResponse.metadataListResult;
       var kalturaSources = playbackContext.sources;
-      var sources = new _mediaSources2.default();
-      if (kalturaSources && kalturaSources.length > 0) {
-        kalturaSources.forEach(function (source) {
-          var parsedSource = _this.parseSource(source, ks, partnerID, uiConfId, entry, playbackContext);
-          var mediaFormat = SUPPORTED_FORMATS.get(source.format);
-          sources.map(parsedSource, mediaFormat);
-        });
-      }
+      var sources = ProviderParser._getParsedSources(kalturaSources, ks, partnerID, uiConfId, entry, playbackContext);
 
       mediaEntry.sources = sources;
 
-      var metadata = this.parseMetaData(metadataList);
+      var metadata = this._parseMetaData(metadataList);
       mediaEntry.metaData = metadata;
       mediaEntry.id = entry.id;
       mediaEntry.duration = entry.duration;
@@ -2915,6 +2927,41 @@ var ProviderParser = function () {
 
       return mediaEntry;
     }
+  }, {
+    key: '_getParsedSources',
+    value: function _getParsedSources(kalturaSources, ks, partnerID, uiConfId, entry, playbackContext) {
+      var sources = new _mediaSources2.default();
+
+      var parseAdaptiveSources = function parseAdaptiveSources() {
+        kalturaSources.forEach(function (source) {
+          if (ProviderParser._isProgressiveSource(source) === false) {
+            var parsedSource = ProviderParser._parseAdaptiveSource(source, ks, partnerID, uiConfId, entry, playbackContext);
+            var sourceFormat = SUPPORTED_FORMATS.get(source.format);
+            sources.map(parsedSource, sourceFormat);
+          }
+        });
+      };
+
+      var parseProgressiveSources = function parseProgressiveSources() {
+        var progressiveSource = kalturaSources.find(function (source) {
+          return ProviderParser._isProgressiveSource(source);
+        });
+        sources.progressive = ProviderParser._parseProgressiveSources(progressiveSource, playbackContext.flavorAssets, ks, partnerID, uiConfId, entry);
+      };
+
+      if (kalturaSources && kalturaSources.length > 0) {
+        parseAdaptiveSources();
+        parseProgressiveSources();
+      }
+
+      return sources;
+    }
+  }, {
+    key: '_isProgressiveSource',
+    value: function _isProgressiveSource(source) {
+      var sourceFormat = SUPPORTED_FORMATS.get(source.format);
+      return sourceFormat && sourceFormat.name === 'mp4';
+    }
 
     /**
      *
@@ -2926,24 +2973,17 @@ var ProviderParser = function () {
      * @param {KalturaPlaybackContext} playbackContext The playback context
      * @returns {MediaSource}  The parsed media source
      * @static
+     * @private
      */
 
   }, {
-    key: 'parseSource',
-    value: function parseSource(source, ks, partnerID, uiConfId, entry, playbackContext) {
+    key: '_parseAdaptiveSource',
+    value: function _parseAdaptiveSource(source, ks, partnerID, uiConfId, entry, playbackContext) {
       var playUrl = "";
       var mediaFormat = SUPPORTED_FORMATS.get(source.format);
       var mediaSource = new _mediaSource2.default();
       // in case playbackSource doesn't have flavors we don't need to build the url and we'll use the provided one.
       if (source.hasFlavorIds()) {
-        var splittedUrl = config.baseUrl.split("/");
-        var baseProtocol = void 0;
-        if (splittedUrl && splittedUrl.length > 0) {
-          baseProtocol = splittedUrl[0].substring(0, splittedUrl[0].length - 1);
-        } else {
-          baseProtocol = "http";
-        }
-
         var extension = "";
         if (!mediaFormat) {
           var flavorIdsArr = source.flavorIds.split(",");
@@ -2966,7 +3006,7 @@ var ProviderParser = function () {
           partnerId: partnerID,
           uiConfId: uiConfId,
           extension: extension,
-          protocol: source.getProtocol(baseProtocol)
+          protocol: source.getProtocol(this._getBaseProtocol())
         });
       } else {
         playUrl = source.url;
@@ -2991,15 +3031,16 @@ var ProviderParser = function () {
 
     /**
      * Ovp metadata parser
-     * @function parseMetaData
+     * @function _parseMetaData
      * @param {KalturaMetadataListResponse} metadataList The metadata list
      * @returns {Map<string,string>} Parsed metadata
      * @static
+     * @private
      */
 
   }, {
-    key: 'parseMetaData',
-    value: function parseMetaData(metadataList) {
+    key: '_parseMetaData',
+    value: function _parseMetaData(metadataList) {
       var metadata = {};
       if (metadataList && metadataList.metas && metadataList.metas.length > 0) {
         metadataList.metas.forEach(function (meta) {
@@ -3017,6 +3058,51 @@ var ProviderParser = function () {
         });
       }
       return metadata;
+    }
+  }, {
+    key: '_parseProgressiveSources',
+    value: function _parseProgressiveSources(kalturaSource, flavorAssets, ks, partnerID, uiConfId, entry) {
+      var sources = [];
+      if (kalturaSource) {
+        var protocol = kalturaSource.getProtocol(this._getBaseProtocol());
+        var format = kalturaSource.format;
+        var sourceId = kalturaSource.deliveryProfileId + "," + kalturaSource.format;
+        flavorAssets.map(function (flavor) {
+          if (flavor.height && flavor.width) {
+            var mediaSource = new _mediaSource2.default();
+            mediaSource.id = flavor.id + sourceId;
+            mediaSource.mimetype = 'video/mp4';
+            mediaSource.height = flavor.height;
+            mediaSource.width = flavor.width;
+            mediaSource.bandwidth = flavor.bitrate * 1024;
+            mediaSource.label = flavor.label || flavor.language;
+            mediaSource.url = _playSourceUrlBuilder2.default.build({
+              entryId: entry.id,
+              flavorIds: flavor.id,
+              format: format,
+              ks: ks,
+              partnerId: partnerID,
+              uiConfId: uiConfId,
+              extension: 'mp4',
+              protocol: protocol
+            });
+            sources.push(mediaSource);
+          }
+        });
+      }
+      return sources;
+    }
+  }, {
+    key: '_getBaseProtocol',
+    value: function _getBaseProtocol() {
+      var splittedUrl = config.baseUrl.split("/");
+      var baseProtocol = void 0;
+      if (splittedUrl && splittedUrl.length > 0) {
+        baseProtocol = splittedUrl[0].substring(0, splittedUrl[0].length - 1);
+      } else {
+        baseProtocol = "http";
+      }
+      return baseProtocol;
     }
   }]);
 
@@ -3316,7 +3402,7 @@ var PlaySourceUrlBuilder = function () {
       playUrl += "p/" + partnerId + "/sp/" + partnerId + "00" + "/playManifest/entryId/" + entryId + "/protocol/" + protocol + "/format/" + format;
 
       if (flavorIds != "") {
-        playUrl += "/falvorIds/" + flavorIds;
+        playUrl += "/flavorIds/" + flavorIds;
       } else if (uiConfId != "") {
         playUrl += "/uiConfId/" + uiConfId;
       }
