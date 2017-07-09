@@ -26,6 +26,26 @@ export default class MediaSource {
    * @type {Array<Drm>}
    */
   drmData: Array<Drm>;
+  /**
+   * @member - media source bandwidth
+   * @type {number}
+   */
+  bandwidth: number;
+  /**
+   * @member - media source width
+   * @type {number}
+   */
+  width: number;
+  /**
+   * @member - media source height
+   * @type {number}
+   */
+  height: number;
+  /**
+   * @member - media source label
+   * @type {string}
+   */
+  label: string;
 
   /**
    * @constructor
