@@ -149,7 +149,7 @@ export class OvpProvider {
           config.id = mediaEntry.id;
           config.sources = mediaEntry.sources;
           config.duration = mediaEntry.duration;
-          config.type = mediaEntry.type.name;
+          config.type = mediaEntry.type;
           config.metadata = mediaEntry.metaData;
         }
       }

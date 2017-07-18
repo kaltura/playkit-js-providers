@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 25);
+/******/ 	return __webpack_require__(__webpack_require__.s = 24);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -262,288 +262,167 @@ exports.Configuration = Configuration;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.UIConfCreationMode = exports.UIConfType = exports.MediaEntryType = exports.MediaType = exports.EntryType = exports.EntryModerationStatus = exports.EntryStatus = exports.MetadataStatus = exports.MetadataObjectType = exports.Status = exports.KalturaRuleActionType = exports.Scheme = undefined;
-
-var _enumify = __webpack_require__(18);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+var Scheme = exports.Scheme = function Scheme() {
+  _classCallCheck(this, Scheme);
+};
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+Scheme.PLAYREADY_CENC = "drm.PLAYREADY_CENC";
+Scheme.WIDEVINE_CENC = "drm.WIDEVINE_CENC";
+Scheme.FAIRPLAY = "fairplay.FAIRPLAY";
+Scheme.PLAYREADY = "playReady.PLAYREADY";
+Scheme.WIDEVINE = "widevine.WIDEVINE";
 
-var Scheme = exports.Scheme = function (_Enum) {
-  _inherits(Scheme, _Enum);
+var KalturaRuleActionType = exports.KalturaRuleActionType = function KalturaRuleActionType() {
+  _classCallCheck(this, KalturaRuleActionType);
+};
 
-  function Scheme() {
-    _classCallCheck(this, Scheme);
+KalturaRuleActionType.DRM_POLICY = "drm.DRM_POLICY";
+KalturaRuleActionType.BLOCK = 1;
+KalturaRuleActionType.PREVIEW = 2;
+KalturaRuleActionType.LIMIT_FLAVORS = 3;
+KalturaRuleActionType.ADD_TO_STORAGE = 4;
+KalturaRuleActionType.LIMIT_DELIVERY_PROFILES = 5;
+KalturaRuleActionType.SERVE_FROM_REMOTE_SERVER = 6;
+KalturaRuleActionType.REQUEST_HOST_REGEX = 7;
+KalturaRuleActionType.LIMIT_THUMBNAIL_CAPTURE = 8;
 
-    return _possibleConstructorReturn(this, (Scheme.__proto__ || Object.getPrototypeOf(Scheme)).apply(this, arguments));
-  }
+var Status = exports.Status = function Status() {
+  _classCallCheck(this, Status);
+};
 
-  return Scheme;
-}(_enumify.Enum);
+Status.ERROR = -1;
+Status.QUEUED = 0;
+Status.CONVERTING = 1;
+Status.READY = 2;
+Status.DELETED = 3;
+Status.NOT_APPLICABLE = 4;
+Status.TEMP = 5;
+Status.WAIT_FOR_CONVERT = 6;
+Status.IMPORTING = 7;
+Status.VALIDATING = 8;
+Status.EXPORTING = 9;
 
-Scheme.initEnum({
-  PLAYREADY_CENC: "drm.PLAYREADY_CENC",
-  WIDEVINE_CENC: "drm.WIDEVINE_CENC",
-  FAIRPLAY: "fairplay.FAIRPLAY",
-  PLAYREADY: "playReady.PLAYREADY",
-  WIDEVINE: "widevine.WIDEVINE"
-});
+var MetadataObjectType = exports.MetadataObjectType = function MetadataObjectType() {
+  _classCallCheck(this, MetadataObjectType);
+};
 
-var KalturaRuleActionType = exports.KalturaRuleActionType = function (_Enum2) {
-  _inherits(KalturaRuleActionType, _Enum2);
+MetadataObjectType.AD_CUE_POINT = "adCuePointMetadata.AdCuePoint";
+MetadataObjectType.ANNOTATION = "annotationMetadata.Annotation";
+MetadataObjectType.CODE_CUE_POINT = "codeCuePointMetadata.CodeCuePoint";
+MetadataObjectType.THUMB_CUE_POINT = "thumbCuePointMetadata.thumbCuePoint";
+MetadataObjectType.ENTRY = 1;
+MetadataObjectType.CATEGORY = 2;
+MetadataObjectType.USER = 3;
+MetadataObjectType.PARTNER = 4;
+MetadataObjectType.DYNAMIC_OBJECT = 5;
 
-  function KalturaRuleActionType() {
-    _classCallCheck(this, KalturaRuleActionType);
+var MetadataStatus = exports.MetadataStatus = function MetadataStatus() {
+  _classCallCheck(this, MetadataStatus);
+};
 
-    return _possibleConstructorReturn(this, (KalturaRuleActionType.__proto__ || Object.getPrototypeOf(KalturaRuleActionType)).apply(this, arguments));
-  }
+MetadataStatus.VALID = 1;
+MetadataStatus.INVALID = 2;
+MetadataStatus.DELETED = 3;
 
-  return KalturaRuleActionType;
-}(_enumify.Enum);
+var EntryStatus = exports.EntryStatus = function EntryStatus() {
+  _classCallCheck(this, EntryStatus);
+};
 
-KalturaRuleActionType.initEnum({
-  DRM_POLICY: "drm.DRM_POLICY",
-  BLOCK: 1,
-  PREVIEW: 2,
-  LIMIT_FLAVORS: 3,
-  ADD_TO_STORAGE: 4,
-  LIMIT_DELIVERY_PROFILES: 5,
-  SERVE_FROM_REMOTE_SERVER: 6,
-  REQUEST_HOST_REGEX: 7,
-  LIMIT_THUMBNAIL_CAPTURE: 8
-});
+EntryStatus.ERROR_IMPORTING = -2;
+EntryStatus.ERROR_CONVERTING = -1;
+EntryStatus.SCAN_FAILURE = "virusScan.ScanFailure";
+EntryStatus.IMPORT = 0;
+EntryStatus.INFECTED = "virusScan.Infected";
+EntryStatus.PRECONVERT = 1;
+EntryStatus.READY = 2;
+EntryStatus.DELETED = 3;
+EntryStatus.PENDING = 4;
+EntryStatus.MODERATE = 5;
+EntryStatus.BLOCKED = 6;
+EntryStatus.NO_CONTENT = 7;
 
-var Status = exports.Status = function (_Enum3) {
-  _inherits(Status, _Enum3);
+var EntryModerationStatus = exports.EntryModerationStatus = function EntryModerationStatus() {
+  _classCallCheck(this, EntryModerationStatus);
+};
 
-  function Status() {
-    _classCallCheck(this, Status);
+EntryModerationStatus.PENDING_MODERATION = 1;
+EntryModerationStatus.APPROVED = 2;
+EntryModerationStatus.REJECTED = 3;
+EntryModerationStatus.FLAGGED_FOR_REVIEW = 4;
+EntryModerationStatus.MODERATE = 5;
+EntryModerationStatus.AUTO_APPROVED = 6;
 
-    return _possibleConstructorReturn(this, (Status.__proto__ || Object.getPrototypeOf(Status)).apply(this, arguments));
-  }
+var EntryType = exports.EntryType = function EntryType() {
+  _classCallCheck(this, EntryType);
+};
 
-  return Status;
-}(_enumify.Enum);
+EntryType.AUTOMATIC = { value: -1 };
+EntryType.EXTERNAL_MEDIA = { value: "externalMedia.externalMedia" };
+EntryType.MEDIA_CLIP = { value: 1 };
+EntryType.MIX = { value: 2 };
+EntryType.PLAYLIST = { value: 5 };
+EntryType.DATA = { value: 6 };
+EntryType.LIVE_STREAM = { value: 7 };
+EntryType.LIVE_CHANNEL = { value: 8 };
+EntryType.DOCUMENT = { value: 10 };
 
-Status.initEnum({
-  ERROR: -1,
-  QUEUED: 0,
-  CONVERTING: 1,
-  READY: 2,
-  DELETED: 3,
-  NOT_APPLICABLE: 4,
-  TEMP: 5,
-  WAIT_FOR_CONVERT: 6,
-  IMPORTING: 7,
-  VALIDATING: 8,
-  EXPORTING: 9
-});
+var MediaType = exports.MediaType = function MediaType() {
+  _classCallCheck(this, MediaType);
+};
 
-var MetadataObjectType = exports.MetadataObjectType = function (_Enum4) {
-  _inherits(MetadataObjectType, _Enum4);
+MediaType.VIDEO = { value: 1 };
+MediaType.IMAGE = { value: 2 };
+MediaType.AUDIO = { value: 5 };
+MediaType.LIVE_STREAM_FLASH = { value: 201 };
+MediaType.LIVE_STREAM_WINDOWS_MEDIA = { value: 202 };
+MediaType.LIVE_STREAM_REAL_MEDIA = { value: 203 };
+MediaType.LIVE_STREAM_QUICKTIME = { value: 204 };
 
-  function MetadataObjectType() {
-    _classCallCheck(this, MetadataObjectType);
+var MediaEntryType = exports.MediaEntryType = function MediaEntryType() {
+  _classCallCheck(this, MediaEntryType);
+};
 
-    return _possibleConstructorReturn(this, (MetadataObjectType.__proto__ || Object.getPrototypeOf(MetadataObjectType)).apply(this, arguments));
-  }
+MediaEntryType.Vod = 'Vod';
+MediaEntryType.Live = 'Live';
+MediaEntryType.Image = 'Image';
+MediaEntryType.Audio = 'Audio';
+MediaEntryType.Unknown = 'Unknown';
 
-  return MetadataObjectType;
-}(_enumify.Enum);
+var UIConfType = exports.UIConfType = function UIConfType() {
+  _classCallCheck(this, UIConfType);
+};
 
-MetadataObjectType.initEnum({
-  AD_CUE_POINT: "adCuePointMetadata.AdCuePoint",
-  ANNOTATION: "annotationMetadata.Annotation",
-  CODE_CUE_POINT: "codeCuePointMetadata.CodeCuePoint",
-  THUMB_CUE_POINT: "thumbCuePointMetadata.thumbCuePoint",
-  ENTRY: 1,
-  CATEGORY: 2,
-  USER: 3,
-  PARTNER: 4,
-  DYNAMIC_OBJECT: 5
-});
+UIConfType.PLAYER = 1;
+UIConfType.CONTRIBUTION_WIZARD = 2;
+UIConfType.SIMPLE_EDITOR = 3;
+UIConfType.ADVANCED_EDITOR = 4;
+UIConfType.PLAYLIST = 5;
+UIConfType.APP_STUDIO = 6;
+UIConfType.KRECORD = 7;
+UIConfType.PLAYER_V3 = 8;
+UIConfType.KMC_ACCOUNT = 9;
+UIConfType.KMC_ANALYTICS = 10;
+UIConfType.KMC_CONTENT = 11;
+UIConfType.KMC_DASHBOARD = 12;
+UIConfType.KMC_LOGIN = 13;
+UIConfType.PLAYER_SL = 14;
+UIConfType.CLIENTSIDE_ENCODER = 15;
+UIConfType.KMC_GENERAL = 16;
+UIConfType.KMC_ROLES_AND_PERMISSIONS = 17;
+UIConfType.CLIPPER = 18;
+UIConfType.KSR = 19;
+UIConfType.KUPLOAD = 20;
+UIConfType.WEBCASTING = 21;
 
-var MetadataStatus = exports.MetadataStatus = function (_Enum5) {
-  _inherits(MetadataStatus, _Enum5);
+var UIConfCreationMode = exports.UIConfCreationMode = function UIConfCreationMode() {
+  _classCallCheck(this, UIConfCreationMode);
+};
 
-  function MetadataStatus() {
-    _classCallCheck(this, MetadataStatus);
-
-    return _possibleConstructorReturn(this, (MetadataStatus.__proto__ || Object.getPrototypeOf(MetadataStatus)).apply(this, arguments));
-  }
-
-  return MetadataStatus;
-}(_enumify.Enum);
-
-MetadataStatus.initEnum({
-  VALID: 1,
-  INVALID: 2,
-  DELETED: 3
-});
-
-var EntryStatus = exports.EntryStatus = function (_Enum6) {
-  _inherits(EntryStatus, _Enum6);
-
-  function EntryStatus() {
-    _classCallCheck(this, EntryStatus);
-
-    return _possibleConstructorReturn(this, (EntryStatus.__proto__ || Object.getPrototypeOf(EntryStatus)).apply(this, arguments));
-  }
-
-  return EntryStatus;
-}(_enumify.Enum);
-
-EntryStatus.initEnum({
-  ERROR_IMPORTING: -2,
-  ERROR_CONVERTING: -1,
-  SCAN_FAILURE: "virusScan.ScanFailure",
-  IMPORT: 0,
-  INFECTED: "virusScan.Infected",
-  PRECONVERT: 1,
-  READY: 2,
-  DELETED: 3,
-  PENDING: 4,
-  MODERATE: 5,
-  BLOCKED: 6,
-  NO_CONTENT: 7
-});
-
-var EntryModerationStatus = exports.EntryModerationStatus = function (_Enum7) {
-  _inherits(EntryModerationStatus, _Enum7);
-
-  function EntryModerationStatus() {
-    _classCallCheck(this, EntryModerationStatus);
-
-    return _possibleConstructorReturn(this, (EntryModerationStatus.__proto__ || Object.getPrototypeOf(EntryModerationStatus)).apply(this, arguments));
-  }
-
-  return EntryModerationStatus;
-}(_enumify.Enum);
-
-EntryModerationStatus.initEnum({
-  PENDING_MODERATION: 1,
-  APPROVED: 2,
-  REJECTED: 3,
-  FLAGGED_FOR_REVIEW: 4,
-  MODERATE: 5,
-  AUTO_APPROVED: 6
-});
-
-var EntryType = exports.EntryType = function (_Enum8) {
-  _inherits(EntryType, _Enum8);
-
-  function EntryType() {
-    _classCallCheck(this, EntryType);
-
-    return _possibleConstructorReturn(this, (EntryType.__proto__ || Object.getPrototypeOf(EntryType)).apply(this, arguments));
-  }
-
-  return EntryType;
-}(_enumify.Enum);
-
-EntryType.initEnum({
-  AUTOMATIC: { value: -1 },
-  EXTERNAL_MEDIA: { value: "externalMedia.externalMedia" },
-  MEDIA_CLIP: { value: 1 },
-  MIX: { value: 2 },
-  PLAYLIST: { value: 5 },
-  DATA: { value: 6 },
-  LIVE_STREAM: { value: 7 },
-  LIVE_CHANNEL: { value: 8 },
-  DOCUMENT: { value: 10 }
-});
-
-var MediaType = exports.MediaType = function (_Enum9) {
-  _inherits(MediaType, _Enum9);
-
-  function MediaType() {
-    _classCallCheck(this, MediaType);
-
-    return _possibleConstructorReturn(this, (MediaType.__proto__ || Object.getPrototypeOf(MediaType)).apply(this, arguments));
-  }
-
-  return MediaType;
-}(_enumify.Enum);
-
-MediaType.initEnum({
-  VIDEO: { value: 1 },
-  IMAGE: { value: 2 },
-  AUDIO: { value: 5 },
-  LIVE_STREAM_FLASH: { value: 201 },
-  LIVE_STREAM_WINDOWS_MEDIA: { value: 202 },
-  LIVE_STREAM_REAL_MEDIA: { value: 203 },
-  LIVE_STREAM_QUICKTIME: { value: 204 }
-});
-
-var MediaEntryType = exports.MediaEntryType = function (_Enum10) {
-  _inherits(MediaEntryType, _Enum10);
-
-  function MediaEntryType() {
-    _classCallCheck(this, MediaEntryType);
-
-    return _possibleConstructorReturn(this, (MediaEntryType.__proto__ || Object.getPrototypeOf(MediaEntryType)).apply(this, arguments));
-  }
-
-  return MediaEntryType;
-}(_enumify.Enum);
-
-MediaEntryType.initEnum(['Vod', 'Live', 'Image', 'Audio', 'Unknown']);
-
-var UIConfType = exports.UIConfType = function (_Enum11) {
-  _inherits(UIConfType, _Enum11);
-
-  function UIConfType() {
-    _classCallCheck(this, UIConfType);
-
-    return _possibleConstructorReturn(this, (UIConfType.__proto__ || Object.getPrototypeOf(UIConfType)).apply(this, arguments));
-  }
-
-  return UIConfType;
-}(_enumify.Enum);
-
-UIConfType.initEnum({
-  PLAYER: 1,
-  CONTRIBUTION_WIZARD: 2,
-  SIMPLE_EDITOR: 3,
-  ADVANCED_EDITOR: 4,
-  PLAYLIST: 5,
-  APP_STUDIO: 6,
-  KRECORD: 7,
-  PLAYER_V3: 8,
-  KMC_ACCOUNT: 9,
-  KMC_ANALYTICS: 10,
-  KMC_CONTENT: 11,
-  KMC_DASHBOARD: 12,
-  KMC_LOGIN: 13,
-  PLAYER_SL: 14,
-  CLIENTSIDE_ENCODER: 15,
-  KMC_GENERAL: 16,
-  KMC_ROLES_AND_PERMISSIONS: 17,
-  CLIPPER: 18,
-  KSR: 19,
-  KUPLOAD: 20,
-  WEBCASTING: 21
-});
-
-var UIConfCreationMode = exports.UIConfCreationMode = function (_Enum12) {
-  _inherits(UIConfCreationMode, _Enum12);
-
-  function UIConfCreationMode() {
-    _classCallCheck(this, UIConfCreationMode);
-
-    return _possibleConstructorReturn(this, (UIConfCreationMode.__proto__ || Object.getPrototypeOf(UIConfCreationMode)).apply(this, arguments));
-  }
-
-  return UIConfCreationMode;
-}(_enumify.Enum);
-
-UIConfCreationMode.initEnum({
-  WIZARD: 2,
-  ADVANCED: 3
-});
+UIConfCreationMode.WIZARD = 2;
+UIConfCreationMode.ADVANCED = 3;
 
 /***/ }),
 /* 3 */
@@ -1396,7 +1275,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.MediaFormat = undefined;
 
-var _enumify = __webpack_require__(18);
+var _enumify = __webpack_require__(38);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1719,7 +1598,7 @@ var _baseServiceResult = __webpack_require__(4);
 
 var _baseServiceResult2 = _interopRequireDefault(_baseServiceResult);
 
-var _kalturaMetadata = __webpack_require__(30);
+var _kalturaMetadata = __webpack_require__(29);
 
 var _kalturaMetadata2 = _interopRequireDefault(_kalturaMetadata);
 
@@ -1784,7 +1663,7 @@ var _baseServiceResult = __webpack_require__(4);
 
 var _baseServiceResult2 = _interopRequireDefault(_baseServiceResult);
 
-var _kalturaAccessControlMessage = __webpack_require__(27);
+var _kalturaAccessControlMessage = __webpack_require__(26);
 
 var _kalturaAccessControlMessage2 = _interopRequireDefault(_kalturaAccessControlMessage);
 
@@ -1792,7 +1671,7 @@ var _kalturaPlaybackSource = __webpack_require__(17);
 
 var _kalturaPlaybackSource2 = _interopRequireDefault(_kalturaPlaybackSource);
 
-var _kalturaRuleAction = __webpack_require__(31);
+var _kalturaRuleAction = __webpack_require__(30);
 
 var _kalturaRuleAction2 = _interopRequireDefault(_kalturaRuleAction);
 
@@ -1901,7 +1780,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _kalturaDrmPlaybackPluginData = __webpack_require__(29);
+var _kalturaDrmPlaybackPluginData = __webpack_require__(28);
 
 var _kalturaDrmPlaybackPluginData2 = _interopRequireDefault(_kalturaDrmPlaybackPluginData);
 
@@ -2025,221 +1904,6 @@ exports.default = KalturaPlaybackSource;
 
 /***/ }),
 /* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.copyProperties = copyProperties;
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var INITIALIZED = Symbol();
-
-/**
- * This is an abstract class that is not intended to be
- * used directly. Extend it to turn your class into an enum
- * (initialization is performed via `MyClass.initEnum()`).
- */
-
-var Enum = exports.Enum = function () {
-    /**
-     * `initEnum()` closes the class. Then calling this constructor
-     * throws an exception.
-     * 
-     * If your subclass has a constructor then you can control
-     * what properties are added to `this` via the argument you
-     * pass to `super()`. No arguments are fine, too.
-     */
-
-    function Enum() {
-        var instanceProperties = arguments.length <= 0 || arguments[0] === undefined ? undefined : arguments[0];
-
-        _classCallCheck(this, Enum);
-
-        // new.target would be better than this.constructor,
-        // but isn’t supported by Babel
-        if ({}.hasOwnProperty.call(this.constructor, INITIALIZED)) {
-            throw new Error('Enum classes can’t be instantiated');
-        }
-        if ((typeof instanceProperties === 'undefined' ? 'undefined' : _typeof(instanceProperties)) === 'object' && instanceProperties !== null) {
-            copyProperties(this, instanceProperties);
-        }
-    }
-    /**
-     * Set up the enum, close the class.
-     * 
-     * @param arg Either an object whose properties provide the names
-     * and values (which must be mutable objects) of the enum constants.
-     * Or an Array whose elements are used as the names of the enum constants
-     * The values are create by instantiating the current class.
-     */
-
-    _createClass(Enum, [{
-        key: 'toString',
-
-        /**
-         * Default `toString()` method for enum constant.
-         */
-        value: function toString() {
-            return this.constructor.name + '.' + this.name;
-        }
-    }], [{
-        key: 'initEnum',
-        value: function initEnum(arg) {
-            Object.defineProperty(this, 'enumValues', {
-                value: [],
-                configurable: false,
-                writable: false,
-                enumerable: true
-            });
-            if (Array.isArray(arg)) {
-                this._enumValuesFromArray(arg);
-            } else {
-                this._enumValuesFromObject(arg);
-            }
-            Object.freeze(this.enumValues);
-            this[INITIALIZED] = true;
-            return this;
-        }
-    }, {
-        key: '_enumValuesFromArray',
-        value: function _enumValuesFromArray(arr) {
-            var _iteratorNormalCompletion = true;
-            var _didIteratorError = false;
-            var _iteratorError = undefined;
-
-            try {
-                for (var _iterator = arr[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                    var key = _step.value;
-
-                    this._pushEnumValue(new this(), key);
-                }
-            } catch (err) {
-                _didIteratorError = true;
-                _iteratorError = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion && _iterator.return) {
-                        _iterator.return();
-                    }
-                } finally {
-                    if (_didIteratorError) {
-                        throw _iteratorError;
-                    }
-                }
-            }
-        }
-    }, {
-        key: '_enumValuesFromObject',
-        value: function _enumValuesFromObject(obj) {
-            var _iteratorNormalCompletion2 = true;
-            var _didIteratorError2 = false;
-            var _iteratorError2 = undefined;
-
-            try {
-                for (var _iterator2 = Object.keys(obj)[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                    var key = _step2.value;
-
-                    var value = new this(obj[key]);
-                    this._pushEnumValue(value, key);
-                }
-            } catch (err) {
-                _didIteratorError2 = true;
-                _iteratorError2 = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                        _iterator2.return();
-                    }
-                } finally {
-                    if (_didIteratorError2) {
-                        throw _iteratorError2;
-                    }
-                }
-            }
-        }
-    }, {
-        key: '_pushEnumValue',
-        value: function _pushEnumValue(enumValue, name) {
-            enumValue.name = name;
-            enumValue.ordinal = this.enumValues.length;
-            Object.defineProperty(this, name, {
-                value: enumValue,
-                configurable: false,
-                writable: false,
-                enumerable: true
-            });
-            this.enumValues.push(enumValue);
-        }
-
-        /**
-         * Given the name of an enum constant, return its value.
-         */
-
-    }, {
-        key: 'enumValueOf',
-        value: function enumValueOf(name) {
-            return this.enumValues.find(function (x) {
-                return x.name === name;
-            });
-        }
-
-        /**
-         * Make enum classes iterable
-         */
-
-    }, {
-        key: Symbol.iterator,
-        value: function value() {
-            return this.enumValues[Symbol.iterator]();
-        }
-    }]);
-
-    return Enum;
-}();
-
-function copyProperties(target, source) {
-    // Ideally, we’d use Reflect.ownKeys() here,
-    // but I don’t want to depend on a polyfill
-    var _iteratorNormalCompletion3 = true;
-    var _didIteratorError3 = false;
-    var _iteratorError3 = undefined;
-
-    try {
-        for (var _iterator3 = Object.getOwnPropertyNames(source)[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-            var key = _step3.value;
-
-            var desc = Object.getOwnPropertyDescriptor(source, key);
-            Object.defineProperty(target, key, desc);
-        }
-    } catch (err) {
-        _didIteratorError3 = true;
-        _iteratorError3 = err;
-    } finally {
-        try {
-            if (!_iteratorNormalCompletion3 && _iterator3.return) {
-                _iterator3.return();
-            }
-        } finally {
-            if (_didIteratorError3) {
-                throw _iteratorError3;
-            }
-        }
-    }
-
-    return target;
-}
-
-/***/ }),
-/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2396,7 +2060,7 @@ DataLoaderManager._loadersResponseMap = new Map();
 exports.default = DataLoaderManager;
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2412,11 +2076,11 @@ var _requestBuilder = __webpack_require__(0);
 
 var _requestBuilder2 = _interopRequireDefault(_requestBuilder);
 
-var _baseEntryService = __webpack_require__(33);
+var _baseEntryService = __webpack_require__(32);
 
 var _baseEntryService2 = _interopRequireDefault(_baseEntryService);
 
-var _metaDataService = __webpack_require__(34);
+var _metaDataService = __webpack_require__(33);
 
 var _metaDataService2 = _interopRequireDefault(_metaDataService);
 
@@ -2432,7 +2096,7 @@ var _kalturaMetadataListResponse = __webpack_require__(15);
 
 var _kalturaMetadataListResponse2 = _interopRequireDefault(_kalturaMetadataListResponse);
 
-var _kalturaBaseEntryListResponse = __webpack_require__(28);
+var _kalturaBaseEntryListResponse = __webpack_require__(27);
 
 var _kalturaBaseEntryListResponse2 = _interopRequireDefault(_kalturaBaseEntryListResponse);
 
@@ -2525,7 +2189,7 @@ var MediaEntryLoader = function () {
 exports.default = MediaEntryLoader;
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2537,7 +2201,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _sessionService = __webpack_require__(35);
+var _sessionService = __webpack_require__(34);
 
 var _sessionService2 = _interopRequireDefault(_sessionService);
 
@@ -2639,7 +2303,7 @@ var SessionLoader = function () {
 exports.default = SessionLoader;
 
 /***/ }),
-/* 22 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2651,11 +2315,11 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _uiConfService = __webpack_require__(37);
+var _uiConfService = __webpack_require__(36);
 
 var _uiConfService2 = _interopRequireDefault(_uiConfService);
 
-var _kalturaUiConfResponse = __webpack_require__(32);
+var _kalturaUiConfResponse = __webpack_require__(31);
 
 var _kalturaUiConfResponse2 = _interopRequireDefault(_kalturaUiConfResponse);
 
@@ -2757,7 +2421,7 @@ var UiConfigLoader = function () {
 exports.default = UiConfigLoader;
 
 /***/ }),
-/* 23 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2789,11 +2453,11 @@ var _kalturaMetadataListResponse = __webpack_require__(15);
 
 var _kalturaMetadataListResponse2 = _interopRequireDefault(_kalturaMetadataListResponse);
 
-var _playSourceUrlBuilder = __webpack_require__(26);
+var _playSourceUrlBuilder = __webpack_require__(25);
 
 var _playSourceUrlBuilder2 = _interopRequireDefault(_playSourceUrlBuilder);
 
-var _xmlParser = __webpack_require__(38);
+var _xmlParser = __webpack_require__(37);
 
 var _xmlParser2 = _interopRequireDefault(_xmlParser);
 
@@ -3026,8 +2690,8 @@ var ProviderParser = function () {
 exports.default = ProviderParser;
 
 /***/ }),
-/* 24 */,
-/* 25 */
+/* 23 */,
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3044,23 +2708,23 @@ var _logger = __webpack_require__(5);
 
 var _logger2 = _interopRequireDefault(_logger);
 
-var _providerParser = __webpack_require__(23);
+var _providerParser = __webpack_require__(22);
 
 var _providerParser2 = _interopRequireDefault(_providerParser);
 
-var _dataLoaderManager = __webpack_require__(19);
+var _dataLoaderManager = __webpack_require__(18);
 
 var _dataLoaderManager2 = _interopRequireDefault(_dataLoaderManager);
 
-var _mediaEntryLoader = __webpack_require__(20);
+var _mediaEntryLoader = __webpack_require__(19);
 
 var _mediaEntryLoader2 = _interopRequireDefault(_mediaEntryLoader);
 
-var _sessionLoader = __webpack_require__(21);
+var _sessionLoader = __webpack_require__(20);
 
 var _sessionLoader2 = _interopRequireDefault(_sessionLoader);
 
-var _uiConfigLoader = __webpack_require__(22);
+var _uiConfigLoader = __webpack_require__(21);
 
 var _uiConfigLoader2 = _interopRequireDefault(_uiConfigLoader);
 
@@ -3222,7 +2886,7 @@ var OvpProvider = exports.OvpProvider = function () {
             config.id = mediaEntry.id;
             config.sources = mediaEntry.sources;
             config.duration = mediaEntry.duration;
-            config.type = mediaEntry.type.name;
+            config.type = mediaEntry.type;
             config.metadata = mediaEntry.metaData;
           }
         }
@@ -3251,7 +2915,7 @@ var OvpProvider = exports.OvpProvider = function () {
 exports.default = OvpProvider;
 
 /***/ }),
-/* 26 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3361,7 +3025,7 @@ var PlaySourceUrlBuilder = function () {
 exports.default = PlaySourceUrlBuilder;
 
 /***/ }),
-/* 27 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3403,7 +3067,7 @@ function KalturaAccessControlMessage(data) {
 exports.default = KalturaAccessControlMessage;
 
 /***/ }),
-/* 28 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3473,7 +3137,7 @@ var KalturaBaseEntryListResponse = function (_ServiceResult) {
 exports.default = KalturaBaseEntryListResponse;
 
 /***/ }),
-/* 29 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3518,7 +3182,7 @@ function KalturaDrmPlaybackPluginData(drm) {
 exports.default = KalturaDrmPlaybackPluginData;
 
 /***/ }),
-/* 30 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3568,7 +3232,7 @@ function KalturaMetadata(data) {
 exports.default = KalturaMetadata;
 
 /***/ }),
-/* 31 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3606,7 +3270,7 @@ function KalturaRuleAction(data) {
 exports.default = KalturaRuleAction;
 
 /***/ }),
-/* 32 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3697,7 +3361,7 @@ var KalturaUiConfResponse = function (_ServiceResult) {
 exports.default = KalturaUiConfResponse;
 
 /***/ }),
-/* 33 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3817,7 +3481,7 @@ var BaseEntryService = function (_OvpService) {
 exports.default = BaseEntryService;
 
 /***/ }),
-/* 34 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3893,7 +3557,7 @@ var MetaDataService = function (_OvpService) {
 exports.default = MetaDataService;
 
 /***/ }),
-/* 35 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3966,8 +3630,8 @@ var SessionService = function (_OvpService) {
 exports.default = SessionService;
 
 /***/ }),
-/* 36 */,
-/* 37 */
+/* 35 */,
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4045,7 +3709,7 @@ var UiConfService = function (_OvpService) {
 exports.default = UiConfService;
 
 /***/ }),
-/* 38 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4114,6 +3778,221 @@ var XmlParser = function () {
 }();
 
 exports.default = XmlParser;
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.copyProperties = copyProperties;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var INITIALIZED = Symbol();
+
+/**
+ * This is an abstract class that is not intended to be
+ * used directly. Extend it to turn your class into an enum
+ * (initialization is performed via `MyClass.initEnum()`).
+ */
+
+var Enum = exports.Enum = function () {
+    /**
+     * `initEnum()` closes the class. Then calling this constructor
+     * throws an exception.
+     * 
+     * If your subclass has a constructor then you can control
+     * what properties are added to `this` via the argument you
+     * pass to `super()`. No arguments are fine, too.
+     */
+
+    function Enum() {
+        var instanceProperties = arguments.length <= 0 || arguments[0] === undefined ? undefined : arguments[0];
+
+        _classCallCheck(this, Enum);
+
+        // new.target would be better than this.constructor,
+        // but isn’t supported by Babel
+        if ({}.hasOwnProperty.call(this.constructor, INITIALIZED)) {
+            throw new Error('Enum classes can’t be instantiated');
+        }
+        if ((typeof instanceProperties === 'undefined' ? 'undefined' : _typeof(instanceProperties)) === 'object' && instanceProperties !== null) {
+            copyProperties(this, instanceProperties);
+        }
+    }
+    /**
+     * Set up the enum, close the class.
+     * 
+     * @param arg Either an object whose properties provide the names
+     * and values (which must be mutable objects) of the enum constants.
+     * Or an Array whose elements are used as the names of the enum constants
+     * The values are create by instantiating the current class.
+     */
+
+    _createClass(Enum, [{
+        key: 'toString',
+
+        /**
+         * Default `toString()` method for enum constant.
+         */
+        value: function toString() {
+            return this.constructor.name + '.' + this.name;
+        }
+    }], [{
+        key: 'initEnum',
+        value: function initEnum(arg) {
+            Object.defineProperty(this, 'enumValues', {
+                value: [],
+                configurable: false,
+                writable: false,
+                enumerable: true
+            });
+            if (Array.isArray(arg)) {
+                this._enumValuesFromArray(arg);
+            } else {
+                this._enumValuesFromObject(arg);
+            }
+            Object.freeze(this.enumValues);
+            this[INITIALIZED] = true;
+            return this;
+        }
+    }, {
+        key: '_enumValuesFromArray',
+        value: function _enumValuesFromArray(arr) {
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = arr[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var key = _step.value;
+
+                    this._pushEnumValue(new this(), key);
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+        }
+    }, {
+        key: '_enumValuesFromObject',
+        value: function _enumValuesFromObject(obj) {
+            var _iteratorNormalCompletion2 = true;
+            var _didIteratorError2 = false;
+            var _iteratorError2 = undefined;
+
+            try {
+                for (var _iterator2 = Object.keys(obj)[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                    var key = _step2.value;
+
+                    var value = new this(obj[key]);
+                    this._pushEnumValue(value, key);
+                }
+            } catch (err) {
+                _didIteratorError2 = true;
+                _iteratorError2 = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                        _iterator2.return();
+                    }
+                } finally {
+                    if (_didIteratorError2) {
+                        throw _iteratorError2;
+                    }
+                }
+            }
+        }
+    }, {
+        key: '_pushEnumValue',
+        value: function _pushEnumValue(enumValue, name) {
+            enumValue.name = name;
+            enumValue.ordinal = this.enumValues.length;
+            Object.defineProperty(this, name, {
+                value: enumValue,
+                configurable: false,
+                writable: false,
+                enumerable: true
+            });
+            this.enumValues.push(enumValue);
+        }
+
+        /**
+         * Given the name of an enum constant, return its value.
+         */
+
+    }, {
+        key: 'enumValueOf',
+        value: function enumValueOf(name) {
+            return this.enumValues.find(function (x) {
+                return x.name === name;
+            });
+        }
+
+        /**
+         * Make enum classes iterable
+         */
+
+    }, {
+        key: Symbol.iterator,
+        value: function value() {
+            return this.enumValues[Symbol.iterator]();
+        }
+    }]);
+
+    return Enum;
+}();
+
+function copyProperties(target, source) {
+    // Ideally, we’d use Reflect.ownKeys() here,
+    // but I don’t want to depend on a polyfill
+    var _iteratorNormalCompletion3 = true;
+    var _didIteratorError3 = false;
+    var _iteratorError3 = undefined;
+
+    try {
+        for (var _iterator3 = Object.getOwnPropertyNames(source)[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+            var key = _step3.value;
+
+            var desc = Object.getOwnPropertyDescriptor(source, key);
+            Object.defineProperty(target, key, desc);
+        }
+    } catch (err) {
+        _didIteratorError3 = true;
+        _iteratorError3 = err;
+    } finally {
+        try {
+            if (!_iteratorNormalCompletion3 && _iterator3.return) {
+                _iterator3.return();
+            }
+        } finally {
+            if (_didIteratorError3) {
+                throw _iteratorError3;
+            }
+        }
+    }
+
+    return target;
+}
 
 /***/ })
 /******/ ]);

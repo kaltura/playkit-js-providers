@@ -1,165 +1,135 @@
 //@flow
-
-import {Enum} from 'enumify';
-
-export class Scheme extends Enum {
+export class Scheme {
+  static PLAYREADY_CENC: string = "drm.PLAYREADY_CENC";
+  static WIDEVINE_CENC: string = "drm.WIDEVINE_CENC";
+  static FAIRPLAY: string = "fairplay.FAIRPLAY";
+  static PLAYREADY: string = "playReady.PLAYREADY";
+  static WIDEVINE: string = "widevine.WIDEVINE";
 }
-Scheme.initEnum({
-  PLAYREADY_CENC: "drm.PLAYREADY_CENC",
-  WIDEVINE_CENC: "drm.WIDEVINE_CENC",
-  FAIRPLAY: "fairplay.FAIRPLAY",
-  PLAYREADY: "playReady.PLAYREADY",
-  WIDEVINE: "widevine.WIDEVINE"
-});
 
-
-export class KalturaRuleActionType extends Enum {
+export class KalturaRuleActionType {
+  static DRM_POLICY: string = "drm.DRM_POLICY";
+  static BLOCK: number = 1;
+  static PREVIEW: number = 2;
+  static LIMIT_FLAVORS: number = 3;
+  static ADD_TO_STORAGE: number = 4;
+  static LIMIT_DELIVERY_PROFILES: number = 5;
+  static SERVE_FROM_REMOTE_SERVER: number = 6;
+  static REQUEST_HOST_REGEX: number = 7;
+  static LIMIT_THUMBNAIL_CAPTURE: number = 8;
 }
-KalturaRuleActionType.initEnum({
-  DRM_POLICY: "drm.DRM_POLICY",
-  BLOCK: 1,
-  PREVIEW: 2,
-  LIMIT_FLAVORS: 3,
-  ADD_TO_STORAGE: 4,
-  LIMIT_DELIVERY_PROFILES: 5,
-  SERVE_FROM_REMOTE_SERVER: 6,
-  REQUEST_HOST_REGEX: 7,
-  LIMIT_THUMBNAIL_CAPTURE: 8
-});
 
-export class Status extends Enum {
+export class Status {
+  static ERROR: number = -1;
+  static QUEUED: number = 0;
+  static CONVERTING: number = 1;
+  static READY: number = 2;
+  static DELETED: number = 3;
+  static NOT_APPLICABLE: number = 4;
+  static TEMP: number = 5;
+  static WAIT_FOR_CONVERT: number = 6;
+  static IMPORTING: number = 7;
+  static VALIDATING: number = 8;
+  static EXPORTING: number = 9;
 }
-Status.initEnum({
-  ERROR: -1,
-  QUEUED: 0,
-  CONVERTING: 1,
-  READY: 2,
-  DELETED: 3,
-  NOT_APPLICABLE: 4,
-  TEMP: 5,
-  WAIT_FOR_CONVERT: 6,
-  IMPORTING: 7,
-  VALIDATING: 8,
-  EXPORTING: 9
-});
 
-export class MetadataObjectType extends Enum {
+export class MetadataObjectType {
+  static AD_CUE_POINT: string = "adCuePointMetadata.AdCuePoint";
+  static ANNOTATION: string = "annotationMetadata.Annotation";
+  static CODE_CUE_POINT: string = "codeCuePointMetadata.CodeCuePoint";
+  static THUMB_CUE_POINT: string = "thumbCuePointMetadata.thumbCuePoint";
+  static ENTRY: number = 1;
+  static CATEGORY: number = 2;
+  static USER: number = 3;
+  static PARTNER: number = 4;
+  static DYNAMIC_OBJECT: number = 5;
 }
-MetadataObjectType.initEnum({
-  AD_CUE_POINT: "adCuePointMetadata.AdCuePoint",
-  ANNOTATION: "annotationMetadata.Annotation",
-  CODE_CUE_POINT: "codeCuePointMetadata.CodeCuePoint",
-  THUMB_CUE_POINT: "thumbCuePointMetadata.thumbCuePoint",
-  ENTRY: 1,
-  CATEGORY: 2,
-  USER: 3,
-  PARTNER: 4,
-  DYNAMIC_OBJECT: 5
-});
 
-export class MetadataStatus extends Enum {
+export class MetadataStatus {
+  static VALID: number = 1;
+  static INVALID: number = 2;
+  static DELETED: number = 3;
 }
-MetadataStatus.initEnum({
-  VALID: 1,
-  INVALID: 2,
-  DELETED: 3
-});
 
-
-export class EntryStatus extends Enum {
+export class EntryStatus {
+  static ERROR_IMPORTING: number = -2;
+  static ERROR_CONVERTING: number = -1;
+  static SCAN_FAILURE: string = "virusScan.ScanFailure";
+  static IMPORT: number = 0;
+  static INFECTED: string = "virusScan.Infected";
+  static PRECONVERT: number = 1;
+  static READY: number = 2;
+  static DELETED: number = 3;
+  static PENDING: number = 4;
+  static MODERATE: number = 5;
+  static BLOCKED: number = 6;
+  static NO_CONTENT: number = 7
 }
-EntryStatus.initEnum({
-  ERROR_IMPORTING: -2,
-  ERROR_CONVERTING: -1,
-  SCAN_FAILURE: "virusScan.ScanFailure",
-  IMPORT: 0,
-  INFECTED: "virusScan.Infected",
-  PRECONVERT: 1,
-  READY: 2,
-  DELETED: 3,
-  PENDING: 4,
-  MODERATE: 5,
-  BLOCKED: 6,
-  NO_CONTENT: 7
-});
 
-export class EntryModerationStatus extends Enum {
+export class EntryModerationStatus {
+  static PENDING_MODERATION: number = 1;
+  static APPROVED: number = 2;
+  static REJECTED: number = 3;
+  static FLAGGED_FOR_REVIEW: number = 4;
+  static MODERATE: number = 5;
+  static AUTO_APPROVED: number = 6
 }
-EntryModerationStatus.initEnum({
-  PENDING_MODERATION: 1,
-  APPROVED: 2,
-  REJECTED: 3,
-  FLAGGED_FOR_REVIEW: 4,
-  MODERATE: 5,
-  AUTO_APPROVED: 6
-});
 
-export class EntryType extends Enum {
+export class EntryType {
+  static AUTOMATIC: Object = {value: -1};
+  static EXTERNAL_MEDIA: Object = {value: "externalMedia.externalMedia"};
+  static MEDIA_CLIP: Object = {value: 1};
+  static MIX: Object = {value: 2};
+  static PLAYLIST: Object = {value: 5};
+  static DATA: Object = {value: 6};
+  static LIVE_STREAM: Object = {value: 7};
+  static LIVE_CHANNEL: Object = {value: 8};
+  static DOCUMENT: Object = {value: 10};
 }
-EntryType.initEnum({
-  AUTOMATIC: {value: -1},
-  EXTERNAL_MEDIA: {value: "externalMedia.externalMedia"},
-  MEDIA_CLIP: {value: 1},
-  MIX: {value: 2},
-  PLAYLIST: {value: 5},
-  DATA: {value: 6},
-  LIVE_STREAM: {value: 7},
-  LIVE_CHANNEL: {value: 8},
-  DOCUMENT: {value: 10}
-});
 
-export class MediaType extends Enum {
+export class MediaType {
+  static VIDEO: Object = {value: 1};
+  static IMAGE: Object = {value: 2};
+  static AUDIO: Object = {value: 5};
+  static LIVE_STREAM_FLASH: Object = {value: 201};
+  static LIVE_STREAM_WINDOWS_MEDIA: Object = {value: 202};
+  static LIVE_STREAM_REAL_MEDIA: Object = {value: 203};
+  static LIVE_STREAM_QUICKTIME: Object = {value: 204};
 }
-MediaType.initEnum({
-  VIDEO: {value: 1},
-  IMAGE: {value: 2},
-  AUDIO: {value: 5},
-  LIVE_STREAM_FLASH: {value: 201},
-  LIVE_STREAM_WINDOWS_MEDIA: {value: 202},
-  LIVE_STREAM_REAL_MEDIA: {value: 203},
-  LIVE_STREAM_QUICKTIME: {value: 204}
-});
 
-
-export class MediaEntryType extends Enum {
+export class MediaEntryType {
+  static Vod: string = 'Vod';
+  static Live: string = 'Live';
+  static Image: string = 'Image';
+  static Audio: string = 'Audio';
+  static Unknown: string = 'Unknown'
 }
-MediaEntryType.initEnum(['Vod', 'Live', 'Image', 'Audio', 'Unknown']);
 
-export class UIConfType extends Enum {
+export class UIConfType {
+  static PLAYER: number = 1;
+  static CONTRIBUTION_WIZARD: number = 2;
+  static SIMPLE_EDITOR: number = 3;
+  static ADVANCED_EDITOR: number = 4;
+  static PLAYLIST: number = 5;
+  static APP_STUDIO: number = 6;
+  static KRECORD: number = 7;
+  static PLAYER_V3: number = 8;
+  static KMC_ACCOUNT: number = 9;
+  static KMC_ANALYTICS: number = 10;
+  static KMC_CONTENT: number = 11;
+  static KMC_DASHBOARD: number = 12;
+  static KMC_LOGIN: number = 13;
+  static PLAYER_SL: number = 14;
+  static CLIENTSIDE_ENCODER: number = 15;
+  static KMC_GENERAL: number = 16;
+  static KMC_ROLES_AND_PERMISSIONS: number = 17;
+  static CLIPPER: number = 18;
+  static KSR: number = 19;
+  static KUPLOAD: number = 20;
+  static WEBCASTING: number = 21
 }
-UIConfType.initEnum({
-  PLAYER: 1,
-  CONTRIBUTION_WIZARD: 2,
-  SIMPLE_EDITOR: 3,
-  ADVANCED_EDITOR: 4,
-  PLAYLIST: 5,
-  APP_STUDIO: 6,
-  KRECORD: 7,
-  PLAYER_V3: 8,
-  KMC_ACCOUNT: 9,
-  KMC_ANALYTICS: 10,
-  KMC_CONTENT: 11,
-  KMC_DASHBOARD: 12,
-  KMC_LOGIN: 13,
-  PLAYER_SL: 14,
-  CLIENTSIDE_ENCODER: 15,
-  KMC_GENERAL: 16,
-  KMC_ROLES_AND_PERMISSIONS: 17,
-  CLIPPER: 18,
-  KSR: 19,
-  KUPLOAD: 20,
-  WEBCASTING: 21
-});
 
-export class UIConfCreationMode extends Enum {
+export class UIConfCreationMode {
+  static WIZARD: number = 2;
+  static ADVANCED: number = 3
 }
-UIConfCreationMode.initEnum({
-  WIZARD: 2,
-  ADVANCED: 3
-});
-
-
-
-
-
-
