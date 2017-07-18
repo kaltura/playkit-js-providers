@@ -32,7 +32,7 @@ export default class PlaySourceUrlBuilder {
     }
 
     let playUrl = baseUrl;
-    if (!String.endsWith(baseUrl, "/")) {
+    if (!baseUrl.endsWith("/")) {
       playUrl += "/";
     }
     playUrl += "p/" + partnerId + "/sp/" + partnerId + "00" + "/playManifest/entryId/" + entryId + "/protocol/" + protocol + "/format/" + format;
