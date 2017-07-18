@@ -23,7 +23,7 @@ describe('OvpProvider.partnerId:1082342', function () {
   it('should return config without plugins and without drm data', (done) => {
     let entryID = "1_rsrdfext";
     sinon.stub(MultiRequestBuilder.prototype, "execute").callsFake(
-      function () {yar
+      function () {
         return new Promise((resolve) => {
           let response = new MultiRequestResult(mocData.AnonymousMocEntryWithoutUIConfNoDrmData);
           resolve(response);
