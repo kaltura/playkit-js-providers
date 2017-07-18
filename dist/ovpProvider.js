@@ -2938,7 +2938,7 @@ var PlaySourceUrlBuilder = function () {
       }
 
       var playUrl = baseUrl;
-      if (!PlaySourceUrlBuilder.endsWith(baseUrl, "/")) {
+      if (!String.endsWith(baseUrl, "/")) {
         playUrl += "/";
       }
       playUrl += "p/" + partnerId + "/sp/" + partnerId + "00" + "/playManifest/entryId/" + entryId + "/protocol/" + protocol + "/format/" + format;
@@ -2960,26 +2960,6 @@ var PlaySourceUrlBuilder = function () {
       }
 
       return playUrl;
-    }
-
-    /**
-     * Checks if given string end with search string
-     * @param {string} string The given string
-     * @param {string} searchString The string to search
-     * @returns {boolean} Is  given string end with search string
-     */
-
-  }, {
-    key: "endsWith",
-    value: function endsWith(string, searchString) {
-      if (typeof string !== 'string') {
-        return false;
-      }
-      if (typeof searchString !== 'string') {
-        return false;
-      }
-
-      return string.indexOf(searchString, string.length - searchString.length) != -1;
     }
   }]);
 
