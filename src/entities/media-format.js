@@ -1,50 +1,32 @@
 //@flow
-import {Enum} from 'enumify';
+export class MediaFormats {
+  static dash: MediaFormat = {
+    name: 'dash',
+    mimeType: "application/dash+xml",
+    pathExt: "mpd"
+  };
 
-export class MediaFormat extends Enum {
+  static hls: MediaFormat = {
+    name: 'hls',
+    mimeType: "application/x-mpegURL",
+    pathExt: "m3u8"
+  };
+
+  static wvm: MediaFormat = {
+    name: 'wvm',
+    mimeType: "video/wvm",
+    pathExt: "wvm"
+  };
+
+  static mp4: MediaFormat = {
+    name: 'mp4',
+    mimeType: "video/mp4",
+    pathExt: "mp4"
+  };
+
+  static mp3: MediaFormat = {
+    name: 'mp3',
+    mimeType: "audio/mpeg",
+    pathExt: "mp3"
+  };
 }
-MediaFormat.initEnum({
-  dash: {
-    get mimeType() {
-      return "application/dash+xml";
-    },
-    get pathExt() {
-      return "mpd";
-    }
-  },
-  hls: {
-    get mimeType() {
-      return "application/x-mpegURL";
-    },
-    get pathExt() {
-      return "m3u8";
-    }
-  },
-  wvm: {
-    get mimeType() {
-      return "video/wvm";
-    },
-    get pathExt() {
-      return "wvm";
-    }
-  },
-  mp4: {
-    get mimeType() {
-      return "video/mp4";
-    },
-    get pathExt() {
-      return "mp4";
-    }
-  },
-  mp3: {
-    get mimeType() {
-      return "audio/mpeg";
-    },
-    get pathExt() {
-      return "mp3";
-    }
-  }
-});
-
-
-

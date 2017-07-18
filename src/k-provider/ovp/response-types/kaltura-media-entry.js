@@ -1,5 +1,4 @@
 //@flow
-import {EntryType, MediaType} from '../../enums'
 
 /**
  * Ovp BE MediaEntry
