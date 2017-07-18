@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 36);
+/******/ 	return __webpack_require__(__webpack_require__.s = 35);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -256,7 +256,7 @@ exports.Configuration = Configuration;
 
 /***/ }),
 
-/***/ 3:
+/***/ 2:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -326,93 +326,7 @@ exports.default = OvpService;
 
 /***/ }),
 
-/***/ 36:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.RequestBuilder = exports.Configuration = exports.StatsService = undefined;
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _ovpService = __webpack_require__(3);
-
-var _ovpService2 = _interopRequireDefault(_ovpService);
-
-var _requestBuilder = __webpack_require__(0);
-
-var _requestBuilder2 = _interopRequireDefault(_requestBuilder);
-
-var _config = __webpack_require__(1);
-
-var _config2 = _interopRequireDefault(_config);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var SERVICE_NAME = "stats";
-/**
- * Ovp stats service methods
- * @classdesc
- */
-
-var StatsService = function (_OvpService) {
-  _inherits(StatsService, _OvpService);
-
-  function StatsService() {
-    _classCallCheck(this, StatsService);
-
-    return _possibleConstructorReturn(this, (StatsService.__proto__ || Object.getPrototypeOf(StatsService)).apply(this, arguments));
-  }
-
-  _createClass(StatsService, null, [{
-    key: 'collect',
-
-
-    /**
-     * Creates an instance of RequestBuilder for stats.collect
-     * @function collect
-     * @param {string} ks - The ks
-     * @param {Object} event - The event data
-     * @param {string} [baseUrl=Configuration.beUrl] - The service base URL
-     * @returns {RequestBuilder} - The request builder
-     * @static
-     */
-    value: function collect(ks, event, baseUrl) {
-      var ovpParams = _config2.default.get();
-      var serviceParams = {};
-      Object.assign(serviceParams, ovpParams.serviceParams, { ks: ks }, event);
-      var request = new _requestBuilder2.default();
-      request.service = SERVICE_NAME;
-      request.action = "collect";
-      request.method = "POST";
-      request.baseUrl = baseUrl || ovpParams.beUrl;
-      request.tag = "stats-collect";
-      request.params = JSON.stringify(serviceParams);
-      return request;
-    }
-  }]);
-
-  return StatsService;
-}(_ovpService2.default);
-
-exports.default = StatsService;
-exports.StatsService = StatsService;
-exports.Configuration = _config2.default;
-exports.RequestBuilder = _requestBuilder2.default;
-
-/***/ }),
-
-/***/ 4:
+/***/ 3:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -497,7 +411,93 @@ function ServiceError(code, message) {
 
 /***/ }),
 
-/***/ 5:
+/***/ 35:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.RequestBuilder = exports.Configuration = exports.StatsService = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _ovpService = __webpack_require__(2);
+
+var _ovpService2 = _interopRequireDefault(_ovpService);
+
+var _requestBuilder = __webpack_require__(0);
+
+var _requestBuilder2 = _interopRequireDefault(_requestBuilder);
+
+var _config = __webpack_require__(1);
+
+var _config2 = _interopRequireDefault(_config);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SERVICE_NAME = "stats";
+/**
+ * Ovp stats service methods
+ * @classdesc
+ */
+
+var StatsService = function (_OvpService) {
+  _inherits(StatsService, _OvpService);
+
+  function StatsService() {
+    _classCallCheck(this, StatsService);
+
+    return _possibleConstructorReturn(this, (StatsService.__proto__ || Object.getPrototypeOf(StatsService)).apply(this, arguments));
+  }
+
+  _createClass(StatsService, null, [{
+    key: 'collect',
+
+
+    /**
+     * Creates an instance of RequestBuilder for stats.collect
+     * @function collect
+     * @param {string} ks - The ks
+     * @param {Object} event - The event data
+     * @param {string} [baseUrl=Configuration.beUrl] - The service base URL
+     * @returns {RequestBuilder} - The request builder
+     * @static
+     */
+    value: function collect(ks, event, baseUrl) {
+      var ovpParams = _config2.default.get();
+      var serviceParams = {};
+      Object.assign(serviceParams, ovpParams.serviceParams, { ks: ks }, event);
+      var request = new _requestBuilder2.default();
+      request.service = SERVICE_NAME;
+      request.action = "collect";
+      request.method = "POST";
+      request.baseUrl = baseUrl || ovpParams.beUrl;
+      request.tag = "stats-collect";
+      request.params = JSON.stringify(serviceParams);
+      return request;
+    }
+  }]);
+
+  return StatsService;
+}(_ovpService2.default);
+
+exports.default = StatsService;
+exports.StatsService = StatsService;
+exports.Configuration = _config2.default;
+exports.RequestBuilder = _requestBuilder2.default;
+
+/***/ }),
+
+/***/ 4:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -570,11 +570,11 @@ var _requestBuilder = __webpack_require__(0);
 
 var _requestBuilder2 = _interopRequireDefault(_requestBuilder);
 
-var _baseServiceResult = __webpack_require__(4);
+var _baseServiceResult = __webpack_require__(3);
 
 var _baseServiceResult2 = _interopRequireDefault(_baseServiceResult);
 
-var _logger = __webpack_require__(5);
+var _logger = __webpack_require__(4);
 
 var _logger2 = _interopRequireDefault(_logger);
 

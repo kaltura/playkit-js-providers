@@ -15,7 +15,7 @@ class LoggerFactory {
 }
 
 let Logger = new LoggerFactory({defaultLevel: JsLogger.DEBUG});
-const LOG_LEVEL: {[level: string]: Object} = {
+const LOG_LEVEL: { [level: string]: Object } = {
   "DEBUG": JsLogger.DEBUG,
   "INFO": JsLogger.INFO,
   "TIME": JsLogger.TIME,

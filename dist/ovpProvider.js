@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 25);
+/******/ 	return __webpack_require__(__webpack_require__.s = 24);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -262,299 +262,6 @@ exports.Configuration = Configuration;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.UIConfCreationMode = exports.UIConfType = exports.MediaEntryType = exports.MediaType = exports.EntryType = exports.EntryModerationStatus = exports.EntryStatus = exports.MetadataStatus = exports.MetadataObjectType = exports.Status = exports.KalturaRuleActionType = exports.Scheme = undefined;
-
-var _enumify = __webpack_require__(18);
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Scheme = exports.Scheme = function (_Enum) {
-  _inherits(Scheme, _Enum);
-
-  function Scheme() {
-    _classCallCheck(this, Scheme);
-
-    return _possibleConstructorReturn(this, (Scheme.__proto__ || Object.getPrototypeOf(Scheme)).apply(this, arguments));
-  }
-
-  return Scheme;
-}(_enumify.Enum);
-
-Scheme.initEnum({
-  PLAYREADY_CENC: "drm.PLAYREADY_CENC",
-  WIDEVINE_CENC: "drm.WIDEVINE_CENC",
-  FAIRPLAY: "fairplay.FAIRPLAY",
-  PLAYREADY: "playReady.PLAYREADY",
-  WIDEVINE: "widevine.WIDEVINE"
-});
-
-var KalturaRuleActionType = exports.KalturaRuleActionType = function (_Enum2) {
-  _inherits(KalturaRuleActionType, _Enum2);
-
-  function KalturaRuleActionType() {
-    _classCallCheck(this, KalturaRuleActionType);
-
-    return _possibleConstructorReturn(this, (KalturaRuleActionType.__proto__ || Object.getPrototypeOf(KalturaRuleActionType)).apply(this, arguments));
-  }
-
-  return KalturaRuleActionType;
-}(_enumify.Enum);
-
-KalturaRuleActionType.initEnum({
-  DRM_POLICY: "drm.DRM_POLICY",
-  BLOCK: 1,
-  PREVIEW: 2,
-  LIMIT_FLAVORS: 3,
-  ADD_TO_STORAGE: 4,
-  LIMIT_DELIVERY_PROFILES: 5,
-  SERVE_FROM_REMOTE_SERVER: 6,
-  REQUEST_HOST_REGEX: 7,
-  LIMIT_THUMBNAIL_CAPTURE: 8
-});
-
-var Status = exports.Status = function (_Enum3) {
-  _inherits(Status, _Enum3);
-
-  function Status() {
-    _classCallCheck(this, Status);
-
-    return _possibleConstructorReturn(this, (Status.__proto__ || Object.getPrototypeOf(Status)).apply(this, arguments));
-  }
-
-  return Status;
-}(_enumify.Enum);
-
-Status.initEnum({
-  ERROR: -1,
-  QUEUED: 0,
-  CONVERTING: 1,
-  READY: 2,
-  DELETED: 3,
-  NOT_APPLICABLE: 4,
-  TEMP: 5,
-  WAIT_FOR_CONVERT: 6,
-  IMPORTING: 7,
-  VALIDATING: 8,
-  EXPORTING: 9
-});
-
-var MetadataObjectType = exports.MetadataObjectType = function (_Enum4) {
-  _inherits(MetadataObjectType, _Enum4);
-
-  function MetadataObjectType() {
-    _classCallCheck(this, MetadataObjectType);
-
-    return _possibleConstructorReturn(this, (MetadataObjectType.__proto__ || Object.getPrototypeOf(MetadataObjectType)).apply(this, arguments));
-  }
-
-  return MetadataObjectType;
-}(_enumify.Enum);
-
-MetadataObjectType.initEnum({
-  AD_CUE_POINT: "adCuePointMetadata.AdCuePoint",
-  ANNOTATION: "annotationMetadata.Annotation",
-  CODE_CUE_POINT: "codeCuePointMetadata.CodeCuePoint",
-  THUMB_CUE_POINT: "thumbCuePointMetadata.thumbCuePoint",
-  ENTRY: 1,
-  CATEGORY: 2,
-  USER: 3,
-  PARTNER: 4,
-  DYNAMIC_OBJECT: 5
-});
-
-var MetadataStatus = exports.MetadataStatus = function (_Enum5) {
-  _inherits(MetadataStatus, _Enum5);
-
-  function MetadataStatus() {
-    _classCallCheck(this, MetadataStatus);
-
-    return _possibleConstructorReturn(this, (MetadataStatus.__proto__ || Object.getPrototypeOf(MetadataStatus)).apply(this, arguments));
-  }
-
-  return MetadataStatus;
-}(_enumify.Enum);
-
-MetadataStatus.initEnum({
-  VALID: 1,
-  INVALID: 2,
-  DELETED: 3
-});
-
-var EntryStatus = exports.EntryStatus = function (_Enum6) {
-  _inherits(EntryStatus, _Enum6);
-
-  function EntryStatus() {
-    _classCallCheck(this, EntryStatus);
-
-    return _possibleConstructorReturn(this, (EntryStatus.__proto__ || Object.getPrototypeOf(EntryStatus)).apply(this, arguments));
-  }
-
-  return EntryStatus;
-}(_enumify.Enum);
-
-EntryStatus.initEnum({
-  ERROR_IMPORTING: -2,
-  ERROR_CONVERTING: -1,
-  SCAN_FAILURE: "virusScan.ScanFailure",
-  IMPORT: 0,
-  INFECTED: "virusScan.Infected",
-  PRECONVERT: 1,
-  READY: 2,
-  DELETED: 3,
-  PENDING: 4,
-  MODERATE: 5,
-  BLOCKED: 6,
-  NO_CONTENT: 7
-});
-
-var EntryModerationStatus = exports.EntryModerationStatus = function (_Enum7) {
-  _inherits(EntryModerationStatus, _Enum7);
-
-  function EntryModerationStatus() {
-    _classCallCheck(this, EntryModerationStatus);
-
-    return _possibleConstructorReturn(this, (EntryModerationStatus.__proto__ || Object.getPrototypeOf(EntryModerationStatus)).apply(this, arguments));
-  }
-
-  return EntryModerationStatus;
-}(_enumify.Enum);
-
-EntryModerationStatus.initEnum({
-  PENDING_MODERATION: 1,
-  APPROVED: 2,
-  REJECTED: 3,
-  FLAGGED_FOR_REVIEW: 4,
-  MODERATE: 5,
-  AUTO_APPROVED: 6
-});
-
-var EntryType = exports.EntryType = function (_Enum8) {
-  _inherits(EntryType, _Enum8);
-
-  function EntryType() {
-    _classCallCheck(this, EntryType);
-
-    return _possibleConstructorReturn(this, (EntryType.__proto__ || Object.getPrototypeOf(EntryType)).apply(this, arguments));
-  }
-
-  return EntryType;
-}(_enumify.Enum);
-
-EntryType.initEnum({
-  AUTOMATIC: { value: -1 },
-  EXTERNAL_MEDIA: { value: "externalMedia.externalMedia" },
-  MEDIA_CLIP: { value: 1 },
-  MIX: { value: 2 },
-  PLAYLIST: { value: 5 },
-  DATA: { value: 6 },
-  LIVE_STREAM: { value: 7 },
-  LIVE_CHANNEL: { value: 8 },
-  DOCUMENT: { value: 10 }
-});
-
-var MediaType = exports.MediaType = function (_Enum9) {
-  _inherits(MediaType, _Enum9);
-
-  function MediaType() {
-    _classCallCheck(this, MediaType);
-
-    return _possibleConstructorReturn(this, (MediaType.__proto__ || Object.getPrototypeOf(MediaType)).apply(this, arguments));
-  }
-
-  return MediaType;
-}(_enumify.Enum);
-
-MediaType.initEnum({
-  VIDEO: { value: 1 },
-  IMAGE: { value: 2 },
-  AUDIO: { value: 5 },
-  LIVE_STREAM_FLASH: { value: 201 },
-  LIVE_STREAM_WINDOWS_MEDIA: { value: 202 },
-  LIVE_STREAM_REAL_MEDIA: { value: 203 },
-  LIVE_STREAM_QUICKTIME: { value: 204 }
-});
-
-var MediaEntryType = exports.MediaEntryType = function (_Enum10) {
-  _inherits(MediaEntryType, _Enum10);
-
-  function MediaEntryType() {
-    _classCallCheck(this, MediaEntryType);
-
-    return _possibleConstructorReturn(this, (MediaEntryType.__proto__ || Object.getPrototypeOf(MediaEntryType)).apply(this, arguments));
-  }
-
-  return MediaEntryType;
-}(_enumify.Enum);
-
-MediaEntryType.initEnum(['Vod', 'Live', 'Image', 'Audio', 'Unknown']);
-
-var UIConfType = exports.UIConfType = function (_Enum11) {
-  _inherits(UIConfType, _Enum11);
-
-  function UIConfType() {
-    _classCallCheck(this, UIConfType);
-
-    return _possibleConstructorReturn(this, (UIConfType.__proto__ || Object.getPrototypeOf(UIConfType)).apply(this, arguments));
-  }
-
-  return UIConfType;
-}(_enumify.Enum);
-
-UIConfType.initEnum({
-  PLAYER: 1,
-  CONTRIBUTION_WIZARD: 2,
-  SIMPLE_EDITOR: 3,
-  ADVANCED_EDITOR: 4,
-  PLAYLIST: 5,
-  APP_STUDIO: 6,
-  KRECORD: 7,
-  PLAYER_V3: 8,
-  KMC_ACCOUNT: 9,
-  KMC_ANALYTICS: 10,
-  KMC_CONTENT: 11,
-  KMC_DASHBOARD: 12,
-  KMC_LOGIN: 13,
-  PLAYER_SL: 14,
-  CLIENTSIDE_ENCODER: 15,
-  KMC_GENERAL: 16,
-  KMC_ROLES_AND_PERMISSIONS: 17,
-  CLIPPER: 18,
-  KSR: 19,
-  KUPLOAD: 20,
-  WEBCASTING: 21
-});
-
-var UIConfCreationMode = exports.UIConfCreationMode = function (_Enum12) {
-  _inherits(UIConfCreationMode, _Enum12);
-
-  function UIConfCreationMode() {
-    _classCallCheck(this, UIConfCreationMode);
-
-    return _possibleConstructorReturn(this, (UIConfCreationMode.__proto__ || Object.getPrototypeOf(UIConfCreationMode)).apply(this, arguments));
-  }
-
-  return UIConfCreationMode;
-}(_enumify.Enum);
-
-UIConfCreationMode.initEnum({
-  WIZARD: 2,
-  ADVANCED: 3
-});
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -615,7 +322,7 @@ var OvpService = function () {
 exports.default = OvpService;
 
 /***/ }),
-/* 4 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -699,7 +406,7 @@ function ServiceError(code, message) {
 ;
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -754,6 +461,178 @@ exports.default = Logger;
 exports.LOG_LEVEL = LOG_LEVEL;
 
 /***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Scheme = exports.Scheme = function Scheme() {
+  _classCallCheck(this, Scheme);
+};
+
+Scheme.PLAYREADY_CENC = "drm.PLAYREADY_CENC";
+Scheme.WIDEVINE_CENC = "drm.WIDEVINE_CENC";
+Scheme.FAIRPLAY = "fairplay.FAIRPLAY";
+Scheme.PLAYREADY = "playReady.PLAYREADY";
+Scheme.WIDEVINE = "widevine.WIDEVINE";
+
+var KalturaRuleActionTypes = exports.KalturaRuleActionTypes = function KalturaRuleActionTypes() {
+  _classCallCheck(this, KalturaRuleActionTypes);
+};
+
+KalturaRuleActionTypes.DRM_POLICY = "drm.DRM_POLICY";
+KalturaRuleActionTypes.BLOCK = 1;
+KalturaRuleActionTypes.PREVIEW = 2;
+KalturaRuleActionTypes.LIMIT_FLAVORS = 3;
+KalturaRuleActionTypes.ADD_TO_STORAGE = 4;
+KalturaRuleActionTypes.LIMIT_DELIVERY_PROFILES = 5;
+KalturaRuleActionTypes.SERVE_FROM_REMOTE_SERVER = 6;
+KalturaRuleActionTypes.REQUEST_HOST_REGEX = 7;
+KalturaRuleActionTypes.LIMIT_THUMBNAIL_CAPTURE = 8;
+
+var Status = exports.Status = function Status() {
+  _classCallCheck(this, Status);
+};
+
+Status.ERROR = -1;
+Status.QUEUED = 0;
+Status.CONVERTING = 1;
+Status.READY = 2;
+Status.DELETED = 3;
+Status.NOT_APPLICABLE = 4;
+Status.TEMP = 5;
+Status.WAIT_FOR_CONVERT = 6;
+Status.IMPORTING = 7;
+Status.VALIDATING = 8;
+Status.EXPORTING = 9;
+
+var MetadataObjectTypes = exports.MetadataObjectTypes = function MetadataObjectTypes() {
+  _classCallCheck(this, MetadataObjectTypes);
+};
+
+MetadataObjectTypes.AD_CUE_POINT = "adCuePointMetadata.AdCuePoint";
+MetadataObjectTypes.ANNOTATION = "annotationMetadata.Annotation";
+MetadataObjectTypes.CODE_CUE_POINT = "codeCuePointMetadata.CodeCuePoint";
+MetadataObjectTypes.THUMB_CUE_POINT = "thumbCuePointMetadata.thumbCuePoint";
+MetadataObjectTypes.ENTRY = 1;
+MetadataObjectTypes.CATEGORY = 2;
+MetadataObjectTypes.USER = 3;
+MetadataObjectTypes.PARTNER = 4;
+MetadataObjectTypes.DYNAMIC_OBJECT = 5;
+
+var MetadataStatuses = exports.MetadataStatuses = function MetadataStatuses() {
+  _classCallCheck(this, MetadataStatuses);
+};
+
+MetadataStatuses.VALID = 1;
+MetadataStatuses.INVALID = 2;
+MetadataStatuses.DELETED = 3;
+
+var EntryStatuses = exports.EntryStatuses = function EntryStatuses() {
+  _classCallCheck(this, EntryStatuses);
+};
+
+EntryStatuses.ERROR_IMPORTING = -2;
+EntryStatuses.ERROR_CONVERTING = -1;
+EntryStatuses.SCAN_FAILURE = "virusScan.ScanFailure";
+EntryStatuses.IMPORT = 0;
+EntryStatuses.INFECTED = "virusScan.Infected";
+EntryStatuses.PRECONVERT = 1;
+EntryStatuses.READY = 2;
+EntryStatuses.DELETED = 3;
+EntryStatuses.PENDING = 4;
+EntryStatuses.MODERATE = 5;
+EntryStatuses.BLOCKED = 6;
+EntryStatuses.NO_CONTENT = 7;
+
+var EntryModerationStatuses = exports.EntryModerationStatuses = function EntryModerationStatuses() {
+  _classCallCheck(this, EntryModerationStatuses);
+};
+
+EntryModerationStatuses.PENDING_MODERATION = 1;
+EntryModerationStatuses.APPROVED = 2;
+EntryModerationStatuses.REJECTED = 3;
+EntryModerationStatuses.FLAGGED_FOR_REVIEW = 4;
+EntryModerationStatuses.MODERATE = 5;
+EntryModerationStatuses.AUTO_APPROVED = 6;
+
+var EntryTypes = exports.EntryTypes = function EntryTypes() {
+  _classCallCheck(this, EntryTypes);
+};
+
+EntryTypes.AUTOMATIC = { value: -1 };
+EntryTypes.EXTERNAL_MEDIA = { value: "externalMedia.externalMedia" };
+EntryTypes.MEDIA_CLIP = { value: 1 };
+EntryTypes.MIX = { value: 2 };
+EntryTypes.PLAYLIST = { value: 5 };
+EntryTypes.DATA = { value: 6 };
+EntryTypes.LIVE_STREAM = { value: 7 };
+EntryTypes.LIVE_CHANNEL = { value: 8 };
+EntryTypes.DOCUMENT = { value: 10 };
+
+var MediaTypes = exports.MediaTypes = function MediaTypes() {
+  _classCallCheck(this, MediaTypes);
+};
+
+MediaTypes.VIDEO = { value: 1 };
+MediaTypes.IMAGE = { value: 2 };
+MediaTypes.AUDIO = { value: 5 };
+MediaTypes.LIVE_STREAM_FLASH = { value: 201 };
+MediaTypes.LIVE_STREAM_WINDOWS_MEDIA = { value: 202 };
+MediaTypes.LIVE_STREAM_REAL_MEDIA = { value: 203 };
+MediaTypes.LIVE_STREAM_QUICKTIME = { value: 204 };
+
+var MediaEntryTypes = exports.MediaEntryTypes = function MediaEntryTypes() {
+  _classCallCheck(this, MediaEntryTypes);
+};
+
+MediaEntryTypes.Vod = 'Vod';
+MediaEntryTypes.Live = 'Live';
+MediaEntryTypes.Image = 'Image';
+MediaEntryTypes.Audio = 'Audio';
+MediaEntryTypes.Unknown = 'Unknown';
+
+var UIConfTypes = exports.UIConfTypes = function UIConfTypes() {
+  _classCallCheck(this, UIConfTypes);
+};
+
+UIConfTypes.PLAYER = 1;
+UIConfTypes.CONTRIBUTION_WIZARD = 2;
+UIConfTypes.SIMPLE_EDITOR = 3;
+UIConfTypes.ADVANCED_EDITOR = 4;
+UIConfTypes.PLAYLIST = 5;
+UIConfTypes.APP_STUDIO = 6;
+UIConfTypes.KRECORD = 7;
+UIConfTypes.PLAYER_V3 = 8;
+UIConfTypes.KMC_ACCOUNT = 9;
+UIConfTypes.KMC_ANALYTICS = 10;
+UIConfTypes.KMC_CONTENT = 11;
+UIConfTypes.KMC_DASHBOARD = 12;
+UIConfTypes.KMC_LOGIN = 13;
+UIConfTypes.PLAYER_SL = 14;
+UIConfTypes.CLIENTSIDE_ENCODER = 15;
+UIConfTypes.KMC_GENERAL = 16;
+UIConfTypes.KMC_ROLES_AND_PERMISSIONS = 17;
+UIConfTypes.CLIPPER = 18;
+UIConfTypes.KSR = 19;
+UIConfTypes.KUPLOAD = 20;
+UIConfTypes.WEBCASTING = 21;
+
+var UIConfCreationModes = exports.UIConfCreationModes = function UIConfCreationModes() {
+  _classCallCheck(this, UIConfCreationModes);
+};
+
+UIConfCreationModes.WIZARD = 2;
+UIConfCreationModes.ADVANCED = 3;
+
+/***/ }),
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -771,11 +650,11 @@ var _requestBuilder = __webpack_require__(0);
 
 var _requestBuilder2 = _interopRequireDefault(_requestBuilder);
 
-var _baseServiceResult = __webpack_require__(4);
+var _baseServiceResult = __webpack_require__(3);
 
 var _baseServiceResult2 = _interopRequireDefault(_baseServiceResult);
 
-var _logger = __webpack_require__(5);
+var _logger = __webpack_require__(4);
 
 var _logger2 = _interopRequireDefault(_logger);
 
@@ -927,11 +806,9 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _mediaSource = __webpack_require__(12);
+var _mediaSource = __webpack_require__(11);
 
 var _mediaSource2 = _interopRequireDefault(_mediaSource);
-
-var _mediaFormat = __webpack_require__(11);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1284,7 +1161,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _enums = __webpack_require__(2);
+var _enums = __webpack_require__(5);
 
 var _mediaSources = __webpack_require__(7);
 
@@ -1317,7 +1194,7 @@ function MediaEntry() {
   _classCallCheck(this, MediaEntry);
 
   this.metaData = new Map();
-  this.type = _enums.MediaEntryType.Unknown;
+  this.type = _enums.MediaEntryTypes.Unknown;
 }
 /**
  * @member - entry metadata
@@ -1349,7 +1226,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _enums = __webpack_require__(2);
+var _enums = __webpack_require__(5);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1386,81 +1263,6 @@ exports.default = Drm;
 
 /***/ }),
 /* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.MediaFormat = undefined;
-
-var _enumify = __webpack_require__(18);
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var MediaFormat = exports.MediaFormat = function (_Enum) {
-  _inherits(MediaFormat, _Enum);
-
-  function MediaFormat() {
-    _classCallCheck(this, MediaFormat);
-
-    return _possibleConstructorReturn(this, (MediaFormat.__proto__ || Object.getPrototypeOf(MediaFormat)).apply(this, arguments));
-  }
-
-  return MediaFormat;
-}(_enumify.Enum);
-
-MediaFormat.initEnum({
-  dash: {
-    get mimeType() {
-      return "application/dash+xml";
-    },
-    get pathExt() {
-      return "mpd";
-    }
-  },
-  hls: {
-    get mimeType() {
-      return "application/x-mpegURL";
-    },
-    get pathExt() {
-      return "m3u8";
-    }
-  },
-  wvm: {
-    get mimeType() {
-      return "video/wvm";
-    },
-    get pathExt() {
-      return "wvm";
-    }
-  },
-  mp4: {
-    get mimeType() {
-      return "video/mp4";
-    },
-    get pathExt() {
-      return "mp4";
-    }
-  },
-  mp3: {
-    get mimeType() {
-      return "audio/mpeg";
-    },
-    get pathExt() {
-      return "mp3";
-    }
-  }
-});
-
-/***/ }),
-/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1514,7 +1316,7 @@ function MediaSource() {
 exports.default = MediaSource;
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1524,7 +1326,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _enums = __webpack_require__(2);
+var _enums = __webpack_require__(5);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1631,7 +1433,7 @@ function KalturaFlavorAsset(data) {
 exports.default = KalturaFlavorAsset;
 
 /***/ }),
-/* 14 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1640,8 +1442,6 @@ exports.default = KalturaFlavorAsset;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-var _enums = __webpack_require__(2);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1705,7 +1505,7 @@ function KalturaMediaEntry(entry) {
 exports.default = KalturaMediaEntry;
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1715,11 +1515,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _baseServiceResult = __webpack_require__(4);
+var _baseServiceResult = __webpack_require__(3);
 
 var _baseServiceResult2 = _interopRequireDefault(_baseServiceResult);
 
-var _kalturaMetadata = __webpack_require__(30);
+var _kalturaMetadata = __webpack_require__(29);
 
 var _kalturaMetadata2 = _interopRequireDefault(_kalturaMetadata);
 
@@ -1770,7 +1570,7 @@ var KalturaMetadataListResponse = function (_ServiceResult) {
 exports.default = KalturaMetadataListResponse;
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1780,23 +1580,23 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _baseServiceResult = __webpack_require__(4);
+var _baseServiceResult = __webpack_require__(3);
 
 var _baseServiceResult2 = _interopRequireDefault(_baseServiceResult);
 
-var _kalturaAccessControlMessage = __webpack_require__(27);
+var _kalturaAccessControlMessage = __webpack_require__(26);
 
 var _kalturaAccessControlMessage2 = _interopRequireDefault(_kalturaAccessControlMessage);
 
-var _kalturaPlaybackSource = __webpack_require__(17);
+var _kalturaPlaybackSource = __webpack_require__(16);
 
 var _kalturaPlaybackSource2 = _interopRequireDefault(_kalturaPlaybackSource);
 
-var _kalturaRuleAction = __webpack_require__(31);
+var _kalturaRuleAction = __webpack_require__(30);
 
 var _kalturaRuleAction2 = _interopRequireDefault(_kalturaRuleAction);
 
-var _kalturaFlavorAsset = __webpack_require__(13);
+var _kalturaFlavorAsset = __webpack_require__(12);
 
 var _kalturaFlavorAsset2 = _interopRequireDefault(_kalturaFlavorAsset);
 
@@ -1889,7 +1689,7 @@ var KalturaPlaybackContext = function (_ServiceResult) {
 exports.default = KalturaPlaybackContext;
 
 /***/ }),
-/* 17 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1901,7 +1701,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _kalturaDrmPlaybackPluginData = __webpack_require__(29);
+var _kalturaDrmPlaybackPluginData = __webpack_require__(28);
 
 var _kalturaDrmPlaybackPluginData2 = _interopRequireDefault(_kalturaDrmPlaybackPluginData);
 
@@ -2024,222 +1824,7 @@ var KalturaPlaybackSource = function () {
 exports.default = KalturaPlaybackSource;
 
 /***/ }),
-/* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.copyProperties = copyProperties;
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var INITIALIZED = Symbol();
-
-/**
- * This is an abstract class that is not intended to be
- * used directly. Extend it to turn your class into an enum
- * (initialization is performed via `MyClass.initEnum()`).
- */
-
-var Enum = exports.Enum = function () {
-    /**
-     * `initEnum()` closes the class. Then calling this constructor
-     * throws an exception.
-     * 
-     * If your subclass has a constructor then you can control
-     * what properties are added to `this` via the argument you
-     * pass to `super()`. No arguments are fine, too.
-     */
-
-    function Enum() {
-        var instanceProperties = arguments.length <= 0 || arguments[0] === undefined ? undefined : arguments[0];
-
-        _classCallCheck(this, Enum);
-
-        // new.target would be better than this.constructor,
-        // but isn’t supported by Babel
-        if ({}.hasOwnProperty.call(this.constructor, INITIALIZED)) {
-            throw new Error('Enum classes can’t be instantiated');
-        }
-        if ((typeof instanceProperties === 'undefined' ? 'undefined' : _typeof(instanceProperties)) === 'object' && instanceProperties !== null) {
-            copyProperties(this, instanceProperties);
-        }
-    }
-    /**
-     * Set up the enum, close the class.
-     * 
-     * @param arg Either an object whose properties provide the names
-     * and values (which must be mutable objects) of the enum constants.
-     * Or an Array whose elements are used as the names of the enum constants
-     * The values are create by instantiating the current class.
-     */
-
-    _createClass(Enum, [{
-        key: 'toString',
-
-        /**
-         * Default `toString()` method for enum constant.
-         */
-        value: function toString() {
-            return this.constructor.name + '.' + this.name;
-        }
-    }], [{
-        key: 'initEnum',
-        value: function initEnum(arg) {
-            Object.defineProperty(this, 'enumValues', {
-                value: [],
-                configurable: false,
-                writable: false,
-                enumerable: true
-            });
-            if (Array.isArray(arg)) {
-                this._enumValuesFromArray(arg);
-            } else {
-                this._enumValuesFromObject(arg);
-            }
-            Object.freeze(this.enumValues);
-            this[INITIALIZED] = true;
-            return this;
-        }
-    }, {
-        key: '_enumValuesFromArray',
-        value: function _enumValuesFromArray(arr) {
-            var _iteratorNormalCompletion = true;
-            var _didIteratorError = false;
-            var _iteratorError = undefined;
-
-            try {
-                for (var _iterator = arr[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                    var key = _step.value;
-
-                    this._pushEnumValue(new this(), key);
-                }
-            } catch (err) {
-                _didIteratorError = true;
-                _iteratorError = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion && _iterator.return) {
-                        _iterator.return();
-                    }
-                } finally {
-                    if (_didIteratorError) {
-                        throw _iteratorError;
-                    }
-                }
-            }
-        }
-    }, {
-        key: '_enumValuesFromObject',
-        value: function _enumValuesFromObject(obj) {
-            var _iteratorNormalCompletion2 = true;
-            var _didIteratorError2 = false;
-            var _iteratorError2 = undefined;
-
-            try {
-                for (var _iterator2 = Object.keys(obj)[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                    var key = _step2.value;
-
-                    var value = new this(obj[key]);
-                    this._pushEnumValue(value, key);
-                }
-            } catch (err) {
-                _didIteratorError2 = true;
-                _iteratorError2 = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                        _iterator2.return();
-                    }
-                } finally {
-                    if (_didIteratorError2) {
-                        throw _iteratorError2;
-                    }
-                }
-            }
-        }
-    }, {
-        key: '_pushEnumValue',
-        value: function _pushEnumValue(enumValue, name) {
-            enumValue.name = name;
-            enumValue.ordinal = this.enumValues.length;
-            Object.defineProperty(this, name, {
-                value: enumValue,
-                configurable: false,
-                writable: false,
-                enumerable: true
-            });
-            this.enumValues.push(enumValue);
-        }
-
-        /**
-         * Given the name of an enum constant, return its value.
-         */
-
-    }, {
-        key: 'enumValueOf',
-        value: function enumValueOf(name) {
-            return this.enumValues.find(function (x) {
-                return x.name === name;
-            });
-        }
-
-        /**
-         * Make enum classes iterable
-         */
-
-    }, {
-        key: Symbol.iterator,
-        value: function value() {
-            return this.enumValues[Symbol.iterator]();
-        }
-    }]);
-
-    return Enum;
-}();
-
-function copyProperties(target, source) {
-    // Ideally, we’d use Reflect.ownKeys() here,
-    // but I don’t want to depend on a polyfill
-    var _iteratorNormalCompletion3 = true;
-    var _didIteratorError3 = false;
-    var _iteratorError3 = undefined;
-
-    try {
-        for (var _iterator3 = Object.getOwnPropertyNames(source)[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-            var key = _step3.value;
-
-            var desc = Object.getOwnPropertyDescriptor(source, key);
-            Object.defineProperty(target, key, desc);
-        }
-    } catch (err) {
-        _didIteratorError3 = true;
-        _iteratorError3 = err;
-    } finally {
-        try {
-            if (!_iteratorNormalCompletion3 && _iterator3.return) {
-                _iterator3.return();
-            }
-        } finally {
-            if (_didIteratorError3) {
-                throw _iteratorError3;
-            }
-        }
-    }
-
-    return target;
-}
-
-/***/ }),
-/* 19 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2251,7 +1836,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _ovpService = __webpack_require__(3);
+var _ovpService = __webpack_require__(2);
 
 var _ovpService2 = _interopRequireDefault(_ovpService);
 
@@ -2396,7 +1981,7 @@ DataLoaderManager._loadersResponseMap = new Map();
 exports.default = DataLoaderManager;
 
 /***/ }),
-/* 20 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2412,11 +1997,11 @@ var _requestBuilder = __webpack_require__(0);
 
 var _requestBuilder2 = _interopRequireDefault(_requestBuilder);
 
-var _baseEntryService = __webpack_require__(33);
+var _baseEntryService = __webpack_require__(32);
 
 var _baseEntryService2 = _interopRequireDefault(_baseEntryService);
 
-var _metaDataService = __webpack_require__(34);
+var _metaDataService = __webpack_require__(33);
 
 var _metaDataService2 = _interopRequireDefault(_metaDataService);
 
@@ -2424,15 +2009,15 @@ var _config = __webpack_require__(1);
 
 var _config2 = _interopRequireDefault(_config);
 
-var _kalturaPlaybackContext = __webpack_require__(16);
+var _kalturaPlaybackContext = __webpack_require__(15);
 
 var _kalturaPlaybackContext2 = _interopRequireDefault(_kalturaPlaybackContext);
 
-var _kalturaMetadataListResponse = __webpack_require__(15);
+var _kalturaMetadataListResponse = __webpack_require__(14);
 
 var _kalturaMetadataListResponse2 = _interopRequireDefault(_kalturaMetadataListResponse);
 
-var _kalturaBaseEntryListResponse = __webpack_require__(28);
+var _kalturaBaseEntryListResponse = __webpack_require__(27);
 
 var _kalturaBaseEntryListResponse2 = _interopRequireDefault(_kalturaBaseEntryListResponse);
 
@@ -2525,7 +2110,7 @@ var MediaEntryLoader = function () {
 exports.default = MediaEntryLoader;
 
 /***/ }),
-/* 21 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2537,7 +2122,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _sessionService = __webpack_require__(35);
+var _sessionService = __webpack_require__(34);
 
 var _sessionService2 = _interopRequireDefault(_sessionService);
 
@@ -2639,7 +2224,7 @@ var SessionLoader = function () {
 exports.default = SessionLoader;
 
 /***/ }),
-/* 22 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2651,11 +2236,11 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _uiConfService = __webpack_require__(37);
+var _uiConfService = __webpack_require__(36);
 
 var _uiConfService2 = _interopRequireDefault(_uiConfService);
 
-var _kalturaUiConfResponse = __webpack_require__(32);
+var _kalturaUiConfResponse = __webpack_require__(31);
 
 var _kalturaUiConfResponse2 = _interopRequireDefault(_kalturaUiConfResponse);
 
@@ -2757,7 +2342,7 @@ var UiConfigLoader = function () {
 exports.default = UiConfigLoader;
 
 /***/ }),
-/* 23 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2769,37 +2354,37 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _kalturaMediaEntry = __webpack_require__(14);
+var _kalturaMediaEntry = __webpack_require__(13);
 
 var _kalturaMediaEntry2 = _interopRequireDefault(_kalturaMediaEntry);
 
-var _kalturaPlaybackContext = __webpack_require__(16);
+var _kalturaPlaybackContext = __webpack_require__(15);
 
 var _kalturaPlaybackContext2 = _interopRequireDefault(_kalturaPlaybackContext);
 
-var _kalturaPlaybackSource = __webpack_require__(17);
+var _kalturaPlaybackSource = __webpack_require__(16);
 
 var _kalturaPlaybackSource2 = _interopRequireDefault(_kalturaPlaybackSource);
 
-var _kalturaFlavorAsset = __webpack_require__(13);
+var _kalturaFlavorAsset = __webpack_require__(12);
 
 var _kalturaFlavorAsset2 = _interopRequireDefault(_kalturaFlavorAsset);
 
-var _kalturaMetadataListResponse = __webpack_require__(15);
+var _kalturaMetadataListResponse = __webpack_require__(14);
 
 var _kalturaMetadataListResponse2 = _interopRequireDefault(_kalturaMetadataListResponse);
 
-var _playSourceUrlBuilder = __webpack_require__(26);
+var _playSourceUrlBuilder = __webpack_require__(25);
 
 var _playSourceUrlBuilder2 = _interopRequireDefault(_playSourceUrlBuilder);
 
-var _xmlParser = __webpack_require__(38);
+var _xmlParser = __webpack_require__(37);
 
 var _xmlParser2 = _interopRequireDefault(_xmlParser);
 
-var _enums = __webpack_require__(2);
+var _enums = __webpack_require__(5);
 
-var _logger = __webpack_require__(5);
+var _logger = __webpack_require__(4);
 
 var _logger2 = _interopRequireDefault(_logger);
 
@@ -2807,7 +2392,7 @@ var _config = __webpack_require__(1);
 
 var _config2 = _interopRequireDefault(_config);
 
-var _mediaFormat = __webpack_require__(11);
+var _mediaFormat = __webpack_require__(22);
 
 var _mediaEntry = __webpack_require__(9);
 
@@ -2817,7 +2402,7 @@ var _drm = __webpack_require__(10);
 
 var _drm2 = _interopRequireDefault(_drm);
 
-var _mediaSource = __webpack_require__(12);
+var _mediaSource = __webpack_require__(11);
 
 var _mediaSource2 = _interopRequireDefault(_mediaSource);
 
@@ -2839,7 +2424,7 @@ var logger = _logger2.default.get("OvpProvider");
  * @constant
  * @type {Map<string, MediaFormat>}
  */
-var SUPPORTED_FORMATS = new Map([["mpegdash", _mediaFormat.MediaFormat.dash], ["applehttp", _mediaFormat.MediaFormat.hls], ["url", _mediaFormat.MediaFormat.mp4]]);
+var SUPPORTED_FORMATS = new Map([["mpegdash", _mediaFormat.MediaFormats.dash], ["applehttp", _mediaFormat.MediaFormats.hls], ["url", _mediaFormat.MediaFormats.mp4]]);
 
 /**
  * Ovp provider parser
@@ -2889,26 +2474,26 @@ var ProviderParser = function () {
       mediaEntry.id = entry.id;
       mediaEntry.duration = entry.duration;
 
-      var type = _enums.MediaEntryType.Unknown;
+      var type = _enums.MediaEntryTypes.Unknown;
 
       switch (entry.entryType) {
-        case _enums.MediaType.IMAGE.value:
-          type = _enums.MediaEntryType.Image;
+        case _enums.MediaTypes.IMAGE.value:
+          type = _enums.MediaEntryTypes.Image;
           break;
-        case _enums.MediaType.AUDIO.value:
-          type = _enums.MediaEntryType.Audio;
+        case _enums.MediaTypes.AUDIO.value:
+          type = _enums.MediaEntryTypes.Audio;
           break;
         default:
           switch (entry.type) {
-            case _enums.EntryType.MEDIA_CLIP.value:
-              type = _enums.MediaEntryType.Vod;
+            case _enums.EntryTypes.MEDIA_CLIP.value:
+              type = _enums.MediaEntryTypes.Vod;
               break;
-            case _enums.EntryType.LIVE_STREAM.value:
-            case _enums.EntryType.LIVE_CHANNEL.value:
-              type = _enums.MediaEntryType.Live;
+            case _enums.EntryTypes.LIVE_STREAM.value:
+            case _enums.EntryTypes.LIVE_CHANNEL.value:
+              type = _enums.MediaEntryTypes.Live;
               break;
             default:
-              type = _enums.MediaEntryType.Unknown;
+              type = _enums.MediaEntryTypes.Unknown;
           }
       }
       mediaEntry.type = type;
@@ -3026,8 +2611,51 @@ var ProviderParser = function () {
 exports.default = ProviderParser;
 
 /***/ }),
-/* 24 */,
-/* 25 */
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var MediaFormats = exports.MediaFormats = function MediaFormats() {
+  _classCallCheck(this, MediaFormats);
+};
+
+MediaFormats.dash = {
+  name: 'dash',
+  mimeType: "application/dash+xml",
+  pathExt: "mpd"
+};
+MediaFormats.hls = {
+  name: 'hls',
+  mimeType: "application/x-mpegURL",
+  pathExt: "m3u8"
+};
+MediaFormats.wvm = {
+  name: 'wvm',
+  mimeType: "video/wvm",
+  pathExt: "wvm"
+};
+MediaFormats.mp4 = {
+  name: 'mp4',
+  mimeType: "video/mp4",
+  pathExt: "mp4"
+};
+MediaFormats.mp3 = {
+  name: 'mp3',
+  mimeType: "audio/mpeg",
+  pathExt: "mp3"
+};
+
+/***/ }),
+/* 23 */,
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3040,27 +2668,27 @@ exports.OvpProvider = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _logger = __webpack_require__(5);
+var _logger = __webpack_require__(4);
 
 var _logger2 = _interopRequireDefault(_logger);
 
-var _providerParser = __webpack_require__(23);
+var _providerParser = __webpack_require__(21);
 
 var _providerParser2 = _interopRequireDefault(_providerParser);
 
-var _dataLoaderManager = __webpack_require__(19);
+var _dataLoaderManager = __webpack_require__(17);
 
 var _dataLoaderManager2 = _interopRequireDefault(_dataLoaderManager);
 
-var _mediaEntryLoader = __webpack_require__(20);
+var _mediaEntryLoader = __webpack_require__(18);
 
 var _mediaEntryLoader2 = _interopRequireDefault(_mediaEntryLoader);
 
-var _sessionLoader = __webpack_require__(21);
+var _sessionLoader = __webpack_require__(19);
 
 var _sessionLoader2 = _interopRequireDefault(_sessionLoader);
 
-var _uiConfigLoader = __webpack_require__(22);
+var _uiConfigLoader = __webpack_require__(20);
 
 var _uiConfigLoader2 = _interopRequireDefault(_uiConfigLoader);
 
@@ -3222,7 +2850,7 @@ var OvpProvider = exports.OvpProvider = function () {
             config.id = mediaEntry.id;
             config.sources = mediaEntry.sources;
             config.duration = mediaEntry.duration;
-            config.type = mediaEntry.type.name;
+            config.type = mediaEntry.type;
             config.metadata = mediaEntry.metaData;
           }
         }
@@ -3251,7 +2879,7 @@ var OvpProvider = exports.OvpProvider = function () {
 exports.default = OvpProvider;
 
 /***/ }),
-/* 26 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3310,7 +2938,7 @@ var PlaySourceUrlBuilder = function () {
       }
 
       var playUrl = baseUrl;
-      if (!PlaySourceUrlBuilder.endsWith(baseUrl, "/")) {
+      if (!baseUrl.endsWith("/")) {
         playUrl += "/";
       }
       playUrl += "p/" + partnerId + "/sp/" + partnerId + "00" + "/playManifest/entryId/" + entryId + "/protocol/" + protocol + "/format/" + format;
@@ -3333,26 +2961,6 @@ var PlaySourceUrlBuilder = function () {
 
       return playUrl;
     }
-
-    /**
-     * Checks if given string end with search string
-     * @param {string} string The given string
-     * @param {string} searchString The string to search
-     * @returns {boolean} Is  given string end with search string
-     */
-
-  }, {
-    key: "endsWith",
-    value: function endsWith(string, searchString) {
-      if (typeof string !== 'string') {
-        return false;
-      }
-      if (typeof searchString !== 'string') {
-        return false;
-      }
-
-      return string.indexOf(searchString, string.length - searchString.length) != -1;
-    }
   }]);
 
   return PlaySourceUrlBuilder;
@@ -3361,7 +2969,7 @@ var PlaySourceUrlBuilder = function () {
 exports.default = PlaySourceUrlBuilder;
 
 /***/ }),
-/* 27 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3403,7 +3011,7 @@ function KalturaAccessControlMessage(data) {
 exports.default = KalturaAccessControlMessage;
 
 /***/ }),
-/* 28 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3413,11 +3021,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _baseServiceResult = __webpack_require__(4);
+var _baseServiceResult = __webpack_require__(3);
 
 var _baseServiceResult2 = _interopRequireDefault(_baseServiceResult);
 
-var _kalturaMediaEntry = __webpack_require__(14);
+var _kalturaMediaEntry = __webpack_require__(13);
 
 var _kalturaMediaEntry2 = _interopRequireDefault(_kalturaMediaEntry);
 
@@ -3473,7 +3081,7 @@ var KalturaBaseEntryListResponse = function (_ServiceResult) {
 exports.default = KalturaBaseEntryListResponse;
 
 /***/ }),
-/* 29 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3483,7 +3091,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _enums = __webpack_require__(2);
+var _enums = __webpack_require__(5);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -3518,7 +3126,7 @@ function KalturaDrmPlaybackPluginData(drm) {
 exports.default = KalturaDrmPlaybackPluginData;
 
 /***/ }),
-/* 30 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3527,8 +3135,6 @@ exports.default = KalturaDrmPlaybackPluginData;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-var _enums = __webpack_require__(2);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -3568,7 +3174,7 @@ function KalturaMetadata(data) {
 exports.default = KalturaMetadata;
 
 /***/ }),
-/* 31 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3577,8 +3183,6 @@ exports.default = KalturaMetadata;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-var _enums = __webpack_require__(2);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -3606,7 +3210,7 @@ function KalturaRuleAction(data) {
 exports.default = KalturaRuleAction;
 
 /***/ }),
-/* 32 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3616,11 +3220,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _baseServiceResult = __webpack_require__(4);
+var _baseServiceResult = __webpack_require__(3);
 
 var _baseServiceResult2 = _interopRequireDefault(_baseServiceResult);
-
-var _enums = __webpack_require__(2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3697,7 +3299,7 @@ var KalturaUiConfResponse = function (_ServiceResult) {
 exports.default = KalturaUiConfResponse;
 
 /***/ }),
-/* 33 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3709,7 +3311,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _ovpService = __webpack_require__(3);
+var _ovpService = __webpack_require__(2);
 
 var _ovpService2 = _interopRequireDefault(_ovpService);
 
@@ -3817,7 +3419,7 @@ var BaseEntryService = function (_OvpService) {
 exports.default = BaseEntryService;
 
 /***/ }),
-/* 34 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3829,7 +3431,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _ovpService = __webpack_require__(3);
+var _ovpService = __webpack_require__(2);
 
 var _ovpService2 = _interopRequireDefault(_ovpService);
 
@@ -3893,7 +3495,7 @@ var MetaDataService = function (_OvpService) {
 exports.default = MetaDataService;
 
 /***/ }),
-/* 35 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3905,7 +3507,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _ovpService = __webpack_require__(3);
+var _ovpService = __webpack_require__(2);
 
 var _ovpService2 = _interopRequireDefault(_ovpService);
 
@@ -3966,8 +3568,8 @@ var SessionService = function (_OvpService) {
 exports.default = SessionService;
 
 /***/ }),
-/* 36 */,
-/* 37 */
+/* 35 */,
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3979,7 +3581,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _ovpService = __webpack_require__(3);
+var _ovpService = __webpack_require__(2);
 
 var _ovpService2 = _interopRequireDefault(_ovpService);
 
@@ -4045,7 +3647,7 @@ var UiConfService = function (_OvpService) {
 exports.default = UiConfService;
 
 /***/ }),
-/* 38 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

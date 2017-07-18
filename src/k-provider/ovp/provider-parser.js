@@ -6,10 +6,10 @@ import KalturaFlavorAsset from './response-types/kaltura-flavor-asset'
 import KalturaMetadataListResponse from './response-types/kaltura-metadata-list-response'
 import PlaySourceUrlBuilder from "./play-source-url-builder"
 import XmlParser from '../xml-parser'
-import {MediaEntryType, EntryType, MediaType} from '../enums'
+import {MediaEntryTypes, EntryTypes, MediaTypes} from '../enums'
 import Logger from '../../util/logger'
 import Configuration from './config'
-import {MediaFormat} from '../../entities/media-format'
+import {MediaFormats} from '../../entities/media-format'
 import MediaEntry from '../../entities/media-entry'
 import Drm from '../../entities/drm'
 import MediaSource from '../../entities/media-source'
@@ -26,9 +26,9 @@ const logger = Logger.get("OvpProvider");
  * @type {Map<string, MediaFormat>}
  */
 const SUPPORTED_FORMATS: Map<string, MediaFormat> = new Map([
-  ["mpegdash", MediaFormat.dash],
-  ["applehttp", MediaFormat.hls],
-  ["url", MediaFormat.mp4]
+  ["mpegdash", MediaFormats.dash],
+  ["applehttp", MediaFormats.hls],
+  ["url", MediaFormats.mp4]
 ]);
 
 /**
@@ -69,26 +69,26 @@ export default class ProviderParser {
     mediaEntry.id = entry.id;
     mediaEntry.duration = entry.duration;
 
-    let type: MediaEntryType = MediaEntryType.Unknown;
+    let type: MediaEntryType = MediaEntryTypes.Unknown;
 
     switch (entry.entryType) {
-      case MediaType.IMAGE.value:
-        type = MediaEntryType.Image;
+      case MediaTypes.IMAGE.value:
+        type = MediaEntryTypes.Image;
         break;
-      case MediaType.AUDIO.value:
-        type = MediaEntryType.Audio;
+      case MediaTypes.AUDIO.value:
+        type = MediaEntryTypes.Audio;
         break;
       default:
         switch (entry.type) {
-          case EntryType.MEDIA_CLIP.value:
-            type = MediaEntryType.Vod;
+          case EntryTypes.MEDIA_CLIP.value:
+            type = MediaEntryTypes.Vod;
             break;
-          case EntryType.LIVE_STREAM.value:
-          case EntryType.LIVE_CHANNEL.value:
-            type = MediaEntryType.Live;
+          case EntryTypes.LIVE_STREAM.value:
+          case EntryTypes.LIVE_CHANNEL.value:
+            type = MediaEntryTypes.Live;
             break;
           default:
-            type = MediaEntryType.Unknown;
+            type = MediaEntryTypes.Unknown;
         }
     }
     mediaEntry.type = type;

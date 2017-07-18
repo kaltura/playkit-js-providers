@@ -1,6 +1,5 @@
 // @flow
 import MediaSource from './media-source'
-import {MediaFormat} from './media-format'
 
 /**
  * Container for the media sources aggregated by stream format.
