@@ -50,6 +50,7 @@ export default class MediaSource {
   /**
    * @constructor
    */
-  constructor(){}
+  constructor() {
+  }
 }
 

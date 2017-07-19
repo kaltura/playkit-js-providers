@@ -1,5 +1,5 @@
 //@flow
-import {MediaEntryType} from '../k-provider/enums'
+import {MediaEntryTypes} from '../k-provider/enums'
 import MediaSources from './media-sources'
 
 /**
@@ -39,8 +39,6 @@ export default class MediaEntry {
    */
   constructor() {
     this.metaData = new Map();
-    this.type = MediaEntryType.Unknown;
+    this.type = MediaEntryTypes.Unknown;
   }
-
-
 }

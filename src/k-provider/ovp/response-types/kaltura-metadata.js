@@ -1,5 +1,4 @@
 //@flow
-import {MetadataObjectType, MetadataStatus} from '../../enums'
 
 /**
  * Ovp BE Metadata

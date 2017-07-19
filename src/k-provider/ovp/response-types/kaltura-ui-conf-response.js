@@ -1,6 +1,5 @@
 //@flow
 import ServiceResult from '../../base-service-result'
-import {UIConfType, UIConfCreationMode} from '../../enums';
 
 /**
  * Ovp BE Ui config response
@@ -75,11 +74,9 @@ export default class KalturaUiConfResponse extends ServiceResult {
       this.partnerTags = data.description;
       this.objType = data.description;
       this.creationMode = data.description;
-
     }
   }
 }
-
 
 
 

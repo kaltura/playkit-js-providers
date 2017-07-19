@@ -1,5 +1,4 @@
 //@flow
-import {KalturaRuleActionType} from '../../enums'
 
 /**
  * Ovp BE rule action
