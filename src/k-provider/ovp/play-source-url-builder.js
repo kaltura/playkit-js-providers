@@ -38,7 +38,7 @@ export default class PlaySourceUrlBuilder {
     playUrl += "p/" + partnerId + "/sp/" + partnerId + "00" + "/playManifest/entryId/" + entryId + "/protocol/" + protocol + "/format/" + format;
 
     if (flavorIds != "") {
-      playUrl += "/falvorIds/" + flavorIds;
+      playUrl += "/flavorIds/" + flavorIds;
     }
     else if (uiConfId != "") {
       playUrl += "/uiConfId/" + uiConfId;
