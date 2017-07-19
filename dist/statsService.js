@@ -43,9 +43,6 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
 /******/
-/******/ 	// identity function for calling harmony imports with the correct context
-/******/ 	__webpack_require__.i = function(value) { return value; };
-/******/
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
@@ -73,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 36);
+/******/ 	return __webpack_require__(__webpack_require__.s = 38);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -266,67 +263,82 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _multiRequestBuilder = __webpack_require__(6);
-
-var _multiRequestBuilder2 = _interopRequireDefault(_multiRequestBuilder);
-
-var _config = __webpack_require__(1);
-
-var _config2 = _interopRequireDefault(_config);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var config = _config2.default.get();
-var SERVICE_NAME = "multirequest";
+/**
+ * Base service result
+ * @classdesc
+ */
+var ServiceResult =
 
 /**
- * Base for all ovp services
+ * @constructor
+ * @param {Object} response - Service response
+ */
+
+/**
+ * @member - The service error
+ * @type {ServiceError}
+ */
+
+/**
+ * @member - The service result data
+ * @type {Object}
+ */
+function ServiceResult(response) {
+  _classCallCheck(this, ServiceResult);
+
+  this.hasError = false;
+
+  if (response.objectType === "KalturaAPIException") {
+    this.hasError = true;
+    this.error = new ServiceError(response.code, response.message);
+  } else {
+    this.data = response;
+  }
+}
+
+/**
+ * @member - Is service returned an error
+ * @type {boolean}
+ */
+;
+
+/**
+ * Service error
  * @classdesc
  */
 
-var OvpService = function () {
-  function OvpService() {
-    _classCallCheck(this, OvpService);
-  }
 
-  _createClass(OvpService, null, [{
-    key: 'getMultirequest',
+exports.default = ServiceResult;
 
-    /**
-     * Gets a new instance of MultiRequestBuilder with ovp params
-     * @function getMultirequest
-     * @param {string} ks The ks
-     * @param {string} partnerId The partner ID
-     * @returns {MultiRequestBuilder} The multi request builder
-     * @static
-     */
-    value: function getMultirequest(ks, partnerId) {
-      var ovpParams = config.serviceParams;
-      Object.assign(ovpParams, { ks: ks });
-      if (partnerId) {
-        Object.assign(ovpParams, { partnerId: partnerId });
-      }
-      var multiReq = new _multiRequestBuilder2.default();
-      multiReq.method = "POST";
-      multiReq.service = SERVICE_NAME;
-      multiReq.baseUrl = config.beUrl;
-      multiReq.params = ovpParams;
-      return multiReq;
-    }
-  }]);
+var ServiceError =
 
-  return OvpService;
-}();
+/**
+ * @constructor
+ * @param {string} code - The result code
+ * @param {string} message - The result message
+ */
 
-exports.default = OvpService;
+/**
+ * @member - The error code
+ * @type {string}
+ */
+function ServiceError(code, message) {
+  _classCallCheck(this, ServiceError);
+
+  this.code = code;
+  this.message = message;
+}
+/**
+ * @member - The error message
+ * @type {string}
+ */
+;
 
 /***/ }),
 
-/***/ 36:
+/***/ 38:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -339,7 +351,7 @@ exports.RequestBuilder = exports.Configuration = exports.StatsService = undefine
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _ovpService = __webpack_require__(3);
+var _ovpService = __webpack_require__(4);
 
 var _ovpService2 = _interopRequireDefault(_ovpService);
 
@@ -422,78 +434,63 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _multiRequestBuilder = __webpack_require__(6);
+
+var _multiRequestBuilder2 = _interopRequireDefault(_multiRequestBuilder);
+
+var _config = __webpack_require__(1);
+
+var _config2 = _interopRequireDefault(_config);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+var config = _config2.default.get();
+var SERVICE_NAME = "multirequest";
+
 /**
- * Base service result
+ * Base for all ovp services
  * @classdesc
  */
-var ServiceResult =
 
-/**
- * @constructor
- * @param {Object} response - Service response
- */
-
-/**
- * @member - The service error
- * @type {ServiceError}
- */
-
-/**
- * @member - The service result data
- * @type {Object}
- */
-function ServiceResult(response) {
-  _classCallCheck(this, ServiceResult);
-
-  this.hasError = false;
-
-  if (response.objectType === "KalturaAPIException") {
-    this.hasError = true;
-    this.error = new ServiceError(response.code, response.message);
-  } else {
-    this.data = response;
+var OvpService = function () {
+  function OvpService() {
+    _classCallCheck(this, OvpService);
   }
-}
 
-/**
- * @member - Is service returned an error
- * @type {boolean}
- */
-;
+  _createClass(OvpService, null, [{
+    key: 'getMultirequest',
 
-/**
- * Service error
- * @classdesc
- */
+    /**
+     * Gets a new instance of MultiRequestBuilder with ovp params
+     * @function getMultirequest
+     * @param {string} ks The ks
+     * @param {string} partnerId The partner ID
+     * @returns {MultiRequestBuilder} The multi request builder
+     * @static
+     */
+    value: function getMultirequest(ks, partnerId) {
+      var ovpParams = config.serviceParams;
+      Object.assign(ovpParams, { ks: ks });
+      if (partnerId) {
+        Object.assign(ovpParams, { partnerId: partnerId });
+      }
+      var multiReq = new _multiRequestBuilder2.default();
+      multiReq.method = "POST";
+      multiReq.service = SERVICE_NAME;
+      multiReq.baseUrl = config.beUrl;
+      multiReq.params = ovpParams;
+      return multiReq;
+    }
+  }]);
 
+  return OvpService;
+}();
 
-exports.default = ServiceResult;
-
-var ServiceError =
-
-/**
- * @constructor
- * @param {string} code - The result code
- * @param {string} message - The result message
- */
-
-/**
- * @member - The error code
- * @type {string}
- */
-function ServiceError(code, message) {
-  _classCallCheck(this, ServiceError);
-
-  this.code = code;
-  this.message = message;
-}
-/**
- * @member - The error message
- * @type {string}
- */
-;
+exports.default = OvpService;
 
 /***/ }),
 
@@ -510,7 +507,7 @@ exports.LOG_LEVEL = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _jsLogger = __webpack_require__(8);
+var _jsLogger = __webpack_require__(7);
 
 var JsLogger = _interopRequireWildcard(_jsLogger);
 
@@ -570,7 +567,7 @@ var _requestBuilder = __webpack_require__(0);
 
 var _requestBuilder2 = _interopRequireDefault(_requestBuilder);
 
-var _baseServiceResult = __webpack_require__(4);
+var _baseServiceResult = __webpack_require__(3);
 
 var _baseServiceResult2 = _interopRequireDefault(_baseServiceResult);
 
@@ -715,7 +712,7 @@ exports.MultiRequestResult = function MultiRequestResult(response) {
 
 /***/ }),
 
-/***/ 8:
+/***/ 7:
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
