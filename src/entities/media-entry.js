@@ -14,6 +14,11 @@ export default class MediaEntry {
    */
   id: string;
   /**
+   * @member - entry name
+   * @type {string}
+   */
+  name: string;
+  /**
    * @member - entry sources
    * @type {MediaSources}
    */

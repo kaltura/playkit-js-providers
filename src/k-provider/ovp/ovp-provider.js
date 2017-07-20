@@ -15,6 +15,7 @@ const logger = Logger.get("OvpProvider");
 
 type playerConfig = {
   id: string,
+  name: string,
   session: Object,
   sources: MediaSources,
   duration: number,
@@ -115,6 +116,7 @@ export class OvpProvider {
     logger.debug("Data parsing started");
     let config: playerConfig = {
       id: "",
+      name: "",
       session: {
         partnerID: this.partnerID,
         uiConfID: this._uiConfId,
@@ -147,6 +149,7 @@ export class OvpProvider {
         if (mediaLoader != null && mediaLoader.response != null) {
           let mediaEntry: MediaEntry = ProviderParser.getMediaEntry(this.ks, this.partnerID, this._uiConfId, mediaLoader.response);
           config.id = mediaEntry.id;
+          config.name = mediaEntry.name;
           config.sources = mediaEntry.sources;
           config.duration = mediaEntry.duration;
           config.type = mediaEntry.type;
