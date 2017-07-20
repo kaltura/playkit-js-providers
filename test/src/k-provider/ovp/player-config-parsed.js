@@ -1,6 +1,7 @@
 //@flow
 let NoPluginsNoDrm = {
   "id": "1_rsrdfext",
+  "name": "FO21934-HDTX-SWE",
   "session": {
     "partnerID": 1082342,
     "uiConfID": undefined,
@@ -122,6 +123,7 @@ let NoPluginsNoDrm = {
 
 let NoPluginsWithDrm = {
   "id": "1_rwbj3j0a",
+  "name": "DRM TEST",
   "session": {
     "partnerID": 1068292,
     "uiConfID": undefined,
@@ -168,6 +170,7 @@ let NoPluginsWithDrm = {
 
 let WithPluginsNoDrm = {
   "id": "1_rsrdfext",
+  "name": "FO21934-HDTX-SWE",
   "session": {
     "partnerID": 1082342,
     "uiConfID": 38621471,
@@ -360,6 +363,7 @@ let WithPluginsNoDrm = {
 
 let WithPluginsWithDrm = {
   "id": "1_rwbj3j0a",
+  "name": "DRM TEST",
   "session": {
     "partnerID": 1068292,
     "uiConfID": 38601981,
@@ -477,6 +481,7 @@ let WithPluginsWithDrm = {
 
 let AudioEntryWithoutPlugins = {
   "id": "0_vyzw3ceu",
+  "name": "TEST_WAESP_PLACINGTEST_DUAL",
   "session": {
     "partnerID": 1082342,
     "uiConfID": undefined,
@@ -517,6 +522,7 @@ let AudioEntryWithoutPlugins = {
 
 let ImageEntryWithoutPlugins = {
   "id": "0_84zz779s",
+  "name": "Channel HU-TEST-STG-Attila-160203 Thumbnail",
   "session": {
     "partnerID": 1082342,
     "ks": "YWU4Y2I0ZDk4ZmNiMjUyZjA1NmQ1NmMzMTdjZmFjZWEyODc2NDE0YXwxMDgyMzQyOzEwODIzNDI7MTQ5MDg2MTk1OTswOzE0OTA3NzU1NTkuNzk0MzswO3ZpZXc6Kix3aWRnZXQ6MTs7",
