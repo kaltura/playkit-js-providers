@@ -1786,7 +1786,7 @@ var OvpProvider = exports.OvpProvider = function () {
       return new Promise(function (resolve, reject) {
         if (_this.validateParams(entryId, uiConfId)) {
           var ks = _this.ks;
-          if (_this._isAnonymous) {
+          if (!ks) {
             ks = "{1:result:ks}";
             _this._dataLoader.add(_sessionLoader2.default, { partnerId: _this.partnerID });
           }
@@ -1832,7 +1832,6 @@ var OvpProvider = exports.OvpProvider = function () {
           var sessionLoader = data.get(_sessionLoader2.default.name);
           if (sessionLoader != null && sessionLoader.response != null) {
             this.ks = sessionLoader.response;
-            this._isAnonymous = !this.ks;
             config.session.ks = this.ks;
           }
         }
@@ -1847,7 +1846,7 @@ var OvpProvider = exports.OvpProvider = function () {
         if (data.has(_mediaEntryLoader2.default.name)) {
           var mediaLoader = data.get(_mediaEntryLoader2.default.name);
           if (mediaLoader != null && mediaLoader.response != null) {
-            var mediaEntry = _providerParser2.default.getMediaEntry(this.ks, this.partnerID, this._uiConfId, mediaLoader.response);
+            var mediaEntry = _providerParser2.default.getMediaEntry(this._isAnonymous ? "" : this.ks, this.partnerID, this._uiConfId, mediaLoader.response);
             config.id = mediaEntry.id;
             config.name = mediaEntry.name;
             config.sources = mediaEntry.sources;
@@ -2419,14 +2418,14 @@ var PlaySourceUrlBuilder = function () {
         playUrl += "/uiConfId/" + uiConfId;
       }
 
-      if (this.ks != "") {
+      if (ks != "") {
         playUrl += "/ks/" + ks;
       }
 
       playUrl += "/a." + extension;
 
       if (uiConfId && flavorIds != "") {
-        playUrl += "?uiConfId=." + uiConfId;
+        playUrl += "?uiConfId=" + uiConfId;
       }
 
       return playUrl;
