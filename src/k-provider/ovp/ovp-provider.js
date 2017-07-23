@@ -86,7 +86,7 @@ export class OvpProvider {
     return new Promise((resolve, reject) => {
       if (this.validateParams(entryId, uiConfId)) {
         let ks: string = this.ks;
-        if (this._isAnonymous) {
+        if (!ks) {
           ks = "{1:result:ks}";
           this._dataLoader.add(SessionLoader, {partnerId: this.partnerID});
         }
@@ -132,7 +132,6 @@ export class OvpProvider {
         let sessionLoader = data.get(SessionLoader.name);
         if (sessionLoader != null && sessionLoader.response != null) {
           this.ks = sessionLoader.response;
-          this._isAnonymous = !this.ks;
           config.session.ks = this.ks;
         }
       }
@@ -147,7 +146,7 @@ export class OvpProvider {
       if (data.has(MediaEntryLoader.name)) {
         let mediaLoader = data.get(MediaEntryLoader.name);
         if (mediaLoader != null && mediaLoader.response != null) {
-          let mediaEntry: MediaEntry = ProviderParser.getMediaEntry(this.ks, this.partnerID, this._uiConfId, mediaLoader.response);
+          let mediaEntry: MediaEntry = ProviderParser.getMediaEntry(this._isAnonymous ? "" : this.ks, this.partnerID, this._uiConfId, mediaLoader.response);
           config.id = mediaEntry.id;
           config.name = mediaEntry.name;
           config.sources = mediaEntry.sources;

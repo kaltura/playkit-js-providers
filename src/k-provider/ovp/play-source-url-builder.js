@@ -44,14 +44,14 @@ export default class PlaySourceUrlBuilder {
       playUrl += "/uiConfId/" + uiConfId;
     }
 
-    if (this.ks != "") {
+    if (ks != "") {
       playUrl += "/ks/" + ks;
     }
 
     playUrl += "/a." + extension;
 
     if (uiConfId && flavorIds != "") {
-      playUrl += "?uiConfId=." + uiConfId;
+      playUrl += "?uiConfId=" + uiConfId;
     }
 
     return playUrl;

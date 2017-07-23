@@ -72,7 +72,6 @@ describe('OvpProvider.partnerId:1082342', function () {
 
   it('should return config without plugins and without drm data for audio', (done) => {
     let entryID = "0_vyzw3ceu";
-    provider = new OvpProvider(partnerId);
     sinon.stub(MultiRequestBuilder.prototype, "execute").callsFake(
       function () {
         return new Promise((resolve) => {
@@ -97,7 +96,6 @@ describe('OvpProvider.partnerId:1082342', function () {
 
   it('should return config without plugins and without drm data for image', (done) => {
     let entryID = "0_vyzw3ceu";
-    provider = new OvpProvider(partnerId);
     sinon.stub(MultiRequestBuilder.prototype, "execute").callsFake(
       function () {
         return new Promise((resolve) => {
@@ -125,10 +123,11 @@ describe('OvpProvider.partnerId:1068292', function () {
   let provider;
   let sandbox;
   let partnerId = 1068292;
+  let ks = 'NTAwZjViZWZjY2NjNTRkNGEyMjU1MTg4OGE1NmUwNDljZWJkMzk1MXwxMDY4MjkyOzEwNjgyOTI7MTQ5MDE3NjE0NjswOzE0OTAwODk3NDYuMDIyNjswO3ZpZXc6Kix3aWRnZXQ6MTs7';
 
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
-    provider = new OvpProvider(partnerId);
+    provider = new OvpProvider(partnerId, ks);
   });
 
   afterEach(() => {
@@ -139,7 +138,6 @@ describe('OvpProvider.partnerId:1068292', function () {
   it('should return config without plugins with drm data', (done) => {
 
     let entryID = "1_rwbj3j0a";
-    provider = new OvpProvider(partnerId);
     sinon.stub(MultiRequestBuilder.prototype, "execute").callsFake(
       function () {
         return new Promise((resolve) => {
@@ -164,7 +162,6 @@ describe('OvpProvider.partnerId:1068292', function () {
 
   it('should return reject when try to get config with wrong entry ID', (done) => {
     let entryID = "1_rwbj3j0affff";
-    provider = new OvpProvider(partnerId);
     sinon.stub(MultiRequestBuilder.prototype, "execute").callsFake(
       function () {
         return new Promise((resolve, reject) => {
@@ -191,7 +188,6 @@ describe('OvpProvider.partnerId:1068292', function () {
   it('should return config with plugins and with drm data', (done) => {
     let entryID = "1_rwbj3j0a";
     let uiConfID = 38601981;
-    provider = new OvpProvider(partnerId);
     sinon.stub(MultiRequestBuilder.prototype, "execute").callsFake(
       function () {
         return new Promise((resolve) => {
@@ -217,7 +213,6 @@ describe('OvpProvider.partnerId:1068292', function () {
   it('should return reject when try to get config with wrong uiConf ID', (done) => {
     let entryID = "1_rwbj3j0a";
     let uiConfID = 38601981;
-    provider = new OvpProvider(partnerId);
     sinon.stub(MultiRequestBuilder.prototype, "execute").callsFake(
       function () {
         return new Promise((resolve) => {
