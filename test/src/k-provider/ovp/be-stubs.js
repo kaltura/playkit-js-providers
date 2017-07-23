@@ -308,12 +308,6 @@ let AnonymousMocEntryWithoutUIConfNoDrmData = [
 
 let AnonymousMocEntryWithoutUIConfWithDrmData = [
   {
-    "partnerId": 1068292,
-    "ks": "NTAwZjViZWZjY2NjNTRkNGEyMjU1MTg4OGE1NmUwNDljZWJkMzk1MXwxMDY4MjkyOzEwNjgyOTI7MTQ5MDE3NjE0NjswOzE0OTAwODk3NDYuMDIyNjswO3ZpZXc6Kix3aWRnZXQ6MTs7",
-    "userId": 0,
-    "objectType": "KalturaStartWidgetSessionResponse"
-  },
-  {
     "objects": [
       {
         "mediaType": 1,
@@ -881,12 +875,6 @@ let EntryWithUIConfNoDrmData = [
 ];
 
 let EntryWithUIConfWithDrmData = [
-  {
-    "partnerId": 1068292,
-    "ks": "ZTFiNzk4MmM5MjJiYzkwODliMzQzZTQ3Y2I4MzIwYTIzMmQzMTMxYnwxMDY4MjkyOzEwNjgyOTI7MTQ5MDI1Mjk5MjswOzE0OTAxNjY1OTIuODUyMTswO3ZpZXc6Kix3aWRnZXQ6MTs7",
-    "userId": 0,
-    "objectType": "KalturaStartWidgetSessionResponse"
-  },
   {
     "objects": [
       {
