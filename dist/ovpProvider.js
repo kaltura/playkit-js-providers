@@ -1504,6 +1504,12 @@ var MediaEntry =
  * @member - entry sources
  * @type {MediaSources}
  */
+
+
+/**
+ * @member - entry ID
+ * @type {string}
+ */
 function MediaEntry() {
   _classCallCheck(this, MediaEntry);
 
@@ -1520,9 +1526,8 @@ function MediaEntry() {
  * @type {number}
  */
 
-
 /**
- * @member - entry ID
+ * @member - entry name
  * @type {string}
  */
 ;
@@ -1811,6 +1816,7 @@ var OvpProvider = exports.OvpProvider = function () {
       logger.debug("Data parsing started");
       var config = {
         id: "",
+        name: "",
         session: {
           partnerID: this.partnerID,
           uiConfID: this._uiConfId
@@ -1843,6 +1849,7 @@ var OvpProvider = exports.OvpProvider = function () {
           if (mediaLoader != null && mediaLoader.response != null) {
             var mediaEntry = _providerParser2.default.getMediaEntry(this.ks, this.partnerID, this._uiConfId, mediaLoader.response);
             config.id = mediaEntry.id;
+            config.name = mediaEntry.name;
             config.sources = mediaEntry.sources;
             config.duration = mediaEntry.duration;
             config.type = mediaEntry.type;
@@ -1988,6 +1995,7 @@ var ProviderParser = function () {
       var metadata = this._parseMetaData(metadataList);
       mediaEntry.metaData = metadata;
       mediaEntry.id = entry.id;
+      mediaEntry.name = entry.name;
       mediaEntry.duration = entry.duration;
 
       var type = _enums.MediaEntryTypes.Unknown;
