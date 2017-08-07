@@ -18,6 +18,8 @@ let AnonymousMocEntryWithoutUIConfNoDrmData = [
         "name": "FO21934-HDTX-SWE",
         "tags": "",
         "type": 1,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.",
+        "thumbnailUrl": "http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360",
         "objectType": "KalturaMediaEntry"
       }
     ],
@@ -318,6 +320,8 @@ let AnonymousMocEntryWithoutUIConfWithDrmData = [
         "id": "1_rwbj3j0a",
         "name": "DRM TEST",
         "type": 1,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.",
+        "thumbnailUrl": "http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360",
         "objectType": "KalturaMediaEntry"
       }
     ],
@@ -564,6 +568,8 @@ let EntryWithUIConfNoDrmData = [
         "name": "FO21934-HDTX-SWE",
         "tags": "",
         "type": 1,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.",
+        "thumbnailUrl": "http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360",
         "objectType": "KalturaMediaEntry"
       }
     ],
@@ -886,6 +892,8 @@ let EntryWithUIConfWithDrmData = [
         "id": "1_rwbj3j0a",
         "name": "DRM TEST",
         "type": 1,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.",
+        "thumbnailUrl": "http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360",
         "objectType": "KalturaMediaEntry"
       }
     ],
@@ -1123,6 +1131,8 @@ let WrongUiConfID = [
         "id": "1_rwbj3j0a",
         "name": "DRM TEST",
         "type": 1,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.",
+        "thumbnailUrl": "http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360",
         "objectType": "KalturaMediaEntry"
       }
     ],
@@ -1347,6 +1357,8 @@ let AudioEntryWithoutPlugins = [
         "name": "TEST_WAESP_PLACINGTEST_DUAL",
         "tags": "dual audio, english, spanish",
         "type": 1,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.",
+        "thumbnailUrl": "http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360",
         "objectType": "KalturaMediaEntry"
       }
     ],
@@ -1472,6 +1484,8 @@ let ImageEntryWithoutPlugins = [
         "id": "0_84zz779s",
         "name": "Channel HU-TEST-STG-Attila-160203 Thumbnail",
         "type": 1,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.",
+        "thumbnailUrl": "http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360",
         "objectType": "KalturaMediaEntry"
       }
     ],
