@@ -63,7 +63,7 @@ export default class BaseEntryService extends OvpService {
   static getEntryListReqParams(entryId: string, ks: string): any {
     let filterParams = {redirectFromEntryId: entryId};
     let responseProfileParams = {
-      fields: "id,name,dataUrl,duration,msDuration,flavorParamsIds,mediaType,type,tags",
+      fields: "id,name,description,thumbnailUrl,dataUrl,duration,msDuration,flavorParamsIds,mediaType,type,tags",
       type: 1
     };
     return {ks: ks, filter: filterParams, responseProfile: responseProfileParams};

@@ -35,9 +35,9 @@ export default class MediaEntry {
   type: MediaEntryType;
   /**
    * @member - entry metadata
-   * @type {Map<string,string>}
+   * @type {Object}
    */
-  metaData: Map<string, string>;
+  metaData: Object;
 
   /**
    * @constructor
