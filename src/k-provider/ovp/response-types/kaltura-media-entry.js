@@ -16,6 +16,11 @@ export default class KalturaMediaEntry {
    */
   name: string;
   /**
+   * @member - Entry description
+   * @type {string}
+   */
+  description: string;
+  /**
    * @member - The URL used for playback. This is not the download URL.
    * @type {string}
    */
@@ -40,6 +45,11 @@ export default class KalturaMediaEntry {
    * @type {MediaType}
    */
   entryType: MediaType;
+  /**
+   * @member - Entry poster image
+   * @type {string}
+   */
+  poster: string;
 
   /**
    * @constructor
@@ -48,11 +58,13 @@ export default class KalturaMediaEntry {
   constructor(entry: Object) {
     this.id = entry.id;
     this.name = entry.name;
+    this.description = entry.description;
     this.dataUrl = entry.dataUrl;
     this.type = entry.type;
     this.entryType = entry.mediaType;
     this.flavorParamsIds = entry.flavorParamsIds;
     this.duration = entry.duration;
+    this.poster = entry.thumbnailUrl;
   }
 }
 

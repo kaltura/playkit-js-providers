@@ -56,11 +56,13 @@ export default class ProviderParser {
 
     mediaEntry.sources = sources;
 
-    let metadata: Map<string, string> = this._parseMetaData(metadataList);
+    let metadata: Object = this._parseMetaData(metadataList);
     mediaEntry.metaData = metadata;
     mediaEntry.id = entry.id;
     mediaEntry.name = entry.name;
     mediaEntry.duration = entry.duration;
+    mediaEntry.metaData["description"] = entry.description;
+    mediaEntry.metaData["poster"] = entry.poster;
 
     let type: MediaEntryType = MediaEntryTypes.Unknown;
 

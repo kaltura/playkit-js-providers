@@ -101,6 +101,8 @@ let NoPluginsNoDrm = {
   "duration": 55,
   "type": "Vod",
   "metadata": {
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.",
+    "poster": "http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360",
     "OriginalFilename": "FO21934-HDTX-SWE.mov",
     "Locale": "sv_SE",
     "PropertyCode": "FTA-nm",
@@ -163,7 +165,10 @@ let NoPluginsWithDrm = {
   },
   "duration": 596,
   "type": "Vod",
-  "metadata": {},
+  "metadata": {
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.",
+    "poster": "http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360"
+  },
   "plugins": {}
 };
 
@@ -269,6 +274,8 @@ let WithPluginsNoDrm = {
   "duration": 55,
   "type": "Vod",
   "metadata": {
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.",
+    "poster": "http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360",
     "OriginalFilename": "FO21934-HDTX-SWE.mov",
     "Locale": "sv_SE",
     "PropertyCode": "FTA-nm",
@@ -402,7 +409,10 @@ let WithPluginsWithDrm = {
   },
   "duration": 596,
   "type": "Vod",
-  "metadata": {},
+  "metadata": {
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.",
+    "poster": "http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360"
+  },
   "plugins": {
     "topBarContainer": {
       "plugin": true
@@ -514,7 +524,10 @@ let AudioEntryWithoutPlugins = {
   },
   "duration": 0,
   "type": "Audio",
-  "metadata": {},
+  "metadata": {
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.",
+    "poster": "http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360"
+  },
   "plugins": {}
 };
 
@@ -533,7 +546,10 @@ let ImageEntryWithoutPlugins = {
   },
   "duration": 0,
   "type": "Image",
-  "metadata": {},
+  "metadata": {
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.",
+    "poster": "http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360"
+  },
   "plugins": {}
 };
 
@@ -594,6 +610,8 @@ let WrongUiConfID = [
           "id": "1_rwbj3j0a",
           "name": "DRM TEST",
           "type": 1,
+          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.",
+          "thumbnailUrl": "http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360",
           "objectType": "KalturaMediaEntry"
         }
       ],
