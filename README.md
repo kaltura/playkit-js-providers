@@ -41,9 +41,9 @@ Finally, add the bundle as a script tag in your page, and initialize the provide
 <script type="text/javascript" src="/PATH/TO/FILE/ovpProvider.js"></script>
 <div id="videoContainer" style="height:360px;width:640px">
 <script type="text/javascript">
-const partnerId = "YOUR_PARTNER_ID";
-const entryID = "YOUR_ENTRY_ID";
-let provider = new OvpProvider(partnerId);
+var partnerId = "YOUR_PARTNER_ID";
+var entryID = "YOUR_ENTRY_ID";
+var provider = new OvpProvider(partnerId);
 provider.getConfig(entryID).then(data => {
   console.log(data);
   //Manipulate data
@@ -65,7 +65,7 @@ yarn run test
 You can test individual browsers:
 ```
 yarn run test:chrome
-yarn run test:firefix
+yarn run test:firefox
 yarn run test:safari
 ```
 
