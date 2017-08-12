@@ -1,4 +1,4 @@
-# PlayKit JS Providers - OTT and OVP media providers plugins for the PlayKit JS Player
+# PlayKit JS Providers - OTT and OVP media providers plugins for the [PlayKit JS Player]
 
 [![Build Status](https://travis-ci.com/kaltura/playkit-js-providers.svg?token=s2ZQw18ukx9Q6ePzDX3F&branch=master)](https://travis-ci.com/kaltura/playkit-js-providers)
 
