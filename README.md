@@ -39,14 +39,14 @@ Finally, add the bundle as a script tag in your page, and initialize the provide
 
 ```html
 <script type="text/javascript" src="/PATH/TO/FILE/ovpProvider.js"></script>
-<div id="videoContainer" style="height:360px;width:640px">
+<div id="videoContainer" style="height:360px; width:640px">
 <script type="text/javascript">
 var partnerId = "YOUR_PARTNER_ID";
-var entryID = "YOUR_ENTRY_ID";
-var provider = new OvpProvider(partnerId);
-provider.getConfig(entryID).then(data => {
+var entryId = "YOUR_ENTRY_ID";
+var ovpProvider = new PlaykitJsProviders.OvpProvider(partnerId);
+ovpProvider.getConfig(entryId).then(function(data) {
   console.log(data);
-  //Manipulate data
+  // Manipulate data
 });
 </script>
 ```
