@@ -4,7 +4,7 @@ import KalturaFlavorAsset from './response-types/kaltura-flavor-asset'
 import KalturaMetadataListResponse from './response-types/kaltura-metadata-list-response'
 import PlaySourceUrlBuilder from "./play-source-url-builder"
 import XmlParser from '../xml-parser'
-import {MediaEntryTypes, EntryTypes, MediaTypes, Scheme} from '../enums'
+import {MediaEntryTypes, EntryTypes, MediaTypes, DrmScheme} from '../enums'
 import Logger from '../../util/logger'
 import Configuration from './config'
 import {MediaFormats} from '../../entities/media-format'
@@ -177,7 +177,7 @@ export default class ProviderParser {
         playUrl = kalturaSource.url;
       }
 
-      if (playUrl == "") {
+      if (playUrl === "") {
         logger.error(`failed to create play url from source, discarding source: (${entryId}_${kalturaSource.deliveryProfileId}), ${kalturaSource.format}.`);
         return mediaSource;
       }
@@ -187,7 +187,7 @@ export default class ProviderParser {
       if (kalturaSource.hasDrmData()) {
         let drmParams: Array<Drm> = [];
         kalturaSource.drm.forEach((drm) => {
-          drmParams.push(new Drm(drm.licenseURL, Scheme[drm.scheme], drm.certificate));
+          drmParams.push(new Drm(drm.licenseURL, DrmScheme[drm.scheme], drm.certificate));
         });
         mediaSource.drmData = drmParams;
       }

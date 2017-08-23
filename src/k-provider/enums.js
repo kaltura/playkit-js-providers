@@ -1,9 +1,9 @@
 //@flow
-export class Scheme {
-  static ['drm.PLAYREADY_CENC']: string = "com.microsoft.playready";
-  static ['drm.WIDEVINE_CENC']: string = "com.widevine.alpha";
-  static ['fairplay.FAIRPLAY']: string = "com.apple.fairplay";
-}
+export const DrmScheme = {
+  'drm.PLAYREADY_CENC': 'com.microsoft.playready',
+  'drm.WIDEVINE_CENC': 'com.widevine.alpha',
+  'fairplay.FAIRPLAY': 'com.apple.fairplay'
+};
 
 export class KalturaRuleActionTypes {
   static DRM_POLICY: KalturaRuleActionType = "drm.DRM_POLICY";

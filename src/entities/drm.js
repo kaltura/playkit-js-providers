@@ -1,7 +1,5 @@
 //@flow
 
-import {Scheme} from '../k-provider/enums';
-
 /**
  * Drm data
  * @classdesc

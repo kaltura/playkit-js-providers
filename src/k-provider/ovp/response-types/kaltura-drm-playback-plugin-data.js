@@ -1,5 +1,4 @@
 //@flow
-import {Scheme} from '../../enums'
 
 /**
  * Ovp BE DrmPlaybackPluginData

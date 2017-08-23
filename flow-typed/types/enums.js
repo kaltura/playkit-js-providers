@@ -9,3 +9,4 @@ declare type MediaType = { value: number };
 declare type MediaEntryType = string;
 declare type UIConfType = number;
 declare type UIConfCreationMode = number;
+declare type Scheme = string;
