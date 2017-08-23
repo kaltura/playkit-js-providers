@@ -1,10 +1,8 @@
 //@flow
 export class Scheme {
-  static PLAYREADY_CENC: string = "drm.PLAYREADY_CENC";
-  static WIDEVINE_CENC: string = "drm.WIDEVINE_CENC";
-  static FAIRPLAY: string = "fairplay.FAIRPLAY";
-  static PLAYREADY: string = "playReady.PLAYREADY";
-  static WIDEVINE: string = "widevine.WIDEVINE";
+  static ['drm.PLAYREADY_CENC']: string = "com.microsoft.playready";
+  static ['drm.WIDEVINE_CENC']: string = "com.widevine.alpha";
+  static ['fairplay.FAIRPLAY']: string = "com.apple.fairplay";
 }
 
 export class KalturaRuleActionTypes {
