@@ -21,7 +21,7 @@ export default class Drm {
 
   /**
    * @member - The drm certificate
-   * @type {string}
+   * @type {?string}
    */
   certificate: ?string;
 
@@ -29,6 +29,7 @@ export default class Drm {
    * @constructor
    * @param {string} licenseUrl - the license URL
    * @param {Scheme} scheme - the drm scheme
+   * @param {?string} certificate - the drm certificate
    */
   constructor(licenseUrl: string, scheme: Scheme, certificate: ?string) {
     this.licenseUrl = licenseUrl;

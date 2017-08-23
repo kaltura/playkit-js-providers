@@ -20,7 +20,7 @@ export default class KalturaDrmPlaybackPluginData {
 
   /**
    * @member - The drm certificate
-   * @type {string}
+   * @type {?string}
    */
   certificate: ?string;
 
