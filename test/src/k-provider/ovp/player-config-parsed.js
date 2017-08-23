@@ -140,11 +140,11 @@ let NoPluginsWithDrm = {
         "drmData": [
           {
             "licenseUrl": "https://udrm.kaltura.com//cenc/playready/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiTlRBd1pqVmlaV1pqWTJOak5UUmtOR0V5TWpVMU1UZzRPR0UxTm1Vd05EbGpaV0prTXprMU1Yd3hNRFk0TWpreU96RXdOamd5T1RJN01UUTVNREUzTmpFME5qc3dPekUwT1RBd09EazNORFl1TURJeU5qc3dPM1pwWlhjNktpeDNhV1JuWlhRNk1UczciLCJhY2NvdW50X2lkIjoxMDY4MjkyLCJjb250ZW50X2lkIjoiMV9yd2JqM2owYSIsImZpbGVzIjoiMV85MmRmeXJ6NSwxXzlkaGg2bTBpLDFfenVkb3V1YWgsMV9yMHd1Nnk3NywxX296MzQza2xhIn0%3D&signature=jl09zYv64OyEfVUt85rlA0WnK1w%3D",
-            "scheme": "drm.PLAYREADY_CENC"
+            "scheme": "com.microsoft.playready"
           },
           {
             "licenseUrl": "https://udrm.kaltura.com//cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiTlRBd1pqVmlaV1pqWTJOak5UUmtOR0V5TWpVMU1UZzRPR0UxTm1Vd05EbGpaV0prTXprMU1Yd3hNRFk0TWpreU96RXdOamd5T1RJN01UUTVNREUzTmpFME5qc3dPekUwT1RBd09EazNORFl1TURJeU5qc3dPM1pwWlhjNktpeDNhV1JuWlhRNk1UczciLCJhY2NvdW50X2lkIjoxMDY4MjkyLCJjb250ZW50X2lkIjoiMV9yd2JqM2owYSIsImZpbGVzIjoiMV85MmRmeXJ6NSwxXzlkaGg2bTBpLDFfenVkb3V1YWgsMV9yMHd1Nnk3NywxX296MzQza2xhIn0%3D&signature=jl09zYv64OyEfVUt85rlA0WnK1w%3D",
-            "scheme": "drm.WIDEVINE_CENC"
+            "scheme": "com.widevine.alpha"
           }
         ]
       }
@@ -157,7 +157,7 @@ let NoPluginsWithDrm = {
         "drmData": [
           {
             "licenseUrl": "https://udrmv3.kaltura.com//fps/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiTlRBd1pqVmlaV1pqWTJOak5UUmtOR0V5TWpVMU1UZzRPR0UxTm1Vd05EbGpaV0prTXprMU1Yd3hNRFk0TWpreU96RXdOamd5T1RJN01UUTVNREUzTmpFME5qc3dPekUwT1RBd09EazNORFl1TURJeU5qc3dPM1pwWlhjNktpeDNhV1JuWlhRNk1UczciLCJhY2NvdW50X2lkIjoxMDY4MjkyLCJjb250ZW50X2lkIjoiMV9yd2JqM2owYSIsImZpbGVzIjoiMV85MmRmeXJ6NSwxXzlkaGg2bTBpLDFfenVkb3V1YWgsMV9yMHd1Nnk3NywxX296MzQza2xhIn0%3D&signature=jl09zYv64OyEfVUt85rlA0WnK1w%3D",
-            "scheme": "fairplay.FAIRPLAY"
+            "scheme": "com.apple.fairplay"
           }
         ]
       }
@@ -384,11 +384,11 @@ let WithPluginsWithDrm = {
         "drmData": [
           {
             "licenseUrl": "https://udrm.kaltura.com//cenc/playready/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiWlRGaU56azRNbU01TWpKaVl6a3dPRGxpTXpRelpUUTNZMkk0TXpJd1lUSXpNbVF6TVRNeFlud3hNRFk0TWpreU96RXdOamd5T1RJN01UUTVNREkxTWprNU1qc3dPekUwT1RBeE5qWTFPVEl1T0RVeU1Uc3dPM1pwWlhjNktpeDNhV1JuWlhRNk1UczciLCJhY2NvdW50X2lkIjoxMDY4MjkyLCJjb250ZW50X2lkIjoiMV9yd2JqM2owYSIsImZpbGVzIjoiMV85MmRmeXJ6NSwxXzlkaGg2bTBpLDFfenVkb3V1YWgsMV9yMHd1Nnk3NywxX296MzQza2xhIn0%3D&signature=AZaaKvEx5j8CAh6VMSZbGzmUK1A%3D",
-            "scheme": "drm.PLAYREADY_CENC"
+            "scheme": "com.microsoft.playready"
           },
           {
             "licenseUrl": "https://udrm.kaltura.com//cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiWlRGaU56azRNbU01TWpKaVl6a3dPRGxpTXpRelpUUTNZMkk0TXpJd1lUSXpNbVF6TVRNeFlud3hNRFk0TWpreU96RXdOamd5T1RJN01UUTVNREkxTWprNU1qc3dPekUwT1RBeE5qWTFPVEl1T0RVeU1Uc3dPM1pwWlhjNktpeDNhV1JuWlhRNk1UczciLCJhY2NvdW50X2lkIjoxMDY4MjkyLCJjb250ZW50X2lkIjoiMV9yd2JqM2owYSIsImZpbGVzIjoiMV85MmRmeXJ6NSwxXzlkaGg2bTBpLDFfenVkb3V1YWgsMV9yMHd1Nnk3NywxX296MzQza2xhIn0%3D&signature=AZaaKvEx5j8CAh6VMSZbGzmUK1A%3D",
-            "scheme": "drm.WIDEVINE_CENC"
+            "scheme": "com.widevine.alpha"
           }
         ]
       }
@@ -401,7 +401,7 @@ let WithPluginsWithDrm = {
         "drmData": [
           {
             "licenseUrl": "https://udrmv3.kaltura.com//fps/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiWlRGaU56azRNbU01TWpKaVl6a3dPRGxpTXpRelpUUTNZMkk0TXpJd1lUSXpNbVF6TVRNeFlud3hNRFk0TWpreU96RXdOamd5T1RJN01UUTVNREkxTWprNU1qc3dPekUwT1RBeE5qWTFPVEl1T0RVeU1Uc3dPM1pwWlhjNktpeDNhV1JuWlhRNk1UczciLCJhY2NvdW50X2lkIjoxMDY4MjkyLCJjb250ZW50X2lkIjoiMV9yd2JqM2owYSIsImZpbGVzIjoiMV85MmRmeXJ6NSwxXzlkaGg2bTBpLDFfenVkb3V1YWgsMV9yMHd1Nnk3NywxX296MzQza2xhIn0%3D&signature=AZaaKvEx5j8CAh6VMSZbGzmUK1A%3D",
-            "scheme": "fairplay.FAIRPLAY"
+            "scheme": "com.apple.fairplay"
           }
         ]
       }
