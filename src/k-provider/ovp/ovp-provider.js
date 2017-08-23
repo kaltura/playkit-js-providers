@@ -128,23 +128,23 @@ export class OvpProvider {
       plugins: {}
     };
     if (data != null) {
-      if (data.has(SessionLoader.name)) {
-        let sessionLoader = data.get(SessionLoader.name);
+      if (data.has(SessionLoader.id)) {
+        let sessionLoader = data.get(SessionLoader.id);
         if (sessionLoader != null && sessionLoader.response != null) {
           this.ks = sessionLoader.response;
           config.session.ks = this.ks;
         }
       }
-      if (data.has(UiConfigLoader.name)) {
-        let uiConfLoader = data.get(UiConfigLoader.name);
+      if (data.has(UiConfigLoader.id)) {
+        let uiConfLoader = data.get(UiConfigLoader.id);
         let pluginsJson: Object = {};
         if (uiConfLoader != null) {
           pluginsJson = uiConfLoader.response;
         }
         config.plugins = pluginsJson;
       }
-      if (data.has(MediaEntryLoader.name)) {
-        let mediaLoader = data.get(MediaEntryLoader.name);
+      if (data.has(MediaEntryLoader.id)) {
+        let mediaLoader = data.get(MediaEntryLoader.id);
         if (mediaLoader != null && mediaLoader.response != null) {
           let mediaEntry: MediaEntry = ProviderParser.getMediaEntry(this._isAnonymous ? "" : this.ks, this.partnerID, this._uiConfId, mediaLoader.response);
           config.id = mediaEntry.id;
