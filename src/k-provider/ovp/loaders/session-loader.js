@@ -9,7 +9,7 @@ const config = Configuration.get();
  * @classdesc
  */
 export default class SessionLoader implements ILoader {
-  static get name(): string {
+  static get id(): string {
     return "session";
   }
 

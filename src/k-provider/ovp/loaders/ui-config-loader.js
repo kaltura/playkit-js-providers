@@ -7,7 +7,7 @@ import RequestBuilder from '../../request-builder'
 const config = Configuration.get();
 
 export default class UiConfigLoader implements ILoader {
-  static get name(): string {
+  static get id(): string {
     return "uiConf";
   }
 

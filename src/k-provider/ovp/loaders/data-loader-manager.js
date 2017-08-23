@@ -53,7 +53,7 @@ export default class DataLoaderManager {
   add(loader: Function, params: Object): void {
     let execution_loader = new loader(params);
     if (execution_loader.isValid()) {
-      this._loaders.set(loader.name, execution_loader);
+      this._loaders.set(loader.id, execution_loader);
       //Get the start index from the multiReqeust before adding current execution_loader requests
       let startIndex = this._multiRequest.requests.length;
       //Get the requests
@@ -65,7 +65,7 @@ export default class DataLoaderManager {
       //Create range array of current execution_loader requests
       let executionLoaderResponseMap = Array.from(new Array(requests.length), (val, index) => index + startIndex);
       //Add to map
-      DataLoaderManager._loadersResponseMap.set(loader.name, executionLoaderResponseMap);
+      DataLoaderManager._loadersResponseMap.set(loader.id, executionLoaderResponseMap);
     }
   }
 
