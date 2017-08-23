@@ -187,7 +187,7 @@ export default class ProviderParser {
       if (kalturaSource.hasDrmData()) {
         let drmParams: Array<Drm> = [];
         kalturaSource.drm.forEach((drm) => {
-          drmParams.push(new Drm(drm.licenseURL, Scheme[drm.scheme]));
+          drmParams.push(new Drm(drm.licenseURL, Scheme[drm.scheme], drm.certificate));
         });
         mediaSource.drmData = drmParams;
       }
