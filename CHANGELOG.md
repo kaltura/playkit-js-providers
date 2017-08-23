@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.1"></a>
+## [1.1.1](https://github.com/kaltura/playkit-js-providers/compare/v1.1.0...v1.1.1) (2017-08-23)
+
+
+### Bug Fixes
+
+* **FEC-6841:** change getters called 'name' to 'id' ([#24](https://github.com/kaltura/playkit-js-providers/issues/24)) ([e2f9b8b](https://github.com/kaltura/playkit-js-providers/commit/e2f9b8b))
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/kaltura/playkit-js-providers/compare/v1.0.0...v1.1.0) (2017-08-08)
 
