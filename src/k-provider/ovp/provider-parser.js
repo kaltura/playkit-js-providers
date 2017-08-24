@@ -4,7 +4,7 @@ import KalturaFlavorAsset from './response-types/kaltura-flavor-asset'
 import KalturaMetadataListResponse from './response-types/kaltura-metadata-list-response'
 import PlaySourceUrlBuilder from "./play-source-url-builder"
 import XmlParser from '../xml-parser'
-import {MediaEntryTypes, EntryTypes, MediaTypes} from '../enums'
+import {MediaEntryTypes, EntryTypes, MediaTypes, DrmScheme} from '../enums'
 import Logger from '../../util/logger'
 import Configuration from './config'
 import {MediaFormats} from '../../entities/media-format'
@@ -107,7 +107,7 @@ export default class ProviderParser {
   static _getParsedSources(kalturaSources: Array<KalturaPlaybackSource>, ks: string, partnerID: number, uiConfId: number, entry: Object, playbackContext: Object): MediaSources {
     let sources: MediaSources = new MediaSources();
 
-    let addAdaptiveSource = function(source: KalturaPlaybackSource): void{
+    let addAdaptiveSource = function (source: KalturaPlaybackSource): void {
       let parsedSource = ProviderParser._parseAdaptiveSource(source, playbackContext.flavorAssets, ks, partnerID, uiConfId, entry.id);
       let sourceFormat = SUPPORTED_FORMATS.get(source.format);
       sources.map(parsedSource, sourceFormat);
@@ -117,7 +117,7 @@ export default class ProviderParser {
       kalturaSources.filter((source) => !ProviderParser._isProgressiveSource(source)).forEach(addAdaptiveSource);
     };
 
-    let parseProgressiveSources = function (): void{
+    let parseProgressiveSources = function (): void {
       let progressiveSource = kalturaSources.find(ProviderParser._isProgressiveSource);
       sources.progressive = ProviderParser._parseProgressiveSources(progressiveSource, playbackContext.flavorAssets, ks, partnerID, uiConfId, entry.id);
     };
@@ -177,7 +177,7 @@ export default class ProviderParser {
         playUrl = kalturaSource.url;
       }
 
-      if (playUrl == "") {
+      if (playUrl === "") {
         logger.error(`failed to create play url from source, discarding source: (${entryId}_${kalturaSource.deliveryProfileId}), ${kalturaSource.format}.`);
         return mediaSource;
       }
@@ -187,7 +187,7 @@ export default class ProviderParser {
       if (kalturaSource.hasDrmData()) {
         let drmParams: Array<Drm> = [];
         kalturaSource.drm.forEach((drm) => {
-          drmParams.push(new Drm(drm.licenseURL, drm.scheme));
+          drmParams.push(new Drm(drm.licenseURL, DrmScheme[drm.scheme], drm.certificate));
         });
         mediaSource.drmData = drmParams;
       }
