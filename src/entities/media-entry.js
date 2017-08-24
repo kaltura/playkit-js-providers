@@ -38,6 +38,11 @@ export default class MediaEntry {
    * @type {Object}
    */
   metaData: Object;
+  /**
+   * @member - DVR status
+   * @type {number}
+   */
+  dvrStatus: number;
 
   /**
    * @constructor

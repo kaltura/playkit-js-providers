@@ -50,6 +50,11 @@ export default class KalturaMediaEntry {
    * @type {string}
    */
   poster: string;
+  /**
+   * @member - DVR status
+   * @type {number}
+   */
+  dvrStatus: number;
 
   /**
    * @constructor
@@ -65,6 +70,7 @@ export default class KalturaMediaEntry {
     this.flavorParamsIds = entry.flavorParamsIds;
     this.duration = entry.duration;
     this.poster = entry.thumbnailUrl;
+    this.dvrStatus = entry.dvrStatus;
   }
 }
 

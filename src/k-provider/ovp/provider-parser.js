@@ -81,6 +81,7 @@ export default class ProviderParser {
           case EntryTypes.LIVE_STREAM.value:
           case EntryTypes.LIVE_CHANNEL.value:
             type = MediaEntryTypes.Live;
+            mediaEntry.dvrStatus = entry.dvrStatus;
             break;
           default:
             type = MediaEntryTypes.Unknown;

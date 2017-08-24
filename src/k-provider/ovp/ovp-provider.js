@@ -124,6 +124,7 @@ export class OvpProvider {
       sources: new MediaSources(),
       duration: 0,
       type: "Unknown",
+      dvrStatus: 0,
       metadata: {},
       plugins: {}
     };
@@ -152,6 +153,7 @@ export class OvpProvider {
           config.sources = mediaEntry.sources;
           config.duration = mediaEntry.duration;
           config.type = mediaEntry.type;
+          config.dvrStatus = mediaEntry.dvrStatus;
           config.metadata = mediaEntry.metaData;
         }
       }
