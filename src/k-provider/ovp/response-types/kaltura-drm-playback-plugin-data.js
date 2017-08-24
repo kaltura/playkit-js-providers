@@ -1,5 +1,4 @@
 //@flow
-import {Scheme} from '../../enums'
 
 /**
  * Ovp BE DrmPlaybackPluginData
@@ -19,12 +18,19 @@ export default class KalturaDrmPlaybackPluginData {
   licenseURL: string;
 
   /**
+   * @member - The drm certificate
+   * @type {?string}
+   */
+  certificate: ?string;
+
+  /**
    * @constructor
    * @param {Object} drm The json response
    */
   constructor(drm: any) {
     this.scheme = drm.scheme;
     this.licenseURL = drm.licenseURL;
+    this.certificate = drm.certificate;
   }
 }
 

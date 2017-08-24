@@ -473,15 +473,11 @@ Object.defineProperty(exports, "__esModule", {
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Scheme = exports.Scheme = function Scheme() {
-  _classCallCheck(this, Scheme);
+var DrmScheme = exports.DrmScheme = {
+  'drm.PLAYREADY_CENC': 'com.microsoft.playready',
+  'drm.WIDEVINE_CENC': 'com.widevine.alpha',
+  'fairplay.FAIRPLAY': 'com.apple.fairplay'
 };
-
-Scheme.PLAYREADY_CENC = "drm.PLAYREADY_CENC";
-Scheme.WIDEVINE_CENC = "drm.WIDEVINE_CENC";
-Scheme.FAIRPLAY = "fairplay.FAIRPLAY";
-Scheme.PLAYREADY = "playReady.PLAYREADY";
-Scheme.WIDEVINE = "widevine.WIDEVINE";
 
 var KalturaRuleActionTypes = exports.KalturaRuleActionTypes = function KalturaRuleActionTypes() {
   _classCallCheck(this, KalturaRuleActionTypes);
@@ -1231,8 +1227,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _enums = __webpack_require__(5);
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 /**
@@ -1245,22 +1239,30 @@ var Drm =
  * @constructor
  * @param {string} licenseUrl - the license URL
  * @param {Scheme} scheme - the drm scheme
+ * @param {?string} certificate - the drm certificate
+ */
+
+/**
+ * @member - drm scheme
+ * @type {Scheme}
+ */
+function Drm(licenseUrl, scheme, certificate) {
+  _classCallCheck(this, Drm);
+
+  this.licenseUrl = licenseUrl;
+  this.scheme = scheme;
+  this.certificate = certificate;
+}
+
+/**
+ * @member - The drm certificate
+ * @type {?string}
  */
 
 
 /**
  * @member - license URL
  * @type {string}
- */
-function Drm(licenseUrl, scheme) {
-  _classCallCheck(this, Drm);
-
-  this.licenseUrl = licenseUrl;
-  this.scheme = scheme;
-}
-/**
- * @member - drm scheme
- * @type {Scheme}
  */
 ;
 
@@ -2413,7 +2415,7 @@ var ProviderParser = function () {
           playUrl = kalturaSource.url;
         }
 
-        if (playUrl == "") {
+        if (playUrl === "") {
           logger.error('failed to create play url from source, discarding source: (' + entryId + '_' + kalturaSource.deliveryProfileId + '), ' + kalturaSource.format + '.');
           return mediaSource;
         }
@@ -2423,7 +2425,7 @@ var ProviderParser = function () {
         if (kalturaSource.hasDrmData()) {
           var drmParams = [];
           kalturaSource.drm.forEach(function (drm) {
-            drmParams.push(new _drm2.default(drm.licenseURL, drm.scheme));
+            drmParams.push(new _drm2.default(drm.licenseURL, _enums.DrmScheme[drm.scheme], drm.certificate));
           });
           mediaSource.drmData = drmParams;
         }
@@ -3034,8 +3036,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _enums = __webpack_require__(5);
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 /**
@@ -3049,20 +3049,27 @@ var KalturaDrmPlaybackPluginData =
  * @param {Object} drm The json response
  */
 
+
 /**
- * @member - The drm scheme
- * @type {Scheme}
+ * @member - The license URL
+ * @type {string}
  */
 function KalturaDrmPlaybackPluginData(drm) {
   _classCallCheck(this, KalturaDrmPlaybackPluginData);
 
   this.scheme = drm.scheme;
   this.licenseURL = drm.licenseURL;
+  this.certificate = drm.certificate;
 }
 
 /**
- * @member - The license URL
- * @type {string}
+ * @member - The drm certificate
+ * @type {?string}
+ */
+
+/**
+ * @member - The drm scheme
+ * @type {Scheme}
  */
 ;
 

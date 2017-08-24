@@ -139,12 +139,14 @@ let NoPluginsWithDrm = {
         "id": "1_rwbj3j0a_11331,mpegdash",
         "drmData": [
           {
+            "certificate": undefined,
             "licenseUrl": "https://udrm.kaltura.com//cenc/playready/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiTlRBd1pqVmlaV1pqWTJOak5UUmtOR0V5TWpVMU1UZzRPR0UxTm1Vd05EbGpaV0prTXprMU1Yd3hNRFk0TWpreU96RXdOamd5T1RJN01UUTVNREUzTmpFME5qc3dPekUwT1RBd09EazNORFl1TURJeU5qc3dPM1pwWlhjNktpeDNhV1JuWlhRNk1UczciLCJhY2NvdW50X2lkIjoxMDY4MjkyLCJjb250ZW50X2lkIjoiMV9yd2JqM2owYSIsImZpbGVzIjoiMV85MmRmeXJ6NSwxXzlkaGg2bTBpLDFfenVkb3V1YWgsMV9yMHd1Nnk3NywxX296MzQza2xhIn0%3D&signature=jl09zYv64OyEfVUt85rlA0WnK1w%3D",
-            "scheme": "drm.PLAYREADY_CENC"
+            "scheme": "com.microsoft.playready"
           },
           {
+            "certificate": undefined,
             "licenseUrl": "https://udrm.kaltura.com//cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiTlRBd1pqVmlaV1pqWTJOak5UUmtOR0V5TWpVMU1UZzRPR0UxTm1Vd05EbGpaV0prTXprMU1Yd3hNRFk0TWpreU96RXdOamd5T1RJN01UUTVNREUzTmpFME5qc3dPekUwT1RBd09EazNORFl1TURJeU5qc3dPM1pwWlhjNktpeDNhV1JuWlhRNk1UczciLCJhY2NvdW50X2lkIjoxMDY4MjkyLCJjb250ZW50X2lkIjoiMV9yd2JqM2owYSIsImZpbGVzIjoiMV85MmRmeXJ6NSwxXzlkaGg2bTBpLDFfenVkb3V1YWgsMV9yMHd1Nnk3NywxX296MzQza2xhIn0%3D&signature=jl09zYv64OyEfVUt85rlA0WnK1w%3D",
-            "scheme": "drm.WIDEVINE_CENC"
+            "scheme": "com.widevine.alpha"
           }
         ]
       }
@@ -156,8 +158,9 @@ let NoPluginsWithDrm = {
         "id": "1_rwbj3j0a_11311,applehttp",
         "drmData": [
           {
+            "certificate": "ABCD1234",
             "licenseUrl": "https://udrmv3.kaltura.com//fps/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiTlRBd1pqVmlaV1pqWTJOak5UUmtOR0V5TWpVMU1UZzRPR0UxTm1Vd05EbGpaV0prTXprMU1Yd3hNRFk0TWpreU96RXdOamd5T1RJN01UUTVNREUzTmpFME5qc3dPekUwT1RBd09EazNORFl1TURJeU5qc3dPM1pwWlhjNktpeDNhV1JuWlhRNk1UczciLCJhY2NvdW50X2lkIjoxMDY4MjkyLCJjb250ZW50X2lkIjoiMV9yd2JqM2owYSIsImZpbGVzIjoiMV85MmRmeXJ6NSwxXzlkaGg2bTBpLDFfenVkb3V1YWgsMV9yMHd1Nnk3NywxX296MzQza2xhIn0%3D&signature=jl09zYv64OyEfVUt85rlA0WnK1w%3D",
-            "scheme": "fairplay.FAIRPLAY"
+            "scheme": "com.apple.fairplay"
           }
         ]
       }
@@ -383,12 +386,14 @@ let WithPluginsWithDrm = {
         "id": "1_rwbj3j0a_11331,mpegdash",
         "drmData": [
           {
+            "certificate": undefined,
             "licenseUrl": "https://udrm.kaltura.com//cenc/playready/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiWlRGaU56azRNbU01TWpKaVl6a3dPRGxpTXpRelpUUTNZMkk0TXpJd1lUSXpNbVF6TVRNeFlud3hNRFk0TWpreU96RXdOamd5T1RJN01UUTVNREkxTWprNU1qc3dPekUwT1RBeE5qWTFPVEl1T0RVeU1Uc3dPM1pwWlhjNktpeDNhV1JuWlhRNk1UczciLCJhY2NvdW50X2lkIjoxMDY4MjkyLCJjb250ZW50X2lkIjoiMV9yd2JqM2owYSIsImZpbGVzIjoiMV85MmRmeXJ6NSwxXzlkaGg2bTBpLDFfenVkb3V1YWgsMV9yMHd1Nnk3NywxX296MzQza2xhIn0%3D&signature=AZaaKvEx5j8CAh6VMSZbGzmUK1A%3D",
-            "scheme": "drm.PLAYREADY_CENC"
+            "scheme": "com.microsoft.playready"
           },
           {
+            "certificate": undefined,
             "licenseUrl": "https://udrm.kaltura.com//cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiWlRGaU56azRNbU01TWpKaVl6a3dPRGxpTXpRelpUUTNZMkk0TXpJd1lUSXpNbVF6TVRNeFlud3hNRFk0TWpreU96RXdOamd5T1RJN01UUTVNREkxTWprNU1qc3dPekUwT1RBeE5qWTFPVEl1T0RVeU1Uc3dPM1pwWlhjNktpeDNhV1JuWlhRNk1UczciLCJhY2NvdW50X2lkIjoxMDY4MjkyLCJjb250ZW50X2lkIjoiMV9yd2JqM2owYSIsImZpbGVzIjoiMV85MmRmeXJ6NSwxXzlkaGg2bTBpLDFfenVkb3V1YWgsMV9yMHd1Nnk3NywxX296MzQza2xhIn0%3D&signature=AZaaKvEx5j8CAh6VMSZbGzmUK1A%3D",
-            "scheme": "drm.WIDEVINE_CENC"
+            "scheme": "com.widevine.alpha"
           }
         ]
       }
@@ -400,8 +405,9 @@ let WithPluginsWithDrm = {
         "id": "1_rwbj3j0a_11311,applehttp",
         "drmData": [
           {
+            "certificate": "ABCD1234",
             "licenseUrl": "https://udrmv3.kaltura.com//fps/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiWlRGaU56azRNbU01TWpKaVl6a3dPRGxpTXpRelpUUTNZMkk0TXpJd1lUSXpNbVF6TVRNeFlud3hNRFk0TWpreU96RXdOamd5T1RJN01UUTVNREkxTWprNU1qc3dPekUwT1RBeE5qWTFPVEl1T0RVeU1Uc3dPM1pwWlhjNktpeDNhV1JuWlhRNk1UczciLCJhY2NvdW50X2lkIjoxMDY4MjkyLCJjb250ZW50X2lkIjoiMV9yd2JqM2owYSIsImZpbGVzIjoiMV85MmRmeXJ6NSwxXzlkaGg2bTBpLDFfenVkb3V1YWgsMV9yMHd1Nnk3NywxX296MzQza2xhIn0%3D&signature=AZaaKvEx5j8CAh6VMSZbGzmUK1A%3D",
-            "scheme": "fairplay.FAIRPLAY"
+            "scheme": "com.apple.fairplay"
           }
         ]
       }
@@ -631,7 +637,7 @@ let WrongUiConfID = [
           "url": "https://cdnapisec.kaltura.com/p/1068292/sp/1068292/playManifest/entryId/1_rwbj3j0a/flavorIds/1_92dfyrz5,1_9dhh6m0i,1_zudouuah,1_r0wu6y77,1_oz343kla/deliveryProfileId/11311/protocol/https/format/applehttp/a.m3u8",
           "drm": [
             {
-              "certificate": "MIIE8DCCA9igAwIBAgIIWErELxCBDA4wDQYJKoZIhvcNAQEFBQAwfzELMAkGA1UEBhMCVVMxEzARBgNVBAoMCkFwcGxlIEluYy4xJjAkBgNVBAsMHUFwcGxlIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MTMwMQYDVQQDDCpBcHBsZSBLZXkgU2VydmljZXMgQ2VydGlmaWNhdGlvbiBBdXRob3JpdHkwHhcNMTYxMTIzMDA0NDQyWhcNMTgxMTI0MDA0NDQyWjB0MQswCQYDVQQGEwJVUzEdMBsGA1UECgwUU3RhcndhdmUgQ29ycG9yYXRpb24xEzARBgNVBAsMCldLM1lFUlZKV0ExMTAvBgNVBAMMKEZhaXJQbGF5IFN0cmVhbWluZzogU3RhcndhdmUgQ29ycG9yYXRpb24wgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAKDqSYs/fp9+BOvrgvnwy0p9WQt7ZUrPV4/RfWjcwU3ndYSR6LtNEWlRjHU18OF8HsU678nMqsxRAFwv12Hdew4WoZ7AEdPTX2tOZkvHqgQczo0TKdtuKF3+SYPWiE2u3epFuTAldCkc5stXOwtPnutHsUm+SxWc+DPhMBO1ryBlAgMBAAGjggH9MIIB+TAdBgNVHQ4EFgQUDCgFiGFqGqz0LuWC9mVG3Zktm5IwDAYDVR0TAQH/BAIwADAfBgNVHSMEGDAWgBRj5EdUy4VxWUYsg6zMRDFkZwMsvjCB4gYDVR0gBIHaMIHXMIHUBgkqhkiG92NkBQEwgcYwgcMGCCsGAQUFBwICMIG2DIGzUmVsaWFuY2Ugb24gdGhpcyBjZXJ0aWZpY2F0ZSBieSBhbnkgcGFydHkgYXNzdW1lcyBhY2NlcHRhbmNlIG9mIHRoZSB0aGVuIGFwcGxpY2FibGUgc3RhbmRhcmQgdGVybXMgYW5kIGNvbmRpdGlvbnMgb2YgdXNlLCBjZXJ0aWZpY2F0ZSBwb2xpY3kgYW5kIGNlcnRpZmljYXRpb24gcHJhY3RpY2Ugc3RhdGVtZW50cy4wNQYDVR0fBC4wLDAqoCigJoYkaHR0cDovL2NybC5hcHBsZS5jb20va2V5c2VydmljZXMuY3JsMA4GA1UdDwEB/wQEAwIFIDBGBgsqhkiG92NkBg0BAwEB/wQ0AXdxb2EwczF5bWZ4cG5vN2gwcnh0bXp4amJzb2psa3BndTh5eWRsa3d1Y3NxZXltcWZvNTA1BgsqhkiG92NkBg0BBAEB/wQjAW5kam03a3hsamFiandvaXU3NGRmeG1zdXkybHlsMmhhdGIwDQYJKoZIhvcNAQEFBQADggEBAC2i5fDiQClCkp9mIyWBW+ZyMlUiM3Wr5eui0dUvKwSBTc8pyv4m4f60X7JoN5iZykriSnF3zO2aNY43AQsTzIpGvQ9kSJVBdTO7u/UevlbRcHDHrSoQ/8fKSVKvx9Be1pIRgznBRqS+iV6V0572rZOuR0ZQf0nY5vtEHBN6kTZyhPYFuTE32f77E/dtv6XnZ6qB1OKtv483mjVLqQrI0IOl3LyMKgAJ51whloEJEJC6g8frCmwmTLsmmOR17wq24/6YKjGNM2NuSa7/7RqwdEKuqDzzVyh3Zafmtn8rlIptACGPYWnmAP2gnCzBO/V6AIQDf0JcZUpOb+GfhQ7M7ik=",
+              "certificate": "ABCD1234",
               "scheme": "fairplay.FAIRPLAY",
               "licenseURL": "https://udrmv3.kaltura.com//fps/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiT0dVNU56YzJaVFkwTURkalpHSmpZVGsxT0RRMVkyWXpaakZpTWpNek9UZGxaV1U1T0RkbU9Yd3hNRFk0TWpreU96RXdOamd5T1RJN01UUTVNREkxTkRnd01Ec3dPekUwT1RBeE5qZzBNREF1TVRBMk16c3dPM1pwWlhjNktpeDNhV1JuWlhRNk1UczciLCJhY2NvdW50X2lkIjoxMDY4MjkyLCJjb250ZW50X2lkIjoiMV9yd2JqM2owYSIsImZpbGVzIjoiMV85MmRmeXJ6NSwxXzlkaGg2bTBpLDFfenVkb3V1YWgsMV9yMHd1Nnk3NywxX296MzQza2xhIn0%3D&signature=RW0rJqR9HuXDUlN8gqmDF08PMLE%3D",
               "objectType": "KalturaFairPlayPlaybackPluginData"
