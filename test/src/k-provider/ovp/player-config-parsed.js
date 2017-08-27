@@ -99,6 +99,7 @@ let NoPluginsNoDrm = {
     ]
   },
   "duration": 55,
+  "dvr": false,
   "type": "Vod",
   "metadata": {
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.",
@@ -167,6 +168,7 @@ let NoPluginsWithDrm = {
     ]
   },
   "duration": 596,
+  "dvr": false,
   "type": "Vod",
   "metadata": {
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.",
@@ -275,6 +277,7 @@ let WithPluginsNoDrm = {
     ]
   },
   "duration": 55,
+  "dvr": false,
   "type": "Vod",
   "metadata": {
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.",
@@ -414,6 +417,7 @@ let WithPluginsWithDrm = {
     ]
   },
   "duration": 596,
+  "dvr": false,
   "type": "Vod",
   "metadata": {
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.",
@@ -529,6 +533,7 @@ let AudioEntryWithoutPlugins = {
     ]
   },
   "duration": 0,
+  "dvr": false,
   "type": "Audio",
   "metadata": {
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.",
@@ -551,6 +556,7 @@ let ImageEntryWithoutPlugins = {
     "progressive": []
   },
   "duration": 0,
+  "dvr": false,
   "type": "Image",
   "metadata": {
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.",

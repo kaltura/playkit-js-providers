@@ -19,6 +19,7 @@ type playerConfig = {
   session: Object,
   sources: MediaSources,
   duration: number,
+  dvr: boolean,
   type: string,
   metadata: Object,
   plugins: Object
@@ -124,6 +125,7 @@ export class OvpProvider {
       sources: new MediaSources(),
       duration: 0,
       type: "Unknown",
+      dvr: false,
       metadata: {},
       plugins: {}
     };
@@ -152,6 +154,7 @@ export class OvpProvider {
           config.sources = mediaEntry.sources;
           config.duration = mediaEntry.duration;
           config.type = mediaEntry.type;
+          config.dvr = !!mediaEntry.dvrStatus;
           config.metadata = mediaEntry.metaData;
         }
       }
