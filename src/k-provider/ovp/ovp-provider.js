@@ -19,6 +19,7 @@ type playerConfig = {
   session: Object,
   sources: MediaSources,
   duration: number,
+  dvr: boolean,
   type: string,
   metadata: Object,
   plugins: Object
