@@ -265,7 +265,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _multiRequestBuilder = __webpack_require__(6);
+var _multiRequestBuilder = __webpack_require__(5);
 
 var _multiRequestBuilder2 = _interopRequireDefault(_multiRequestBuilder);
 
@@ -470,6 +470,257 @@ exports.LOG_LEVEL = LOG_LEVEL;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.MultiRequestResult = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _requestBuilder = __webpack_require__(0);
+
+var _requestBuilder2 = _interopRequireDefault(_requestBuilder);
+
+var _baseServiceResult = __webpack_require__(3);
+
+var _baseServiceResult2 = _interopRequireDefault(_baseServiceResult);
+
+var _logger = __webpack_require__(4);
+
+var _logger2 = _interopRequireDefault(_logger);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+ * @constant
+ */
+var logger = _logger2.default.get("OvpProvider");
+
+/**
+ * Multi Request builder
+ * @classdesc
+ */
+
+var MultiRequestBuilder = function (_RequestBuilder) {
+  _inherits(MultiRequestBuilder, _RequestBuilder);
+
+  /**
+   * @constructor
+   */
+  function MultiRequestBuilder() {
+    _classCallCheck(this, MultiRequestBuilder);
+
+    var _this = _possibleConstructorReturn(this, (MultiRequestBuilder.__proto__ || Object.getPrototypeOf(MultiRequestBuilder)).call(this));
+
+    _this.requests = [];
+    return _this;
+  }
+
+  /**
+   * Adds request to requests array
+   * @function add
+   * @param {RequestBuilder} request The request
+   * @returns {MultiRequestBuilder} The multiRequest
+   */
+
+
+  /**
+   * @member - Array of requests
+   * @type {Array<RequestBuilder>}
+   */
+
+
+  _createClass(MultiRequestBuilder, [{
+    key: 'add',
+    value: function add(request) {
+      this.requests.push(request);
+      var requestParams = {};
+      var serviceDef = { service: request.service, action: request.action };
+      Object.assign(requestParams, _defineProperty({}, this.requests.length, Object.assign(serviceDef, request.params)));
+      Object.assign(requestParams, this.params);
+      this.params = requestParams;
+      return this;
+    }
+
+    /**
+     * Executes a multi request
+     * @function execute
+     * @returns {Promise} The multirequest execution promisie
+     */
+
+  }, {
+    key: 'execute',
+    value: function execute() {
+      var _this2 = this;
+
+      try {
+        this.params = JSON.stringify(this.params);
+      } catch (err) {
+        logger.error('' + err.message);
+      }
+      return new Promise(function (resolve, reject) {
+        _this2.doHttpRequest().then(function (data) {
+          resolve(new MultiRequestResult(data));
+        }, function (err) {
+          var errorText = 'Error on multiRequest execution, error <' + err + '>.';
+          reject(errorText);
+        });
+      });
+    }
+  }]);
+
+  return MultiRequestBuilder;
+}(_requestBuilder2.default);
+
+/**
+ * Multi Request result object
+ * @classdesc
+ */
+
+
+exports.default = MultiRequestBuilder;
+
+var MultiRequestResult =
+
+/**
+ * @constructor
+ * @param {Object}  response data
+ */
+
+
+/**
+ * @member - Is success
+ * @type {boolean}
+ */
+exports.MultiRequestResult = function MultiRequestResult(response) {
+  var _this3 = this;
+
+  _classCallCheck(this, MultiRequestResult);
+
+  this.results = [];
+
+  this.success = true;
+  response.forEach(function (result) {
+    var serviceResult = new _baseServiceResult2.default(result);
+    _this3.results.push(serviceResult);
+    if (serviceResult.hasError) {
+      logger.error('Service returned an error with error code: ' + serviceResult.error.code + ' and message: ' + serviceResult.error.message + '.');
+      _this3.success = false;
+      return;
+    }
+  });
+}
+/**
+ * @member - Multi request response data
+ * @type {Object}
+ */
+;
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _mediaSource = __webpack_require__(11);
+
+var _mediaSource2 = _interopRequireDefault(_mediaSource);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * Container for the media sources aggregated by stream format.
+ * @classdesc
+ */
+var MediaSources = function () {
+
+  /**
+   * @constructor
+   */
+
+  /**
+   * Dash media sources container.
+   * @type {Array<MediaSource>}
+   * @public
+   */
+  function MediaSources() {
+    _classCallCheck(this, MediaSources);
+
+    this.progressive = [];
+    this.dash = [];
+    this.hls = [];
+  }
+
+  /**
+   * Maps the source to one of the containers according to his media format.
+   * @param {MediaSource} source - The source to add to one of the containers.
+   * @param {MediaFormat} mediaFormat - The media format of the source.
+   * @returns {void}
+   */
+
+  /**
+   * Hls media sources container.
+   * @type {Array<MediaSource>}
+   * @public
+   */
+
+  /**
+   * Progressive download media sources container.
+   * @type {Array<MediaSource>}
+   * @public
+   */
+
+
+  _createClass(MediaSources, [{
+    key: 'map',
+    value: function map(source, mediaFormat) {
+      if (mediaFormat) {
+        switch (mediaFormat.name) {
+          case 'mp4':
+            this.progressive.push(source);
+            break;
+          case 'dash':
+            this.dash.push(source);
+            break;
+          case 'hls':
+            this.hls.push(source);
+            break;
+          default:
+            break;
+        }
+      }
+    }
+  }]);
+
+  return MediaSources;
+}();
+
+exports.default = MediaSources;
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -627,257 +878,6 @@ var UIConfCreationModes = exports.UIConfCreationModes = function UIConfCreationM
 
 UIConfCreationModes.WIZARD = 2;
 UIConfCreationModes.ADVANCED = 3;
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.MultiRequestResult = undefined;
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _requestBuilder = __webpack_require__(0);
-
-var _requestBuilder2 = _interopRequireDefault(_requestBuilder);
-
-var _baseServiceResult = __webpack_require__(3);
-
-var _baseServiceResult2 = _interopRequireDefault(_baseServiceResult);
-
-var _logger = __webpack_require__(4);
-
-var _logger2 = _interopRequireDefault(_logger);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-/**
- * @constant
- */
-var logger = _logger2.default.get("OvpProvider");
-
-/**
- * Multi Request builder
- * @classdesc
- */
-
-var MultiRequestBuilder = function (_RequestBuilder) {
-  _inherits(MultiRequestBuilder, _RequestBuilder);
-
-  /**
-   * @constructor
-   */
-  function MultiRequestBuilder() {
-    _classCallCheck(this, MultiRequestBuilder);
-
-    var _this = _possibleConstructorReturn(this, (MultiRequestBuilder.__proto__ || Object.getPrototypeOf(MultiRequestBuilder)).call(this));
-
-    _this.requests = [];
-    return _this;
-  }
-
-  /**
-   * Adds request to requests array
-   * @function add
-   * @param {RequestBuilder} request The request
-   * @returns {MultiRequestBuilder} The multiRequest
-   */
-
-
-  /**
-   * @member - Array of requests
-   * @type {Array<RequestBuilder>}
-   */
-
-
-  _createClass(MultiRequestBuilder, [{
-    key: 'add',
-    value: function add(request) {
-      this.requests.push(request);
-      var requestParams = {};
-      var serviceDef = { service: request.service, action: request.action };
-      Object.assign(requestParams, _defineProperty({}, this.requests.length, Object.assign(serviceDef, request.params)));
-      Object.assign(requestParams, this.params);
-      this.params = requestParams;
-      return this;
-    }
-
-    /**
-     * Executes a multi request
-     * @function execute
-     * @returns {Promise} The multirequest execution promisie
-     */
-
-  }, {
-    key: 'execute',
-    value: function execute() {
-      var _this2 = this;
-
-      try {
-        this.params = JSON.stringify(this.params);
-      } catch (err) {
-        logger.error('' + err.message);
-      }
-      return new Promise(function (resolve, reject) {
-        _this2.doHttpRequest().then(function (data) {
-          resolve(new MultiRequestResult(data));
-        }, function (err) {
-          var errorText = 'Error on multiRequest execution, error <' + err + '>.';
-          reject(errorText);
-        });
-      });
-    }
-  }]);
-
-  return MultiRequestBuilder;
-}(_requestBuilder2.default);
-
-/**
- * Multi Request result object
- * @classdesc
- */
-
-
-exports.default = MultiRequestBuilder;
-
-var MultiRequestResult =
-
-/**
- * @constructor
- * @param {Object}  response data
- */
-
-
-/**
- * @member - Is success
- * @type {boolean}
- */
-exports.MultiRequestResult = function MultiRequestResult(response) {
-  var _this3 = this;
-
-  _classCallCheck(this, MultiRequestResult);
-
-  this.results = [];
-
-  this.success = true;
-  response.forEach(function (result) {
-    var serviceResult = new _baseServiceResult2.default(result);
-    _this3.results.push(serviceResult);
-    if (serviceResult.hasError) {
-      logger.error('Service returned an error with error code: ' + serviceResult.error.code + ' and message: ' + serviceResult.error.message + '.');
-      _this3.success = false;
-      return;
-    }
-  });
-}
-/**
- * @member - Multi request response data
- * @type {Object}
- */
-;
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _mediaSource = __webpack_require__(11);
-
-var _mediaSource2 = _interopRequireDefault(_mediaSource);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-/**
- * Container for the media sources aggregated by stream format.
- * @classdesc
- */
-var MediaSources = function () {
-
-  /**
-   * @constructor
-   */
-
-  /**
-   * Dash media sources container.
-   * @type {Array<MediaSource>}
-   * @public
-   */
-  function MediaSources() {
-    _classCallCheck(this, MediaSources);
-
-    this.progressive = [];
-    this.dash = [];
-    this.hls = [];
-  }
-
-  /**
-   * Maps the source to one of the containers according to his media format.
-   * @param {MediaSource} source - The source to add to one of the containers.
-   * @param {MediaFormat} mediaFormat - The media format of the source.
-   * @returns {void}
-   */
-
-  /**
-   * Hls media sources container.
-   * @type {Array<MediaSource>}
-   * @public
-   */
-
-  /**
-   * Progressive download media sources container.
-   * @type {Array<MediaSource>}
-   * @public
-   */
-
-
-  _createClass(MediaSources, [{
-    key: 'map',
-    value: function map(source, mediaFormat) {
-      if (mediaFormat) {
-        switch (mediaFormat.name) {
-          case 'mp4':
-            this.progressive.push(source);
-            break;
-          case 'dash':
-            this.dash.push(source);
-            break;
-          case 'hls':
-            this.hls.push(source);
-            break;
-          default:
-            break;
-        }
-      }
-    }
-  }]);
-
-  return MediaSources;
-}();
-
-exports.default = MediaSources;
 
 /***/ }),
 /* 8 */
@@ -1157,9 +1157,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _enums = __webpack_require__(5);
+var _enums = __webpack_require__(7);
 
-var _mediaSources = __webpack_require__(7);
+var _mediaSources = __webpack_require__(6);
 
 var _mediaSources2 = _interopRequireDefault(_mediaSources);
 
@@ -1178,6 +1178,31 @@ var MediaEntry =
  */
 
 /**
+ * @member - entry metadata
+ * @type {Object}
+ */
+
+/**
+ * @member - entry duration
+ * @type {number}
+ */
+
+/**
+ * @member - entry name
+ * @type {string}
+ */
+function MediaEntry() {
+  _classCallCheck(this, MediaEntry);
+
+  this.metaData = new Map();
+  this.type = _enums.MediaEntryTypes.Unknown;
+}
+/**
+ * @member - DVR status
+ * @type {number}
+ */
+
+/**
  * @member - entry type
  * @type {MediaEntryType}
  */
@@ -1190,26 +1215,6 @@ var MediaEntry =
 
 /**
  * @member - entry ID
- * @type {string}
- */
-function MediaEntry() {
-  _classCallCheck(this, MediaEntry);
-
-  this.metaData = new Map();
-  this.type = _enums.MediaEntryTypes.Unknown;
-}
-/**
- * @member - entry metadata
- * @type {Object}
- */
-
-/**
- * @member - entry duration
- * @type {number}
- */
-
-/**
- * @member - entry name
  * @type {string}
  */
 ;
@@ -1353,7 +1358,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _enums = __webpack_require__(5);
+var _enums = __webpack_require__(7);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1676,7 +1681,7 @@ var _ovpService = __webpack_require__(2);
 
 var _ovpService2 = _interopRequireDefault(_ovpService);
 
-var _multiRequestBuilder = __webpack_require__(6);
+var _multiRequestBuilder = __webpack_require__(5);
 
 var _multiRequestBuilder2 = _interopRequireDefault(_multiRequestBuilder);
 
@@ -2210,7 +2215,7 @@ var _xmlParser = __webpack_require__(37);
 
 var _xmlParser2 = _interopRequireDefault(_xmlParser);
 
-var _enums = __webpack_require__(5);
+var _enums = __webpack_require__(7);
 
 var _logger = __webpack_require__(4);
 
@@ -2234,7 +2239,7 @@ var _mediaSource = __webpack_require__(11);
 
 var _mediaSource2 = _interopRequireDefault(_mediaSource);
 
-var _mediaSources = __webpack_require__(7);
+var _mediaSources = __webpack_require__(6);
 
 var _mediaSources2 = _interopRequireDefault(_mediaSources);
 
@@ -2314,6 +2319,7 @@ var ProviderParser = function () {
             case _enums.EntryTypes.LIVE_STREAM.value:
             case _enums.EntryTypes.LIVE_CHANNEL.value:
               type = _enums.MediaEntryTypes.Live;
+              mediaEntry.dvrStatus = entry.dvrStatus;
               break;
             default:
               type = _enums.MediaEntryTypes.Unknown;
@@ -2644,7 +2650,7 @@ var _mediaEntry = __webpack_require__(9);
 
 var _mediaEntry2 = _interopRequireDefault(_mediaEntry);
 
-var _mediaSources = __webpack_require__(7);
+var _mediaSources = __webpack_require__(6);
 
 var _mediaSources2 = _interopRequireDefault(_mediaSources);
 
@@ -2768,6 +2774,7 @@ var OvpProvider = exports.OvpProvider = function () {
         sources: new _mediaSources2.default(),
         duration: 0,
         type: "Unknown",
+        dvr: false,
         metadata: {},
         plugins: {}
       };
@@ -2796,6 +2803,7 @@ var OvpProvider = exports.OvpProvider = function () {
             config.sources = mediaEntry.sources;
             config.duration = mediaEntry.duration;
             config.type = mediaEntry.type;
+            config.dvr = !!mediaEntry.dvrStatus;
             config.metadata = mediaEntry.metaData;
           }
         }
@@ -3100,38 +3108,6 @@ var KalturaMediaEntry =
  */
 
 /**
- * @member - The type of the entry, this is auto filled by the derived entry object (Image, Audio etc.)
- * @type {MediaType}
- */
-
-/**
- * @member - The entry duration
- * @type {number}
- */
-
-/**
- * @member - The URL used for playback. This is not the download URL.
- * @type {string}
- */
-
-/**
- * @member - Entry name (Min 1 chars)
- * @type {string}
- */
-function KalturaMediaEntry(entry) {
-  _classCallCheck(this, KalturaMediaEntry);
-
-  this.id = entry.id;
-  this.name = entry.name;
-  this.description = entry.description;
-  this.dataUrl = entry.dataUrl;
-  this.type = entry.type;
-  this.entryType = entry.mediaType;
-  this.flavorParamsIds = entry.flavorParamsIds;
-  this.duration = entry.duration;
-  this.poster = entry.thumbnailUrl;
-}
-/**
  * @member - Entry poster image
  * @type {string}
  */
@@ -3153,6 +3129,44 @@ function KalturaMediaEntry(entry) {
 
 /**
  * @member - The entry id
+ * @type {string}
+ */
+function KalturaMediaEntry(entry) {
+  _classCallCheck(this, KalturaMediaEntry);
+
+  this.id = entry.id;
+  this.name = entry.name;
+  this.description = entry.description;
+  this.dataUrl = entry.dataUrl;
+  this.type = entry.type;
+  this.entryType = entry.mediaType;
+  this.flavorParamsIds = entry.flavorParamsIds;
+  this.duration = entry.duration;
+  this.poster = entry.thumbnailUrl;
+  this.dvrStatus = entry.dvrStatus;
+}
+/**
+ * @member - DVR status
+ * @type {number}
+ */
+
+/**
+ * @member - The type of the entry, this is auto filled by the derived entry object (Image, Audio etc.)
+ * @type {MediaType}
+ */
+
+/**
+ * @member - The entry duration
+ * @type {number}
+ */
+
+/**
+ * @member - The URL used for playback. This is not the download URL.
+ * @type {string}
+ */
+
+/**
+ * @member - Entry name (Min 1 chars)
  * @type {string}
  */
 ;
@@ -3559,7 +3573,7 @@ var BaseEntryService = function (_OvpService) {
     value: function getEntryListReqParams(entryId, ks) {
       var filterParams = { redirectFromEntryId: entryId };
       var responseProfileParams = {
-        fields: "id,name,description,thumbnailUrl,dataUrl,duration,msDuration,flavorParamsIds,mediaType,type,tags",
+        fields: "id,name,description,thumbnailUrl,dataUrl,duration,msDuration,flavorParamsIds,mediaType,type,tags,dvrStatus",
         type: 1
       };
       return { ks: ks, filter: filterParams, responseProfile: responseProfileParams };
