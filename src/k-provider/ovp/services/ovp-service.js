@@ -24,10 +24,12 @@ export default class OvpService {
     if (partnerId) {
       Object.assign(ovpParams, {partnerId: partnerId});
     }
-    let multiReq = new MultiRequestBuilder();
+    let headers: Map<string, string> = new Map();
+    headers.set("Content-Type", "application/json");
+    let multiReq = new MultiRequestBuilder(headers);
     multiReq.method = "POST";
     multiReq.service = SERVICE_NAME;
-    multiReq.baseUrl = config.beUrl;
+    multiReq.url = multiReq.getUrl(config.beUrl);
     multiReq.params = ovpParams;
     return multiReq;
   }

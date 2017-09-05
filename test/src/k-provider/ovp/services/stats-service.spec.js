@@ -1,6 +1,7 @@
 import StatsService from '../../../../../src/k-provider/ovp/services/stats-service'
 import RequestBuilder from '../../../../../src/k-provider/request-builder'
 import Configuration from '../../../../../src/k-provider/ovp/config'
+import {param} from '../../../../../src/util/param'
 
 describe('stats service - collect', function () {
   let ovpParams, ks, event;
@@ -11,26 +12,15 @@ describe('stats service - collect', function () {
     event = {a:1};
   });
 
-  it('should be default baseUrl', function () {
-    let request = StatsService.collect(ks, event);
+  it('should be proper values', function () {
+    let baseUrl = 'some url';
+    let request = StatsService.collect(ks, event, baseUrl);
     (request instanceof RequestBuilder).should.be.true;
     request.service.should.be.equal('stats');
     request.action.should.be.equal('collect');
-    request.method.should.be.equal('POST');
-    request.baseUrl.should.be.equal(ovpParams.beUrl);
+    request.method.should.be.equal('GET');
+    request.url.should.be.equal(baseUrl + '?service=' + request.service + '&action=' + request.action + '&' + param(request.params));
     request.tag.should.be.equal('stats-collect');
-    request.params.should.be.equal(JSON.stringify(Object.assign({}, ovpParams.serviceParams, {ks: ks}, event)));
-  });
-
-  it('should be take baseUrl from argument', function () {
-    let beUrl = 'some url';
-    let request = StatsService.collect(ks, event, beUrl);
-    (request instanceof RequestBuilder).should.be.true;
-    request.service.should.be.equal('stats');
-    request.action.should.be.equal('collect');
-    request.method.should.be.equal('POST');
-    request.baseUrl.should.be.equal(beUrl);
-    request.tag.should.be.equal('stats-collect');
-    request.params.should.be.equal(JSON.stringify(Object.assign({}, ovpParams.serviceParams, {ks: ks}, event)));
+    request.params.should.deep.equal(Object.assign({}, ovpParams.serviceParams, {ks: ks}, event));
   });
 });

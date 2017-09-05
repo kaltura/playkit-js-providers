@@ -20,13 +20,6 @@ export default class MultiRequestBuilder extends RequestBuilder {
   requests: Array<RequestBuilder> = [];
 
   /**
-   * @constructor
-   */
-  constructor() {
-    super();
-  }
-
-  /**
    * Adds request to requests array
    * @function add
    * @param {RequestBuilder} request The request

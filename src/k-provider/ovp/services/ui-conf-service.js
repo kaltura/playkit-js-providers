@@ -20,11 +20,13 @@ export default class UiConfService extends OvpService {
    * @static
    */
   static get(baseUrl: string, ks: string, uiConfID: number) {
-    let request = new RequestBuilder();
+    let headers: Map<string, string> = new Map();
+    headers.set("Content-Type", "application/json");
+    let request = new RequestBuilder(headers);
     request.service = SERVICE_NAME;
     request.action = "get";
     request.method = "POST";
-    request.baseUrl = baseUrl;
+    request.url = request.getUrl(baseUrl);
     request.tag = "uiconf-get";
     let responseProfileParams = {
       fields: "config",
