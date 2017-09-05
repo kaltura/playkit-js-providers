@@ -124,12 +124,12 @@ var RequestBuilder = function () {
     _classCallCheck(this, RequestBuilder);
 
     this.headers = headers;
-    this.headers.set("Content-Type", "application/json");
   }
 
   /**
    * Builds restful service URL
    * @function getUrl
+   * @param {string} baseUrl - The service base URL
    * @returns {string} The service URL
    */
 
@@ -139,8 +139,8 @@ var RequestBuilder = function () {
    */
 
   /**
-   * @member - Service base url
-   * @type {Map<string, string>}
+   * @member - Service URL
+   * @type {string}
    */
 
   /**
@@ -156,13 +156,9 @@ var RequestBuilder = function () {
 
 
   _createClass(RequestBuilder, [{
-    key: "getUrl",
-    value: function getUrl() {
-      if (!this.baseUrl) {
-        throw new Error("baseUrl is mandatory for request builder");
-      }
-      var url = this.baseUrl + '/service/' + this.service + (this.action ? '/action/' + this.action : '');
-      return url;
+    key: 'getUrl',
+    value: function getUrl(baseUrl) {
+      return baseUrl + '/service/' + this.service + (this.action ? '/action/' + this.action : '');
     }
 
     /**
@@ -172,23 +168,26 @@ var RequestBuilder = function () {
      */
 
   }, {
-    key: "doHttpRequest",
+    key: 'doHttpRequest',
     value: function doHttpRequest() {
       var _this = this;
 
+      if (!this.url) {
+        throw new Error("baseUrl is mandatory for request builder");
+      }
       var request = new XMLHttpRequest();
       return new Promise(function (resolve, reject) {
         request.onreadystatechange = function () {
           if (request.readyState === 4) {
             if (request.status === 200) {
               var jsonResponse = JSON.parse(request.responseText);
-              if (jsonResponse && (typeof jsonResponse === "undefined" ? "undefined" : _typeof(jsonResponse)) === 'object' && jsonResponse.code && jsonResponse.message) reject(jsonResponse);else resolve(jsonResponse);
+              if (jsonResponse && (typeof jsonResponse === 'undefined' ? 'undefined' : _typeof(jsonResponse)) === 'object' && jsonResponse.code && jsonResponse.message) reject(jsonResponse);else resolve(jsonResponse);
             } else {
               reject(request.responseText);
             }
           }
         };
-        request.open(_this.method, _this.getUrl());
+        request.open(_this.method, _this.url);
         _this.headers.forEach(function (value, key) {
           request.setRequestHeader(key, value);
         });
@@ -307,10 +306,12 @@ var OvpService = function () {
       if (partnerId) {
         Object.assign(ovpParams, { partnerId: partnerId });
       }
-      var multiReq = new _multiRequestBuilder2.default();
+      var headers = new Map();
+      headers.set("Content-Type", "application/json");
+      var multiReq = new _multiRequestBuilder2.default(headers);
       multiReq.method = "POST";
       multiReq.service = SERVICE_NAME;
-      multiReq.baseUrl = config.beUrl;
+      multiReq.url = multiReq.getUrl(config.beUrl);
       multiReq.params = ovpParams;
       return multiReq;
     }
@@ -509,25 +510,19 @@ var logger = _logger2.default.get("OvpProvider");
 var MultiRequestBuilder = function (_RequestBuilder) {
   _inherits(MultiRequestBuilder, _RequestBuilder);
 
-  /**
-   * @constructor
-   */
   function MultiRequestBuilder() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
     _classCallCheck(this, MultiRequestBuilder);
 
-    var _this = _possibleConstructorReturn(this, (MultiRequestBuilder.__proto__ || Object.getPrototypeOf(MultiRequestBuilder)).call(this));
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
 
-    _this.requests = [];
-    return _this;
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = MultiRequestBuilder.__proto__ || Object.getPrototypeOf(MultiRequestBuilder)).call.apply(_ref, [this].concat(args))), _this), _this.requests = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
-
-  /**
-   * Adds request to requests array
-   * @function add
-   * @param {RequestBuilder} request The request
-   * @returns {MultiRequestBuilder} The multiRequest
-   */
-
 
   /**
    * @member - Array of requests
@@ -537,6 +532,14 @@ var MultiRequestBuilder = function (_RequestBuilder) {
 
   _createClass(MultiRequestBuilder, [{
     key: 'add',
+
+
+    /**
+     * Adds request to requests array
+     * @function add
+     * @param {RequestBuilder} request The request
+     * @returns {MultiRequestBuilder} The multiRequest
+     */
     value: function add(request) {
       this.requests.push(request);
       var requestParams = {};
@@ -895,7 +898,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 	var Logger = { };
 
 	// For those that are at home that are keeping score.
-	Logger.VERSION = "1.3.0";
+	Logger.VERSION = "1.4.1";
 
 	// Function which handles all incoming log messages.
 	var logHandler;
@@ -951,6 +954,11 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 			if (newLevel && "value" in newLevel) {
 				this.context.filterLevel = newLevel;
 			}
+		},
+		
+		// Gets the current logging level for the logging instance
+		getLevel: function () {
+			return this.context.filterLevel;
 		},
 
 		// Is the logger configured to output messages at the supplied level?
@@ -1036,6 +1044,11 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 		}
 	};
 
+	// Gets the global logging filter level
+	Logger.getLevel = function() {
+		return globalLogger.getLevel();
+	};
+
 	// Retrieve a ContextualLogger instance.  Note that named loggers automatically inherit the global logger's level,
 	// default context and log handler.
 	Logger.get = function (name) {
@@ -1107,6 +1120,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 					hdlr = console.error;
 				} else if (context.level === Logger.INFO && console.info) {
 					hdlr = console.info;
+				} else if (context.level === Logger.DEBUG && console.debug) {
+					hdlr = console.debug;
 				}
 
 				options.formatter(messages, context);
@@ -3524,11 +3539,13 @@ var BaseEntryService = function (_OvpService) {
      * @static
      */
     value: function getPlaybackContext(baseUrl, ks, entryId) {
-      var request = new _requestBuilder2.default();
+      var headers = new Map();
+      headers.set("Content-Type", "application/json");
+      var request = new _requestBuilder2.default(headers);
       request.service = SERVICE_NAME;
       request.action = "getPlaybackContext";
       request.method = "POST";
-      request.baseUrl = baseUrl;
+      request.url = request.getUrl(baseUrl);
       request.tag = "baseEntry-getPlaybackContext";
       var contextDataParams = { objectType: "KalturaContextDataParams", flavorTags: "all" };
       var params = { entryId: entryId, ks: ks, contextDataParams: contextDataParams };
@@ -3549,11 +3566,13 @@ var BaseEntryService = function (_OvpService) {
   }, {
     key: 'list',
     value: function list(baseUrl, ks, entryId) {
-      var request = new _requestBuilder2.default();
+      var headers = new Map();
+      headers.set("Content-Type", "application/json");
+      var request = new _requestBuilder2.default(headers);
       request.service = SERVICE_NAME;
       request.action = "list";
       request.method = "POST";
-      request.baseUrl = baseUrl;
+      request.url = request.getUrl(baseUrl);
       request.tag = "list";
       request.params = BaseEntryService.getEntryListReqParams(entryId, ks);
       return request;
@@ -3643,11 +3662,13 @@ var MetaDataService = function (_OvpService) {
      * @static
      */
     value: function list(baseUrl, ks, entryId) {
-      var request = new _requestBuilder2.default();
+      var headers = new Map();
+      headers.set("Content-Type", "application/json");
+      var request = new _requestBuilder2.default(headers);
       request.service = SERVICE_NAME;
       request.action = "list";
       request.method = "POST";
-      request.baseUrl = baseUrl;
+      request.url = request.getUrl(baseUrl);
       request.tag = "metadata_metadata-list";
       var filter = { objectType: "KalturaMetadataFilter", objectIdEqual: entryId, metadataObjectTypeEqual: "1" };
       var params = { filter: filter, ks: ks };
@@ -3718,11 +3739,13 @@ var SessionService = function (_OvpService) {
      * @static
      */
     value: function anonymousSession(baseUrl, partnerId) {
-      var request = new _requestBuilder2.default();
+      var headers = new Map();
+      headers.set("Content-Type", "application/json");
+      var request = new _requestBuilder2.default(headers);
       request.service = SERVICE_NAME;
       request.action = "startWidgetSession";
       request.method = "POST";
-      request.baseUrl = baseUrl;
+      request.url = request.getUrl(baseUrl);
       request.tag = "session-startWidget";
       request.params = { widgetId: "_" + partnerId };
       return request;
@@ -3793,11 +3816,13 @@ var UiConfService = function (_OvpService) {
      * @static
      */
     value: function get(baseUrl, ks, uiConfID) {
-      var request = new _requestBuilder2.default();
+      var headers = new Map();
+      headers.set("Content-Type", "application/json");
+      var request = new _requestBuilder2.default(headers);
       request.service = SERVICE_NAME;
       request.action = "get";
       request.method = "POST";
-      request.baseUrl = baseUrl;
+      request.url = request.getUrl(baseUrl);
       request.tag = "uiconf-get";
       var responseProfileParams = {
         fields: "config",
