@@ -27,10 +27,10 @@ export default class RequestBuilder {
    */
   headers: Map<string, string>;
   /**
-   * @member - Service base url
-   * @type {Map<string, string>}
+   * @member - Service URL
+   * @type {string}
    */
-  baseUrl: string;
+  url: string;
   /**
    * @member - Service method (POST,GET,DELETE etc..)
    * @type {string}
@@ -48,20 +48,16 @@ export default class RequestBuilder {
    */
   constructor(headers: Map<string, string> = new Map()) {
     this.headers = headers;
-    this.headers.set("Content-Type", "application/json");
   }
 
   /**
    * Builds restful service URL
    * @function getUrl
+   * @param {string} baseUrl - The service base URL
    * @returns {string} The service URL
    */
-  getUrl(): string {
-    if (!this.baseUrl) {
-      throw new Error("baseUrl is mandatory for request builder");
-    }
-    let url = this.baseUrl + '/service/' + this.service + (this.action ? '/action/' + this.action : '');
-    return url;
+  getUrl(baseUrl: string): string {
+    return baseUrl + '/service/' + this.service + (this.action ? '/action/' + this.action : '');
   }
 
   /**
@@ -70,6 +66,9 @@ export default class RequestBuilder {
    * @returns {Promise.<any>} Service response as promise
    */
   doHttpRequest(): Promise<any> {
+    if (!this.url) {
+      throw new Error("baseUrl is mandatory for request builder");
+    }
     let request = new XMLHttpRequest();
     return new Promise((resolve, reject) => {
       request.onreadystatechange = function () {
@@ -85,7 +84,7 @@ export default class RequestBuilder {
           }
         }
       };
-      request.open(this.method, this.getUrl());
+      request.open(this.method, this.url);
       this.headers.forEach((value, key) => {
         request.setRequestHeader(key, value);
       });

@@ -20,11 +20,13 @@ export default class MetaDataService extends OvpService {
    * @static
    */
   static list(baseUrl: string, ks: string, entryId: string) {
-    let request = new RequestBuilder();
+    let headers: Map<string, string> = new Map();
+    headers.set("Content-Type", "application/json");
+    let request = new RequestBuilder(headers);
     request.service = SERVICE_NAME;
     request.action = "list";
     request.method = "POST";
-    request.baseUrl = baseUrl;
+    request.url = request.getUrl(baseUrl);
     request.tag = "metadata_metadata-list";
     let filter = {objectType: "KalturaMetadataFilter", objectIdEqual: entryId, metadataObjectTypeEqual: "1"};
     let params = {filter: filter, ks: ks};

@@ -19,11 +19,13 @@ export default class SessionService extends OvpService {
    * @static
    */
   static anonymousSession(baseUrl: string, partnerId: number) {
-    let request = new RequestBuilder();
+    let headers: Map<string, string> = new Map();
+    headers.set("Content-Type", "application/json");
+    let request = new RequestBuilder(headers);
     request.service = SERVICE_NAME;
     request.action = "startWidgetSession";
     request.method = "POST";
-    request.baseUrl = baseUrl;
+    request.url = request.getUrl(baseUrl);
     request.tag = "session-startWidget";
     request.params = {widgetId: "_" + partnerId};
     return request;

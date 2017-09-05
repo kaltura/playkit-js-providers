@@ -20,11 +20,13 @@ export default class BaseEntryService extends OvpService {
    * @static
    */
   static getPlaybackContext(baseUrl: string, ks: string, entryId: string): RequestBuilder {
-    let request = new RequestBuilder();
+    let headers: Map<string, string> = new Map();
+    headers.set("Content-Type", "application/json");
+    let request = new RequestBuilder(headers);
     request.service = SERVICE_NAME;
     request.action = "getPlaybackContext";
     request.method = "POST";
-    request.baseUrl = baseUrl;
+    request.url = request.getUrl(baseUrl);
     request.tag = "baseEntry-getPlaybackContext";
     let contextDataParams = {objectType: "KalturaContextDataParams", flavorTags: "all"};
     let params = {entryId: entryId, ks: ks, contextDataParams: contextDataParams};
@@ -42,11 +44,13 @@ export default class BaseEntryService extends OvpService {
    * @static
    */
   static list(baseUrl: string, ks: string, entryId: string): RequestBuilder {
-    let request = new RequestBuilder();
+    let headers: Map<string, string> = new Map();
+    headers.set("Content-Type", "application/json");
+    let request = new RequestBuilder(headers);
     request.service = SERVICE_NAME;
     request.action = "list";
     request.method = "POST";
-    request.baseUrl = baseUrl;
+    request.url = request.getUrl(baseUrl);
     request.tag = "list";
     request.params = BaseEntryService.getEntryListReqParams(entryId, ks);
     return request;
