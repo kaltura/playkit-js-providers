@@ -149,17 +149,15 @@ export default class ProviderParser {
     if (kalturaSource) {
       let playUrl: string = "";
       let mediaFormat = SUPPORTED_FORMATS.get(kalturaSource.format);
+      let extension: string = "";
+      if (mediaFormat) {
+        extension = mediaFormat.pathExt;
+        mediaSource.mimetype = mediaFormat.mimeType;
+      }
       // in case playbackSource doesn't have flavors we don't need to build the url and we'll use the provided one.
       if (kalturaSource.hasFlavorIds()) {
-        let extension: string = "";
-        if (!mediaFormat) {
-          if (flavorAssets && flavorAssets.length > 0) {
-            extension = flavorAssets[0].fileExt;
-          }
-        }
-        else {
-          extension = mediaFormat.pathExt;
-          mediaSource.mimetype = mediaFormat.mimeType;
+        if (!extension && flavorAssets && flavorAssets.length > 0) {
+          extension = flavorAssets[0].fileExt;
         }
 
         playUrl = PlaySourceUrlBuilder.build({
