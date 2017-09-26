@@ -219,7 +219,6 @@ var defaultConfig = {
   beUrl: "http://www.kaltura.com/api_v3",
   baseUrl: "https://cdnapisec.kaltura.com",
   serviceParams: {
-    clientTag: "playkit-js",
     apiVersion: '3.3.0',
     format: 1
   }
@@ -380,14 +379,15 @@ var OvpService = function () {
     /**
      * Gets a new instance of MultiRequestBuilder with ovp params
      * @function getMultirequest
+     * @param {string} pVersion The player version
      * @param {string} ks The ks
      * @param {string} partnerId The partner ID
      * @returns {MultiRequestBuilder} The multi request builder
      * @static
      */
-    value: function getMultirequest(ks, partnerId) {
+    value: function getMultirequest(pVersion, ks, partnerId) {
       var ovpParams = config.serviceParams;
-      Object.assign(ovpParams, { ks: ks });
+      Object.assign(ovpParams, { ks: ks, clientTag: 'html5:v' + pVersion });
       if (partnerId) {
         Object.assign(ovpParams, { partnerId: partnerId });
       }
@@ -466,16 +466,17 @@ var StatsService = function (_OvpService) {
     /**
      * Creates an instance of RequestBuilder for stats.collect
      * @function collect
+     * @param {string} pVersion The player version
      * @param {string} ks - The ks
      * @param {Object} event - The event data
      * @param {string} baseUrl - The service base URL
      * @returns {RequestBuilder} - The request builder
      * @static
      */
-    value: function collect(ks, event, baseUrl) {
+    value: function collect(pVersion, ks, event, baseUrl) {
       var ovpParams = _config2.default.get();
       var serviceParams = {};
-      Object.assign(serviceParams, ovpParams.serviceParams, { ks: ks }, event);
+      Object.assign(serviceParams, ovpParams.serviceParams, { ks: ks, clientTag: 'html5:v' + pVersion }, event);
       var request = new _requestBuilder2.default();
       request.service = SERVICE_NAME;
       request.action = "collect";
