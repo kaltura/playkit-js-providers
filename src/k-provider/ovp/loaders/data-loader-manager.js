@@ -36,11 +36,12 @@ export default class DataLoaderManager {
 
   /**
    * @constructor
+   * @param {string} pVersion The player version
    * @param {string} partnerID Then partner ID
    * @param {string} ks The ks
    */
-  constructor(partnerID: number, ks: string = "") {
-    this._multiRequest = OvpService.getMultirequest(ks, partnerID);
+  constructor(pVersion: string, partnerID: number, ks: string = "") {
+    this._multiRequest = OvpService.getMultirequest(pVersion, ks, partnerID);
   }
 
   /**
