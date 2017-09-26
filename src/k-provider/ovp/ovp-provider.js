@@ -41,6 +41,12 @@ export class OvpProvider {
    */
   partnerID: number;
   /**
+   * @member - pVersion the player version
+   * @type {string}
+   * @private
+   */
+  _pVersion: string;
+  /**
    * @member - is anonymous
    * @type {boolean}
    * @private
@@ -61,11 +67,13 @@ export class OvpProvider {
 
   /**
    * @constructor
+   * @param {string} pVersion The player version
    * @param {number} partnerID The partner ID
    * @param {string} [ks=""]  The provider ks (has empty string as default value)
    * @param {Object} [config]  The provider config(optional)
    */
-  constructor(partnerID: number, ks: string = "", config?: Object) {
+  constructor(pVersion: string, partnerID: number, ks: string = "", config?: Object) {
+    this._pVersion = pVersion;
     this.partnerID = partnerID;
     this.ks = ks;
     this._isAnonymous = !this.ks;
@@ -83,7 +91,7 @@ export class OvpProvider {
     if (uiConfId != null) {
       this._uiConfId = uiConfId;
     }
-    this._dataLoader = new DataLoaderManager(this.partnerID, this.ks);
+    this._dataLoader = new DataLoaderManager(this._pVersion, this.partnerID, this.ks);
     return new Promise((resolve, reject) => {
       if (this.validateParams(entryId, uiConfId)) {
         let ks: string = this.ks;
