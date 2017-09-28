@@ -17,14 +17,8 @@ All notable changes to this project will be documented in this file. See [standa
 # [1.3.0](https://github.com/kaltura/playkit-js-providers/compare/v1.1.1...v1.3.0) (2017-09-06)
 
 
-### Bug Fixes
-
-* **drm:** enums and certificate ([#23](https://github.com/kaltura/playkit-js-providers/issues/23)) ([083cbfa](https://github.com/kaltura/playkit-js-providers/commit/083cbfa))
-
-
 ### Features
 
-* **ovp-provider:** expose dvr status  ([#25](https://github.com/kaltura/playkit-js-providers/issues/25)) ([dbc7769](https://github.com/kaltura/playkit-js-providers/commit/dbc7769))
 * support get method ([#27](https://github.com/kaltura/playkit-js-providers/issues/27)) ([a33f812](https://github.com/kaltura/playkit-js-providers/commit/a33f812))
 
 
