@@ -1,10 +1,27 @@
 //@flow
-const BE_URL: string = "";
-const SERVICE_CONFIG_PARAMAS: Object = {
-  clientTag: "playkit-js",
-  apiVersion: '3.3.0',
-  format: 1
+
+const defaultConfig: Object = {
+  beUrl: "http://api-preprod.ott.kaltura.com/v4_6/api_v3",
+  serviceParams: {
+    clientTag: "playkit-js",
+    apiVersion: '4.5.4.15337'
+  }
 };
 
-export {BE_URL, SERVICE_CONFIG_PARAMAS};
+export default class Configuration {
+
+  static set(clientConfig?: Object) {
+    if (clientConfig) {
+      Object.assign(defaultConfig, clientConfig);
+    }
+  }
+
+  static get(): Object {
+    return defaultConfig;
+  }
+}
+
+export {Configuration};
+
+
 

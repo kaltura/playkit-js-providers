@@ -9,11 +9,13 @@ module.exports = {
   entry: PROD ? {
     "ovpProvider.min": "k-provider/ovp/ovp-provider.js",
     "ottProvider.min": "k-provider/ott/ott-provider.js",
-    "statsService.min": "k-provider/ovp/services/stats-service.js"
+    "statsService.min": "k-provider/ovp/services/stats-service.js",
+    "bookmarkService.min": "k-provider/ott/services/bookmark-service.js"
   } : {
     "ovpProvider": "k-provider/ovp/ovp-provider.js",
     "ottProvider": "k-provider/ott/ott-provider.js",
-    "statsService": "k-provider/ovp/services/stats-service.js"
+    "statsService": "k-provider/ovp/services/stats-service.js",
+    "bookmarkService": "k-provider/ott/services/bookmark-service.js"
   },
   output: {
     path: path.join(__dirname, "dist"),

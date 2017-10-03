@@ -10,3 +10,4 @@ declare type MediaEntryType = string;
 declare type UIConfType = number;
 declare type UIConfCreationMode = number;
 declare type Scheme = string;
+declare type AdsPolicy = string;

@@ -297,4 +297,24 @@ export default class ProviderParser {
     }
     return baseProtocol;
   }
+
+  static hasBlockActions(mediaEntryResponse: any): any {
+    let playbackContext = mediaEntryResponse.playBackContextResult;
+    for (var actionIndex = 0; actionIndex < playbackContext.actions.length; actionIndex ++) {
+      if(playbackContext.actions[actionIndex].type == "BLOCK"){
+        return playbackContext.actions[actionIndex];
+      }
+    }
+    return null;
+  }
+
+  static  hasErrorMessage (mediaEntryResponse: any): any {
+    let messages = mediaEntryResponse.playBackContextResult.messages;
+    for (var messagesIndex = 0; messagesIndex < messages.length; messagesIndex ++) {
+      if(messages[messagesIndex].code != "OK"){
+        return messages[messagesIndex];
+      }
+    }
+    return null;
+  }
 }
