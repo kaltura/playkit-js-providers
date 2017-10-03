@@ -13,14 +13,15 @@ export default class OvpService {
   /**
    * Gets a new instance of MultiRequestBuilder with ovp params
    * @function getMultirequest
+   * @param {string} pVersion The player version
    * @param {string} ks The ks
    * @param {string} partnerId The partner ID
    * @returns {MultiRequestBuilder} The multi request builder
    * @static
    */
-  static getMultirequest(ks: string, partnerId?: number): MultiRequestBuilder {
+  static getMultirequest(pVersion: string, ks: string, partnerId?: number): MultiRequestBuilder {
     let ovpParams = config.serviceParams;
-    Object.assign(ovpParams, {ks: ks});
+    Object.assign(ovpParams, {ks: ks, clientTag: 'html5:v' + pVersion});
     if (partnerId) {
       Object.assign(ovpParams, {partnerId: partnerId});
     }

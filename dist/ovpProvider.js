@@ -217,7 +217,6 @@ var defaultConfig = {
   beUrl: "http://www.kaltura.com/api_v3",
   baseUrl: "https://cdnapisec.kaltura.com",
   serviceParams: {
-    clientTag: "playkit-js",
     apiVersion: '3.3.0',
     format: 1
   }
@@ -376,14 +375,15 @@ var OvpService = function () {
     /**
      * Gets a new instance of MultiRequestBuilder with ovp params
      * @function getMultirequest
+     * @param {string} pVersion The player version
      * @param {string} ks The ks
      * @param {string} partnerId The partner ID
      * @returns {MultiRequestBuilder} The multi request builder
      * @static
      */
-    value: function getMultirequest(ks, partnerId) {
+    value: function getMultirequest(pVersion, ks, partnerId) {
       var ovpParams = config.serviceParams;
-      Object.assign(ovpParams, { ks: ks });
+      Object.assign(ovpParams, { ks: ks, clientTag: 'html5:v' + pVersion });
       if (partnerId) {
         Object.assign(ovpParams, { partnerId: partnerId });
       }
@@ -1743,6 +1743,7 @@ var OvpProvider = exports.OvpProvider = function () {
 
   /**
    * @constructor
+   * @param {string} pVersion The player version
    * @param {number} partnerID The partner ID
    * @param {string} [ks=""]  The provider ks (has empty string as default value)
    * @param {Object} [config]  The provider config(optional)
@@ -1755,15 +1756,22 @@ var OvpProvider = exports.OvpProvider = function () {
    */
 
   /**
-   * @member - partner ID
-   * @type {number}
+   * @member - pVersion the player version
+   * @type {string}
+   * @private
    */
-  function OvpProvider(partnerID) {
-    var ks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
-    var config = arguments[2];
+
+  /**
+   * @member - ks
+   * @type {string}
+   */
+  function OvpProvider(pVersion, partnerID) {
+    var ks = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
+    var config = arguments[3];
 
     _classCallCheck(this, OvpProvider);
 
+    this._pVersion = pVersion;
     this.partnerID = partnerID;
     this.ks = ks;
     this._isAnonymous = !this.ks;
@@ -1791,8 +1799,8 @@ var OvpProvider = exports.OvpProvider = function () {
    */
 
   /**
-   * @member - ks
-   * @type {string}
+   * @member - partner ID
+   * @type {number}
    */
 
 
@@ -1804,7 +1812,7 @@ var OvpProvider = exports.OvpProvider = function () {
       if (uiConfId != null) {
         this._uiConfId = uiConfId;
       }
-      this._dataLoader = new _dataLoaderManager2.default(this.partnerID, this.ks);
+      this._dataLoader = new _dataLoaderManager2.default(this._pVersion, this.partnerID, this.ks);
       return new Promise(function (resolve, reject) {
         if (_this.validateParams(entryId, uiConfId)) {
           var ks = _this.ks;
@@ -2116,16 +2124,15 @@ var ProviderParser = function () {
       if (kalturaSource) {
         var playUrl = "";
         var mediaFormat = SUPPORTED_FORMATS.get(kalturaSource.format);
+        var extension = "";
+        if (mediaFormat) {
+          extension = mediaFormat.pathExt;
+          mediaSource.mimetype = mediaFormat.mimeType;
+        }
         // in case playbackSource doesn't have flavors we don't need to build the url and we'll use the provided one.
         if (kalturaSource.hasFlavorIds()) {
-          var extension = "";
-          if (!mediaFormat) {
-            if (flavorAssets && flavorAssets.length > 0) {
-              extension = flavorAssets[0].fileExt;
-            }
-          } else {
-            extension = mediaFormat.pathExt;
-            mediaSource.mimetype = mediaFormat.mimeType;
+          if (!extension && flavorAssets && flavorAssets.length > 0) {
+            extension = flavorAssets[0].fileExt;
           }
 
           playUrl = _playSourceUrlBuilder2.default.build({
@@ -2616,6 +2623,7 @@ var DataLoaderManager = function () {
 
   /**
    * @constructor
+   * @param {string} pVersion The player version
    * @param {string} partnerID Then partner ID
    * @param {string} ks The ks
    */
@@ -2626,14 +2634,14 @@ var DataLoaderManager = function () {
    * @private
    * @static
    */
-  function DataLoaderManager(partnerID) {
-    var ks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
+  function DataLoaderManager(pVersion, partnerID) {
+    var ks = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
 
     _classCallCheck(this, DataLoaderManager);
 
     this._loaders = new Map();
 
-    this._multiRequest = _ovpService2.default.getMultirequest(ks, partnerID);
+    this._multiRequest = _ovpService2.default.getMultirequest(pVersion, ks, partnerID);
   }
 
   /**

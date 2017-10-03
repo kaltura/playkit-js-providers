@@ -2,18 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-<a name="1.3.0"></a>
-# [1.3.0](https://github.com/kaltura/playkit-js-providers/compare/v1.1.1...v1.3.0) (2017-09-06)
+<a name="1.3.1"></a>
+## [1.3.1](https://github.com/kaltura/playkit-js-providers/compare/v1.3.0...v1.3.1) (2017-09-26)
 
 
 ### Bug Fixes
 
-* **drm:** enums and certificate ([#23](https://github.com/kaltura/playkit-js-providers/issues/23)) ([083cbfa](https://github.com/kaltura/playkit-js-providers/commit/083cbfa))
+* **FEC-7123:** remove clientTag from default config and get it as param ([#30](https://github.com/kaltura/playkit-js-providers/issues/30)) ([3a080e2](https://github.com/kaltura/playkit-js-providers/commit/3a080e2))
+* **FEC-7186:** support external/universal live entries ([#29](https://github.com/kaltura/playkit-js-providers/issues/29)) ([b4f143e](https://github.com/kaltura/playkit-js-providers/commit/b4f143e))
+
+
+
+<a name="1.3.0"></a>
+# [1.3.0](https://github.com/kaltura/playkit-js-providers/compare/v1.1.1...v1.3.0) (2017-09-06)
 
 
 ### Features
 
-* **ovp-provider:** expose dvr status  ([#25](https://github.com/kaltura/playkit-js-providers/issues/25)) ([dbc7769](https://github.com/kaltura/playkit-js-providers/commit/dbc7769))
 * support get method ([#27](https://github.com/kaltura/playkit-js-providers/issues/27)) ([a33f812](https://github.com/kaltura/playkit-js-providers/commit/a33f812))
 
 

@@ -37,14 +37,15 @@ export default class DataLoaderManager {
 
   /**
    * @constructor
+   * @param {string} pVersion The player version
    * @param {string} partnerID Then partner ID
    * @param {string} ks The ks
    * @param {ProviderType} provider type, ovp or ott
    */
-  constructor(partnerID: number, ks: string = "", provider: ProviderType = ProviderType.OVP) {
+  constructor(pVersion: string, partnerID: number, ks: string = "", provider: ProviderType = ProviderType.OVP) {
     switch (provider) {
       case ProviderType.OVP:
-        this._multiRequest = OvpService.getMultirequest(ks, partnerID);
+        this._multiRequest = OvpService.getMultirequest(pVersion, ks, partnerID);
         break;
       case ProviderType.OTT:
         this._multiRequest = OttService.getMultirequest(ks, partnerID);
@@ -52,7 +53,6 @@ export default class DataLoaderManager {
       default:
         break;
     }
-
   }
 
   /**
