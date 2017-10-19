@@ -32,15 +32,12 @@ export default class ProviderParser {
   /**
    * Returns parsed media entry by given OTT response objects
    * @function getMediaEntry
-   * @param {string} ks - The ks
-   * @param {number} partnerID - The partner ID
-   * @param {number} uiConfId - The uiConf ID
    * @param {any} assetResponse - The asset response
    * @returns {MediaEntry} - The media entry
    * @static
    * @public
    */
-  static getMediaEntry(ks: string, partnerID: number, uiConfId: number, assetResponse: any): MediaEntry {
+  static getMediaEntry(assetResponse: any): MediaEntry {
     let mediaEntry: MediaEntry = new MediaEntry();
     let playbackContext = assetResponse.playBackContextResult;
     let mediaData = assetResponse.mediaDataResult;
@@ -108,14 +105,12 @@ export default class ProviderParser {
   static _parseAdaptiveSource(kalturaSource: ?KalturaPlaybackSource): MediaSource {
     let mediaSource: MediaSource = new MediaSource();
     if (kalturaSource) {
-      let playUrl: string = "";
+      let playUrl: string = kalturaSource.url;
       let mediaFormat = SUPPORTED_FORMATS.get(kalturaSource.format);
 
       if (mediaFormat) {
         mediaSource.mimetype = mediaFormat.mimeType;
       }
-
-      playUrl = kalturaSource.url;
 
       if (playUrl === "") {
         logger.error(`failed to create play url from source, discarding source: (${kalturaSource.fileId}_${kalturaSource.deliveryProfileId}), ${kalturaSource.format}.`);

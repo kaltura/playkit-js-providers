@@ -32,6 +32,11 @@ export default class KalturaAsset extends ServiceResult {
    * @type {Array}
    */
   metas: Array = [];
+  /**
+   * @member - The asset images
+   * @type {Array}
+   */
+  pictures: Array = []
 
   /**
    * @constructor
@@ -46,6 +51,7 @@ export default class KalturaAsset extends ServiceResult {
       this.description = response.description;
       this.metas = this._formatTagsMetas(response.metas);
       this.tags = this._formatTagsMetas(response.tags);
+      this.pictures = response.images;
     }
   }
 
@@ -58,10 +64,10 @@ export default class KalturaAsset extends ServiceResult {
         objectToParse[key].objects.forEach(function (object) {
           value += object.value + "|";
         });
-        parsed[key] = value = value.slice(0, -1);
+        parsed.push({key: key, value: value});
       }
       else{
-        parsed[key] = objectToParse[key].value;
+        parsed.push({key: key, value: objectToParse[key].value});
       }
 
     });

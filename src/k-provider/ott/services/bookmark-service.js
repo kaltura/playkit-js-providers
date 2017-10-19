@@ -2,6 +2,7 @@
 
 import OttService from './ott-service'
 import RequestBuilder from '../../request-builder'
+import Configuration from '../config'
 
 const SERVICE_NAME: string = "bookmark";
 
@@ -40,8 +41,13 @@ export default class BookMarkService extends OttService {
       position: bookmark.position,
       playerData: playerData
     };
+    let config = Configuration.get();
+    let serviceParams = config.serviceParams;
+    Object.assign(serviceParams, {bookmark: bookMarkServiceParams, ks: ks});
+    request.params = JSON.stringify(serviceParams);
 
-    request.params = {bookmark: bookMarkServiceParams};
     return request;
   }
 }
+
+export {BookMarkService, RequestBuilder, Configuration};

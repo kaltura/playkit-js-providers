@@ -66,18 +66,23 @@ export class OvpProvider {
   _dataLoader: DataLoaderManager;
 
   /**
-   * @constructor
-   * @param {string} pVersion The player version
-   * @param {number} partnerID The partner ID
-   * @param {string} [ks=""]  The provider ks (has empty string as default value)
-   * @param {Object} [config]  The provider config(optional)
+   * @member - Does UiConf should be loaded
+   * @type {boolean}
+   * @private
    */
-  constructor(pVersion: string, partnerID: number, ks: string = "", config?: Object) {
-    this._pVersion = pVersion;
-    this.partnerID = partnerID;
-    this.ks = ks;
+  _loadUiConf: boolean;
+
+  /**
+   * @constructor
+   * @param {Object} options  The provider options
+   */
+  constructor(options: {pVersion: string, partnerID: number, ks: string, config: Object, loadUiConf: boolean}) {
+    this._pVersion = options.pVersion;
+    this.partnerID = options.partnerID;
+    this.ks = options.ks;
     this._isAnonymous = !this.ks;
-    Configuration.set(config);
+    this._loadUiConf = options.loadUiConf;
+    Configuration.set(options.config);
   }
 
   /**
@@ -99,7 +104,9 @@ export class OvpProvider {
           this._dataLoader.add(SessionLoader, {partnerId: this.partnerID});
         }
         this._dataLoader.add(MediaEntryLoader, {entryId: options.entryId, ks: ks});
-        this._dataLoader.add(UiConfigLoader, {uiConfId: options.uiConfId, ks: ks});
+        if(this._loadUiConf){
+          this._dataLoader.add(UiConfigLoader, {uiConfId: options.uiConfId, ks: ks});
+        }
         this._dataLoader.fetchData()
           .then(response => {
               try {

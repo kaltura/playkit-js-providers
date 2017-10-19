@@ -42,6 +42,12 @@ export class OttProvider {
    */
   partnerID: number;
   /**
+   * @member - pVersion the player version
+   * @type {string}
+   * @private
+   */
+  _pVersion: string;
+  /**
    * @member - is anonymous
    * @type {boolean}
    * @private
@@ -62,11 +68,13 @@ export class OttProvider {
 
   /**
    * @constructor
+   * @param {string} pVersion The player version
    * @param {number} partnerID The partner ID
    * @param {string} [ks=""]  The provider ks (has empty string as default value)
    * @param {Object} [config]  The provider config(optional)
    */
-  constructor(partnerID: number, ks: string = "", config?: Object) {
+  constructor(pVersion: string, partnerID: number, ks: string = "", config?: Object) {
+    this._pVersion = pVersion;
     this.partnerID = partnerID;
     this.ks = ks;
     this._isAnonymous = !this.ks;
@@ -81,7 +89,7 @@ export class OttProvider {
    */
   getConfig(options: {assetId: string, type: OttAssetType, contextType: OttPlaybackType, protocol: string, fileIds: string, uiConfId: number}): Promise<Object> {
 
-    this._dataLoader = new DataLoaderManager(this.partnerID, this.ks, ProviderType.OTT);
+    this._dataLoader = new DataLoaderManager(this._pVersion, this.partnerID, this.ks, ProviderType.OTT);
     return new Promise((resolve, reject) => {
       if (this.validateParams(options)) {
         let ks: string = this.ks;
@@ -153,14 +161,6 @@ export class OttProvider {
           config.session.ks = this.ks;
         }
       }
-      /*  if (data.has(UiConfigLoader.id)) {
-       let uiConfLoader = data.get(UiConfigLoader.id);
-       let pluginsJson: Object = {};
-       if (uiConfLoader != null) {
-       pluginsJson = uiConfLoader.response;
-       }
-       config.plugins = pluginsJson;
-       }*/
       if (data.has(AssetLoader.id)) {
         let assetLoader = data.get(AssetLoader.id);
         if (assetLoader != null && assetLoader.response != null) {
@@ -176,7 +176,7 @@ export class OttProvider {
               throw blockedAction;
             }
           }
-          let mediaEntry: MediaEntry = ProviderParser.getMediaEntry(this._isAnonymous ? "" : this.ks, this.partnerID, this._uiConfId, assetLoader.response);
+          let mediaEntry: MediaEntry = ProviderParser.getMediaEntry(assetLoader.response);
           config.sources = mediaEntry.sources;
           config.id = mediaEntry.id;
           config.name = mediaEntry.name;

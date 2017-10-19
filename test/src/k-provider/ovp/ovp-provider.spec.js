@@ -13,7 +13,7 @@ describe('OvpProvider.partnerId:1082342', function () {
 
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
-    provider = new OvpProvider(pVersion, partnerId);
+    provider = new OvpProvider({pVersion: pVersion, partnerID: partnerId});
   });
 
   afterEach(() => {
@@ -48,7 +48,7 @@ describe('OvpProvider.partnerId:1082342', function () {
   it('should return config with plugins and without drm data', (done) => {
     let entryID = "1_rsrdfext";
     let uiConfID = 38621471;
-    provider = new OvpProvider(pVersion, partnerId);
+    provider = new OvpProvider({pVersion: pVersion, partnerID: partnerId});
     sinon.stub(MultiRequestBuilder.prototype, "execute").callsFake(
       function () {
         return new Promise((resolve) => {
@@ -129,7 +129,7 @@ describe('OvpProvider.partnerId:1068292', function () {
 
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
-    provider = new OvpProvider(pVersion, partnerId, ks);
+    provider = new OvpProvider({pVersion: pVersion, partnerID: partnerId, ks: ks});
   });
 
   afterEach(() => {
