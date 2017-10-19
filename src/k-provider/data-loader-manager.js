@@ -1,8 +1,9 @@
 //@flow
-import OvpService from '../services/ovp-service'
-import MultiRequestBuilder from '../../multi-request-builder'
-import {MultiRequestResult} from '../../multi-request-builder'
-
+import OvpService from './ovp/services/ovp-service'
+import OttService from './ott/services/ott-service'
+import MultiRequestBuilder from './multi-request-builder'
+import {MultiRequestResult} from './multi-request-builder'
+import {ProviderType} from  './enums'
 /**
  * Data loaders manager
  * @classdesc
@@ -39,9 +40,19 @@ export default class DataLoaderManager {
    * @param {string} pVersion The player version
    * @param {string} partnerID Then partner ID
    * @param {string} ks The ks
+   * @param {ProviderType} provider type, ovp or ott
    */
-  constructor(pVersion: string, partnerID: number, ks: string = "") {
-    this._multiRequest = OvpService.getMultirequest(pVersion, ks, partnerID);
+  constructor(pVersion: string, partnerID: number, ks: string = "", provider: ProviderType = ProviderType.OVP) {
+    switch (provider) {
+      case ProviderType.OVP:
+        this._multiRequest = OvpService.getMultirequest(pVersion, ks, partnerID);
+        break;
+      case ProviderType.OTT:
+        this._multiRequest = OttService.getMultirequest(ks, partnerID);
+        break;
+      default:
+        break;
+    }
   }
 
   /**

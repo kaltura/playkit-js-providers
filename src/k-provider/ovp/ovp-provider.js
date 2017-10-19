@@ -1,7 +1,7 @@
 //@flow
 import Logger from '../../util/logger'
 import ProviderParser from './provider-parser'
-import DataLoaderManager from './loaders/data-loader-manager'
+import DataLoaderManager from '../data-loader-manager'
 import MediaEntryLoader from './loaders/media-entry-loader'
 import SessionLoader from './loaders/session-loader'
 import UiConfigLoader from './loaders/ui-config-loader'
@@ -66,44 +66,55 @@ export class OvpProvider {
   _dataLoader: DataLoaderManager;
 
   /**
-   * @constructor
-   * @param {string} pVersion The player version
-   * @param {number} partnerID The partner ID
-   * @param {string} [ks=""]  The provider ks (has empty string as default value)
-   * @param {Object} [config]  The provider config(optional)
+   * @member - Does UiConf should be loaded
+   * @type {boolean}
+   * @private
    */
-  constructor(pVersion: string, partnerID: number, ks: string = "", config?: Object) {
-    this._pVersion = pVersion;
-    this.partnerID = partnerID;
-    this.ks = ks;
+  _loadUiConf: boolean;
+
+  /**
+   * @constructor
+   * @param {Object} options  The provider options
+   */
+  constructor(options: {pVersion: string, partnerID: number, ks: string, config: Object, loadUiConf: boolean}) {
+    this._pVersion = options.pVersion;
+    this.partnerID = options.partnerID;
+    this.ks = options.ks;
     this._isAnonymous = !this.ks;
-    Configuration.set(config);
+    this._loadUiConf = options.loadUiConf;
+    Configuration.set(options.config);
   }
 
   /**
    * Returns player json configuration
    * @function getConfig
-   * @param {string} entryId The entry ID
-   * @param {number} uiConfId The uiConf ID
+   * @param {Object} options The get config options
    * @returns {Promise} The provider config object as promise
    */
-  getConfig(entryId?: string, uiConfId?: number): Promise<Object> {
-    if (uiConfId != null) {
-      this._uiConfId = uiConfId;
+  getConfig(options: {entryId: string, uiConfId: number}): Promise<Object> {
+    if (options && options.uiConfId != null) {
+      this._uiConfId = options.uiConfId;
     }
     this._dataLoader = new DataLoaderManager(this._pVersion, this.partnerID, this.ks);
     return new Promise((resolve, reject) => {
-      if (this.validateParams(entryId, uiConfId)) {
+      if (this.validateParams(options)) {
         let ks: string = this.ks;
         if (!ks) {
           ks = "{1:result:ks}";
           this._dataLoader.add(SessionLoader, {partnerId: this.partnerID});
         }
-        this._dataLoader.add(MediaEntryLoader, {entryId: entryId, ks: ks});
-        this._dataLoader.add(UiConfigLoader, {uiConfId: uiConfId, ks: ks});
+        this._dataLoader.add(MediaEntryLoader, {entryId: options.entryId, ks: ks});
+        if(this._loadUiConf){
+          this._dataLoader.add(UiConfigLoader, {uiConfId: options.uiConfId, ks: ks});
+        }
         this._dataLoader.fetchData()
           .then(response => {
-              resolve(this.parseDataFromResponse(response));
+              try {
+                resolve(this.parseDataFromResponse(response));
+              }
+              catch (err) {
+                reject({success: false, data: err});
+              }
             },
             err => {
               reject(err);
@@ -156,6 +167,18 @@ export class OvpProvider {
       if (data.has(MediaEntryLoader.id)) {
         let mediaLoader = data.get(MediaEntryLoader.id);
         if (mediaLoader != null && mediaLoader.response != null) {
+          let blockedAction = ProviderParser.hasBlockActions(mediaLoader.response)
+          if (ProviderParser.hasBlockActions(mediaLoader.response)) {
+            let errorMessage = ProviderParser.hasErrorMessage(mediaLoader.response);
+            if(errorMessage){
+              logger.error(`Entry is blocked, error message: ` ,errorMessage);
+              throw errorMessage;
+            }
+            else{
+              logger.error(`Entry is blocked, action: ` ,blockedAction);
+              throw blockedAction;
+            }
+          }
           let mediaEntry: MediaEntry = ProviderParser.getMediaEntry(this._isAnonymous ? "" : this.ks, this.partnerID, this._uiConfId, mediaLoader.response);
           config.id = mediaEntry.id;
           config.name = mediaEntry.name;
@@ -173,12 +196,17 @@ export class OvpProvider {
 
   /**
    * Parameters validation function
-   * @param {string} entryId The entry ID
-   * @param {number} uiConfId The uiConfID
+   * @param {Object} options The options
    * @returns {boolean} Is valid params
    */
-  validateParams(entryId?: string, uiConfId?: number): boolean {
-    return !!entryId || !!uiConfId;
+  validateParams(options: Object): boolean {
+
+    if(options){
+      return !!options.entryId || !!options.uiConfId;
+    }
+    else{
+      return false;
+    }
   }
 
 }

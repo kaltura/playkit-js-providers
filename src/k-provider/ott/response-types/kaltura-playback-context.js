@@ -2,11 +2,11 @@
 import ServiceResult from '../../base-service-result'
 import KalturaAccessControlMessage from '../../shared-response-types/kaltura-access-control-message'
 import KalturaPlaybackSource from './kaltura-playback-source'
-import KalturaRuleAction from '../../shared-response-types/kaltura-rule-action'
-import KalturaFlavorAsset from './kaltura-flavor-asset'
+import KalturaRuleAction from  '../../shared-response-types/kaltura-rule-action'
+
 
 /**
- * Ovp BE playback context response
+ * OTT BE playback context response
  * @classdesc
  */
 export default class KalturaPlaybackContext extends ServiceResult {
@@ -25,11 +25,6 @@ export default class KalturaPlaybackContext extends ServiceResult {
    * @type {Array<KalturaAccessControlMessage>}
    */
   messages: Array<KalturaAccessControlMessage> = [];
-  /**
-   * @member - The flavor assets
-   * @type {Array<KalturaFlavorAsset>}
-   */
-  flavorAssets: Array<KalturaFlavorAsset> = [];
 
   /**
    * @constructor
@@ -53,13 +48,7 @@ export default class KalturaPlaybackContext extends ServiceResult {
       if (sources) {
         sources.map(source => this.sources.push(new KalturaPlaybackSource(source)));
       }
-
-      let flavorAssets = response.flavorAssets;
-      if (flavorAssets) {
-        flavorAssets.map(flavor => this.flavorAssets.push(new KalturaFlavorAsset(flavor)));
-      }
     }
-
   }
 }
 

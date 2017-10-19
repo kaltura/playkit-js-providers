@@ -43,6 +43,9 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
 /******/
+/******/ 	// identity function for calling harmony imports with the correct context
+/******/ 	__webpack_require__.i = function(value) { return value; };
+/******/
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
@@ -70,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 37);
+/******/ 	return __webpack_require__(__webpack_require__.s = 47);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -251,6 +254,274 @@ exports.Configuration = Configuration;
 
 /***/ }),
 
+/***/ 10:
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+ * js-logger - http://github.com/jonnyreeves/js-logger
+ * Jonny Reeves, http://jonnyreeves.co.uk/
+ * js-logger may be freely distributed under the MIT license.
+ */
+(function (global) {
+	"use strict";
+
+	// Top level module for the global, static logger instance.
+	var Logger = { };
+
+	// For those that are at home that are keeping score.
+	Logger.VERSION = "1.3.0";
+
+	// Function which handles all incoming log messages.
+	var logHandler;
+
+	// Map of ContextualLogger instances by name; used by Logger.get() to return the same named instance.
+	var contextualLoggersByNameMap = {};
+
+	// Polyfill for ES5's Function.bind.
+	var bind = function(scope, func) {
+		return function() {
+			return func.apply(scope, arguments);
+		};
+	};
+
+	// Super exciting object merger-matron 9000 adding another 100 bytes to your download.
+	var merge = function () {
+		var args = arguments, target = args[0], key, i;
+		for (i = 1; i < args.length; i++) {
+			for (key in args[i]) {
+				if (!(key in target) && args[i].hasOwnProperty(key)) {
+					target[key] = args[i][key];
+				}
+			}
+		}
+		return target;
+	};
+
+	// Helper to define a logging level object; helps with optimisation.
+	var defineLogLevel = function(value, name) {
+		return { value: value, name: name };
+	};
+
+	// Predefined logging levels.
+	Logger.DEBUG = defineLogLevel(1, 'DEBUG');
+	Logger.INFO = defineLogLevel(2, 'INFO');
+	Logger.TIME = defineLogLevel(3, 'TIME');
+	Logger.WARN = defineLogLevel(4, 'WARN');
+	Logger.ERROR = defineLogLevel(8, 'ERROR');
+	Logger.OFF = defineLogLevel(99, 'OFF');
+
+	// Inner class which performs the bulk of the work; ContextualLogger instances can be configured independently
+	// of each other.
+	var ContextualLogger = function(defaultContext) {
+		this.context = defaultContext;
+		this.setLevel(defaultContext.filterLevel);
+		this.log = this.info;  // Convenience alias.
+	};
+
+	ContextualLogger.prototype = {
+		// Changes the current logging level for the logging instance.
+		setLevel: function (newLevel) {
+			// Ensure the supplied Level object looks valid.
+			if (newLevel && "value" in newLevel) {
+				this.context.filterLevel = newLevel;
+			}
+		},
+
+		// Is the logger configured to output messages at the supplied level?
+		enabledFor: function (lvl) {
+			var filterLevel = this.context.filterLevel;
+			return lvl.value >= filterLevel.value;
+		},
+
+		debug: function () {
+			this.invoke(Logger.DEBUG, arguments);
+		},
+
+		info: function () {
+			this.invoke(Logger.INFO, arguments);
+		},
+
+		warn: function () {
+			this.invoke(Logger.WARN, arguments);
+		},
+
+		error: function () {
+			this.invoke(Logger.ERROR, arguments);
+		},
+
+		time: function (label) {
+			if (typeof label === 'string' && label.length > 0) {
+				this.invoke(Logger.TIME, [ label, 'start' ]);
+			}
+		},
+
+		timeEnd: function (label) {
+			if (typeof label === 'string' && label.length > 0) {
+				this.invoke(Logger.TIME, [ label, 'end' ]);
+			}
+		},
+
+		// Invokes the logger callback if it's not being filtered.
+		invoke: function (level, msgArgs) {
+			if (logHandler && this.enabledFor(level)) {
+				logHandler(msgArgs, merge({ level: level }, this.context));
+			}
+		}
+	};
+
+	// Protected instance which all calls to the to level `Logger` module will be routed through.
+	var globalLogger = new ContextualLogger({ filterLevel: Logger.OFF });
+
+	// Configure the global Logger instance.
+	(function() {
+		// Shortcut for optimisers.
+		var L = Logger;
+
+		L.enabledFor = bind(globalLogger, globalLogger.enabledFor);
+		L.debug = bind(globalLogger, globalLogger.debug);
+		L.time = bind(globalLogger, globalLogger.time);
+		L.timeEnd = bind(globalLogger, globalLogger.timeEnd);
+		L.info = bind(globalLogger, globalLogger.info);
+		L.warn = bind(globalLogger, globalLogger.warn);
+		L.error = bind(globalLogger, globalLogger.error);
+
+		// Don't forget the convenience alias!
+		L.log = L.info;
+	}());
+
+	// Set the global logging handler.  The supplied function should expect two arguments, the first being an arguments
+	// object with the supplied log messages and the second being a context object which contains a hash of stateful
+	// parameters which the logging function can consume.
+	Logger.setHandler = function (func) {
+		logHandler = func;
+	};
+
+	// Sets the global logging filter level which applies to *all* previously registered, and future Logger instances.
+	// (note that named loggers (retrieved via `Logger.get`) can be configured independently if required).
+	Logger.setLevel = function(level) {
+		// Set the globalLogger's level.
+		globalLogger.setLevel(level);
+
+		// Apply this level to all registered contextual loggers.
+		for (var key in contextualLoggersByNameMap) {
+			if (contextualLoggersByNameMap.hasOwnProperty(key)) {
+				contextualLoggersByNameMap[key].setLevel(level);
+			}
+		}
+	};
+
+	// Retrieve a ContextualLogger instance.  Note that named loggers automatically inherit the global logger's level,
+	// default context and log handler.
+	Logger.get = function (name) {
+		// All logger instances are cached so they can be configured ahead of use.
+		return contextualLoggersByNameMap[name] ||
+			(contextualLoggersByNameMap[name] = new ContextualLogger(merge({ name: name }, globalLogger.context)));
+	};
+
+	// CreateDefaultHandler returns a handler function which can be passed to `Logger.setHandler()` which will
+	// write to the window's console object (if present); the optional options object can be used to customise the
+	// formatter used to format each log message.
+	Logger.createDefaultHandler = function (options) {
+		options = options || {};
+
+		options.formatter = options.formatter || function defaultMessageFormatter(messages, context) {
+			// Prepend the logger's name to the log message for easy identification.
+			if (context.name) {
+				messages.unshift("[" + context.name + "]");
+			}
+		};
+
+		// Map of timestamps by timer labels used to track `#time` and `#timeEnd()` invocations in environments
+		// that don't offer a native console method.
+		var timerStartTimeByLabelMap = {};
+
+		// Support for IE8+ (and other, slightly more sane environments)
+		var invokeConsoleMethod = function (hdlr, messages) {
+			Function.prototype.apply.call(hdlr, console, messages);
+		};
+
+		// Check for the presence of a logger.
+		if (typeof console === "undefined") {
+			return function () { /* no console */ };
+		}
+
+		return function(messages, context) {
+			// Convert arguments object to Array.
+			messages = Array.prototype.slice.call(messages);
+
+			var hdlr = console.log;
+			var timerLabel;
+
+			if (context.level === Logger.TIME) {
+				timerLabel = (context.name ? '[' + context.name + '] ' : '') + messages[0];
+
+				if (messages[1] === 'start') {
+					if (console.time) {
+						console.time(timerLabel);
+					}
+					else {
+						timerStartTimeByLabelMap[timerLabel] = new Date().getTime();
+					}
+				}
+				else {
+					if (console.timeEnd) {
+						console.timeEnd(timerLabel);
+					}
+					else {
+						invokeConsoleMethod(hdlr, [ timerLabel + ': ' +
+							(new Date().getTime() - timerStartTimeByLabelMap[timerLabel]) + 'ms' ]);
+					}
+				}
+			}
+			else {
+				// Delegate through to custom warn/error loggers if present on the console.
+				if (context.level === Logger.WARN && console.warn) {
+					hdlr = console.warn;
+				} else if (context.level === Logger.ERROR && console.error) {
+					hdlr = console.error;
+				} else if (context.level === Logger.INFO && console.info) {
+					hdlr = console.info;
+				}
+
+				options.formatter(messages, context);
+				invokeConsoleMethod(hdlr, messages);
+			}
+		};
+	};
+
+	// Configure and example a Default implementation which writes to the `window.console` (if present).  The
+	// `options` hash can be used to configure the default logLevel and provide a custom message formatter.
+	Logger.useDefaults = function(options) {
+		Logger.setLevel(options && options.defaultLevel || Logger.DEBUG);
+		Logger.setHandler(Logger.createDefaultHandler(options));
+	};
+
+	// Export to popular environments boilerplate.
+	if (true) {
+		!(__WEBPACK_AMD_DEFINE_FACTORY__ = (Logger),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+				__WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	}
+	else if (typeof module !== 'undefined' && module.exports) {
+		module.exports = Logger;
+	}
+	else {
+		Logger._prevLogger = global.Logger;
+
+		Logger.noConflict = function () {
+			global.Logger = Logger._prevLogger;
+			return Logger;
+		};
+
+		global.Logger = Logger;
+	}
+}(this));
+
+
+/***/ }),
+
 /***/ 2:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -345,160 +616,54 @@ function ServiceError(code, message) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.LOG_LEVEL = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _multiRequestBuilder = __webpack_require__(5);
+var _jsLogger = __webpack_require__(10);
 
-var _multiRequestBuilder2 = _interopRequireDefault(_multiRequestBuilder);
+var JsLogger = _interopRequireWildcard(_jsLogger);
 
-var _config = __webpack_require__(1);
-
-var _config2 = _interopRequireDefault(_config);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var config = _config2.default.get();
-var SERVICE_NAME = "multirequest";
+var LoggerFactory = function () {
+  function LoggerFactory(options) {
+    _classCallCheck(this, LoggerFactory);
 
-/**
- * Base for all ovp services
- * @classdesc
- */
-
-var OvpService = function () {
-  function OvpService() {
-    _classCallCheck(this, OvpService);
+    JsLogger.useDefaults(options || {});
   }
 
-  _createClass(OvpService, null, [{
-    key: 'getMultirequest',
-
-    /**
-     * Gets a new instance of MultiRequestBuilder with ovp params
-     * @function getMultirequest
-     * @param {string} pVersion The player version
-     * @param {string} ks The ks
-     * @param {string} partnerId The partner ID
-     * @returns {MultiRequestBuilder} The multi request builder
-     * @static
-     */
-    value: function getMultirequest(pVersion, ks, partnerId) {
-      var ovpParams = config.serviceParams;
-      Object.assign(ovpParams, { ks: ks, clientTag: 'html5:v' + pVersion });
-      if (partnerId) {
-        Object.assign(ovpParams, { partnerId: partnerId });
+  _createClass(LoggerFactory, [{
+    key: "get",
+    value: function get(name) {
+      if (!name) {
+        return JsLogger;
       }
-      var headers = new Map();
-      headers.set("Content-Type", "application/json");
-      var multiReq = new _multiRequestBuilder2.default(headers);
-      multiReq.method = "POST";
-      multiReq.service = SERVICE_NAME;
-      multiReq.url = multiReq.getUrl(config.beUrl);
-      multiReq.params = ovpParams;
-      return multiReq;
+      return JsLogger.get(name);
     }
   }]);
 
-  return OvpService;
+  return LoggerFactory;
 }();
 
-exports.default = OvpService;
+var Logger = new LoggerFactory({ defaultLevel: JsLogger.DEBUG });
+var LOG_LEVEL = {
+  "DEBUG": JsLogger.DEBUG,
+  "INFO": JsLogger.INFO,
+  "TIME": JsLogger.TIME,
+  "WARN": JsLogger.WARN,
+  "ERROR": JsLogger.ERROR,
+  "OFF": JsLogger.OFF
+};
+
+exports.default = Logger;
+exports.LOG_LEVEL = LOG_LEVEL;
 
 /***/ }),
 
-/***/ 37:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.RequestBuilder = exports.Configuration = exports.StatsService = undefined;
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _ovpService = __webpack_require__(3);
-
-var _ovpService2 = _interopRequireDefault(_ovpService);
-
-var _requestBuilder = __webpack_require__(0);
-
-var _requestBuilder2 = _interopRequireDefault(_requestBuilder);
-
-var _config = __webpack_require__(1);
-
-var _config2 = _interopRequireDefault(_config);
-
-var _param = __webpack_require__(38);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var SERVICE_NAME = "stats";
-/**
- * Ovp stats service methods
- * @classdesc
- */
-
-var StatsService = function (_OvpService) {
-  _inherits(StatsService, _OvpService);
-
-  function StatsService() {
-    _classCallCheck(this, StatsService);
-
-    return _possibleConstructorReturn(this, (StatsService.__proto__ || Object.getPrototypeOf(StatsService)).apply(this, arguments));
-  }
-
-  _createClass(StatsService, null, [{
-    key: 'collect',
-
-
-    /**
-     * Creates an instance of RequestBuilder for stats.collect
-     * @function collect
-     * @param {string} pVersion The player version
-     * @param {string} ks - The ks
-     * @param {Object} event - The event data
-     * @param {string} baseUrl - The service base URL
-     * @returns {RequestBuilder} - The request builder
-     * @static
-     */
-    value: function collect(pVersion, ks, event, baseUrl) {
-      var ovpParams = _config2.default.get();
-      var serviceParams = {};
-      Object.assign(serviceParams, ovpParams.serviceParams, { ks: ks, clientTag: 'html5:v' + pVersion }, event);
-      var request = new _requestBuilder2.default();
-      request.service = SERVICE_NAME;
-      request.action = "collect";
-      request.method = "GET";
-      request.tag = "stats-collect";
-      request.params = serviceParams;
-      request.url = baseUrl + '?service=' + request.service + '&action=' + request.action + '&' + (0, _param.param)(request.params);
-      return request;
-    }
-  }]);
-
-  return StatsService;
-}(_ovpService2.default);
-
-exports.default = StatsService;
-exports.StatsService = StatsService;
-exports.Configuration = _config2.default;
-exports.RequestBuilder = _requestBuilder2.default;
-
-/***/ }),
-
-/***/ 38:
+/***/ 30:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -569,62 +734,6 @@ exports.param = param;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.LOG_LEVEL = undefined;
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _jsLogger = __webpack_require__(6);
-
-var JsLogger = _interopRequireWildcard(_jsLogger);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var LoggerFactory = function () {
-  function LoggerFactory(options) {
-    _classCallCheck(this, LoggerFactory);
-
-    JsLogger.useDefaults(options || {});
-  }
-
-  _createClass(LoggerFactory, [{
-    key: "get",
-    value: function get(name) {
-      if (!name) {
-        return JsLogger;
-      }
-      return JsLogger.get(name);
-    }
-  }]);
-
-  return LoggerFactory;
-}();
-
-var Logger = new LoggerFactory({ defaultLevel: JsLogger.DEBUG });
-var LOG_LEVEL = {
-  "DEBUG": JsLogger.DEBUG,
-  "INFO": JsLogger.INFO,
-  "TIME": JsLogger.TIME,
-  "WARN": JsLogger.WARN,
-  "ERROR": JsLogger.ERROR,
-  "OFF": JsLogger.OFF
-};
-
-exports.default = Logger;
-exports.LOG_LEVEL = LOG_LEVEL;
-
-/***/ }),
-
-/***/ 5:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 exports.MultiRequestResult = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -637,7 +746,7 @@ var _baseServiceResult = __webpack_require__(2);
 
 var _baseServiceResult2 = _interopRequireDefault(_baseServiceResult);
 
-var _logger = __webpack_require__(4);
+var _logger = __webpack_require__(3);
 
 var _logger2 = _interopRequireDefault(_logger);
 
@@ -762,7 +871,8 @@ exports.MultiRequestResult = function MultiRequestResult(response) {
   this.results = [];
 
   this.success = true;
-  response.forEach(function (result) {
+  var responseArr = response.result ? response.result : response;
+  responseArr.forEach(function (result) {
     var serviceResult = new _baseServiceResult2.default(result);
     _this3.results.push(serviceResult);
     if (serviceResult.hasError) {
@@ -780,283 +890,165 @@ exports.MultiRequestResult = function MultiRequestResult(response) {
 
 /***/ }),
 
-/***/ 6:
+/***/ 47:
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
- * js-logger - http://github.com/jonnyreeves/js-logger
- * Jonny Reeves, http://jonnyreeves.co.uk/
- * js-logger may be freely distributed under the MIT license.
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.RequestBuilder = exports.Configuration = exports.StatsService = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _ovpService = __webpack_require__(7);
+
+var _ovpService2 = _interopRequireDefault(_ovpService);
+
+var _requestBuilder = __webpack_require__(0);
+
+var _requestBuilder2 = _interopRequireDefault(_requestBuilder);
+
+var _config = __webpack_require__(1);
+
+var _config2 = _interopRequireDefault(_config);
+
+var _param = __webpack_require__(30);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SERVICE_NAME = "stats";
+/**
+ * Ovp stats service methods
+ * @classdesc
  */
-(function (global) {
-	"use strict";
 
-	// Top level module for the global, static logger instance.
-	var Logger = { };
+var StatsService = function (_OvpService) {
+  _inherits(StatsService, _OvpService);
 
-	// For those that are at home that are keeping score.
-	Logger.VERSION = "1.4.1";
+  function StatsService() {
+    _classCallCheck(this, StatsService);
 
-	// Function which handles all incoming log messages.
-	var logHandler;
+    return _possibleConstructorReturn(this, (StatsService.__proto__ || Object.getPrototypeOf(StatsService)).apply(this, arguments));
+  }
 
-	// Map of ContextualLogger instances by name; used by Logger.get() to return the same named instance.
-	var contextualLoggersByNameMap = {};
+  _createClass(StatsService, null, [{
+    key: 'collect',
 
-	// Polyfill for ES5's Function.bind.
-	var bind = function(scope, func) {
-		return function() {
-			return func.apply(scope, arguments);
-		};
-	};
 
-	// Super exciting object merger-matron 9000 adding another 100 bytes to your download.
-	var merge = function () {
-		var args = arguments, target = args[0], key, i;
-		for (i = 1; i < args.length; i++) {
-			for (key in args[i]) {
-				if (!(key in target) && args[i].hasOwnProperty(key)) {
-					target[key] = args[i][key];
-				}
-			}
-		}
-		return target;
-	};
+    /**
+     * Creates an instance of RequestBuilder for stats.collect
+     * @function collect
+     * @param {string} pVersion The player version
+     * @param {string} ks - The ks
+     * @param {Object} event - The event data
+     * @param {string} baseUrl - The service base URL
+     * @returns {RequestBuilder} - The request builder
+     * @static
+     */
+    value: function collect(pVersion, ks, event, baseUrl) {
+      var ovpParams = _config2.default.get();
+      var serviceParams = {};
+      Object.assign(serviceParams, ovpParams.serviceParams, { ks: ks, clientTag: 'html5:v' + pVersion }, event);
+      var request = new _requestBuilder2.default();
+      request.service = SERVICE_NAME;
+      request.action = "collect";
+      request.method = "GET";
+      request.tag = "stats-collect";
+      request.params = serviceParams;
+      request.url = baseUrl + '?service=' + request.service + '&action=' + request.action + '&' + (0, _param.param)(request.params);
+      return request;
+    }
+  }]);
 
-	// Helper to define a logging level object; helps with optimisation.
-	var defineLogLevel = function(value, name) {
-		return { value: value, name: name };
-	};
+  return StatsService;
+}(_ovpService2.default);
 
-	// Predefined logging levels.
-	Logger.DEBUG = defineLogLevel(1, 'DEBUG');
-	Logger.INFO = defineLogLevel(2, 'INFO');
-	Logger.TIME = defineLogLevel(3, 'TIME');
-	Logger.WARN = defineLogLevel(4, 'WARN');
-	Logger.ERROR = defineLogLevel(8, 'ERROR');
-	Logger.OFF = defineLogLevel(99, 'OFF');
+exports.default = StatsService;
+exports.StatsService = StatsService;
+exports.Configuration = _config2.default;
+exports.RequestBuilder = _requestBuilder2.default;
 
-	// Inner class which performs the bulk of the work; ContextualLogger instances can be configured independently
-	// of each other.
-	var ContextualLogger = function(defaultContext) {
-		this.context = defaultContext;
-		this.setLevel(defaultContext.filterLevel);
-		this.log = this.info;  // Convenience alias.
-	};
+/***/ }),
 
-	ContextualLogger.prototype = {
-		// Changes the current logging level for the logging instance.
-		setLevel: function (newLevel) {
-			// Ensure the supplied Level object looks valid.
-			if (newLevel && "value" in newLevel) {
-				this.context.filterLevel = newLevel;
-			}
-		},
-		
-		// Gets the current logging level for the logging instance
-		getLevel: function () {
-			return this.context.filterLevel;
-		},
+/***/ 7:
+/***/ (function(module, exports, __webpack_require__) {
 
-		// Is the logger configured to output messages at the supplied level?
-		enabledFor: function (lvl) {
-			var filterLevel = this.context.filterLevel;
-			return lvl.value >= filterLevel.value;
-		},
+"use strict";
 
-		debug: function () {
-			this.invoke(Logger.DEBUG, arguments);
-		},
 
-		info: function () {
-			this.invoke(Logger.INFO, arguments);
-		},
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-		warn: function () {
-			this.invoke(Logger.WARN, arguments);
-		},
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-		error: function () {
-			this.invoke(Logger.ERROR, arguments);
-		},
+var _multiRequestBuilder = __webpack_require__(4);
 
-		time: function (label) {
-			if (typeof label === 'string' && label.length > 0) {
-				this.invoke(Logger.TIME, [ label, 'start' ]);
-			}
-		},
+var _multiRequestBuilder2 = _interopRequireDefault(_multiRequestBuilder);
 
-		timeEnd: function (label) {
-			if (typeof label === 'string' && label.length > 0) {
-				this.invoke(Logger.TIME, [ label, 'end' ]);
-			}
-		},
+var _config = __webpack_require__(1);
 
-		// Invokes the logger callback if it's not being filtered.
-		invoke: function (level, msgArgs) {
-			if (logHandler && this.enabledFor(level)) {
-				logHandler(msgArgs, merge({ level: level }, this.context));
-			}
-		}
-	};
+var _config2 = _interopRequireDefault(_config);
 
-	// Protected instance which all calls to the to level `Logger` module will be routed through.
-	var globalLogger = new ContextualLogger({ filterLevel: Logger.OFF });
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	// Configure the global Logger instance.
-	(function() {
-		// Shortcut for optimisers.
-		var L = Logger;
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-		L.enabledFor = bind(globalLogger, globalLogger.enabledFor);
-		L.debug = bind(globalLogger, globalLogger.debug);
-		L.time = bind(globalLogger, globalLogger.time);
-		L.timeEnd = bind(globalLogger, globalLogger.timeEnd);
-		L.info = bind(globalLogger, globalLogger.info);
-		L.warn = bind(globalLogger, globalLogger.warn);
-		L.error = bind(globalLogger, globalLogger.error);
+var config = _config2.default.get();
+var SERVICE_NAME = "multirequest";
 
-		// Don't forget the convenience alias!
-		L.log = L.info;
-	}());
+/**
+ * Base for all ovp services
+ * @classdesc
+ */
 
-	// Set the global logging handler.  The supplied function should expect two arguments, the first being an arguments
-	// object with the supplied log messages and the second being a context object which contains a hash of stateful
-	// parameters which the logging function can consume.
-	Logger.setHandler = function (func) {
-		logHandler = func;
-	};
+var OvpService = function () {
+  function OvpService() {
+    _classCallCheck(this, OvpService);
+  }
 
-	// Sets the global logging filter level which applies to *all* previously registered, and future Logger instances.
-	// (note that named loggers (retrieved via `Logger.get`) can be configured independently if required).
-	Logger.setLevel = function(level) {
-		// Set the globalLogger's level.
-		globalLogger.setLevel(level);
+  _createClass(OvpService, null, [{
+    key: 'getMultirequest',
 
-		// Apply this level to all registered contextual loggers.
-		for (var key in contextualLoggersByNameMap) {
-			if (contextualLoggersByNameMap.hasOwnProperty(key)) {
-				contextualLoggersByNameMap[key].setLevel(level);
-			}
-		}
-	};
+    /**
+     * Gets a new instance of MultiRequestBuilder with ovp params
+     * @function getMultirequest
+     * @param {string} pVersion The player version
+     * @param {string} ks The ks
+     * @param {string} partnerId The partner ID
+     * @returns {MultiRequestBuilder} The multi request builder
+     * @static
+     */
+    value: function getMultirequest(pVersion, ks, partnerId) {
+      var ovpParams = config.serviceParams;
+      Object.assign(ovpParams, { ks: ks, clientTag: 'html5:v' + pVersion });
+      if (partnerId) {
+        Object.assign(ovpParams, { partnerId: partnerId });
+      }
+      var headers = new Map();
+      headers.set("Content-Type", "application/json");
+      var multiReq = new _multiRequestBuilder2.default(headers);
+      multiReq.method = "POST";
+      multiReq.service = SERVICE_NAME;
+      multiReq.url = multiReq.getUrl(config.beUrl);
+      multiReq.params = ovpParams;
+      return multiReq;
+    }
+  }]);
 
-	// Gets the global logging filter level
-	Logger.getLevel = function() {
-		return globalLogger.getLevel();
-	};
+  return OvpService;
+}();
 
-	// Retrieve a ContextualLogger instance.  Note that named loggers automatically inherit the global logger's level,
-	// default context and log handler.
-	Logger.get = function (name) {
-		// All logger instances are cached so they can be configured ahead of use.
-		return contextualLoggersByNameMap[name] ||
-			(contextualLoggersByNameMap[name] = new ContextualLogger(merge({ name: name }, globalLogger.context)));
-	};
-
-	// CreateDefaultHandler returns a handler function which can be passed to `Logger.setHandler()` which will
-	// write to the window's console object (if present); the optional options object can be used to customise the
-	// formatter used to format each log message.
-	Logger.createDefaultHandler = function (options) {
-		options = options || {};
-
-		options.formatter = options.formatter || function defaultMessageFormatter(messages, context) {
-			// Prepend the logger's name to the log message for easy identification.
-			if (context.name) {
-				messages.unshift("[" + context.name + "]");
-			}
-		};
-
-		// Map of timestamps by timer labels used to track `#time` and `#timeEnd()` invocations in environments
-		// that don't offer a native console method.
-		var timerStartTimeByLabelMap = {};
-
-		// Support for IE8+ (and other, slightly more sane environments)
-		var invokeConsoleMethod = function (hdlr, messages) {
-			Function.prototype.apply.call(hdlr, console, messages);
-		};
-
-		// Check for the presence of a logger.
-		if (typeof console === "undefined") {
-			return function () { /* no console */ };
-		}
-
-		return function(messages, context) {
-			// Convert arguments object to Array.
-			messages = Array.prototype.slice.call(messages);
-
-			var hdlr = console.log;
-			var timerLabel;
-
-			if (context.level === Logger.TIME) {
-				timerLabel = (context.name ? '[' + context.name + '] ' : '') + messages[0];
-
-				if (messages[1] === 'start') {
-					if (console.time) {
-						console.time(timerLabel);
-					}
-					else {
-						timerStartTimeByLabelMap[timerLabel] = new Date().getTime();
-					}
-				}
-				else {
-					if (console.timeEnd) {
-						console.timeEnd(timerLabel);
-					}
-					else {
-						invokeConsoleMethod(hdlr, [ timerLabel + ': ' +
-							(new Date().getTime() - timerStartTimeByLabelMap[timerLabel]) + 'ms' ]);
-					}
-				}
-			}
-			else {
-				// Delegate through to custom warn/error loggers if present on the console.
-				if (context.level === Logger.WARN && console.warn) {
-					hdlr = console.warn;
-				} else if (context.level === Logger.ERROR && console.error) {
-					hdlr = console.error;
-				} else if (context.level === Logger.INFO && console.info) {
-					hdlr = console.info;
-				} else if (context.level === Logger.DEBUG && console.debug) {
-					hdlr = console.debug;
-				}
-
-				options.formatter(messages, context);
-				invokeConsoleMethod(hdlr, messages);
-			}
-		};
-	};
-
-	// Configure and example a Default implementation which writes to the `window.console` (if present).  The
-	// `options` hash can be used to configure the default logLevel and provide a custom message formatter.
-	Logger.useDefaults = function(options) {
-		Logger.setLevel(options && options.defaultLevel || Logger.DEBUG);
-		Logger.setHandler(Logger.createDefaultHandler(options));
-	};
-
-	// Export to popular environments boilerplate.
-	if (true) {
-		!(__WEBPACK_AMD_DEFINE_FACTORY__ = (Logger),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
-				__WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	}
-	else if (typeof module !== 'undefined' && module.exports) {
-		module.exports = Logger;
-	}
-	else {
-		Logger._prevLogger = global.Logger;
-
-		Logger.noConflict = function () {
-			global.Logger = Logger._prevLogger;
-			return Logger;
-		};
-
-		global.Logger = Logger;
-	}
-}(this));
-
+exports.default = OvpService;
 
 /***/ })
 

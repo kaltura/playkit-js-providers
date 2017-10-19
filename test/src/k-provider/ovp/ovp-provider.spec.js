@@ -13,7 +13,7 @@ describe('OvpProvider.partnerId:1082342', function () {
 
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
-    provider = new OvpProvider(pVersion, partnerId);
+    provider = new OvpProvider({pVersion: pVersion, partnerID: partnerId});
   });
 
   afterEach(() => {
@@ -31,7 +31,7 @@ describe('OvpProvider.partnerId:1082342', function () {
         });
       }
     );
-    provider.getConfig(entryID).then(data => {
+    provider.getConfig({entryId: entryID}).then(data => {
         try {
           data.should.deep.equal(parsedData.NoPluginsNoDrm);
           done();
@@ -48,7 +48,7 @@ describe('OvpProvider.partnerId:1082342', function () {
   it('should return config with plugins and without drm data', (done) => {
     let entryID = "1_rsrdfext";
     let uiConfID = 38621471;
-    provider = new OvpProvider(pVersion, partnerId);
+    provider = new OvpProvider({pVersion: pVersion, partnerID: partnerId});
     sinon.stub(MultiRequestBuilder.prototype, "execute").callsFake(
       function () {
         return new Promise((resolve) => {
@@ -57,7 +57,7 @@ describe('OvpProvider.partnerId:1082342', function () {
         });
       }
     );
-    provider.getConfig(entryID, uiConfID).then(data => {
+    provider.getConfig({entryId: entryID, uiConfId: uiConfID}).then(data => {
         try {
           data.should.deep.equal(parsedData.WithPluginsNoDrm);
           done();
@@ -81,7 +81,7 @@ describe('OvpProvider.partnerId:1082342', function () {
         });
       }
     );
-    provider.getConfig(entryID).then(data => {
+    provider.getConfig({entryId: entryID}).then(data => {
         try {
           data.should.deep.equal(parsedData.AudioEntryWithoutPlugins);
           done();
@@ -105,7 +105,7 @@ describe('OvpProvider.partnerId:1082342', function () {
         });
       }
     );
-    provider.getConfig(entryID).then(data => {
+    provider.getConfig({entryId: entryID}).then(data => {
         try {
           data.should.deep.equal(parsedData.ImageEntryWithoutPlugins);
           done();
@@ -129,7 +129,7 @@ describe('OvpProvider.partnerId:1068292', function () {
 
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
-    provider = new OvpProvider(pVersion, partnerId, ks);
+    provider = new OvpProvider({pVersion: pVersion, partnerID: partnerId, ks: ks});
   });
 
   afterEach(() => {
@@ -148,7 +148,7 @@ describe('OvpProvider.partnerId:1068292', function () {
         });
       }
     );
-    provider.getConfig(entryID).then(data => {
+    provider.getConfig({entryId: entryID}).then(data => {
         try {
           data.should.deep.equal(parsedData.NoPluginsWithDrm);
           done();
@@ -177,7 +177,7 @@ describe('OvpProvider.partnerId:1068292', function () {
 
         });
       });
-    provider.getConfig(entryID).then(() => {
+    provider.getConfig({entryId: entryID}).then(() => {
         done("Get config should throw error")
       },
       err => {
@@ -198,7 +198,7 @@ describe('OvpProvider.partnerId:1068292', function () {
         });
       }
     );
-    provider.getConfig(entryID, uiConfID).then(data => {
+    provider.getConfig({entryId: entryID, uiConfId: uiConfID}).then(data => {
         try {
           data.should.deep.equal(parsedData.WithPluginsWithDrm);
           done();
@@ -222,7 +222,7 @@ describe('OvpProvider.partnerId:1068292', function () {
           resolve(response);
         });
       });
-    provider.getConfig(entryID, uiConfID).then(() => {
+    provider.getConfig({entryId: entryID, uiConfId: uiConfID}).then(() => {
         done("Get config should throw error");
       },
       err => {

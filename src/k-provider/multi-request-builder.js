@@ -84,7 +84,8 @@ export class MultiRequestResult {
    */
   constructor(response: Object) {
     this.success = true;
-    response.forEach((result) => {
+    let responseArr = response.result ? response.result : response;
+      responseArr.forEach((result) => {
       let serviceResult: ServiceResult = new ServiceResult(result);
       this.results.push(serviceResult);
       if (serviceResult.hasError) {

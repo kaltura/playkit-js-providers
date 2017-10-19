@@ -2,7 +2,11 @@
 export const DrmScheme = {
   'drm.PLAYREADY_CENC': 'com.microsoft.playready',
   'drm.WIDEVINE_CENC': 'com.widevine.alpha',
-  'fairplay.FAIRPLAY': 'com.apple.fairplay'
+  'fairplay.FAIRPLAY': 'com.apple.fairplay',
+  'WIDEVINE_CENC': 'com.widevine.alpha',
+  'PLAYREADY_CENC': 'com.microsoft.playready',
+  'FAIRPLAY': 'com.apple.fairplay'
+
 };
 
 export class KalturaRuleActionTypes {
@@ -129,5 +133,27 @@ export class UIConfTypes {
 
 export class UIConfCreationModes {
   static WIZARD: UIConfCreationMode = 2;
-  static ADVANCED: UIConfCreationMode = 3
+  static ADVANCED: UIConfCreationMode = 3;
 }
+
+export class OttAssetType {
+  static MEDIA: OttAssetType = "media";
+  static RECORDING: OttAssetType = "recording";
+  static EPG: OttAssetType = "epg";
+}
+
+export class OttPlaybackType {
+  static TRAILER: OttPlaybackType = "TRAILER";
+  static CATCHUP: OttPlaybackType = "CATCHUP";
+  static START_OVER: OttPlaybackType = "START_OVER";
+  static PLAYBACK: OttPlaybackType = "PLAYBACK"
+}
+
+export class ProviderType {
+  static OVP: ProviderType = "OVP";
+  static OTT: ProviderType = "OTT";
+}
+
+
+
+
