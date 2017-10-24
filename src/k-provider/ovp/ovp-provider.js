@@ -66,41 +66,47 @@ export class OvpProvider {
   _dataLoader: DataLoaderManager;
 
   /**
+   +   * @member - Does UiConf should be loaded
+   +   * @type {boolean}
+   +   * @private
+   +   */
+  _loadUiConf: boolean;
+
+  /**
    * @constructor
-   * @param {string} pVersion The player version
-   * @param {number} partnerID The partner ID
-   * @param {string} [ks=""]  The provider ks (has empty string as default value)
-   * @param {Object} [config]  The provider config(optional)
+   * @param {Object} options  The provider options
    */
-  constructor(pVersion: string, partnerID: number, ks: string = "", config?: Object) {
-    this._pVersion = pVersion;
-    this.partnerID = partnerID;
-    this.ks = ks;
+  constructor(options: {pVersion: string, partnerID: number, ks: string, config: Object, loadUiConf: boolean}) {
+    this._pVersion = options.pVersion;
+    this.partnerID = options.partnerID;
+    this.ks = options.ks;
     this._isAnonymous = !this.ks;
-    Configuration.set(config);
+    this._loadUiConf = options.loadUiConf;
+    Configuration.set(options.config);
   }
 
   /**
    * Returns player json configuration
    * @function getConfig
-   * @param {string} entryId The entry ID
-   * @param {number} uiConfId The uiConf ID
+   * @param {Object} options The get config options
    * @returns {Promise} The provider config object as promise
    */
-  getConfig(entryId?: string, uiConfId?: number): Promise<Object> {
-    if (uiConfId != null) {
-      this._uiConfId = uiConfId;
+  getConfig(options: {entryId: string, uiConfId: number}): Promise<Object> {
+    if (options && options.uiConfId != null) {
+      this._uiConfId = options.uiConfId;
     }
     this._dataLoader = new DataLoaderManager(this._pVersion, this.partnerID, this.ks);
     return new Promise((resolve, reject) => {
-      if (this.validateParams(entryId, uiConfId)) {
+      if (this.validateParams(options)) {
         let ks: string = this.ks;
         if (!ks) {
           ks = "{1:result:ks}";
           this._dataLoader.add(SessionLoader, {partnerId: this.partnerID});
         }
-        this._dataLoader.add(MediaEntryLoader, {entryId: entryId, ks: ks});
-        this._dataLoader.add(UiConfigLoader, {uiConfId: uiConfId, ks: ks});
+        this._dataLoader.add(MediaEntryLoader, {entryId: options.entryId, ks: ks});
+        if (this._loadUiConf) {
+          this._dataLoader.add(UiConfigLoader, {uiConfId: options.uiConfId, ks: ks});
+        }
         this._dataLoader.fetchData()
           .then(response => {
               resolve(this.parseDataFromResponse(response));
@@ -173,12 +179,16 @@ export class OvpProvider {
 
   /**
    * Parameters validation function
-   * @param {string} entryId The entry ID
-   * @param {number} uiConfId The uiConfID
+   *  @param {Object} options The options
    * @returns {boolean} Is valid params
    */
-  validateParams(entryId?: string, uiConfId?: number): boolean {
-    return !!entryId || !!uiConfId;
+  validateParams(options: Object): boolean {
+    if (options) {
+      return !!options.entryId || !!options.uiConfId;
+    }
+    else {
+      return false;
+    }
   }
 
 }
