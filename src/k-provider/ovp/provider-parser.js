@@ -290,6 +290,9 @@ export default class ProviderParser {
     const protocolRegex = /^https?:/;
     const result = protocolRegex.exec(config.baseUrl);
     const protocol = result ? result[0] : document.location.protocol;
-    return protocol.slice(0, -1); // remove ':' from the end
+    if (typeof protocol === "string") {
+      return protocol.slice(0, -1) // remove ':' from the end
+    }
+    return "https";
   }
 }
