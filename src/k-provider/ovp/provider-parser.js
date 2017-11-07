@@ -287,14 +287,12 @@ export default class ProviderParser {
    * @private
    */
   static _getBaseProtocol(): string {
-    let splittedUrl: Array<string> = config.baseUrl.split("/");
-    let baseProtocol: string;
-    if (splittedUrl && splittedUrl.length > 0) {
-      baseProtocol = splittedUrl[0].substring(0, splittedUrl[0].length - 1);
+    const protocolRegex = /^https?:/;
+    const result = protocolRegex.exec(config.baseUrl);
+    const protocol = result ? result[0] : document.location.protocol;
+    if (typeof protocol === "string") {
+      return protocol.slice(0, -1) // remove ':' from the end
     }
-    else {
-      baseProtocol = "http";
-    }
-    return baseProtocol;
+    return "https";
   }
 }
