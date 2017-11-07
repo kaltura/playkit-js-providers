@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.3.2"></a>
+## [1.3.2](https://github.com/kaltura/playkit-js-providers/compare/v1.3.1...v1.3.2) (2017-11-07)
+
+
+### Bug Fixes
+
+* **FEC-7389:** player is not playing over https ([#33](https://github.com/kaltura/playkit-js-providers/issues/33)) ([8e436e3](https://github.com/kaltura/playkit-js-providers/commit/8e436e3))
+
+
+
 <a name="1.3.1"></a>
 ## [1.3.1](https://github.com/kaltura/playkit-js-providers/compare/v1.3.0...v1.3.1) (2017-09-26)
 
