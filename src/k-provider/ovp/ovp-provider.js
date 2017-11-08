@@ -187,4 +187,5 @@ export class OvpProvider {
 }
 
 export default OvpProvider;
-export {__VERSION__ as VERSION, __NAME__ as NAME + "-ovp"};
+const packageName = __NAME__ + "-ovp";
+export {__VERSION__ as VERSION, packageName as NAME};

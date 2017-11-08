@@ -40,4 +40,5 @@ export default class StatsService extends OvpService {
 }
 
 export {StatsService, Configuration, RequestBuilder};
-export {__VERSION__ as VERSION, __NAME__ as NAME + "-stats-service"};
+const packageName = __NAME__  + "-stats-service";
+export {__VERSION__ as VERSION, packageName as NAME};
