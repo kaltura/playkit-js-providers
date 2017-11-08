@@ -25,6 +25,9 @@ type playerConfig = {
   plugins: Object
 };
 
+declare var __VERSION__: string;
+declare var __NAME__: string;
+
 /**
  * Ovp provider
  * @classdesc
@@ -184,3 +187,4 @@ export class OvpProvider {
 }
 
 export default OvpProvider;
+export {__VERSION__ as VERSION, __NAME__ as NAME};
