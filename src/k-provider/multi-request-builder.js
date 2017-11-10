@@ -1,11 +1,11 @@
 //@flow
 import RequestBuilder from './request-builder'
 import ServiceResult from './base-service-result'
-import Logger from "../util/logger";
+import getLogger from "../util/logger";
 /**
  * @constant
  */
-const logger = Logger.get("OvpProvider");
+const logger = getLogger("OvpProvider");
 
 /**
  * Multi Request builder

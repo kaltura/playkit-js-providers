@@ -5,7 +5,7 @@ import KalturaMetadataListResponse from './response-types/kaltura-metadata-list-
 import PlaySourceUrlBuilder from "./play-source-url-builder"
 import XmlParser from '../xml-parser'
 import {MediaEntryTypes, EntryTypes, MediaTypes, DrmScheme} from '../enums'
-import Logger from '../../util/logger'
+import getLogger from '../../util/logger'
 import Configuration from './config'
 import {MediaFormats} from '../../entities/media-format'
 import MediaEntry from '../../entities/media-entry'
@@ -17,7 +17,7 @@ const config = Configuration.get();
 /**
  * @constant
  */
-const logger = Logger.get("OvpProvider");
+const logger = getLogger("OvpProvider");
 
 /**
  * @constant

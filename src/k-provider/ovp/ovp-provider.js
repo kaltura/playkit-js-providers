@@ -1,5 +1,5 @@
 //@flow
-import Logger from '../../util/logger'
+import getLogger, {setLogLevel, getLogLevel, LOG_LEVEL as LogLevel} from '../../util/logger'
 import ProviderParser from './provider-parser'
 import DataLoaderManager from './loaders/data-loader-manager'
 import MediaEntryLoader from './loaders/media-entry-loader'
@@ -11,7 +11,7 @@ import MediaSources from '../../entities/media-sources'
 /**
  * @constant
  */
-const logger = Logger.get("OvpProvider");
+const logger = getLogger("OvpProvider");
 
 type playerConfig = {
   id: string,
@@ -184,6 +184,33 @@ export class OvpProvider {
     return !!entryId || !!uiConfId;
   }
 
+  /**
+   * Get the log levels
+   * @returns {Object} - The log levels of the player.
+   * @public
+   */
+  get LogLevel(): { [level: string]: Object } {
+    return LogLevel;
+  }
+
+  /**
+   * get the current log level
+   * @param {?string} name - the logger name
+   * @returns {string} - the log level
+   */
+  getLogLevel(name?: string): string {
+    return getLogLevel(name);
+  }
+
+  /**
+   * sets the logger level
+   * @param {string} level - the log level
+   * @param {?string} name - the logger name
+   * @returns {void}
+   */
+  setLogLevel(level: string, name?: string){
+    setLogLevel(level, name);
+  }
 }
 
 export default OvpProvider;
