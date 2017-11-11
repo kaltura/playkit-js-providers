@@ -196,19 +196,19 @@ export class OvpProvider {
   /**
    * get the current log level
    * @param {?string} name - the logger name
-   * @returns {string} - the log level
+   * @returns {Object} - the log level
    */
-  getLogLevel(name?: string): string {
+  getLogLevel(name?: string): Object {
     return getLogLevel(name);
   }
 
   /**
    * sets the logger level
-   * @param {string} level - the log level
+   * @param {Object} level - the log level
    * @param {?string} name - the logger name
    * @returns {void}
    */
-  setLogLevel(level: string, name?: string){
+  setLogLevel(level: Object, name?: string){
     setLogLevel(level, name);
   }
 }
