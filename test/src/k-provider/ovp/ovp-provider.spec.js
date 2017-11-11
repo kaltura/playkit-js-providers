@@ -241,7 +241,7 @@ describe('logger', ()=>{
   });
   it('should enable setting the current log level', ()=>{
     const provider = new OvpProvider("xyz", "xyz");
-    const currentLogLevel = provider.getLogLevel();
+    let currentLogLevel = provider.getLogLevel();
     currentLogLevel.should.equal(provider.LogLevel.ERROR.name);
     provider.setLogLevel(provider.LogLevel.WARN);
     currentLogLevel = provider.getLogLevel();
