@@ -74,12 +74,16 @@ export class OvpProvider {
    * @param {number} partnerID The partner ID
    * @param {string} [ks=""]  The provider ks (has empty string as default value)
    * @param {Object} [config]  The provider config(optional)
+   * @param {string} [logLevel]  The provider log level(optional)
    */
-  constructor(pVersion: string, partnerID: number, ks: string = "", config?: Object) {
+  constructor(pVersion: string, partnerID: number, ks: string = "", config?: Object, logLevel?: string) {
     this._pVersion = pVersion;
     this.partnerID = partnerID;
     this.ks = ks;
     this._isAnonymous = !this.ks;
+    if (logLevel && this.LogLevel[logLevel]){
+      setLogLevel(this.LogLevel[logLevel]);
+    }
     Configuration.set(config);
   }
 
