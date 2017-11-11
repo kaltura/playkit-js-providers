@@ -233,3 +233,18 @@ describe('OvpProvider.partnerId:1068292', function () {
   });
 });
 
+describe('logger', ()=>{
+  it('should return the current log level', ()=>{
+    const provider = new OvpProvider("xyz", "xyz");
+    var currentLogLevel = provider.getLogLevel();
+    currentLogLevel.should.equal(provider.LogLevel.ERROR.name);
+  });
+  it('should enable setting the current log level', ()=>{
+    const provider = new OvpProvider("xyz", "xyz");
+    var currentLogLevel = provider.getLogLevel();
+    currentLogLevel.should.equal(provider.LogLevel.ERROR.name);
+    provider.setLogLevel(provider.LogLevel.WARN);
+    currentLogLevel = provider.getLogLevel();
+    currentLogLevel.should.equal(provider.LogLevel.WARN.name);
+  });
+});
