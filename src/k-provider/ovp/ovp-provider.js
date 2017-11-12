@@ -1,5 +1,5 @@
 //@flow
-import getLogger, {setLogLevel, getLogLevel, LOG_LEVEL as LogLevel} from '../../util/logger'
+import getLogger, {setLogLevel, getLogLevel, LogLevel} from '../../util/logger'
 import ProviderParser from './provider-parser'
 import DataLoaderManager from './loaders/data-loader-manager'
 import MediaEntryLoader from './loaders/media-entry-loader'
