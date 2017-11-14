@@ -8,6 +8,7 @@ import UiConfigLoader from './loaders/ui-config-loader'
 import Configuration from './config'
 import MediaEntry from '../../entities/media-entry'
 import MediaSources from '../../entities/media-sources'
+
 /**
  * @constant
  */
@@ -81,7 +82,7 @@ export class OvpProvider {
     this.partnerID = partnerID;
     this.ks = ks;
     this._isAnonymous = !this.ks;
-    if (logLevel && this.LogLevel[logLevel]){
+    if (logLevel && this.LogLevel[logLevel]) {
       setLogLevel(this.LogLevel[logLevel]);
     }
     Configuration.set(config);
@@ -212,7 +213,7 @@ export class OvpProvider {
    * @param {?string} name - the logger name
    * @returns {void}
    */
-  setLogLevel(level: Object, name?: string){
+  setLogLevel(level: Object, name?: string) {
     setLogLevel(level, name);
   }
 }

@@ -233,13 +233,14 @@ describe('OvpProvider.partnerId:1068292', function () {
   });
 });
 
-describe('logger', ()=>{
-  it('should return the current log level', ()=>{
+describe('logger', () => {
+  it('should return the current log level', () => {
     const provider = new OvpProvider("xyz", "xyz");
     const currentLogLevel = provider.getLogLevel();
     currentLogLevel.should.equal(provider.LogLevel.ERROR);
   });
-  it('should enable setting the current log level', ()=>{
+
+  it('should enable setting the current log level', () => {
     const provider = new OvpProvider("xyz", "xyz");
     let currentLogLevel = provider.getLogLevel();
     currentLogLevel.should.equal(provider.LogLevel.ERROR);
