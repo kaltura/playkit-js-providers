@@ -1,5 +1,5 @@
 //@flow
-import Logger from '../../util/logger'
+import getLogger, {setLogLevel, getLogLevel, LogLevel} from '../../util/logger'
 import ProviderParser from './provider-parser'
 import DataLoaderManager from './loaders/data-loader-manager'
 import MediaEntryLoader from './loaders/media-entry-loader'
@@ -8,10 +8,11 @@ import UiConfigLoader from './loaders/ui-config-loader'
 import Configuration from './config'
 import MediaEntry from '../../entities/media-entry'
 import MediaSources from '../../entities/media-sources'
+
 /**
  * @constant
  */
-const logger = Logger.get("OvpProvider");
+const logger = getLogger("OvpProvider");
 
 type playerConfig = {
   id: string,
@@ -74,12 +75,16 @@ export class OvpProvider {
    * @param {number} partnerID The partner ID
    * @param {string} [ks=""]  The provider ks (has empty string as default value)
    * @param {Object} [config]  The provider config(optional)
+   * @param {string} [logLevel]  The provider log level(optional)
    */
-  constructor(pVersion: string, partnerID: number, ks: string = "", config?: Object) {
+  constructor(pVersion: string, partnerID: number, ks: string = "", config?: Object, logLevel?: string) {
     this._pVersion = pVersion;
     this.partnerID = partnerID;
     this.ks = ks;
     this._isAnonymous = !this.ks;
+    if (logLevel && this.LogLevel[logLevel]) {
+      setLogLevel(this.LogLevel[logLevel]);
+    }
     Configuration.set(config);
   }
 
@@ -184,6 +189,33 @@ export class OvpProvider {
     return !!entryId || !!uiConfId;
   }
 
+  /**
+   * Get the log levels
+   * @returns {Object} - The log levels of the player.
+   * @public
+   */
+  get LogLevel(): { [level: string]: Object } {
+    return LogLevel;
+  }
+
+  /**
+   * get the current log level
+   * @param {?string} name - the logger name
+   * @returns {Object} - the log level
+   */
+  getLogLevel(name?: string): Object {
+    return getLogLevel(name);
+  }
+
+  /**
+   * sets the logger level
+   * @param {Object} level - the log level
+   * @param {?string} name - the logger name
+   * @returns {void}
+   */
+  setLogLevel(level: Object, name?: string) {
+    setLogLevel(level, name);
+  }
 }
 
 export default OvpProvider;
