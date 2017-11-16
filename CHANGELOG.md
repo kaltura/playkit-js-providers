@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.4.0"></a>
+# [1.4.0](https://github.com/kaltura/playkit-js-providers/compare/v1.3.2...v1.4.0) (2017-11-16)
+
+
+### Features
+
+* export name and version on module ([#34](https://github.com/kaltura/playkit-js-providers/issues/34)) ([9a1b96b](https://github.com/kaltura/playkit-js-providers/commit/9a1b96b))
+* expose logger API ([#36](https://github.com/kaltura/playkit-js-providers/issues/36)) ([cb3403d](https://github.com/kaltura/playkit-js-providers/commit/cb3403d))
+
+
+
 <a name="1.3.2"></a>
 ## [1.3.2](https://github.com/kaltura/playkit-js-providers/compare/v1.3.1...v1.3.2) (2017-11-07)
 
