@@ -483,7 +483,7 @@ function ServiceError(code, message) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.RequestBuilder = exports.Configuration = exports.StatsService = undefined;
+exports.NAME = exports.VERSION = exports.RequestBuilder = exports.Configuration = exports.StatsService = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -561,6 +561,10 @@ exports.StatsService = StatsService;
 exports.Configuration = _config2.default;
 exports.RequestBuilder = _requestBuilder2.default;
 
+var packageName = "playkit-js-providers" + "-stats-service";
+exports.VERSION = "1.4.0";
+exports.NAME = packageName;
+
 /***/ }),
 
 /***/ 4:
@@ -572,9 +576,7 @@ exports.RequestBuilder = _requestBuilder2.default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.LOG_LEVEL = undefined;
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+exports.setLogLevel = exports.getLogLevel = exports.LogLevel = undefined;
 
 var _jsLogger = __webpack_require__(8);
 
@@ -582,30 +584,7 @@ var JsLogger = _interopRequireWildcard(_jsLogger);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var LoggerFactory = function () {
-  function LoggerFactory(options) {
-    _classCallCheck(this, LoggerFactory);
-
-    JsLogger.useDefaults(options || {});
-  }
-
-  _createClass(LoggerFactory, [{
-    key: "get",
-    value: function get(name) {
-      if (!name) {
-        return JsLogger;
-      }
-      return JsLogger.get(name);
-    }
-  }]);
-
-  return LoggerFactory;
-}();
-
-var Logger = new LoggerFactory({ defaultLevel: JsLogger.DEBUG });
-var LOG_LEVEL = {
+var LogLevel = {
   "DEBUG": JsLogger.DEBUG,
   "INFO": JsLogger.INFO,
   "TIME": JsLogger.TIME,
@@ -614,8 +593,47 @@ var LOG_LEVEL = {
   "OFF": JsLogger.OFF
 };
 
-exports.default = Logger;
-exports.LOG_LEVEL = LOG_LEVEL;
+
+JsLogger.useDefaults({ defaultLevel: JsLogger.ERROR });
+
+/**
+ * get a logger
+ * @param {?string} name - the logger name
+ * @returns {Object} - the logger class
+ */
+function getLogger(name) {
+  if (!name) {
+    return JsLogger;
+  }
+  return JsLogger.get(name);
+}
+
+/**
+ * get the log level
+ * @param {?string} name - the logger name
+ * @returns {Object} - the log level
+ */
+function getLogLevel(name) {
+  return getLogger(name).getLevel();
+}
+
+"";
+
+/**
+ * sets the logger level
+ * @param {Object} level - the log level
+ * @param {?string} name - the logger name
+ * @returns {void}
+ */
+function setLogLevel(level, name) {
+
+  getLogger(name).setLevel(level);
+}
+
+exports.default = getLogger;
+exports.LogLevel = LogLevel;
+exports.getLogLevel = getLogLevel;
+exports.setLogLevel = setLogLevel;
 
 /***/ }),
 
@@ -657,7 +675,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 /**
  * @constant
  */
-var logger = _logger2.default.get("OvpProvider");
+var logger = (0, _logger2.default)("OvpProvider");
 
 /**
  * Multi Request builder
@@ -798,7 +816,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 	var Logger = { };
 
 	// For those that are at home that are keeping score.
-	Logger.VERSION = "1.3.0";
+	Logger.VERSION = "1.4.1";
 
 	// Function which handles all incoming log messages.
 	var logHandler;
@@ -854,6 +872,11 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 			if (newLevel && "value" in newLevel) {
 				this.context.filterLevel = newLevel;
 			}
+		},
+		
+		// Gets the current logging level for the logging instance
+		getLevel: function () {
+			return this.context.filterLevel;
 		},
 
 		// Is the logger configured to output messages at the supplied level?
@@ -939,6 +962,11 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 		}
 	};
 
+	// Gets the global logging filter level
+	Logger.getLevel = function() {
+		return globalLogger.getLevel();
+	};
+
 	// Retrieve a ContextualLogger instance.  Note that named loggers automatically inherit the global logger's level,
 	// default context and log handler.
 	Logger.get = function (name) {
@@ -1010,6 +1038,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 					hdlr = console.error;
 				} else if (context.level === Logger.INFO && console.info) {
 					hdlr = console.info;
+				} else if (context.level === Logger.DEBUG && console.debug) {
+					hdlr = console.debug;
 				}
 
 				options.formatter(messages, context);
