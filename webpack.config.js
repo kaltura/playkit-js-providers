@@ -18,11 +18,7 @@ if (PROD) {
 
 module.exports = {
   context: __dirname + "/src",
-  entry: PROD ? {
-    "ovpProvider.min": "k-provider/ovp/ovp-provider.js",
-    "ottProvider.min": "k-provider/ott/ott-provider.js",
-    "statsService.min": "k-provider/ovp/services/stats-service.js"
-  } : {
+  entry: {
     "ovpProvider": "k-provider/ovp/ovp-provider.js",
     "ottProvider": "k-provider/ott/ott-provider.js",
     "statsService": "k-provider/ovp/services/stats-service.js"
