@@ -31,7 +31,7 @@ describe('OvpProvider.partnerId:1082342', function () {
         });
       }
     );
-    provider.getConfig({entryId: entryID}).then(data => {
+    provider.getConfig(entryID).then(data => {
         try {
           data.should.deep.equal(parsedData.NoPluginsNoDrm);
           done();
@@ -57,7 +57,7 @@ describe('OvpProvider.partnerId:1082342', function () {
         });
       }
     );
-    provider.getConfig({entryId: entryID, uiConfId: uiConfID}).then(data => {
+    provider.getConfig(entryID, uiConfID).then(data => {
         try {
           data.should.deep.equal(parsedData.WithPluginsNoDrm);
           done();
@@ -81,7 +81,7 @@ describe('OvpProvider.partnerId:1082342', function () {
         });
       }
     );
-    provider.getConfig({entryId: entryID}).then(data => {
+    provider.getConfig(entryID).then(data => {
         try {
           data.should.deep.equal(parsedData.AudioEntryWithoutPlugins);
           done();
@@ -105,7 +105,7 @@ describe('OvpProvider.partnerId:1082342', function () {
         });
       }
     );
-    provider.getConfig({entryId: entryID}).then(data => {
+    provider.getConfig(entryID).then(data => {
         try {
           data.should.deep.equal(parsedData.ImageEntryWithoutPlugins);
           done();
@@ -148,7 +148,7 @@ describe('OvpProvider.partnerId:1068292', function () {
         });
       }
     );
-    provider.getConfig({entryId: entryID}).then(data => {
+    provider.getConfig(entryID).then(data => {
         try {
           data.should.deep.equal(parsedData.NoPluginsWithDrm);
           done();
@@ -177,7 +177,7 @@ describe('OvpProvider.partnerId:1068292', function () {
 
         });
       });
-    provider.getConfig({entryId: entryID}).then(() => {
+    provider.getConfig(entryID).then(() => {
         done("Get config should throw error")
       },
       err => {
@@ -198,7 +198,7 @@ describe('OvpProvider.partnerId:1068292', function () {
         });
       }
     );
-    provider.getConfig({entryId: entryID, uiConfId: uiConfID}).then(data => {
+    provider.getConfig(entryID, uiConfID).then(data => {
         try {
           data.should.deep.equal(parsedData.WithPluginsWithDrm);
           done();
@@ -222,7 +222,7 @@ describe('OvpProvider.partnerId:1068292', function () {
           resolve(response);
         });
       });
-    provider.getConfig({entryId: entryID, uiConfId: uiConfID}).then(() => {
+    provider.getConfig(entryID, uiConfID).then(() => {
         done("Get config should throw error");
       },
       err => {
