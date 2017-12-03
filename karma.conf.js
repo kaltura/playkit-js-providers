@@ -16,7 +16,8 @@ module.exports = function (config) {
   let karmaConf = {
     logLevel: config.LOG_INFO,
     browsers: [
-      'Chrome'
+      'Chrome',
+      'Firefox'
     ],
     concurrency: 1,
     singleRun: true,
