@@ -60,9 +60,9 @@ export default class MediaEntryLoader implements ILoader {
    */
   buildRequests(params: Object): Array<RequestBuilder> {
     let requests: Array<RequestBuilder> = [];
-    requests.push(BaseEntryService.list(config.beUrl, params.ks, params.entryId));
-    requests.push(BaseEntryService.getPlaybackContext(config.beUrl, params.ks, params.entryId));
-    requests.push(MetaDataService.list(config.beUrl, params.ks, params.entryId));
+    requests.push(BaseEntryService.list(config.serviceUrl, params.ks, params.entryId));
+    requests.push(BaseEntryService.getPlaybackContext(config.serviceUrl, params.ks, params.entryId));
+    requests.push(MetaDataService.list(config.serviceUrl, params.ks, params.entryId));
     return requests;
   }
 

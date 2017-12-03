@@ -62,7 +62,7 @@ export default class UiConfigLoader implements ILoader {
    */
   buildRequests(params: Object): Array<RequestBuilder> {
     let requests: Array<RequestBuilder> = [];
-    requests.push(UiConfService.get(config.beUrl, params.ks, params.uiConfId));
+    requests.push(UiConfService.get(config.serviceUrl, params.ks, params.uiConfId));
     return requests;
   }
 

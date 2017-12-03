@@ -17,7 +17,7 @@ export default class PlaySourceUrlBuilder {
    * @static
    */
   static build(urlParams: Object): string {
-    let baseUrl: string = config.baseUrl;
+    let cdnUrl: string = config.cdnUrl;
     let partnerId: string = urlParams.partnerId;
     let entryId: string = urlParams.entryId;
     let ks: string = urlParams.ks;
@@ -27,12 +27,12 @@ export default class PlaySourceUrlBuilder {
     let extension: string = urlParams.extension;
     let flavorIds: string = urlParams.flavorIds;
 
-    if (baseUrl == "" && partnerId == "" && entryId == "" && extension == "" && format == "") {
+    if (cdnUrl == "" && partnerId == "" && entryId == "" && extension == "" && format == "") {
       return "";
     }
 
-    let playUrl = baseUrl;
-    if (!baseUrl.endsWith("/")) {
+    let playUrl = cdnUrl;
+    if (!cdnUrl.endsWith("/")) {
       playUrl += "/";
     }
     playUrl += "p/" + partnerId + "/sp/" + partnerId + "00" + "/playManifest/entryId/" + entryId + "/protocol/" + protocol + "/format/" + format;

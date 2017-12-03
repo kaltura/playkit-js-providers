@@ -30,7 +30,7 @@ export default class OvpService {
     let multiReq = new MultiRequestBuilder(headers);
     multiReq.method = "POST";
     multiReq.service = SERVICE_NAME;
-    multiReq.url = multiReq.getUrl(config.beUrl);
+    multiReq.url = multiReq.getUrl(config.serviceUrl);
     multiReq.params = ovpParams;
     return multiReq;
   }
