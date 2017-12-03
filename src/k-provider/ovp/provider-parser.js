@@ -5,7 +5,7 @@ import KalturaMetadataListResponse from './response-types/kaltura-metadata-list-
 import PlaySourceUrlBuilder from "./play-source-url-builder"
 import XmlParser from '../xml-parser'
 import {MediaEntryTypes, EntryTypes, MediaTypes, DrmScheme} from '../enums'
-import Logger from '../../util/logger'
+import getLogger from '../../util/logger'
 import Configuration from './config'
 import {MediaFormats} from '../../entities/media-format'
 import MediaEntry from '../../entities/media-entry'
@@ -17,7 +17,7 @@ const config = Configuration.get();
 /**
  * @constant
  */
-const logger = Logger.get("OvpProvider");
+const logger = getLogger("OvpProvider");
 
 /**
  * @constant
@@ -287,14 +287,12 @@ export default class ProviderParser {
    * @private
    */
   static _getBaseProtocol(): string {
-    let splittedUrl: Array<string> = config.baseUrl.split("/");
-    let baseProtocol: string;
-    if (splittedUrl && splittedUrl.length > 0) {
-      baseProtocol = splittedUrl[0].substring(0, splittedUrl[0].length - 1);
+    const protocolRegex = /^https?:/;
+    const result = protocolRegex.exec(config.baseUrl);
+    const protocol = result ? result[0] : document.location.protocol;
+    if (typeof protocol === "string") {
+      return protocol.slice(0, -1) // remove ':' from the end
     }
-    else {
-      baseProtocol = "http";
-    }
-    return baseProtocol;
+    return "https";
   }
 }

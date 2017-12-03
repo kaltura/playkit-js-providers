@@ -4,6 +4,9 @@ import RequestBuilder from '../../request-builder'
 import Configuration from '../config'
 import {param} from '../../../util/param'
 
+declare var __VERSION__: string;
+declare var __NAME__: string;
+
 const SERVICE_NAME: string = "stats";
 /**
  * Ovp stats service methods
@@ -37,3 +40,5 @@ export default class StatsService extends OvpService {
 }
 
 export {StatsService, Configuration, RequestBuilder};
+const packageName = __NAME__  + "-stats-service";
+export {__VERSION__ as VERSION, packageName as NAME};
