@@ -49,7 +49,7 @@ export class OvpProvider {
    * @type {string}
    * @private
    */
-  _pVersion: string;
+  _playerVersion: string;
   /**
    * @member - is anonymous
    * @type {boolean}
@@ -70,45 +70,52 @@ export class OvpProvider {
   _dataLoader: DataLoaderManager;
 
   /**
+   +   * @member - Does UiConf should be loaded
+   +   * @type {boolean}
+   +   * @private
+   +   */
+  _loadUiConf: boolean;
+
+  /**
    * @constructor
-   * @param {string} pVersion The player version
-   * @param {number} partnerID The partner ID
-   * @param {string} [ks=""]  The provider ks (has empty string as default value)
-   * @param {Object} [config]  The provider config(optional)
-   * @param {string} [logLevel]  The provider log level(optional)
+   * @param {Object} options  The provider options
    */
-  constructor(pVersion: string, partnerID: number, ks: string = "", config?: Object, logLevel?: string) {
-    this._pVersion = pVersion;
-    this.partnerID = partnerID;
-    this.ks = ks;
+  constructor(options: {playerVersion: string, partnerID: number, ks: string, config: Object, loadUiConf: boolean, logLevel?: string} =
+                {playerVersion: "", partnerID: 0, ks: "", config: {}, loadUiConf: false}) {
+    this._playerVersion = options.playerVersion;
+    this.partnerID = options.partnerID;
+    this.ks = options.ks;
     this._isAnonymous = !this.ks;
-    if (logLevel && this.LogLevel[logLevel]) {
-      setLogLevel(this.LogLevel[logLevel]);
+    this._loadUiConf = options.loadUiConf;
+    if (options.logLevel && this.LogLevel[options.logLevel]) {
+      setLogLevel(this.LogLevel[options.logLevel]);
     }
-    Configuration.set(config);
+    Configuration.set(options.config);
   }
 
   /**
    * Returns player json configuration
    * @function getConfig
-   * @param {string} entryId The entry ID
-   * @param {number} uiConfId The uiConf ID
+   * @param {string} entryId - The entry ID
+   * @param {number?} uiConfId - The uiConf ID
    * @returns {Promise} The provider config object as promise
    */
-  getConfig(entryId?: string, uiConfId?: number): Promise<Object> {
-    if (uiConfId != null) {
+  getConfig(entryId: string, uiConfId?: number): Promise<Object> {
+    if (uiConfId !== null && uiConfId !== undefined) {
       this._uiConfId = uiConfId;
     }
-    this._dataLoader = new DataLoaderManager(this._pVersion, this.partnerID, this.ks);
+    this._dataLoader = new DataLoaderManager(this._playerVersion, this.partnerID, this.ks);
     return new Promise((resolve, reject) => {
-      if (this.validateParams(entryId, uiConfId)) {
+      if (entryId) {
         let ks: string = this.ks;
         if (!ks) {
           ks = "{1:result:ks}";
           this._dataLoader.add(SessionLoader, {partnerId: this.partnerID});
         }
         this._dataLoader.add(MediaEntryLoader, {entryId: entryId, ks: ks});
-        this._dataLoader.add(UiConfigLoader, {uiConfId: uiConfId, ks: ks});
+        if (this._loadUiConf) {
+          this._dataLoader.add(UiConfigLoader, {uiConfId: uiConfId, ks: ks});
+        }
         this._dataLoader.fetchData()
           .then(response => {
               resolve(this.parseDataFromResponse(response));
@@ -177,16 +184,6 @@ export class OvpProvider {
     }
     logger.debug("Data parsing finished", config);
     return (config);
-  }
-
-  /**
-   * Parameters validation function
-   * @param {string} entryId The entry ID
-   * @param {number} uiConfId The uiConfID
-   * @returns {boolean} Is valid params
-   */
-  validateParams(entryId?: string, uiConfId?: number): boolean {
-    return !!entryId || !!uiConfId;
   }
 
   /**
