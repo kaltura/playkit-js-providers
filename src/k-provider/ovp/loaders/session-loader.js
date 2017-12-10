@@ -56,7 +56,7 @@ export default class SessionLoader implements ILoader {
    */
   buildRequests(params: Object): Array<RequestBuilder> {
     let requests: Array<RequestBuilder> = [];
-    requests.push(SessionService.anonymousSession(config.beUrl, params.partnerId));
+    requests.push(SessionService.anonymousSession(config.serviceUrl, params.partnerId));
     return requests;
   }
 

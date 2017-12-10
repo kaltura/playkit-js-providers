@@ -1,8 +1,8 @@
 //@flow
 
 const defaultConfig: Object = {
-  beUrl: "//www.kaltura.com/api_v3",
-  baseUrl: "//cdnapisec.kaltura.com",
+  serviceUrl: "//www.kaltura.com/api_v3",
+  cdnUrl: "//cdnapisec.kaltura.com",
   serviceParams: {
     apiVersion: '3.3.0',
     format: 1
