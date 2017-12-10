@@ -80,7 +80,7 @@ export class OvpProvider {
    * @constructor
    * @param {Object} options  The provider options
    */
-  constructor(options: {playerVersion: string, partnerID: number, ks: string, config: Object, loadUiConf: boolean, logLevel?: string}) {
+  constructor(options: {playerVersion: string, partnerID: number, ks: string, config: Object, loadUiConf: boolean, logLevel?: string} = {}) {
     this._playerVersion = options.playerVersion;
     this.partnerID = options.partnerID;
     this.ks = options.ks;
@@ -96,7 +96,7 @@ export class OvpProvider {
    * Returns player json configuration
    * @function getConfig
    * @param {string} entryId - The entry ID
-   * @param {number} uiConfId - The uiConf ID
+   * @param {number?} uiConfId - The uiConf ID
    * @returns {Promise} The provider config object as promise
    */
   getConfig(entryId: string, uiConfId?: number): Promise<Object> {
