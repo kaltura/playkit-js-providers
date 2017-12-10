@@ -13,7 +13,7 @@ describe('OvpProvider.partnerId:1082342', function () {
 
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
-    provider = new OvpProvider(pVersion, partnerId);
+    provider = new OvpProvider({playerVersion: pVersion, partnerID: partnerId});
   });
 
   afterEach(() => {
@@ -48,7 +48,7 @@ describe('OvpProvider.partnerId:1082342', function () {
   it('should return config with plugins and without drm data', (done) => {
     let entryID = "1_rsrdfext";
     let uiConfID = 38621471;
-    provider = new OvpProvider(pVersion, partnerId);
+    provider = new OvpProvider({playerVersion: pVersion, partnerID: partnerId, loadUiConf: true});
     sinon.stub(MultiRequestBuilder.prototype, "execute").callsFake(
       function () {
         return new Promise((resolve) => {
@@ -129,7 +129,7 @@ describe('OvpProvider.partnerId:1068292', function () {
 
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
-    provider = new OvpProvider(pVersion, partnerId, ks);
+    provider = new OvpProvider({playerVersion: pVersion, partnerID: partnerId, ks: ks, loadUiConf: true});
   });
 
   afterEach(() => {
@@ -234,14 +234,17 @@ describe('OvpProvider.partnerId:1068292', function () {
 });
 
 describe('logger', () => {
+  let partnerId = 1068292;
+  let pVersion = '1.2.3';
+
   it('should return the current log level', () => {
-    const provider = new OvpProvider("xyz", "xyz");
+    const provider = new OvpProvider({playerVersion: pVersion, partnerID: partnerId});
     const currentLogLevel = provider.getLogLevel();
     currentLogLevel.should.equal(provider.LogLevel.ERROR);
   });
 
   it('should enable setting the current log level', () => {
-    const provider = new OvpProvider("xyz", "xyz");
+    const provider = new OvpProvider({playerVersion: pVersion, partnerID: partnerId});
     let currentLogLevel = provider.getLogLevel();
     currentLogLevel.should.equal(provider.LogLevel.ERROR);
     provider.setLogLevel(provider.LogLevel.WARN);
