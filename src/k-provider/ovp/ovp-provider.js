@@ -80,7 +80,8 @@ export class OvpProvider {
    * @constructor
    * @param {Object} options  The provider options
    */
-  constructor(options: {playerVersion: string, partnerID: number, ks: string, config: Object, loadUiConf: boolean, logLevel?: string} = {}) {
+  constructor(options: {playerVersion: string, partnerID: number, ks: string, config: Object, loadUiConf: boolean, logLevel?: string} =
+                {playerVersion: "", partnerID: 0, ks: "", config: {}, loadUiConf: false}) {
     this._playerVersion = options.playerVersion;
     this.partnerID = options.partnerID;
     this.ks = options.ks;
