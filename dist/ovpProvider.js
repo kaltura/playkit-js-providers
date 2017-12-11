@@ -9,7 +9,7 @@
 		root["PlaykitJsProviders"] = factory();
 })(this, function() {
 return /******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
+/******/ 	// Tעןא שhe module cache
 /******/ 	var installedModules = {};
 /******/
 /******/ 	// The require function

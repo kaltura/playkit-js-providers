@@ -2777,10 +2777,8 @@ var KalturaAsset = function (_ServiceResult) {
             value += object.value + "|";
           });
           parsed.push({ key: key, value: value });
-          //  parsed[key] = value = value.slice(0, -1);
         } else {
           parsed.push({ key: key, value: objectToParse[key].value });
-          //parsed[key] = objectToParse[key].value;
         }
       });
       return parsed;
