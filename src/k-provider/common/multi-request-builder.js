@@ -5,7 +5,6 @@ import getLogger from '../../util/logger'
 
 export default class MultiRequestBuilder extends RequestBuilder {
   static _logger = getLogger("MultiRequestBuilder");
-
   /**
    * @member - Array of requests
    * @type {Array<RequestBuilder>}
@@ -20,8 +19,8 @@ export default class MultiRequestBuilder extends RequestBuilder {
    */
   add(request: RequestBuilder): MultiRequestBuilder {
     this.requests.push(request);
-    let requestParams = {};
-    let serviceDef: Object = {service: request.service, action: request.action};
+    const requestParams = {};
+    const serviceDef: Object = {service: request.service, action: request.action};
     Object.assign(requestParams, {[this.requests.length]: Object.assign(serviceDef, request.params)});
     Object.assign(requestParams, this.params);
     this.params = requestParams;
@@ -31,7 +30,7 @@ export default class MultiRequestBuilder extends RequestBuilder {
   /**
    * Executes a multi request
    * @function execute
-   * @returns {Promise} The multirequest execution promisie
+   * @returns {Promise} The multirequest execution promise
    */
   execute(): Promise<Object> {
     try {
@@ -45,9 +44,8 @@ export default class MultiRequestBuilder extends RequestBuilder {
           resolve(new MultiRequestResult(data));
         },
         err => {
-          let errorText: string = `Error on multiRequest execution, error <${err}>.`;
+          const errorText: string = `Error on multiRequest execution, error <${err}>.`;
           reject(errorText);
-
         });
     });
   }
@@ -55,7 +53,6 @@ export default class MultiRequestBuilder extends RequestBuilder {
 
 export class MultiRequestResult {
   static _logger = getLogger("MultiRequestResult");
-
   /**
    * @member - Is success
    * @type {boolean}
@@ -73,8 +70,9 @@ export class MultiRequestResult {
    */
   constructor(response: Object) {
     this.success = true;
-    response.forEach((result) => {
-      let serviceResult: ServiceResult = new ServiceResult(result);
+    const responseArr = response.result ? response.result : response;
+    responseArr.forEach((result) => {
+      const serviceResult: ServiceResult = new ServiceResult(result);
       this.results.push(serviceResult);
       if (serviceResult.hasError) {
         MultiRequestResult._logger.error(`Service returned an error with error code: ${serviceResult.error.code} and message: ${serviceResult.error.message}.`);

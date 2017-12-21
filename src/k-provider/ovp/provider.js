@@ -15,9 +15,7 @@ export default class OVPProvider extends BaseProvider {
     super(options, playerVersion, logLevel);
     this._logger = getLogger("OVPProvider");
     const _options = options.toJSON();
-    if (_options.env) {
-      OVPConfiguration.set(_options.env);
-    }
+    OVPConfiguration.set(_options.env);
   }
 
   /**
