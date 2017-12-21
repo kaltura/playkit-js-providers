@@ -1,12 +1,12 @@
 // @flow
 import ProviderEnvConfig from './provider-env-config'
-import type {ProviderEnvConfigObjectType} from './provider-env-config'
+import type {ProviderEnvConfigObject} from './provider-env-config'
 
 export type ProviderOptionsObjectType = {
   partnerId: number,
   ks: string,
   uiConfId?: number,
-  env?: ProviderEnvConfigObjectType
+  env?: ProviderEnvConfigObject
 };
 
 export default class ProviderOptions {

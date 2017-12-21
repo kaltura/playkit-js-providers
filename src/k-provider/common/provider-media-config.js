@@ -2,16 +2,16 @@
 import MediaSources from '../../entities/media-sources'
 import type {MediaSourcesObject} from '../../entities/media-sources'
 
-export type SessionConfigObjectType = {
+export type SessionConfigObject = {
   partnerId: number,
   uiConfId?: number,
   ks?: string
 };
 
-export type ProviderMediaConfigObjectType = {
+export type ProviderMediaConfigObject = {
   id: string,
   name: string,
-  session: SessionConfigObjectType,
+  session: SessionConfigObject,
   sources: MediaSourcesObject,
   duration: number,
   type: string,
@@ -100,7 +100,7 @@ export default class ProviderMediaConfig {
     this.metadata = {};
   }
 
-  toJSON(): ProviderMediaConfigObjectType {
+  toJSON(): ProviderMediaConfigObject {
     return {
       id: this.id,
       name: this.name,
@@ -140,8 +140,8 @@ class SessionConfig {
     this._uiConfId = uiConfId;
   }
 
-  toJSON(): SessionConfigObjectType {
-    const response: SessionConfigObjectType = {
+  toJSON(): SessionConfigObject {
+    const response: SessionConfigObject = {
       partnerId: this.partnerId
     };
     if (this.uiConfId) response.uiConfId = this.uiConfId;

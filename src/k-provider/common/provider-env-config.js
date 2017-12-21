@@ -1,5 +1,5 @@
 // @flow
-export type ProviderEnvConfigObjectType = {
+export type ProviderEnvConfigObject = {
   serviceUrl: string,
   cdnUrl?: string
 };
@@ -27,8 +27,8 @@ export default class ProviderEnvConfig {
     }
   }
 
-  toJSON(): ProviderEnvConfigObjectType {
-    const response: ProviderEnvConfigObjectType = {
+  toJSON(): ProviderEnvConfigObject {
+    const response: ProviderEnvConfigObject = {
       serviceUrl: this.serviceUrl
     };
     if (this.cdnUrl) response.cdnUrl = this.cdnUrl;
