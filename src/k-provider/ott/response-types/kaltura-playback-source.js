@@ -2,36 +2,15 @@
 import KalturaDrmPlaybackPluginData from '../../common/response-types/kaltura-drm-playback-plugin-data'
 
 export default class KalturaPlaybackSource {
-  /**
-   * @member - source format according to delivery profile streamer type (applehttp, mpegdash etc.)
-   * @type {string}
-   */
   format: string;
-  /**
-   * @member - delivery profile Id
-   * @type {string}
-   */
-  deliveryProfileId: string;
-  /**
-   * @member - The source URL
-   * @type {string}
-   */
-  url: string;
-  /**
-   * @member - comma separated string according to deliveryProfile media protocols ('http,https' etc.)
-   * @type {string}
-   */
   protocols: string;
-  /**
-   * @member - comma separated string of flavor ids
-   * @type {string}
-   */
-  flavorIds: string;
-  /**
-   * @member - drm data object containing relevant license url ,scheme name and certificate
-   * @type {Array<KalturaDrmPlaybackPluginData>}
-   */
   drm: Array<KalturaDrmPlaybackPluginData> = [];
+  adsPolicy: string;
+  adsParam: string;
+  duration: number;
+  url: string;
+  type: string;
+  fileId: number;
 
   /**
    * @constructor
@@ -39,10 +18,13 @@ export default class KalturaPlaybackSource {
    */
   constructor(source: Object) {
     this.format = source.format;
-    this.deliveryProfileId = source.deliveryProfileId;
+    this.adsPolicy = source.adsPolicy;
+    this.adsParam = source.adsParam;
+    this.duration = source.duration;
     this.url = source.url;
+    this.type = source.type;
+    this.fileId = source.id;
     this.protocols = source.protocols;
-    this.flavorIds = source.flavorIds;
     if (source.drm) {
       source.drm.map(drm => this.drm.push(new KalturaDrmPlaybackPluginData(drm)));
     }

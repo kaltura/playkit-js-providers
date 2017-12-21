@@ -1,7 +1,7 @@
 //@flow
 import RequestBuilder from '../../util/request-builder'
-import ServiceResult from './base-service-result'
 import getLogger from '../../util/logger'
+import ServiceResult from './base-service-result'
 
 export default class MultiRequestBuilder extends RequestBuilder {
   static _logger = getLogger("MultiRequestBuilder");
@@ -35,18 +35,16 @@ export default class MultiRequestBuilder extends RequestBuilder {
   execute(): Promise<Object> {
     try {
       this.params = JSON.stringify(this.params);
-    }
-    catch (err) {
+    } catch (err) {
       MultiRequestBuilder._logger.error(`${err.message}`);
     }
     return new Promise((resolve, reject) => {
       this.doHttpRequest().then(data => {
-          resolve(new MultiRequestResult(data));
-        },
-        err => {
-          const errorText: string = `Error on multiRequest execution, error <${err}>.`;
-          reject(errorText);
-        });
+        resolve(new MultiRequestResult(data));
+      }, err => {
+        const errorText: string = `Error on multiRequest execution, error <${err}>.`;
+        reject(errorText);
+      });
     });
   }
 }

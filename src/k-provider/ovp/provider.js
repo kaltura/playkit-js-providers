@@ -4,13 +4,19 @@ import OVPConfiguration from './config'
 import OVPProviderParser from './provider-parser'
 import OVPMediaEntryLoader from './loaders/media-entry-loader'
 import OVPSessionLoader from './loaders/session-loader'
-import DataLoaderManager from '../common/data-loader-manager'
+import OVPDataLoaderManager from './loaders/data-loader-manager'
 import BaseProvider from '../common/base-provider'
 import ProviderOptions from '../common/provider-options'
 import ProviderMediaConfig from '../common/provider-media-config'
 import ProviderMediaInfo from '../common/provider-media-info'
 
 export default class OVPProvider extends BaseProvider {
+  /**
+   * @constructor
+   * @param {ProviderOptions} options - provider options
+   * @param {string} playerVersion - player version
+   * @param {string} logLevel - log level
+   */
   constructor(options: ProviderOptions, playerVersion: string, logLevel?: string) {
     super(options, playerVersion, logLevel);
     this._logger = getLogger("OVPProvider");
@@ -28,7 +34,7 @@ export default class OVPProvider extends BaseProvider {
     if (_mediaInfo.ks) {
       this.ks = _mediaInfo.ks;
     }
-    this._dataLoader = new DataLoaderManager(this.playerVersion, this.partnerId, this.ks);
+    this._dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, this.ks);
     return new Promise((resolve, reject) => {
       const entryId = _mediaInfo.entryId;
       if (entryId) {
@@ -53,7 +59,7 @@ export default class OVPProvider extends BaseProvider {
   _parseDataFromResponse(data: Map<string, Function>): ProviderMediaConfig {
     this._logger.debug("Data parsing started");
     const mediaConfig = new ProviderMediaConfig(this.partnerId, this.uiConfId);
-    if (data !== null) {
+    if (data) {
       if (data.has(OVPSessionLoader.id)) {
         const sessionLoader = data.get(OVPSessionLoader.id);
         if (sessionLoader && sessionLoader.response) {
@@ -64,6 +70,17 @@ export default class OVPProvider extends BaseProvider {
       if (data.has(OVPMediaEntryLoader.id)) {
         const mediaLoader = data.get(OVPMediaEntryLoader.id);
         if (mediaLoader && mediaLoader.response) {
+          const blockedAction = OVPProviderParser.hasBlockActions(mediaLoader.response);
+          if (blockedAction) {
+            const errorMessage = OVPProviderParser.hasErrorMessage(mediaLoader.response);
+            if (errorMessage) {
+              this._logger.error(`Entry is blocked, error message: `, errorMessage);
+              throw errorMessage;
+            } else {
+              this._logger.error(`Entry is blocked, action: `, blockedAction);
+              throw blockedAction;
+            }
+          }
           const mediaEntry = OVPProviderParser.getMediaEntry(
             this.isAnonymous ? '' : this.ks,
             this.partnerId,

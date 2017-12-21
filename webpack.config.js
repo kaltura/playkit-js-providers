@@ -19,8 +19,10 @@ if (PROD) {
 module.exports = {
   context: __dirname + "/src",
   entry: {
+    "playkit-ott-provider": "k-provider/ott/index.js",
     "playkit-ovp-provider": "k-provider/ovp/index.js",
-    "playkit-stats-service": "k-provider/ovp/services/stats/index.js"
+    "playkit-stats-service": "k-provider/ovp/services/stats/index.js",
+    "playkit-bookmark-service": "k-provider/ott/services/bookmark/index.js"
   },
   output: {
     path: path.join(__dirname, "dist"),

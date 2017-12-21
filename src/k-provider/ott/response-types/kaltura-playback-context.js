@@ -1,11 +1,16 @@
 //@flow
 import ServiceResult from '../../common/base-service-result'
 import KalturaAccessControlMessage from '../../common/response-types/kaltura-access-control-message'
-import KalturaPlaybackSource from './kaltura-playback-source'
 import KalturaRuleAction from '../../common/response-types/kaltura-rule-action'
-import KalturaFlavorAsset from './kaltura-flavor-asset'
+import KalturaPlaybackSource from './kaltura-playback-source'
 
 export default class KalturaPlaybackContext extends ServiceResult {
+  static Type: { [type: string]: string } = {
+    TRAILER: "TRAILER",
+    CATCHUP: "CATCHUP",
+    START_OVER: "START_OVER",
+    PLAYBACK: "PLAYBACK"
+  };
   /**
    * @member - The playback sources
    * @type {Array<KalturaPlaybackSource>}
@@ -21,11 +26,6 @@ export default class KalturaPlaybackContext extends ServiceResult {
    * @type {Array<KalturaAccessControlMessage>}
    */
   messages: Array<KalturaAccessControlMessage> = [];
-  /**
-   * @member - The flavor assets
-   * @type {Array<KalturaFlavorAsset>}
-   */
-  flavorAssets: Array<KalturaFlavorAsset> = [];
 
   /**
    * @constructor
@@ -46,11 +46,6 @@ export default class KalturaPlaybackContext extends ServiceResult {
       if (sources) {
         sources.map(source => this.sources.push(new KalturaPlaybackSource(source)));
       }
-      const flavorAssets = response.flavorAssets;
-      if (flavorAssets) {
-        flavorAssets.map(flavor => this.flavorAssets.push(new KalturaFlavorAsset(flavor)));
-      }
     }
   }
 }
-

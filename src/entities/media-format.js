@@ -32,3 +32,9 @@ export const MediaFormat: { [name: string]: MediaFormatType } = {
     pathExt: 'mp3'
   }
 };
+
+export const SupportedStreamFormat: Map<string, MediaFormatType> = new Map([
+  ["mpegdash", MediaFormat.DASH],
+  ["applehttp", MediaFormat.HLS],
+  ["url", MediaFormat.MP4]
+]);

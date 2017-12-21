@@ -4,24 +4,18 @@ import KalturaFlavorAsset from './response-types/kaltura-flavor-asset'
 import KalturaMetadataListResponse from './response-types/kaltura-metadata-list-response'
 import KalturaMediaEntry from './response-types/kaltura-media-entry'
 import KalturaPlaybackSource from './response-types/kaltura-playback-source'
-import KalturaDrmPlaybackPluginData from './response-types/kaltura-drm-playback-plugin-data'
+import KalturaDrmPlaybackPluginData from '../common/response-types/kaltura-drm-playback-plugin-data'
 import PlaySourceUrlBuilder from './play-source-url-builder'
 import XmlParser from '../../util/xml-parser'
 import getLogger from '../../util/logger'
 import OVPConfiguration from './config'
-import type {MediaFormatType} from '../../entities/media-format'
-import {MediaFormat} from '../../entities/media-format'
 import MediaEntry from '../../entities/media-entry'
 import Drm from '../../entities/drm'
 import MediaSource from '../../entities/media-source'
 import MediaSources from '../../entities/media-sources'
+import {SupportedStreamFormat} from '../../entities/media-format'
 
 const config = OVPConfiguration.get();
-const SupportedStreamFormat: Map<string, MediaFormatType> = new Map([
-  ["mpegdash", MediaFormat.DASH],
-  ["applehttp", MediaFormat.HLS],
-  ["url", MediaFormat.MP4]
-]);
 
 export default class OVPProviderParser {
   static _logger = getLogger("OVPProviderParser");
@@ -271,5 +265,25 @@ export default class OVPProviderParser {
       return protocol.slice(0, -1) // remove ':' from the end
     }
     return "https";
+  }
+
+  static hasBlockActions(mediaEntryResponse: any): any {
+    const playbackContext = mediaEntryResponse.playBackContextResult;
+    for (let actionIndex = 0; actionIndex < playbackContext.actions.length; actionIndex++) {
+      if (playbackContext.actions[actionIndex].type === "BLOCK") {
+        return playbackContext.actions[actionIndex];
+      }
+    }
+    return null;
+  }
+
+  static hasErrorMessage(mediaEntryResponse: any): any {
+    let messages = mediaEntryResponse.playBackContextResult.messages;
+    for (let messagesIndex = 0; messagesIndex < messages.length; messagesIndex++) {
+      if (messages[messagesIndex].code !== "OK") {
+        return messages[messagesIndex];
+      }
+    }
+    return null;
   }
 }

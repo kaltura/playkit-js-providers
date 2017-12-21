@@ -1,5 +1,4 @@
-//@flow
-import OVPService from '../ovp/services/ovp-service'
+// @flow
 import MultiRequestBuilder, {MultiRequestResult} from './multi-request-builder'
 
 export default class DataLoaderManager {
@@ -13,7 +12,7 @@ export default class DataLoaderManager {
   /**
    * @member - Loaders multi request
    * @type {MultiRequestBuilder}
-   * @private
+   * @protected
    */
   _multiRequest: MultiRequestBuilder;
   /**
@@ -28,16 +27,6 @@ export default class DataLoaderManager {
    * @private
    */
   _loaders: Map<string, ILoader> = new Map();
-
-  /**
-   * @constructor
-   * @param {string} playerVersion - player version
-   * @param {string} partnerId - partner id
-   * @param {string} ks - ks
-   */
-  constructor(playerVersion: string, partnerId: number, ks: string = "") {
-    this._multiRequest = OVPService.getMultirequest(playerVersion, ks, partnerId);
-  }
 
   /**
    * Add loader too execution loaders map

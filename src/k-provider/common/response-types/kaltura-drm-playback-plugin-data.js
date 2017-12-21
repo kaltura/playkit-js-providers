@@ -3,7 +3,10 @@ export default class KalturaDrmPlaybackPluginData {
   static Scheme: { [scheme: string]: string } = {
     'drm.PLAYREADY_CENC': 'com.microsoft.playready',
     'drm.WIDEVINE_CENC': 'com.widevine.alpha',
-    'fairplay.FAIRPLAY': 'com.apple.fairplay'
+    'fairplay.FAIRPLAY': 'com.apple.fairplay',
+    'WIDEVINE_CENC': 'com.widevine.alpha',
+    'PLAYREADY_CENC': 'com.microsoft.playready',
+    'FAIRPLAY': 'com.apple.fairplay'
   };
 
   /**
