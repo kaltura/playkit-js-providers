@@ -1,11 +1,19 @@
 //@flow
-import {Status} from '../../enums'
-
-/**
- * Ovp BE FlavorAsset
- * @classdesc
- */
 export default class KalturaFlavorAsset {
+  static Status: { [status: string]: number } = {
+    ERROR: -1,
+    QUEUED: 0,
+    CONVERTING: 1,
+    READY: 2,
+    DELETED: 3,
+    NOT_APPLICABLE: 4,
+    TEMP: 5,
+    WAIT_FOR_CONVERT: 6,
+    IMPORTING: 7,
+    VALIDATING: 8,
+    EXPORTING: 9
+  };
+
   /**
    * @member - The ID of the Flavor Asset
    * @type {string}
@@ -63,9 +71,9 @@ export default class KalturaFlavorAsset {
   videoCodecId: string;
   /**
    * @member - The status of the Flavor Asset
-   * @type {string}
+   * @type {number}
    */
-  status: Status;
+  status: number;
   /**
    * @member - The language of the flavor asset
    * @type {Status}
@@ -99,5 +107,3 @@ export default class KalturaFlavorAsset {
     this.label = data.label;
   }
 }
-
-

@@ -1,9 +1,4 @@
 //@flow
-
-/**
- * Xml parser
- * @classdesc
- */
 export default class XmlParser {
   /**
    * Parses xml string to json object
@@ -13,7 +8,7 @@ export default class XmlParser {
    */
   static xmlToJson(xml: Object) {
     let obj = {};
-    if (xml.nodeType == 1) {
+    if (xml.nodeType === 1) {
       if (xml.attributes.length > 0) {
         obj["@attributes"] = {};
         for (let j = 0; j < xml.attributes.length; j++) {
@@ -22,18 +17,18 @@ export default class XmlParser {
         }
       }
     }
-    else if (xml.nodeType == 3) {
+    else if (xml.nodeType === 3) {
       obj = xml.nodeValue;
     }
     if (xml.hasChildNodes()) {
       for (let i = 0; i < xml.childNodes.length; i++) {
         let item = xml.childNodes.item(i);
         let nodeName = item.nodeName;
-        if (typeof (obj[nodeName]) == "undefined") {
+        if (typeof (obj[nodeName]) === "undefined") {
           obj[nodeName] = this.xmlToJson(item);
         }
         else {
-          if (typeof (obj[nodeName].push) == "undefined") {
+          if (typeof (obj[nodeName].push) === "undefined") {
             let old = obj[nodeName];
             obj[nodeName] = [];
             obj[nodeName].push(old);

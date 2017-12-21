@@ -1,10 +1,15 @@
 // @flow
 import MediaSource from './media-source'
+import type {MediaSourceObject} from './media-source'
+import type {MediaFormatType} from './media-format'
+import {MediaFormat} from './media-format'
 
-/**
- * Container for the media sources aggregated by stream format.
- * @classdesc
- */
+export type MediaSourcesObject = {
+  progressive: Array<MediaSourceObject>,
+  dash: Array<MediaSourceObject>,
+  hls: Array<MediaSourceObject>
+};
+
 export default class MediaSources {
   /**
    * Progressive download media sources container.
@@ -40,21 +45,37 @@ export default class MediaSources {
    * @param {MediaFormat} mediaFormat - The media format of the source.
    * @returns {void}
    */
-  map(source: MediaSource, mediaFormat: ?MediaFormat) {
+  map(source: MediaSource, mediaFormat: ?MediaFormatType) {
     if (mediaFormat) {
       switch (mediaFormat.name) {
-        case 'mp4':
+        case MediaFormat.MP4.name:
           this.progressive.push(source);
           break;
-        case 'dash':
+        case MediaFormat.DASH.name:
           this.dash.push(source);
           break;
-        case 'hls':
+        case MediaFormat.HLS.name:
           this.hls.push(source);
           break;
         default:
           break;
       }
     }
+  }
+
+  /**
+   * Convert class to native js object.
+   * @returns {MediaSourcesObject} - The json class object.
+   */
+  toJSON(): MediaSourcesObject {
+    const response: MediaSourcesObject = {
+      progressive: [],
+      dash: [],
+      hls: []
+    };
+    this.progressive.forEach(p => response.progressive.push(p.toJSON()));
+    this.hls.forEach(h => response.hls.push(h.toJSON()));
+    this.dash.forEach(d => response.dash.push(d.toJSON()));
+    return response;
   }
 }

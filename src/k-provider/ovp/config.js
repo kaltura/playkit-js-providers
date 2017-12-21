@@ -1,5 +1,4 @@
 //@flow
-
 const defaultConfig: Object = {
   serviceUrl: "//www.kaltura.com/api_v3",
   cdnUrl: "//cdnapisec.kaltura.com",
@@ -9,8 +8,7 @@ const defaultConfig: Object = {
   }
 };
 
-export default class Configuration {
-
+export default class OVPConfiguration {
   static set(clientConfig?: Object) {
     if (clientConfig) {
       Object.assign(defaultConfig, clientConfig);
@@ -22,6 +20,6 @@ export default class Configuration {
   }
 }
 
-export {Configuration};
+export {OVPConfiguration};
 
 

@@ -1,17 +1,10 @@
 //@flow
-import RequestBuilder from './request-builder'
+import RequestBuilder from '../../util/request-builder'
 import ServiceResult from './base-service-result'
-import getLogger from "../util/logger";
-/**
- * @constant
- */
-const logger = getLogger("OvpProvider");
+import getLogger from '../../util/logger'
 
-/**
- * Multi Request builder
- * @classdesc
- */
 export default class MultiRequestBuilder extends RequestBuilder {
+  static _logger = getLogger("MultiRequestBuilder");
 
   /**
    * @member - Array of requests
@@ -45,7 +38,7 @@ export default class MultiRequestBuilder extends RequestBuilder {
       this.params = JSON.stringify(this.params);
     }
     catch (err) {
-      logger.error(`${err.message}`);
+      MultiRequestBuilder._logger.error(`${err.message}`);
     }
     return new Promise((resolve, reject) => {
       this.doHttpRequest().then(data => {
@@ -58,14 +51,10 @@ export default class MultiRequestBuilder extends RequestBuilder {
         });
     });
   }
-
 }
 
-/**
- * Multi Request result object
- * @classdesc
- */
 export class MultiRequestResult {
+  static _logger = getLogger("MultiRequestResult");
 
   /**
    * @member - Is success
@@ -80,7 +69,7 @@ export class MultiRequestResult {
 
   /**
    * @constructor
-   * @param {Object}  response data
+   * @param {Object} response data
    */
   constructor(response: Object) {
     this.success = true;
@@ -88,7 +77,7 @@ export class MultiRequestResult {
       let serviceResult: ServiceResult = new ServiceResult(result);
       this.results.push(serviceResult);
       if (serviceResult.hasError) {
-        logger.error(`Service returned an error with error code: ${serviceResult.error.code} and message: ${serviceResult.error.message}.`);
+        MultiRequestResult._logger.error(`Service returned an error with error code: ${serviceResult.error.code} and message: ${serviceResult.error.message}.`);
         this.success = false;
         return;
       }

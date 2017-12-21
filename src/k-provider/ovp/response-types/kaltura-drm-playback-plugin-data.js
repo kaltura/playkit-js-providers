@@ -1,15 +1,16 @@
 //@flow
-
-/**
- * Ovp BE DrmPlaybackPluginData
- * @classdesc
- */
 export default class KalturaDrmPlaybackPluginData {
+  static Scheme: { [scheme: string]: string } = {
+    'drm.PLAYREADY_CENC': 'com.microsoft.playready',
+    'drm.WIDEVINE_CENC': 'com.widevine.alpha',
+    'fairplay.FAIRPLAY': 'com.apple.fairplay'
+  };
+
   /**
    * @member - The drm scheme
-   * @type {Scheme}
+   * @type {string}
    */
-  scheme: Scheme;
+  scheme: string;
 
   /**
    * @member - The license URL

@@ -1,15 +1,10 @@
 //@flow
-
-import OvpService from './ovp-service'
-import RequestBuilder from '../../request-builder'
+import OVPService from './ovp-service'
+import RequestBuilder from '../../../util/request-builder'
 
 const SERVICE_NAME: string = "session";
 
-/**
- * Ovp session service methods
- * @classdesc
- */
-export default class SessionService extends OvpService {
+export default class OVPSessionService extends OVPService {
   /**
    * Creates an instance of RequestBuilder for session.startWidgetSession
    * @function anonymousSession
@@ -19,9 +14,9 @@ export default class SessionService extends OvpService {
    * @static
    */
   static anonymousSession(baseUrl: string, partnerId: number) {
-    let headers: Map<string, string> = new Map();
+    const headers: Map<string, string> = new Map();
     headers.set("Content-Type", "application/json");
-    let request = new RequestBuilder(headers);
+    const request = new RequestBuilder(headers);
     request.service = SERVICE_NAME;
     request.action = "startWidgetSession";
     request.method = "POST";

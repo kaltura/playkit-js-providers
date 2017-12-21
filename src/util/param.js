@@ -1,4 +1,4 @@
-let param = (a) => {
+const param = (a) => {
   let s = [], rbracket = /\[\]$/,
     isArray = function (obj) {
       return Object.prototype.toString.call(obj) === '[object Array]';

@@ -1,10 +1,51 @@
 //@flow
-
-/**
- * Ovp BE MediaEntry
- * @classdesc
- */
 export default class KalturaMediaEntry {
+  static EntryType: { [entryType: string]: { value: number | string } } = {
+    AUTOMATIC: {value: -1},
+    EXTERNAL_MEDIA: {value: "externalMedia.externalMedia"},
+    MEDIA_CLIP: {value: 1},
+    MIX: {value: 2},
+    PLAYLIST: {value: 5},
+    DATA: {value: 6},
+    LIVE_STREAM: {value: 7},
+    LIVE_CHANNEL: {value: 8},
+    DOCUMENT: {value: 10}
+  };
+
+  static MediaType: { [mediaType: string]: { value: number } } = {
+    VIDEO: {value: 1},
+    IMAGE: {value: 2},
+    AUDIO: {value: 5},
+    LIVE_STREAM_FLASH: {value: 201},
+    LIVE_STREAM_WINDOWS_MEDIA: {value: 202},
+    LIVE_STREAM_REAL_MEDIA: {value: 203},
+    LIVE_STREAM_QUICK_TIME: {value: 204}
+  };
+
+  static EntryStatus: { [status: string]: string | number } = {
+    ERROR_IMPORTING: -2,
+    ERROR_CONVERTING: -1,
+    SCAN_FAILURE: "virusScan.ScanFailure",
+    IMPORT: 0,
+    INFECTED: "virusScan.Infected",
+    PRECONVERT: 1,
+    READY: 2,
+    DELETED: 3,
+    PENDING: 4,
+    MODERATE: 5,
+    BLOCKED: 6,
+    NO_CONTENT: 7
+  };
+
+  static EntryModerationStatus: { [status: string]: number } = {
+    PENDING_MODERATION: 1,
+    APPROVED: 2,
+    REJECTED: 3,
+    FLAGGED_FOR_REVIEW: 4,
+    MODERATE: 5,
+    AUTO_APPROVED: 6
+  };
+
   /**
    * @member - The entry id
    * @type {string}
@@ -37,14 +78,14 @@ export default class KalturaMediaEntry {
   duration: number;
   /**
    * @member - The type of the entry, this is auto filled by the derived entry object
-   * @type {EntryType}
+   * @type {{ value: string | number }}
    */
-  type: EntryType;
+  type: { value: string | number };
   /**
    * @member - The type of the entry, this is auto filled by the derived entry object (Image, Audio etc.)
-   * @type {MediaType}
+   * @type {{ value: number }}
    */
-  entryType: MediaType;
+  entryType: { value: number };
   /**
    * @member - Entry poster image
    * @type {string}
@@ -73,8 +114,3 @@ export default class KalturaMediaEntry {
     this.dvrStatus = entry.dvrStatus;
   }
 }
-
-
-
-
-

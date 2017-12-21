@@ -2,12 +2,12 @@
 import * as JsLogger from 'js-logger';
 
 const LogLevel: { [level: string]: Object } = {
-  "DEBUG": JsLogger.DEBUG,
-  "INFO": JsLogger.INFO,
-  "TIME": JsLogger.TIME,
-  "WARN": JsLogger.WARN,
-  "ERROR": JsLogger.ERROR,
-  "OFF": JsLogger.OFF
+  DEBUG: JsLogger.DEBUG,
+  INFO: JsLogger.INFO,
+  TIME: JsLogger.TIME,
+  WARN: JsLogger.WARN,
+  ERROR: JsLogger.ERROR,
+  OFF: JsLogger.OFF
 };
 
 JsLogger.useDefaults({defaultLevel: JsLogger.ERROR});
@@ -33,8 +33,6 @@ function getLogLevel(name?: string): Object {
   return getLogger(name).getLevel();
 }
 
-``
-
 /**
  * sets the logger level
  * @param {Object} level - the log level
@@ -42,7 +40,6 @@ function getLogLevel(name?: string): Object {
  * @returns {void}
  */
 function setLogLevel(level: Object, name?: string): void {
-
   getLogger(name).setLevel(level);
 }
 

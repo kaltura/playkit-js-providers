@@ -1,11 +1,7 @@
 //@flow
-import ServiceResult from '../../base-service-result'
+import ServiceResult from '../../common/base-service-result'
 import KalturaMediaEntry from './kaltura-media-entry'
 
-/**
- * Ovp BE BaseEntryList service response
- * @classdesc
- */
 export default class KalturaBaseEntryListResponse extends ServiceResult {
   /**
    * @member - The total count
@@ -33,7 +29,3 @@ export default class KalturaBaseEntryListResponse extends ServiceResult {
     }
   }
 }
-
-
-
-

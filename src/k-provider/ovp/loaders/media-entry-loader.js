@@ -1,27 +1,22 @@
 //@flow
-
-import RequestBuilder from '../../request-builder'
-import BaseEntryService from '../services/base-entry-service'
-import MetaDataService from '../services/meta-data-service'
-import Configuration from '../config'
+import RequestBuilder from '../../../util/request-builder'
+import OVPBaseEntryService from '../services/base-entry-service'
+import OVPMetadataService from '../services/meta-data-service'
+import OVPConfiguration from '../config'
 import KalturaPlaybackContext from '../response-types/kaltura-playback-context'
 import KalturaMetadataListResponse from '../response-types/kaltura-metadata-list-response'
 import KalturaBaseEntryListResponse from '../response-types/kaltura-base-entry-list-response'
 
-const config = Configuration.get();
+const config = OVPConfiguration.get();
 
-/**
- * Media entry loader
- * @classdesc
- */
-export default class MediaEntryLoader implements ILoader {
-  static get id(): string {
-    return "media";
-  }
-
+export default class OVPMediaEntryLoader implements ILoader {
   _entryId: string;
   _requests: Array<RequestBuilder>;
   _response: any = {};
+
+  static get id(): string {
+    return "media";
+  }
 
   /**
    * @constructor
@@ -60,9 +55,9 @@ export default class MediaEntryLoader implements ILoader {
    */
   buildRequests(params: Object): Array<RequestBuilder> {
     let requests: Array<RequestBuilder> = [];
-    requests.push(BaseEntryService.list(config.serviceUrl, params.ks, params.entryId));
-    requests.push(BaseEntryService.getPlaybackContext(config.serviceUrl, params.ks, params.entryId));
-    requests.push(MetaDataService.list(config.serviceUrl, params.ks, params.entryId));
+    requests.push(OVPBaseEntryService.list(config.serviceUrl, params.ks, params.entryId));
+    requests.push(OVPBaseEntryService.getPlaybackContext(config.serviceUrl, params.ks, params.entryId));
+    requests.push(OVPMetadataService.list(config.serviceUrl, params.ks, params.entryId));
     return requests;
   }
 

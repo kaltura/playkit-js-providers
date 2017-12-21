@@ -1,11 +1,5 @@
 //@flow
-
-/**
- * Request builder
- * @classdesc
- */
 export default class RequestBuilder {
-
   /**
    * @member - Service name
    * @type {string}

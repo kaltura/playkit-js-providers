@@ -19,9 +19,8 @@ if (PROD) {
 module.exports = {
   context: __dirname + "/src",
   entry: {
-    "ovpProvider": "k-provider/ovp/ovp-provider.js",
-    "ottProvider": "k-provider/ott/ott-provider.js",
-    "statsService": "k-provider/ovp/services/stats-service.js"
+    "playkit-ovp-provider": "k-provider/ovp/index.js",
+    "playkit-stats-service": "k-provider/ovp/services/stats/index.js"
   },
   output: {
     path: path.join(__dirname, "dist"),
