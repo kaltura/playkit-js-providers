@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="playkit-stats-service.js" type="text/javascript"></script>
+</head>
+<body>
+<script>
+  debugger;
+  var cdnUrl = 'http://my/url';
+  var playerVersion = '1.2.3';
+  var ks = 'abcdefg';
+  var event = {myEvent: 1};
+  var request = PlaykitJsProviders.OVPStatsService.collect(playerVersion, ks, event, cdnUrl);
+</script>
+</body>
+</html>
