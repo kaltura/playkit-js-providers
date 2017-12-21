@@ -14,13 +14,13 @@ describe('stats service - collect', function () {
   });
 
   it('should be proper values', function () {
-    let baseUrl = 'some url';
-    let request = OVPStatsService.collect(playerVersion, ks, event, baseUrl);
+    const cdnUrl = 'http://my/url';
+    const request = OVPStatsService.collect(playerVersion, ks, event, cdnUrl);
     (request instanceof RequestBuilder).should.be.true;
     request.service.should.be.equal('stats');
     request.action.should.be.equal('collect');
     request.method.should.be.equal('GET');
-    request.url.should.be.equal(baseUrl + '?service=' + request.service + '&action=' + request.action + '&' + param(request.params));
+    request.url.should.be.equal(cdnUrl + '?service=' + request.service + '&action=' + request.action + '&' + param(request.params));
     request.tag.should.be.equal('stats-collect');
     request.params.should.deep.equal(Object.assign({}, ovpParams.serviceParams, {
       ks: ks,

@@ -9,8 +9,8 @@ declare var __NAME__: string;
 const NAME = __NAME__ + '-stats-service';
 const VERSION = __VERSION__;
 
-export default OVPStatsService;
 export {
+  OVPStatsService,
   OVPConfiguration,
   RequestBuilder,
   NAME,
