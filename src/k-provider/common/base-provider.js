@@ -28,7 +28,6 @@ export default class BaseProvider {
 
   set ks(value: string): void {
     this._ks = value;
-    this._isAnonymous = !this._ks;
   }
 
   get playerVersion(): string {
@@ -42,6 +41,7 @@ export default class BaseProvider {
   constructor(options: ProviderOptions, playerVersion: string, logLevel?: string) {
     this._partnerId = options.partnerId;
     this._uiConfId = options.uiConfId;
+    this._isAnonymous = !options.ks;
     this.ks = options.ks;
     this._playerVersion = playerVersion;
     if (logLevel && this.LogLevel[logLevel]) {
