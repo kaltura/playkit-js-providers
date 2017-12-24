@@ -10,7 +10,7 @@ import OTTProviderParser from './provider-parser'
 import ProviderOptions from '../common/provider-options'
 import ProviderMediaConfig from '../common/provider-media-config'
 
-export default class OTTProvider extends BaseProvider {
+export default class OTTProvider extends BaseProvider<OTTProviderMediaInfo> {
   /**
    * @constructor
    * @param {ProviderOptions} options - provider options

@@ -1,6 +1,4 @@
 // @flow
-import type {OTTProviderMediaInfoObject} from '../ott/provider-media-info'
-
 export type ProviderMediaInfoObject = {
   entryId: string | number,
   ks?: string
@@ -26,7 +24,7 @@ export default class ProviderMediaInfo {
     this._entryId = entryId;
   }
 
-  toJSON(): ProviderMediaInfoObject | OTTProviderMediaInfoObject {
+  toJSON(): ProviderMediaInfoObject {
     const response: ProviderMediaInfoObject = {
       entryId: this.entryId
     };

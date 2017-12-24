@@ -10,7 +10,7 @@ import ProviderOptions from '../common/provider-options'
 import ProviderMediaConfig from '../common/provider-media-config'
 import ProviderMediaInfo from '../common/provider-media-info'
 
-export default class OVPProvider extends BaseProvider {
+export default class OVPProvider extends BaseProvider<ProviderMediaInfo> {
   /**
    * @constructor
    * @param {ProviderOptions} options - provider options

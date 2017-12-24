@@ -2,10 +2,9 @@
 import {setLogLevel, getLogLevel, LogLevel} from '../../util/logger'
 import DataLoaderManager from './data-loader-manager'
 import ProviderOptions from './provider-options'
-import ProviderMediaInfo from './provider-media-info'
 import ProviderMediaConfig from './provider-media-config'
 
-export default class BaseProvider {
+export default class BaseProvider<MI> {
   _partnerId: number;
   _ks: string;
   _uiConfId: ?number;
@@ -28,7 +27,6 @@ export default class BaseProvider {
 
   set ks(value: string): void {
     this._ks = value;
-    this._isAnonymous = !this._ks;
   }
 
   get playerVersion(): string {
@@ -42,6 +40,7 @@ export default class BaseProvider {
   constructor(options: ProviderOptions, playerVersion: string, logLevel?: string) {
     this._partnerId = options.partnerId;
     this._uiConfId = options.uiConfId;
+    this._isAnonymous = !options.ks;
     this.ks = options.ks;
     this._playerVersion = playerVersion;
     if (logLevel && this.LogLevel[logLevel]) {
@@ -49,12 +48,12 @@ export default class BaseProvider {
     }
   }
 
-  getMediaConfig(mediaInfo: ProviderMediaInfo): Promise<ProviderMediaConfig> { // eslint-disable-line no-unused-vars
-    return Promise.resolve(new ProviderMediaConfig(1));
+  getMediaConfig(mediaInfo: MI): Promise<ProviderMediaConfig> { // eslint-disable-line no-unused-vars
+    throw new TypeError(`getMediaConfig method must be implement by the derived class`)
   }
 
   _parseDataFromResponse(data: Map<string, Function>): ProviderMediaConfig { // eslint-disable-line no-unused-vars
-    return new ProviderMediaConfig(1);
+    throw new TypeError(`_parseDataFromResponse method must be implement by the derived class`)
   }
 
   get LogLevel(): { [level: string]: Object } {

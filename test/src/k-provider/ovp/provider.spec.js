@@ -8,8 +8,8 @@ import ProviderOptions from '../../../../src/k-provider/common/provider-options'
 
 describe('OVPProvider.partnerId:1082342', function () {
   let provider, providerOptions, sandbox;
-  let partnerId = 1082342;
-  let playerVersion = '1.2.3';
+  const partnerId = 1082342;
+  const playerVersion = '1.2.3';
 
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
@@ -28,7 +28,7 @@ describe('OVPProvider.partnerId:1082342', function () {
     sinon.stub(MultiRequestBuilder.prototype, "execute").callsFake(
       function () {
         return new Promise((resolve) => {
-          let response = new MultiRequestResult(BE_DATA.AnonymousMocEntryWithoutUIConfNoDrmData);
+          const response = new MultiRequestResult(BE_DATA.AnonymousMocEntryWithoutUIConfNoDrmData);
           resolve(response);
         });
       }
@@ -58,7 +58,7 @@ describe('OVPProvider.partnerId:1082342', function () {
     sinon.stub(MultiRequestBuilder.prototype, "execute").callsFake(
       function () {
         return new Promise((resolve) => {
-          let response = new MultiRequestResult(BE_DATA.EntryWithUIConfNoDrmData);
+          const response = new MultiRequestResult(BE_DATA.EntryWithUIConfNoDrmData);
           resolve(response);
         });
       }
@@ -84,7 +84,7 @@ describe('OVPProvider.partnerId:1082342', function () {
     sinon.stub(MultiRequestBuilder.prototype, "execute").callsFake(
       function () {
         return new Promise((resolve) => {
-          let response = new MultiRequestResult(BE_DATA.AudioEntryWithoutPlugins);
+          const response = new MultiRequestResult(BE_DATA.AudioEntryWithoutPlugins);
           resolve(response);
         });
       }
@@ -110,7 +110,7 @@ describe('OVPProvider.partnerId:1082342', function () {
     sinon.stub(MultiRequestBuilder.prototype, "execute").callsFake(
       function () {
         return new Promise((resolve) => {
-          let response = new MultiRequestResult(BE_DATA.ImageEntryWithoutPlugins);
+          const response = new MultiRequestResult(BE_DATA.ImageEntryWithoutPlugins);
           resolve(response);
         });
       }
@@ -133,9 +133,9 @@ describe('OVPProvider.partnerId:1082342', function () {
 
 describe('OVPProvider.partnerId:1068292', function () {
   let provider, providerOptions, sandbox;
-  let partnerId = 1068292;
-  let ks = 'NTAwZjViZWZjY2NjNTRkNGEyMjU1MTg4OGE1NmUwNDljZWJkMzk1MXwxMDY4MjkyOzEwNjgyOTI7MTQ5MDE3NjE0NjswOzE0OTAwODk3NDYuMDIyNjswO3ZpZXc6Kix3aWRnZXQ6MTs7';
-  let playerVersion = '1.2.3';
+  const partnerId = 1068292;
+  const ks = 'NTAwZjViZWZjY2NjNTRkNGEyMjU1MTg4OGE1NmUwNDljZWJkMzk1MXwxMDY4MjkyOzEwNjgyOTI7MTQ5MDE3NjE0NjswOzE0OTAwODk3NDYuMDIyNjswO3ZpZXc6Kix3aWRnZXQ6MTs7';
+  const playerVersion = '1.2.3';
 
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
@@ -155,7 +155,7 @@ describe('OVPProvider.partnerId:1068292', function () {
     sinon.stub(MultiRequestBuilder.prototype, "execute").callsFake(
       function () {
         return new Promise((resolve) => {
-          let response = new MultiRequestResult(BE_DATA.AnonymousMocEntryWithoutUIConfWithDrmData);
+          const response = new MultiRequestResult(BE_DATA.AnonymousMocEntryWithoutUIConfWithDrmData);
           resolve(response);
         });
       }
@@ -181,7 +181,7 @@ describe('OVPProvider.partnerId:1068292', function () {
     sinon.stub(MultiRequestBuilder.prototype, "execute").callsFake(
       function () {
         return new Promise((resolve, reject) => {
-          let response = new MultiRequestResult(BE_DATA.WrongEntryIDWithoutUIConf);
+          const response = new MultiRequestResult(BE_DATA.WrongEntryIDWithoutUIConf);
           if (response.success) {
             resolve(response);
           }
@@ -195,7 +195,7 @@ describe('OVPProvider.partnerId:1068292', function () {
         done("Get config should throw error", mediaConfig)
       },
       err => {
-        let expectedData = {success: false, results: MEDIA_CONFIG_DATA.entryIDError};
+        const expectedData = {success: false, results: MEDIA_CONFIG_DATA.entryIDError};
         err.should.deep.equal(expectedData);
         done();
       });
@@ -212,7 +212,7 @@ describe('OVPProvider.partnerId:1068292', function () {
     sinon.stub(MultiRequestBuilder.prototype, "execute").callsFake(
       function () {
         return new Promise((resolve) => {
-          let response = new MultiRequestResult(BE_DATA.EntryWithUIConfWithDrmData);
+          const response = new MultiRequestResult(BE_DATA.EntryWithUIConfWithDrmData);
           resolve(response);
         });
       }
@@ -243,7 +243,7 @@ describe('OVPProvider.partnerId:1068292', function () {
     sinon.stub(MultiRequestBuilder.prototype, "execute").callsFake(
       function () {
         return new Promise((resolve) => {
-          let response = new MultiRequestResult(BE_DATA.WrongUiConfID);
+          const response = new MultiRequestResult(BE_DATA.WrongUiConfID);
           resolve(response);
         });
       });
@@ -251,7 +251,7 @@ describe('OVPProvider.partnerId:1068292', function () {
         done("Get config should throw error", mediaConfig);
       },
       err => {
-        let expectedData = {success: false, results: MEDIA_CONFIG_DATA.WrongUiConfID};
+        const expectedData = {success: false, results: MEDIA_CONFIG_DATA.WrongUiConfID};
         err.should.deep.equal(expectedData);
         done();
       });
