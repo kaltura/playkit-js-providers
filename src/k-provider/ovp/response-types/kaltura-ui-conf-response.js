@@ -1,20 +1,36 @@
 //@flow
-import ServiceResult from '../../base-service-result'
+import ServiceResult from '../../common/base-service-result'
 
-/**
- * Ovp BE Ui config response
- * @classdesc
- */
-export default class KalturaUiConfResponse extends ServiceResult {
-  /**
-   * @member -Name of the uiConf, this is not a primary key
-   * @type {string}
-   */
-  name: string;
-  /**
-   * @member -Name of the uiConf, this is not a primary key
-   * @type {string}
-   */
+export default class KalturaUIConfResponse extends ServiceResult {
+  static Type: { [type: string]: number } = {
+    PLAYER: 1,
+    CONTRIBUTION_WIZARD: 2,
+    SIMPLE_EDITOR: 3,
+    ADVANCED_EDITOR: 4,
+    PLAYLIST: 5,
+    APP_STUDIO: 6,
+    KRECORD: 7,
+    PLAYER_V3: 8,
+    KMC_ACCOUNT: 9,
+    KMC_ANALYTICS: 10,
+    KMC_CONTENT: 11,
+    KMC_DASHBOARD: 12,
+    KMC_LOGIN: 13,
+    PLAYER_SL: 14,
+    CLIENTSIDE_ENCODER: 15,
+    KMC_GENERAL: 16,
+    KMC_ROLES_AND_PERMISSIONS: 17,
+    CLIPPER: 18,
+    KSR: 19,
+    KUPLOAD: 20,
+    WEBCASTING: 21
+  };
+
+  static CreationMode: { [mode: string]: number } = {
+    WIZARD: 2,
+    ADVANCED: 3
+  };
+
   description: string;
   objTypeAsString: string;
   width: number;
@@ -25,10 +41,6 @@ export default class KalturaUiConfResponse extends ServiceResult {
   confFile: string;
   confFileFeatures: string;
   name: string;
-  /**
-   * @member -plugins configuration represented as Json string
-   * @type {string}
-   */
   config: string;
   confVars: string;
   useCdn: boolean;
@@ -39,8 +51,8 @@ export default class KalturaUiConfResponse extends ServiceResult {
   html5Url: string;
   version: string;
   partnerTags: string;
-  objType: UIConfType;
-  creationMode: UIConfCreationMode;
+  objType: number;
+  creationMode: number;
 
   /**
    * @constructor
@@ -50,7 +62,6 @@ export default class KalturaUiConfResponse extends ServiceResult {
     super(data);
     if (!this.hasError) {
       this.name = data.name;
-
       this.description = data.description;
       this.objTypeAsString = data.objTypeAsString;
       this.width = data.width;
@@ -77,6 +88,3 @@ export default class KalturaUiConfResponse extends ServiceResult {
     }
   }
 }
-
-
-

@@ -1,11 +1,5 @@
 //@flow
-
-/**
- * Request builder
- * @classdesc
- */
 export default class RequestBuilder {
-
   /**
    * @member - Service name
    * @type {string}
@@ -53,11 +47,11 @@ export default class RequestBuilder {
   /**
    * Builds restful service URL
    * @function getUrl
-   * @param {string} baseUrl - The service base URL
+   * @param {string} serviceUrl - The service base URL
    * @returns {string} The service URL
    */
-  getUrl(baseUrl: string): string {
-    return baseUrl + '/service/' + this.service + (this.action ? '/action/' + this.action : '');
+  getUrl(serviceUrl: string): string {
+    return serviceUrl + '/service/' + this.service + (this.action ? '/action/' + this.action : '');
   }
 
   /**
@@ -67,7 +61,7 @@ export default class RequestBuilder {
    */
   doHttpRequest(): Promise<any> {
     if (!this.url) {
-      throw new Error("baseUrl is mandatory for request builder");
+      throw new Error("serviceUrl is mandatory for request builder");
     }
     let request = new XMLHttpRequest();
     return new Promise((resolve, reject) => {

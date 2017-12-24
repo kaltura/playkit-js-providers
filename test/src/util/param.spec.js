@@ -1,7 +1,6 @@
 import {param} from '../../../src/util/param'
 
-describe('param method', function () {
-
+describe('param', function () {
   it('should parse object to query params', function () {
     let obj = {
       a: 'literal',

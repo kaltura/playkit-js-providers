@@ -1,100 +1,99 @@
 //@flow
-let NoPluginsNoDrm = {
+const NoPluginsNoDrm = {
   "id": "1_rsrdfext",
   "name": "FO21934-HDTX-SWE",
   "session": {
-    "partnerID": 1082342,
-    "uiConfID": undefined,
+    "partnerId": 1082342,
     "ks": "OGM0ZWM0Y2IwOWI5ZjM0MDcyZmQ3YmYxNzBiMGEwNGYxNWQ0ZTcyOXwxMDgyMzQyOzEwODIzNDI7MTQ5MDExNTg5MzswOzE0OTAwMjk0OTMuMTY3ODswO3ZpZXc6Kix3aWRnZXQ6MTs7"
   },
   "sources": {
     "progressive": [
       {
-        "id": "1_ha0nqwz810081,url",
-        "mimetype": "video/mp4",
-        "height": 360,
-        "width": 640,
         "bandwidth": 482304,
+        "height": 360,
+        "id": "1_ha0nqwz810081,url",
         "label": "Undefined",
-        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/url/flavorIds/1_ha0nqwz8/a.mp4"
+        "mimetype": "video/mp4",
+        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/url/flavorIds/1_ha0nqwz8/a.mp4",
+        "width": 640
       },
       {
-        "id": "1_gw7u4nf110081,url",
-        "mimetype": "video/mp4",
-        "height": 360,
-        "width": 640,
         "bandwidth": 686080,
-        "label": "Undefined",
-        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/url/flavorIds/1_gw7u4nf1/a.mp4"
-      },
-      {
-        "id": "1_rql6sqaa10081,url",
-        "mimetype": "video/mp4",
         "height": 360,
-        "width": 640,
+        "id": "1_gw7u4nf110081,url",
+        "label": "Undefined",
+        "mimetype": "video/mp4",
+        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/url/flavorIds/1_gw7u4nf1/a.mp4",
+        "width": 640
+      },
+      {
         "bandwidth": 987136,
+        "height": 360,
+        "id": "1_rql6sqaa10081,url",
         "label": "Undefined",
-        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/url/flavorIds/1_rql6sqaa/a.mp4"
+        "mimetype": "video/mp4",
+        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/url/flavorIds/1_rql6sqaa/a.mp4",
+        "width": 640
       },
       {
-        "id": "1_sufd1yd910081,url",
-        "mimetype": "video/mp4",
-        "height": 720,
-        "width": 1280,
         "bandwidth": 1584128,
-        "label": "Undefined",
-        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/url/flavorIds/1_sufd1yd9/a.mp4"
-      },
-      {
-        "id": "1_9xvkk7a510081,url",
-        "mimetype": "video/mp4",
         "height": 720,
-        "width": 1280,
+        "id": "1_sufd1yd910081,url",
+        "label": "Undefined",
+        "mimetype": "video/mp4",
+        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/url/flavorIds/1_sufd1yd9/a.mp4",
+        "width": 1280
+      },
+      {
         "bandwidth": 2691072,
+        "height": 720,
+        "id": "1_9xvkk7a510081,url",
         "label": "Undefined",
-        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/url/flavorIds/1_9xvkk7a5/a.mp4"
+        "mimetype": "video/mp4",
+        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/url/flavorIds/1_9xvkk7a5/a.mp4",
+        "width": 1280
       },
       {
-        "id": "1_4typ4pat10081,url",
-        "mimetype": "video/mp4",
-        "height": 1080,
-        "width": 1920,
         "bandwidth": 4227072,
+        "height": 1080,
+        "id": "1_4typ4pat10081,url",
         "label": "Undefined",
-        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/url/flavorIds/1_4typ4pat/a.mp4"
+        "mimetype": "video/mp4",
+        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/url/flavorIds/1_4typ4pat/a.mp4",
+        "width": 1920
       },
       {
-        "id": "1_n75294r410081,url",
-        "mimetype": "video/mp4",
-        "height": 1080,
-        "width": 1920,
         "bandwidth": 18454528,
+        "height": 1080,
+        "id": "1_n75294r410081,url",
         "label": "English",
-        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/url/flavorIds/1_n75294r4/a.mp4"
+        "mimetype": "video/mp4",
+        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/url/flavorIds/1_n75294r4/a.mp4",
+        "width": 1920
       }
     ],
     "dash": [
       {
+        "id": "1_rsrdfext_11611,mpegdash",
         "mimetype": "application/dash+xml",
-        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/mpegdash/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/a.mpd",
-        "id": "1_rsrdfext_11611,mpegdash"
+        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/mpegdash/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/a.mpd"
       },
       {
+        "id": "1_rsrdfext_11261,mpegdash",
         "mimetype": "application/dash+xml",
-        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/mpegdash/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/a.mpd",
-        "id": "1_rsrdfext_11261,mpegdash"
+        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/mpegdash/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/a.mpd"
       }
     ],
     "hls": [
       {
+        "id": "1_rsrdfext_10091,applehttp",
         "mimetype": "application/x-mpegURL",
-        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/applehttp/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/a.m3u8",
-        "id": "1_rsrdfext_10091,applehttp"
+        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/applehttp/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/a.m3u8"
       },
       {
+        "id": "1_rsrdfext_11241,applehttp",
         "mimetype": "application/x-mpegURL",
-        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/applehttp/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/a.m3u8",
-        "id": "1_rsrdfext_11241,applehttp"
+        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/applehttp/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/a.m3u8"
       }
     ]
   },
@@ -120,16 +119,14 @@ let NoPluginsNoDrm = {
     "ScheduleSource": "VOD",
     "HLSOnly": "android",
     "ChannelName": "Disney Channel SE"
-  },
-  "plugins": {}
+  }
 };
 
-let NoPluginsWithDrm = {
+const NoPluginsWithDrm = {
   "id": "1_rwbj3j0a",
   "name": "DRM TEST",
   "session": {
-    "partnerID": 1068292,
-    "uiConfID": undefined
+    "partnerId": 1068292
   },
   "sources": {
     "progressive": [],
@@ -140,12 +137,10 @@ let NoPluginsWithDrm = {
         "id": "1_rwbj3j0a_11331,mpegdash",
         "drmData": [
           {
-            "certificate": undefined,
             "licenseUrl": "https://udrm.kaltura.com//cenc/playready/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiTlRBd1pqVmlaV1pqWTJOak5UUmtOR0V5TWpVMU1UZzRPR0UxTm1Vd05EbGpaV0prTXprMU1Yd3hNRFk0TWpreU96RXdOamd5T1RJN01UUTVNREUzTmpFME5qc3dPekUwT1RBd09EazNORFl1TURJeU5qc3dPM1pwWlhjNktpeDNhV1JuWlhRNk1UczciLCJhY2NvdW50X2lkIjoxMDY4MjkyLCJjb250ZW50X2lkIjoiMV9yd2JqM2owYSIsImZpbGVzIjoiMV85MmRmeXJ6NSwxXzlkaGg2bTBpLDFfenVkb3V1YWgsMV9yMHd1Nnk3NywxX296MzQza2xhIn0%3D&signature=jl09zYv64OyEfVUt85rlA0WnK1w%3D",
             "scheme": "com.microsoft.playready"
           },
           {
-            "certificate": undefined,
             "licenseUrl": "https://udrm.kaltura.com//cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiTlRBd1pqVmlaV1pqWTJOak5UUmtOR0V5TWpVMU1UZzRPR0UxTm1Vd05EbGpaV0prTXprMU1Yd3hNRFk0TWpreU96RXdOamd5T1RJN01UUTVNREUzTmpFME5qc3dPekUwT1RBd09EazNORFl1TURJeU5qc3dPM1pwWlhjNktpeDNhV1JuWlhRNk1UczciLCJhY2NvdW50X2lkIjoxMDY4MjkyLCJjb250ZW50X2lkIjoiMV9yd2JqM2owYSIsImZpbGVzIjoiMV85MmRmeXJ6NSwxXzlkaGg2bTBpLDFfenVkb3V1YWgsMV9yMHd1Nnk3NywxX296MzQza2xhIn0%3D&signature=jl09zYv64OyEfVUt85rlA0WnK1w%3D",
             "scheme": "com.widevine.alpha"
           }
@@ -173,106 +168,105 @@ let NoPluginsWithDrm = {
   "metadata": {
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.",
     "poster": "http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360"
-  },
-  "plugins": {}
+  }
 };
 
-let WithPluginsNoDrm = {
+const WithPluginsNoDrm = {
   "id": "1_rsrdfext",
   "name": "FO21934-HDTX-SWE",
   "session": {
-    "partnerID": 1082342,
-    "uiConfID": 38621471,
+    "partnerId": 1082342,
+    "uiConfId": 38621471,
     "ks": "YmQ0N2Q0M2QxZTAyMGIzYTY4YzI1ZDk5ZjI1NjhlZWVkOWZmOGViN3wxMDgyMzQyOzEwODIzNDI7MTQ5MDE5NjMwMDswOzE0OTAxMDk5MDAuOTA0NDswO3ZpZXc6Kix3aWRnZXQ6MTs7"
   },
   "sources": {
     "progressive": [
       {
-        "id": "1_ha0nqwz810081,url",
-        "mimetype": "video/mp4",
-        "height": 360,
-        "width": 640,
         "bandwidth": 482304,
+        "height": 360,
+        "id": "1_ha0nqwz810081,url",
         "label": "Undefined",
-        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/url/flavorIds/1_ha0nqwz8/a.mp4?uiConfId=38621471"
+        "mimetype": "video/mp4",
+        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/url/flavorIds/1_ha0nqwz8/a.mp4?uiConfId=38621471",
+        "width": 640
       },
       {
-        "id": "1_gw7u4nf110081,url",
-        "mimetype": "video/mp4",
-        "height": 360,
-        "width": 640,
         "bandwidth": 686080,
-        "label": "Undefined",
-        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/url/flavorIds/1_gw7u4nf1/a.mp4?uiConfId=38621471"
-      },
-      {
-        "id": "1_rql6sqaa10081,url",
-        "mimetype": "video/mp4",
         "height": 360,
-        "width": 640,
+        "id": "1_gw7u4nf110081,url",
+        "label": "Undefined",
+        "mimetype": "video/mp4",
+        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/url/flavorIds/1_gw7u4nf1/a.mp4?uiConfId=38621471",
+        "width": 640
+      },
+      {
         "bandwidth": 987136,
+        "height": 360,
+        "id": "1_rql6sqaa10081,url",
         "label": "Undefined",
-        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/url/flavorIds/1_rql6sqaa/a.mp4?uiConfId=38621471"
+        "mimetype": "video/mp4",
+        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/url/flavorIds/1_rql6sqaa/a.mp4?uiConfId=38621471",
+        "width": 640
       },
       {
-        "id": "1_sufd1yd910081,url",
-        "mimetype": "video/mp4",
-        "height": 720,
-        "width": 1280,
         "bandwidth": 1584128,
-        "label": "Undefined",
-        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/url/flavorIds/1_sufd1yd9/a.mp4?uiConfId=38621471"
-      },
-      {
-        "id": "1_9xvkk7a510081,url",
-        "mimetype": "video/mp4",
         "height": 720,
-        "width": 1280,
+        "id": "1_sufd1yd910081,url",
+        "label": "Undefined",
+        "mimetype": "video/mp4",
+        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/url/flavorIds/1_sufd1yd9/a.mp4?uiConfId=38621471",
+        "width": 1280
+      },
+      {
         "bandwidth": 2691072,
+        "height": 720,
+        "id": "1_9xvkk7a510081,url",
         "label": "Undefined",
-        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/url/flavorIds/1_9xvkk7a5/a.mp4?uiConfId=38621471"
+        "mimetype": "video/mp4",
+        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/url/flavorIds/1_9xvkk7a5/a.mp4?uiConfId=38621471",
+        "width": 1280
       },
       {
-        "id": "1_4typ4pat10081,url",
-        "mimetype": "video/mp4",
-        "height": 1080,
-        "width": 1920,
         "bandwidth": 4227072,
+        "height": 1080,
+        "id": "1_4typ4pat10081,url",
         "label": "Undefined",
-        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/url/flavorIds/1_4typ4pat/a.mp4?uiConfId=38621471"
+        "mimetype": "video/mp4",
+        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/url/flavorIds/1_4typ4pat/a.mp4?uiConfId=38621471",
+        "width": 1920
       },
       {
-        "id": "1_n75294r410081,url",
-        "mimetype": "video/mp4",
-        "height": 1080,
-        "width": 1920,
         "bandwidth": 18454528,
+        "height": 1080,
+        "id": "1_n75294r410081,url",
         "label": "English",
-        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/url/flavorIds/1_n75294r4/a.mp4?uiConfId=38621471"
+        "mimetype": "video/mp4",
+        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/url/flavorIds/1_n75294r4/a.mp4?uiConfId=38621471",
+        "width": 1920
       }
     ],
     "dash": [
       {
+        "id": "1_rsrdfext_11611,mpegdash",
         "mimetype": "application/dash+xml",
-        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/mpegdash/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/a.mpd?uiConfId=38621471",
-        "id": "1_rsrdfext_11611,mpegdash"
+        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/mpegdash/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/a.mpd?uiConfId=38621471"
       },
       {
+        "id": "1_rsrdfext_11261,mpegdash",
         "mimetype": "application/dash+xml",
-        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/mpegdash/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/a.mpd?uiConfId=38621471",
-        "id": "1_rsrdfext_11261,mpegdash"
+        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/mpegdash/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/a.mpd?uiConfId=38621471"
       }
     ],
     "hls": [
       {
+        "id": "1_rsrdfext_10091,applehttp",
         "mimetype": "application/x-mpegURL",
-        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/applehttp/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/a.m3u8?uiConfId=38621471",
-        "id": "1_rsrdfext_10091,applehttp"
+        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/applehttp/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/a.m3u8?uiConfId=38621471"
       },
       {
+        "id": "1_rsrdfext_11241,applehttp",
         "mimetype": "application/x-mpegURL",
-        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/applehttp/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/a.m3u8?uiConfId=38621471",
-        "id": "1_rsrdfext_11241,applehttp"
+        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/applehttp/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/a.m3u8?uiConfId=38621471"
       }
     ]
   },
@@ -298,87 +292,15 @@ let WithPluginsNoDrm = {
     "ScheduleSource": "VOD",
     "HLSOnly": "android",
     "ChannelName": "Disney Channel SE"
-  },
-  "plugins": {
-    "topBarContainer": {
-      "plugin": true
-    },
-    "controlBarContainer": {
-      "plugin": true
-    },
-    "scrubber": {
-      "plugin": true
-    },
-    "largePlayBtn": {
-      "plugin": true
-    },
-    "playHead": {
-      "plugin": true
-    },
-    "playPauseBtn": {
-      "plugin": true
-    },
-    "volumeControl": {
-      "showSlider": true,
-      "layout": "horizontal",
-      "pinVolumeBar": false,
-      "accessibleControls": false,
-      "accessibleVolumeChange": 0.1,
-      "plugin": true
-    },
-    "durationLabel": {
-      "plugin": true
-    },
-    "currentTimeLabel": {
-      "plugin": true
-    },
-    "keyboardShortcuts": {
-      "volumePercentChange": "0.1",
-      "shortSeekTime": "5",
-      "longSeekTime": "10",
-      "volumeUpKey": "38",
-      "volumeDownKey": "40",
-      "togglePlaybackKey": "32",
-      "shortSeekBackKey": "37",
-      "shortSeekForwardKey": "39",
-      "openFullscreenKey": "70",
-      "closeFullscreenkey": "27",
-      "gotoBeginingKey": "36",
-      "gotoEndKey": "35",
-      "longSeekForwardKey": "ctrl+39",
-      "longSeekBackKey": "ctrl+37",
-      "percentageSeekKeys": "49,50,51,52,53,54,55,56,57",
-      "plugin": true
-    },
-    "liveCore": {
-      "plugin": true
-    },
-    "liveStatus": {
-      "plugin": true
-    },
-    "liveBackBtn": {
-      "plugin": true
-    },
-    "fullScreenBtn": {
-      "plugin": true
-    },
-    "logo": {
-      "href": "http://www.kaltura.com",
-      "title": "Kaltura",
-      "plugin": true
-    },
-    "playersJsReceiver": {
-      "plugin": true
-    }
   }
 };
 
-let WithPluginsWithDrm = {
+const WithPluginsWithDrm = {
   "id": "1_rwbj3j0a",
   "name": "DRM TEST",
   "session": {
-    "partnerID": 1068292,
-    "uiConfID": 38601981
+    "partnerId": 1068292,
+    "uiConfId": 38601981
   },
   "sources": {
     "progressive": [],
@@ -389,12 +311,10 @@ let WithPluginsWithDrm = {
         "id": "1_rwbj3j0a_11331,mpegdash",
         "drmData": [
           {
-            "certificate": undefined,
             "licenseUrl": "https://udrm.kaltura.com//cenc/playready/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiWlRGaU56azRNbU01TWpKaVl6a3dPRGxpTXpRelpUUTNZMkk0TXpJd1lUSXpNbVF6TVRNeFlud3hNRFk0TWpreU96RXdOamd5T1RJN01UUTVNREkxTWprNU1qc3dPekUwT1RBeE5qWTFPVEl1T0RVeU1Uc3dPM1pwWlhjNktpeDNhV1JuWlhRNk1UczciLCJhY2NvdW50X2lkIjoxMDY4MjkyLCJjb250ZW50X2lkIjoiMV9yd2JqM2owYSIsImZpbGVzIjoiMV85MmRmeXJ6NSwxXzlkaGg2bTBpLDFfenVkb3V1YWgsMV9yMHd1Nnk3NywxX296MzQza2xhIn0%3D&signature=AZaaKvEx5j8CAh6VMSZbGzmUK1A%3D",
             "scheme": "com.microsoft.playready"
           },
           {
-            "certificate": undefined,
             "licenseUrl": "https://udrm.kaltura.com//cenc/widevine/license?custom_data=eyJjYV9zeXN0ZW0iOiJPVlAiLCJ1c2VyX3Rva2VuIjoiWlRGaU56azRNbU01TWpKaVl6a3dPRGxpTXpRelpUUTNZMkk0TXpJd1lUSXpNbVF6TVRNeFlud3hNRFk0TWpreU96RXdOamd5T1RJN01UUTVNREkxTWprNU1qc3dPekUwT1RBeE5qWTFPVEl1T0RVeU1Uc3dPM1pwWlhjNktpeDNhV1JuWlhRNk1UczciLCJhY2NvdW50X2lkIjoxMDY4MjkyLCJjb250ZW50X2lkIjoiMV9yd2JqM2owYSIsImZpbGVzIjoiMV85MmRmeXJ6NSwxXzlkaGg2bTBpLDFfenVkb3V1YWgsMV9yMHd1Nnk3NywxX296MzQza2xhIn0%3D&signature=AZaaKvEx5j8CAh6VMSZbGzmUK1A%3D",
             "scheme": "com.widevine.alpha"
           }
@@ -422,113 +342,40 @@ let WithPluginsWithDrm = {
   "metadata": {
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.",
     "poster": "http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360"
-  },
-  "plugins": {
-    "topBarContainer": {
-      "plugin": true
-    },
-    "controlBarContainer": {
-      "plugin": true
-    },
-    "scrubber": {
-      "plugin": true
-    },
-    "largePlayBtn": {
-      "plugin": true
-    },
-    "playHead": {
-      "plugin": true
-    },
-    "playPauseBtn": {
-      "plugin": true
-    },
-    "volumeControl": {
-      "showSlider": true,
-      "layout": "horizontal",
-      "pinVolumeBar": false,
-      "accessibleControls": false,
-      "accessibleVolumeChange": 0.1,
-      "plugin": true
-    },
-    "durationLabel": {
-      "plugin": true
-    },
-    "currentTimeLabel": {
-      "plugin": true
-    },
-    "keyboardShortcuts": {
-      "volumePercentChange": "0.1",
-      "shortSeekTime": "5",
-      "longSeekTime": "10",
-      "volumeUpKey": "38",
-      "volumeDownKey": "40",
-      "togglePlaybackKey": "32",
-      "shortSeekBackKey": "37",
-      "shortSeekForwardKey": "39",
-      "openFullscreenKey": "70",
-      "closeFullscreenkey": "27",
-      "gotoBeginingKey": "36",
-      "gotoEndKey": "35",
-      "longSeekForwardKey": "ctrl+39",
-      "longSeekBackKey": "ctrl+37",
-      "percentageSeekKeys": "49,50,51,52,53,54,55,56,57",
-      "plugin": true
-    },
-    "liveCore": {
-      "plugin": true
-    },
-    "liveStatus": {
-      "plugin": true
-    },
-    "liveBackBtn": {
-      "plugin": true
-    },
-    "fullScreenBtn": {
-      "plugin": true
-    },
-    "logo": {
-      "href": "http://www.kaltura.com",
-      "title": "Kaltura",
-      "plugin": true
-    },
-    "playersJsReceiver": {
-      "plugin": true
-    }
   }
 };
 
-let AudioEntryWithoutPlugins = {
+const AudioEntryWithoutPlugins = {
   "id": "0_vyzw3ceu",
   "name": "TEST_WAESP_PLACINGTEST_DUAL",
   "session": {
-    "partnerID": 1082342,
-    "uiConfID": undefined,
+    "partnerId": 1082342,
     "ks": "YWU4Y2I0ZDk4ZmNiMjUyZjA1NmQ1NmMzMTdjZmFjZWEyODc2NDE0YXwxMDgyMzQyOzEwODIzNDI7MTQ5MDg2MTk1OTswOzE0OTA3NzU1NTkuNzk0MzswO3ZpZXc6Kix3aWRnZXQ6MTs7"
   },
   "sources": {
     "progressive": [],
     "dash": [
       {
+        "id": "0_vyzw3ceu_11611,mpegdash",
         "mimetype": "application/dash+xml",
-        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/0_vyzw3ceu/protocol/http/format/mpegdash/flavorIds/0_hawbhpz3/a.mpd",
-        "id": "0_vyzw3ceu_11611,mpegdash"
+        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/0_vyzw3ceu/protocol/http/format/mpegdash/flavorIds/0_hawbhpz3/a.mpd"
       },
       {
+        "id": "0_vyzw3ceu_11261,mpegdash",
         "mimetype": "application/dash+xml",
-        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/0_vyzw3ceu/protocol/http/format/mpegdash/flavorIds/0_hawbhpz3/a.mpd",
-        "id": "0_vyzw3ceu_11261,mpegdash"
+        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/0_vyzw3ceu/protocol/http/format/mpegdash/flavorIds/0_hawbhpz3/a.mpd"
       }
     ],
     "hls": [
       {
+        "id": "0_vyzw3ceu_10091,applehttp",
         "mimetype": "application/x-mpegURL",
-        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/0_vyzw3ceu/protocol/http/format/applehttp/flavorIds/0_hawbhpz3/a.m3u8",
-        "id": "0_vyzw3ceu_10091,applehttp"
+        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/0_vyzw3ceu/protocol/http/format/applehttp/flavorIds/0_hawbhpz3/a.m3u8"
       },
       {
+        "id": "0_vyzw3ceu_11241,applehttp",
         "mimetype": "application/x-mpegURL",
-        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/0_vyzw3ceu/protocol/http/format/applehttp/flavorIds/0_hawbhpz3/a.m3u8",
-        "id": "0_vyzw3ceu_11241,applehttp"
+        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/0_vyzw3ceu/protocol/http/format/applehttp/flavorIds/0_hawbhpz3/a.m3u8"
       }
     ]
   },
@@ -538,17 +385,15 @@ let AudioEntryWithoutPlugins = {
   "metadata": {
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.",
     "poster": "http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360"
-  },
-  "plugins": {}
+  }
 };
 
-let ImageEntryWithoutPlugins = {
+const ImageEntryWithoutPlugins = {
   "id": "0_84zz779s",
   "name": "Channel HU-TEST-STG-Attila-160203 Thumbnail",
   "session": {
-    "partnerID": 1082342,
-    "ks": "YWU4Y2I0ZDk4ZmNiMjUyZjA1NmQ1NmMzMTdjZmFjZWEyODc2NDE0YXwxMDgyMzQyOzEwODIzNDI7MTQ5MDg2MTk1OTswOzE0OTA3NzU1NTkuNzk0MzswO3ZpZXc6Kix3aWRnZXQ6MTs7",
-    "uiConfID": undefined
+    "partnerId": 1082342,
+    "ks": "YWU4Y2I0ZDk4ZmNiMjUyZjA1NmQ1NmMzMTdjZmFjZWEyODc2NDE0YXwxMDgyMzQyOzEwODIzNDI7MTQ5MDg2MTk1OTswOzE0OTA3NzU1NTkuNzk0MzswO3ZpZXc6Kix3aWRnZXQ6MTs7"
   },
   "sources": {
     "dash": [],
@@ -561,11 +406,10 @@ let ImageEntryWithoutPlugins = {
   "metadata": {
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.",
     "poster": "http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360"
-  },
-  "plugins": {}
+  }
 };
 
-let entryIDError = [
+const entryIDError = [
   {
     "hasError": false,
     "data": {
@@ -599,7 +443,7 @@ let entryIDError = [
   }
 ];
 
-let WrongUiConfID = [
+const WrongUiConfID = [
   {
     "hasError": false,
     "data": {

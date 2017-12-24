@@ -1,34 +1,17 @@
 //@flow
-import SessionService from '../services/session-service'
-import Configuration from '../config'
-import RequestBuilder from '../../request-builder'
+import OVPSessionService from '../services/session-service'
+import OVPConfiguration from '../config'
+import RequestBuilder from '../../../util/request-builder'
 
-const config = Configuration.get();
-/**
- * Media entry loader
- * @classdesc
- */
-export default class SessionLoader implements ILoader {
-  static get id(): string {
-    return "session";
-  }
+const config = OVPConfiguration.get();
 
-  /**
-   * @member - partner ID
-   * @type {number}
-   * @private
-   */
+export default class OVPSessionLoader implements ILoader {
   _partnerId: number;
   _requests: Array<RequestBuilder>;
   _response: any = {};
 
-  /**
-   * @constructor
-   * @param {Object} params loader params
-   */
-  constructor(params: Object) {
-    this.requests = this.buildRequests(params);
-    this._partnerId = params.partnerId;
+  static get id(): string {
+    return "session";
   }
 
   set requests(requests: Array<RequestBuilder>) {
@@ -48,6 +31,15 @@ export default class SessionLoader implements ILoader {
   }
 
   /**
+   * @constructor
+   * @param {Object} params loader params
+   */
+  constructor(params: Object) {
+    this.requests = this.buildRequests(params);
+    this._partnerId = params.partnerId;
+  }
+
+  /**
    * Builds loader requests
    * @function
    * @param {Object} params Requests parameters
@@ -56,7 +48,7 @@ export default class SessionLoader implements ILoader {
    */
   buildRequests(params: Object): Array<RequestBuilder> {
     let requests: Array<RequestBuilder> = [];
-    requests.push(SessionService.anonymousSession(config.serviceUrl, params.partnerId));
+    requests.push(OVPSessionService.anonymousSession(config.serviceUrl, params.partnerId));
     return requests;
   }
 

@@ -1,9 +1,4 @@
 //@flow
-
-/**
- * Ovp BE access control message
- * @classdesc
- */
 export default class KalturaAccessControlMessage {
   /**
    * @member - The access control message
@@ -22,8 +17,6 @@ export default class KalturaAccessControlMessage {
    */
   constructor(data: Object) {
     this.message = data.message;
-    this.code = data.code
+    this.code = data.code;
   }
 }
-
-

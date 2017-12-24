@@ -1,11 +1,5 @@
 //@flow
-
-/**
- * Base service result
- * @classdesc
- */
 export default class ServiceResult {
-
   /**
    * @member - Is service returned an error
    * @type {boolean}
@@ -30,17 +24,12 @@ export default class ServiceResult {
     if (response.objectType === "KalturaAPIException") {
       this.hasError = true;
       this.error = new ServiceError(response.code, response.message);
-    }
-    else {
+    } else {
       this.data = response;
     }
   }
 }
 
-/**
- * Service error
- * @classdesc
- */
 class ServiceError {
   /**
    * @member - The error code

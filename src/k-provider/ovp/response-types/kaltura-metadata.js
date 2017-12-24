@@ -1,23 +1,32 @@
 //@flow
-
-/**
- * Ovp BE Metadata
- * @classdesc
- */
 export default class KalturaMetadata {
+  static ObjectType: { [type: string]: string | number } = {
+    AD_CUE_POINT: "adCuePointMetadata.AdCuePoint",
+    ANNOTATION: "annotationMetadata.Annotation",
+    CODE_CUE_POINT: "codeCuePointMetadata.CodeCuePoint",
+    THUMB_CUE_POINT: "thumbCuePointMetadata.thumbCuePoint",
+    ENTRY: 1,
+    CATEGORY: 2,
+    USER: 3,
+    PARTNER: 4,
+    DYNAMIC_OBJECT: 5
+  };
+
+  static Status: { [status: string]: number } = {
+    VALID: 1,
+    INVALID: 2,
+    DELETED: 3
+  };
+
   id: number;
   metadataProfileId: number;
   metadataProfileVersion: number;
-  metadataObjectType: MetadataObjectType;
+  metadataObjectType: string | number;
   objectId: string;
   version: number;
   created: Date;
   updated: Date;
-  status: MetadataStatus;
-  /**
-   * @member - The Metadata xml - represented as XML string
-   * @type {string}
-   */
+  status: number;
   xml: string;
 
   /**
@@ -38,9 +47,5 @@ export default class KalturaMetadata {
     this.updated.setUTCSeconds(data.updatedAt);
     this.status = data.status;
     this.xml = data.xml;
-
   }
 }
-
-
-

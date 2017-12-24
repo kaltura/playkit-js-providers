@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="playkit-ovp-provider.js" type="text/javascript"></script>
+</head>
+<body>
+<script>
+  var cdnUrl = "http://cdntesting.qa.mkaltura.com";
+  var serviceUrl = "http://qa-apache-php7.dev.kaltura.com/api_v3";
+  // Create provider options
+  var options = new PlaykitJsProviders.ProviderOptions(1091);
+  // Define partner env
+  options.env = new PlaykitJsProviders.ProviderEnvConfig(serviceUrl, cdnUrl);
+  // Create provider
+  var provider = new PlaykitJsProviders.Provider(options, '0.17.0');
+  // Create media info
+  var mediaInfo = new PlaykitJsProviders.ProviderMediaInfo('0_4ktof5po');
+  // Ask for media config
+  provider.getMediaConfig(mediaInfo).then((mediaConfig) => {
+    console.log(mediaConfig);
+  });
+</script>
+</body>
+</html>

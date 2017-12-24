@@ -1,5 +1,5 @@
 //@flow
-let AnonymousMocEntryWithoutUIConfNoDrmData = [
+const AnonymousMocEntryWithoutUIConfNoDrmData = [
   {
     "partnerId": 1082342,
     "ks": "OGM0ZWM0Y2IwOWI5ZjM0MDcyZmQ3YmYxNzBiMGEwNGYxNWQ0ZTcyOXwxMDgyMzQyOzEwODIzNDI7MTQ5MDExNTg5MzswOzE0OTAwMjk0OTMuMTY3ODswO3ZpZXc6Kix3aWRnZXQ6MTs7",
@@ -308,7 +308,7 @@ let AnonymousMocEntryWithoutUIConfNoDrmData = [
   }
 ];
 
-let AnonymousMocEntryWithoutUIConfWithDrmData = [
+const AnonymousMocEntryWithoutUIConfWithDrmData = [
   {
     "objects": [
       {
@@ -519,7 +519,7 @@ let AnonymousMocEntryWithoutUIConfWithDrmData = [
   }
 ];
 
-let WrongEntryIDWithoutUIConf = [
+const WrongEntryIDWithoutUIConf = [
   {
     "partnerId": 1068292,
     "ks": "NjVjMDdlZmUxY2VlMGI2YWMyYmZjOTczOTA5ZjhjNDIwMTJmODI3MXwxMDY4MjkyOzEwNjgyOTI7MTQ5MDE5MzIyNjswOzE0OTAxMDY4MjYuOTc2NDswO3ZpZXc6Kix3aWRnZXQ6MTs7",
@@ -549,7 +549,7 @@ let WrongEntryIDWithoutUIConf = [
   }
 ];
 
-let EntryWithUIConfNoDrmData = [
+const EntryWithUIConfNoDrmData = [
   {
     "partnerId": 1082342,
     "ks": "YmQ0N2Q0M2QxZTAyMGIzYTY4YzI1ZDk5ZjI1NjhlZWVkOWZmOGViN3wxMDgyMzQyOzEwODIzNDI7MTQ5MDE5NjMwMDswOzE0OTAxMDk5MDAuOTA0NDswO3ZpZXc6Kix3aWRnZXQ6MTs7",
@@ -880,7 +880,7 @@ let EntryWithUIConfNoDrmData = [
   }
 ];
 
-let EntryWithUIConfWithDrmData = [
+const EntryWithUIConfWithDrmData = [
   {
     "objects": [
       {
@@ -1113,7 +1113,7 @@ let EntryWithUIConfWithDrmData = [
   }
 ];
 
-let WrongUiConfID = [
+const WrongUiConfID = [
   {
     "partnerId": 1068292,
     "ks": "OGU5Nzc2ZTY0MDdjZGJjYTk1ODQ1Y2YzZjFiMjMzOTdlZWU5ODdmOXwxMDY4MjkyOzEwNjgyOTI7MTQ5MDI1NDgwMDswOzE0OTAxNjg0MDAuMTA2MzswO3ZpZXc6Kix3aWRnZXQ6MTs7",
@@ -1338,7 +1338,7 @@ let WrongUiConfID = [
   }
 ];
 
-let AudioEntryWithoutPlugins = [
+const AudioEntryWithoutPlugins = [
   {
     "partnerId": 1082342,
     "ks": "YWU4Y2I0ZDk4ZmNiMjUyZjA1NmQ1NmMzMTdjZmFjZWEyODc2NDE0YXwxMDgyMzQyOzEwODIzNDI7MTQ5MDg2MTk1OTswOzE0OTA3NzU1NTkuNzk0MzswO3ZpZXc6Kix3aWRnZXQ6MTs7",
@@ -1467,7 +1467,7 @@ let AudioEntryWithoutPlugins = [
   }
 ];
 
-let ImageEntryWithoutPlugins = [
+const ImageEntryWithoutPlugins = [
   {
     "partnerId": 1082342,
     "ks": "YWU4Y2I0ZDk4ZmNiMjUyZjA1NmQ1NmMzMTdjZmFjZWEyODc2NDE0YXwxMDgyMzQyOzEwODIzNDI7MTQ5MDg2MTk1OTswOzE0OTA3NzU1NTkuNzk0MzswO3ZpZXc6Kix3aWRnZXQ6MTs7",

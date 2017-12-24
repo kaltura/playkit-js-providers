@@ -1,15 +1,10 @@
 //@flow
-import OvpService from '../services/ovp-service'
-import MultiRequestBuilder from '../../multi-request-builder'
-import {MultiRequestResult} from '../../multi-request-builder'
+import OVPService from '../ovp/services/ovp-service'
+import MultiRequestBuilder, {MultiRequestResult} from './multi-request-builder'
 
-/**
- * Data loaders manager
- * @classdesc
- */
 export default class DataLoaderManager {
   /**
-   * @member - Lodaers response map index
+   * @member - Loaders response map index
    * @type {Map<string,Array<number>>}
    * @private
    * @static
@@ -36,12 +31,12 @@ export default class DataLoaderManager {
 
   /**
    * @constructor
-   * @param {string} pVersion The player version
-   * @param {string} partnerID Then partner ID
-   * @param {string} ks The ks
+   * @param {string} playerVersion - player version
+   * @param {string} partnerId - partner id
+   * @param {string} ks - ks
    */
-  constructor(pVersion: string, partnerID: number, ks: string = "") {
-    this._multiRequest = OvpService.getMultirequest(pVersion, ks, partnerID);
+  constructor(playerVersion: string, partnerId: number, ks: string = "") {
+    this._multiRequest = OVPService.getMultiRequest(playerVersion, ks, partnerId);
   }
 
   /**
@@ -55,17 +50,17 @@ export default class DataLoaderManager {
     let execution_loader = new loader(params);
     if (execution_loader.isValid()) {
       this._loaders.set(loader.id, execution_loader);
-      //Get the start index from the multiReqeust before adding current execution_loader requests
+      // Get the start index from the multiReqeust before adding current execution_loader requests
       let startIndex = this._multiRequest.requests.length;
-      //Get the requests
+      // Get the requests
       let requests = execution_loader.requests;
-      //Add requests to muktiRequest queue
+      // Add requests to muktiRequest queue
       requests.forEach((request) => {
         this._multiRequest.add(request);
       });
-      //Create range array of current execution_loader requests
+      // Create range array of current execution_loader requests
       let executionLoaderResponseMap = Array.from(new Array(requests.length), (val, index) => index + startIndex);
-      //Add to map
+      // Add to map
       DataLoaderManager._loadersResponseMap.set(loader.id, executionLoaderResponseMap);
     }
   }
@@ -79,39 +74,40 @@ export default class DataLoaderManager {
     return new Promise((resolve, reject) => {
       this._multiRequest.execute()
         .then(response => {
-            this._multiResponse = response;
-            if (!response.success) {
-              reject(response);
+          this._multiResponse = response;
+          if (!response.success) {
+            reject(response);
+          } else {
+            let preparedData: Object = this.prepareData(response);
+            if (preparedData.success) {
+              resolve(this._loaders);
+            } else {
+              reject({success: false, data: preparedData.error});
             }
-            else {
-              let preparedData: Object = this.prepareData(response);
-              if (preparedData.success) {
-                resolve(this._loaders);
-              }
-              else {
-                reject({success: false, data: preparedData.error});
-              }
-            }
-          },
-          err => {
-            reject(err);
-          });
+          }
+        }, err => {
+          reject(err);
+        });
     });
   }
 
+  /**
+   * Prepare fetched data
+   * @function
+   * @param {MultiRequestResult} response - The multi request result
+   * @returns {Object} - The prepared data
+   */
   prepareData(response: MultiRequestResult): Object {
     this._loaders.forEach(function (loader, name) {
       let loaderDataIndexes = DataLoaderManager._loadersResponseMap.get(name);
       try {
-        if (loaderDataIndexes != null) {
+        if (loaderDataIndexes && loaderDataIndexes.length > 0) {
           loader.response = (response.results.slice(loaderDataIndexes[0], loaderDataIndexes[loaderDataIndexes.length - 1] + 1));
         }
-      }
-      catch (err) {
+      } catch (err) {
         return {success: false, error: err};
       }
     });
     return {success: true, data: this._loaders};
   }
 }
-
