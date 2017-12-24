@@ -48,7 +48,7 @@ export default class OTTSessionLoader implements ILoader {
    */
   buildRequests(params: Object): Array<RequestBuilder> {
     const requests: Array<RequestBuilder> = [];
-    requests.push(UserService.anonymousLogin(config.beUrl, params.partnerId, params.udid));
+    requests.push(UserService.anonymousLogin(config.serviceUrl, params.partnerId, params.udid));
     return requests;
   }
 

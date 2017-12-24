@@ -25,10 +25,12 @@ export default class BaseProviderParser {
   }
 
   static hasBlockActions(assetResponse: any): any {
-    const playbackContext = assetResponse.playBackContextResult;
-    for (let actionIndex = 0; actionIndex < playbackContext.actions.length; actionIndex++) {
-      if (playbackContext.actions[actionIndex].type === "BLOCK") {
-        return playbackContext.actions[actionIndex];
+    if (assetResponse && assetResponse.playBackContextResult) {
+      const playbackContext = assetResponse.playBackContextResult;
+      for (let actionIndex = 0; actionIndex < playbackContext.actions.length; actionIndex++) {
+        if (playbackContext.actions[actionIndex].type === "BLOCK") {
+          return playbackContext.actions[actionIndex];
+        }
       }
     }
     return null;

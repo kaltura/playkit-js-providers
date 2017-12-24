@@ -51,8 +51,8 @@ export default class OTTAssetLoader implements ILoader {
    */
   buildRequests(params: Object): Array<RequestBuilder> {
     const requests: Array<RequestBuilder> = [];
-    requests.push(OTTAssetService.get(config.beUrl, params.ks, params.entryId))
-    requests.push(OTTAssetService.getPlaybackContext(config.beUrl, params.ks, params.entryId, params.type, params.playbackContext));
+    requests.push(OTTAssetService.get(config.serviceUrl, params.ks, params.entryId));
+    requests.push(OTTAssetService.getPlaybackContext(config.serviceUrl, params.ks, params.entryId, params.type, params.playbackContext));
     return requests;
   }
 
