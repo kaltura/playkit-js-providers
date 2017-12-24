@@ -13,7 +13,7 @@ export default class OVPSessionService extends OVPService {
    * @returns {RequestBuilder} The request builder
    * @static
    */
-  static anonymousSession(cdnUrl: string, partnerId: number) {
+  static anonymousSession(cdnUrl: string, partnerId: number): RequestBuilder {
     const headers: Map<string, string> = new Map();
     headers.set("Content-Type", "application/json");
     const request = new RequestBuilder(headers);
