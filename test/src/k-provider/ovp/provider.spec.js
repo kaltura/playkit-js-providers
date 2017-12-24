@@ -262,15 +262,18 @@ describe('logger', () => {
   const partnerId = 1068292;
   const providerOptions = new ProviderOptions(partnerId);
   const playerVersion = '1.2.3';
+  const provider = new OVPProvider(providerOptions, playerVersion);
+
+  afterEach(() => {
+    provider.setLogLevel(provider.LogLevel.ERROR);
+  });
 
   it('should return the current log level', () => {
-    const provider = new OVPProvider(providerOptions, playerVersion);
     const currentLogLevel = provider.getLogLevel();
     currentLogLevel.should.equal(provider.LogLevel.ERROR);
   });
 
   it('should enable setting the current log level', () => {
-    const provider = new OVPProvider(providerOptions, playerVersion);
     let currentLogLevel = provider.getLogLevel();
     currentLogLevel.should.equal(provider.LogLevel.ERROR);
     provider.setLogLevel(provider.LogLevel.WARN);

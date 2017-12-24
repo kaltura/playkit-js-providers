@@ -1,4 +1,6 @@
 //@flow
+import {clone} from '../../util/clone'
+
 const defaultConfig: Object = {
   serviceUrl: "//api-preprod.ott.kaltura.com/v4_6/api_v3",
   cdnUrl: "//api-preprod.ott.kaltura.com/v4_6",
@@ -15,7 +17,7 @@ export default class OTTConfiguration {
   }
 
   static get(): Object {
-    return defaultConfig;
+    return clone(defaultConfig);
   }
 }
 

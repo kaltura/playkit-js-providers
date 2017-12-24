@@ -1,4 +1,6 @@
 //@flow
+import {clone} from '../../util/clone'
+
 const defaultConfig: Object = {
   serviceUrl: "//www.kaltura.com/api_v3",
   cdnUrl: "//cdnapisec.kaltura.com",
@@ -16,7 +18,7 @@ export default class OVPConfiguration {
   }
 
   static get(): Object {
-    return defaultConfig;
+    return clone(defaultConfig);
   }
 }
 
