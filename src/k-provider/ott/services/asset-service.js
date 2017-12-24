@@ -22,7 +22,7 @@ export default class OTTAssetService extends OTTService {
    * @returns {RequestBuilder} The request builder
    * @static
    */
-  static getPlaybackContext(cdnUrl: string, ks: string, assetId: string, type: string, playbackContextOptions: PlaybackContextOptions) {
+  static getPlaybackContext(cdnUrl: string, ks: string, assetId: string, type: string, playbackContextOptions: PlaybackContextOptions): RequestBuilder {
     const headers: Map<string, string> = new Map();
     headers.set("Content-Type", "application/json");
     const request = new RequestBuilder(headers);
@@ -36,7 +36,7 @@ export default class OTTAssetService extends OTTService {
     return request;
   }
 
-  static get(cdnUrl: string, ks: string, assetId: string) {
+  static get(cdnUrl: string, ks: string, assetId: string): RequestBuilder {
     const headers: Map<string, string> = new Map();
     headers.set("Content-Type", "application/json");
     const request = new RequestBuilder(headers);
