@@ -36,7 +36,7 @@ export default class DataLoaderManager {
    * @param {string} ks - ks
    */
   constructor(playerVersion: string, partnerId: number, ks: string = "") {
-    this._multiRequest = OVPService.getMultirequest(playerVersion, ks, partnerId);
+    this._multiRequest = OVPService.getMultiRequest(playerVersion, ks, partnerId);
   }
 
   /**

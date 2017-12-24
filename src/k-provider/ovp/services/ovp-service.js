@@ -8,16 +8,16 @@ const SERVICE_NAME: string = "multirequest";
 export default class OVPService {
   /**
    * Gets a new instance of MultiRequestBuilder with ovp params
-   * @function getMultirequest
-   * @param {string} pVersion The player version
+   * @function getMultiRequest
+   * @param {string} playerVersion The player version
    * @param {string} ks The ks
    * @param {string} partnerId The partner ID
    * @returns {MultiRequestBuilder} The multi request builder
    * @static
    */
-  static getMultirequest(pVersion: string, ks: string, partnerId?: number): MultiRequestBuilder {
+  static getMultiRequest(playerVersion: string, ks: string, partnerId?: number): MultiRequestBuilder {
     const ovpParams = config.serviceParams;
-    Object.assign(ovpParams, {ks: ks, clientTag: 'html5:v' + pVersion});
+    Object.assign(ovpParams, {ks: ks, clientTag: 'html5:v' + playerVersion});
     if (partnerId) {
       Object.assign(ovpParams, {partnerId: partnerId});
     }

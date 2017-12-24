@@ -8,20 +8,20 @@ export default class OVPBaseEntryService extends OVPService {
   /**
    * Creates an instance of RequestBuilder for baseentry.getPlaybackContext
    * @function getPlaybackContext
-   * @param {string} baseUrl The service base URL
+   * @param {string} cdnUrl The service base URL
    * @param {string} ks The ks
    * @param {string} entryId The entry ID
    * @returns {RequestBuilder} The request builder
    * @static
    */
-  static getPlaybackContext(baseUrl: string, ks: string, entryId: string): RequestBuilder {
+  static getPlaybackContext(cdnUrl: string, ks: string, entryId: string): RequestBuilder {
     const headers: Map<string, string> = new Map();
     headers.set("Content-Type", "application/json");
     const request = new RequestBuilder(headers);
     request.service = SERVICE_NAME;
     request.action = "getPlaybackContext";
     request.method = "POST";
-    request.url = request.getUrl(baseUrl);
+    request.url = request.getUrl(cdnUrl);
     request.tag = "baseEntry-getPlaybackContext";
     const contextDataParams = {objectType: "KalturaContextDataParams", flavorTags: "all"};
     request.params = {entryId: entryId, ks: ks, contextDataParams: contextDataParams};
@@ -31,20 +31,20 @@ export default class OVPBaseEntryService extends OVPService {
   /**
    * Creates an instance of RequestBuilder for baseentry.list
    * @function list
-   * @param {string} baseUrl The base URL
+   * @param {string} cdnUrl The base URL
    * @param {string} ks The ks
    * @param {string} entryId The entry ID
    * @returns {RequestBuilder} The request builder
    * @static
    */
-  static list(baseUrl: string, ks: string, entryId: string): RequestBuilder {
+  static list(cdnUrl: string, ks: string, entryId: string): RequestBuilder {
     const headers: Map<string, string> = new Map();
     headers.set("Content-Type", "application/json");
     const request = new RequestBuilder(headers);
     request.service = SERVICE_NAME;
     request.action = "list";
     request.method = "POST";
-    request.url = request.getUrl(baseUrl);
+    request.url = request.getUrl(cdnUrl);
     request.tag = "list";
     request.params = OVPBaseEntryService.getEntryListReqParams(entryId, ks);
     return request;

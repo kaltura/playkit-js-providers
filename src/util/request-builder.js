@@ -47,11 +47,11 @@ export default class RequestBuilder {
   /**
    * Builds restful service URL
    * @function getUrl
-   * @param {string} baseUrl - The service base URL
+   * @param {string} cdnUrl - The service base URL
    * @returns {string} The service URL
    */
-  getUrl(baseUrl: string): string {
-    return baseUrl + '/service/' + this.service + (this.action ? '/action/' + this.action : '');
+  getUrl(cdnUrl: string): string {
+    return cdnUrl + '/service/' + this.service + (this.action ? '/action/' + this.action : '');
   }
 
   /**
@@ -61,7 +61,7 @@ export default class RequestBuilder {
    */
   doHttpRequest(): Promise<any> {
     if (!this.url) {
-      throw new Error("baseUrl is mandatory for request builder");
+      throw new Error("cdnUrl is mandatory for request builder");
     }
     let request = new XMLHttpRequest();
     return new Promise((resolve, reject) => {
