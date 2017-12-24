@@ -8,20 +8,20 @@ export default class OTTUserService extends OTTService {
   /**
    * Creates an instance of RequestBuilder for session.startWidgetSession
    * @function anonymousSession
-   * @param {string} baseUrl The service base URL
+   * @param {string} cdnUrl The service base URL
    * @param {string} partnerId The partner ID
    * @param {string} udid The udid
    * @returns {RequestBuilder} The request builder
    * @static
    */
-  static anonymousLogin(baseUrl: string, partnerId: number, udid?: string) {
+  static anonymousLogin(cdnUrl: string, partnerId: number, udid?: string) {
     const headers: Map<string, string> = new Map();
     headers.set("Content-Type", "application/json");
     const request = new RequestBuilder(headers);
     request.service = SERVICE_NAME;
     request.action = "anonymousLogin";
     request.method = "POST";
-    request.url = request.getUrl(baseUrl);
+    request.url = request.getUrl(cdnUrl);
     const params: Object = {partnerId: partnerId};
     if (udid) {
       Object.assign(params, {udid: udid});
