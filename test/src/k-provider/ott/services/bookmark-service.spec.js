@@ -5,7 +5,7 @@ import OTTConfiguration from '../../../../../src/k-provider/ott/config'
 describe('bookmark service - add', function () {
   const ottParams = OTTConfiguration.get();
   const ks = '1234';
-  const cdnUrl = 'http://my/url';
+  const serviceUrl = 'http://my/url';
   let bookMark, playerData;
 
   beforeEach(function () {
@@ -21,12 +21,12 @@ describe('bookmark service - add', function () {
   });
 
   it('should be proper values', function () {
-    const request = OTTBookmarkService.add(cdnUrl, ks, bookMark);
+    const request = OTTBookmarkService.add(serviceUrl, ks, bookMark);
     (request instanceof RequestBuilder).should.be.true;
     request.service.should.be.equal('bookmark');
     request.action.should.be.equal('add');
     request.method.should.be.equal('POST');
-    request.url.should.be.equal(`${cdnUrl}/service/bookmark/action/add`);
+    request.url.should.be.equal(`${serviceUrl}/service/bookmark/action/add`);
     Object.assign(playerData, {objectType: "KalturaBookmarkPlayerData"});
     Object.assign(bookMark, {objectType: "KalturaBookmark"});
     JSON.parse(request.params).should.deep.equal({

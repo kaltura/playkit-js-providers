@@ -9,20 +9,20 @@ export default class OTTBookmarkService extends OTTService {
   /**
    * Creates an instance of RequestBuilder for session.startWidgetSession
    * @function add
-   * @param {string} cdnUrl - The cdn url
+   * @param {string} serviceUrl - The service url
    * @param {string} ks - The ks
    * @param {Object} bookmark - The udid
    * @returns {RequestBuilder} - The request builder
    * @static
    */
-  static add(cdnUrl: string, ks: string, bookmark: Object): RequestBuilder {
+  static add(serviceUrl: string, ks: string, bookmark: Object): RequestBuilder {
     const headers: Map<string, string> = new Map();
     headers.set("Content-Type", "application/json");
     const request = new RequestBuilder(headers);
     request.service = SERVICE_NAME;
     request.action = "add";
     request.method = "POST";
-    request.url = request.getUrl(cdnUrl);
+    request.url = request.getUrl(serviceUrl);
     const playerData: Object = {
       objectType: "KalturaBookmarkPlayerData", action: bookmark.playerData.action,
       averageBitrate: bookmark.playerData.averageBitrate, totalBitrate: bookmark.playerData.totalBitrate,
