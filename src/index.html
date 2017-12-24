@@ -7,20 +7,9 @@
     <head>
       <meta charset="UTF-8">
       <title>Title</title>
-      <script src="playkit-ott-provider.js" type="text/javascript"></script>
     </head>
 <body>
 <script>
-  // Create provider options
-  var options = new PlaykitJsProviders.ProviderOptions(198);
-  // Create provider
-  var provider = new PlaykitJsProviders.Provider(options, '0.17.0');
-  // Create media info
-  var mediaInfo = new PlaykitJsProviders.ProviderMediaInfo(480097);
-  // Ask for media config
-  provider.getMediaConfig(mediaInfo).then((mediaConfig) => {
-    console.log(mediaConfig);
-  });
 </script>
 </body>
 </html>
