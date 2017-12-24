@@ -14,10 +14,11 @@ import Drm from '../../entities/drm'
 import MediaSource from '../../entities/media-source'
 import MediaSources from '../../entities/media-sources'
 import {SupportedStreamFormat} from '../../entities/media-format'
+import BaseProviderParser from '../common/base-provider-parser'
 
 const config = OVPConfiguration.get();
 
-export default class OVPProviderParser {
+export default class OVPProviderParser extends BaseProviderParser{
   static _logger = getLogger("OVPProviderParser");
 
   /**
@@ -211,18 +212,6 @@ export default class OVPProviderParser {
   }
 
   /**
-   * @function _isProgressiveSource
-   * @param {KalturaPlaybackSource} source - The kaltura source
-   * @return {boolean} - Is progressive source
-   * @static
-   * @private
-   */
-  static _isProgressiveSource(source: KalturaPlaybackSource): boolean {
-    const sourceFormat = SupportedStreamFormat.get(source.format);
-    return !!sourceFormat && sourceFormat.name === 'mp4';
-  }
-
-  /**
    * Ovp metadata parser
    * @function _parseMetaData
    * @param {KalturaMetadataListResponse} metadataList The metadata list
@@ -265,25 +254,5 @@ export default class OVPProviderParser {
       return protocol.slice(0, -1) // remove ':' from the end
     }
     return "https";
-  }
-
-  static hasBlockActions(mediaEntryResponse: any): any {
-    const playbackContext = mediaEntryResponse.playBackContextResult;
-    for (let actionIndex = 0; actionIndex < playbackContext.actions.length; actionIndex++) {
-      if (playbackContext.actions[actionIndex].type === "BLOCK") {
-        return playbackContext.actions[actionIndex];
-      }
-    }
-    return null;
-  }
-
-  static hasErrorMessage(mediaEntryResponse: any): any {
-    let messages = mediaEntryResponse.playBackContextResult.messages;
-    for (let messagesIndex = 0; messagesIndex < messages.length; messagesIndex++) {
-      if (messages[messagesIndex].code !== "OK") {
-        return messages[messagesIndex];
-      }
-    }
-    return null;
   }
 }

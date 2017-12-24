@@ -7,8 +7,9 @@ import MediaSource from '../../entities/media-source'
 import MediaSources from '../../entities/media-sources'
 import {SupportedStreamFormat} from '../../entities/media-format'
 import KalturaDrmPlaybackPluginData from '../common/response-types/kaltura-drm-playback-plugin-data'
+import BaseProviderParser from '../common/base-provider-parser'
 
-export default class OTTProviderParser {
+export default class OTTProviderParser extends BaseProviderParser {
   static _logger = getLogger("OTTProviderParser");
 
   /**
@@ -81,7 +82,7 @@ export default class OTTProviderParser {
         mediaSource.mimetype = mediaFormat.mimeType;
       }
       if (playUrl === '') {
-        OTTProviderParser._logger.error(`failed to create play url from source, discarding source: (${kalturaSource.fileId}_${kalturaSource.deliveryProfileId}), ${kalturaSource.format}.`);
+        OTTProviderParser._logger.error(`failed to create play url from source, discarding source: (${kalturaSource.fileId}), ${kalturaSource.format}.`);
         return mediaSource;
       }
       mediaSource.url = playUrl;
@@ -95,37 +96,5 @@ export default class OTTProviderParser {
       }
     }
     return mediaSource;
-  }
-
-  /**
-   * @function _isProgressiveSource
-   * @param {KalturaPlaybackSource} source - The kaltura source
-   * @return {boolean} - Is progressive source
-   * @static
-   * @private
-   */
-  static _isProgressiveSource(source: KalturaPlaybackSource): boolean {
-    const sourceFormat = SupportedStreamFormat.get(source.format);
-    return !!sourceFormat && sourceFormat.name === 'mp4';
-  }
-
-  static hasBlockActions(assetResponse: any): any {
-    const playbackContext = assetResponse.playBackContextResult;
-    for (let actionIndex = 0; actionIndex < playbackContext.actions.length; actionIndex++) {
-      if (playbackContext.actions[actionIndex].type === "BLOCK") {
-        return playbackContext.actions[actionIndex];
-      }
-    }
-    return null;
-  }
-
-  static hasErrorMessage(assetResponse: any): any {
-    const messages = assetResponse.playBackContextResult.messages;
-    for (let messagesIndex = 0; messagesIndex < messages.length; messagesIndex++) {
-      if (messages[messagesIndex].code !== "OK") {
-        return messages[messagesIndex];
-      }
-    }
-    return null;
   }
 }

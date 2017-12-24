@@ -2,7 +2,7 @@
 import ProviderEnvConfig from './provider-env-config'
 import type {ProviderEnvConfigObject} from './provider-env-config'
 
-export type ProviderOptionsObjectType = {
+export type ProviderOptionsObject = {
   partnerId: number,
   ks: string,
   uiConfId?: number,
@@ -48,8 +48,8 @@ export default class ProviderOptions {
     this.ks = '';
   }
 
-  toJSON(): ProviderOptionsObjectType {
-    const response: ProviderOptionsObjectType = {
+  toJSON(): ProviderOptionsObject {
+    const response: ProviderOptionsObject = {
       partnerId: this.partnerId,
       ks: this.ks
     };

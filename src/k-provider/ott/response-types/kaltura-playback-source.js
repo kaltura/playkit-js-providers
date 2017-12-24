@@ -1,6 +1,8 @@
 //@flow
 import KalturaDrmPlaybackPluginData from '../../common/response-types/kaltura-drm-playback-plugin-data'
 
+export type OTTKalturaPlaybackSource = KalturaPlaybackSource;
+
 export default class KalturaPlaybackSource {
   format: string;
   protocols: string;
@@ -37,15 +39,6 @@ export default class KalturaPlaybackSource {
    */
   hasDrmData(): boolean {
     return this.drm && this.drm.length > 0;
-  }
-
-  /**
-   * Checks if source has flavor IDs
-   * @function hasFlavorIds
-   * @returns {boolean} Is source ha flavor IDs
-   */
-  hasFlavorIds(): boolean {
-    return !!this.flavorIds && this.flavorIds.length > 0;
   }
 
   /**
