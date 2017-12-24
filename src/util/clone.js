@@ -1,5 +1,4 @@
-// @flow
-const clone = (data: any) => {
+const clone = (data) => {
   let node;
   if (Array.isArray(data)) {
     node = data.length > 0 ? data.slice(0) : [];
