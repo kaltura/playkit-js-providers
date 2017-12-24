@@ -14,11 +14,11 @@ export default class OVPStatsService extends OVPService {
    * @param {string} playerVersion The player version
    * @param {string} ks - The ks
    * @param {Object} event - The event data
-   * @param {string} cdnUrl - The service cdn url
+   * @param {string} serviceUrl - The service base url
    * @returns {RequestBuilder} - The request builder
    * @static
    */
-  static collect(playerVersion: string, ks: string, event: Object, cdnUrl: string): RequestBuilder {
+  static collect(playerVersion: string, ks: string, event: Object, serviceUrl: string): RequestBuilder {
     const ovpParams = OVPConfiguration.get();
     const serviceParams = {};
     Object.assign(serviceParams, ovpParams.serviceParams, {ks: ks, clientTag: 'html5:v' + playerVersion}, event);
@@ -28,7 +28,7 @@ export default class OVPStatsService extends OVPService {
     request.method = "GET";
     request.tag = "stats-collect";
     request.params = serviceParams;
-    request.url = cdnUrl + '?service=' + request.service + '&action=' + request.action + '&' + param(request.params);
+    request.url = serviceUrl + '?service=' + request.service + '&action=' + request.action + '&' + param(request.params);
     return request;
   }
 }

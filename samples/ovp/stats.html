@@ -7,18 +7,10 @@
 </head>
 <body>
 <script>
-  var cdnUrl = 'http://my/url';
+  var serviceUrl = 'http://my/url';
   var ks = 'abcdefg';
-  var playerData = {
-    action: "MY_ACTION"
-  };
-  var bookMark = {
-    type: "MEDIA_TYPE",
-    id: "MEDIA_ID",
-    position: 0,
-    playerData: playerData
-  };
-  var request = PlaykitJsProviders.OTTBookmarkService.add(cdnUrl, ks, bookMark);
+  var event = {myEvent: 1};
+  var request = PlaykitJsProviders.OVPStatsService.collect(playerVersion, ks, event, serviceUrl);
 </script>
 </body>
 </html>
