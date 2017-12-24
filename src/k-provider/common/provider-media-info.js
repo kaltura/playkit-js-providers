@@ -1,5 +1,5 @@
 // @flow
-export type ProviderMediaInfoObjectType = {
+export type ProviderMediaInfoObject = {
   entryId: string | number,
   ks?: string
 };
@@ -24,8 +24,8 @@ export default class ProviderMediaInfo {
     this._entryId = entryId;
   }
 
-  toJSON(): ProviderMediaInfoObjectType {
-    const response: ProviderMediaInfoObjectType = {
+  toJSON(): ProviderMediaInfoObject {
+    const response: ProviderMediaInfoObject = {
       entryId: this.entryId
     };
     if (this.ks) response.ks = this.ks;
