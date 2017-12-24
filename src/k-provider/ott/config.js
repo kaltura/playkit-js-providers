@@ -1,6 +1,7 @@
 //@flow
 const defaultConfig: Object = {
   serviceUrl: "//api-preprod.ott.kaltura.com/v4_6/api_v3",
+  cdnUrl: "//api-preprod.ott.kaltura.com/v4_6",
   serviceParams: {
     apiVersion: '4.5.4.15337'
   }
@@ -19,5 +20,3 @@ export default class OTTConfiguration {
 }
 
 export {OTTConfiguration};
-
-
