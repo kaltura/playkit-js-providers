@@ -15,7 +15,7 @@ describe('stats service - collect', function () {
 
   it('should be proper values', function () {
     const serviceUrl = 'http://my/url';
-    const request = OVPStatsService.collect(playerVersion, ks, event, serviceUrl);
+    const request = OVPStatsService.collect(serviceUrl, ks, playerVersion, event);
     (request instanceof RequestBuilder).should.be.true;
     request.service.should.be.equal('stats');
     request.action.should.be.equal('collect');
