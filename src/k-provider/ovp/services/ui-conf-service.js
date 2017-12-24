@@ -14,7 +14,7 @@ export default class OVPUIConfService extends OVPService {
    * @returns {RequestBuilder} The request builder
    * @static
    */
-  static get(cdnUrl: string, ks: string, uiConfId: number) {
+  static get(cdnUrl: string, ks: string, uiConfId: number): RequestBuilder {
     const headers: Map<string, string> = new Map();
     headers.set("Content-Type", "application/json");
     const request = new RequestBuilder(headers);
