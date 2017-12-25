@@ -80,6 +80,8 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfo> {
           this.ks = sessionLoader.response;
           mediaConfig.session.ks = this.ks;
         }
+      } else {
+        mediaConfig.session.ks = this.ks;
       }
       if (data.has(OTTAssetLoader.id)) {
         const assetLoader = data.get(OTTAssetLoader.id);
