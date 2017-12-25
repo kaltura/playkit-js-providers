@@ -126,7 +126,8 @@ const NoPluginsWithDrm = {
   "id": "1_rwbj3j0a",
   "name": "DRM TEST",
   "session": {
-    "partnerId": 1068292
+    "partnerId": 1068292,
+    "ks": "NTAwZjViZWZjY2NjNTRkNGEyMjU1MTg4OGE1NmUwNDljZWJkMzk1MXwxMDY4MjkyOzEwNjgyOTI7MTQ5MDE3NjE0NjswOzE0OTAwODk3NDYuMDIyNjswO3ZpZXc6Kix3aWRnZXQ6MTs7"
   },
   "sources": {
     "progressive": [],
@@ -300,7 +301,8 @@ const WithPluginsWithDrm = {
   "name": "DRM TEST",
   "session": {
     "partnerId": 1068292,
-    "uiConfId": 38601981
+    "uiConfId": 38601981,
+    "ks": "NTAwZjViZWZjY2NjNTRkNGEyMjU1MTg4OGE1NmUwNDljZWJkMzk1MXwxMDY4MjkyOzEwNjgyOTI7MTQ5MDE3NjE0NjswOzE0OTAwODk3NDYuMDIyNjswO3ZpZXc6Kix3aWRnZXQ6MTs7"
   },
   "sources": {
     "progressive": [],
