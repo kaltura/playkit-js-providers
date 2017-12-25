@@ -3,9 +3,9 @@ import {clone} from '../../util/clone'
 
 const defaultConfig: Object = {
   serviceUrl: "//api-preprod.ott.kaltura.com/v4_6/api_v3",
-  cdnUrl: "//api-preprod.ott.kaltura.com/v4_6",
+  cdnUrl: "//api-preprod.ott.kaltura.com/v4_7",
   serviceParams: {
-    apiVersion: '4.5.4.15337'
+    apiVersion: '4.7.1'
   }
 };
 
