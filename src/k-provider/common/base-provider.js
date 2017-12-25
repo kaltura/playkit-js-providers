@@ -49,11 +49,11 @@ export default class BaseProvider<MI> {
   }
 
   getMediaConfig(mediaInfo: MI): Promise<ProviderMediaConfig> { // eslint-disable-line no-unused-vars
-    throw new TypeError(`getMediaConfig method must be implement by the derived class`)
+    throw new TypeError(`getMediaConfig method must be implement by the derived class`);
   }
 
   _parseDataFromResponse(data: Map<string, Function>): ProviderMediaConfig { // eslint-disable-line no-unused-vars
-    throw new TypeError(`_parseDataFromResponse method must be implement by the derived class`)
+    throw new TypeError(`_parseDataFromResponse method must be implement by the derived class`);
   }
 
   get LogLevel(): { [level: string]: Object } {

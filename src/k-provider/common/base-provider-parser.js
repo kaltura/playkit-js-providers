@@ -8,15 +8,15 @@ import type {OVPKalturaPlaybackSource} from '../ovp/response-types/kaltura-playb
 
 export default class BaseProviderParser {
   static getMediaEntry(...parms): MediaEntry { // eslint-disable-line no-unused-vars
-    throw new TypeError(`getMediaEntry method must be implement by the derived class`)
+    throw new TypeError(`getMediaEntry method must be implement by the derived class`);
   }
 
   static _getParsedSources(...parms): MediaSources { // eslint-disable-line no-unused-vars
-    throw new TypeError(`_getParsedSources method must be implement by the derived class`)
+    throw new TypeError(`_getParsedSources method must be implement by the derived class`);
   }
 
   static _parseAdaptiveSource(...parms): MediaSource { // eslint-disable-line no-unused-vars
-    throw new TypeError(`_parseAdaptiveSource method must be implement by the derived class`)
+    throw new TypeError(`_parseAdaptiveSource method must be implement by the derived class`);
   }
 
   static _isProgressiveSource(source: OVPKalturaPlaybackSource | OTTKalturaPlaybackSource): boolean {
