@@ -44,9 +44,9 @@ Finally, add the bundle as a script tag in your page, and initialize the provide
 <script type="text/javascript">
 var partnerId = "YOUR_PARTNER_ID";
 var entryId = "YOUR_ENTRY_ID";
-var options = new PlaykitProviders.ProviderOptions(partnerId);
-var provider = new PlaykitProviders.Provider(options);
-var mediaInfo = new PlaykitProviders.ProviderMediaInfo(entryId);
+var options = new playkit.providers.ovp.ProviderOptions(partnerId);
+var provider = new playkit.providers.ovp.Provider(options);
+var mediaInfo = new playkit.providers.ovp.ProviderMediaInfo(entryId);
 provider.getMediaConfig(mediaInfo).then(function(mediaConfig) {
   // Manipulate media config
 });
@@ -61,9 +61,9 @@ provider.getMediaConfig(mediaInfo).then(function(mediaConfig) {
 <script type="text/javascript">
 var partnerId = "YOUR_PARTNER_ID";
 var assetId = 0;
-var options = new PlaykitProviders.ProviderOptions(partnerId);
-var provider = new PlaykitProviders.Provider(options);
-var mediaInfo = new PlaykitProviders.ProviderMediaInfo(assetId);
+var options = new playkit.providers.ott.ProviderOptions(partnerId);
+var provider = new playkit.providers.ott.Provider(options);
+var mediaInfo = new playkit.providers.ott.ProviderMediaInfo(assetId);
 provider.getMediaConfig(mediaInfo).then(function(mediaConfig) {
   // Manipulate media config
 });

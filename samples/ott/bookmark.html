@@ -13,8 +13,15 @@
 <script>
   var serviceUrl = 'http://my/url';
   var ks = 'abcdefg';
-  var event = {myEvent: 1};
-  var request = PlaykitJsProviders.OVPStatsService.collect(playerVersion, ks, event, serviceUrl);
+  var bookmarkObj = {
+    type: "MEDIA_TYPE",
+    id: "MEDIA_ID",
+    position: 0,
+    playerData: {
+      action: "MY_ACTION"
+    }
+  };
+  playkit.services.bookmark.OTTBookmarkService.add(serviceUrl, ks, bookmarkObj);
 </script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 'use strict';
 
+const clone = require('clone');
 const webpack = require("webpack");
 const path = require("path");
 const PROD = (process.env.NODE_ENV === 'production');
@@ -16,18 +17,11 @@ if (PROD) {
   plugins.push(new webpack.optimize.UglifyJsPlugin({sourceMap: true}));
 }
 
-module.exports = {
+const baseConfig = {
   context: __dirname + "/src",
-  entry: {
-    "playkit-ott-provider": "k-provider/ott/index.js",
-    "playkit-ovp-provider": "k-provider/ovp/index.js",
-    "playkit-stats-service": "k-provider/ovp/services/stats/index.js",
-    "playkit-bookmark-service": "k-provider/ott/services/bookmark/index.js"
-  },
+  entry: {},
   output: {
     path: path.join(__dirname, "dist"),
-    filename: '[name].js',
-    library: "PlaykitProviders",
     libraryTarget: 'umd',
     devtoolModuleFilenameTemplate: "./providers/[resource-path]",
   },
@@ -68,3 +62,28 @@ module.exports = {
     ]
   }
 };
+
+const providersConfig = clone(baseConfig);
+const servicesConfig = clone(baseConfig);
+
+Object.assign(providersConfig.entry, {
+  "ott": "k-provider/ott/index.js",
+  "ovp": "k-provider/ovp/index.js"
+});
+
+Object.assign(providersConfig.output, {
+  filename: "playkit-[name]-provider.js",
+  library: ["playkit", "providers", "[name]"]
+});
+
+Object.assign(servicesConfig.entry, {
+  "stats": "k-provider/ovp/services/stats/index.js",
+  "bookmark": "k-provider/ott/services/bookmark/index.js"
+});
+
+Object.assign(servicesConfig.output, {
+  filename: "playkit-[name]-service.js",
+  library: ["playkit", "services", "[name]"]
+});
+
+module.exports = [providersConfig, servicesConfig];
