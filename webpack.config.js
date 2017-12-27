@@ -27,7 +27,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, "dist"),
     filename: '[name].js',
-    library: "PlaykitJsProviders",
+    library: "PlaykitProviders",
     libraryTarget: 'umd',
     devtoolModuleFilenameTemplate: "./providers/[resource-path]",
   },

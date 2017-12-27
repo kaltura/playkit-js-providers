@@ -37,16 +37,35 @@ yarn run build
 
 Finally, add the bundle as a script tag in your page, and initialize the provider
 
+**OVP Provider**
 ```html
-<script type="text/javascript" src="/PATH/TO/FILE/ovpProvider.js"></script>
-<div id="videoContainer" style="height:360px; width:640px">
+<script type="text/javascript" src="/PATH/TO/FILE/playkit-ovp-provider.js"></script>
+<div id="player-placeholder" style="height:360px; width:640px">
 <script type="text/javascript">
 var partnerId = "YOUR_PARTNER_ID";
 var entryId = "YOUR_ENTRY_ID";
-var ovpProvider = new PlaykitJsProviders.OvpProvider(partnerId);
-ovpProvider.getConfig(entryId).then(function(data) {
-  console.log(data);
-  // Manipulate data
+var options = new PlaykitProviders.ProviderOptions(partnerId);
+var provider = new PlaykitProviders.Provider(options);
+var mediaInfo = new PlaykitProviders.ProviderMediaInfo(entryId);
+provider.getMediaConfig(mediaInfo).then(function(mediaConfig) {
+  // Manipulate media config
+});
+</script>
+```
+
+**OTT Provider**
+
+```html
+<script type="text/javascript" src="/PATH/TO/FILE/playkit-ott-provider.js"></script>
+<div id="player-placeholder" style="height:360px; width:640px">
+<script type="text/javascript">
+var partnerId = "YOUR_PARTNER_ID";
+var assetId = 0;
+var options = new PlaykitProviders.ProviderOptions(partnerId);
+var provider = new PlaykitProviders.Provider(options);
+var mediaInfo = new PlaykitProviders.ProviderMediaInfo(assetId);
+provider.getMediaConfig(mediaInfo).then(function(mediaConfig) {
+  // Manipulate media config
 });
 </script>
 ```
