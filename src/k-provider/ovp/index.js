@@ -1,5 +1,8 @@
 // @flow
-import {ProviderOptions, ProviderEnvConfig, ProviderMediaInfo, ProviderMediaConfig} from '../common/index'
+import ProviderMediaInfo from '../common/provider-media-info'
+import ProviderOptions from '../common/provider-options'
+import ProviderEnvConfig from '../common/provider-env-config'
+import ProviderMediaConfig from '../common/provider-media-config'
 import OVPProvider from './provider'
 
 declare var __VERSION__: string;
