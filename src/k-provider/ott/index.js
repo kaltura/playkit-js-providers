@@ -1,5 +1,7 @@
 // @flow
-import {ProviderOptions, ProviderEnvConfig, ProviderMediaConfig} from '../common/index'
+import ProviderOptions from '../common/provider-options'
+import ProviderEnvConfig from '../common/provider-media-config'
+import ProviderMediaConfig from '../common/provider-media-config'
 import OTTProviderMediaInfo from './provider-media-info'
 import OTTProvider from './provider'
 

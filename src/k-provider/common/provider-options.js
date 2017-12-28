@@ -19,11 +19,17 @@ export default class ProviderOptions {
     return this._partnerId;
   }
 
+  set partnerId(value: number): void {
+    if (typeof value !== 'number') return;
+    this._partnerId = value;
+  }
+
   get ks(): string {
     return this._ks;
   }
 
   set ks(value: string): void {
+    if (typeof value !== 'string') return;
     this._ks = value;
   }
 
@@ -32,20 +38,44 @@ export default class ProviderOptions {
   }
 
   set uiConfId(value: number): void {
+    if (typeof value !== 'number') return;
     this._uiConfId = value;
   }
 
-  get env(): ProviderEnvConfig {
+  get env(): ProviderEnvConfig | ProviderEnvConfigObject {
     return this._env;
   }
 
-  set env(value: ProviderEnvConfig) {
-    this._env = value;
+  set env(value: ProviderEnvConfig | ProviderEnvConfigObject) {
+    if (value instanceof ProviderEnvConfig) {
+      this._env = value;
+    } else {
+      this._env.fromJSON(value);
+    }
   }
 
-  constructor(partnerId: number) {
-    this._partnerId = partnerId;
-    this.ks = '';
+  constructor(partnerId: number | ProviderOptionsObject) {
+    if (typeof partnerId === 'number') {
+      this.partnerId = partnerId;
+      this.ks = '';
+    } else if (typeof partnerId === 'object') {
+      this.fromJSON(partnerId);
+    }
+  }
+
+  fromJSON(json: ProviderOptionsObject): ProviderOptions {
+    if (json.partnerId) {
+      this.partnerId = json.partnerId;
+    }
+    if (json.ks) {
+      this.ks = json.ks;
+    }
+    if (json.uiConfId) {
+      this.uiConfId = json.uiConfId;
+    }
+    if (json.env) {
+      this.env = new ProviderEnvConfig(json.env.serviceUrl, json.env.cdnUrl);
+    }
   }
 
   toJSON(): ProviderOptionsObject {

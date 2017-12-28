@@ -12,19 +12,32 @@ export default class ProviderEnvConfig {
     return this._serviceUrl;
   }
 
+  set serviceUrl(value: string): void {
+    if (typeof value !== 'string') return;
+    this._serviceUrl = value;
+  }
+
   get cdnUrl(): string {
     return this._cdnUrl;
   }
 
-  set cdnUrl(value: string) {
+  set cdnUrl(value: string): void {
+    if (typeof value !== 'string') return;
     this._cdnUrl = value;
   }
 
-  constructor(serviceUrl: string, cdnUrl?: string) {
-    this._serviceUrl = serviceUrl;
-    if (cdnUrl) {
-      this._cdnUrl = cdnUrl;
+  constructor(serviceUrl?: string, cdnUrl?: string) {
+    if (serviceUrl) {
+      this.serviceUrl = serviceUrl;
     }
+    if (cdnUrl) {
+      this.cdnUrl = cdnUrl;
+    }
+  }
+
+  fromJSON(json: ProviderEnvConfigObject): void {
+    this.serviceUrl = json.serviceUrl || this.serviceUrl;
+    this.cdnUrl = json.cdnUrl || this.cdnUrl;
   }
 
   toJSON(): ProviderEnvConfigObject {
