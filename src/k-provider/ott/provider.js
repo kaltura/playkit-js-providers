@@ -7,7 +7,7 @@ import OTTDataLoaderManager from './loaders/data-loader-manager'
 import OTTSessionLoader from './loaders/session-loader'
 import OTTAssetLoader from './loaders/asset-loader'
 import OTTProviderParser from './provider-parser'
-import ProviderOptions from '../common/provider-options'
+import ProviderOptions from '../common/provider-options/provider-options'
 import ProviderMediaConfig from '../common/provider-media-config'
 
 export default class OTTProvider extends BaseProvider<OTTProviderMediaInfo> {

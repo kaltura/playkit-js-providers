@@ -4,7 +4,7 @@ import * as MEDIA_CONFIG_DATA from './media-config-data'
 import {MultiRequestResult} from '../../../../src/k-provider/common/multi-request-builder'
 import MultiRequestBuilder from '../../../../src/k-provider/common/multi-request-builder'
 import OTTProviderMediaInfo from '../../../../src/k-provider/ott/provider-media-info'
-import ProviderOptions from '../../../../src/k-provider/common/provider-options'
+import ProviderOptions from '../../../../src/k-provider/common/provider-options/provider-options'
 
 const partnerId = 198;
 

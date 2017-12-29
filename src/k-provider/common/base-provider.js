@@ -1,7 +1,7 @@
 // @flow
 import {setLogLevel, getLogLevel, LogLevel} from '../../util/logger'
 import DataLoaderManager from './data-loader-manager'
-import ProviderOptions from './provider-options'
+import ProviderOptions from './provider-options/provider-options'
 import ProviderMediaConfig from './provider-media-config'
 
 export default class BaseProvider<MI> {

@@ -6,7 +6,7 @@ import OVPMediaEntryLoader from './loaders/media-entry-loader'
 import OVPSessionLoader from './loaders/session-loader'
 import OVPDataLoaderManager from './loaders/data-loader-manager'
 import BaseProvider from '../common/base-provider'
-import ProviderOptions from '../common/provider-options'
+import ProviderOptions from '../common/provider-options/provider-options'
 import ProviderMediaConfig from '../common/provider-media-config'
 import ProviderMediaInfo from '../common/provider-media-info'
 

@@ -19,11 +19,6 @@ export default class ProviderOptions {
     return this._partnerId;
   }
 
-  set partnerId(value: number): void {
-    if (typeof value !== 'number') return;
-    this._partnerId = value;
-  }
-
   get ks(): string {
     return this._ks;
   }
@@ -50,13 +45,14 @@ export default class ProviderOptions {
     if (value instanceof ProviderEnvConfig) {
       this._env = value;
     } else {
-      this._env.fromJSON(value);
+      this._env = new ProviderEnvConfig(value);
     }
   }
 
   constructor(partnerId: number | ProviderOptionsObject) {
+    validate(partnerId);
     if (typeof partnerId === 'number') {
-      this.partnerId = partnerId;
+      this._partnerId = partnerId;
       this.ks = '';
     } else if (typeof partnerId === 'object') {
       this.fromJSON(partnerId);
@@ -64,9 +60,7 @@ export default class ProviderOptions {
   }
 
   fromJSON(json: ProviderOptionsObject): ProviderOptions {
-    if (json.partnerId) {
-      this.partnerId = json.partnerId;
-    }
+    this._partnerId = json.partnerId;
     if (json.ks) {
       this.ks = json.ks;
     }
@@ -80,11 +74,22 @@ export default class ProviderOptions {
 
   toJSON(): ProviderOptionsObject {
     const response: ProviderOptionsObject = {
-      partnerId: this.partnerId,
+      partnerId: this._partnerId,
       ks: this.ks
     };
     if (this.uiConfId) response.uiConfId = this.uiConfId;
     if (this.env) response.env = this.env.toJSON();
     return response;
   }
+}
+
+/**
+ * Validate user input
+ * @param {number | ProviderOptionsObject} param - user input
+ * @returns {void}
+ */
+function validate(param: number | ProviderOptionsObject): void {
+  if (typeof param === 'number') return;
+  if (typeof param === 'object' && typeof param.partnerId === 'number') return;
+  throw new TypeError('Partner id must be provide and be type of number');
 }
