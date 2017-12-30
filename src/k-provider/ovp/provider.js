@@ -15,10 +15,9 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfo> {
    * @constructor
    * @param {ProviderOptions} options - provider options
    * @param {string} playerVersion - player version
-   * @param {string} logLevel - log level
    */
-  constructor(options: ProviderOptions, playerVersion: string, logLevel?: string) {
-    super(options, playerVersion, logLevel);
+  constructor(options: ProviderOptions, playerVersion: string) {
+    super(options, playerVersion);
     this._logger = getLogger("OVPProvider");
     const _options = options.toJSON();
     OVPConfiguration.set(_options.env);

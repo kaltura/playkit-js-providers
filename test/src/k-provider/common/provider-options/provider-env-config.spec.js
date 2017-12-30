@@ -80,4 +80,14 @@ describe('ProviderEnvConfig', () => {
     pec.serviceUrl.should.equal(serviceUrl);
     pec.cdnUrl.should.equal(cdnUrl);
   });
+
+  it('should get json provider options', () => {
+    const json = {
+      serviceUrl: serviceUrl,
+      cdnUrl: cdnUrl
+    };
+    const pec = new ProviderEnvConfig(json);
+    pec.should.be.instanceOf(ProviderEnvConfig);
+    pec.toJSON().should.deep.equal(json);
+  });
 });

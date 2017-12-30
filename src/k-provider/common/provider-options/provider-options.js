@@ -4,6 +4,7 @@ import type {ProviderEnvConfigObject} from './provider-env-config'
 
 export type ProviderOptionsObject = {
   partnerId: number,
+  logLevel: string,
   ks: string,
   uiConfId?: number,
   env?: ProviderEnvConfigObject
@@ -11,12 +12,22 @@ export type ProviderOptionsObject = {
 
 export default class ProviderOptions {
   _partnerId: number;
+  _logLevel: string;
   _ks: string;
   _uiConfId: number;
   _env: ProviderEnvConfig;
 
   get partnerId(): number {
     return this._partnerId;
+  }
+
+  get logLevel(): string {
+    return this._logLevel;
+  }
+
+  set logLevel(value: string): void {
+    if (typeof value !== 'string') return;
+    this._logLevel = value;
   }
 
   get ks(): string {
@@ -54,6 +65,7 @@ export default class ProviderOptions {
     if (typeof partnerId === 'number') {
       this._partnerId = partnerId;
       this.ks = '';
+      this.logLevel = 'ERROR';
     } else if (typeof partnerId === 'object') {
       this.fromJSON(partnerId);
     }
@@ -61,9 +73,8 @@ export default class ProviderOptions {
 
   fromJSON(json: ProviderOptionsObject): ProviderOptions {
     this._partnerId = json.partnerId;
-    if (json.ks) {
-      this.ks = json.ks;
-    }
+    this.ks = json.ks || '';
+    this.logLevel = json.logLevel || 'ERROR';
     if (json.uiConfId) {
       this.uiConfId = json.uiConfId;
     }
@@ -74,7 +85,8 @@ export default class ProviderOptions {
 
   toJSON(): ProviderOptionsObject {
     const response: ProviderOptionsObject = {
-      partnerId: this._partnerId,
+      partnerId: this.partnerId,
+      logLevel: this.logLevel,
       ks: this.ks
     };
     if (this.uiConfId) response.uiConfId = this.uiConfId;
