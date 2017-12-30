@@ -15,10 +15,9 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfo> {
    * @constructor
    * @param {ProviderOptions} options - provider options
    * @param {string} playerVersion - player version
-   * @param {string} logLevel - log level
    */
-  constructor(options: ProviderOptions, playerVersion: string, logLevel?: string) {
-    super(options, playerVersion, logLevel);
+  constructor(options: ProviderOptions, playerVersion: string) {
+    super(options, playerVersion);
     this._logger = getLogger("OTTProvider");
     const _options = options.toJSON();
     OTTConfiguration.set(_options.env);

@@ -42,7 +42,7 @@ export default class ProviderEnvConfig {
 
   toJSON(): ProviderEnvConfigObject {
     const response: ProviderEnvConfigObject = {
-      serviceUrl: this._serviceUrl
+      serviceUrl: this.serviceUrl
     };
     if (this.cdnUrl) response.cdnUrl = this.cdnUrl;
     return response;
@@ -51,7 +51,7 @@ export default class ProviderEnvConfig {
 
 /**
  * Validate user input
- * @param {number | ProviderOptionsObject} param - user input
+ * @param {string | ProviderEnvConfigObject} param - user input
  * @returns {void}
  */
 function validate(param: string | ProviderEnvConfigObject): void {

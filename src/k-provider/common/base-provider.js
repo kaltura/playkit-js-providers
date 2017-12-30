@@ -37,14 +37,14 @@ export default class BaseProvider<MI> {
     return this._isAnonymous;
   }
 
-  constructor(options: ProviderOptions, playerVersion: string, logLevel?: string) {
+  constructor(options: ProviderOptions, playerVersion: string) {
     this._partnerId = options.partnerId;
     this._uiConfId = options.uiConfId;
     this._isAnonymous = !options.ks;
     this.ks = options.ks;
     this._playerVersion = playerVersion;
-    if (logLevel && this.LogLevel[logLevel]) {
-      setLogLevel(this.LogLevel[logLevel]);
+    if (options.logLevel && this.LogLevel[options.logLevel]) {
+      setLogLevel(this.LogLevel[options.logLevel]);
     }
   }
 
