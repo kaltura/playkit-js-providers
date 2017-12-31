@@ -21,7 +21,7 @@ export default class ProviderEnvConfig {
     this._cdnUrl = value;
   }
 
-  constructor(serviceUrl: string, cdnUrl?: string) {
+  constructor(serviceUrl: string | ProviderEnvConfigObject, cdnUrl?: string) {
     validate(serviceUrl);
     if (typeof serviceUrl === 'string') {
       this._serviceUrl = serviceUrl;

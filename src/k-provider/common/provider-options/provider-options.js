@@ -48,11 +48,11 @@ export default class ProviderOptions {
     this._uiConfId = value;
   }
 
-  get env(): ProviderEnvConfig | ProviderEnvConfigObject {
+  get env(): ProviderEnvConfig {
     return this._env;
   }
 
-  set env(value: ProviderEnvConfig | ProviderEnvConfigObject) {
+  set env(value: ProviderEnvConfig) {
     if (value instanceof ProviderEnvConfig) {
       this._env = value;
     } else {
@@ -71,7 +71,7 @@ export default class ProviderOptions {
     }
   }
 
-  fromJSON(json: ProviderOptionsObject): ProviderOptions {
+  fromJSON(json: ProviderOptionsObject): void {
     this._partnerId = json.partnerId;
     this.ks = json.ks || '';
     this.logLevel = json.logLevel || 'ERROR';
