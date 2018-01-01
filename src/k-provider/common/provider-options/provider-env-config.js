@@ -57,5 +57,5 @@ export default class ProviderEnvConfig {
 function validate(param: string | ProviderEnvConfigObject): void {
   if (typeof param === 'string') return;
   if (typeof param === 'object' && typeof param.serviceUrl === 'string') return;
-  throw new TypeError('Service url must be provide and be type of string');
+  throw new TypeError('Invalid ProviderEnnConfig: serviceUrl must be provided and be a string');
 }

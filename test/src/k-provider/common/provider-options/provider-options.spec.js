@@ -36,10 +36,9 @@ describe('ProviderOptions', () => {
   });
 
   it('should create provider options with partner id and set other props later', () => {
-    const po = new ProviderOptions(partnerId);
+    const po = new ProviderOptions(partnerId, uiConfId);
     po.should.be.instanceOf(ProviderOptions);
     po.partnerId.should.equal(partnerId);
-    po.uiConfId = uiConfId;
     po.ks = ks;
     po.logLevel = logLevel;
     po.env = new ProviderEnvConfig(serviceUrl, cdnUrl);
@@ -78,10 +77,9 @@ describe('ProviderOptions', () => {
   });
 
   it('should create provider options by json with partner id and set other props later', () => {
-    const po = new ProviderOptions({partnerId: partnerId});
+    const po = new ProviderOptions({partnerId: partnerId, uiConfId: uiConfId});
     po.should.be.instanceOf(ProviderOptions);
     po.partnerId.should.equal(partnerId);
-    po.uiConfId = uiConfId;
     po.ks = ks;
     po.logLevel = logLevel;
     po.env = {

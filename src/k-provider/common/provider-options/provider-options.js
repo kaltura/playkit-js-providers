@@ -1,6 +1,7 @@
 // @flow
 import ProviderEnvConfig from './provider-env-config'
 import type {ProviderEnvConfigObject} from './provider-env-config'
+import {LogLevel} from '../../../util/logger'
 
 export type ProviderOptionsObject = {
   partnerId: number,
@@ -12,8 +13,8 @@ export type ProviderOptionsObject = {
 
 export default class ProviderOptions {
   _partnerId: number;
-  _logLevel: string;
-  _ks: string;
+  _logLevel: string = 'ERROR';
+  _ks: string = '';
   _uiConfId: number;
   _env: ProviderEnvConfig;
 
@@ -26,8 +27,9 @@ export default class ProviderOptions {
   }
 
   set logLevel(value: string): void {
-    if (typeof value !== 'string') return;
-    this._logLevel = value;
+    if (typeof value === 'string' && LogLevel[value]) {
+      this._logLevel = value;
+    }
   }
 
   get ks(): string {
@@ -43,11 +45,6 @@ export default class ProviderOptions {
     return this._uiConfId;
   }
 
-  set uiConfId(value: number): void {
-    if (typeof value !== 'number') return;
-    this._uiConfId = value;
-  }
-
   get env(): ProviderEnvConfig {
     return this._env;
   }
@@ -60,12 +57,13 @@ export default class ProviderOptions {
     }
   }
 
-  constructor(partnerId: number | ProviderOptionsObject) {
+  constructor(partnerId: number | ProviderOptionsObject, uiConfId?: number) {
     validate(partnerId);
     if (typeof partnerId === 'number') {
       this._partnerId = partnerId;
-      this.ks = '';
-      this.logLevel = 'ERROR';
+      if (typeof uiConfId === 'number') {
+        this._uiConfId = uiConfId;
+      }
     } else if (typeof partnerId === 'object') {
       this.fromJSON(partnerId);
     }
@@ -73,10 +71,10 @@ export default class ProviderOptions {
 
   fromJSON(json: ProviderOptionsObject): void {
     this._partnerId = json.partnerId;
-    this.ks = json.ks || '';
-    this.logLevel = json.logLevel || 'ERROR';
-    if (json.uiConfId) {
-      this.uiConfId = json.uiConfId;
+    this.ks = json.ks || this._ks;
+    this.logLevel = json.logLevel || this._logLevel;
+    if (typeof json.uiConfId === 'number') {
+      this._uiConfId = json.uiConfId;
     }
     if (json.env) {
       this.env = new ProviderEnvConfig(json.env.serviceUrl, json.env.cdnUrl);
@@ -103,5 +101,5 @@ export default class ProviderOptions {
 function validate(param: number | ProviderOptionsObject): void {
   if (typeof param === 'number') return;
   if (typeof param === 'object' && typeof param.partnerId === 'number') return;
-  throw new TypeError('Partner id must be provide and be type of number');
+  throw new TypeError('Invalid ProviderOptions: partnerId must be provided and be a number');
 }

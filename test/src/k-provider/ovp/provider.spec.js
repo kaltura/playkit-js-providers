@@ -52,8 +52,7 @@ describe('OVPProvider.partnerId:1082342', function () {
     const entryId = "1_rsrdfext";
     const mediaInfo = new OVPProviderMediaInfo(entryId);
     const uiConfId = 38621471;
-    providerOptions = new ProviderOptions(partnerId);
-    providerOptions.uiConfId = uiConfId;
+    providerOptions = new ProviderOptions(partnerId, uiConfId);
     provider = new OVPProvider(providerOptions, playerVersion);
     sinon.stub(MultiRequestBuilder.prototype, "execute").callsFake(
       function () {
@@ -205,8 +204,7 @@ describe('OVPProvider.partnerId:1068292', function () {
     const entryId = "1_rwbj3j0a";
     const mediaInfo = new OVPProviderMediaInfo(entryId);
     const uiConfId = 38601981;
-    providerOptions = new ProviderOptions(partnerId);
-    providerOptions.uiConfId = uiConfId;
+    providerOptions = new ProviderOptions(partnerId, uiConfId);
     providerOptions.ks = ks;
     provider = new OVPProvider(providerOptions, playerVersion);
     sinon.stub(MultiRequestBuilder.prototype, "execute").callsFake(
@@ -236,8 +234,7 @@ describe('OVPProvider.partnerId:1068292', function () {
     const entryId = "1_rwbj3j0a";
     const mediaInfo = new OVPProviderMediaInfo(entryId);
     const uiConfId = 38601981;
-    providerOptions = new ProviderOptions(partnerId);
-    providerOptions.uiConfId = uiConfId;
+    providerOptions = new ProviderOptions(partnerId, uiConfId);
     providerOptions.ks = ks;
     provider = new OVPProvider(providerOptions, playerVersion);
     sinon.stub(MultiRequestBuilder.prototype, "execute").callsFake(
