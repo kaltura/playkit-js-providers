@@ -86,6 +86,7 @@ export class OvpProvider {
     this.partnerID = options.partnerID;
     this.ks = options.ks;
     this._isAnonymous = !this.ks;
+    this._uiConfId = options.uiConfId;
     this._loadUiConf = options.loadUiConf;
     if (options.logLevel && this.LogLevel[options.logLevel]) {
       setLogLevel(this.LogLevel[options.logLevel]);
@@ -114,7 +115,7 @@ export class OvpProvider {
         }
         this._dataLoader.add(MediaEntryLoader, {entryId: entryId, ks: ks});
         if (this._loadUiConf) {
-          this._dataLoader.add(UiConfigLoader, {uiConfId: uiConfId, ks: ks});
+          this._dataLoader.add(UiConfigLoader, {uiConfId: this._uiConfId, ks: ks});
         }
         this._dataLoader.fetchData()
           .then(response => {
