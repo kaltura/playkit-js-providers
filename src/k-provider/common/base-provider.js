@@ -1,7 +1,7 @@
 // @flow
 import {setLogLevel, getLogLevel, LogLevel} from '../../util/logger'
 import DataLoaderManager from './data-loader-manager'
-import ProviderOptions from './provider-options/provider-options'
+import ProviderOptions, {ProviderOptionsObject} from './provider-options/provider-options'
 import ProviderMediaConfig from './provider-media-config'
 
 export default class BaseProvider<MI> {
@@ -37,11 +37,15 @@ export default class BaseProvider<MI> {
     return this._isAnonymous;
   }
 
-  constructor(options: ProviderOptions, playerVersion: string) {
+  constructor(options: ProviderOptions | ProviderOptionsObject, playerVersion: string) {
+    if (options instanceof ProviderOptions === false) {
+      options = new ProviderOptions(options);
+    }
+    options = options.toJSON();
     this._partnerId = options.partnerId;
     this._uiConfId = options.uiConfId;
     this._isAnonymous = !options.ks;
-    this.ks = options.ks;
+    this._ks = options.ks;
     this._playerVersion = playerVersion;
     if (options.logLevel && this.LogLevel[options.logLevel]) {
       setLogLevel(this.LogLevel[options.logLevel]);

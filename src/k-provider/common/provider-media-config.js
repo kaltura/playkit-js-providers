@@ -28,6 +28,7 @@ export default class ProviderMediaConfig {
   _type: string;
   _dvr: boolean;
   _metadata: Object;
+  _plugins: Object;
 
   get id(): string {
     return this._id;
@@ -89,6 +90,14 @@ export default class ProviderMediaConfig {
     this._metadata = value;
   }
 
+  get plugins(): Object {
+    return this._plugins;
+  }
+
+  set plugins(value: Object): void {
+    this._plugins = value;
+  }
+
   constructor(partnerId: number, uiConfId: ?number) {
     this.id = '';
     this.name = '';
@@ -98,6 +107,7 @@ export default class ProviderMediaConfig {
     this.type = 'Unknown';
     this.dvr = false;
     this.metadata = {};
+    this.plugins = {};
   }
 
   toJSON(): ProviderMediaConfigObject {
@@ -109,7 +119,8 @@ export default class ProviderMediaConfig {
       duration: this.duration,
       type: this.type,
       dvr: this.dvr,
-      metadata: this.metadata
+      metadata: this.metadata,
+      plugins: this.plugins
     };
   }
 }

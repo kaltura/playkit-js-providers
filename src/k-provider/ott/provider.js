@@ -9,18 +9,18 @@ import OTTAssetLoader from './loaders/asset-loader'
 import OTTProviderParser from './provider-parser'
 import ProviderOptions from '../common/provider-options/provider-options'
 import ProviderMediaConfig from '../common/provider-media-config'
+import type {ProviderOptionsObject} from '../common/provider-options/provider-options'
 
 export default class OTTProvider extends BaseProvider<OTTProviderMediaInfo> {
   /**
    * @constructor
-   * @param {ProviderOptions} options - provider options
+   * @param {ProviderOptions | ProviderOptionsObject} options - provider options
    * @param {string} playerVersion - player version
    */
-  constructor(options: ProviderOptions, playerVersion: string) {
+  constructor(options: ProviderOptions | ProviderOptionsObject, playerVersion: string) {
     super(options, playerVersion);
     this._logger = getLogger("OTTProvider");
-    const _options = options.toJSON();
-    OTTConfiguration.set(_options.env);
+    OTTConfiguration.set(options.env);
   }
 
   /**

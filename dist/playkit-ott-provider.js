@@ -206,6 +206,72 @@ exports.default = RequestBuilder;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.setLogLevel = exports.getLogLevel = exports.LogLevel = undefined;
+
+var _jsLogger = __webpack_require__(24);
+
+var JsLogger = _interopRequireWildcard(_jsLogger);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+var LogLevel = {
+  DEBUG: JsLogger.DEBUG,
+  INFO: JsLogger.INFO,
+  TIME: JsLogger.TIME,
+  WARN: JsLogger.WARN,
+  ERROR: JsLogger.ERROR,
+  OFF: JsLogger.OFF
+};
+
+
+JsLogger.useDefaults({ defaultLevel: JsLogger.ERROR });
+
+/**
+ * get a logger
+ * @param {?string} name - the logger name
+ * @returns {Object} - the logger class
+ */
+function getLogger(name) {
+  if (!name) {
+    return JsLogger;
+  }
+  return JsLogger.get(name);
+}
+
+/**
+ * get the log level
+ * @param {?string} name - the logger name
+ * @returns {Object} - the log level
+ */
+function getLogLevel(name) {
+  return getLogger(name).getLevel();
+}
+
+/**
+ * sets the logger level
+ * @param {Object} level - the log level
+ * @param {?string} name - the logger name
+ * @returns {void}
+ */
+function setLogLevel(level, name) {
+  getLogger(name).setLevel(level);
+}
+
+exports.default = getLogger;
+exports.LogLevel = LogLevel;
+exports.getLogLevel = getLogLevel;
+exports.setLogLevel = setLogLevel;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -310,72 +376,6 @@ var MediaSources = function () {
 exports.default = MediaSources;
 
 /***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.setLogLevel = exports.getLogLevel = exports.LogLevel = undefined;
-
-var _jsLogger = __webpack_require__(24);
-
-var JsLogger = _interopRequireWildcard(_jsLogger);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-var LogLevel = {
-  DEBUG: JsLogger.DEBUG,
-  INFO: JsLogger.INFO,
-  TIME: JsLogger.TIME,
-  WARN: JsLogger.WARN,
-  ERROR: JsLogger.ERROR,
-  OFF: JsLogger.OFF
-};
-
-
-JsLogger.useDefaults({ defaultLevel: JsLogger.ERROR });
-
-/**
- * get a logger
- * @param {?string} name - the logger name
- * @returns {Object} - the logger class
- */
-function getLogger(name) {
-  if (!name) {
-    return JsLogger;
-  }
-  return JsLogger.get(name);
-}
-
-/**
- * get the log level
- * @param {?string} name - the logger name
- * @returns {Object} - the log level
- */
-function getLogLevel(name) {
-  return getLogger(name).getLevel();
-}
-
-/**
- * sets the logger level
- * @param {Object} level - the log level
- * @param {?string} name - the logger name
- * @returns {void}
- */
-function setLogLevel(level, name) {
-  getLogger(name).setLevel(level);
-}
-
-exports.default = getLogger;
-exports.LogLevel = LogLevel;
-exports.getLogLevel = getLogLevel;
-exports.setLogLevel = setLogLevel;
-
-/***/ }),
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -388,7 +388,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _mediaSources = __webpack_require__(1);
+var _mediaSources = __webpack_require__(2);
 
 var _mediaSources2 = _interopRequireDefault(_mediaSources);
 
@@ -458,6 +458,14 @@ var ProviderMediaConfig = function () {
     set: function set(value) {
       this._metadata = value;
     }
+  }, {
+    key: 'plugins',
+    get: function get() {
+      return this._plugins;
+    },
+    set: function set(value) {
+      this._plugins = value;
+    }
   }]);
 
   function ProviderMediaConfig(partnerId, uiConfId) {
@@ -471,6 +479,7 @@ var ProviderMediaConfig = function () {
     this.type = 'Unknown';
     this.dvr = false;
     this.metadata = {};
+    this.plugins = {};
   }
 
   _createClass(ProviderMediaConfig, [{
@@ -484,7 +493,8 @@ var ProviderMediaConfig = function () {
         duration: this.duration,
         type: this.type,
         dvr: this.dvr,
-        metadata: this.metadata
+        metadata: this.metadata,
+        plugins: this.plugins
       };
     }
   }]);
@@ -556,7 +566,7 @@ var _providerEnvConfig = __webpack_require__(15);
 
 var _providerEnvConfig2 = _interopRequireDefault(_providerEnvConfig);
 
-var _logger = __webpack_require__(2);
+var _logger = __webpack_require__(1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -966,7 +976,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _mediaSources = __webpack_require__(1);
+var _mediaSources = __webpack_require__(2);
 
 var _mediaSources2 = _interopRequireDefault(_mediaSources);
 
@@ -1221,7 +1231,7 @@ var _requestBuilder = __webpack_require__(0);
 
 var _requestBuilder2 = _interopRequireDefault(_requestBuilder);
 
-var _logger = __webpack_require__(2);
+var _logger = __webpack_require__(1);
 
 var _logger2 = _interopRequireDefault(_logger);
 
@@ -1615,7 +1625,7 @@ var _mediaEntry = __webpack_require__(10);
 
 var _mediaEntry2 = _interopRequireDefault(_mediaEntry);
 
-var _mediaSources = __webpack_require__(1);
+var _mediaSources = __webpack_require__(2);
 
 var _mediaSources2 = _interopRequireDefault(_mediaSources);
 
@@ -1700,7 +1710,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _logger = __webpack_require__(2);
+var _logger = __webpack_require__(1);
 
 var _dataLoaderManager = __webpack_require__(11);
 
@@ -1752,10 +1762,14 @@ var BaseProvider = function () {
   function BaseProvider(options, playerVersion) {
     _classCallCheck(this, BaseProvider);
 
+    if (options instanceof _providerOptions2.default === false) {
+      options = new _providerOptions2.default(options);
+    }
+    options = options.toJSON();
     this._partnerId = options.partnerId;
     this._uiConfId = options.uiConfId;
     this._isAnonymous = !options.ks;
-    this.ks = options.ks;
+    this._ks = options.ks;
     this._playerVersion = playerVersion;
     if (options.logLevel && this.LogLevel[options.logLevel]) {
       (0, _logger.setLogLevel)(this.LogLevel[options.logLevel]);
@@ -2687,7 +2701,7 @@ var _baseProvider = __webpack_require__(19);
 
 var _baseProvider2 = _interopRequireDefault(_baseProvider);
 
-var _logger = __webpack_require__(2);
+var _logger = __webpack_require__(1);
 
 var _logger2 = _interopRequireDefault(_logger);
 
@@ -2736,7 +2750,7 @@ var OTTProvider = function (_BaseProvider) {
 
   /**
    * @constructor
-   * @param {ProviderOptions} options - provider options
+   * @param {ProviderOptions | ProviderOptionsObject} options - provider options
    * @param {string} playerVersion - player version
    */
   function OTTProvider(options, playerVersion) {
@@ -2745,8 +2759,7 @@ var OTTProvider = function (_BaseProvider) {
     var _this = _possibleConstructorReturn(this, (OTTProvider.__proto__ || Object.getPrototypeOf(OTTProvider)).call(this, options, playerVersion));
 
     _this._logger = (0, _logger2.default)("OTTProvider");
-    var _options = options.toJSON();
-    _config2.default.set(_options.env);
+    _config2.default.set(options.env);
     return _this;
   }
 
@@ -3179,7 +3192,7 @@ var _kalturaPlaybackSource = __webpack_require__(28);
 
 var _kalturaPlaybackSource2 = _interopRequireDefault(_kalturaPlaybackSource);
 
-var _logger = __webpack_require__(2);
+var _logger = __webpack_require__(1);
 
 var _logger2 = _interopRequireDefault(_logger);
 
@@ -3195,7 +3208,7 @@ var _mediaSource = __webpack_require__(7);
 
 var _mediaSource2 = _interopRequireDefault(_mediaSource);
 
-var _mediaSources = __webpack_require__(1);
+var _mediaSources = __webpack_require__(2);
 
 var _mediaSources2 = _interopRequireDefault(_mediaSources);
 

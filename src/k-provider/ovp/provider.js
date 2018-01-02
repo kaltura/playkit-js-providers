@@ -9,18 +9,18 @@ import BaseProvider from '../common/base-provider'
 import ProviderOptions from '../common/provider-options/provider-options'
 import ProviderMediaConfig from '../common/provider-media-config'
 import ProviderMediaInfo from '../common/provider-media-info'
+import type {ProviderOptionsObject} from '../common/provider-options/provider-options'
 
 export default class OVPProvider extends BaseProvider<ProviderMediaInfo> {
   /**
    * @constructor
-   * @param {ProviderOptions} options - provider options
+   * @param {ProviderOptions | ProviderOptionsObject} options - provider options
    * @param {string} playerVersion - player version
    */
-  constructor(options: ProviderOptions, playerVersion: string) {
+  constructor(options: ProviderOptions | ProviderOptionsObject, playerVersion: string) {
     super(options, playerVersion);
     this._logger = getLogger("OVPProvider");
-    const _options = options.toJSON();
-    OVPConfiguration.set(_options.env);
+    OVPConfiguration.set(options.env);
   }
 
   /**
