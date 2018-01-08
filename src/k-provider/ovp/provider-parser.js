@@ -16,8 +16,6 @@ import MediaSources from '../../entities/media-sources'
 import {SupportedStreamFormat} from '../../entities/media-format'
 import BaseProviderParser from '../common/base-provider-parser'
 
-const config = OVPConfiguration.get();
-
 export default class OVPProviderParser extends BaseProviderParser{
   static _logger = getLogger("OVPProviderParser");
 
@@ -247,6 +245,7 @@ export default class OVPProviderParser extends BaseProviderParser{
    * @private
    */
   static _getBaseProtocol(): string {
+    const config = OVPConfiguration.get();
     const protocolRegex = /^https?:/;
     const result = protocolRegex.exec(config.cdnUrl);
     const protocol = result ? result[0] : document.location.protocol;

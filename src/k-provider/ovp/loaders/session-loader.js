@@ -3,8 +3,6 @@ import OVPSessionService from '../services/session-service'
 import OVPConfiguration from '../config'
 import RequestBuilder from '../../../util/request-builder'
 
-const config = OVPConfiguration.get();
-
 export default class OVPSessionLoader implements ILoader {
   _partnerId: number;
   _requests: Array<RequestBuilder>;
@@ -47,7 +45,8 @@ export default class OVPSessionLoader implements ILoader {
    * @static
    */
   buildRequests(params: Object): Array<RequestBuilder> {
-    let requests: Array<RequestBuilder> = [];
+    const config = OVPConfiguration.get();
+    const requests: Array<RequestBuilder> = [];
     requests.push(OVPSessionService.anonymousSession(config.serviceUrl, params.partnerId));
     return requests;
   }

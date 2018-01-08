@@ -5,8 +5,6 @@ import RequestBuilder from '../../../util/request-builder'
 import KalturaPlaybackContext from '../response-types/kaltura-playback-context'
 import KalturaAsset from '../response-types/kaltura-asset'
 
-const config = OTTConfiguration.get();
-
 export default class OTTAssetLoader implements ILoader {
   _entryId: string;
   _requests: Array<RequestBuilder>;
@@ -50,6 +48,7 @@ export default class OTTAssetLoader implements ILoader {
    * @static
    */
   buildRequests(params: Object): Array<RequestBuilder> {
+    const config = OTTConfiguration.get();
     const requests: Array<RequestBuilder> = [];
     requests.push(OTTAssetService.get(config.serviceUrl, params.ks, params.entryId));
     requests.push(OTTAssetService.getPlaybackContext(config.serviceUrl, params.ks, params.entryId, params.type, params.playbackContext));

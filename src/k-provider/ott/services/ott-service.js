@@ -2,7 +2,6 @@
 import MultiRequestBuilder from '../../common/multi-request-builder'
 import OTTConfiguration from '../config'
 
-const config = OTTConfiguration.get();
 const SERVICE_NAME: string = "multirequest";
 
 export default class OTTService {
@@ -15,6 +14,7 @@ export default class OTTService {
    * @static
    */
   static getMultiRequest(ks: string, partnerId?: number): MultiRequestBuilder {
+    const config = OTTConfiguration.get();
     const ottParams = config.serviceParams;
     if (ks) {
       Object.assign(ottParams, {ks: ks});

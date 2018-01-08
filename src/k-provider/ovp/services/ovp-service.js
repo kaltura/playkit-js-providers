@@ -2,7 +2,6 @@
 import MultiRequestBuilder from '../../common/multi-request-builder'
 import OVPConfiguration from '../config'
 
-const config = OVPConfiguration.get();
 const SERVICE_NAME: string = "multirequest";
 
 export default class OVPService {
@@ -16,6 +15,7 @@ export default class OVPService {
    * @static
    */
   static getMultiRequest(playerVersion: string, ks: string, partnerId?: number): MultiRequestBuilder {
+    const config = OVPConfiguration.get();
     const ovpParams = config.serviceParams;
     Object.assign(ovpParams, {ks: ks, clientTag: 'html5:v' + playerVersion});
     if (partnerId) {

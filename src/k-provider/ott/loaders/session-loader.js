@@ -3,8 +3,6 @@ import UserService from '../services/user-service'
 import OTTConfiguration from '../config'
 import RequestBuilder from '../../../util/request-builder'
 
-const config = OTTConfiguration.get();
-
 export default class OTTSessionLoader implements ILoader {
   _partnerId: number;
   _requests: Array<RequestBuilder>;
@@ -47,6 +45,7 @@ export default class OTTSessionLoader implements ILoader {
    * @static
    */
   buildRequests(params: Object): Array<RequestBuilder> {
+    const config = OTTConfiguration.get();
     const requests: Array<RequestBuilder> = [];
     requests.push(UserService.anonymousLogin(config.serviceUrl, params.partnerId, params.udid));
     return requests;

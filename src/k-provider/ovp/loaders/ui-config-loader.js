@@ -4,8 +4,6 @@ import KalturaUIConfResponse from '../response-types/kaltura-ui-conf-response'
 import OVPConfiguration from '../config'
 import RequestBuilder from '../../../util/request-builder'
 
-const config = OVPConfiguration.get();
-
 export default class OVPUIConfigLoader implements ILoader {
   _uiConfId: number;
   _requests: Array<RequestBuilder>;
@@ -56,6 +54,7 @@ export default class OVPUIConfigLoader implements ILoader {
    * @static
    */
   buildRequests(params: Object): Array<RequestBuilder> {
+    const config = OVPConfiguration.get();
     let requests: Array<RequestBuilder> = [];
     requests.push(OVPUIConfService.get(config.serviceUrl, params.ks, params.uiConfId));
     return requests;

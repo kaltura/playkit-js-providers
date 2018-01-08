@@ -7,8 +7,6 @@ import KalturaPlaybackContext from '../response-types/kaltura-playback-context'
 import KalturaMetadataListResponse from '../response-types/kaltura-metadata-list-response'
 import KalturaBaseEntryListResponse from '../response-types/kaltura-base-entry-list-response'
 
-const config = OVPConfiguration.get();
-
 export default class OVPMediaEntryLoader implements ILoader {
   _entryId: string;
   _requests: Array<RequestBuilder>;
@@ -54,7 +52,8 @@ export default class OVPMediaEntryLoader implements ILoader {
    * @static
    */
   buildRequests(params: Object): Array<RequestBuilder> {
-    let requests: Array<RequestBuilder> = [];
+    const config = OVPConfiguration.get();
+    const requests: Array<RequestBuilder> = [];
     requests.push(OVPBaseEntryService.list(config.serviceUrl, params.ks, params.entryId));
     requests.push(OVPBaseEntryService.getPlaybackContext(config.serviceUrl, params.ks, params.entryId));
     requests.push(OVPMetadataService.list(config.serviceUrl, params.ks, params.entryId));

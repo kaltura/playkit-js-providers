@@ -1,8 +1,6 @@
 //@flow
 import OVPConfiguration from './config'
 
-const config = OVPConfiguration.get();
-
 export default class PlaySourceUrlBuilder {
   /**
    * Returns source url by given url params
@@ -12,6 +10,7 @@ export default class PlaySourceUrlBuilder {
    * @static
    */
   static build(urlParams: Object): string {
+    const config = OVPConfiguration.get();
     const cdnUrl: string = config.cdnUrl;
     const partnerId: string = urlParams.partnerId;
     const entryId: string = urlParams.entryId;
