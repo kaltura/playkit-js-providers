@@ -6,6 +6,7 @@ const NoPluginsNoDrm = {
     "partnerId": 1082342,
     "ks": "OGM0ZWM0Y2IwOWI5ZjM0MDcyZmQ3YmYxNzBiMGEwNGYxNWQ0ZTcyOXwxMDgyMzQyOzEwODIzNDI7MTQ5MDExNTg5MzswOzE0OTAwMjk0OTMuMTY3ODswO3ZpZXc6Kix3aWRnZXQ6MTs7"
   },
+  "plugins": {},
   "sources": {
     "progressive": [
       {
@@ -129,6 +130,7 @@ const NoPluginsWithDrm = {
     "partnerId": 1068292,
     "ks": "NTAwZjViZWZjY2NjNTRkNGEyMjU1MTg4OGE1NmUwNDljZWJkMzk1MXwxMDY4MjkyOzEwNjgyOTI7MTQ5MDE3NjE0NjswOzE0OTAwODk3NDYuMDIyNjswO3ZpZXc6Kix3aWRnZXQ6MTs7"
   },
+  "plugins": {},
   "sources": {
     "progressive": [],
     "dash": [
@@ -180,6 +182,7 @@ const WithPluginsNoDrm = {
     "uiConfId": 38621471,
     "ks": "YmQ0N2Q0M2QxZTAyMGIzYTY4YzI1ZDk5ZjI1NjhlZWVkOWZmOGViN3wxMDgyMzQyOzEwODIzNDI7MTQ5MDE5NjMwMDswOzE0OTAxMDk5MDAuOTA0NDswO3ZpZXc6Kix3aWRnZXQ6MTs7"
   },
+  "plugins": {},
   "sources": {
     "progressive": [
       {
@@ -304,6 +307,7 @@ const WithPluginsWithDrm = {
     "uiConfId": 38601981,
     "ks": "NTAwZjViZWZjY2NjNTRkNGEyMjU1MTg4OGE1NmUwNDljZWJkMzk1MXwxMDY4MjkyOzEwNjgyOTI7MTQ5MDE3NjE0NjswOzE0OTAwODk3NDYuMDIyNjswO3ZpZXc6Kix3aWRnZXQ6MTs7"
   },
+  "plugins": {},
   "sources": {
     "progressive": [],
     "dash": [
@@ -354,6 +358,7 @@ const AudioEntryWithoutPlugins = {
     "partnerId": 1082342,
     "ks": "YWU4Y2I0ZDk4ZmNiMjUyZjA1NmQ1NmMzMTdjZmFjZWEyODc2NDE0YXwxMDgyMzQyOzEwODIzNDI7MTQ5MDg2MTk1OTswOzE0OTA3NzU1NTkuNzk0MzswO3ZpZXc6Kix3aWRnZXQ6MTs7"
   },
+  "plugins": {},
   "sources": {
     "progressive": [],
     "dash": [
@@ -397,6 +402,7 @@ const ImageEntryWithoutPlugins = {
     "partnerId": 1082342,
     "ks": "YWU4Y2I0ZDk4ZmNiMjUyZjA1NmQ1NmMzMTdjZmFjZWEyODc2NDE0YXwxMDgyMzQyOzEwODIzNDI7MTQ5MDg2MTk1OTswOzE0OTA3NzU1NTkuNzk0MzswO3ZpZXc6Kix3aWRnZXQ6MTs7"
   },
+  "plugins": {},
   "sources": {
     "dash": [],
     "hls": [],

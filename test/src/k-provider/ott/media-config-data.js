@@ -5,6 +5,7 @@ const NoPluginsWithDrm = {
     "partnerId": 198,
     "ks": "djJ8MTk4fHFNlNTFP8NV_WXoPn3CJnQRIJhCe4zD9g5voCHCgHJRanv2ubEBLLl9Gb13CxfBTGWZpTP_pD_fOirT3-L4F0kDIdJRrkShBxjuRI1-0nz2ublJJd48QKzLAqW79y7Lzoj6ngfv1uHGC7xxPtUqcSw="
   },
+  "plugins": {},
   "sources": {
     "progressive": [],
     "dash": [{
