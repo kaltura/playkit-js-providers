@@ -1,90 +1,70 @@
 //@flow
-import KalturaPlaybackSource from './response-types/kaltura-playback-source'
+// import KalturaPlaybackSource from './response-types/kaltura-playback-source'
 import KalturaFlavorAsset from './response-types/kaltura-flavor-asset'
 import KalturaMetadataListResponse from './response-types/kaltura-metadata-list-response'
-import PlaySourceUrlBuilder from "./play-source-url-builder"
-import XmlParser from '../xml-parser'
-import {MediaEntryTypes, EntryTypes, MediaTypes, DrmScheme} from '../enums'
+import KalturaMediaEntry from './response-types/kaltura-media-entry'
+import KalturaPlaybackSource from './response-types/kaltura-playback-source'
+import KalturaDrmPlaybackPluginData from '../common/response-types/kaltura-drm-playback-plugin-data'
+import PlaySourceUrlBuilder from './play-source-url-builder'
+import XmlParser from '../../util/xml-parser'
 import getLogger from '../../util/logger'
-import Configuration from './config'
-import {MediaFormats} from '../../entities/media-format'
+import OVPConfiguration from './config'
 import MediaEntry from '../../entities/media-entry'
 import Drm from '../../entities/drm'
 import MediaSource from '../../entities/media-source'
 import MediaSources from '../../entities/media-sources'
+import {SupportedStreamFormat} from '../../entities/media-format'
+import BaseProviderParser from '../common/base-provider-parser'
 
-const config = Configuration.get();
-/**
- * @constant
- */
-const logger = getLogger("OvpProvider");
-
-/**
- * @constant
- * @type {Map<string, MediaFormat>}
- */
-const SUPPORTED_FORMATS: Map<string, MediaFormat> = new Map([
-  ["mpegdash", MediaFormats.dash],
-  ["applehttp", MediaFormats.hls],
-  ["url", MediaFormats.mp4]
-]);
-
-/**
- * Ovp provider parser
- * @classdesc
- */
-export default class ProviderParser {
+export default class OVPProviderParser extends BaseProviderParser{
+  static _logger = getLogger("OVPProviderParser");
 
   /**
    * Returns parsed media entry by given OVP response objects
    * @function getMediaEntry
    * @param {string} ks - The ks
-   * @param {number} partnerID - The partner ID
+   * @param {number} partnerId - The partner ID
    * @param {number} uiConfId - The uiConf ID
    * @param {any} mediaEntryResponse - The media entry response
    * @returns {MediaEntry} - The media entry
    * @static
    * @public
    */
-  static getMediaEntry(ks: string, partnerID: number, uiConfId: number, mediaEntryResponse: any): MediaEntry {
-    let mediaEntry: MediaEntry = new MediaEntry();
-    let entry = mediaEntryResponse.entry;
-    let playbackContext = mediaEntryResponse.playBackContextResult;
-    let metadataList = mediaEntryResponse.metadataListResult;
-    let kalturaSources: Array<KalturaPlaybackSource> = playbackContext.sources;
-    let sources: MediaSources = ProviderParser._getParsedSources(kalturaSources, ks, partnerID, uiConfId, entry, playbackContext);
+  static getMediaEntry(ks: string, partnerId: number, uiConfId: ?number, mediaEntryResponse: any): MediaEntry {
+    const mediaEntry = new MediaEntry();
+    const entry = mediaEntryResponse.entry;
+    const playbackContext = mediaEntryResponse.playBackContextResult;
+    const metadataList = mediaEntryResponse.metadataListResult;
+    const kalturaSources = playbackContext.sources;
 
-    mediaEntry.sources = sources;
-
-    let metadata: Object = this._parseMetaData(metadataList);
-    mediaEntry.metaData = metadata;
+    mediaEntry.sources = OVPProviderParser._getParsedSources(kalturaSources, ks, partnerId, uiConfId, entry, playbackContext);
+    mediaEntry.metadata = this._parseMetadata(metadataList);
+    mediaEntry.metadata.description = entry.description;
+    mediaEntry.metadata.poster = entry.poster;
     mediaEntry.id = entry.id;
     mediaEntry.name = entry.name;
     mediaEntry.duration = entry.duration;
-    mediaEntry.metaData["description"] = entry.description;
-    mediaEntry.metaData["poster"] = entry.poster;
 
-    let type: MediaEntryType = MediaEntryTypes.Unknown;
-
+    let type = MediaEntry.Type.UNKNOWN;
     switch (entry.entryType) {
-      case MediaTypes.IMAGE.value:
-        type = MediaEntryTypes.Image;
+      case KalturaMediaEntry.MediaType.IMAGE.value:
+        type = MediaEntry.Type.IMAGE;
         break;
-      case MediaTypes.AUDIO.value:
-        type = MediaEntryTypes.Audio;
+      case KalturaMediaEntry.MediaType.AUDIO.value:
+        type = MediaEntry.Type.AUDIO;
         break;
       default:
         switch (entry.type) {
-          case EntryTypes.MEDIA_CLIP.value:
-            type = MediaEntryTypes.Vod;
+          case KalturaMediaEntry.EntryType.MEDIA_CLIP.value:
+            type = MediaEntry.Type.VOD;
             break;
-          case EntryTypes.LIVE_STREAM.value:
-          case EntryTypes.LIVE_CHANNEL.value:
-            type = MediaEntryTypes.Live;
+          case KalturaMediaEntry.EntryType.LIVE_STREAM.value:
+          case KalturaMediaEntry.EntryType.LIVE_CHANNEL.value:
+            type = MediaEntry.Type.LIVE;
             mediaEntry.dvrStatus = entry.dvrStatus;
             break;
           default:
-            type = MediaEntryTypes.Unknown;
+            type = MediaEntry.Type.UNKNOWN;
         }
     }
     mediaEntry.type = type;
@@ -97,7 +77,7 @@ export default class ProviderParser {
    * @function _getParsedSources
    * @param {Array<KalturaPlaybackSource>} kalturaSources - The kaltura sources
    * @param {string} ks - The ks
-   * @param {number} partnerID - The partner ID
+   * @param {number} partnerId - The partner ID
    * @param {number} uiConfId - The uiConf ID
    * @param {Object} entry - The entry
    * @param {Object} playbackContext - The playback context
@@ -105,29 +85,24 @@ export default class ProviderParser {
    * @static
    * @private
    */
-  static _getParsedSources(kalturaSources: Array<KalturaPlaybackSource>, ks: string, partnerID: number, uiConfId: number, entry: Object, playbackContext: Object): MediaSources {
-    let sources: MediaSources = new MediaSources();
-
-    let addAdaptiveSource = function (source: KalturaPlaybackSource): void {
-      let parsedSource = ProviderParser._parseAdaptiveSource(source, playbackContext.flavorAssets, ks, partnerID, uiConfId, entry.id);
-      let sourceFormat = SUPPORTED_FORMATS.get(source.format);
+  static _getParsedSources(kalturaSources: Array<KalturaPlaybackSource>, ks: string, partnerId: number, uiConfId: ?number, entry: Object, playbackContext: Object): MediaSources {
+    const sources = new MediaSources();
+    const addAdaptiveSource = (source: KalturaPlaybackSource) => {
+      const parsedSource = OVPProviderParser._parseAdaptiveSource(source, playbackContext.flavorAssets, ks, partnerId, uiConfId, entry.id);
+      const sourceFormat = SupportedStreamFormat.get(source.format);
       sources.map(parsedSource, sourceFormat);
     };
-
-    let parseAdaptiveSources = function (): void {
-      kalturaSources.filter((source) => !ProviderParser._isProgressiveSource(source)).forEach(addAdaptiveSource);
+    const parseAdaptiveSources = () => {
+      kalturaSources.filter((source) => !OVPProviderParser._isProgressiveSource(source)).forEach(addAdaptiveSource);
     };
-
-    let parseProgressiveSources = function (): void {
-      let progressiveSource = kalturaSources.find(ProviderParser._isProgressiveSource);
-      sources.progressive = ProviderParser._parseProgressiveSources(progressiveSource, playbackContext.flavorAssets, ks, partnerID, uiConfId, entry.id);
+    const parseProgressiveSources = () => {
+      const progressiveSource = kalturaSources.find(OVPProviderParser._isProgressiveSource);
+      sources.progressive = OVPProviderParser._parseProgressiveSources(progressiveSource, playbackContext.flavorAssets, ks, partnerId, uiConfId, entry.id);
     };
-
     if (kalturaSources && kalturaSources.length > 0) {
       parseAdaptiveSources();
       parseProgressiveSources();
     }
-
     return sources;
   }
 
@@ -137,18 +112,18 @@ export default class ProviderParser {
    * @param {KalturaPlaybackSource} kalturaSource - A kaltura source
    * @param {Array<KalturaFlavorAsset>} flavorAssets - The flavor Assets of the kaltura source
    * @param {string} ks - The ks
-   * @param {number} partnerID - The partner ID
+   * @param {number} partnerId - The partner ID
    * @param {number} uiConfId - The uiConf ID
    * @param {string} entryId - The entry id
    * @returns {MediaSource} - The parsed adaptive kalturaSource
    * @static
    * @private
    */
-  static _parseAdaptiveSource(kalturaSource: ?KalturaPlaybackSource, flavorAssets: Array<KalturaFlavorAsset>, ks: string, partnerID: number, uiConfId: number, entryId: string): MediaSource {
-    let mediaSource: MediaSource = new MediaSource();
+  static _parseAdaptiveSource(kalturaSource: ?KalturaPlaybackSource, flavorAssets: Array<KalturaFlavorAsset>, ks: string, partnerId: number, uiConfId: ?number, entryId: string): MediaSource {
+    const mediaSource: MediaSource = new MediaSource();
     if (kalturaSource) {
       let playUrl: string = "";
-      let mediaFormat = SUPPORTED_FORMATS.get(kalturaSource.format);
+      const mediaFormat = SupportedStreamFormat.get(kalturaSource.format);
       let extension: string = "";
       if (mediaFormat) {
         extension = mediaFormat.pathExt;
@@ -159,34 +134,29 @@ export default class ProviderParser {
         if (!extension && flavorAssets && flavorAssets.length > 0) {
           extension = flavorAssets[0].fileExt;
         }
-
         playUrl = PlaySourceUrlBuilder.build({
           entryId: entryId,
           flavorIds: kalturaSource.flavorIds,
           format: kalturaSource.format,
           ks: ks,
-          partnerId: partnerID,
+          partnerId: partnerId,
           uiConfId: uiConfId,
           extension: extension,
           protocol: kalturaSource.getProtocol(this._getBaseProtocol())
         });
-
-      }
-      else {
+      } else {
         playUrl = kalturaSource.url;
       }
-
       if (playUrl === "") {
-        logger.error(`failed to create play url from source, discarding source: (${entryId}_${kalturaSource.deliveryProfileId}), ${kalturaSource.format}.`);
+        OVPProviderParser._logger.error(`failed to create play url from source, discarding source: (${entryId}_${kalturaSource.deliveryProfileId}), ${kalturaSource.format}.`);
         return mediaSource;
       }
-
       mediaSource.url = playUrl;
       mediaSource.id = entryId + "_" + kalturaSource.deliveryProfileId + "," + kalturaSource.format;
       if (kalturaSource.hasDrmData()) {
-        let drmParams: Array<Drm> = [];
+        const drmParams: Array<Drm> = [];
         kalturaSource.drm.forEach((drm) => {
-          drmParams.push(new Drm(drm.licenseURL, DrmScheme[drm.scheme], drm.certificate));
+          drmParams.push(new Drm(drm.licenseURL, KalturaDrmPlaybackPluginData.Scheme[drm.scheme], drm.certificate));
         });
         mediaSource.drmData = drmParams;
       }
@@ -200,22 +170,22 @@ export default class ProviderParser {
    * @param {KalturaPlaybackSource} kalturaSource - A kaltura source
    * @param {Array<KalturaFlavorAsset>} flavorAssets - The flavor Assets of the kaltura source
    * @param {string} ks - The ks
-   * @param {number} partnerID - The partner ID
+   * @param {number} partnerId - The partner ID
    * @param {number} uiConfId - The uiConf ID
    * @param {string} entryId - The entry id
    * @returns {Array<MediaSource>} - The parsed progressive kalturaSources
    * @static
    * @private
    */
-  static _parseProgressiveSources(kalturaSource: ?KalturaPlaybackSource, flavorAssets: Array<KalturaFlavorAsset>, ks: string, partnerID: number, uiConfId: number, entryId: string): Array<MediaSource> {
-    let sources = [];
+  static _parseProgressiveSources(kalturaSource: ?KalturaPlaybackSource, flavorAssets: Array<KalturaFlavorAsset>, ks: string, partnerId: number, uiConfId: ?number, entryId: string): Array<MediaSource> {
+    const sources = [];
     if (kalturaSource) {
-      let protocol = kalturaSource.getProtocol(this._getBaseProtocol());
-      let format = kalturaSource.format;
-      let sourceId = kalturaSource.deliveryProfileId + "," + kalturaSource.format;
+      const protocol = kalturaSource.getProtocol(this._getBaseProtocol());
+      const format = kalturaSource.format;
+      const sourceId = kalturaSource.deliveryProfileId + "," + kalturaSource.format;
       flavorAssets.map((flavor) => {
         if (flavor.height && flavor.width) {
-          let mediaSource: MediaSource = new MediaSource();
+          const mediaSource: MediaSource = new MediaSource();
           mediaSource.id = flavor.id + sourceId;
           mediaSource.mimetype = 'video/mp4';
           mediaSource.height = flavor.height;
@@ -227,7 +197,7 @@ export default class ProviderParser {
             flavorIds: flavor.id,
             format: format,
             ks: ks,
-            partnerId: partnerID,
+            partnerId: partnerId,
             uiConfId: uiConfId,
             extension: 'mp4',
             protocol: protocol
@@ -240,37 +210,25 @@ export default class ProviderParser {
   }
 
   /**
-   * @function _isProgressiveSource
-   * @param {KalturaPlaybackSource} source - The kaltura source
-   * @return {boolean} - Is progressive source
-   * @static
-   * @private
-   */
-  static _isProgressiveSource(source: KalturaPlaybackSource): boolean {
-    let sourceFormat = SUPPORTED_FORMATS.get(source.format);
-    return !!sourceFormat && sourceFormat.name === 'mp4';
-  }
-
-  /**
    * Ovp metadata parser
    * @function _parseMetaData
    * @param {KalturaMetadataListResponse} metadataList The metadata list
-   * @returns {Map<string,string>} Parsed metadata
+   * @returns {Object} Parsed metadata
    * @static
    * @private
    */
-  static _parseMetaData(metadataList: KalturaMetadataListResponse): Map<string, string> {
-    let metadata: Object = {};
+  static _parseMetadata(metadataList: KalturaMetadataListResponse): Object {
+    const metadata = {};
     if (metadataList && metadataList.metas && metadataList.metas.length > 0) {
       metadataList.metas.forEach((meta) => {
         let metaXml: Object;
-        let domParser: DOMParser = new DOMParser();
+        const domParser: DOMParser = new DOMParser();
         meta.xml = meta.xml.replace(/\r?\n|\r/g, "");
         meta.xml = meta.xml.replace(/>\s*/g, '>');
         meta.xml = meta.xml.replace(/>\s*/g, '>');
         metaXml = domParser.parseFromString(meta.xml, 'text/xml');
-        let metasObj: Object = XmlParser.xmlToJson(metaXml);
-        let metaKeys = Object.keys(metasObj.metadata);
+        const metasObj: Object = XmlParser.xmlToJson(metaXml);
+        const metaKeys = Object.keys(metasObj.metadata);
         metaKeys.forEach((key) => {
           metadata[key] = metasObj.metadata[key]["#text"];
         })
@@ -287,6 +245,7 @@ export default class ProviderParser {
    * @private
    */
   static _getBaseProtocol(): string {
+    const config = OVPConfiguration.get();
     const protocolRegex = /^https?:/;
     const result = protocolRegex.exec(config.cdnUrl);
     const protocol = result ? result[0] : document.location.protocol;

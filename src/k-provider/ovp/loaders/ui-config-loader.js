@@ -1,32 +1,16 @@
 //@flow
-import UiConfService from '../services/ui-conf-service'
-import KalturaUiConfResponse from '../response-types/kaltura-ui-conf-response'
-import Configuration from '../config'
-import RequestBuilder from '../../request-builder'
+import OVPUIConfService from '../services/ui-conf-service'
+import KalturaUIConfResponse from '../response-types/kaltura-ui-conf-response'
+import OVPConfiguration from '../config'
+import RequestBuilder from '../../../util/request-builder'
 
-const config = Configuration.get();
-
-export default class UiConfigLoader implements ILoader {
-  static get id(): string {
-    return "uiConf";
-  }
-
-  /**
-   * @member - uiConf ID
-   * @type {number}
-   * @private
-   */
+export default class OVPUIConfigLoader implements ILoader {
   _uiConfId: number;
   _requests: Array<RequestBuilder>;
   _response: any = {};
 
-  /**
-   * @constructor
-   * @param {Object} params loader params
-   */
-  constructor(params: Object) {
-    this.requests = this.buildRequests(params);
-    this._uiConfId = params.uiConfId;
+  static get id(): string {
+    return "uiConf";
   }
 
   set requests(requests: Array<RequestBuilder>) {
@@ -38,19 +22,28 @@ export default class UiConfigLoader implements ILoader {
   }
 
   set response(response: any) {
-    this._response.uiConf = new KalturaUiConfResponse(response[0].data);
+    this._response.uiConf = new KalturaUIConfResponse(response[0].data);
   }
 
   get response(): any {
-    if (this._response != null && this._response.uiConf != null && this._response.uiConf.config != null)
+    if (this._response && this._response.uiConf && this._response.uiConf.config)
       try {
         return JSON.parse(this._response.uiConf.config).plugins;
-      }
-      catch (err) {
+      } catch (err) {
         return null;
       }
-    else
+    else {
       return null;
+    }
+  }
+
+  /**
+   * @constructor
+   * @param {Object} params loader params
+   */
+  constructor(params: Object) {
+    this.requests = this.buildRequests(params);
+    this._uiConfId = params.uiConfId;
   }
 
   /**
@@ -61,8 +54,9 @@ export default class UiConfigLoader implements ILoader {
    * @static
    */
   buildRequests(params: Object): Array<RequestBuilder> {
+    const config = OVPConfiguration.get();
     let requests: Array<RequestBuilder> = [];
-    requests.push(UiConfService.get(config.serviceUrl, params.ks, params.uiConfId));
+    requests.push(OVPUIConfService.get(config.serviceUrl, params.ks, params.uiConfId));
     return requests;
   }
 

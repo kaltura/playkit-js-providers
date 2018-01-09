@@ -1,5 +1,5 @@
 // @flow
-declare type MediaFormat = {
+declare type MediaFormatType = {
   name: string,
   mimeType: string,
   pathExt: string

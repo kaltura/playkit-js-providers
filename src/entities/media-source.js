@@ -1,18 +1,14 @@
 //@flow
-import Drm from '../entities/drm'
+import Drm from './drm'
 
-/**
- * Media source
- * @classdesc
- */
 export default class MediaSource {
   /**
-   * @member - media source ID
+   * @member - media source id
    * @type {string}
    */
   id: string;
   /**
-   * @member - media source URL
+   * @member - media source url
    * @type {string}
    */
   url: string;
@@ -48,9 +44,27 @@ export default class MediaSource {
   label: string;
 
   /**
-   * @constructor
+   * Convert class to native js object.
+   * @returns {MediaSourceObject} - The json class object.
    */
-  constructor() {
+  toJSON(): MediaSourceObject {
+    const response: MediaSourceObject = {
+      id: this.id,
+      url: this.url,
+      mimetype: this.mimetype
+    };
+    if (this.bandwidth) response.bandwidth = this.bandwidth;
+    if (this.width) response.width = this.width;
+    if (this.height) response.height = this.height;
+    if (this.label) response.label = this.label;
+    if (this.drmData && this.drmData.length > 0) {
+      response.drmData = [];
+      this.drmData.forEach(d => {
+        if (Array.isArray(response.drmData)) {
+          response.drmData.push(d.toJSON());
+        }
+      });
+    }
+    return response;
   }
 }
-

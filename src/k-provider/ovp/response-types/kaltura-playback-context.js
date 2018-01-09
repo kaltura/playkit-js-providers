@@ -1,14 +1,10 @@
 //@flow
-import ServiceResult from '../../base-service-result'
-import KalturaAccessControlMessage from './kaltura-access-control-message'
+import ServiceResult from '../../common/base-service-result'
+import KalturaAccessControlMessage from '../../common/response-types/kaltura-access-control-message'
 import KalturaPlaybackSource from './kaltura-playback-source'
-import KalturaRuleAction from './kaltura-rule-action'
+import KalturaRuleAction from '../../common/response-types/kaltura-rule-action'
 import KalturaFlavorAsset from './kaltura-flavor-asset'
 
-/**
- * Ovp BE playback context response
- * @classdesc
- */
 export default class KalturaPlaybackContext extends ServiceResult {
   /**
    * @member - The playback sources
@@ -38,28 +34,23 @@ export default class KalturaPlaybackContext extends ServiceResult {
   constructor(response: Object) {
     super(response);
     if (!this.hasError) {
-
-      let messages = response.messages;
+      const messages = response.messages;
       if (messages) {
         messages.map(message => this.messages.push(new KalturaAccessControlMessage(message)));
       }
-
-      let actions = response.actions;
+      const actions = response.actions;
       if (actions) {
         actions.map(action => this.actions.push(new KalturaRuleAction(action)));
       }
-
-      let sources = response.sources;
+      const sources = response.sources;
       if (sources) {
         sources.map(source => this.sources.push(new KalturaPlaybackSource(source)));
       }
-
-      let flavorAssets = response.flavorAssets;
+      const flavorAssets = response.flavorAssets;
       if (flavorAssets) {
         flavorAssets.map(flavor => this.flavorAssets.push(new KalturaFlavorAsset(flavor)));
       }
     }
-
   }
 }
 

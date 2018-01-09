@@ -1,58 +1,52 @@
 //@flow
-import OvpService from './ovp-service'
-import RequestBuilder from '../../request-builder'
+import OVPService from './ovp-service'
+import RequestBuilder from '../../../util/request-builder'
 
 const SERVICE_NAME: string = "baseEntry";
 
-/**
- * Ovp BaseEntry service methods
- * @classdesc
- */
-export default class BaseEntryService extends OvpService {
-
+export default class OVPBaseEntryService extends OVPService {
   /**
    * Creates an instance of RequestBuilder for baseentry.getPlaybackContext
    * @function getPlaybackContext
-   * @param {string} baseUrl The service base URL
+   * @param {string} serviceUrl The service base URL
    * @param {string} ks The ks
    * @param {string} entryId The entry ID
    * @returns {RequestBuilder} The request builder
    * @static
    */
-  static getPlaybackContext(baseUrl: string, ks: string, entryId: string): RequestBuilder {
-    let headers: Map<string, string> = new Map();
+  static getPlaybackContext(serviceUrl: string, ks: string, entryId: string): RequestBuilder {
+    const headers: Map<string, string> = new Map();
     headers.set("Content-Type", "application/json");
-    let request = new RequestBuilder(headers);
+    const request = new RequestBuilder(headers);
     request.service = SERVICE_NAME;
     request.action = "getPlaybackContext";
     request.method = "POST";
-    request.url = request.getUrl(baseUrl);
+    request.url = request.getUrl(serviceUrl);
     request.tag = "baseEntry-getPlaybackContext";
-    let contextDataParams = {objectType: "KalturaContextDataParams", flavorTags: "all"};
-    let params = {entryId: entryId, ks: ks, contextDataParams: contextDataParams};
-    request.params = params;
+    const contextDataParams = {objectType: "KalturaContextDataParams", flavorTags: "all"};
+    request.params = {entryId: entryId, ks: ks, contextDataParams: contextDataParams};
     return request;
   }
 
   /**
    * Creates an instance of RequestBuilder for baseentry.list
    * @function list
-   * @param {string} baseUrl The base URL
+   * @param {string} serviceUrl The base URL
    * @param {string} ks The ks
    * @param {string} entryId The entry ID
    * @returns {RequestBuilder} The request builder
    * @static
    */
-  static list(baseUrl: string, ks: string, entryId: string): RequestBuilder {
-    let headers: Map<string, string> = new Map();
+  static list(serviceUrl: string, ks: string, entryId: string): RequestBuilder {
+    const headers: Map<string, string> = new Map();
     headers.set("Content-Type", "application/json");
-    let request = new RequestBuilder(headers);
+    const request = new RequestBuilder(headers);
     request.service = SERVICE_NAME;
     request.action = "list";
     request.method = "POST";
-    request.url = request.getUrl(baseUrl);
+    request.url = request.getUrl(serviceUrl);
     request.tag = "list";
-    request.params = BaseEntryService.getEntryListReqParams(entryId, ks);
+    request.params = OVPBaseEntryService.getEntryListReqParams(entryId, ks);
     return request;
   }
 
@@ -65,8 +59,8 @@ export default class BaseEntryService extends OvpService {
    * @static
    */
   static getEntryListReqParams(entryId: string, ks: string): any {
-    let filterParams = {redirectFromEntryId: entryId};
-    let responseProfileParams = {
+    const filterParams = {redirectFromEntryId: entryId};
+    const responseProfileParams = {
       fields: "id,name,description,thumbnailUrl,dataUrl,duration,msDuration,flavorParamsIds,mediaType,type,tags,dvrStatus",
       type: 1
     };

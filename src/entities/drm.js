@@ -1,37 +1,46 @@
 //@flow
-
-/**
- * Drm data
- * @classdesc
- */
 export default class Drm {
-
   /**
-   * @member - license URL
+   * @member - license url
    * @type {string}
    */
   licenseUrl: string;
   /**
    * @member - drm scheme
-   * @type {Scheme}
+   * @type {string}
    */
-  scheme: Scheme;
+  scheme: string;
 
   /**
-   * @member - The drm certificate
-   * @type {?string}
+   * @member - drm certificate
+   * @type {string}
    */
-  certificate: ?string;
+  certificate: string;
 
   /**
    * @constructor
-   * @param {string} licenseUrl - the license URL
-   * @param {Scheme} scheme - the drm scheme
+   * @param {string} licenseUrl - the license url
+   * @param {string} scheme - the drm scheme
    * @param {?string} certificate - the drm certificate
    */
-  constructor(licenseUrl: string, scheme: Scheme, certificate: ?string) {
+  constructor(licenseUrl: string, scheme: string, certificate: ?string) {
     this.licenseUrl = licenseUrl;
     this.scheme = scheme;
-    this.certificate = certificate;
+    if (certificate) {
+      this.certificate = certificate;
+    }
+  }
+
+  /**
+   * Convert class to native js object.
+   * @returns {DrmDataObject} - The json class object.
+   */
+  toJSON(): DrmDataObject {
+    const response: DrmDataObject = {
+      licenseUrl: this.licenseUrl,
+      scheme: this.scheme
+    };
+    if (this.certificate) response.certificate = this.certificate;
+    return response;
   }
 }

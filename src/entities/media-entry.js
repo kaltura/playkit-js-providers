@@ -1,15 +1,17 @@
 //@flow
-import {MediaEntryTypes} from '../k-provider/enums'
 import MediaSources from './media-sources'
 
-/**
- * Media entry
- * @classdesc
- */
 export default class MediaEntry {
+  static Type: { [type: string]: string } = {
+    VOD: 'Vod',
+    LIVE: 'Live',
+    IMAGE: 'Image',
+    AUDIO: 'Audio',
+    UNKNOWN: 'Unknown'
+  };
 
   /**
-   * @member - entry ID
+   * @member - entry id
    * @type {string}
    */
   id: string;
@@ -30,14 +32,14 @@ export default class MediaEntry {
   duration: number;
   /**
    * @member - entry type
-   * @type {MediaEntryType}
+   * @type {string}
    */
-  type: MediaEntryType;
+  type: string;
   /**
    * @member - entry metadata
    * @type {Object}
    */
-  metaData: Object;
+  metadata: Object;
   /**
    * @member - DVR status
    * @type {number}
@@ -48,7 +50,24 @@ export default class MediaEntry {
    * @constructor
    */
   constructor() {
-    this.metaData = new Map();
-    this.type = MediaEntryTypes.Unknown;
+    this.metadata = new Map();
+    this.sources = new MediaSources();
+    this.type = MediaEntry.Type.UNKNOWN;
+  }
+
+  /**
+   * Convert class to native js object.
+   * @returns {MediaEntryObject} - The json class object.
+   */
+  toJSON(): MediaEntryObject {
+    return {
+      id: this.id,
+      name: this.name,
+      sources: this.sources.toJSON(),
+      duration: this.duration,
+      dvrStatus: this.dvrStatus,
+      metadata: this.metadata,
+      type: this.type
+    };
   }
 }

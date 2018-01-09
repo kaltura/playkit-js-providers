@@ -37,16 +37,67 @@ yarn run build
 
 Finally, add the bundle as a script tag in your page, and initialize the provider
 
+**OVP Provider**
 ```html
-<script type="text/javascript" src="/PATH/TO/FILE/ovpProvider.js"></script>
-<div id="videoContainer" style="height:360px; width:640px">
+<script type="text/javascript" src="/PATH/TO/FILE/playkit-ovp-provider.js"></script>
+<div id="player-placeholder" style="height:360px; width:640px">
 <script type="text/javascript">
-var partnerId = "YOUR_PARTNER_ID";
-var entryId = "YOUR_ENTRY_ID";
-var ovpProvider = new PlaykitJsProviders.OvpProvider(partnerId);
-ovpProvider.getConfig(entryId).then(function(data) {
-  console.log(data);
-  // Manipulate data
+// Step 1 - Create provider options object
+var options = {
+  partnerId: "YOUR_PARTNER_ID", // Mandatory
+  ks: "YOUR_KS", // Optional
+  logLevel: "LOG_LEVEL", // Optional
+  uiConfId: UI_CONF_ID,  // Optional
+  env: {  // Optional
+    serviceUrl: "YOUR_SERVICE_URL",
+    cdnUrl: "YOUR_CDN_URL"
+  }
+};
+// Step 2 - Create provider instance
+var provider = new playkit.providers.ovp.Provider(options);
+// Step 3 - Create media info object
+var mediaInfo = {
+  entryId: "YOUR_ENTRY_ID" // Mandatory
+  ks: "YOUR_KS", // Optional
+};
+// Step 4 - Get media config
+provider.getMediaConfig(mediaInfo).then(function(mediaConfig) {
+  // Manipulate media config
+});
+</script>
+```
+
+**OTT Provider**
+
+```html
+<script type="text/javascript" src="/PATH/TO/FILE/playkit-ott-provider.js"></script>
+<div id="player-placeholder" style="height:360px; width:640px">
+<script type="text/javascript">
+// Step 1 - Create provider options object
+var options = {
+  partnerId: "YOUR_PARTNER_ID", // Mandatory
+  ks: "YOUR_KS", // Optional
+  logLevel: "LOG_LEVEL", // Optional
+  uiConfId: UI_CONF_ID,  // Optional
+  env: {  // Optional
+    serviceUrl: "YOUR_SERVICE_URL",
+    cdnUrl: "YOUR_CDN_URL"
+  }
+};
+// Step 2 - Create provider instance
+var provider = new playkit.providers.ott.Provider(options);
+// Step 3 - Create media info object
+var mediaInfo = {
+  entryId: "YOUR_ENTRY_ID", // Mandatory
+  ks: "YOUR_KS", // Optional,
+  mediaType: "YOUR_MEDIA_TYPE" // Optional, default: "MEDIA",
+  contextType: "YOUR_MEDIA_CONTEXT_TYPE", // Optional, default: "PLAYBACK",
+  protocol: "YOUR_PROTOCOL", // Optional
+  fileIds: "YOUR_FILE_IDS" // Optional
+};
+// Step 4 - Get media config
+provider.getMediaConfig(mediaInfo).then(function(mediaConfig) {
+  // Manipulate media config
 });
 </script>
 ```

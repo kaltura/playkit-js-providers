@@ -1,17 +1,33 @@
 //@flow
-import MultiRequestBuilder from '../../multi-request-builder'
-import * as config from '../config'
+import MultiRequestBuilder from '../../common/multi-request-builder'
+import OTTConfiguration from '../config'
 
-export default class OttService {
-  static getMultirequest(ks: string): MultiRequestBuilder {
-    let ottParams = config.SERVICE_CONFIG_PARAMAS;
-    Object.assign(ottParams, {ks: ks});
-    let headers: Map<string, string> = new Map();
+const SERVICE_NAME: string = "multirequest";
+
+export default class OTTService {
+  /**
+   * Gets a new instance of MultiRequestBuilder with ott params
+   * @function getMultiRequest
+   * @param {string} ks The ks
+   * @param {string} partnerId The partner ID
+   * @returns {MultiRequestBuilder} The multi request builder
+   * @static
+   */
+  static getMultiRequest(ks: string, partnerId?: number): MultiRequestBuilder {
+    const config = OTTConfiguration.get();
+    const ottParams = config.serviceParams;
+    if (ks) {
+      Object.assign(ottParams, {ks: ks});
+    }
+    if (partnerId) {
+      Object.assign(ottParams, {partnerId: partnerId});
+    }
+    const headers: Map<string, string> = new Map();
     headers.set("Content-Type", "application/json");
-    let multiReq = new MultiRequestBuilder(headers);
+    const multiReq = new MultiRequestBuilder(headers);
     multiReq.method = "POST";
-    multiReq.service = "multirequest";
-    multiReq.url = multiReq.getUrl(config.BE_URL);
+    multiReq.service = SERVICE_NAME;
+    multiReq.url = multiReq.getUrl(config.serviceUrl);
     multiReq.params = ottParams;
     return multiReq;
   }

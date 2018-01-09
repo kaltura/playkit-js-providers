@@ -1,10 +1,8 @@
 //@flow
-import KalturaDrmPlaybackPluginData from './kaltura-drm-playback-plugin-data'
+import KalturaDrmPlaybackPluginData from '../../common/response-types/kaltura-drm-playback-plugin-data'
 
-/**
- * Ovp BE playback source
- * @classdesc
- */
+export type OVPKalturaPlaybackSource = KalturaPlaybackSource;
+
 export default class KalturaPlaybackSource {
   /**
    * @member - source format according to delivery profile streamer type (applehttp, mpegdash etc.)
@@ -47,12 +45,9 @@ export default class KalturaPlaybackSource {
     this.url = source.url;
     this.protocols = source.protocols;
     this.flavorIds = source.flavorIds;
-
     if (source.drm) {
       source.drm.map(drm => this.drm.push(new KalturaDrmPlaybackPluginData(drm)));
     }
-
-
   }
 
   /**
@@ -83,15 +78,13 @@ export default class KalturaPlaybackSource {
     if (this.protocols && this.protocols.length > 0) {
       let protocolsArr: Array<string> = this.protocols.split(",");
       protocolsArr.forEach((p) => {
-        if (p == protocol) {
+        if (p === protocol) {
           returnValue = p;
         }
       });
-    }
-    else if (protocol == "http") {
+    } else if (protocol === "http") {
       return protocol;
     }
     return returnValue;
   }
 }
-

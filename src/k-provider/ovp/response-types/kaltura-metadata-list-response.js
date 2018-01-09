@@ -1,17 +1,9 @@
 //@flow
-import ServiceResult from '../../base-service-result'
+import ServiceResult from '../../common/base-service-result'
 import KalturaMetadata from './kaltura-metadata'
 
-/**
- * Ovp BE Metadata list response
- * @classdesc
- */
 export default class KalturaMetadataListResponse extends ServiceResult {
   totalCount: number;
-  /**
-   * @member -The mata data array
-   * @type {Array<KalturaMetadata>}
-   */
   metas: Array<KalturaMetadata>;
 
   /**
@@ -26,10 +18,6 @@ export default class KalturaMetadataListResponse extends ServiceResult {
         this.metas = [];
         responseObj.objects.map(meta => this.metas.push(new KalturaMetadata(meta)));
       }
-
     }
   }
 }
-
-
-

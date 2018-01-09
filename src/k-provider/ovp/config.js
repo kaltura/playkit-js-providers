@@ -1,4 +1,5 @@
 //@flow
+import {clone} from '../../util/clone'
 
 const defaultConfig: Object = {
   serviceUrl: "//www.kaltura.com/api_v3",
@@ -9,19 +10,18 @@ const defaultConfig: Object = {
   }
 };
 
-export default class Configuration {
-
-  static set(clientConfig?: Object) {
+export default class OVPConfiguration {
+  static set(clientConfig?: ProviderEnvConfigObject) {
     if (clientConfig) {
       Object.assign(defaultConfig, clientConfig);
     }
   }
 
   static get(): Object {
-    return defaultConfig;
+    return clone(defaultConfig);
   }
 }
 
-export {Configuration};
+export {OVPConfiguration};
 
 

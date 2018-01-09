@@ -1,14 +1,7 @@
 //@flow
-import Configuration from './config'
+import OVPConfiguration from './config'
 
-const config = Configuration.get();
-
-/**
- * Media source url builder
- * @classdesc
- */
 export default class PlaySourceUrlBuilder {
-
   /**
    * Returns source url by given url params
    * @function build
@@ -17,17 +10,18 @@ export default class PlaySourceUrlBuilder {
    * @static
    */
   static build(urlParams: Object): string {
-    let cdnUrl: string = config.cdnUrl;
-    let partnerId: string = urlParams.partnerId;
-    let entryId: string = urlParams.entryId;
-    let ks: string = urlParams.ks;
-    let uiConfId: string = urlParams.uiConfId;
-    let format: string = urlParams.format;
-    let protocol: string = urlParams.protocol;
-    let extension: string = urlParams.extension;
-    let flavorIds: string = urlParams.flavorIds;
+    const config = OVPConfiguration.get();
+    const cdnUrl: string = config.cdnUrl;
+    const partnerId: string = urlParams.partnerId;
+    const entryId: string = urlParams.entryId;
+    const ks: string = urlParams.ks;
+    const uiConfId: string = urlParams.uiConfId;
+    const format: string = urlParams.format;
+    const protocol: string = urlParams.protocol;
+    const extension: string = urlParams.extension;
+    const flavorIds: string = urlParams.flavorIds;
 
-    if (cdnUrl == "" && partnerId == "" && entryId == "" && extension == "" && format == "") {
+    if (cdnUrl === "" && partnerId === "" && entryId === "" && extension === "" && format === "") {
       return "";
     }
 
@@ -37,20 +31,20 @@ export default class PlaySourceUrlBuilder {
     }
     playUrl += "p/" + partnerId + "/sp/" + partnerId + "00" + "/playManifest/entryId/" + entryId + "/protocol/" + protocol + "/format/" + format;
 
-    if (flavorIds != "") {
+    if (flavorIds !== "") {
       playUrl += "/flavorIds/" + flavorIds;
     }
-    else if (uiConfId != "") {
+    else if (uiConfId !== "") {
       playUrl += "/uiConfId/" + uiConfId;
     }
 
-    if (ks != "") {
+    if (ks !== "") {
       playUrl += "/ks/" + ks;
     }
 
     playUrl += "/a." + extension;
 
-    if (uiConfId && flavorIds != "") {
+    if (uiConfId && flavorIds !== "") {
       playUrl += "?uiConfId=" + uiConfId;
     }
 
