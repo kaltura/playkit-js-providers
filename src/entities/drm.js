@@ -1,10 +1,4 @@
 //@flow
-export type DrmObject = {
-  licenseUrl: string,
-  scheme: string,
-  certificate?: string
-};
-
 export default class Drm {
   /**
    * @member - license url
@@ -39,10 +33,10 @@ export default class Drm {
 
   /**
    * Convert class to native js object.
-   * @returns {DrmObject} - The json class object.
+   * @returns {DrmDataObject} - The json class object.
    */
-  toJSON(): DrmObject {
-    const response: DrmObject = {
+  toJSON(): DrmDataObject {
+    const response: DrmDataObject = {
       licenseUrl: this.licenseUrl,
       scheme: this.scheme
     };

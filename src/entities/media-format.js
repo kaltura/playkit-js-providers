@@ -1,10 +1,4 @@
 //@flow
-export type MediaFormatType = {
-  name: string,
-  mimeType: string,
-  pathExt: string
-};
-
 export const MediaFormat: { [name: string]: MediaFormatType } = {
   DASH: {
     name: 'dash',

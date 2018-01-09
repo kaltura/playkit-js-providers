@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title><!DOCTYPE html>
+  <title>
     <html lang="en">
     <head>
       <meta charset="UTF-8">
@@ -11,12 +11,16 @@
     </head>
 <body>
 <script>
-  // Create provider options
-  var options = new playkit.providers.ott.ProviderOptions(198);
-  // Create provider
-  var provider = new playkit.providers.ott.Provider(options, '0.17.0');
   // Create media info
-  var mediaInfo = new playkit.providers.ott.ProviderMediaInfo(480097);
+  var mediaInfo = {
+    entryId: 480097
+  };
+  // Create provider options
+  var options = {
+    partnerId: 198
+  };
+  // Create provider instance
+  var provider = new playkit.providers.ott.Provider(options, 'myPlayerVersion');
   // Ask for media config
   provider.getMediaConfig(mediaInfo).then((mediaConfig) => {
     console.log(mediaConfig);

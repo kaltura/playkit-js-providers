@@ -7,16 +7,20 @@
 </head>
 <body>
 <script>
-  var cdnUrl = "http://cdntesting.qa.mkaltura.com";
-  var serviceUrl = "http://qa-apache-php7.dev.kaltura.com/api_v3";
-  // Create provider options
-  var options = new playkit.providers.ovp.ProviderOptions(1091);
-  // Define partner env
-  options.env = new playkit.providers.ovp.ProviderEnvConfig(serviceUrl, cdnUrl);
-  // Create provider
-  var provider = new playkit.providers.ovp.Provider(options, '0.17.0');
   // Create media info
-  var mediaInfo = new playkit.providers.ovp.ProviderMediaInfo('0_4ktof5po');
+  var mediaInfo = {
+    entryId: '0_4ktof5po'
+  };
+  // Create provider options
+  var options = {
+    partnerId: 1091,
+    env: {
+      cdnUrl: "http://cdntesting.qa.mkaltura.com",
+      serviceUrl: "http://qa-apache-php7.dev.kaltura.com/api_v3"
+    }
+  };
+  // Create provider instance
+  var provider = new playkit.providers.ovp.Provider(options, 'myPlayerVersion');
   // Ask for media config
   provider.getMediaConfig(mediaInfo).then((mediaConfig) => {
     console.log(mediaConfig);

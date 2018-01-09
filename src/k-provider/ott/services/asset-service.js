@@ -4,12 +4,6 @@ import RequestBuilder from '../../../util/request-builder'
 
 const SERVICE_NAME: string = "asset";
 
-export type PlaybackContextOptions = {
-  mediaProtocol: string,
-  assetFileIds: string,
-  context: string
-};
-
 export default class OTTAssetService extends OTTService {
   /**
    * Creates an instance of RequestBuilder for session.startWidgetSession

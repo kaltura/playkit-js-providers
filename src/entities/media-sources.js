@@ -1,14 +1,6 @@
 // @flow
 import MediaSource from './media-source'
-import type {MediaSourceObject} from './media-source'
-import type {MediaFormatType} from './media-format'
 import {MediaFormat} from './media-format'
-
-export type MediaSourcesObject = {
-  progressive: Array<MediaSourceObject>,
-  dash: Array<MediaSourceObject>,
-  hls: Array<MediaSourceObject>
-};
 
 export default class MediaSources {
   /**

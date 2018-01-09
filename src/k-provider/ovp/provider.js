@@ -6,18 +6,16 @@ import OVPMediaEntryLoader from './loaders/media-entry-loader'
 import OVPSessionLoader from './loaders/session-loader'
 import OVPDataLoaderManager from './loaders/data-loader-manager'
 import BaseProvider from '../common/base-provider'
-import ProviderOptions from '../common/provider-options/provider-options'
-import ProviderMediaConfig from '../common/provider-media-config'
-import ProviderMediaInfo from '../common/provider-media-info'
-import type {ProviderOptionsObject} from '../common/provider-options/provider-options'
+import MediaSources from '../../entities/media-sources'
+import MediaEntry from '../../entities/media-entry'
 
-export default class OVPProvider extends BaseProvider<ProviderMediaInfo> {
+export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
   /**
    * @constructor
-   * @param {ProviderOptions | ProviderOptionsObject} options - provider options
+   * @param {ProviderOptionsObject} options - provider options
    * @param {string} playerVersion - player version
    */
-  constructor(options: ProviderOptions | ProviderOptionsObject, playerVersion: string) {
+  constructor(options: ProviderOptionsObject, playerVersion: string) {
     super(options, playerVersion);
     this._logger = getLogger("OVPProvider");
     OVPConfiguration.set(options.env);
@@ -25,17 +23,16 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfo> {
 
   /**
    * Gets the backend media config.
-   * @param {ProviderMediaInfo} mediaInfo - ovp media info
-   * @returns {Promise<ProviderMediaConfig>} - The provider media config
+   * @param {ProviderMediaInfoObject} mediaInfo - ovp media info
+   * @returns {Promise<ProviderMediaConfigObject>} - The provider media config
    */
-  getMediaConfig(mediaInfo: ProviderMediaInfo): Promise<ProviderMediaConfig> {
-    const _mediaInfo = mediaInfo.toJSON();
-    if (_mediaInfo.ks) {
-      this.ks = _mediaInfo.ks;
+  getMediaConfig(mediaInfo: ProviderMediaInfoObject): Promise<ProviderMediaConfigObject> {
+    if (mediaInfo.ks) {
+      this.ks = mediaInfo.ks;
     }
     this._dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, this.ks);
     return new Promise((resolve, reject) => {
-      const entryId = _mediaInfo.entryId;
+      const entryId = mediaInfo.entryId;
       if (entryId) {
         let ks: string = this.ks;
         if (!ks) {
@@ -55,9 +52,24 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfo> {
     });
   }
 
-  _parseDataFromResponse(data: Map<string, Function>): ProviderMediaConfig {
+  _parseDataFromResponse(data: Map<string, Function>): ProviderMediaConfigObject {
     this._logger.debug("Data parsing started");
-    const mediaConfig = new ProviderMediaConfig(this.partnerId, this.uiConfId);
+    const mediaConfig = {
+      id: '',
+      name: '',
+      session: {
+        partnerId: this.partnerId
+      },
+      sources: new MediaSources(),
+      duration: 0,
+      type: MediaEntry.Type.UNKNOWN,
+      dvr: false,
+      metadata: {},
+      plugins: {}
+    };
+    if (this.uiConfId) {
+      mediaConfig.session.uiConfId = this.uiConfId;
+    }
     if (data) {
       if (data.has(OVPSessionLoader.id)) {
         const sessionLoader = data.get(OVPSessionLoader.id);

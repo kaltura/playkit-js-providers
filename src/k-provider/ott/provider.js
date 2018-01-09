@@ -2,22 +2,22 @@
 import BaseProvider from '../common/base-provider'
 import getLogger from '../../util/logger'
 import OTTConfiguration from './config'
-import OTTProviderMediaInfo from './provider-media-info'
 import OTTDataLoaderManager from './loaders/data-loader-manager'
 import OTTSessionLoader from './loaders/session-loader'
 import OTTAssetLoader from './loaders/asset-loader'
 import OTTProviderParser from './provider-parser'
-import ProviderOptions from '../common/provider-options/provider-options'
-import ProviderMediaConfig from '../common/provider-media-config'
-import type {ProviderOptionsObject} from '../common/provider-options/provider-options'
+import KalturaAsset from './response-types/kaltura-asset'
+import KalturaPlaybackContext from './response-types/kaltura-playback-context'
+import MediaSources from '../../entities/media-sources'
+import MediaEntry from '../../entities/media-entry'
 
-export default class OTTProvider extends BaseProvider<OTTProviderMediaInfo> {
+export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject> {
   /**
    * @constructor
-   * @param {ProviderOptions | ProviderOptionsObject} options - provider options
+   * @param {ProviderOptionsObject} options - provider options
    * @param {string} playerVersion - player version
    */
-  constructor(options: ProviderOptions | ProviderOptionsObject, playerVersion: string) {
+  constructor(options: ProviderOptionsObject, playerVersion: string) {
     super(options, playerVersion);
     this._logger = getLogger("OTTProvider");
     OTTConfiguration.set(options.env);
@@ -25,17 +25,16 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfo> {
 
   /**
    * Gets the backend media config.
-   * @param {OTTProviderMediaInfo} mediaInfo - ott media info
-   * @returns {Promise<ProviderMediaConfig>} - The provider media config
+   * @param {OTTProviderMediaInfoObject} mediaInfo - ott media info
+   * @returns {Promise<ProviderMediaConfigObject>} - The provider media config
    */
-  getMediaConfig(mediaInfo: OTTProviderMediaInfo): Promise<ProviderMediaConfig> {
-    const _mediaInfo = mediaInfo.toJSON();
-    if (_mediaInfo.ks) {
-      this.ks = _mediaInfo.ks;
+  getMediaConfig(mediaInfo: OTTProviderMediaInfoObject): Promise<ProviderMediaConfigObject> {
+    if (mediaInfo.ks) {
+      this.ks = mediaInfo.ks;
     }
     this._dataLoader = new OTTDataLoaderManager(this.partnerId, this.ks);
     return new Promise((resolve, reject) => {
-      const entryId = _mediaInfo.entryId;
+      const entryId = mediaInfo.entryId;
       if (entryId) {
         let ks: string = this.ks;
         if (!ks) {
@@ -43,14 +42,14 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfo> {
           this._dataLoader.add(OTTSessionLoader, {partnerId: this.partnerId});
         }
         const playbackContext = {
-          mediaProtocol: _mediaInfo.protocol,
-          assetFileIds: _mediaInfo.fileIds,
-          context: _mediaInfo.contextType
+          mediaProtocol: mediaInfo.protocol,
+          assetFileIds: mediaInfo.fileIds,
+          context: mediaInfo.contextType || KalturaPlaybackContext.Type.PLAYBACK
         };
         this._dataLoader.add(OTTAssetLoader, {
           entryId: entryId,
           ks: ks,
-          type: _mediaInfo.mediaType,
+          type: mediaInfo.mediaType || KalturaAsset.Type.MEDIA,
           playbackContext: playbackContext
         });
         this._dataLoader.fetchData()
@@ -69,9 +68,24 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfo> {
     });
   }
 
-  _parseDataFromResponse(data: Map<string, Function>): ProviderMediaConfig {
+  _parseDataFromResponse(data: Map<string, Function>): ProviderMediaConfigObject {
     this._logger.debug("Data parsing started");
-    const mediaConfig = new ProviderMediaConfig(this.partnerId, this.uiConfId);
+    const mediaConfig = {
+      id: '',
+      name: '',
+      session: {
+        partnerId: this.partnerId
+      },
+      sources: new MediaSources(),
+      duration: 0,
+      type: MediaEntry.Type.UNKNOWN,
+      dvr: false,
+      metadata: {},
+      plugins: {}
+    };
+    if (this.uiConfId) {
+      mediaConfig.session.uiConfId = this.uiConfId;
+    }
     if (data) {
       if (data.has(OTTSessionLoader.id)) {
         const sessionLoader = data.get(OTTSessionLoader.id);
@@ -102,6 +116,8 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfo> {
           mediaConfig.name = mediaEntry.name;
           mediaConfig.duration = mediaEntry.duration;
           mediaConfig.metadata = mediaEntry.metadata;
+          mediaConfig.type = mediaEntry.type;
+          mediaConfig.dvr = !!mediaEntry.dvrStatus;
         }
       }
     }

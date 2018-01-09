@@ -10,7 +10,7 @@ const defaultConfig: Object = {
 };
 
 export default class OTTConfiguration {
-  static set(clientConfig?: Object) {
+  static set(clientConfig?: ProviderEnvConfigObject) {
     if (clientConfig) {
       Object.assign(defaultConfig, clientConfig);
     }

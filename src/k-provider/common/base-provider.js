@@ -1,8 +1,6 @@
 // @flow
 import {setLogLevel, getLogLevel, LogLevel} from '../../util/logger'
 import DataLoaderManager from './data-loader-manager'
-import ProviderOptions, {ProviderOptionsObject} from './provider-options/provider-options'
-import ProviderMediaConfig from './provider-media-config'
 
 export default class BaseProvider<MI> {
   _partnerId: number;
@@ -37,11 +35,7 @@ export default class BaseProvider<MI> {
     return this._isAnonymous;
   }
 
-  constructor(options: ProviderOptions | ProviderOptionsObject, playerVersion: string) {
-    if (options instanceof ProviderOptions === false) {
-      options = new ProviderOptions(options);
-    }
-    options = options.toJSON();
+  constructor(options: ProviderOptionsObject, playerVersion: string) {
     this._partnerId = options.partnerId;
     this._uiConfId = options.uiConfId;
     this._isAnonymous = !options.ks;
@@ -52,11 +46,11 @@ export default class BaseProvider<MI> {
     }
   }
 
-  getMediaConfig(mediaInfo: MI): Promise<ProviderMediaConfig> { // eslint-disable-line no-unused-vars
+  getMediaConfig(mediaInfo: MI): Promise<ProviderMediaConfigObject> { // eslint-disable-line no-unused-vars
     throw new TypeError(`getMediaConfig method must be implement by the derived class`);
   }
 
-  _parseDataFromResponse(data: Map<string, Function>): ProviderMediaConfig { // eslint-disable-line no-unused-vars
+  _parseDataFromResponse(data: Map<string, Function>): ProviderMediaConfigObject { // eslint-disable-line no-unused-vars
     throw new TypeError(`_parseDataFromResponse method must be implement by the derived class`);
   }
 

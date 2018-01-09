@@ -1,16 +1,5 @@
 //@flow
 import MediaSources from './media-sources'
-import type {MediaSourcesObject} from './media-sources'
-
-export type MediaEntryObject = {
-  id: string,
-  name: string,
-  sources: MediaSourcesObject,
-  duration: number,
-  dvrStatus: number,
-  metadata: Object,
-  type: string
-};
 
 export default class MediaEntry {
   static Type: { [type: string]: string } = {
