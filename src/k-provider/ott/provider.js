@@ -8,7 +8,6 @@ import OTTAssetLoader from './loaders/asset-loader'
 import OTTProviderParser from './provider-parser'
 import KalturaAsset from './response-types/kaltura-asset'
 import KalturaPlaybackContext from './response-types/kaltura-playback-context'
-import MediaSources from '../../entities/media-sources'
 import MediaEntry from '../../entities/media-entry'
 
 export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject> {

@@ -6,7 +6,6 @@ import OVPMediaEntryLoader from './loaders/media-entry-loader'
 import OVPSessionLoader from './loaders/session-loader'
 import OVPDataLoaderManager from './loaders/data-loader-manager'
 import BaseProvider from '../common/base-provider'
-import MediaSources from '../../entities/media-sources'
 import MediaEntry from '../../entities/media-entry'
 
 export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
