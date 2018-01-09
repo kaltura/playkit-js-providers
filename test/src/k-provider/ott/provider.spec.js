@@ -3,19 +3,16 @@ import * as BE_DATA from './be-data'
 import * as MEDIA_CONFIG_DATA from './media-config-data'
 import {MultiRequestResult} from '../../../../src/k-provider/common/multi-request-builder'
 import MultiRequestBuilder from '../../../../src/k-provider/common/multi-request-builder'
-import OTTProviderMediaInfo from '../../../../src/k-provider/ott/provider-media-info'
-import ProviderOptions from '../../../../src/k-provider/common/provider-options/provider-options'
 
 const partnerId = 198;
+const playerVersion = '1.2.3';
 
 describe('OTTProvider.partnerId:198', function () {
-  let provider, providerOptions, sandbox;
-  const playerVersion = '1.2.3';
+  let provider, sandbox;
 
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
-    providerOptions = new ProviderOptions(partnerId);
-    provider = new OTTProvider(providerOptions, playerVersion);
+    provider = new OTTProvider({partnerId: partnerId}, playerVersion);
   });
 
   afterEach(() => {
@@ -24,8 +21,6 @@ describe('OTTProvider.partnerId:198', function () {
   });
 
   it('should return config without plugins and with drm data', (done) => {
-    const entryId = 480097;
-    const mediaInfo = new OTTProviderMediaInfo(entryId);
     sinon.stub(MultiRequestBuilder.prototype, "execute").callsFake(
       function () {
         return new Promise((resolve) => {
@@ -34,10 +29,9 @@ describe('OTTProvider.partnerId:198', function () {
         });
       }
     );
-    provider.getMediaConfig(mediaInfo).then(mediaConfig => {
+    provider.getMediaConfig({entryId: 480097}).then(mediaConfig => {
       try {
-        const _mediaConfig = mediaConfig.toJSON();
-        _mediaConfig.should.deep.equal(MEDIA_CONFIG_DATA.NoPluginsWithDrm);
+        mediaConfig.should.deep.equal(MEDIA_CONFIG_DATA.NoPluginsWithDrm);
         done();
       } catch (err) {
         done(err);
@@ -49,9 +43,7 @@ describe('OTTProvider.partnerId:198', function () {
 });
 
 describe('logger', () => {
-  const providerOptions = new ProviderOptions(partnerId);
-  const playerVersion = '1.2.3';
-  const provider = new OTTProvider(providerOptions, playerVersion);
+  const provider = new OTTProvider({partnerId: partnerId}, playerVersion);
 
   afterEach(() => {
     provider.setLogLevel(provider.LogLevel.ERROR);

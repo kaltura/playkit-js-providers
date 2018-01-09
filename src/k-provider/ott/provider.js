@@ -70,7 +70,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
 
   _parseDataFromResponse(data: Map<string, Function>): ProviderMediaConfigObject {
     this._logger.debug("Data parsing started");
-    const mediaConfig = {
+    const mediaConfig: ProviderMediaConfigObject = {
       id: '',
       name: '',
       session: {

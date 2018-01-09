@@ -54,7 +54,7 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
 
   _parseDataFromResponse(data: Map<string, Function>): ProviderMediaConfigObject {
     this._logger.debug("Data parsing started");
-    const mediaConfig = {
+    const mediaConfig: ProviderMediaConfigObject = {
       id: '',
       name: '',
       session: {
