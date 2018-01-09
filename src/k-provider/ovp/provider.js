@@ -60,7 +60,7 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
       session: {
         partnerId: this.partnerId
       },
-      sources: new MediaSources(),
+      sources: {hls: [], dash: [], progressive: []},
       duration: 0,
       type: MediaEntry.Type.UNKNOWN,
       dvr: false,
@@ -102,7 +102,7 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
           );
           mediaConfig.id = mediaEntry.id;
           mediaConfig.name = mediaEntry.name;
-          mediaConfig.sources = mediaEntry.sources;
+          mediaConfig.sources = mediaEntry.sources.toJSON();
           mediaConfig.duration = mediaEntry.duration;
           mediaConfig.type = mediaEntry.type;
           mediaConfig.dvr = !!mediaEntry.dvrStatus;

@@ -76,7 +76,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
       session: {
         partnerId: this.partnerId
       },
-      sources: new MediaSources(),
+      sources: {hls: [], dash: [], progressive: []},
       duration: 0,
       type: MediaEntry.Type.UNKNOWN,
       dvr: false,
@@ -111,7 +111,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
             }
           }
           const mediaEntry = OTTProviderParser.getMediaEntry(assetLoader.response);
-          mediaConfig.sources = mediaEntry.sources;
+          mediaConfig.sources = mediaEntry.sources.toJSON();
           mediaConfig.id = mediaEntry.id;
           mediaConfig.name = mediaEntry.name;
           mediaConfig.duration = mediaEntry.duration;
