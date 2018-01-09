@@ -33,10 +33,10 @@ export default class Drm {
 
   /**
    * Convert class to native js object.
-   * @returns {DrmDataObject} - The json class object.
+   * @returns {ProviderDrmDataObject} - The json class object.
    */
-  toJSON(): DrmDataObject {
-    const response: DrmDataObject = {
+  toJSON(): ProviderDrmDataObject {
+    const response: ProviderDrmDataObject = {
       licenseUrl: this.licenseUrl,
       scheme: this.scheme
     };

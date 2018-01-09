@@ -57,9 +57,9 @@ export default class MediaEntry {
 
   /**
    * Convert class to native js object.
-   * @returns {MediaEntryObject} - The json class object.
+   * @returns {ProviderMediaEntryObject} - The json class object.
    */
-  toJSON(): MediaEntryObject {
+  toJSON(): ProviderMediaEntryObject {
     return {
       id: this.id,
       name: this.name,

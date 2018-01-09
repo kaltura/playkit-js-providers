@@ -58,7 +58,7 @@ var provider = new playkit.providers.ovp.Provider(options);
 // Step 3 - Create media info object
 var mediaInfo = {
   entryId: "YOUR_ENTRY_ID" // Mandatory
-  ks: "YOUR_KS", // Optional
+  ks: "YOUR_KS" // Optional
 };
 // Step 4 - Get media config
 provider.getMediaConfig(mediaInfo).then(function(mediaConfig) {
@@ -90,8 +90,8 @@ var provider = new playkit.providers.ott.Provider(options);
 var mediaInfo = {
   entryId: "YOUR_ENTRY_ID", // Mandatory
   ks: "YOUR_KS", // Optional,
-  mediaType: "YOUR_MEDIA_TYPE" // Optional, default: "MEDIA",
-  contextType: "YOUR_MEDIA_CONTEXT_TYPE", // Optional, default: "PLAYBACK",
+  mediaType: "YOUR_MEDIA_TYPE" // Optional, default: "MEDIA"
+  contextType: "YOUR_MEDIA_CONTEXT_TYPE", // Optional, default: "PLAYBACK"
   protocol: "YOUR_PROTOCOL", // Optional
   fileIds: "YOUR_FILE_IDS" // Optional
 };

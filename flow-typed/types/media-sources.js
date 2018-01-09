@@ -1,6 +1,6 @@
 // @flow
-declare type MediaSourcesObject = {
-  progressive: Array<MediaSourceObject>,
-  dash: Array<MediaSourceObject>,
-  hls: Array<MediaSourceObject>
+declare type ProviderMediaSourcesObject = {
+  progressive: Array<ProviderMediaSourceObject>,
+  dash: Array<ProviderMediaSourceObject>,
+  hls: Array<ProviderMediaSourceObject>
 };

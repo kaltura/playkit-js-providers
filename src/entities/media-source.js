@@ -45,10 +45,10 @@ export default class MediaSource {
 
   /**
    * Convert class to native js object.
-   * @returns {MediaSourceObject} - The json class object.
+   * @returns {ProviderMediaSourceObject} - The json class object.
    */
-  toJSON(): MediaSourceObject {
-    const response: MediaSourceObject = {
+  toJSON(): ProviderMediaSourceObject {
+    const response: ProviderMediaSourceObject = {
       id: this.id,
       url: this.url,
       mimetype: this.mimetype
