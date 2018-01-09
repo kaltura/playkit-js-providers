@@ -1,5 +1,5 @@
 //@flow
-export const MediaFormat: { [name: string]: MediaFormatType } = {
+export const MediaFormat: { [name: string]: ProviderMediaFormatType } = {
   DASH: {
     name: 'dash',
     mimeType: 'application/dash+xml',
@@ -27,7 +27,7 @@ export const MediaFormat: { [name: string]: MediaFormatType } = {
   }
 };
 
-export const SupportedStreamFormat: Map<string, MediaFormatType> = new Map([
+export const SupportedStreamFormat: Map<string, ProviderMediaFormatType> = new Map([
   ["mpegdash", MediaFormat.DASH],
   ["applehttp", MediaFormat.HLS],
   ["url", MediaFormat.MP4]

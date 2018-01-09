@@ -1,8 +1,8 @@
 // @flow
-declare type MediaEntryObject = {
+declare type ProviderMediaEntryObject = {
   id: string,
   name: string,
-  sources: MediaSourcesObject,
+  sources: ProviderMediaSourcesObject,
   duration: number,
   dvrStatus: number,
   metadata: Object,

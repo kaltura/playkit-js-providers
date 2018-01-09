@@ -1,5 +1,5 @@
 // @flow
-declare type PlaybackContextOptions = {
+declare type ProviderPlaybackContextOptions = {
   mediaProtocol: string,
   assetFileIds: string,
   context: string

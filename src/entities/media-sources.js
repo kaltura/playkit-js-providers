@@ -37,7 +37,7 @@ export default class MediaSources {
    * @param {MediaFormat} mediaFormat - The media format of the source.
    * @returns {void}
    */
-  map(source: MediaSource, mediaFormat: ?MediaFormatType) {
+  map(source: MediaSource, mediaFormat: ?ProviderMediaFormatType) {
     if (mediaFormat) {
       switch (mediaFormat.name) {
         case MediaFormat.MP4.name:
@@ -57,10 +57,10 @@ export default class MediaSources {
 
   /**
    * Convert class to native js object.
-   * @returns {MediaSourcesObject} - The json class object.
+   * @returns {ProviderMediaSourcesObject} - The json class object.
    */
-  toJSON(): MediaSourcesObject {
-    const response: MediaSourcesObject = {
+  toJSON(): ProviderMediaSourcesObject {
+    const response: ProviderMediaSourcesObject = {
       progressive: [],
       dash: [],
       hls: []

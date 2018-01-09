@@ -1,5 +1,5 @@
 // @flow
-declare type DrmDataObject = {
+declare type ProviderDrmDataObject = {
   licenseUrl: string,
   scheme: string,
   certificate?: string

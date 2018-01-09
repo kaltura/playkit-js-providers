@@ -39,7 +39,7 @@ export default class BaseProvider<MI> {
     this._partnerId = options.partnerId;
     this._uiConfId = options.uiConfId;
     this._isAnonymous = !options.ks;
-    this._ks = options.ks;
+    this._ks = options.ks || '';
     this._playerVersion = playerVersion;
     if (options.logLevel && this.LogLevel[options.logLevel]) {
       setLogLevel(this.LogLevel[options.logLevel]);

@@ -1,5 +1,5 @@
 // @flow
-declare type MediaSourceObject = {
+declare type ProviderMediaSourceObject = {
   id: string,
   url: string,
   mimetype: string,
@@ -7,5 +7,5 @@ declare type MediaSourceObject = {
   width?: number,
   height?: number,
   label?: string,
-  drmData?: Array<DrmDataObject>
+  drmData?: Array<ProviderDrmDataObject>
 };

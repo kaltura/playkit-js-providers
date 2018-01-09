@@ -12,11 +12,11 @@ export default class OTTAssetService extends OTTService {
    * @param {string} ks The partner ID
    * @param {string} assetId The asset ID
    * @param {string} type The asset type (media/recording/epg)
-   * @param {PlaybackContextOptions} playbackContextOptions The playbackContextOptions
+   * @param {ProviderPlaybackContextOptions} playbackContextOptions The playbackContextOptions
    * @returns {RequestBuilder} The request builder
    * @static
    */
-  static getPlaybackContext(serviceUrl: string, ks: string, assetId: string, type: string, playbackContextOptions: PlaybackContextOptions): RequestBuilder {
+  static getPlaybackContext(serviceUrl: string, ks: string, assetId: string, type: string, playbackContextOptions: ProviderPlaybackContextOptions): RequestBuilder {
     const headers: Map<string, string> = new Map();
     headers.set("Content-Type", "application/json");
     const request = new RequestBuilder(headers);

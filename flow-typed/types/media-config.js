@@ -2,8 +2,8 @@
 declare type ProviderMediaConfigObject = {
   id: string,
   name: string,
-  session: SessionConfigObject,
-  sources: MediaSourcesObject,
+  session: ProviderSessionConfigObject,
+  sources: ProviderMediaSourcesObject,
   duration: number,
   type: string,
   dvr: boolean,
