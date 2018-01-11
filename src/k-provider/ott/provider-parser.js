@@ -23,17 +23,35 @@ export default class OTTProviderParser extends BaseProviderParser {
   static getMediaEntry(assetResponse: any): MediaEntry {
     const mediaEntry = new MediaEntry();
     const playbackContext = assetResponse.playBackContextResult;
-    const metadata = assetResponse.mediaDataResult;
+    const mediaData = assetResponse.mediaDataResult;
     const kalturaSources = playbackContext.sources;
-    mediaEntry.name = metadata.name;
-    mediaEntry.id = metadata.id;
-    const metaData = {description: metadata.description};
-    Object.assign(metaData, metadata.metas);
-    Object.assign(metaData, metadata.tags);
-    mediaEntry.metadata = metaData;
+    mediaEntry.name = mediaData.name;
+    mediaEntry.id = mediaData.id;
+    const metadata = {};
+    metadata.description = mediaData.description;
+    metadata.poster = OTTProviderParser._getPoster(mediaData.pictures);
+    Object.assign(metadata, mediaData.metas);
+    Object.assign(metadata, mediaData.tags);
+    mediaEntry.metadata = metadata;
     mediaEntry.sources = OTTProviderParser._getParsedSources(kalturaSources);
     mediaEntry.duration = Math.max.apply(Math, kalturaSources.map(source => source.duration));
     return mediaEntry;
+  }
+
+  /**
+   * Gets the poster url without width and height.
+   * @param {Array<Object>} pictures - Media pictures.
+   * @returns {string} - Poster base url.
+   * @private
+   */
+  static _getPoster(pictures: Array<Object>): string {
+    if (pictures && pictures.length > 0) {
+      const picObj = pictures[0];
+      const url = picObj.url;
+      const end = url.indexOf('width');
+      return url.substring(0, end - 1);
+    }
+    return '';
   }
 
   /**
