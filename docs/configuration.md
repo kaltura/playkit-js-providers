@@ -54,7 +54,7 @@ var provider = new playkit.providers.ott.Provider(config);
 >  serviceUrl: string,
 >  cdnUrl: string
 >}
->>```
+>```
 >##### Default:
 > **OVP**
 >```js
