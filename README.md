@@ -33,7 +33,7 @@ Then, build the player
 yarn run build
 ```
 
-### Embed the library in your test page
+### Embed the Library In Your Test Page
 
 Finally, add the bundle as a script tag in your page, and initialize the provider
 
@@ -102,9 +102,15 @@ provider.getMediaConfig(mediaInfo).then(function(mediaConfig) {
 </script>
 ```
 
-## Configuration
-
-## Running the tests
+## Documentation: API and Configuration
+    
+Both OTT & OVP providers can be configured and controlled easily using the Providers API.
+<br>
+- **Configuration**
+<br>Click [here](docs/configuration.md) to learn more.
+- **API**
+<br> Click [here](docs/api.md) to learn more.
+## Running the Tests
 
 Tests can be run localy via [Karma], which will run on Chrome, Firefox and Safari
 
@@ -120,7 +126,7 @@ yarn run test:firefox
 yarn run test:safari
 ```
 
-### And coding style tests
+### And Coding Style Tests
 
 We use ESLint [recommended set](http://eslint.org/docs/rules/) with some additions for enforcing [Flow] types and other rules.
 
