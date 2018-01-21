@@ -13,14 +13,15 @@ export default class OTTProviderParser extends BaseProviderParser {
   static _logger = getLogger("OTTProviderParser");
 
   /**
-   * Returns parsed media entry by given OTT response objects
+   * Returns parsed media entry by given OTT response objects.
    * @function getMediaEntry
-   * @param {any} assetResponse - The asset response
+   * @param {any} assetResponse - The asset response.
+   * @param {Object} requestData - The request data object.
    * @returns {MediaEntry} - The media entry
    * @static
    * @public
    */
-  static getMediaEntry(assetResponse: any): MediaEntry {
+  static getMediaEntry(assetResponse: any, requestData: Object): MediaEntry {
     const mediaEntry = new MediaEntry();
     const playbackContext = assetResponse.playBackContextResult;
     const metadata = assetResponse.mediaDataResult;
@@ -30,10 +31,25 @@ export default class OTTProviderParser extends BaseProviderParser {
     const metaData = {description: metadata.description};
     Object.assign(metaData, metadata.metas);
     Object.assign(metaData, metadata.tags);
+    const filteredKalturaSources = OTTProviderParser._filterSourcesByFormats(kalturaSources, requestData.formats);
+    mediaEntry.sources = OTTProviderParser._getParsedSources(filteredKalturaSources);
     mediaEntry.metadata = metaData;
-    mediaEntry.sources = OTTProviderParser._getParsedSources(kalturaSources);
     mediaEntry.duration = Math.max.apply(Math, kalturaSources.map(source => source.duration));
     return mediaEntry;
+  }
+
+  /**
+   * Filtered the kalturaSources array by device type.
+   * @param {Array<KalturaPlaybackSource>} kalturaSources - The kaltura sources.
+   * @param {Array<string>} formats - Partner device formats.
+   * @returns {Array<KalturaPlaybackSource>} - Filtered kalturaSources array.
+   * @private
+   */
+  static _filterSourcesByFormats(kalturaSources: Array<KalturaPlaybackSource>, formats: Array<string>): Array<KalturaPlaybackSource> {
+    if (formats.length > 0) {
+      kalturaSources = kalturaSources.filter(source => formats.includes(source.type));
+    }
+    return kalturaSources;
   }
 
   /**
