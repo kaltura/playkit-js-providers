@@ -75,7 +75,7 @@ const NoPluginsWithDrm = {
     }]
   },
   "duration": 123000,
-  "type": "Unknown",
+  "type": "Vod",
   "dvr": false,
   "metadata": {
     "0": {"key": "Free", "value": "nirit|nirit|nirit|"},
@@ -127,7 +127,7 @@ const FilteredSourcesByDeviceType = {
     }]
   },
   "duration": 123000,
-  "type": "Unknown",
+  "type": "Vod",
   "dvr": false,
   "metadata": {
     "0": {"key": "Free", "value": "nirit|nirit|nirit|"},
