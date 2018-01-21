@@ -1,6 +1,8 @@
 //@flow
-import KalturaPlaybackSource from './response-types/kaltura-playback-source'
 import getLogger from '../../util/logger'
+import KalturaPlaybackSource from './response-types/kaltura-playback-source'
+import KalturaPlaybackContext from './response-types/kaltura-playback-context'
+import KalturaAsset from './response-types/kaltura-asset'
 import MediaEntry from '../../entities/media-entry'
 import Drm from '../../entities/drm'
 import MediaSource from '../../entities/media-source'
@@ -8,6 +10,25 @@ import MediaSources from '../../entities/media-sources'
 import {SupportedStreamFormat} from '../../entities/media-format'
 import KalturaDrmPlaybackPluginData from '../common/response-types/kaltura-drm-playback-plugin-data'
 import BaseProviderParser from '../common/base-provider-parser'
+
+const MediaTypeCombinations: { [mediaType: string]: Object } = {
+  [KalturaAsset.Type.MEDIA]: {
+    [KalturaPlaybackContext.Type.TRAILER]: () => ({type: MediaEntry.Type.VOD}),
+    [KalturaPlaybackContext.Type.PLAYBACK]: (metadata) => {
+      if (metadata.linearAssetId) {
+        return {type: MediaEntry.Type.LIVE, dvrStatus: 0};
+      }
+      return {type: MediaEntry.Type.VOD};
+    }
+  },
+  [KalturaAsset.Type.EPG]: {
+    [KalturaPlaybackContext.Type.CATCHUP]: () => ({type: MediaEntry.Type.VOD}),
+    [KalturaPlaybackContext.Type.START_OVER]: () => ({type: MediaEntry.Type.LIVE, dvrStatus: 1})
+  },
+  [KalturaAsset.Type.RECORDING]: {
+    [KalturaPlaybackContext.Type.PLAYBACK]: () => ({type: MediaEntry.Type.VOD})
+  }
+};
 
 export default class OTTProviderParser extends BaseProviderParser {
   static _logger = getLogger("OTTProviderParser");
@@ -31,11 +52,30 @@ export default class OTTProviderParser extends BaseProviderParser {
     const metaData = {description: metadata.description};
     Object.assign(metaData, metadata.metas);
     Object.assign(metaData, metadata.tags);
+    mediaEntry.metadata = metaData;
     const filteredKalturaSources = OTTProviderParser._filterSourcesByFormats(kalturaSources, requestData.formats);
     mediaEntry.sources = OTTProviderParser._getParsedSources(filteredKalturaSources);
-    mediaEntry.metadata = metaData;
+    const typeData = OTTProviderParser._getMediaType(metadata, requestData.mediaType, requestData.contextType);
+    mediaEntry.type = typeData.type;
+    mediaEntry.dvrStatus = typeData.dvrStatus;
     mediaEntry.duration = Math.max.apply(Math, kalturaSources.map(source => source.duration));
     return mediaEntry;
+  }
+
+  /**
+   * Gets the media type (LIVE/VOD)
+   * @param {Object} metadata - The asset metadata.
+   * @param {string} mediaType - The asset media type.
+   * @param {string} contextType - The asset context type.
+   * @returns {Object} - The type data object.
+   * @private
+   */
+  static _getMediaType(metadata: Object, mediaType: string, contextType: string): Object {
+    let typeData = {type: MediaEntry.Type.UNKNOWN};
+    if (typeof MediaTypeCombinations[mediaType][contextType] === 'function') {
+      typeData = MediaTypeCombinations[mediaType][contextType](metadata);
+    }
+    return typeData;
   }
 
   /**
