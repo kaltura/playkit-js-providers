@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.1.0"></a>
+# [2.1.0](https://github.com/kaltura/playkit-js-providers/compare/v1.5.0...v2.1.0) (2018-01-21)
+
+
+### Bug Fixes
+
+* **ott-provider:** return media type (live/vod) ([7daeed1](https://github.com/kaltura/playkit-js-providers/commit/7daeed1))
+
+
+### Features
+
+* **ott-provider:** filter sources by device formats  ([#45](https://github.com/kaltura/playkit-js-providers/issues/45)) ([c505537](https://github.com/kaltura/playkit-js-providers/commit/c505537))
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/kaltura/playkit-js-providers/compare/v1.5.0...v2.0.0) (2018-01-10)
 

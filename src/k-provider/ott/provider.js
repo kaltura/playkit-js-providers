@@ -40,21 +40,28 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
           ks = "{1:result:ks}";
           this._dataLoader.add(OTTSessionLoader, {partnerId: this.partnerId});
         }
+        const contextType = mediaInfo.contextType || KalturaPlaybackContext.Type.PLAYBACK;
+        const mediaType = mediaInfo.mediaType || KalturaAsset.Type.MEDIA;
         const playbackContext = {
           mediaProtocol: mediaInfo.protocol,
           assetFileIds: mediaInfo.fileIds,
-          context: mediaInfo.contextType || KalturaPlaybackContext.Type.PLAYBACK
+          context: contextType
         };
         this._dataLoader.add(OTTAssetLoader, {
           entryId: entryId,
           ks: ks,
-          type: mediaInfo.mediaType || KalturaAsset.Type.MEDIA,
+          type: mediaType,
           playbackContext: playbackContext
         });
+        const requestData = {
+          contextType: contextType,
+          mediaType: mediaType,
+          formats: mediaInfo.formats || []
+        };
         this._dataLoader.fetchData()
           .then(response => {
             try {
-              resolve(this._parseDataFromResponse(response));
+              resolve(this._parseDataFromResponse(response, requestData));
             } catch (err) {
               reject({success: false, data: err});
             }
@@ -67,7 +74,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
     });
   }
 
-  _parseDataFromResponse(data: Map<string, Function>): ProviderMediaConfigObject {
+  _parseDataFromResponse(data: Map<string, Function>, requestData: Object): ProviderMediaConfigObject {
     this._logger.debug("Data parsing started");
     const mediaConfig: ProviderMediaConfigObject = {
       id: '',
@@ -109,7 +116,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
               throw blockedAction;
             }
           }
-          const mediaEntry = OTTProviderParser.getMediaEntry(assetLoader.response);
+          const mediaEntry = OTTProviderParser.getMediaEntry(assetLoader.response, requestData);
           mediaConfig.sources = mediaEntry.sources.toJSON();
           mediaConfig.id = mediaEntry.id;
           mediaConfig.name = mediaEntry.name;

@@ -40,6 +40,30 @@ describe('OTTProvider.partnerId:198', function () {
       done(err)
     })
   });
+
+  it('should return config filtered by device types', (done) => {
+    sinon.stub(MultiRequestBuilder.prototype, "execute").callsFake(
+      function () {
+        return new Promise((resolve) => {
+          const response = new MultiRequestResult(BE_DATA.AnonymousEntryWithoutUIConfWithDrmData);
+          resolve(response);
+        });
+      }
+    );
+    provider.getMediaConfig({
+      entryId: 480097,
+      formats: ["Mobile_Devices_Main_HD_FP", "Mobile_Devices_Main_SD_FP"]
+    }).then(mediaConfig => {
+      try {
+        mediaConfig.should.deep.equal(MEDIA_CONFIG_DATA.FilteredSourcesByDeviceType);
+        done();
+      } catch (err) {
+        done(err);
+      }
+    }, err => {
+      done(err)
+    })
+  });
 });
 
 describe('logger', () => {

@@ -50,7 +50,7 @@ export default class BaseProvider<MI> {
     throw new TypeError(`getMediaConfig method must be implement by the derived class`);
   }
 
-  _parseDataFromResponse(data: Map<string, Function>): ProviderMediaConfigObject { // eslint-disable-line no-unused-vars
+  _parseDataFromResponse(data: Map<string, Function>, ...params: any): ProviderMediaConfigObject { // eslint-disable-line no-unused-vars
     throw new TypeError(`_parseDataFromResponse method must be implement by the derived class`);
   }
 
