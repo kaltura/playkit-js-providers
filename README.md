@@ -1,10 +1,10 @@
-# PlayKit JS Providers - OTT and OVP media providers plugins for the [PlayKit JS Player]
+# PlayKit JS Providers - OTT and OVP Media Provider Plugins for the [PlayKit JS Player]
 
 [![Build Status](https://travis-ci.com/kaltura/playkit-js-providers.svg?token=s2ZQw18ukx9Q6ePzDX3F&branch=master)](https://travis-ci.com/kaltura/playkit-js-providers)
 
-PlayKit JS Providers plugin helps integrate Kaltura OVP and OTT BE data APIs with the [PlayKit JS Player].
+The PlayKit JS Providers plugin helps integrate Kaltura OVP and OTT backend data APIs with the [PlayKit JS Player].
  
-PlayKit JS Providers is written in [ECMAScript6], statically analysed using [Flow] and transpiled in ECMAScript5 using [Babel].
+PlayKit JS Providers is written in [ECMAScript6], analyzed statically using [Flow] and transpiled in ECMAScript5 using [Babel].
 
 [Flow]: https://flow.org/
 [ECMAScript6]: https://github.com/ericdouglas/ES6-Learning#articles--tutorials
@@ -15,7 +15,7 @@ PlayKit JS Providers is written in [ECMAScript6], statically analysed using [Flo
 
 ### Installing
 
-First, clone and run [yarn] to install dependencies:
+First, clone and run [yarn] to install the required dependencies:
 
 [yarn]: https://yarnpkg.com/lang/en/
 
@@ -27,7 +27,7 @@ yarn install
 
 ### Building
 
-Then, build the player
+Next, build the player:
 
 ```javascript
 yarn run build
@@ -35,14 +35,14 @@ yarn run build
 
 ### Embed the Library In Your Test Page
 
-Finally, add the bundle as a script tag in your page, and initialize the provider
+Finally, add the bundle as a script tag in your page, and initialize the provider:
 
 **OVP Provider**
 ```html
 <script type="text/javascript" src="/PATH/TO/FILE/playkit-ovp-provider.js"></script>
 <div id="player-placeholder" style="height:360px; width:640px">
 <script type="text/javascript">
-// Step 1 - Create provider options object
+// Step 1 - Create a provider options object
 var options = {
   partnerId: "YOUR_PARTNER_ID", // Mandatory
   ks: "YOUR_KS", // Optional
@@ -53,14 +53,14 @@ var options = {
     cdnUrl: "YOUR_CDN_URL"
   }
 };
-// Step 2 - Create provider instance
+// Step 2 - Create a provider instance
 var provider = new playkit.providers.ovp.Provider(options);
 // Step 3 - Create media info object
 var mediaInfo = {
   entryId: "YOUR_ENTRY_ID" // Mandatory
   ks: "YOUR_KS" // Optional
 };
-// Step 4 - Get media config
+// Step 4 - Get the media config
 provider.getMediaConfig(mediaInfo).then(function(mediaConfig) {
   // Manipulate media config
 });
@@ -73,7 +73,7 @@ provider.getMediaConfig(mediaInfo).then(function(mediaConfig) {
 <script type="text/javascript" src="/PATH/TO/FILE/playkit-ott-provider.js"></script>
 <div id="player-placeholder" style="height:360px; width:640px">
 <script type="text/javascript">
-// Step 1 - Create provider options object
+// Step 1 - Create a provider options object
 var options = {
   partnerId: "YOUR_PARTNER_ID", // Mandatory
   ks: "YOUR_KS", // Optional
@@ -84,7 +84,7 @@ var options = {
     cdnUrl: "YOUR_CDN_URL"
   }
 };
-// Step 2 - Create provider instance
+// Step 2 - Create a provider instance
 var provider = new playkit.providers.ott.Provider(options);
 // Step 3 - Create media info object
 var mediaInfo = {
@@ -95,7 +95,7 @@ var mediaInfo = {
   protocol: "YOUR_PROTOCOL", // Optional
   fileIds: "YOUR_FILE_IDS" // Optional
 };
-// Step 4 - Get media config
+// Step 4 - Getthe  media config
 provider.getMediaConfig(mediaInfo).then(function(mediaConfig) {
   // Manipulate media config
 });
@@ -112,27 +112,27 @@ Both OTT & OVP providers can be configured and controlled easily using the Provi
 <br> Click [here](docs/api.md) to learn more.
 ## Running the Tests
 
-Tests can be run localy via [Karma], which will run on Chrome, Firefox and Safari
+You can run tests locally via [Karma], which will run on Chrome, Firefox and Safari browsers.
 
 [Karma]: https://karma-runner.github.io/1.0/index.html
 ```
 yarn run test
 ```
 
-You can test individual browsers:
+You can also test individual browsers in the following way:
 ```
 yarn run test:chrome
 yarn run test:firefox
 yarn run test:safari
 ```
 
-### And Coding Style Tests
+### Coding Style Tests
 
-We use ESLint [recommended set](http://eslint.org/docs/rules/) with some additions for enforcing [Flow] types and other rules.
+Kaltura use ESLint [recommended set](http://eslint.org/docs/rules/) with some additions for enforcing [Flow] types and other rules.
 
 See [ESLint config](.eslintrc.json) for full configuration.
 
-We also use [.editorconfig](.editorconfig) to maintain consistent coding styles and settings, please make sure you comply with the styling.
+We also use [.editorconfig](.editorconfig) to maintain consistent coding styles and settings; please make sure you comply with these styles.
 
 
 ## Compatibility
@@ -145,8 +145,8 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/kaltura/playkit-js-providers/tags). 
+We use [SemVer](http://semver.org/) for versioning. For the available versions, see the [tags on this repository](https://github.com/kaltura/playkit-js-providers/tags). 
 
-## License
+## Licensing
 
 This project is licensed under the AGPL-3.0 License - see the [LICENSE.md](LICENSE.md) file for details
