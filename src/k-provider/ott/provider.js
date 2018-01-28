@@ -104,7 +104,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
       }
       if (data.has(OTTAssetLoader.id)) {
         const assetLoader = data.get(OTTAssetLoader.id);
-        if (assetLoader && assetLoader.response) {
+        if (assetLoader && assetLoader.response && Object.keys(assetLoader.response).length) {
           const blockedAction = OTTProviderParser.hasBlockActions(assetLoader.response);
           if (blockedAction) {
             const errorMessage = OTTProviderParser.hasErrorMessage(assetLoader.response);
