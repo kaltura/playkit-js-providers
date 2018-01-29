@@ -1,10 +1,10 @@
-# PlayKit JS Providers - OTT and OVP Media Provider Plugins for the [PlayKit JS Player]
+# PlayKit JS Providers - Cloud TV and OVP Media Provider Plugins for the [PlayKit JS Player]
 
 [![Build Status](https://travis-ci.com/kaltura/playkit-js-providers.svg?token=s2ZQw18ukx9Q6ePzDX3F&branch=master)](https://travis-ci.com/kaltura/playkit-js-providers)
 
-The PlayKit JS Providers plugin helps integrate Kaltura OVP and OTT backend data APIs with the [PlayKit JS Player].
+The PlayKit JS Providers plugin helps integrate Kaltura OVP and Cloud TV backend data APIs with the [PlayKit JS Player].
  
-PlayKit JS Providers is written in [ECMAScript6], analyzed statically using [Flow] and transpiled in ECMAScript5 using [Babel].
+PlayKit JS Providers is written in [ECMAScript6], analyzed statically using [Flow], and transpiled in ECMAScript5 using [Babel].
 
 [Flow]: https://flow.org/
 [ECMAScript6]: https://github.com/ericdouglas/ES6-Learning#articles--tutorials
@@ -67,7 +67,7 @@ provider.getMediaConfig(mediaInfo).then(function(mediaConfig) {
 </script>
 ```
 
-**OTT Provider**
+**Cloud TV Provider**
 
 ```html
 <script type="text/javascript" src="/PATH/TO/FILE/playkit-ott-provider.js"></script>
@@ -104,7 +104,7 @@ provider.getMediaConfig(mediaInfo).then(function(mediaConfig) {
 
 ## Documentation: API and Configuration
     
-Both OTT & OVP providers can be configured and controlled easily using the Providers API.
+Both OVP and Cloud TV providers can be configured and controlled easily using the Providers API.
 <br>
 - **Configuration**
 <br>Click [here](docs/configuration.md) to learn more.
@@ -128,9 +128,9 @@ yarn run test:safari
 
 ### Coding Style Tests
 
-Kaltura use ESLint [recommended set](http://eslint.org/docs/rules/) with some additions for enforcing [Flow] types and other rules.
+Kaltura uses ESLint [recommended set](http://eslint.org/docs/rules/) with some additions for enforcing [Flow] types and other rules.
 
-See [ESLint config](.eslintrc.json) for full configuration.
+See [ESLint config](.eslintrc.json) for the full configuration.
 
 We also use [.editorconfig](.editorconfig) to maintain consistent coding styles and settings; please make sure you comply with these styles.
 
@@ -141,7 +141,7 @@ TBD
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct and the process for submitting pull requests to us.
 
 ## Versioning
 
