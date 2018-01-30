@@ -1,13 +1,14 @@
 ## Configuration
-Configuration parameters could be provided upon instantiation of the provider instance.
-##### OVP
+Configuration parameters are provided upon instantiation of the provider instance.
+
+#### OVP
 ```js
 var config = {
   // Configuration here
 };
 var provider = new playkit.providers.ovp.Provider(config);
 ```
-##### OTT
+#### Cloud TV
 ```js
 var config = {
   // Configuration here
@@ -15,7 +16,7 @@ var config = {
 var provider = new playkit.providers.ott.Provider(config);
 ```
 
-#### Configuration Structure
+### Configuration Structure
 ```js
 {
   partnerId: number,
@@ -35,17 +36,17 @@ var provider = new playkit.providers.ott.Provider(config);
 >### config.partnerId
 >##### Type: `number`
 >##### Default: `-`
->##### Description: Defines the customer's partner id.
+>##### Description: Defines the customer's partner ID.
 ## 
 >### config.ks
 >##### Type: `string`
 >##### Default: `''`
->##### Description: Defines the customer's unique ks.
+>##### Description: Defines the customer's unique KS.
 ## 
 >### config.uiConfId
 >##### Type: `number`
 >##### Default: `-`
->##### Description: Defines the customer's ui config id.
+>##### Description: Defines the customer's UI config ID.
 ## 
 >### config.env
 >##### Type: `ProviderEnvConfigObject`
@@ -63,7 +64,7 @@ var provider = new playkit.providers.ott.Provider(config);
 >  cdnUrl: "//cdnapisec.kaltura.com"
 >}
 >```
-> **OTT**
+> **Cloud TV**
 >```js
 >{
 >  serviceUrl: "//api-preprod.ott.kaltura.com/v4_6/api_v3",
