@@ -11,6 +11,18 @@ PlayKit JS Providers is written in [ECMAScript6], analyzed statically using [Flo
 [Babel]: https://babeljs.io
 [Playkit JS Player]: https://github.com/kaltura/playkit-js
 
+## Table of Contents
+  * [Getting Started](#getting-started)
+    + [Installing](#installing)
+    + [Building](#building)
+    + [Embed the Library In Your Test Page](#embed-the-library-in-your-test-page)
+  * [Documentation](#documentation)
+  * [Running the Tests](#running-the-tests)
+  * [Compatibility](#compatibility)
+  * [Contributing](#contributing)
+  * [Versioning](#versioning)
+  * [Licensing](#licensing)
+  
 ## Getting Started
 
 ### Installing
