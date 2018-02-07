@@ -95,21 +95,18 @@ var mediaInfo = {
   protocol: "YOUR_PROTOCOL", // Optional
   fileIds: "YOUR_FILE_IDS" // Optional
 };
-// Step 4 - Getthe  media config
+// Step 4 - Get the media config
 provider.getMediaConfig(mediaInfo).then(function(mediaConfig) {
   // Manipulate media config
 });
 </script>
 ```
 
-## Documentation: API and Configuration
+## Documentation
     
-Both OVP and Cloud TV providers can be configured and controlled easily using the Providers API.
-<br>
-- **Configuration**
-<br>Click [here](docs/configuration.md) to learn more.
+- **[Configuration](docs/configuration.md)**
 - **API**
-<br> Click [here](docs/api.md) to learn more.
+
 ## Running the Tests
 
 You can run tests locally via [Karma], which will run on Chrome, Firefox and Safari browsers.
