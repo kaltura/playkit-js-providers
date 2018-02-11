@@ -3,43 +3,18 @@
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
 <a name="2.1.0"></a>
-# [2.1.0](https://github.com/kaltura/playkit-js-providers/compare/v1.5.0...v2.1.0) (2018-01-21)
+# [2.1.0](https://github.com/kaltura/playkit-js-providers/compare/v2.0.0...v2.1.0) (2018-01-21)
 
 
 ### Bug Fixes
 
-* prefix provider types ([#42](https://github.com/kaltura/playkit-js-providers/issues/42)) ([80499d5](https://github.com/kaltura/playkit-js-providers/commit/80499d5))
 * **ott-provider:** return media type (live/vod) ([7daeed1](https://github.com/kaltura/playkit-js-providers/commit/7daeed1))
 
 
 ### Features
 
-* ott provider ([#40](https://github.com/kaltura/playkit-js-providers/issues/40)) ([9d8adef](https://github.com/kaltura/playkit-js-providers/commit/9d8adef))
 * **ott-provider:** filter sources by device formats  ([#45](https://github.com/kaltura/playkit-js-providers/issues/45)) ([c505537](https://github.com/kaltura/playkit-js-providers/commit/c505537))
 
-
-### BREAKING CHANGES
-
-* PR - API has been changed.
-
-Changes:
-
-Change config API from getConfig() to getMediaConfig()
-Add BaseProvider class which will reuse similar providers logic and properties. Each provider will need to override getMediaConfig() and _parseDataFromResponse() methods.
-Change provider constructor API - now gets (ProviderOptions, playerVersion, logLevel (optional))
-Add OTTProvider - implementation, samples & tests.
-Create BaseProviderParserto reuse similar logic.
-Split DataLoaderManager to OTT and OVP. Each data loader has its own multi request loader.
-Add webpack entries to ott provider & bookmark service.
-Changes that have been made  from the organizational aspect of the project:
-
-split directories to ovp,ott,common (shared providers logic).
-refactor from let to const where needed.
-some code cleanups and improvements
-add samples folder.
-update tests
-better typing
-remove unnecessary enums
 
 
 
