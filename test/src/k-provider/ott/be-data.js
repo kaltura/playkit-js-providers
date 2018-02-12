@@ -518,4 +518,462 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
   }], "executionTime": 0.7283435
 };
 
-export {AnonymousEntryWithoutUIConfWithDrmData};
+const LiveEntryNoDrmData = {
+  "result": [
+    {
+      "ks": "djJ8MTk4fEiDJqfTA_nqary8_jB-U-W0ne3JNVaZW5JmZDufdRcmcTGy3pAquXoMvFbANe6h63lEhxCo7mMZTsMTP5k4QDmOq99dRsPEsHUwOknv_9wvR_J2pbNzdXmlZ4JlYgO0ZcUr9_7tsZhqrHRfIcgrSj4=",
+      "refreshToken": "b07f74dfe6584790b272eb742577369b",
+      "objectType": "KalturaLoginSession"
+    },
+    {
+      "externalIds": "1073",
+      "catchUpBuffer": 10080,
+      "trickPlayBuffer": 0,
+      "enableRecordingPlaybackNonEntitledChannel": true,
+      "entryId": "",
+      "id": 276507,
+      "type": 422,
+      "name": "USA",
+      "description": "***nadya_aes***",
+      "images": [
+        {
+          "ratio": "16:9",
+          "width": 153,
+          "height": 86,
+          "url": "http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/153/height/86/quality/100",
+          "version": 0,
+          "id": "6c5a2e51f3354e75b2e4fe8a5f8dab33_1",
+          "isDefault": false,
+          "objectType": "KalturaMediaImage"
+        },
+        {
+          "ratio": "16:9",
+          "width": 302,
+          "height": 170,
+          "url": "http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/302/height/170/quality/100",
+          "version": 0,
+          "id": "6c5a2e51f3354e75b2e4fe8a5f8dab33_1",
+          "isDefault": false,
+          "objectType": "KalturaMediaImage"
+        },
+        {
+          "ratio": "16:9",
+          "width": 568,
+          "height": 320,
+          "url": "http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/568/height/320/quality/100",
+          "version": 0,
+          "id": "6c5a2e51f3354e75b2e4fe8a5f8dab33_1",
+          "isDefault": false,
+          "objectType": "KalturaMediaImage"
+        },
+        {
+          "ratio": "16:9",
+          "width": 960,
+          "height": 540,
+          "url": "http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/960/height/540/quality/100",
+          "version": 0,
+          "id": "6c5a2e51f3354e75b2e4fe8a5f8dab33_1",
+          "isDefault": false,
+          "objectType": "KalturaMediaImage"
+        },
+        {
+          "ratio": "16:9",
+          "width": 1280,
+          "height": 720,
+          "url": "http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/1280/height/720/quality/100",
+          "version": 0,
+          "id": "6c5a2e51f3354e75b2e4fe8a5f8dab33_1",
+          "isDefault": false,
+          "objectType": "KalturaMediaImage"
+        },
+        {
+          "ratio": "16:9",
+          "width": 2048,
+          "height": 1152,
+          "url": "http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/2048/height/1152/quality/100",
+          "version": 0,
+          "id": "6c5a2e51f3354e75b2e4fe8a5f8dab33_1",
+          "isDefault": false,
+          "objectType": "KalturaMediaImage"
+        },
+        {
+          "ratio": "1:1",
+          "width": 70,
+          "height": 70,
+          "url": "http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_12/version/0/width/70/height/70/quality/100",
+          "version": 0,
+          "id": "6c5a2e51f3354e75b2e4fe8a5f8dab33_12",
+          "isDefault": false,
+          "objectType": "KalturaMediaImage"
+        },
+        {
+          "ratio": "1:1",
+          "width": 100,
+          "height": 100,
+          "url": "http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_12/version/0/width/100/height/100/quality/100",
+          "version": 0,
+          "id": "6c5a2e51f3354e75b2e4fe8a5f8dab33_12",
+          "isDefault": false,
+          "objectType": "KalturaMediaImage"
+        },
+        {
+          "ratio": "2:3",
+          "width": 103,
+          "height": 154,
+          "url": "http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_2/version/0/width/103/height/154/quality/100",
+          "version": 0,
+          "id": "6c5a2e51f3354e75b2e4fe8a5f8dab33_2",
+          "isDefault": false,
+          "objectType": "KalturaMediaImage"
+        },
+        {
+          "ratio": "2:3",
+          "width": 149,
+          "height": 223,
+          "url": "http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_2/version/0/width/149/height/223/quality/100",
+          "version": 0,
+          "id": "6c5a2e51f3354e75b2e4fe8a5f8dab33_2",
+          "isDefault": false,
+          "objectType": "KalturaMediaImage"
+        },
+        {
+          "ratio": "2:3",
+          "width": 212,
+          "height": 318,
+          "url": "http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_2/version/0/width/212/height/318/quality/100",
+          "version": 0,
+          "id": "6c5a2e51f3354e75b2e4fe8a5f8dab33_2",
+          "isDefault": false,
+          "objectType": "KalturaMediaImage"
+        },
+        {
+          "ratio": "2:3",
+          "width": 355,
+          "height": 534,
+          "url": "http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_2/version/0/width/355/height/534/quality/100",
+          "version": 0,
+          "id": "6c5a2e51f3354e75b2e4fe8a5f8dab33_2",
+          "isDefault": false,
+          "objectType": "KalturaMediaImage"
+        },
+        {
+          "ratio": "2:3",
+          "width": 800,
+          "height": 1111,
+          "url": "http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_2/version/0/width/800/height/1111/quality/100",
+          "version": 0,
+          "id": "6c5a2e51f3354e75b2e4fe8a5f8dab33_2",
+          "isDefault": false,
+          "objectType": "KalturaMediaImage"
+        },
+        {
+          "ratio": "2:3",
+          "width": 600,
+          "height": 900,
+          "url": "http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_2/version/0/width/600/height/900/quality/100",
+          "version": 0,
+          "id": "6c5a2e51f3354e75b2e4fe8a5f8dab33_2",
+          "isDefault": false,
+          "objectType": "KalturaMediaImage"
+        },
+        {
+          "ratio": "16:9",
+          "width": 282,
+          "height": 158,
+          "url": "http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/282/height/158/quality/100",
+          "version": 0,
+          "id": "6c5a2e51f3354e75b2e4fe8a5f8dab33_1",
+          "isDefault": false,
+          "objectType": "KalturaMediaImage"
+        },
+        {
+          "ratio": "2:3",
+          "width": 180,
+          "height": 270,
+          "url": "http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_2/version/0/width/180/height/270/quality/100",
+          "version": 0,
+          "id": "6c5a2e51f3354e75b2e4fe8a5f8dab33_2",
+          "isDefault": false,
+          "objectType": "KalturaMediaImage"
+        },
+        {
+          "ratio": "16:9",
+          "width": 105,
+          "height": 80,
+          "url": "http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/105/height/80/quality/100",
+          "version": 0,
+          "id": "6c5a2e51f3354e75b2e4fe8a5f8dab33_1",
+          "isDefault": false,
+          "objectType": "KalturaMediaImage"
+        },
+        {
+          "ratio": "16:9",
+          "width": 195,
+          "height": 150,
+          "url": "http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/195/height/150/quality/100",
+          "version": 0,
+          "id": "6c5a2e51f3354e75b2e4fe8a5f8dab33_1",
+          "isDefault": false,
+          "objectType": "KalturaMediaImage"
+        },
+        {
+          "ratio": "16:9",
+          "width": 105,
+          "height": 55,
+          "url": "http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/105/height/55/quality/100",
+          "version": 0,
+          "id": "6c5a2e51f3354e75b2e4fe8a5f8dab33_1",
+          "isDefault": false,
+          "objectType": "KalturaMediaImage"
+        },
+        {
+          "ratio": "16:9",
+          "width": 70,
+          "height": 52,
+          "url": "http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/70/height/52/quality/100",
+          "version": 0,
+          "id": "6c5a2e51f3354e75b2e4fe8a5f8dab33_1",
+          "isDefault": false,
+          "objectType": "KalturaMediaImage"
+        },
+        {
+          "ratio": "16:9",
+          "width": 590,
+          "height": 445,
+          "url": "http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/590/height/445/quality/100",
+          "version": 0,
+          "id": "6c5a2e51f3354e75b2e4fe8a5f8dab33_1",
+          "isDefault": false,
+          "objectType": "KalturaMediaImage"
+        },
+        {
+          "ratio": "16:9",
+          "width": 300,
+          "height": 250,
+          "url": "http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/300/height/250/quality/100",
+          "version": 0,
+          "id": "6c5a2e51f3354e75b2e4fe8a5f8dab33_1",
+          "isDefault": false,
+          "objectType": "KalturaMediaImage"
+        },
+        {
+          "ratio": "1:1",
+          "width": 500,
+          "height": 500,
+          "url": "http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_12/version/0/width/500/height/500/quality/100",
+          "version": 0,
+          "id": "6c5a2e51f3354e75b2e4fe8a5f8dab33_12",
+          "isDefault": false,
+          "objectType": "KalturaMediaImage"
+        },
+        {
+          "ratio": "2:1",
+          "width": 200,
+          "height": 100,
+          "url": "http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_17/version/0/width/200/height/100/quality/100",
+          "version": 0,
+          "id": "6c5a2e51f3354e75b2e4fe8a5f8dab33_17",
+          "isDefault": false,
+          "objectType": "KalturaMediaImage"
+        },
+        {
+          "ratio": "4:3",
+          "width": 400,
+          "height": 300,
+          "url": "http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_3/version/0/width/400/height/300/quality/100",
+          "version": 0,
+          "id": "6c5a2e51f3354e75b2e4fe8a5f8dab33_3",
+          "isDefault": false,
+          "objectType": "KalturaMediaImage"
+        },
+        {
+          "ratio": "16:9",
+          "width": 1080,
+          "height": 1960,
+          "url": "http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/1080/height/1960/quality/100",
+          "version": 0,
+          "id": "6c5a2e51f3354e75b2e4fe8a5f8dab33_1",
+          "isDefault": false,
+          "objectType": "KalturaMediaImage"
+        },
+        {
+          "ratio": "1:1",
+          "width": 800,
+          "height": 800,
+          "url": "http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_12/version/0/width/800/height/800/quality/100",
+          "version": 0,
+          "id": "6c5a2e51f3354e75b2e4fe8a5f8dab33_12",
+          "isDefault": false,
+          "objectType": "KalturaMediaImage"
+        }
+      ],
+      "mediaFiles": [
+        {
+          "assetId": 276507,
+          "id": 552351,
+          "type": "Mobile_Devices_Main_SD",
+          "url": "http://cdnapi.kaltura.com/p/931702/sp/93170200/playManifest/entryId/1_oorxcge2/format/applehttp/protocol/http/uiConfId/28428751/a.m3u8",
+          "duration": 0,
+          "externalId": "",
+          "fileSize": 0,
+          "objectType": "KalturaMediaFile"
+        },
+        {
+          "assetId": 276507,
+          "id": 552352,
+          "type": "Mobile_Devices_Main_HD",
+          "url": "http://cdnapi.kaltura.com/p/931702/sp/93170200/playManifest/entryId/1_oorxcge2/format/applehttp/protocol/http/uiConfId/28428751/a.m3u8",
+          "duration": 0,
+          "externalId": "",
+          "fileSize": 0,
+          "objectType": "KalturaMediaFile"
+        }
+      ],
+      "metas": {
+        "synopsis": {
+          "value": "",
+          "objectType": "KalturaMultilingualStringValue"
+        },
+        "Short title": {
+          "value": "",
+          "objectType": "KalturaMultilingualStringValue"
+        },
+        "Runtime": {
+          "value": "220",
+          "objectType": "KalturaMultilingualStringValue"
+        },
+        "Catchup logo URL": {
+          "value": "",
+          "objectType": "KalturaMultilingualStringValue"
+        },
+        "App Link": {
+          "value": "",
+          "objectType": "KalturaMultilingualStringValue"
+        },
+        "Country": {
+          "value": "",
+          "objectType": "KalturaMultilingualStringValue"
+        },
+        "QUALITY": {
+          "value": "",
+          "objectType": "KalturaMultilingualStringValue"
+        },
+        "Epg ID": {
+          "value": "1073",
+          "objectType": "KalturaMultilingualStringValue"
+        },
+        "Channel number": {
+          "value": 19,
+          "objectType": "KalturaDoubleValue"
+        },
+        "Epg guid ID": {
+          "value": 1073,
+          "objectType": "KalturaDoubleValue"
+        },
+        "Catchup allowed": {
+          "value": false,
+          "objectType": "KalturaBooleanValue"
+        }
+      },
+      "tags": {
+        "Free": {
+          "objects": [
+            {
+              "value": "yes",
+              "objectType": "KalturaMultilingualStringValue"
+            },
+            {
+              "value": "no",
+              "objectType": "KalturaMultilingualStringValue"
+            }
+          ],
+          "objectType": "KalturaMultilingualStringValueArray"
+        },
+        "Genre": {
+          "objects": [
+            {
+              "value": "History",
+              "objectType": "KalturaMultilingualStringValue"
+            }
+          ],
+          "objectType": "KalturaMultilingualStringValueArray"
+        },
+        "Parental Rating": {
+          "objects": [
+            {
+              "value": "PG",
+              "objectType": "KalturaMultilingualStringValue"
+            }
+          ],
+          "objectType": "KalturaMultilingualStringValueArray"
+        },
+        "QUALITY": {
+          "objects": [
+            {
+              "value": "hd",
+              "objectType": "KalturaMultilingualStringValue"
+            }
+          ],
+          "objectType": "KalturaMultilingualStringValueArray"
+        },
+        "Source": {
+          "objects": [
+            {
+              "value": "Web3",
+              "objectType": "KalturaMultilingualStringValue"
+            }
+          ],
+          "objectType": "KalturaMultilingualStringValueArray"
+        }
+      },
+      "startDate": 946684800,
+      "endDate": 2524608000,
+      "enableCdvr": true,
+      "enableCatchUp": true,
+      "enableStartOver": true,
+      "enableTrickPlay": true,
+      "objectType": "KalturaMediaAsset"
+    },
+    {
+      "sources": [
+        {
+          "format": "applehttp",
+          "protocols": "http",
+          "drm": [],
+          "assetId": 276507,
+          "id": 552351,
+          "type": "Mobile_Devices_Main_SD",
+          "url": "http://api-preprod.ott.kaltura.com/v4_7/api_v3/service/assetFile/action/playManifest/partnerId/198/assetId/276507/assetType/media/assetFileId/552351/contextType/PLAYBACK/a.m3u8",
+          "duration": 0,
+          "externalId": "",
+          "fileSize": 0,
+          "objectType": "KalturaPlaybackSource"
+        },
+        {
+          "format": "applehttp",
+          "protocols": "http",
+          "drm": [],
+          "assetId": 276507,
+          "id": 552352,
+          "type": "Mobile_Devices_Main_HD",
+          "url": "http://api-preprod.ott.kaltura.com/v4_7/api_v3/service/assetFile/action/playManifest/partnerId/198/assetId/276507/assetType/media/assetFileId/552352/contextType/PLAYBACK/a.m3u8",
+          "duration": 0,
+          "externalId": "",
+          "fileSize": 0,
+          "objectType": "KalturaPlaybackSource"
+        }
+      ],
+      "messages": [
+        {
+          "message": "OK",
+          "code": "OK",
+          "objectType": "KalturaAccessControlMessage"
+        }
+      ],
+      "objectType": "KalturaPlaybackContext"
+    }
+  ],
+  "executionTime": 0.3984844
+};
+
+export {AnonymousEntryWithoutUIConfWithDrmData, LiveEntryNoDrmData};

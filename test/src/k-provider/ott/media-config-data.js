@@ -147,4 +147,80 @@ const FilteredSourcesByDeviceType = {
   }
 };
 
-export {NoPluginsWithDrm, FilteredSourcesByDeviceType};
+const LiveEntryNoDrm = {
+  "id": 276507,
+  "name": "USA",
+  "session": {
+    "partnerId": 198,
+    "ks": "djJ8MTk4fEiDJqfTA_nqary8_jB-U-W0ne3JNVaZW5JmZDufdRcmcTGy3pAquXoMvFbANe6h63lEhxCo7mMZTsMTP5k4QDmOq99dRsPEsHUwOknv_9wvR_J2pbNzdXmlZ4JlYgO0ZcUr9_7tsZhqrHRfIcgrSj4="
+  },
+  "sources": {
+    "progressive": [],
+    "dash": [],
+    "hls": [
+      {
+        "id": "552351,applehttp",
+        "url": "http://api-preprod.ott.kaltura.com/v4_7/api_v3/service/assetFile/action/playManifest/partnerId/198/assetId/276507/assetType/media/assetFileId/552351/contextType/PLAYBACK/a.m3u8",
+        "mimetype": "application/x-mpegURL"
+      },
+      {
+        "id": "552352,applehttp",
+        "url": "http://api-preprod.ott.kaltura.com/v4_7/api_v3/service/assetFile/action/playManifest/partnerId/198/assetId/276507/assetType/media/assetFileId/552352/contextType/PLAYBACK/a.m3u8",
+        "mimetype": "application/x-mpegURL"
+      }
+    ]
+  },
+  "duration": 0,
+  "type": "Live",
+  "dvr": false,
+  "metadata": {
+    "0": {
+      "key": "Free",
+      "value": "yes|no|"
+    },
+    "1": {
+      "key": "Genre",
+      "value": "History|"
+    },
+    "2": {
+      "key": "Parental Rating",
+      "value": "PG|"
+    },
+    "3": {
+      "key": "QUALITY",
+      "value": "hd|"
+    },
+    "4": {
+      "key": "Source",
+      "value": "Web3|"
+    },
+    "5": {
+      "key": "Country",
+      "value": ""
+    },
+    "6": {
+      "key": "QUALITY",
+      "value": ""
+    },
+    "7": {
+      "key": "Epg ID",
+      "value": "1073"
+    },
+    "8": {
+      "key": "Channel number",
+      "value": 19
+    },
+    "9": {
+      "key": "Epg guid ID",
+      "value": 1073
+    },
+    "10": {
+      "key": "Catchup allowed",
+      "value": false
+    },
+    "description": "***nadya_aes***"
+  },
+  "plugins": {}
+};
+
+export {NoPluginsWithDrm, FilteredSourcesByDeviceType, LiveEntryNoDrm};
