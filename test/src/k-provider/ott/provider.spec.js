@@ -64,6 +64,28 @@ describe('OTTProvider.partnerId:198', function () {
       done(err)
     })
   });
+
+  it('should return entry of live type', (done) => {
+    sinon.stub(MultiRequestBuilder.prototype, "execute").callsFake(
+      function () {
+        return new Promise((resolve) => {
+          const response = new MultiRequestResult(BE_DATA.LiveEntryNoDrmData);
+          resolve(response);
+        });
+      }
+    );
+    provider.getMediaConfig({entryId: 276507})
+      .then(mediaConfig => {
+        try {
+          mediaConfig.should.deep.equal(MEDIA_CONFIG_DATA.LiveEntryNoDrm);
+          done();
+        } catch (err) {
+          done(err);
+        }
+      }, err => {
+        done(err)
+      })
+  });
 });
 
 describe('logger', () => {
