@@ -74,10 +74,8 @@ export default class OTTProviderParser extends BaseProviderParser {
    */
   static _getMediaType(mediaAssetData: Object, mediaType: string, contextType: string): Object {
     let typeData = {type: MediaEntry.Type.UNKNOWN};
-    if (KalturaAsset.Type[mediaType] && KalturaPlaybackContext[contextType]) {
-      if (typeof MediaTypeCombinations[mediaType][contextType] === 'function') {
-        typeData = MediaTypeCombinations[mediaType][contextType](mediaAssetData);
-      }
+    if (MediaTypeCombinations[mediaType] && MediaTypeCombinations[mediaType][contextType]) {
+      typeData = MediaTypeCombinations[mediaType][contextType](mediaAssetData);
     }
     return typeData;
   }
