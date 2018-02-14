@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.1.2"></a>
+## [2.1.2](https://github.com/kaltura/playkit-js-providers/compare/v2.1.1...v2.1.2) (2018-02-14)
+
+
+### Bug Fixes
+
+* **FEC-7828:** Live videos in OTT show VOD UI ([#49](https://github.com/kaltura/playkit-js-providers/issues/49)) ([d19c46a](https://github.com/kaltura/playkit-js-providers/commit/d19c46a))
+
+
+
 <a name="2.1.1"></a>
 ## [2.1.1](https://github.com/kaltura/playkit-js-providers/compare/v2.1.0...v2.1.1) (2018-02-11)
 
