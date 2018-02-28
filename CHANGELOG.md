@@ -2,8 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.1.2"></a>
+## [2.1.2](https://github.com/kaltura/playkit-js-providers/compare/v2.1.1...v2.1.2) (2018-02-14)
+
+
+### Bug Fixes
+
+* **FEC-7828:** Live videos in OTT show VOD UI ([#49](https://github.com/kaltura/playkit-js-providers/issues/49)) ([d19c46a](https://github.com/kaltura/playkit-js-providers/commit/d19c46a))
+
+
+
+<a name="2.1.1"></a>
+## [2.1.1](https://github.com/kaltura/playkit-js-providers/compare/v2.1.0...v2.1.1) (2018-02-11)
+
+
+### Bug Fixes
+
+* **FEC-7874:** accessing undefined 'sources' property on bad request ([#47](https://github.com/kaltura/playkit-js-providers/issues/47)) ([e02a5a4](https://github.com/kaltura/playkit-js-providers/commit/e02a5a4))
+
 <a name="2.1.0"></a>
-# [2.1.0](https://github.com/kaltura/playkit-js-providers/compare/v1.5.0...v2.1.0) (2018-01-21)
+# [2.1.0](https://github.com/kaltura/playkit-js-providers/compare/v2.0.0...v2.1.0) (2018-01-21)
 
 
 ### Bug Fixes
@@ -14,57 +32,6 @@ All notable changes to this project will be documented in this file. See [standa
 ### Features
 
 * **ott-provider:** filter sources by device formats  ([#45](https://github.com/kaltura/playkit-js-providers/issues/45)) ([c505537](https://github.com/kaltura/playkit-js-providers/commit/c505537))
-
-<a name="2.0.0"></a>
-# [2.0.0](https://github.com/kaltura/playkit-js-providers/compare/v1.5.0...v2.0.0) (2018-01-10)
-
-
-### Bug Fixes
-
-* prefix provider types ([#42](https://github.com/kaltura/playkit-js-providers/issues/42)) ([80499d5](https://github.com/kaltura/playkit-js-providers/commit/80499d5))
-
-
-### Features
-
-* ott provider ([#40](https://github.com/kaltura/playkit-js-providers/issues/40)) ([9d8adef](https://github.com/kaltura/playkit-js-providers/commit/9d8adef))
-
-
-### BREAKING CHANGES
-
-API has been changed.
-
-* Provider constructor now gets ``(providerOptions: ProviderOptionsObject, playerVersion: string)`` when `ProviderOptionsObject` defined as: 
-```json
-{
-  partnerId: number,
-  logLevel?: string,
-  ks?: string,
-  uiConfId?: number,
-  env?: ProviderEnvConfigObject
-};
-```
-* Change config API from `getConfig()` to `getMediaConfig()`
-* getMediaConfig API now gets `(mediaInfo: ProviderMediaInfoObject)` when `ProviderMediaInfoObject` defined as:
-
-**OVP media info**
-```json
-{
-  entryId: string,
-  ks?: string
-};
-```
-
-**OTT media info**
-```json
-{
-  entryId: string,
-  ks?: string,
-  mediaType: string,
-  contextType: string,
-  protocol?: string,
-  fileIds?: string
-};
-```
 
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/kaltura/playkit-js-providers/compare/v1.5.0...v2.0.0) (2018-01-10)
