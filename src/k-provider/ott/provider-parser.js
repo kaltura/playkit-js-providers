@@ -52,8 +52,7 @@ export default class OTTProviderParser extends BaseProviderParser {
     const metaData = {};
     metaData.description = mediaAsset.description;
     metaData.poster = OTTProviderParser._getPoster(mediaAsset.pictures);
-    Object.assign(metaData, mediaAsset.metas);
-    Object.assign(metaData, mediaAsset.tags);
+    Object.assign(metaData, mediaAsset.metas.concat(mediaAsset.tags));
     mediaEntry.name = mediaAsset.name;
     mediaEntry.id = mediaAsset.id;
     mediaEntry.metadata = metaData;
