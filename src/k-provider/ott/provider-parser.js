@@ -71,20 +71,25 @@ export default class OTTProviderParser extends BaseProviderParser {
    */
   static reconstructMetadata(mediaAsset: Object): Object {
     const metadata = {
-      metas: {},
-      tags: {}
-    };
-    if (mediaAsset.tags) {
-      mediaAsset.tags.forEach((tag) => {
-        metadata.tags[tag.key] = tag.value;
-      });
-    }
-    if (mediaAsset.metas) {
-      mediaAsset.metas.forEach((meta) => {
-        metadata.metas[meta.key] = meta.value;
-      });
+      metas: OTTProviderParser.addToMetaObject(mediaAsset.metas),
+      tags: OTTProviderParser.addToMetaObject(mediaAsset.tags)
     }
     return metadata;
+  }
+
+  /**
+   * transform an array of [{key: value},{key: value}...] to an object
+   * @param {Array<Object>} list a list of objects
+   * @returns {Object} an mapped object of the arrayed list.
+   */
+  static addToMetaObject(list: Array<Object>): Object {
+    let categoryObj = {};
+    if (list) {
+      list.forEach(item => {
+        categoryObj[item.key] = item.value;
+      })
+    }
+    return categoryObj;
   }
 
   /**
