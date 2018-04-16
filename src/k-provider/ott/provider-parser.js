@@ -49,10 +49,9 @@ export default class OTTProviderParser extends BaseProviderParser {
     const playbackContext = assetResponse.playBackContextResult;
     const mediaAsset = assetResponse.mediaDataResult;
     const kalturaSources = playbackContext.sources;
-    const metaData = {};
+    const metaData = OTTProviderParser.reconstructMetadata(mediaAsset);
     metaData.description = mediaAsset.description;
     metaData.poster = OTTProviderParser._getPoster(mediaAsset.pictures);
-    Object.assign(metaData, mediaAsset.metas.concat(mediaAsset.tags));
     mediaEntry.name = mediaAsset.name;
     mediaEntry.id = mediaAsset.id;
     mediaEntry.metadata = metaData;
@@ -63,6 +62,29 @@ export default class OTTProviderParser extends BaseProviderParser {
     mediaEntry.dvrStatus = typeData.dvrStatus;
     mediaEntry.duration = Math.max.apply(Math, kalturaSources.map(source => source.duration));
     return mediaEntry;
+  }
+
+  /**
+   * reconstruct the metadata
+   * @param {Object} mediaAsset the mediaAsset that contains the response with the metadata.
+   * @returns {Object} reconstructed metadata object
+   */
+  static reconstructMetadata(mediaAsset: Object): Object {
+    const metadata = {
+      metas: {},
+      tags: {}
+    };
+    if (mediaAsset.tags) {
+      mediaAsset.tags.forEach((tag) => {
+        metadata.tags[tag.key] = tag.value;
+      });
+    }
+    if (mediaAsset.metas) {
+      mediaAsset.metas.forEach((meta) => {
+        metadata.metas[meta.key] = meta.value;
+      });
+    }
+    return metadata;
   }
 
   /**
