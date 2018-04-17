@@ -49,11 +49,9 @@ export default class OTTProviderParser extends BaseProviderParser {
     const playbackContext = assetResponse.playBackContextResult;
     const mediaAsset = assetResponse.mediaDataResult;
     const kalturaSources = playbackContext.sources;
-    const metaData = {};
+    const metaData = OTTProviderParser.reconstructMetadata(mediaAsset);
     metaData.description = mediaAsset.description;
     metaData.poster = OTTProviderParser._getPoster(mediaAsset.pictures);
-    Object.assign(metaData, mediaAsset.metas);
-    Object.assign(metaData, mediaAsset.tags);
     mediaEntry.name = mediaAsset.name;
     mediaEntry.id = mediaAsset.id;
     mediaEntry.metadata = metaData;
@@ -64,6 +62,34 @@ export default class OTTProviderParser extends BaseProviderParser {
     mediaEntry.dvrStatus = typeData.dvrStatus;
     mediaEntry.duration = Math.max.apply(Math, kalturaSources.map(source => source.duration));
     return mediaEntry;
+  }
+
+  /**
+   * reconstruct the metadata
+   * @param {Object} mediaAsset the mediaAsset that contains the response with the metadata.
+   * @returns {Object} reconstructed metadata object
+   */
+  static reconstructMetadata(mediaAsset: Object): Object {
+    const metadata = {
+      metas: OTTProviderParser.addToMetaObject(mediaAsset.metas),
+      tags: OTTProviderParser.addToMetaObject(mediaAsset.tags)
+    }
+    return metadata;
+  }
+
+  /**
+   * transform an array of [{key: value},{key: value}...] to an object
+   * @param {Array<Object>} list a list of objects
+   * @returns {Object} an mapped object of the arrayed list.
+   */
+  static addToMetaObject(list: Array<Object>): Object {
+    let categoryObj = {};
+    if (list) {
+      list.forEach(item => {
+        categoryObj[item.key] = item.value;
+      })
+    }
+    return categoryObj;
   }
 
   /**
