@@ -78,19 +78,28 @@ const NoPluginsWithDrm = {
   "type": "Vod",
   "dvr": false,
   "metadata": {
-    "0": {"key": "Free", "value": "nirit|nirit|nirit|"},
-    "1": {"key": "Genre", "value": "Comedy|Comedy|Comedy|Drama|Kids|Kids|Kids|"},
-    "2": {
-      "key": "Main cast",
-      "value": "Anna Kendrick|Anna Kendrick|Anna Kendrick|Justin Timberlake|Justin Timberlake|Justin Timberlake|"
+    "metas": {
+      "App Link": "",
+      "Catchup allowed": false,
+      "Catchup logo URL": "",
+      "Country": "",
+      "Epg ID": "",
+      "QUALITY": "",
+      "Release year": 2017,
+      "Runtime": "92",
+      "Short title": "",
+      "synopsis": ""
     },
-    "3": {"key": "Director", "value": "Walt Dohrn|Walt Dohrn|Walt Dohrn|"},
-    "4": {"key": "Parental Rating", "value": "PG|Parental - 8|"},
-    "5": {"key": "Studio", "value": "Pixar|Pixar|Pixar|"},
-    "6": {"key": "Country", "value": "USA|USA|USA|"},
-    "7": {"key": "QUALITY", "value": "hd|hd|hd|"},
-    "8": {"key": "Release year", "value": 2017},
-    "9": {"key": "Catchup allowed", "value": false},
+    "tags": {
+      "Country": "USA|USA|USA|",
+      "Director": "Walt Dohrn|Walt Dohrn|Walt Dohrn|",
+      "Free": "nirit|nirit|nirit|",
+      "Genre": "Comedy|Comedy|Comedy|Drama|Kids|Kids|Kids|",
+      "Main cast": "Anna Kendrick|Anna Kendrick|Anna Kendrick|Justin Timberlake|Justin Timberlake|Justin Timberlake|",
+      "Parental Rating": "PG|Parental - 8|",
+      "QUALITY": "hd|hd|hd|",
+      "Studio": "Pixar|Pixar|Pixar|"
+    },
     "description": "After the Bergens invade Troll Village, Poppy, the happiest Troll ever born, and the curmudgeonly Branch set off on a journey to rescue her friends. DreamWorks Animation's TROLLS is an irreverent comedy extravaganza with incredible music! From the genius creators of SHREK, TROLLS stars Anna Kendrick as Poppy, the optimistic leader of the Trolls, and her polar opposite, Branch, played by Justin Timberlake. Together, this unlikely pair of Trolls must embark on an adventure that takes them far beyond the only world they've ever known.",
     "poster": [
       {
@@ -247,19 +256,28 @@ const FilteredSourcesByDeviceType = {
   "type": "Vod",
   "dvr": false,
   "metadata": {
-    "0": {"key": "Free", "value": "nirit|nirit|nirit|"},
-    "1": {"key": "Genre", "value": "Comedy|Comedy|Comedy|Drama|Kids|Kids|Kids|"},
-    "2": {
-      "key": "Main cast",
-      "value": "Anna Kendrick|Anna Kendrick|Anna Kendrick|Justin Timberlake|Justin Timberlake|Justin Timberlake|"
+    "metas": {
+      "App Link": "",
+      "Catchup allowed": false,
+      "Catchup logo URL": "",
+      "Country": "",
+      "Epg ID": "",
+      "QUALITY": "",
+      "Release year": 2017,
+      "Runtime": "92",
+      "Short title": "",
+      "synopsis": ""
     },
-    "3": {"key": "Director", "value": "Walt Dohrn|Walt Dohrn|Walt Dohrn|"},
-    "4": {"key": "Parental Rating", "value": "PG|Parental - 8|"},
-    "5": {"key": "Studio", "value": "Pixar|Pixar|Pixar|"},
-    "6": {"key": "Country", "value": "USA|USA|USA|"},
-    "7": {"key": "QUALITY", "value": "hd|hd|hd|"},
-    "8": {"key": "Release year", "value": 2017},
-    "9": {"key": "Catchup allowed", "value": false},
+    "tags": {
+      "Country": "USA|USA|USA|",
+      "Director": "Walt Dohrn|Walt Dohrn|Walt Dohrn|",
+      "Free": "nirit|nirit|nirit|",
+      "Genre": "Comedy|Comedy|Comedy|Drama|Kids|Kids|Kids|",
+      "Main cast": "Anna Kendrick|Anna Kendrick|Anna Kendrick|Justin Timberlake|Justin Timberlake|Justin Timberlake|",
+      "Parental Rating": "PG|Parental - 8|",
+      "QUALITY": "hd|hd|hd|",
+      "Studio": "Pixar|Pixar|Pixar|"
+    },
     "description": "After the Bergens invade Troll Village, Poppy, the happiest Troll ever born, and the curmudgeonly Branch set off on a journey to rescue her friends. DreamWorks Animation's TROLLS is an irreverent comedy extravaganza with incredible music! From the genius creators of SHREK, TROLLS stars Anna Kendrick as Poppy, the optimistic leader of the Trolls, and her polar opposite, Branch, played by Justin Timberlake. Together, this unlikely pair of Trolls must embark on an adventure that takes them far beyond the only world they've ever known.",
     "poster": [
       {
@@ -408,49 +426,25 @@ const LiveEntryNoDrm = {
   "type": "Live",
   "dvr": false,
   "metadata": {
-    "0": {
-      "key": "Free",
-      "value": "yes|no|"
+    "metas": {
+      "App Link": "",
+      "Catchup allowed": false,
+      "Catchup logo URL": "",
+      "Channel number": 19,
+      "Country": "",
+      "Epg ID": "1073",
+      "Epg guid ID": 1073,
+      "QUALITY": "",
+      "Runtime": "220",
+      "Short title": "",
+      "synopsis": ""
     },
-    "1": {
-      "key": "Genre",
-      "value": "History|"
-    },
-    "2": {
-      "key": "Parental Rating",
-      "value": "PG|"
-    },
-    "3": {
-      "key": "QUALITY",
-      "value": "hd|"
-    },
-    "4": {
-      "key": "Source",
-      "value": "Web3|"
-    },
-    "5": {
-      "key": "Country",
-      "value": ""
-    },
-    "6": {
-      "key": "QUALITY",
-      "value": ""
-    },
-    "7": {
-      "key": "Epg ID",
-      "value": "1073"
-    },
-    "8": {
-      "key": "Channel number",
-      "value": 19
-    },
-    "9": {
-      "key": "Epg guid ID",
-      "value": 1073
-    },
-    "10": {
-      "key": "Catchup allowed",
-      "value": false
+    "tags": {
+      "Free": "yes|no|",
+      "Genre": "History|",
+      "Parental Rating": "PG|",
+      "QUALITY": "hd|",
+      "Source": "Web3|"
     },
     "description": "***nadya_aes***",
     "poster": [
