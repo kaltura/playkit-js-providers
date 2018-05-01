@@ -77,16 +77,23 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
   _parseDataFromResponse(data: Map<string, Function>, requestData: Object): ProviderMediaConfigObject {
     this._logger.debug("Data parsing started");
     const mediaConfig: ProviderMediaConfigObject = {
-      id: '',
-      name: '',
       session: {
         partnerId: this.partnerId
       },
-      sources: {hls: [], dash: [], progressive: []},
-      duration: 0,
-      type: MediaEntry.Type.UNKNOWN,
-      dvr: false,
-      metadata: {},
+      sources: {
+        hls: [],
+        dash: [],
+        progressive: [],
+        id: '',
+        duration: 0,
+        type: MediaEntry.Type.UNKNOWN,
+        poster: '',
+        dvr: false,
+        metadata: {
+          name: '',
+          description: ''
+        }
+      },
       plugins: {}
     };
     if (this.uiConfId) {
@@ -117,13 +124,16 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
             }
           }
           const mediaEntry = OTTProviderParser.getMediaEntry(assetLoader.response, requestData);
-          mediaConfig.sources = mediaEntry.sources.toJSON();
-          mediaConfig.id = mediaEntry.id;
-          mediaConfig.name = mediaEntry.name;
-          mediaConfig.duration = mediaEntry.duration;
-          mediaConfig.metadata = mediaEntry.metadata;
-          mediaConfig.type = mediaEntry.type;
-          mediaConfig.dvr = !!mediaEntry.dvrStatus;
+          const mediaSources = mediaEntry.sources.toJSON();
+          mediaConfig.sources.hls = mediaSources.hls;
+          mediaConfig.sources.dash = mediaSources.dash;
+          mediaConfig.sources.progressive = mediaSources.progressive;
+          mediaConfig.sources.id = mediaEntry.id;
+          mediaConfig.sources.duration = mediaEntry.duration;
+          mediaConfig.sources.type = mediaEntry.type;
+          mediaConfig.sources.dvr = !!mediaEntry.dvrStatus;
+          mediaConfig.sources.poster = mediaEntry.poster;
+          Object.assign(mediaConfig.sources.metadata, mediaEntry.metadata);
         }
       }
     }
