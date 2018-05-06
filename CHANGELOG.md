@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.3.0"></a>
+# [2.3.0](https://github.com/kaltura/playkit-js-providers/compare/v2.2.0...v2.3.0) (2018-05-06)
+
+
+### Bug Fixes
+
+* **FEC-8096:** some of OTT metadata is getting overriden ([#50](https://github.com/kaltura/playkit-js-providers/issues/50)) ([30a7553](https://github.com/kaltura/playkit-js-providers/commit/30a7553))
+* **FEC-8135:** change the provider default service config to https://cdsnapisec.kaltura.com ([#51](https://github.com/kaltura/playkit-js-providers/issues/51)) ([f05784b](https://github.com/kaltura/playkit-js-providers/commit/f05784b))
+
+
+### Features
+
+* **FEC-8176:** restructure media config ([#52](https://github.com/kaltura/playkit-js-providers/issues/52)) ([911d79d](https://github.com/kaltura/playkit-js-providers/commit/911d79d))
+
+
+
 <a name="2.2.0"></a>
 # [2.2.0](https://github.com/kaltura/playkit-js-providers/compare/v2.1.2...v2.2.0) (2018-03-12)
 
