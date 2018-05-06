@@ -54,18 +54,26 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
   _parseDataFromResponse(data: Map<string, Function>): ProviderMediaConfigObject {
     this._logger.debug("Data parsing started");
     const mediaConfig: ProviderMediaConfigObject = {
-      id: '',
-      name: '',
       session: {
         partnerId: this.partnerId
       },
-      sources: {hls: [], dash: [], progressive: []},
-      duration: 0,
-      type: MediaEntry.Type.UNKNOWN,
-      dvr: false,
-      metadata: {},
+      sources: {
+        hls: [],
+        dash: [],
+        progressive: [],
+        id: '',
+        duration: 0,
+        type: MediaEntry.Type.UNKNOWN,
+        poster: '',
+        dvr: false,
+        metadata: {
+          name: '',
+          description: ''
+        }
+      },
       plugins: {}
     };
+
     if (this.uiConfId) {
       mediaConfig.session.uiConfId = this.uiConfId;
     }
@@ -99,13 +107,16 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
             this.uiConfId,
             mediaLoader.response
           );
-          mediaConfig.id = mediaEntry.id;
-          mediaConfig.name = mediaEntry.name;
-          mediaConfig.sources = mediaEntry.sources.toJSON();
-          mediaConfig.duration = mediaEntry.duration;
-          mediaConfig.type = mediaEntry.type;
-          mediaConfig.dvr = !!mediaEntry.dvrStatus;
-          mediaConfig.metadata = mediaEntry.metadata;
+          const mediaSources = mediaEntry.sources.toJSON();
+          mediaConfig.sources.hls = mediaSources.hls;
+          mediaConfig.sources.dash = mediaSources.dash;
+          mediaConfig.sources.progressive = mediaSources.progressive;
+          mediaConfig.sources.id = mediaEntry.id;
+          mediaConfig.sources.duration = mediaEntry.duration;
+          mediaConfig.sources.type = mediaEntry.type;
+          mediaConfig.sources.dvr = !!mediaEntry.dvrStatus;
+          mediaConfig.sources.poster = mediaEntry.poster;
+          Object.assign(mediaConfig.sources.metadata, mediaEntry.metadata);
         }
       }
     }

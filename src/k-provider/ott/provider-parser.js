@@ -51,10 +51,10 @@ export default class OTTProviderParser extends BaseProviderParser {
     const kalturaSources = playbackContext.sources;
     const metaData = OTTProviderParser.reconstructMetadata(mediaAsset);
     metaData.description = mediaAsset.description;
-    metaData.poster = OTTProviderParser._getPoster(mediaAsset.pictures);
-    mediaEntry.name = mediaAsset.name;
-    mediaEntry.id = mediaAsset.id;
+    metaData.name = mediaAsset.name;
     mediaEntry.metadata = metaData;
+    mediaEntry.poster = OTTProviderParser._getPoster(mediaAsset.pictures);
+    mediaEntry.id = mediaAsset.id;
     const filteredKalturaSources = OTTProviderParser._filterSourcesByFormats(kalturaSources, requestData.formats);
     mediaEntry.sources = OTTProviderParser._getParsedSources(filteredKalturaSources);
     const typeData = OTTProviderParser._getMediaType(mediaAsset.data, requestData.mediaType, requestData.contextType);

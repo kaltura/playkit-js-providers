@@ -1,5 +1,4 @@
 //@flow
-// import KalturaPlaybackSource from './response-types/kaltura-playback-source'
 import KalturaFlavorAsset from './response-types/kaltura-flavor-asset'
 import KalturaMetadataListResponse from './response-types/kaltura-metadata-list-response'
 import KalturaMediaEntry from './response-types/kaltura-media-entry'
@@ -16,7 +15,7 @@ import MediaSources from '../../entities/media-sources'
 import {SupportedStreamFormat} from '../../entities/media-format'
 import BaseProviderParser from '../common/base-provider-parser'
 
-export default class OVPProviderParser extends BaseProviderParser{
+export default class OVPProviderParser extends BaseProviderParser {
   static _logger = getLogger("OVPProviderParser");
 
   /**
@@ -38,12 +37,12 @@ export default class OVPProviderParser extends BaseProviderParser{
     const kalturaSources = playbackContext.sources;
 
     mediaEntry.sources = OVPProviderParser._getParsedSources(kalturaSources, ks, partnerId, uiConfId, entry, playbackContext);
-    mediaEntry.metadata = this._parseMetadata(metadataList);
-    mediaEntry.metadata.description = entry.description;
-    mediaEntry.metadata.poster = entry.poster;
+    mediaEntry.poster = entry.poster;
     mediaEntry.id = entry.id;
-    mediaEntry.name = entry.name;
     mediaEntry.duration = entry.duration;
+    mediaEntry.metadata = this._parseMetadata(metadataList);
+    mediaEntry.metadata.description = entry.description || '';
+    mediaEntry.metadata.name = entry.name || '';
 
     let type = MediaEntry.Type.UNKNOWN;
     switch (entry.entryType) {

@@ -1,11 +1,6 @@
 // @flow
 declare type ProviderMediaConfigObject = {
-  id: string,
-  name: string,
-  session: ProviderSessionConfigObject,
-  sources: ProviderMediaSourcesObject,
-  duration: number,
-  type: string,
-  dvr: boolean,
-  metadata: Object
+  session: ProviderMediaConfigSessionObject,
+  sources: ProviderMediaConfigSourcesObject,
+  plugins: { [plugin: string]: Object }
 };
