@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.3.1"></a>
+## [2.3.1](https://github.com/kaltura/playkit-js-providers/compare/v2.3.0...v2.3.1) (2018-05-16)
+
+
+### Bug Fixes
+
+* **FEC-8217:** add asset reference for the asset get service ([#53](https://github.com/kaltura/playkit-js-providers/issues/53)) ([fe7ae71](https://github.com/kaltura/playkit-js-providers/commit/fe7ae71))
+
+
+
 <a name="2.3.0"></a>
 # [2.3.0](https://github.com/kaltura/playkit-js-providers/compare/v2.2.0...v2.3.0) (2018-05-06)
 
