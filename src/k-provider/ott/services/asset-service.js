@@ -30,7 +30,7 @@ export default class OTTAssetService extends OTTService {
     return request;
   }
 
-  static get(serviceUrl: string, ks: string, assetId: string): RequestBuilder {
+  static get(serviceUrl: string, ks: string, assetId: string, assetReferenceType: string): RequestBuilder {
     const headers: Map<string, string> = new Map();
     headers.set("Content-Type", "application/json");
     const request = new RequestBuilder(headers);
@@ -38,7 +38,7 @@ export default class OTTAssetService extends OTTService {
     request.action = "get";
     request.method = "POST";
     request.url = request.getUrl(serviceUrl);
-    request.params = {id: assetId, assetReferenceType: "media", ks: ks};
+    request.params = {id: assetId, assetReferenceType: assetReferenceType, ks: ks};
     return request;
   }
 }

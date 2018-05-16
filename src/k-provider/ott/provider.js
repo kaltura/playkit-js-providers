@@ -42,6 +42,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
         }
         const contextType = mediaInfo.contextType || KalturaPlaybackContext.Type.PLAYBACK;
         const mediaType = mediaInfo.mediaType || KalturaAsset.Type.MEDIA;
+        const assetReferenceType = mediaInfo.assetReferenceType || KalturaAsset.AssetReferenceType.MEDIA;
         const playbackContext = {
           mediaProtocol: mediaInfo.protocol,
           assetFileIds: mediaInfo.fileIds,
@@ -51,7 +52,8 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
           entryId: entryId,
           ks: ks,
           type: mediaType,
-          playbackContext: playbackContext
+          playbackContext: playbackContext,
+          assetReferenceType: assetReferenceType
         });
         const requestData = {
           contextType: contextType,
