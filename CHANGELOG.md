@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.3.2"></a>
+## [2.3.2](https://github.com/kaltura/playkit-js-providers/compare/v2.3.1...v2.3.2) (2018-05-26)
+
+
+### Bug Fixes
+
+* **FEC-8235:** remove default service url from OTT provider and analytics ([#54](https://github.com/kaltura/playkit-js-providers/issues/54)) ([43fb839](https://github.com/kaltura/playkit-js-providers/commit/43fb839))
+
+
+
 <a name="2.3.1"></a>
 ## [2.3.1](https://github.com/kaltura/playkit-js-providers/compare/v2.3.0...v2.3.1) (2018-05-16)
 
