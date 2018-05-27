@@ -1,13 +1,36 @@
 //@flow
 const NoPluginsNoDrm = {
-  "id": "1_rsrdfext",
-  "name": "FO21934-HDTX-SWE",
   "session": {
     "partnerId": 1082342,
     "ks": "OGM0ZWM0Y2IwOWI5ZjM0MDcyZmQ3YmYxNzBiMGEwNGYxNWQ0ZTcyOXwxMDgyMzQyOzEwODIzNDI7MTQ5MDExNTg5MzswOzE0OTAwMjk0OTMuMTY3ODswO3ZpZXc6Kix3aWRnZXQ6MTs7"
   },
   "plugins": {},
   "sources": {
+    "id": "1_rsrdfext",
+    "duration": 55,
+    "dvr": false,
+    "type": "Vod",
+    "poster": "http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360",
+    "metadata": {
+      "name": "FO21934-HDTX-SWE",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.",
+      "OriginalFilename": "FO21934-HDTX-SWE.mov",
+      "Locale": "sv_SE",
+      "PropertyCode": "FTA-nm",
+      "SiteSection": "tv-dc",
+      "ContentType": "clip",
+      "BusinessUnit": "Disney Channel",
+      "Origin": "IBMS",
+      "PromoType": "Show - TV",
+      "StartDate": "1483225200",
+      "EndDate": "1485903600",
+      "AgeConsent": "No Age Consent",
+      "TXID": "FO21934-HDTX-SWE",
+      "ZeroTouchIds": "se-dc-lf",
+      "ScheduleSource": "VOD",
+      "HLSOnly": "android",
+      "ChannelName": "Disney Channel SE"
+    },
     "progressive": [
       {
         "bandwidth": 482304,
@@ -97,41 +120,25 @@ const NoPluginsNoDrm = {
         "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/applehttp/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/a.m3u8"
       }
     ]
-  },
-  "duration": 55,
-  "dvr": false,
-  "type": "Vod",
-  "metadata": {
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.",
-    "poster": "http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360",
-    "OriginalFilename": "FO21934-HDTX-SWE.mov",
-    "Locale": "sv_SE",
-    "PropertyCode": "FTA-nm",
-    "SiteSection": "tv-dc",
-    "ContentType": "clip",
-    "BusinessUnit": "Disney Channel",
-    "Origin": "IBMS",
-    "PromoType": "Show - TV",
-    "StartDate": "1483225200",
-    "EndDate": "1485903600",
-    "AgeConsent": "No Age Consent",
-    "TXID": "FO21934-HDTX-SWE",
-    "ZeroTouchIds": "se-dc-lf",
-    "ScheduleSource": "VOD",
-    "HLSOnly": "android",
-    "ChannelName": "Disney Channel SE"
   }
 };
 
 const NoPluginsWithDrm = {
-  "id": "1_rwbj3j0a",
-  "name": "DRM TEST",
   "session": {
     "partnerId": 1068292,
     "ks": "NTAwZjViZWZjY2NjNTRkNGEyMjU1MTg4OGE1NmUwNDljZWJkMzk1MXwxMDY4MjkyOzEwNjgyOTI7MTQ5MDE3NjE0NjswOzE0OTAwODk3NDYuMDIyNjswO3ZpZXc6Kix3aWRnZXQ6MTs7"
   },
   "plugins": {},
   "sources": {
+    "id": "1_rwbj3j0a",
+    "duration": 596,
+    "dvr": false,
+    "type": "Vod",
+    "poster": "http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360",
+    "metadata": {
+      "name": "DRM TEST",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero."
+    },
     "progressive": [],
     "dash": [
       {
@@ -164,19 +171,10 @@ const NoPluginsWithDrm = {
         ]
       }
     ]
-  },
-  "duration": 596,
-  "dvr": false,
-  "type": "Vod",
-  "metadata": {
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.",
-    "poster": "http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360"
   }
 };
 
 const WithPluginsNoDrm = {
-  "id": "1_rsrdfext",
-  "name": "FO21934-HDTX-SWE",
   "session": {
     "partnerId": 1082342,
     "uiConfId": 38621471,
@@ -184,6 +182,31 @@ const WithPluginsNoDrm = {
   },
   "plugins": {},
   "sources": {
+    "id": "1_rsrdfext",
+    "duration": 55,
+    "dvr": false,
+    "type": "Vod",
+    "poster": "http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360",
+    "metadata": {
+      "name": "FO21934-HDTX-SWE",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.",
+      "OriginalFilename": "FO21934-HDTX-SWE.mov",
+      "Locale": "sv_SE",
+      "PropertyCode": "FTA-nm",
+      "SiteSection": "tv-dc",
+      "ContentType": "clip",
+      "BusinessUnit": "Disney Channel",
+      "Origin": "IBMS",
+      "PromoType": "Show - TV",
+      "StartDate": "1483225200",
+      "EndDate": "1485903600",
+      "AgeConsent": "No Age Consent",
+      "TXID": "FO21934-HDTX-SWE",
+      "ZeroTouchIds": "se-dc-lf",
+      "ScheduleSource": "VOD",
+      "HLSOnly": "android",
+      "ChannelName": "Disney Channel SE"
+    },
     "progressive": [
       {
         "bandwidth": 482304,
@@ -273,35 +296,10 @@ const WithPluginsNoDrm = {
         "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/applehttp/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/a.m3u8?uiConfId=38621471"
       }
     ]
-  },
-  "duration": 55,
-  "dvr": false,
-  "type": "Vod",
-  "metadata": {
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.",
-    "poster": "http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360",
-    "OriginalFilename": "FO21934-HDTX-SWE.mov",
-    "Locale": "sv_SE",
-    "PropertyCode": "FTA-nm",
-    "SiteSection": "tv-dc",
-    "ContentType": "clip",
-    "BusinessUnit": "Disney Channel",
-    "Origin": "IBMS",
-    "PromoType": "Show - TV",
-    "StartDate": "1483225200",
-    "EndDate": "1485903600",
-    "AgeConsent": "No Age Consent",
-    "TXID": "FO21934-HDTX-SWE",
-    "ZeroTouchIds": "se-dc-lf",
-    "ScheduleSource": "VOD",
-    "HLSOnly": "android",
-    "ChannelName": "Disney Channel SE"
   }
 };
 
 const WithPluginsWithDrm = {
-  "id": "1_rwbj3j0a",
-  "name": "DRM TEST",
   "session": {
     "partnerId": 1068292,
     "uiConfId": 38601981,
@@ -309,6 +307,15 @@ const WithPluginsWithDrm = {
   },
   "plugins": {},
   "sources": {
+    "id": "1_rwbj3j0a",
+    "duration": 596,
+    "dvr": false,
+    "type": "Vod",
+    "poster": "http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360",
+    "metadata": {
+      "name": "DRM TEST",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero."
+    },
     "progressive": [],
     "dash": [
       {
@@ -341,25 +348,25 @@ const WithPluginsWithDrm = {
         ]
       }
     ]
-  },
-  "duration": 596,
-  "dvr": false,
-  "type": "Vod",
-  "metadata": {
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.",
-    "poster": "http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360"
   }
 };
 
 const AudioEntryWithoutPlugins = {
-  "id": "0_vyzw3ceu",
-  "name": "TEST_WAESP_PLACINGTEST_DUAL",
   "session": {
     "partnerId": 1082342,
     "ks": "YWU4Y2I0ZDk4ZmNiMjUyZjA1NmQ1NmMzMTdjZmFjZWEyODc2NDE0YXwxMDgyMzQyOzEwODIzNDI7MTQ5MDg2MTk1OTswOzE0OTA3NzU1NTkuNzk0MzswO3ZpZXc6Kix3aWRnZXQ6MTs7"
   },
   "plugins": {},
   "sources": {
+    "id": "0_vyzw3ceu",
+    "duration": 0,
+    "dvr": false,
+    "type": "Audio",
+    "poster": "http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360",
+    "metadata": {
+      "name": "TEST_WAESP_PLACINGTEST_DUAL",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero."
+    },
     "progressive": [],
     "dash": [
       {
@@ -385,35 +392,28 @@ const AudioEntryWithoutPlugins = {
         "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/0_vyzw3ceu/protocol/http/format/applehttp/flavorIds/0_hawbhpz3/a.m3u8"
       }
     ]
-  },
-  "duration": 0,
-  "dvr": false,
-  "type": "Audio",
-  "metadata": {
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.",
-    "poster": "http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360"
   }
 };
 
 const ImageEntryWithoutPlugins = {
-  "id": "0_84zz779s",
-  "name": "Channel HU-TEST-STG-Attila-160203 Thumbnail",
   "session": {
     "partnerId": 1082342,
     "ks": "YWU4Y2I0ZDk4ZmNiMjUyZjA1NmQ1NmMzMTdjZmFjZWEyODc2NDE0YXwxMDgyMzQyOzEwODIzNDI7MTQ5MDg2MTk1OTswOzE0OTA3NzU1NTkuNzk0MzswO3ZpZXc6Kix3aWRnZXQ6MTs7"
   },
   "plugins": {},
   "sources": {
+    "id": "0_84zz779s",
+    "duration": 0,
+    "dvr": false,
+    "type": "Image",
+    "poster": "http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360",
+    "metadata": {
+      "name": "Channel HU-TEST-STG-Attila-160203 Thumbnail",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.",
+    },
     "dash": [],
     "hls": [],
     "progressive": []
-  },
-  "duration": 0,
-  "dvr": false,
-  "type": "Image",
-  "metadata": {
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.",
-    "poster": "http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360"
   }
 };
 

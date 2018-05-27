@@ -1,5 +1,5 @@
 // @flow
-declare type ProviderSessionConfigObject = {
+declare type ProviderMediaConfigSessionObject = {
   partnerId: number,
   uiConfId?: number,
   ks?: string

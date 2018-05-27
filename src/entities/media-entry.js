@@ -45,6 +45,17 @@ export default class MediaEntry {
    * @type {number}
    */
   dvrStatus: number;
+  /**
+   * @member - media poster
+   * @type {string | Array<Object>}
+   */
+  poster: string | Array<Object>;
+
+  /**
+   * @member - assetReferenceType
+   * @type {string }
+   */
+  assetReferenceType: string;
 
   /**
    * @constructor
@@ -67,7 +78,9 @@ export default class MediaEntry {
       duration: this.duration,
       dvrStatus: this.dvrStatus,
       metadata: this.metadata,
-      type: this.type
+      type: this.type,
+      poster: this.poster,
+      assetReferenceType: this.assetReferenceType
     };
   }
 }

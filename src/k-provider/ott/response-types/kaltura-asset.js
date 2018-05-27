@@ -7,6 +7,12 @@ export default class KalturaAsset extends ServiceResult {
     RECORDING: "recording",
     EPG: "epg"
   };
+
+  static AssetReferenceType: { [type: string]: string } = {
+    MEDIA: "media",
+    EPG_INTERNAL	: "epg_internal",
+    EPG_EXTERNAL: "epg_external"
+  };
   /**
    * @member - The asset id
    * @type {number}
