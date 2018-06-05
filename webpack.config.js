@@ -77,6 +77,7 @@ Object.assign(providersConfig.output, {
 });
 
 Object.assign(servicesConfig.entry, {
+  "analytics": "k-provider/ovp/services/analytics/index.js",
   "stats": "k-provider/ovp/services/stats/index.js",
   "bookmark": "k-provider/ott/services/bookmark/index.js"
 });
