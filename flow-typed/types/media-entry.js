@@ -6,5 +6,6 @@ declare type ProviderMediaEntryObject = {
   duration: number,
   dvrStatus: number,
   metadata: Object,
-  type: string
+  type: string,
+  poster: string | Array<Object>
 };

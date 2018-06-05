@@ -11,11 +11,13 @@ import {SupportedStreamFormat} from '../../entities/media-format'
 import KalturaDrmPlaybackPluginData from '../common/response-types/kaltura-drm-playback-plugin-data'
 import BaseProviderParser from '../common/base-provider-parser'
 
+const LIVE_ASST_OBJECT_TYPE: string = "KalturaLinearMediaAsset";
+
 const MediaTypeCombinations: { [mediaType: string]: Object } = {
   [KalturaAsset.Type.MEDIA]: {
     [KalturaPlaybackContext.Type.TRAILER]: () => ({type: MediaEntry.Type.VOD}),
-    [KalturaPlaybackContext.Type.PLAYBACK]: (metadata) => {
-      if (metadata.linearAssetId) {
+    [KalturaPlaybackContext.Type.PLAYBACK]: (mediaAssetData) => {
+      if (mediaAssetData.externalIds || mediaAssetData.objectType === LIVE_ASST_OBJECT_TYPE) {
         return {type: MediaEntry.Type.LIVE, dvrStatus: 0};
       }
       return {type: MediaEntry.Type.VOD};
@@ -45,17 +47,17 @@ export default class OTTProviderParser extends BaseProviderParser {
   static getMediaEntry(assetResponse: any, requestData: Object): MediaEntry {
     const mediaEntry = new MediaEntry();
     const playbackContext = assetResponse.playBackContextResult;
-    const metadata = assetResponse.mediaDataResult;
+    const mediaAsset = assetResponse.mediaDataResult;
     const kalturaSources = playbackContext.sources;
-    mediaEntry.name = metadata.name;
-    mediaEntry.id = metadata.id;
-    const metaData = {description: metadata.description};
-    Object.assign(metaData, metadata.metas);
-    Object.assign(metaData, metadata.tags);
+    const metaData = OTTProviderParser.reconstructMetadata(mediaAsset);
+    metaData.description = mediaAsset.description;
+    metaData.name = mediaAsset.name;
     mediaEntry.metadata = metaData;
+    mediaEntry.poster = OTTProviderParser._getPoster(mediaAsset.pictures);
+    mediaEntry.id = mediaAsset.id;
     const filteredKalturaSources = OTTProviderParser._filterSourcesByFormats(kalturaSources, requestData.formats);
     mediaEntry.sources = OTTProviderParser._getParsedSources(filteredKalturaSources);
-    const typeData = OTTProviderParser._getMediaType(metadata, requestData.mediaType, requestData.contextType);
+    const typeData = OTTProviderParser._getMediaType(mediaAsset.data, requestData.mediaType, requestData.contextType);
     mediaEntry.type = typeData.type;
     mediaEntry.dvrStatus = typeData.dvrStatus;
     mediaEntry.duration = Math.max.apply(Math, kalturaSources.map(source => source.duration));
@@ -63,17 +65,65 @@ export default class OTTProviderParser extends BaseProviderParser {
   }
 
   /**
+   * reconstruct the metadata
+   * @param {Object} mediaAsset the mediaAsset that contains the response with the metadata.
+   * @returns {Object} reconstructed metadata object
+   */
+  static reconstructMetadata(mediaAsset: Object): Object {
+    const metadata = {
+      metas: OTTProviderParser.addToMetaObject(mediaAsset.metas),
+      tags: OTTProviderParser.addToMetaObject(mediaAsset.tags)
+    }
+    return metadata;
+  }
+
+  /**
+   * transform an array of [{key: value},{key: value}...] to an object
+   * @param {Array<Object>} list a list of objects
+   * @returns {Object} an mapped object of the arrayed list.
+   */
+  static addToMetaObject(list: Array<Object>): Object {
+    let categoryObj = {};
+    if (list) {
+      list.forEach(item => {
+        categoryObj[item.key] = item.value;
+      })
+    }
+    return categoryObj;
+  }
+
+  /**
+   * Gets the poster url without width and height.
+   * @param {Array<Object>} pictures - Media pictures.
+   * @returns {string | Array<Object>} - Poster base url or array of poster candidates.
+   * @private
+   */
+  static _getPoster(pictures: Array<Object>): string | Array<Object> {
+    if (pictures && pictures.length > 0) {
+      const picObj = pictures[0];
+      const url = picObj.url;
+      // Search for thumbnail service
+      const regex = /.*\/thumbnail\/.*(?:width|height)\/\d+\/(?:height|width)\/\d+/;
+      if (regex.test(url)) {
+        return url;
+      }
+      return pictures.map(pic => ({url: pic.url, width: pic.width, height: pic.height}));
+    }
+    return '';
+  }
+
+  /**
    * Gets the media type (LIVE/VOD)
-   * @param {Object} metadata - The asset metadata.
+   * @param {Object} mediaAssetData - The media asset data.
    * @param {string} mediaType - The asset media type.
    * @param {string} contextType - The asset context type.
    * @returns {Object} - The type data object.
    * @private
    */
-  static _getMediaType(metadata: Object, mediaType: string, contextType: string): Object {
+  static _getMediaType(mediaAssetData: Object, mediaType: string, contextType: string): Object {
     let typeData = {type: MediaEntry.Type.UNKNOWN};
-    if (typeof MediaTypeCombinations[mediaType][contextType] === 'function') {
-      typeData = MediaTypeCombinations[mediaType][contextType](metadata);
+    if (MediaTypeCombinations[mediaType] && MediaTypeCombinations[mediaType][contextType]) {
+      typeData = MediaTypeCombinations[mediaType][contextType](mediaAssetData);
     }
     return typeData;
   }
