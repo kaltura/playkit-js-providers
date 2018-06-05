@@ -43,6 +43,7 @@ export default class OVPProviderParser extends BaseProviderParser {
     mediaEntry.metadata = this._parseMetadata(metadataList);
     mediaEntry.metadata.description = entry.description || '';
     mediaEntry.metadata.name = entry.name || '';
+    mediaEntry.metadata.tags = entry.tags || '';
 
     let type = MediaEntry.Type.UNKNOWN;
     switch (entry.entryType) {
