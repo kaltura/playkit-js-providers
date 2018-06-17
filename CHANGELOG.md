@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.5.0"></a>
+# [2.5.0](https://github.com/kaltura/playkit-js-providers/compare/v2.4.0...v2.5.0) (2018-06-17)
+
+
+### Features
+
+* **FEC-8316:** protect against invalid server response ([#57](https://github.com/kaltura/playkit-js-providers/issues/57)) ([de5d5e3](https://github.com/kaltura/playkit-js-providers/commit/de5d5e3))
+
+
+
 <a name="2.4.0"></a>
 # [2.4.0](https://github.com/kaltura/playkit-js-providers/compare/v2.3.2...v2.4.0) (2018-06-11)
 
