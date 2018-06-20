@@ -1,6 +1,7 @@
 //@flow
 const NoPluginsNoDrm = {
   "session": {
+    "isAnonymous": true,
     "partnerId": 1082342,
     "ks": "OGM0ZWM0Y2IwOWI5ZjM0MDcyZmQ3YmYxNzBiMGEwNGYxNWQ0ZTcyOXwxMDgyMzQyOzEwODIzNDI7MTQ5MDExNTg5MzswOzE0OTAwMjk0OTMuMTY3ODswO3ZpZXc6Kix3aWRnZXQ6MTs7"
   },
@@ -125,6 +126,7 @@ const NoPluginsNoDrm = {
 
 const NoPluginsWithDrm = {
   "session": {
+    "isAnonymous": true,
     "partnerId": 1068292,
     "ks": "NTAwZjViZWZjY2NjNTRkNGEyMjU1MTg4OGE1NmUwNDljZWJkMzk1MXwxMDY4MjkyOzEwNjgyOTI7MTQ5MDE3NjE0NjswOzE0OTAwODk3NDYuMDIyNjswO3ZpZXc6Kix3aWRnZXQ6MTs7"
   },
@@ -176,6 +178,7 @@ const NoPluginsWithDrm = {
 
 const WithPluginsNoDrm = {
   "session": {
+    "isAnonymous": true,
     "partnerId": 1082342,
     "uiConfId": 38621471,
     "ks": "YmQ0N2Q0M2QxZTAyMGIzYTY4YzI1ZDk5ZjI1NjhlZWVkOWZmOGViN3wxMDgyMzQyOzEwODIzNDI7MTQ5MDE5NjMwMDswOzE0OTAxMDk5MDAuOTA0NDswO3ZpZXc6Kix3aWRnZXQ6MTs7"
@@ -301,6 +304,7 @@ const WithPluginsNoDrm = {
 
 const WithPluginsWithDrm = {
   "session": {
+    "isAnonymous": true,
     "partnerId": 1068292,
     "uiConfId": 38601981,
     "ks": "NTAwZjViZWZjY2NjNTRkNGEyMjU1MTg4OGE1NmUwNDljZWJkMzk1MXwxMDY4MjkyOzEwNjgyOTI7MTQ5MDE3NjE0NjswOzE0OTAwODk3NDYuMDIyNjswO3ZpZXc6Kix3aWRnZXQ6MTs7"
@@ -353,6 +357,7 @@ const WithPluginsWithDrm = {
 
 const AudioEntryWithoutPlugins = {
   "session": {
+    "isAnonymous": true,
     "partnerId": 1082342,
     "ks": "YWU4Y2I0ZDk4ZmNiMjUyZjA1NmQ1NmMzMTdjZmFjZWEyODc2NDE0YXwxMDgyMzQyOzEwODIzNDI7MTQ5MDg2MTk1OTswOzE0OTA3NzU1NTkuNzk0MzswO3ZpZXc6Kix3aWRnZXQ6MTs7"
   },
@@ -397,6 +402,7 @@ const AudioEntryWithoutPlugins = {
 
 const ImageEntryWithoutPlugins = {
   "session": {
+    "isAnonymous": true,
     "partnerId": 1082342,
     "ks": "YWU4Y2I0ZDk4ZmNiMjUyZjA1NmQ1NmMzMTdjZmFjZWEyODc2NDE0YXwxMDgyMzQyOzEwODIzNDI7MTQ5MDg2MTk1OTswOzE0OTA3NzU1NTkuNzk0MzswO3ZpZXc6Kix3aWRnZXQ6MTs7"
   },
