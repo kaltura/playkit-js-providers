@@ -96,6 +96,11 @@ export default class KalturaMediaEntry {
    * @type {number}
    */
   dvrStatus: number;
+  /**
+   * @member - Entry tags
+   * @type {string}
+   */
+  tags: string;
 
   /**
    * @constructor
@@ -112,5 +117,6 @@ export default class KalturaMediaEntry {
     this.duration = entry.duration;
     this.poster = entry.thumbnailUrl;
     this.dvrStatus = entry.dvrStatus;
+    this.tags = entry.tags;
   }
 }

@@ -9,6 +9,7 @@ const NoPluginsNoDrm = {
     "id": "1_rsrdfext",
     "duration": 55,
     "dvr": false,
+    "vr": null,
     "type": "Vod",
     "poster": "http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360",
     "metadata": {
@@ -29,7 +30,8 @@ const NoPluginsNoDrm = {
       "ZeroTouchIds": "se-dc-lf",
       "ScheduleSource": "VOD",
       "HLSOnly": "android",
-      "ChannelName": "Disney Channel SE"
+      "ChannelName": "Disney Channel SE",
+      "tags": ""
     },
     "progressive": [
       {
@@ -133,11 +135,13 @@ const NoPluginsWithDrm = {
     "id": "1_rwbj3j0a",
     "duration": 596,
     "dvr": false,
+    "vr": null,
     "type": "Vod",
     "poster": "http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360",
     "metadata": {
       "name": "DRM TEST",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero."
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.",
+      "tags": ""
     },
     "progressive": [],
     "dash": [
@@ -185,6 +189,7 @@ const WithPluginsNoDrm = {
     "id": "1_rsrdfext",
     "duration": 55,
     "dvr": false,
+    "vr": null,
     "type": "Vod",
     "poster": "http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360",
     "metadata": {
@@ -205,7 +210,8 @@ const WithPluginsNoDrm = {
       "ZeroTouchIds": "se-dc-lf",
       "ScheduleSource": "VOD",
       "HLSOnly": "android",
-      "ChannelName": "Disney Channel SE"
+      "ChannelName": "Disney Channel SE",
+      "tags": ""
     },
     "progressive": [
       {
@@ -310,11 +316,13 @@ const WithPluginsWithDrm = {
     "id": "1_rwbj3j0a",
     "duration": 596,
     "dvr": false,
+    "vr": null,
     "type": "Vod",
     "poster": "http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360",
     "metadata": {
       "name": "DRM TEST",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero."
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.",
+      "tags": ""
     },
     "progressive": [],
     "dash": [
@@ -361,11 +369,13 @@ const AudioEntryWithoutPlugins = {
     "id": "0_vyzw3ceu",
     "duration": 0,
     "dvr": false,
+    "vr": null,
     "type": "Audio",
     "poster": "http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360",
     "metadata": {
       "name": "TEST_WAESP_PLACINGTEST_DUAL",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero."
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.",
+      "tags": "dual audio, english, spanish"
     },
     "progressive": [],
     "dash": [
@@ -405,11 +415,13 @@ const ImageEntryWithoutPlugins = {
     "id": "0_84zz779s",
     "duration": 0,
     "dvr": false,
+    "vr": null,
     "type": "Image",
     "poster": "http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360",
     "metadata": {
       "name": "Channel HU-TEST-STG-Attila-160203 Thumbnail",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.",
+      "tags": ""
     },
     "dash": [],
     "hls": [],

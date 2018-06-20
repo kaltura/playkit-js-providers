@@ -66,9 +66,11 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
         type: MediaEntry.Type.UNKNOWN,
         poster: '',
         dvr: false,
+        vr: null,
         metadata: {
           name: '',
-          description: ''
+          description: '',
+          tags: ''
         }
       },
       plugins: {}
@@ -116,6 +118,9 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
           mediaConfig.sources.type = mediaEntry.type;
           mediaConfig.sources.dvr = !!mediaEntry.dvrStatus;
           mediaConfig.sources.poster = mediaEntry.poster;
+          if (mediaEntry.metadata && typeof mediaEntry.metadata.tags === 'string' && mediaEntry.metadata.tags.indexOf('360') > -1) {
+            mediaConfig.sources.vr = {};
+          }
           Object.assign(mediaConfig.sources.metadata, mediaEntry.metadata);
         }
       }
