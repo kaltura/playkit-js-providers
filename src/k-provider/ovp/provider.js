@@ -55,7 +55,7 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
     this._logger.debug("Data parsing started");
     const mediaConfig: ProviderMediaConfigObject = {
       session: {
-        anonymous: this._isAnonymous,
+        isAnonymous: this._isAnonymous,
         partnerId: this.partnerId
       },
       sources: {
