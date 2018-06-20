@@ -8,5 +8,6 @@ declare type ProviderMediaConfigSourcesObject = {
   id: string,
   poster: string | Array<Object>,
   dvr: boolean,
+  vr: ?Object,
   metadata: ProviderMediaConfigMetadataObject
 };
