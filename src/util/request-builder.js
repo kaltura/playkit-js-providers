@@ -68,7 +68,12 @@ export default class RequestBuilder {
       request.onreadystatechange = function () {
         if (request.readyState === 4) {
           if (request.status === 200) {
-            let jsonResponse = JSON.parse(request.responseText);
+            let jsonResponse;
+            try {
+              jsonResponse = JSON.parse(request.responseText);
+            } catch (e) {
+              return reject(`${e.message}, ${request.responseText}`);
+            }
             if (jsonResponse && typeof(jsonResponse) === 'object' && jsonResponse.code && jsonResponse.message)
               reject(jsonResponse);
             else
