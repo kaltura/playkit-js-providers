@@ -80,6 +80,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
     this._logger.debug("Data parsing started");
     const mediaConfig: ProviderMediaConfigObject = {
       session: {
+        anonymous: this._isAnonymous,
         partnerId: this.partnerId
       },
       sources: {
