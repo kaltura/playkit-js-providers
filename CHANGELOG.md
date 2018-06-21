@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.7.0"></a>
+# [2.7.0](https://github.com/kaltura/playkit-js-providers/compare/v2.6.0...v2.7.0) (2018-06-21)
+
+
+### Features
+
+* **FEC-8331:** expose the anonymous flag on session object ([#58](https://github.com/kaltura/playkit-js-providers/issues/58)) ([245b760](https://github.com/kaltura/playkit-js-providers/commit/245b760))
+
+
+
 <a name="2.6.0"></a>
 # [2.6.0](https://github.com/kaltura/playkit-js-providers/compare/v2.5.0...v2.6.0) (2018-06-20)
 
