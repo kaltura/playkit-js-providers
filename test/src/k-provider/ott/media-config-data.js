@@ -218,6 +218,7 @@ const NoPluginsWithDrm = {
     "duration": 123000,
     "type": "Vod",
     "dvr": false,
+    "vr": null,
     "id": 480097
   }
 };
@@ -234,6 +235,7 @@ const FilteredSourcesByDeviceType = {
     "duration": 123000,
     "type": "Vod",
     "dvr": false,
+    "vr": null,
     "poster": [
       {
         "url": "http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/afa4d5c3b56c4476baca9897873d4a34_1/version/3/width/153/height/86/quality/100",
@@ -412,6 +414,7 @@ const LiveEntryNoDrm = {
     "duration": 0,
     "type": "Live",
     "dvr": false,
+    "vr": null,
     "poster": [
       {
         "url": "http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/153/height/86/quality/100",
