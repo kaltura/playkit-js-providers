@@ -1,5 +1,6 @@
 const NoPluginsWithDrm = {
   "session": {
+    "isAnonymous": true,
     "partnerId": 198,
     "ks": "djJ8MTk4fHFNlNTFP8NV_WXoPn3CJnQRIJhCe4zD9g5voCHCgHJRanv2ubEBLLl9Gb13CxfBTGWZpTP_pD_fOirT3-L4F0kDIdJRrkShBxjuRI1-0nz2ublJJd48QKzLAqW79y7Lzoj6ngfv1uHGC7xxPtUqcSw="
   },
@@ -224,6 +225,7 @@ const NoPluginsWithDrm = {
 
 const FilteredSourcesByDeviceType = {
   "session": {
+    "isAnonymous": true,
     "partnerId": 198,
     "ks": "djJ8MTk4fHFNlNTFP8NV_WXoPn3CJnQRIJhCe4zD9g5voCHCgHJRanv2ubEBLLl9Gb13CxfBTGWZpTP_pD_fOirT3-L4F0kDIdJRrkShBxjuRI1-0nz2ublJJd48QKzLAqW79y7Lzoj6ngfv1uHGC7xxPtUqcSw="
   },
@@ -403,6 +405,7 @@ const FilteredSourcesByDeviceType = {
 
 const LiveEntryNoDrm = {
   "session": {
+    "isAnonymous": true,
     "partnerId": 198,
     "ks": "djJ8MTk4fEiDJqfTA_nqary8_jB-U-W0ne3JNVaZW5JmZDufdRcmcTGy3pAquXoMvFbANe6h63lEhxCo7mMZTsMTP5k4QDmOq99dRsPEsHUwOknv_9wvR_J2pbNzdXmlZ4JlYgO0ZcUr9_7tsZhqrHRfIcgrSj4="
   },

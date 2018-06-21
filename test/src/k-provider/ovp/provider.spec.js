@@ -140,7 +140,9 @@ describe('OVPProvider.partnerId:1068292', function () {
     );
     provider.getMediaConfig({entryId: "1_rwbj3j0a"}).then(mediaConfig => {
         try {
-          mediaConfig.should.deep.equal(MEDIA_CONFIG_DATA.NoPluginsWithDrm);
+          let data = JSON.parse(JSON.stringify(MEDIA_CONFIG_DATA.NoPluginsWithDrm));
+          data.session.isAnonymous = false;
+          mediaConfig.should.deep.equal(data);
           done();
         }
         catch (err) {
@@ -188,7 +190,9 @@ describe('OVPProvider.partnerId:1068292', function () {
     );
     provider.getMediaConfig({entryId: "1_rwbj3j0a"}).then(mediaConfig => {
         try {
-          mediaConfig.should.deep.equal(MEDIA_CONFIG_DATA.WithPluginsWithDrm);
+          let data = JSON.parse(JSON.stringify(MEDIA_CONFIG_DATA.WithPluginsWithDrm));
+          data.session.isAnonymous = false;
+          mediaConfig.should.deep.equal(data);
           done();
         }
         catch (err) {
