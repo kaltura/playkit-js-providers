@@ -45,8 +45,17 @@ export default class OVPProviderParser extends BaseProviderParser {
     mediaEntry.metadata.name = entry.name || '';
     mediaEntry.metadata.tags = entry.tags || '';
 
+    mediaEntry.type = OVPProviderParser._getEntryType(entry.entryType, entry.type);
+    if (mediaEntry.type === MediaEntry.Type.LIVE) {
+      mediaEntry.dvrStatus = entry.dvrStatus;
+    }
+
+    return mediaEntry;
+  }
+
+  static _getEntryType(entryTypeEnum: number, typeEnum: number | string): string {
     let type = MediaEntry.Type.UNKNOWN;
-    switch (entry.entryType) {
+    switch (entryTypeEnum) {
       case KalturaMediaEntry.MediaType.IMAGE.value:
         type = MediaEntry.Type.IMAGE;
         break;
@@ -54,22 +63,19 @@ export default class OVPProviderParser extends BaseProviderParser {
         type = MediaEntry.Type.AUDIO;
         break;
       default:
-        switch (entry.type) {
+        switch (typeEnum) {
           case KalturaMediaEntry.EntryType.MEDIA_CLIP.value:
             type = MediaEntry.Type.VOD;
             break;
           case KalturaMediaEntry.EntryType.LIVE_STREAM.value:
           case KalturaMediaEntry.EntryType.LIVE_CHANNEL.value:
             type = MediaEntry.Type.LIVE;
-            mediaEntry.dvrStatus = entry.dvrStatus;
             break;
           default:
             type = MediaEntry.Type.UNKNOWN;
         }
     }
-    mediaEntry.type = type;
-
-    return mediaEntry;
+    return type;
   }
 
   /**
@@ -178,35 +184,38 @@ export default class OVPProviderParser extends BaseProviderParser {
    * @private
    */
   static _parseProgressiveSources(kalturaSource: ?KalturaPlaybackSource, flavorAssets: Array<KalturaFlavorAsset>, ks: string, partnerId: number, uiConfId: ?number, entryId: string): Array<MediaSource> {
-    const sources = [];
+    const videoSources: Array<MediaSource> = [];
+    const audioSources: Array<MediaSource> = [];
     if (kalturaSource) {
       const protocol = kalturaSource.getProtocol(this._getBaseProtocol());
       const format = kalturaSource.format;
       const sourceId = kalturaSource.deliveryProfileId + "," + kalturaSource.format;
       flavorAssets.map((flavor) => {
+        const mediaSource: MediaSource = new MediaSource();
+        mediaSource.id = flavor.id + sourceId;
+        mediaSource.mimetype = (flavor.fileExt === 'mp3') ? 'audio/mp3' : 'video/mp4';
+        mediaSource.height = flavor.height;
+        mediaSource.width = flavor.width;
+        mediaSource.bandwidth = flavor.bitrate * 1024;
+        mediaSource.label = flavor.label || flavor.language;
+        mediaSource.url = PlaySourceUrlBuilder.build({
+          entryId: entryId,
+          flavorIds: flavor.id,
+          format: format,
+          ks: ks,
+          partnerId: partnerId,
+          uiConfId: uiConfId,
+          extension: flavor.fileExt,
+          protocol: protocol
+        });
         if (flavor.height && flavor.width) {
-          const mediaSource: MediaSource = new MediaSource();
-          mediaSource.id = flavor.id + sourceId;
-          mediaSource.mimetype = 'video/mp4';
-          mediaSource.height = flavor.height;
-          mediaSource.width = flavor.width;
-          mediaSource.bandwidth = flavor.bitrate * 1024;
-          mediaSource.label = flavor.label || flavor.language;
-          mediaSource.url = PlaySourceUrlBuilder.build({
-            entryId: entryId,
-            flavorIds: flavor.id,
-            format: format,
-            ks: ks,
-            partnerId: partnerId,
-            uiConfId: uiConfId,
-            extension: 'mp4',
-            protocol: protocol
-          });
-          sources.push(mediaSource);
+          videoSources.push(mediaSource);
+        } else {
+          audioSources.push(mediaSource);
         }
       });
     }
-    return sources;
+    return audioSources.length ? audioSources : videoSources;
   }
 
   /**
