@@ -215,7 +215,8 @@ export default class OVPProviderParser extends BaseProviderParser {
         }
       });
     }
-    return audioSources.length ? audioSources : videoSources;
+    //If we have only audio flavors return them, otherwise return video flavors
+    return (audioSources.length && !videoSources.length) ? audioSources : videoSources;
   }
 
   /**
