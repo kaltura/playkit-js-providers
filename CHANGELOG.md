@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.7.1"></a>
+## [2.7.1](https://github.com/kaltura/playkit-js-providers/compare/v2.7.0...v2.7.1) (2018-07-02)
+
+
+### Bug Fixes
+
+* **FEC-8341:** support audio progressive entries ([#59](https://github.com/kaltura/playkit-js-providers/issues/59)) ([e91c42f](https://github.com/kaltura/playkit-js-providers/commit/e91c42f))
+
+
+
 <a name="2.7.0"></a>
 # [2.7.0](https://github.com/kaltura/playkit-js-providers/compare/v2.6.0...v2.7.0) (2018-06-21)
 
