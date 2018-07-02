@@ -95,7 +95,7 @@ const NoPluginsNoDrm = {
         "id": "1_n75294r410081,url",
         "label": "English",
         "mimetype": "video/mp4",
-        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/url/flavorIds/1_n75294r4/a.mp4",
+        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/url/flavorIds/1_n75294r4/a.mov",
         "width": 1920
       }
     ],
@@ -277,7 +277,7 @@ const WithPluginsNoDrm = {
         "id": "1_n75294r410081,url",
         "label": "English",
         "mimetype": "video/mp4",
-        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/url/flavorIds/1_n75294r4/a.mp4?uiConfId=38621471",
+        "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/http/format/url/flavorIds/1_n75294r4/a.mov?uiConfId=38621471",
         "width": 1920
       }
     ],
@@ -382,7 +382,11 @@ const AudioEntryWithoutPlugins = {
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.",
       "tags": "dual audio, english, spanish"
     },
-    "progressive": [],
+    "progressive": [{
+      "id": "0_hawbhpz310081,url",
+      "url": "//cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/0_vyzw3ceu/protocol/http/format/url/flavorIds/0_hawbhpz3/a.xml",
+      "mimetype": "video/mp4"
+    }],
     "dash": [
       {
         "id": "0_vyzw3ceu_11611,mpegdash",
