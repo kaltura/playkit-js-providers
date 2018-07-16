@@ -3,6 +3,7 @@
     "flowtype/no-types-missing-file-annotation": "off",
     "require-jsdoc": "off",
     "valid-jsdoc": "off",
+    "prettier/prettier": "error",
     "mocha-no-only/mocha-no-only": [
       "error"
     ]
