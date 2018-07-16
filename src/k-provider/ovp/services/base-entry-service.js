@@ -1,8 +1,8 @@
 //@flow
-import OVPService from './ovp-service'
-import RequestBuilder from '../../../util/request-builder'
+import OVPService from './ovp-service';
+import RequestBuilder from '../../../util/request-builder';
 
-const SERVICE_NAME: string = "baseEntry";
+const SERVICE_NAME: string = 'baseEntry';
 
 export default class OVPBaseEntryService extends OVPService {
   /**
@@ -16,14 +16,14 @@ export default class OVPBaseEntryService extends OVPService {
    */
   static getPlaybackContext(serviceUrl: string, ks: string, entryId: string): RequestBuilder {
     const headers: Map<string, string> = new Map();
-    headers.set("Content-Type", "application/json");
+    headers.set('Content-Type', 'application/json');
     const request = new RequestBuilder(headers);
     request.service = SERVICE_NAME;
-    request.action = "getPlaybackContext";
-    request.method = "POST";
+    request.action = 'getPlaybackContext';
+    request.method = 'POST';
     request.url = request.getUrl(serviceUrl);
-    request.tag = "baseEntry-getPlaybackContext";
-    const contextDataParams = {objectType: "KalturaContextDataParams", flavorTags: "all"};
+    request.tag = 'baseEntry-getPlaybackContext';
+    const contextDataParams = {objectType: 'KalturaContextDataParams', flavorTags: 'all'};
     request.params = {entryId: entryId, ks: ks, contextDataParams: contextDataParams};
     return request;
   }
@@ -39,13 +39,13 @@ export default class OVPBaseEntryService extends OVPService {
    */
   static list(serviceUrl: string, ks: string, entryId: string): RequestBuilder {
     const headers: Map<string, string> = new Map();
-    headers.set("Content-Type", "application/json");
+    headers.set('Content-Type', 'application/json');
     const request = new RequestBuilder(headers);
     request.service = SERVICE_NAME;
-    request.action = "list";
-    request.method = "POST";
+    request.action = 'list';
+    request.method = 'POST';
     request.url = request.getUrl(serviceUrl);
-    request.tag = "list";
+    request.tag = 'list';
     request.params = OVPBaseEntryService.getEntryListReqParams(entryId, ks);
     return request;
   }
@@ -61,7 +61,7 @@ export default class OVPBaseEntryService extends OVPService {
   static getEntryListReqParams(entryId: string, ks: string): any {
     const filterParams = {redirectFromEntryId: entryId};
     const responseProfileParams = {
-      fields: "id,name,description,thumbnailUrl,dataUrl,duration,msDuration,flavorParamsIds,mediaType,type,tags,dvrStatus",
+      fields: 'id,name,description,thumbnailUrl,dataUrl,duration,msDuration,flavorParamsIds,mediaType,type,tags,dvrStatus',
       type: 1
     };
     return {ks: ks, filter: filterParams, responseProfile: responseProfileParams};

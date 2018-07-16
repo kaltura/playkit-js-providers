@@ -1,8 +1,8 @@
 //@flow
-import OTTService from './ott-service'
-import RequestBuilder from '../../../util/request-builder'
+import OTTService from './ott-service';
+import RequestBuilder from '../../../util/request-builder';
 
-const SERVICE_NAME: string = "ottuser";
+const SERVICE_NAME: string = 'ottuser';
 
 export default class OTTUserService extends OTTService {
   /**
@@ -16,11 +16,11 @@ export default class OTTUserService extends OTTService {
    */
   static anonymousLogin(serviceUrl: string, partnerId: number, udid?: string): RequestBuilder {
     const headers: Map<string, string> = new Map();
-    headers.set("Content-Type", "application/json");
+    headers.set('Content-Type', 'application/json');
     const request = new RequestBuilder(headers);
     request.service = SERVICE_NAME;
-    request.action = "anonymousLogin";
-    request.method = "POST";
+    request.action = 'anonymousLogin';
+    request.method = 'POST';
     request.url = request.getUrl(serviceUrl);
     const params: Object = {partnerId: partnerId};
     if (udid) {

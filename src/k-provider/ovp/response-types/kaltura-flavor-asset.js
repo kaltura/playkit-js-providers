@@ -1,6 +1,6 @@
 //@flow
 export default class KalturaFlavorAsset {
-  static Status: { [status: string]: number } = {
+  static Status: {[status: string]: number} = {
     ERROR: -1,
     QUEUED: 0,
     CONVERTING: 1,

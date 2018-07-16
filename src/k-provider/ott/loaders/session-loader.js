@@ -1,7 +1,7 @@
 //@flow
-import UserService from '../services/user-service'
-import OTTConfiguration from '../config'
-import RequestBuilder from '../../../util/request-builder'
+import UserService from '../services/user-service';
+import OTTConfiguration from '../config';
+import RequestBuilder from '../../../util/request-builder';
 
 export default class OTTSessionLoader implements ILoader {
   _partnerId: number;
@@ -9,7 +9,7 @@ export default class OTTSessionLoader implements ILoader {
   _response: any = {};
 
   static get id(): string {
-    return "session";
+    return 'session';
   }
 
   /**

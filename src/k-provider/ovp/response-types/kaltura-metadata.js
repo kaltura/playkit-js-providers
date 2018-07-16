@@ -1,10 +1,10 @@
 //@flow
 export default class KalturaMetadata {
-  static ObjectType: { [type: string]: string | number } = {
-    AD_CUE_POINT: "adCuePointMetadata.AdCuePoint",
-    ANNOTATION: "annotationMetadata.Annotation",
-    CODE_CUE_POINT: "codeCuePointMetadata.CodeCuePoint",
-    THUMB_CUE_POINT: "thumbCuePointMetadata.thumbCuePoint",
+  static ObjectType: {[type: string]: string | number} = {
+    AD_CUE_POINT: 'adCuePointMetadata.AdCuePoint',
+    ANNOTATION: 'annotationMetadata.Annotation',
+    CODE_CUE_POINT: 'codeCuePointMetadata.CodeCuePoint',
+    THUMB_CUE_POINT: 'thumbCuePointMetadata.thumbCuePoint',
     ENTRY: 1,
     CATEGORY: 2,
     USER: 3,
@@ -12,7 +12,7 @@ export default class KalturaMetadata {
     DYNAMIC_OBJECT: 5
   };
 
-  static Status: { [status: string]: number } = {
+  static Status: {[status: string]: number} = {
     VALID: 1,
     INVALID: 2,
     DELETED: 3

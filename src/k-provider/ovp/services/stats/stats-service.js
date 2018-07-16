@@ -1,13 +1,12 @@
 //@flow
-import OVPService from '../ovp-service'
-import RequestBuilder from '../../../../util/request-builder'
-import OVPConfiguration from '../../config'
-import {param} from '../../../../util/param'
+import OVPService from '../ovp-service';
+import RequestBuilder from '../../../../util/request-builder';
+import OVPConfiguration from '../../config';
+import {param} from '../../../../util/param';
 
-const SERVICE_NAME: string = "stats";
+const SERVICE_NAME: string = 'stats';
 
 export default class OVPStatsService extends OVPService {
-
   /**
    * Creates an instance of RequestBuilder for stats.collect
    * @function collect
@@ -24,9 +23,9 @@ export default class OVPStatsService extends OVPService {
     Object.assign(serviceParams, ovpParams.serviceParams, {ks: ks, clientTag: 'html5:v' + playerVersion}, event);
     const request = new RequestBuilder();
     request.service = SERVICE_NAME;
-    request.action = "collect";
-    request.method = "GET";
-    request.tag = "stats-collect";
+    request.action = 'collect';
+    request.method = 'GET';
+    request.tag = 'stats-collect';
     request.params = serviceParams;
     request.url = serviceUrl + '?service=' + request.service + '&action=' + request.action + '&' + param(request.params);
     return request;

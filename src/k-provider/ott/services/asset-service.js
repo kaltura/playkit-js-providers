@@ -1,8 +1,8 @@
 //@flow
-import OTTService from './ott-service'
-import RequestBuilder from '../../../util/request-builder'
+import OTTService from './ott-service';
+import RequestBuilder from '../../../util/request-builder';
 
-const SERVICE_NAME: string = "asset";
+const SERVICE_NAME: string = 'asset';
 
 export default class OTTAssetService extends OTTService {
   /**
@@ -16,15 +16,21 @@ export default class OTTAssetService extends OTTService {
    * @returns {RequestBuilder} The request builder
    * @static
    */
-  static getPlaybackContext(serviceUrl: string, ks: string, assetId: string, type: string, playbackContextOptions: ProviderPlaybackContextOptions): RequestBuilder {
+  static getPlaybackContext(
+    serviceUrl: string,
+    ks: string,
+    assetId: string,
+    type: string,
+    playbackContextOptions: ProviderPlaybackContextOptions
+  ): RequestBuilder {
     const headers: Map<string, string> = new Map();
-    headers.set("Content-Type", "application/json");
+    headers.set('Content-Type', 'application/json');
     const request = new RequestBuilder(headers);
     request.service = SERVICE_NAME;
-    request.action = "getPlaybackContext";
-    request.method = "POST";
+    request.action = 'getPlaybackContext';
+    request.method = 'POST';
     request.url = request.getUrl(serviceUrl);
-    const contextDataParams: Object = {objectType: "KalturaPlaybackContextOptions"};
+    const contextDataParams: Object = {objectType: 'KalturaPlaybackContextOptions'};
     Object.assign(contextDataParams, playbackContextOptions);
     request.params = {assetId: assetId, assetType: type, contextDataParams: contextDataParams, ks: ks};
     return request;
@@ -32,11 +38,11 @@ export default class OTTAssetService extends OTTService {
 
   static get(serviceUrl: string, ks: string, assetId: string, assetReferenceType: string): RequestBuilder {
     const headers: Map<string, string> = new Map();
-    headers.set("Content-Type", "application/json");
+    headers.set('Content-Type', 'application/json');
     const request = new RequestBuilder(headers);
     request.service = SERVICE_NAME;
-    request.action = "get";
-    request.method = "POST";
+    request.action = 'get';
+    request.method = 'POST';
     request.url = request.getUrl(serviceUrl);
     request.params = {id: assetId, assetReferenceType: assetReferenceType, ks: ks};
     return request;

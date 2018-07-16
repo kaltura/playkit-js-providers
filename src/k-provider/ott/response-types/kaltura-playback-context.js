@@ -1,15 +1,15 @@
 //@flow
-import ServiceResult from '../../common/base-service-result'
-import KalturaAccessControlMessage from '../../common/response-types/kaltura-access-control-message'
-import KalturaRuleAction from '../../common/response-types/kaltura-rule-action'
-import KalturaPlaybackSource from './kaltura-playback-source'
+import ServiceResult from '../../common/base-service-result';
+import KalturaAccessControlMessage from '../../common/response-types/kaltura-access-control-message';
+import KalturaRuleAction from '../../common/response-types/kaltura-rule-action';
+import KalturaPlaybackSource from './kaltura-playback-source';
 
 export default class KalturaPlaybackContext extends ServiceResult {
-  static Type: { [type: string]: string } = {
-    TRAILER: "TRAILER",
-    CATCHUP: "CATCHUP",
-    START_OVER: "START_OVER",
-    PLAYBACK: "PLAYBACK"
+  static Type: {[type: string]: string} = {
+    TRAILER: 'TRAILER',
+    CATCHUP: 'CATCHUP',
+    START_OVER: 'START_OVER',
+    PLAYBACK: 'PLAYBACK'
   };
   /**
    * @member - The playback sources

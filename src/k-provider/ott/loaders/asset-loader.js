@@ -1,9 +1,9 @@
 //@flow
-import OTTAssetService from '../services/asset-service'
-import OTTConfiguration from '../config'
-import RequestBuilder from '../../../util/request-builder'
-import KalturaPlaybackContext from '../response-types/kaltura-playback-context'
-import KalturaAsset from '../response-types/kaltura-asset'
+import OTTAssetService from '../services/asset-service';
+import OTTConfiguration from '../config';
+import RequestBuilder from '../../../util/request-builder';
+import KalturaPlaybackContext from '../response-types/kaltura-playback-context';
+import KalturaAsset from '../response-types/kaltura-asset';
 
 export default class OTTAssetLoader implements ILoader {
   _entryId: string;
@@ -11,7 +11,7 @@ export default class OTTAssetLoader implements ILoader {
   _response: any = {};
 
   static get id(): string {
-    return "asset";
+    return 'asset';
   }
 
   /**

@@ -1,5 +1,5 @@
 //@flow
-import {clone} from '../../util/clone'
+import {clone} from '../../util/clone';
 
 const defaultConfig: Object = {
   serviceParams: {

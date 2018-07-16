@@ -1,22 +1,22 @@
 //@flow
-import getLogger from '../../util/logger'
-import KalturaPlaybackSource from './response-types/kaltura-playback-source'
-import KalturaPlaybackContext from './response-types/kaltura-playback-context'
-import KalturaAsset from './response-types/kaltura-asset'
-import MediaEntry from '../../entities/media-entry'
-import Drm from '../../entities/drm'
-import MediaSource from '../../entities/media-source'
-import MediaSources from '../../entities/media-sources'
-import {SupportedStreamFormat} from '../../entities/media-format'
-import KalturaDrmPlaybackPluginData from '../common/response-types/kaltura-drm-playback-plugin-data'
-import BaseProviderParser from '../common/base-provider-parser'
+import getLogger from '../../util/logger';
+import KalturaPlaybackSource from './response-types/kaltura-playback-source';
+import KalturaPlaybackContext from './response-types/kaltura-playback-context';
+import KalturaAsset from './response-types/kaltura-asset';
+import MediaEntry from '../../entities/media-entry';
+import Drm from '../../entities/drm';
+import MediaSource from '../../entities/media-source';
+import MediaSources from '../../entities/media-sources';
+import {SupportedStreamFormat} from '../../entities/media-format';
+import KalturaDrmPlaybackPluginData from '../common/response-types/kaltura-drm-playback-plugin-data';
+import BaseProviderParser from '../common/base-provider-parser';
 
-const LIVE_ASST_OBJECT_TYPE: string = "KalturaLinearMediaAsset";
+const LIVE_ASST_OBJECT_TYPE: string = 'KalturaLinearMediaAsset';
 
-const MediaTypeCombinations: { [mediaType: string]: Object } = {
+const MediaTypeCombinations: {[mediaType: string]: Object} = {
   [KalturaAsset.Type.MEDIA]: {
     [KalturaPlaybackContext.Type.TRAILER]: () => ({type: MediaEntry.Type.VOD}),
-    [KalturaPlaybackContext.Type.PLAYBACK]: (mediaAssetData) => {
+    [KalturaPlaybackContext.Type.PLAYBACK]: mediaAssetData => {
       if (mediaAssetData.externalIds || mediaAssetData.objectType === LIVE_ASST_OBJECT_TYPE) {
         return {type: MediaEntry.Type.LIVE, dvrStatus: 0};
       }
@@ -33,7 +33,7 @@ const MediaTypeCombinations: { [mediaType: string]: Object } = {
 };
 
 export default class OTTProviderParser extends BaseProviderParser {
-  static _logger = getLogger("OTTProviderParser");
+  static _logger = getLogger('OTTProviderParser');
 
   /**
    * Returns parsed media entry by given OTT response objects.
@@ -73,7 +73,7 @@ export default class OTTProviderParser extends BaseProviderParser {
     const metadata = {
       metas: OTTProviderParser.addToMetaObject(mediaAsset.metas),
       tags: OTTProviderParser.addToMetaObject(mediaAsset.tags)
-    }
+    };
     return metadata;
   }
 
@@ -87,7 +87,7 @@ export default class OTTProviderParser extends BaseProviderParser {
     if (list) {
       list.forEach(item => {
         categoryObj[item.key] = item.value;
-      })
+      });
     }
     return categoryObj;
   }
@@ -159,10 +159,10 @@ export default class OTTProviderParser extends BaseProviderParser {
       sources.map(parsedSource, sourceFormat);
     };
     const parseAdaptiveSources = () => {
-      kalturaSources.filter((source) => !OTTProviderParser._isProgressiveSource(source)).forEach(addAdaptiveSource);
+      kalturaSources.filter(source => !OTTProviderParser._isProgressiveSource(source)).forEach(addAdaptiveSource);
     };
     const parseProgressiveSources = () => {
-      kalturaSources.filter((source) => OTTProviderParser._isProgressiveSource(source)).forEach(addAdaptiveSource);
+      kalturaSources.filter(source => OTTProviderParser._isProgressiveSource(source)).forEach(addAdaptiveSource);
     };
     if (kalturaSources && kalturaSources.length > 0) {
       parseAdaptiveSources();
@@ -188,14 +188,16 @@ export default class OTTProviderParser extends BaseProviderParser {
         mediaSource.mimetype = mediaFormat.mimeType;
       }
       if (playUrl === '') {
-        OTTProviderParser._logger.error(`failed to create play url from source, discarding source: (${kalturaSource.fileId}), ${kalturaSource.format}.`);
+        OTTProviderParser._logger.error(
+          `failed to create play url from source, discarding source: (${kalturaSource.fileId}), ${kalturaSource.format}.`
+        );
         return mediaSource;
       }
       mediaSource.url = playUrl;
       mediaSource.id = kalturaSource.fileId + ',' + kalturaSource.format;
       if (kalturaSource.hasDrmData()) {
         const drmParams: Array<Drm> = [];
-        kalturaSource.drm.forEach((drm) => {
+        kalturaSource.drm.forEach(drm => {
           drmParams.push(new Drm(drm.licenseURL, KalturaDrmPlaybackPluginData.Scheme[drm.scheme], drm.certificate));
         });
         mediaSource.drmData = drmParams;

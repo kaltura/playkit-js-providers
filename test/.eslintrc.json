@@ -4,8 +4,6 @@
     "require-jsdoc": "off",
     "valid-jsdoc": "off",
     "prettier/prettier": "error",
-    "mocha-no-only/mocha-no-only": [
-      "error"
-    ]
+    "mocha-no-only/mocha-no-only": ["error"]
   }
 }

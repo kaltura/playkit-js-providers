@@ -61,11 +61,11 @@ export default class RequestBuilder {
    */
   doHttpRequest(): Promise<any> {
     if (!this.url) {
-      throw new Error("serviceUrl is mandatory for request builder");
+      throw new Error('serviceUrl is mandatory for request builder');
     }
     let request = new XMLHttpRequest();
     return new Promise((resolve, reject) => {
-      request.onreadystatechange = function () {
+      request.onreadystatechange = function() {
         if (request.readyState === 4) {
           if (request.status === 200) {
             let jsonResponse;
@@ -74,10 +74,8 @@ export default class RequestBuilder {
             } catch (e) {
               return reject(`${e.message}, ${request.responseText}`);
             }
-            if (jsonResponse && typeof(jsonResponse) === 'object' && jsonResponse.code && jsonResponse.message)
-              reject(jsonResponse);
-            else
-              resolve(jsonResponse);
+            if (jsonResponse && typeof jsonResponse === 'object' && jsonResponse.code && jsonResponse.message) reject(jsonResponse);
+            else resolve(jsonResponse);
           } else {
             reject(request.responseText);
           }

@@ -1,17 +1,17 @@
 //@flow
-import ServiceResult from '../../common/base-service-result'
+import ServiceResult from '../../common/base-service-result';
 
 export default class KalturaAsset extends ServiceResult {
-  static Type: { [type: string]: string } = {
-    MEDIA: "media",
-    RECORDING: "recording",
-    EPG: "epg"
+  static Type: {[type: string]: string} = {
+    MEDIA: 'media',
+    RECORDING: 'recording',
+    EPG: 'epg'
   };
 
-  static AssetReferenceType: { [type: string]: string } = {
-    MEDIA: "media",
-    EPG_INTERNAL	: "epg_internal",
-    EPG_EXTERNAL: "epg_external"
+  static AssetReferenceType: {[type: string]: string} = {
+    MEDIA: 'media',
+    EPG_INTERNAL: 'epg_internal',
+    EPG_EXTERNAL: 'epg_external'
   };
   /**
    * @member - The asset id
@@ -22,12 +22,12 @@ export default class KalturaAsset extends ServiceResult {
    * @member - The asset name
    * @type {string}
    */
-  name: string = "";
+  name: string = '';
   /**
    * @member - The asset name description
    * @type {string}
    */
-  description: string = "";
+  description: string = '';
   /**
    * @member - The asset tags
    * @type {Array<Object>}
@@ -62,11 +62,11 @@ export default class KalturaAsset extends ServiceResult {
 
   _formatTagsMetas(objectToParse: any): Array<Object> {
     const parsed = [];
-    Object.keys(objectToParse).forEach(function (key) {
+    Object.keys(objectToParse).forEach(function(key) {
       if (objectToParse[key].objects) {
-        let value = "";
-        objectToParse[key].objects.forEach(function (object) {
-          value += object.value + "|";
+        let value = '';
+        objectToParse[key].objects.forEach(function(object) {
+          value += object.value + '|';
         });
         parsed.push({key: key, value: value});
       } else {

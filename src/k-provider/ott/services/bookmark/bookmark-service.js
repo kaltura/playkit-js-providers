@@ -1,9 +1,9 @@
 //@flow
-import OTTService from '../ott-service'
-import RequestBuilder from '../../../../util/request-builder'
-import OTTConfiguration from '../../config'
+import OTTService from '../ott-service';
+import RequestBuilder from '../../../../util/request-builder';
+import OTTConfiguration from '../../config';
 
-const SERVICE_NAME: string = "bookmark";
+const SERVICE_NAME: string = 'bookmark';
 
 export default class OTTBookmarkService extends OTTService {
   /**
@@ -17,19 +17,22 @@ export default class OTTBookmarkService extends OTTService {
    */
   static add(serviceUrl: string, ks: string, bookmark: Object): RequestBuilder {
     const headers: Map<string, string> = new Map();
-    headers.set("Content-Type", "application/json");
+    headers.set('Content-Type', 'application/json');
     const request = new RequestBuilder(headers);
     request.service = SERVICE_NAME;
-    request.action = "add";
-    request.method = "POST";
+    request.action = 'add';
+    request.method = 'POST';
     request.url = request.getUrl(serviceUrl);
     const playerData: Object = {
-      objectType: "KalturaBookmarkPlayerData", action: bookmark.playerData.action,
-      averageBitrate: bookmark.playerData.averageBitrate, totalBitrate: bookmark.playerData.totalBitrate,
-      currentBitrate: bookmark.playerData.currentBitrate, fileId: bookmark.playerData.fileId,
+      objectType: 'KalturaBookmarkPlayerData',
+      action: bookmark.playerData.action,
+      averageBitrate: bookmark.playerData.averageBitrate,
+      totalBitrate: bookmark.playerData.totalBitrate,
+      currentBitrate: bookmark.playerData.currentBitrate,
+      fileId: bookmark.playerData.fileId
     };
     const bookmarkServiceParams: Object = {
-      objectType: "KalturaBookmark",
+      objectType: 'KalturaBookmark',
       type: bookmark.type,
       id: bookmark.id,
       position: bookmark.position,

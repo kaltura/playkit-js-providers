@@ -1,6 +1,6 @@
 //@flow
-import ServiceResult from '../../common/base-service-result'
-import KalturaMetadata from './kaltura-metadata'
+import ServiceResult from '../../common/base-service-result';
+import KalturaMetadata from './kaltura-metadata';
 
 export default class KalturaMetadataListResponse extends ServiceResult {
   totalCount: number;

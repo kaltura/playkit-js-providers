@@ -10,25 +10,23 @@ export default class XmlParser {
     let obj = {};
     if (xml.nodeType === 1) {
       if (xml.attributes.length > 0) {
-        obj["@attributes"] = {};
+        obj['@attributes'] = {};
         for (let j = 0; j < xml.attributes.length; j++) {
           let attribute = xml.attributes.item(j);
-          obj["@attributes"][attribute.nodeName] = attribute.nodeValue;
+          obj['@attributes'][attribute.nodeName] = attribute.nodeValue;
         }
       }
-    }
-    else if (xml.nodeType === 3) {
+    } else if (xml.nodeType === 3) {
       obj = xml.nodeValue;
     }
     if (xml.hasChildNodes()) {
       for (let i = 0; i < xml.childNodes.length; i++) {
         let item = xml.childNodes.item(i);
         let nodeName = item.nodeName;
-        if (typeof (obj[nodeName]) === "undefined") {
+        if (typeof obj[nodeName] === 'undefined') {
           obj[nodeName] = this.xmlToJson(item);
-        }
-        else {
-          if (typeof (obj[nodeName].push) === "undefined") {
+        } else {
+          if (typeof obj[nodeName].push === 'undefined') {
             let old = obj[nodeName];
             obj[nodeName] = [];
             obj[nodeName].push(old);
@@ -40,4 +38,3 @@ export default class XmlParser {
     return obj;
   }
 }
-

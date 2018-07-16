@@ -1,8 +1,8 @@
 //@flow
-import OVPUIConfService from '../services/ui-conf-service'
-import KalturaUIConfResponse from '../response-types/kaltura-ui-conf-response'
-import OVPConfiguration from '../config'
-import RequestBuilder from '../../../util/request-builder'
+import OVPUIConfService from '../services/ui-conf-service';
+import KalturaUIConfResponse from '../response-types/kaltura-ui-conf-response';
+import OVPConfiguration from '../config';
+import RequestBuilder from '../../../util/request-builder';
 
 export default class OVPUIConfigLoader implements ILoader {
   _uiConfId: number;
@@ -10,7 +10,7 @@ export default class OVPUIConfigLoader implements ILoader {
   _response: any = {};
 
   static get id(): string {
-    return "uiConf";
+    return 'uiConf';
   }
 
   set requests(requests: Array<RequestBuilder>) {

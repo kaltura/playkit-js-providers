@@ -1,5 +1,5 @@
 // @flow
-import MultiRequestBuilder, {MultiRequestResult} from './multi-request-builder'
+import MultiRequestBuilder, {MultiRequestResult} from './multi-request-builder';
 
 export default class DataLoaderManager {
   /**
@@ -44,7 +44,7 @@ export default class DataLoaderManager {
       // Get the requests
       let requests = execution_loader.requests;
       // Add requests to muktiRequest queue
-      requests.forEach((request) => {
+      requests.forEach(request => {
         this._multiRequest.add(request);
       });
       // Create range array of current execution_loader requests
@@ -61,8 +61,8 @@ export default class DataLoaderManager {
    */
   fetchData(): Promise<any> {
     return new Promise((resolve, reject) => {
-      this._multiRequest.execute()
-        .then(response => {
+      this._multiRequest.execute().then(
+        response => {
           this._multiResponse = response;
           if (!response.success) {
             reject(response);
@@ -74,9 +74,11 @@ export default class DataLoaderManager {
               reject({success: false, data: preparedData.error});
             }
           }
-        }, err => {
+        },
+        err => {
           reject(err);
-        });
+        }
+      );
     });
   }
 
@@ -87,11 +89,11 @@ export default class DataLoaderManager {
    * @returns {Object} - The prepared data
    */
   prepareData(response: MultiRequestResult): Object {
-    this._loaders.forEach(function (loader, name) {
+    this._loaders.forEach(function(loader, name) {
       let loaderDataIndexes = DataLoaderManager._loadersResponseMap.get(name);
       try {
         if (loaderDataIndexes && loaderDataIndexes.length > 0) {
-          loader.response = (response.results.slice(loaderDataIndexes[0], loaderDataIndexes[loaderDataIndexes.length - 1] + 1));
+          loader.response = response.results.slice(loaderDataIndexes[0], loaderDataIndexes[loaderDataIndexes.length - 1] + 1);
         }
       } catch (err) {
         return {success: false, error: err};

@@ -1,7 +1,7 @@
 //@flow
-import OVPSessionService from '../services/session-service'
-import OVPConfiguration from '../config'
-import RequestBuilder from '../../../util/request-builder'
+import OVPSessionService from '../services/session-service';
+import OVPConfiguration from '../config';
+import RequestBuilder from '../../../util/request-builder';
 
 export default class OVPSessionLoader implements ILoader {
   _partnerId: number;
@@ -9,7 +9,7 @@ export default class OVPSessionLoader implements ILoader {
   _response: any = {};
 
   static get id(): string {
-    return "session";
+    return 'session';
   }
 
   set requests(requests: Array<RequestBuilder>) {

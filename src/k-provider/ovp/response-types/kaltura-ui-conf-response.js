@@ -1,8 +1,8 @@
 //@flow
-import ServiceResult from '../../common/base-service-result'
+import ServiceResult from '../../common/base-service-result';
 
 export default class KalturaUIConfResponse extends ServiceResult {
-  static Type: { [type: string]: number } = {
+  static Type: {[type: string]: number} = {
     PLAYER: 1,
     CONTRIBUTION_WIZARD: 2,
     SIMPLE_EDITOR: 3,
@@ -26,7 +26,7 @@ export default class KalturaUIConfResponse extends ServiceResult {
     WEBCASTING: 21
   };
 
-  static CreationMode: { [mode: string]: number } = {
+  static CreationMode: {[mode: string]: number} = {
     WIZARD: 2,
     ADVANCED: 3
   };

@@ -1,5 +1,5 @@
 //@flow
-import OVPConfiguration from './config'
+import OVPConfiguration from './config';
 
 export default class PlaySourceUrlBuilder {
   /**
@@ -21,31 +21,30 @@ export default class PlaySourceUrlBuilder {
     const extension: string = urlParams.extension;
     const flavorIds: string = urlParams.flavorIds;
 
-    if (cdnUrl === "" && partnerId === "" && entryId === "" && extension === "" && format === "") {
-      return "";
+    if (cdnUrl === '' && partnerId === '' && entryId === '' && extension === '' && format === '') {
+      return '';
     }
 
     let playUrl = cdnUrl;
-    if (!cdnUrl.endsWith("/")) {
-      playUrl += "/";
+    if (!cdnUrl.endsWith('/')) {
+      playUrl += '/';
     }
-    playUrl += "p/" + partnerId + "/sp/" + partnerId + "00" + "/playManifest/entryId/" + entryId + "/protocol/" + protocol + "/format/" + format;
+    playUrl += 'p/' + partnerId + '/sp/' + partnerId + '00' + '/playManifest/entryId/' + entryId + '/protocol/' + protocol + '/format/' + format;
 
-    if (flavorIds !== "") {
-      playUrl += "/flavorIds/" + flavorIds;
-    }
-    else if (uiConfId !== "") {
-      playUrl += "/uiConfId/" + uiConfId;
-    }
-
-    if (ks !== "") {
-      playUrl += "/ks/" + ks;
+    if (flavorIds !== '') {
+      playUrl += '/flavorIds/' + flavorIds;
+    } else if (uiConfId !== '') {
+      playUrl += '/uiConfId/' + uiConfId;
     }
 
-    playUrl += "/a." + extension;
+    if (ks !== '') {
+      playUrl += '/ks/' + ks;
+    }
 
-    if (uiConfId && flavorIds !== "") {
-      playUrl += "?uiConfId=" + uiConfId;
+    playUrl += '/a.' + extension;
+
+    if (uiConfId && flavorIds !== '') {
+      playUrl += '?uiConfId=' + uiConfId;
     }
 
     return playUrl;

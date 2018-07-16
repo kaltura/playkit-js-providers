@@ -1,5 +1,5 @@
 //@flow
-import KalturaDrmPlaybackPluginData from '../../common/response-types/kaltura-drm-playback-plugin-data'
+import KalturaDrmPlaybackPluginData from '../../common/response-types/kaltura-drm-playback-plugin-data';
 
 export type OTTKalturaPlaybackSource = KalturaPlaybackSource;
 
@@ -47,15 +47,15 @@ export default class KalturaPlaybackSource {
    * @returns {string} - protocol if protocol is in the protocols list - if not empty string returned
    */
   getProtocol(protocol: string): string {
-    let returnValue: string = "";
+    let returnValue: string = '';
     if (this.protocols && this.protocols.length > 0) {
-      let protocolsArr: Array<string> = this.protocols.split(",");
-      protocolsArr.forEach((p) => {
+      let protocolsArr: Array<string> = this.protocols.split(',');
+      protocolsArr.forEach(p => {
         if (p === protocol) {
           returnValue = p;
         }
       });
-    } else if (protocol === "http") {
+    } else if (protocol === 'http') {
       return protocol;
     }
     return returnValue;
