@@ -1,8 +1,8 @@
 //@flow
-import OVPService from './ovp-service'
-import RequestBuilder from '../../../util/request-builder'
+import OVPService from './ovp-service';
+import RequestBuilder from '../../../util/request-builder';
 
-const SERVICE_NAME: string = "metadata_metadata";
+const SERVICE_NAME: string = 'metadata_metadata';
 
 export default class OVPMetadataService extends OVPService {
   /**
@@ -16,14 +16,14 @@ export default class OVPMetadataService extends OVPService {
    */
   static list(serviceUrl: string, ks: string, entryId: string): RequestBuilder {
     const headers: Map<string, string> = new Map();
-    headers.set("Content-Type", "application/json");
+    headers.set('Content-Type', 'application/json');
     const request = new RequestBuilder(headers);
     request.service = SERVICE_NAME;
-    request.action = "list";
-    request.method = "POST";
+    request.action = 'list';
+    request.method = 'POST';
     request.url = request.getUrl(serviceUrl);
-    request.tag = "metadata_metadata-list";
-    const filter = {objectType: "KalturaMetadataFilter", objectIdEqual: entryId, metadataObjectTypeEqual: "1"};
+    request.tag = 'metadata_metadata-list';
+    const filter = {objectType: 'KalturaMetadataFilter', objectIdEqual: entryId, metadataObjectTypeEqual: '1'};
     request.params = {filter: filter, ks: ks};
     return request;
   }

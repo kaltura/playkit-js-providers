@@ -1,14 +1,14 @@
 // @flow
-import BaseProvider from '../common/base-provider'
-import getLogger from '../../util/logger'
-import OTTConfiguration from './config'
-import OTTDataLoaderManager from './loaders/data-loader-manager'
-import OTTSessionLoader from './loaders/session-loader'
-import OTTAssetLoader from './loaders/asset-loader'
-import OTTProviderParser from './provider-parser'
-import KalturaAsset from './response-types/kaltura-asset'
-import KalturaPlaybackContext from './response-types/kaltura-playback-context'
-import MediaEntry from '../../entities/media-entry'
+import BaseProvider from '../common/base-provider';
+import getLogger from '../../util/logger';
+import OTTConfiguration from './config';
+import OTTDataLoaderManager from './loaders/data-loader-manager';
+import OTTSessionLoader from './loaders/session-loader';
+import OTTAssetLoader from './loaders/asset-loader';
+import OTTProviderParser from './provider-parser';
+import KalturaAsset from './response-types/kaltura-asset';
+import KalturaPlaybackContext from './response-types/kaltura-playback-context';
+import MediaEntry from '../../entities/media-entry';
 
 export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject> {
   /**
@@ -18,7 +18,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
    */
   constructor(options: ProviderOptionsObject, playerVersion: string) {
     super(options, playerVersion);
-    this._logger = getLogger("OTTProvider");
+    this._logger = getLogger('OTTProvider');
     OTTConfiguration.set(options.env);
   }
 
@@ -37,7 +37,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
       if (entryId) {
         let ks: string = this.ks;
         if (!ks) {
-          ks = "{1:result:ks}";
+          ks = '{1:result:ks}';
           this._dataLoader.add(OTTSessionLoader, {partnerId: this.partnerId});
         }
         const contextType = mediaInfo.contextType || KalturaPlaybackContext.Type.PLAYBACK;
@@ -60,24 +60,26 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
           mediaType: mediaType,
           formats: mediaInfo.formats || []
         };
-        this._dataLoader.fetchData()
-          .then(response => {
+        this._dataLoader.fetchData().then(
+          response => {
             try {
               resolve(this._parseDataFromResponse(response, requestData));
             } catch (err) {
               reject({success: false, data: err});
             }
-          }, err => {
+          },
+          err => {
             reject(err);
-          });
+          }
+        );
       } else {
-        reject({success: false, data: "Missing mandatory parameter"});
+        reject({success: false, data: 'Missing mandatory parameter'});
       }
     });
   }
 
   _parseDataFromResponse(data: Map<string, Function>, requestData: Object): ProviderMediaConfigObject {
-    this._logger.debug("Data parsing started");
+    this._logger.debug('Data parsing started');
     const mediaConfig: ProviderMediaConfigObject = {
       session: {
         isAnonymous: this._isAnonymous,
@@ -144,7 +146,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
         }
       }
     }
-    this._logger.debug("Data parsing finished", mediaConfig);
+    this._logger.debug('Data parsing finished', mediaConfig);
     return mediaConfig;
   }
 }

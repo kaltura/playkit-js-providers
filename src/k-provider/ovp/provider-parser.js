@@ -1,22 +1,22 @@
 //@flow
-import KalturaFlavorAsset from './response-types/kaltura-flavor-asset'
-import KalturaMetadataListResponse from './response-types/kaltura-metadata-list-response'
-import KalturaMediaEntry from './response-types/kaltura-media-entry'
-import KalturaPlaybackSource from './response-types/kaltura-playback-source'
-import KalturaDrmPlaybackPluginData from '../common/response-types/kaltura-drm-playback-plugin-data'
-import PlaySourceUrlBuilder from './play-source-url-builder'
-import XmlParser from '../../util/xml-parser'
-import getLogger from '../../util/logger'
-import OVPConfiguration from './config'
-import MediaEntry from '../../entities/media-entry'
-import Drm from '../../entities/drm'
-import MediaSource from '../../entities/media-source'
-import MediaSources from '../../entities/media-sources'
-import {SupportedStreamFormat} from '../../entities/media-format'
-import BaseProviderParser from '../common/base-provider-parser'
+import KalturaFlavorAsset from './response-types/kaltura-flavor-asset';
+import KalturaMetadataListResponse from './response-types/kaltura-metadata-list-response';
+import KalturaMediaEntry from './response-types/kaltura-media-entry';
+import KalturaPlaybackSource from './response-types/kaltura-playback-source';
+import KalturaDrmPlaybackPluginData from '../common/response-types/kaltura-drm-playback-plugin-data';
+import PlaySourceUrlBuilder from './play-source-url-builder';
+import XmlParser from '../../util/xml-parser';
+import getLogger from '../../util/logger';
+import OVPConfiguration from './config';
+import MediaEntry from '../../entities/media-entry';
+import Drm from '../../entities/drm';
+import MediaSource from '../../entities/media-source';
+import MediaSources from '../../entities/media-sources';
+import {SupportedStreamFormat} from '../../entities/media-format';
+import BaseProviderParser from '../common/base-provider-parser';
 
 export default class OVPProviderParser extends BaseProviderParser {
-  static _logger = getLogger("OVPProviderParser");
+  static _logger = getLogger('OVPProviderParser');
 
   /**
    * Returns parsed media entry by given OVP response objects
@@ -91,7 +91,14 @@ export default class OVPProviderParser extends BaseProviderParser {
    * @static
    * @private
    */
-  static _getParsedSources(kalturaSources: Array<KalturaPlaybackSource>, ks: string, partnerId: number, uiConfId: ?number, entry: Object, playbackContext: Object): MediaSources {
+  static _getParsedSources(
+    kalturaSources: Array<KalturaPlaybackSource>,
+    ks: string,
+    partnerId: number,
+    uiConfId: ?number,
+    entry: Object,
+    playbackContext: Object
+  ): MediaSources {
     const sources = new MediaSources();
     const addAdaptiveSource = (source: KalturaPlaybackSource) => {
       const parsedSource = OVPProviderParser._parseAdaptiveSource(source, playbackContext.flavorAssets, ks, partnerId, uiConfId, entry.id);
@@ -99,11 +106,18 @@ export default class OVPProviderParser extends BaseProviderParser {
       sources.map(parsedSource, sourceFormat);
     };
     const parseAdaptiveSources = () => {
-      kalturaSources.filter((source) => !OVPProviderParser._isProgressiveSource(source)).forEach(addAdaptiveSource);
+      kalturaSources.filter(source => !OVPProviderParser._isProgressiveSource(source)).forEach(addAdaptiveSource);
     };
     const parseProgressiveSources = () => {
       const progressiveSource = kalturaSources.find(OVPProviderParser._isProgressiveSource);
-      sources.progressive = OVPProviderParser._parseProgressiveSources(progressiveSource, playbackContext.flavorAssets, ks, partnerId, uiConfId, entry.id);
+      sources.progressive = OVPProviderParser._parseProgressiveSources(
+        progressiveSource,
+        playbackContext.flavorAssets,
+        ks,
+        partnerId,
+        uiConfId,
+        entry.id
+      );
     };
     if (kalturaSources && kalturaSources.length > 0) {
       parseAdaptiveSources();
@@ -125,12 +139,19 @@ export default class OVPProviderParser extends BaseProviderParser {
    * @static
    * @private
    */
-  static _parseAdaptiveSource(kalturaSource: ?KalturaPlaybackSource, flavorAssets: Array<KalturaFlavorAsset>, ks: string, partnerId: number, uiConfId: ?number, entryId: string): MediaSource {
+  static _parseAdaptiveSource(
+    kalturaSource: ?KalturaPlaybackSource,
+    flavorAssets: Array<KalturaFlavorAsset>,
+    ks: string,
+    partnerId: number,
+    uiConfId: ?number,
+    entryId: string
+  ): MediaSource {
     const mediaSource: MediaSource = new MediaSource();
     if (kalturaSource) {
-      let playUrl: string = "";
+      let playUrl: string = '';
       const mediaFormat = SupportedStreamFormat.get(kalturaSource.format);
-      let extension: string = "";
+      let extension: string = '';
       if (mediaFormat) {
         extension = mediaFormat.pathExt;
         mediaSource.mimetype = mediaFormat.mimeType;
@@ -153,15 +174,17 @@ export default class OVPProviderParser extends BaseProviderParser {
       } else {
         playUrl = kalturaSource.url;
       }
-      if (playUrl === "") {
-        OVPProviderParser._logger.error(`failed to create play url from source, discarding source: (${entryId}_${kalturaSource.deliveryProfileId}), ${kalturaSource.format}.`);
+      if (playUrl === '') {
+        OVPProviderParser._logger.error(
+          `failed to create play url from source, discarding source: (${entryId}_${kalturaSource.deliveryProfileId}), ${kalturaSource.format}.`
+        );
         return mediaSource;
       }
       mediaSource.url = playUrl;
-      mediaSource.id = entryId + "_" + kalturaSource.deliveryProfileId + "," + kalturaSource.format;
+      mediaSource.id = entryId + '_' + kalturaSource.deliveryProfileId + ',' + kalturaSource.format;
       if (kalturaSource.hasDrmData()) {
         const drmParams: Array<Drm> = [];
-        kalturaSource.drm.forEach((drm) => {
+        kalturaSource.drm.forEach(drm => {
           drmParams.push(new Drm(drm.licenseURL, KalturaDrmPlaybackPluginData.Scheme[drm.scheme], drm.certificate));
         });
         mediaSource.drmData = drmParams;
@@ -183,17 +206,24 @@ export default class OVPProviderParser extends BaseProviderParser {
    * @static
    * @private
    */
-  static _parseProgressiveSources(kalturaSource: ?KalturaPlaybackSource, flavorAssets: Array<KalturaFlavorAsset>, ks: string, partnerId: number, uiConfId: ?number, entryId: string): Array<MediaSource> {
+  static _parseProgressiveSources(
+    kalturaSource: ?KalturaPlaybackSource,
+    flavorAssets: Array<KalturaFlavorAsset>,
+    ks: string,
+    partnerId: number,
+    uiConfId: ?number,
+    entryId: string
+  ): Array<MediaSource> {
     const videoSources: Array<MediaSource> = [];
     const audioSources: Array<MediaSource> = [];
     if (kalturaSource) {
       const protocol = kalturaSource.getProtocol(this._getBaseProtocol());
       const format = kalturaSource.format;
-      const sourceId = kalturaSource.deliveryProfileId + "," + kalturaSource.format;
-      flavorAssets.map((flavor) => {
+      const sourceId = kalturaSource.deliveryProfileId + ',' + kalturaSource.format;
+      flavorAssets.map(flavor => {
         const mediaSource: MediaSource = new MediaSource();
         mediaSource.id = flavor.id + sourceId;
-        mediaSource.mimetype = (flavor.fileExt === 'mp3') ? 'audio/mp3' : 'video/mp4';
+        mediaSource.mimetype = flavor.fileExt === 'mp3' ? 'audio/mp3' : 'video/mp4';
         mediaSource.height = flavor.height;
         mediaSource.width = flavor.width;
         mediaSource.bandwidth = flavor.bitrate * 1024;
@@ -216,7 +246,7 @@ export default class OVPProviderParser extends BaseProviderParser {
       });
     }
     //If we have only audio flavors return them, otherwise return video flavors
-    return (audioSources.length && !videoSources.length) ? audioSources : videoSources;
+    return audioSources.length && !videoSources.length ? audioSources : videoSources;
   }
 
   /**
@@ -230,19 +260,19 @@ export default class OVPProviderParser extends BaseProviderParser {
   static _parseMetadata(metadataList: KalturaMetadataListResponse): Object {
     const metadata = {};
     if (metadataList && metadataList.metas && metadataList.metas.length > 0) {
-      metadataList.metas.forEach((meta) => {
+      metadataList.metas.forEach(meta => {
         let metaXml: Object;
         const domParser: DOMParser = new DOMParser();
-        meta.xml = meta.xml.replace(/\r?\n|\r/g, "");
+        meta.xml = meta.xml.replace(/\r?\n|\r/g, '');
         meta.xml = meta.xml.replace(/>\s*/g, '>');
         meta.xml = meta.xml.replace(/>\s*/g, '>');
         metaXml = domParser.parseFromString(meta.xml, 'text/xml');
         const metasObj: Object = XmlParser.xmlToJson(metaXml);
         const metaKeys = Object.keys(metasObj.metadata);
-        metaKeys.forEach((key) => {
-          metadata[key] = metasObj.metadata[key]["#text"];
-        })
-      })
+        metaKeys.forEach(key => {
+          metadata[key] = metasObj.metadata[key]['#text'];
+        });
+      });
     }
     return metadata;
   }
@@ -259,9 +289,9 @@ export default class OVPProviderParser extends BaseProviderParser {
     const protocolRegex = /^https?:/;
     const result = protocolRegex.exec(config.cdnUrl);
     const protocol = result ? result[0] : document.location.protocol;
-    if (typeof protocol === "string") {
-      return protocol.slice(0, -1) // remove ':' from the end
+    if (typeof protocol === 'string') {
+      return protocol.slice(0, -1); // remove ':' from the end
     }
-    return "https";
+    return 'https';
   }
 }

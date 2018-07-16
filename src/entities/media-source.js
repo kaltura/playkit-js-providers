@@ -1,5 +1,5 @@
 //@flow
-import Drm from './drm'
+import Drm from './drm';
 
 export default class MediaSource {
   /**

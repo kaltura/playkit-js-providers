@@ -1,8 +1,8 @@
 //@flow
 export default class KalturaMediaEntry {
-  static EntryType: { [entryType: string]: { value: number | string } } = {
+  static EntryType: {[entryType: string]: {value: number | string}} = {
     AUTOMATIC: {value: -1},
-    EXTERNAL_MEDIA: {value: "externalMedia.externalMedia"},
+    EXTERNAL_MEDIA: {value: 'externalMedia.externalMedia'},
     MEDIA_CLIP: {value: 1},
     MIX: {value: 2},
     PLAYLIST: {value: 5},
@@ -12,7 +12,7 @@ export default class KalturaMediaEntry {
     DOCUMENT: {value: 10}
   };
 
-  static MediaType: { [mediaType: string]: { value: number } } = {
+  static MediaType: {[mediaType: string]: {value: number}} = {
     VIDEO: {value: 1},
     IMAGE: {value: 2},
     AUDIO: {value: 5},
@@ -22,12 +22,12 @@ export default class KalturaMediaEntry {
     LIVE_STREAM_QUICK_TIME: {value: 204}
   };
 
-  static EntryStatus: { [status: string]: string | number } = {
+  static EntryStatus: {[status: string]: string | number} = {
     ERROR_IMPORTING: -2,
     ERROR_CONVERTING: -1,
-    SCAN_FAILURE: "virusScan.ScanFailure",
+    SCAN_FAILURE: 'virusScan.ScanFailure',
     IMPORT: 0,
-    INFECTED: "virusScan.Infected",
+    INFECTED: 'virusScan.Infected',
     PRECONVERT: 1,
     READY: 2,
     DELETED: 3,
@@ -37,7 +37,7 @@ export default class KalturaMediaEntry {
     NO_CONTENT: 7
   };
 
-  static EntryModerationStatus: { [status: string]: number } = {
+  static EntryModerationStatus: {[status: string]: number} = {
     PENDING_MODERATION: 1,
     APPROVED: 2,
     REJECTED: 3,
@@ -80,12 +80,12 @@ export default class KalturaMediaEntry {
    * @member - The type of the entry, this is auto filled by the derived entry object
    * @type {{ value: string | number }}
    */
-  type: { value: string | number };
+  type: {value: string | number};
   /**
    * @member - The type of the entry, this is auto filled by the derived entry object (Image, Audio etc.)
    * @type {{ value: number }}
    */
-  entryType: { value: number };
+  entryType: {value: number};
   /**
    * @member - Entry poster image
    * @type {string}

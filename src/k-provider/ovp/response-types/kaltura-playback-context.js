@@ -1,9 +1,9 @@
 //@flow
-import ServiceResult from '../../common/base-service-result'
-import KalturaAccessControlMessage from '../../common/response-types/kaltura-access-control-message'
-import KalturaPlaybackSource from './kaltura-playback-source'
-import KalturaRuleAction from '../../common/response-types/kaltura-rule-action'
-import KalturaFlavorAsset from './kaltura-flavor-asset'
+import ServiceResult from '../../common/base-service-result';
+import KalturaAccessControlMessage from '../../common/response-types/kaltura-access-control-message';
+import KalturaPlaybackSource from './kaltura-playback-source';
+import KalturaRuleAction from '../../common/response-types/kaltura-rule-action';
+import KalturaFlavorAsset from './kaltura-flavor-asset';
 
 export default class KalturaPlaybackContext extends ServiceResult {
   /**
@@ -53,4 +53,3 @@ export default class KalturaPlaybackContext extends ServiceResult {
     }
   }
 }
-

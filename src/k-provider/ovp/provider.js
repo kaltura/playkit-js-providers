@@ -1,12 +1,12 @@
 //@flow
-import getLogger from '../../util/logger'
-import OVPConfiguration from './config'
-import OVPProviderParser from './provider-parser'
-import OVPMediaEntryLoader from './loaders/media-entry-loader'
-import OVPSessionLoader from './loaders/session-loader'
-import OVPDataLoaderManager from './loaders/data-loader-manager'
-import BaseProvider from '../common/base-provider'
-import MediaEntry from '../../entities/media-entry'
+import getLogger from '../../util/logger';
+import OVPConfiguration from './config';
+import OVPProviderParser from './provider-parser';
+import OVPMediaEntryLoader from './loaders/media-entry-loader';
+import OVPSessionLoader from './loaders/session-loader';
+import OVPDataLoaderManager from './loaders/data-loader-manager';
+import BaseProvider from '../common/base-provider';
+import MediaEntry from '../../entities/media-entry';
 
 export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
   /**
@@ -16,7 +16,7 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
    */
   constructor(options: ProviderOptionsObject, playerVersion: string) {
     super(options, playerVersion);
-    this._logger = getLogger("OVPProvider");
+    this._logger = getLogger('OVPProvider');
     OVPConfiguration.set(options.env);
   }
 
@@ -35,24 +35,26 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
       if (entryId) {
         let ks: string = this.ks;
         if (!ks) {
-          ks = "{1:result:ks}";
+          ks = '{1:result:ks}';
           this._dataLoader.add(OVPSessionLoader, {partnerId: this.partnerId});
         }
         this._dataLoader.add(OVPMediaEntryLoader, {entryId: entryId, ks: ks});
-        this._dataLoader.fetchData()
-          .then(response => {
+        this._dataLoader.fetchData().then(
+          response => {
             resolve(this._parseDataFromResponse(response));
-          }, err => {
+          },
+          err => {
             reject(err);
-          });
+          }
+        );
       } else {
-        reject({success: false, data: "Missing mandatory parameter"});
+        reject({success: false, data: 'Missing mandatory parameter'});
       }
     });
   }
 
   _parseDataFromResponse(data: Map<string, Function>): ProviderMediaConfigObject {
-    this._logger.debug("Data parsing started");
+    this._logger.debug('Data parsing started');
     const mediaConfig: ProviderMediaConfigObject = {
       session: {
         isAnonymous: this._isAnonymous,
@@ -104,12 +106,7 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
               throw blockedAction;
             }
           }
-          const mediaEntry = OVPProviderParser.getMediaEntry(
-            this.isAnonymous ? '' : this.ks,
-            this.partnerId,
-            this.uiConfId,
-            mediaLoader.response
-          );
+          const mediaEntry = OVPProviderParser.getMediaEntry(this.isAnonymous ? '' : this.ks, this.partnerId, this.uiConfId, mediaLoader.response);
           const mediaSources = mediaEntry.sources.toJSON();
           mediaConfig.sources.hls = mediaSources.hls;
           mediaConfig.sources.dash = mediaSources.dash;
@@ -126,7 +123,7 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
         }
       }
     }
-    this._logger.debug("Data parsing finished", mediaConfig);
+    this._logger.debug('Data parsing finished', mediaConfig);
     return mediaConfig;
   }
 }

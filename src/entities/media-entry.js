@@ -1,8 +1,8 @@
 //@flow
-import MediaSources from './media-sources'
+import MediaSources from './media-sources';
 
 export default class MediaEntry {
-  static Type: { [type: string]: string } = {
+  static Type: {[type: string]: string} = {
     VOD: 'Vod',
     LIVE: 'Live',
     IMAGE: 'Image',

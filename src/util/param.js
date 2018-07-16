@@ -1,11 +1,14 @@
-const param = (a) => {
-  let s = [], rbracket = /\[\]$/,
-    isArray = function (obj) {
+const param = a => {
+  let s = [],
+    rbracket = /\[\]$/,
+    isArray = function(obj) {
       return Object.prototype.toString.call(obj) === '[object Array]';
-    }, add = function (k, v) {
+    },
+    add = function(k, v) {
       v = typeof v === 'function' ? v() : v === null ? '' : v === undefined ? '' : v;
       s[s.length] = encodeURIComponent(k) + '=' + encodeURIComponent(v);
-    }, buildParams = function (prefix, obj) {
+    },
+    buildParams = function(prefix, obj) {
       let i, len, key;
 
       if (prefix) {
@@ -36,8 +39,9 @@ const param = (a) => {
       return s;
     };
 
-  return buildParams('', a).join('&').replace(/%20/g, '+');
+  return buildParams('', a)
+    .join('&')
+    .replace(/%20/g, '+');
 };
 
-export {param}
-
+export {param};

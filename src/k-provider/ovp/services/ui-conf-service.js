@@ -1,8 +1,8 @@
 //@flow
-import OVPService from './ovp-service'
-import RequestBuilder from '../../../util/request-builder'
+import OVPService from './ovp-service';
+import RequestBuilder from '../../../util/request-builder';
 
-const SERVICE_NAME: string = "uiconf";
+const SERVICE_NAME: string = 'uiconf';
 
 export default class OVPUIConfService extends OVPService {
   /**
@@ -16,15 +16,15 @@ export default class OVPUIConfService extends OVPService {
    */
   static get(serviceUrl: string, ks: string, uiConfId: number): RequestBuilder {
     const headers: Map<string, string> = new Map();
-    headers.set("Content-Type", "application/json");
+    headers.set('Content-Type', 'application/json');
     const request = new RequestBuilder(headers);
     request.service = SERVICE_NAME;
-    request.action = "get";
-    request.method = "POST";
+    request.action = 'get';
+    request.method = 'POST';
     request.url = request.getUrl(serviceUrl);
-    request.tag = "uiconf-get";
+    request.tag = 'uiconf-get';
     const responseProfileParams = {
-      fields: "config",
+      fields: 'config',
       type: 1
     };
     request.params = {id: uiConfId, responseProfile: responseProfileParams, ks: ks};

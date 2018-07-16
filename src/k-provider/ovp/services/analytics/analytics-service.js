@@ -1,13 +1,12 @@
 //@flow
-import OVPService from '../ovp-service'
-import RequestBuilder from '../../../../util/request-builder'
-import OVPConfiguration from '../../config'
-import {param} from '../../../../util/param'
+import OVPService from '../ovp-service';
+import RequestBuilder from '../../../../util/request-builder';
+import OVPConfiguration from '../../config';
+import {param} from '../../../../util/param';
 
-const SERVICE_NAME: string = "analytics";
+const SERVICE_NAME: string = 'analytics';
 
 export default class OVPAnalyticsService extends OVPService {
-
   /**
    * Creates an instance of RequestBuilder for analytics.trackEvent
    * @function trackEvent
@@ -22,9 +21,9 @@ export default class OVPAnalyticsService extends OVPService {
     Object.assign(serviceParams, ovpParams.serviceParams, params);
     const request = new RequestBuilder();
     request.service = SERVICE_NAME;
-    request.action = "trackEvent";
-    request.method = "GET";
-    request.tag = "analytics-trackEvent";
+    request.action = 'trackEvent';
+    request.method = 'GET';
+    request.tag = 'analytics-trackEvent';
     request.params = serviceParams;
     request.url = serviceUrl + '?service=' + request.service + '&action=' + request.action + '&' + param(request.params);
     return request;

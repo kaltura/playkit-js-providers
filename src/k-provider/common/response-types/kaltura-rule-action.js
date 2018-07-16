@@ -1,7 +1,7 @@
 //@flow
 export default class KalturaRuleAction {
-  static Type: { [type: string]: string | number } = {
-    DRM_POLICY: "drm.DRM_POLICY",
+  static Type: {[type: string]: string | number} = {
+    DRM_POLICY: 'drm.DRM_POLICY',
     BLOCK: 1,
     PREVIEW: 2,
     LIMIT_FLAVORS: 3,

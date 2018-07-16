@@ -1,8 +1,8 @@
 //@flow
-import MultiRequestBuilder from '../../common/multi-request-builder'
-import OVPConfiguration from '../config'
+import MultiRequestBuilder from '../../common/multi-request-builder';
+import OVPConfiguration from '../config';
 
-const SERVICE_NAME: string = "multirequest";
+const SERVICE_NAME: string = 'multirequest';
 
 export default class OVPService {
   /**
@@ -22,9 +22,9 @@ export default class OVPService {
       Object.assign(ovpParams, {partnerId: partnerId});
     }
     const headers: Map<string, string> = new Map();
-    headers.set("Content-Type", "application/json");
+    headers.set('Content-Type', 'application/json');
     const multiReq = new MultiRequestBuilder(headers);
-    multiReq.method = "POST";
+    multiReq.method = 'POST';
     multiReq.service = SERVICE_NAME;
     multiReq.url = multiReq.getUrl(config.serviceUrl);
     multiReq.params = ovpParams;

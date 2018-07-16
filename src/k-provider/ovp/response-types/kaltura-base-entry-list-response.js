@@ -1,6 +1,6 @@
 //@flow
-import ServiceResult from '../../common/base-service-result'
-import KalturaMediaEntry from './kaltura-media-entry'
+import ServiceResult from '../../common/base-service-result';
+import KalturaMediaEntry from './kaltura-media-entry';
 
 export default class KalturaBaseEntryListResponse extends ServiceResult {
   /**

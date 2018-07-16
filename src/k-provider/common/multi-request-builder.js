@@ -1,10 +1,10 @@
 //@flow
-import RequestBuilder from '../../util/request-builder'
-import getLogger from '../../util/logger'
-import ServiceResult from './base-service-result'
+import RequestBuilder from '../../util/request-builder';
+import getLogger from '../../util/logger';
+import ServiceResult from './base-service-result';
 
 export default class MultiRequestBuilder extends RequestBuilder {
-  static _logger = getLogger("MultiRequestBuilder");
+  static _logger = getLogger('MultiRequestBuilder');
   /**
    * @member - Array of requests
    * @type {Array<RequestBuilder>}
@@ -39,18 +39,21 @@ export default class MultiRequestBuilder extends RequestBuilder {
       MultiRequestBuilder._logger.error(`${err.message}`);
     }
     return new Promise((resolve, reject) => {
-      this.doHttpRequest().then(data => {
-        resolve(new MultiRequestResult(data));
-      }, err => {
-        const errorText: string = `Error on multiRequest execution, error <${err}>.`;
-        reject(errorText);
-      });
+      this.doHttpRequest().then(
+        data => {
+          resolve(new MultiRequestResult(data));
+        },
+        err => {
+          const errorText: string = `Error on multiRequest execution, error <${err}>.`;
+          reject(errorText);
+        }
+      );
     });
   }
 }
 
 export class MultiRequestResult {
-  static _logger = getLogger("MultiRequestResult");
+  static _logger = getLogger('MultiRequestResult');
   /**
    * @member - Is success
    * @type {boolean}
@@ -69,11 +72,13 @@ export class MultiRequestResult {
   constructor(response: Object) {
     this.success = true;
     const responseArr = response.result ? response.result : response;
-    responseArr.forEach((result) => {
+    responseArr.forEach(result => {
       const serviceResult: ServiceResult = new ServiceResult(result);
       this.results.push(serviceResult);
       if (serviceResult.hasError) {
-        MultiRequestResult._logger.error(`Service returned an error with error code: ${serviceResult.error.code} and message: ${serviceResult.error.message}.`);
+        MultiRequestResult._logger.error(
+          `Service returned an error with error code: ${serviceResult.error.code} and message: ${serviceResult.error.message}.`
+        );
         this.success = false;
         return;
       }

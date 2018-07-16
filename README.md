@@ -1,28 +1,30 @@
 # PlayKit JS Providers - Cloud TV and OVP Media Provider Plugins for the [PlayKit JS Player]
 
 [![Build Status](https://travis-ci.com/kaltura/playkit-js-providers.svg?token=s2ZQw18ukx9Q6ePzDX3F&branch=master)](https://travis-ci.com/kaltura/playkit-js-providers)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 The PlayKit JS Providers plugin helps integrate Kaltura OVP and Cloud TV backend data APIs with the [PlayKit JS Player].
- 
+
 PlayKit JS Providers is written in [ECMAScript6], analyzed statically using [Flow], and transpiled in ECMAScript5 using [Babel].
 
-[Flow]: https://flow.org/
-[ECMAScript6]: https://github.com/ericdouglas/ES6-Learning#articles--tutorials
-[Babel]: https://babeljs.io
-[Playkit JS Player]: https://github.com/kaltura/playkit-js
+[flow]: https://flow.org/
+[ecmascript6]: https://github.com/ericdouglas/ES6-Learning#articles--tutorials
+[babel]: https://babeljs.io
+[playkit js player]: https://github.com/kaltura/playkit-js
 
 ## Table of Contents
-  * [Getting Started](#getting-started)
-    + [Installing](#installing)
-    + [Building](#building)
-    + [Embed the Library In Your Test Page](#embed-the-library-in-your-test-page)
-  * [Documentation](#documentation)
-  * [Running the Tests](#running-the-tests)
-  * [Compatibility](#compatibility)
-  * [Contributing](#contributing)
-  * [Versioning](#versioning)
-  * [Licensing](#licensing)
-  
+
+* [Getting Started](#getting-started)
+  * [Installing](#installing)
+  * [Building](#building)
+  * [Embed the Library In Your Test Page](#embed-the-library-in-your-test-page)
+* [Documentation](#documentation)
+* [Running the Tests](#running-the-tests)
+* [Compatibility](#compatibility)
+* [Contributing](#contributing)
+* [Versioning](#versioning)
+* [Licensing](#licensing)
+
 ## Getting Started
 
 ### Installing
@@ -50,6 +52,7 @@ yarn run build
 Finally, add the bundle as a script tag in your page, and initialize the provider:
 
 **OVP Provider**
+
 ```html
 <script type="text/javascript" src="/PATH/TO/FILE/playkit-ovp-provider.js"></script>
 <div id="player-placeholder" style="height:360px; width:640px">
@@ -115,20 +118,22 @@ provider.getMediaConfig(mediaInfo).then(function(mediaConfig) {
 ```
 
 ## Documentation
-    
-- **[Configuration](docs/configuration.md)**
-- **API**
+
+* **[Configuration](docs/configuration.md)**
+* **API**
 
 ## Running the Tests
 
 You can run tests locally via [Karma], which will run on Chrome, Firefox and Safari browsers.
 
-[Karma]: https://karma-runner.github.io/1.0/index.html
+[karma]: https://karma-runner.github.io/1.0/index.html
+
 ```
 yarn run test
 ```
 
 You can also test individual browsers in the following way:
+
 ```
 yarn run test:chrome
 yarn run test:firefox
@@ -143,7 +148,6 @@ See [ESLint config](.eslintrc.json) for the full configuration.
 
 We also use [.editorconfig](.editorconfig) to maintain consistent coding styles and settings; please make sure you comply with these styles.
 
-
 ## Compatibility
 
 TBD
@@ -154,7 +158,7 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the available versions, see the [tags on this repository](https://github.com/kaltura/playkit-js-providers/tags). 
+We use [SemVer](http://semver.org/) for versioning. For the available versions, see the [tags on this repository](https://github.com/kaltura/playkit-js-providers/tags).
 
 ## Licensing
 
