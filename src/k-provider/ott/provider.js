@@ -142,7 +142,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
           if (
             mediaEntry.metadata &&
             mediaEntry.metadata.metas &&
-            mediaEntry.metadata.metas.tags &&
+            typeof mediaEntry.metadata.metas.tags === 'string' &&
             mediaEntry.metadata.metas.tags.indexOf('360') > -1
           ) {
             mediaConfig.sources.vr = {};
