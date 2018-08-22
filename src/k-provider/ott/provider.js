@@ -139,7 +139,12 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
           mediaConfig.sources.type = mediaEntry.type;
           mediaConfig.sources.dvr = !!mediaEntry.dvrStatus;
           mediaConfig.sources.poster = mediaEntry.poster;
-          if (mediaEntry.metadata && mediaEntry.metadata.metas && mediaEntry.metadata.metas['360']) {
+          if (
+            mediaEntry.metadata &&
+            mediaEntry.metadata.metas &&
+            typeof mediaEntry.metadata.metas.tags === 'string' &&
+            mediaEntry.metadata.metas.tags.indexOf('360') > -1
+          ) {
             mediaConfig.sources.vr = {};
           }
           Object.assign(mediaConfig.sources.metadata, mediaEntry.metadata);
