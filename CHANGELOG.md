@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.7.2"></a>
+## [2.7.2](https://github.com/kaltura/playkit-js-providers/compare/v2.7.1...v2.7.2) (2018-08-22)
+
+
+### Bug Fixes
+
+* **FEC-8499:** OTT - entry not recognized as 360 ([#62](https://github.com/kaltura/playkit-js-providers/issues/62)) ([7b6a7da](https://github.com/kaltura/playkit-js-providers/commit/7b6a7da))
+
+
+
 <a name="2.7.1"></a>
 ## [2.7.1](https://github.com/kaltura/playkit-js-providers/compare/v2.7.0...v2.7.1) (2018-07-02)
 
