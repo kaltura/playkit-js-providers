@@ -14,6 +14,7 @@ import MediaSource from '../../entities/media-source';
 import MediaSources from '../../entities/media-sources';
 import {SupportedStreamFormat} from '../../entities/media-format';
 import BaseProviderParser from '../common/base-provider-parser';
+import Playlist from '../../entities/playlist';
 
 export default class OVPProviderParser extends BaseProviderParser {
   static _logger = getLogger('OVPProviderParser');
@@ -37,6 +38,35 @@ export default class OVPProviderParser extends BaseProviderParser {
     const kalturaSources = playbackContext.sources;
 
     mediaEntry.sources = OVPProviderParser._getParsedSources(kalturaSources, ks, partnerId, uiConfId, entry, playbackContext);
+    OVPProviderParser._fillBaseData(mediaEntry, entry, metadataList);
+    return mediaEntry;
+  }
+
+  /**
+   * Returns parsed playlist by given OVP response objects
+   * @function getPlaylist
+   * @param {any} playlistResponse - The playlist response
+   * @returns {Playlist} - The playlist
+   * @static
+   * @public
+   */
+  static getPlaylist(playlistResponse: any): Playlist {
+    const playlist = new Playlist();
+    const playlistData = playlistResponse.playlistData;
+    const playlistItems = playlistResponse.playlistItems.entries;
+    playlist.id = playlistData.id;
+    playlist.name = playlistData.name;
+    playlist.description = playlistData.description;
+    playlist.poster = playlistData.poster;
+    playlistItems.forEach(entry => {
+      const mediaEntry = new MediaEntry();
+      OVPProviderParser._fillBaseData(mediaEntry, entry);
+      playlist.items.push(mediaEntry);
+    });
+    return playlist;
+  }
+
+  static _fillBaseData(mediaEntry: MediaEntry, entry: KalturaMediaEntry, metadataList: ?KalturaMetadataListResponse) {
     mediaEntry.poster = entry.poster;
     mediaEntry.id = entry.id;
     mediaEntry.duration = entry.duration;
@@ -51,6 +81,39 @@ export default class OVPProviderParser extends BaseProviderParser {
     }
 
     return mediaEntry;
+  }
+
+  static getSourcesObject(mediaEntry: MediaEntry) {
+    const sourcesObject: ProviderMediaConfigSourcesObject = {
+      hls: [],
+      dash: [],
+      progressive: [],
+      id: '',
+      duration: 0,
+      type: MediaEntry.Type.UNKNOWN,
+      poster: '',
+      dvr: false,
+      vr: null,
+      metadata: {
+        name: '',
+        description: '',
+        tags: ''
+      }
+    };
+    const mediaSources = mediaEntry.sources.toJSON();
+    sourcesObject.hls = mediaSources.hls;
+    sourcesObject.dash = mediaSources.dash;
+    sourcesObject.progressive = mediaSources.progressive;
+    sourcesObject.id = mediaEntry.id;
+    sourcesObject.duration = mediaEntry.duration;
+    sourcesObject.type = mediaEntry.type;
+    sourcesObject.dvr = !!mediaEntry.dvrStatus;
+    sourcesObject.poster = mediaEntry.poster;
+    if (mediaEntry.metadata && typeof mediaEntry.metadata.tags === 'string' && mediaEntry.metadata.tags.indexOf('360') > -1) {
+      sourcesObject.sources.vr = {};
+    }
+    Object.assign(sourcesObject.metadata, mediaEntry.metadata);
+    return sourcesObject;
   }
 
   static _getEntryType(entryTypeEnum: number, typeEnum: number | string): string {
