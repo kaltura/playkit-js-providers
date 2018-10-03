@@ -1,6 +1,7 @@
 //@flow
 import OVPService from './ovp-service';
 import RequestBuilder from '../../../util/request-builder';
+import BaseEntryResponseProfile from '../request-params/base-entry-response-profile';
 
 const SERVICE_NAME: string = 'playlist';
 
@@ -26,10 +27,7 @@ export default class OVPPlaylistService extends OVPService {
     request.params = {
       ks: ks,
       id: playlistId,
-      responseProfile: {
-        fields: 'id,name,description,thumbnailUrl,dataUrl,duration,msDuration,flavorParamsIds,mediaType,type,tags,dvrStatus',
-        type: 1
-      }
+      responseProfile: new BaseEntryResponseProfile()
     };
     return request;
   }
