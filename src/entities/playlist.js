@@ -34,19 +34,4 @@ export default class Playlist {
   constructor() {
     this.items = [];
   }
-
-  /**
-   * Convert class to native js object.
-   * @returns {ProviderMediaEntryObject} - The json class object.
-   */
-  toJSON(): ProviderPlaylistObject {
-    const response = {
-      id: this.id,
-      name: this.name,
-      description: this.description,
-      poster: this.poster,
-      items: []
-    };
-    this.items.forEach(i => response.items.push(i.toJSON()));
-  }
 }

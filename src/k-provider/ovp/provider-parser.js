@@ -83,39 +83,6 @@ export default class OVPProviderParser extends BaseProviderParser {
     return mediaEntry;
   }
 
-  static getSourcesObject(mediaEntry: MediaEntry) {
-    const sourcesObject: ProviderMediaConfigSourcesObject = {
-      hls: [],
-      dash: [],
-      progressive: [],
-      id: '',
-      duration: 0,
-      type: MediaEntry.Type.UNKNOWN,
-      poster: '',
-      dvr: false,
-      vr: null,
-      metadata: {
-        name: '',
-        description: '',
-        tags: ''
-      }
-    };
-    const mediaSources = mediaEntry.sources.toJSON();
-    sourcesObject.hls = mediaSources.hls;
-    sourcesObject.dash = mediaSources.dash;
-    sourcesObject.progressive = mediaSources.progressive;
-    sourcesObject.id = mediaEntry.id;
-    sourcesObject.duration = mediaEntry.duration;
-    sourcesObject.type = mediaEntry.type;
-    sourcesObject.dvr = !!mediaEntry.dvrStatus;
-    sourcesObject.poster = mediaEntry.poster;
-    if (mediaEntry.metadata && typeof mediaEntry.metadata.tags === 'string' && mediaEntry.metadata.tags.indexOf('360') > -1) {
-      sourcesObject.sources.vr = {};
-    }
-    Object.assign(sourcesObject.metadata, mediaEntry.metadata);
-    return sourcesObject;
-  }
-
   static _getEntryType(entryTypeEnum: number, typeEnum: number | string): string {
     let type = MediaEntry.Type.UNKNOWN;
     switch (entryTypeEnum) {

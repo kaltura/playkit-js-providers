@@ -4,11 +4,6 @@ declare type ProviderMediaInfoObject = {
   ks?: string
 };
 
-declare type ProviderPlaylistInfoObject = {
-  playlistId: string,
-  ks?: string
-};
-
 declare type OTTProviderMediaInfoObject = ProviderMediaInfoObject & {
   mediaType: string,
   contextType: string,

@@ -7,6 +7,7 @@ import OVPSessionLoader from './loaders/session-loader';
 import OVPDataLoaderManager from './loaders/data-loader-manager';
 import OVPPlaylistLoader from './loaders/playlist-loader';
 import BaseProvider from '../common/base-provider';
+import MediaEntry from '../../entities/media-entry';
 
 export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
   /**
@@ -92,7 +93,7 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
             }
           }
           const mediaEntry = OVPProviderParser.getMediaEntry(this.isAnonymous ? '' : this.ks, this.partnerId, this.uiConfId, mediaLoader.response);
-          Object.assign(mediaConfig.sources, OVPProviderParser.getSourcesObject(mediaEntry));
+          Object.assign(mediaConfig.sources, this._getSourcesObject(mediaEntry));
         }
       }
     }
@@ -101,11 +102,11 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
   }
 
   /**
-   * Gets the backend media config.
-   * @param {ProviderMediaInfoObject} playlistInfo - ovp media info
+   * Gets the backend playlist config.
+   * @param {ProviderPlaylistInfoObject} playlistInfo - ovp playlist info
    * @returns {Promise<ProviderPlaylistConfigObject>} - The provider playlist config
    */
-  getPlaylistConfig(playlistInfo: ProviderMediaInfoObject): Promise<ProviderPlaylistConfigObject> {
+  getPlaylistConfig(playlistInfo: ProviderPlaylistInfoObject): Promise<ProviderPlaylistConfigObject> {
     if (playlistInfo.ks) {
       this.ks = playlistInfo.ks;
     }
@@ -185,11 +186,44 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
           playlistConfig.playlist.poster = playlist.poster;
           playlistConfig.playlist.metadata.name = playlist.name;
           playlistConfig.playlist.metadata.description = playlist.description;
-          playlist.items.forEach(i => playlistConfig.playlist.items.push({sources: OVPProviderParser.getSourcesObject(i)}));
+          playlist.items.forEach(i => playlistConfig.playlist.items.push({sources: this._getSourcesObject(i)}));
         }
       }
     }
     this._logger.debug('Data parsing finished', playlistConfig);
     return playlistConfig;
+  }
+
+  _getSourcesObject(mediaEntry: MediaEntry) {
+    const sourcesObject: ProviderMediaConfigSourcesObject = {
+      hls: [],
+      dash: [],
+      progressive: [],
+      id: '',
+      duration: 0,
+      type: MediaEntry.Type.UNKNOWN,
+      poster: '',
+      dvr: false,
+      vr: null,
+      metadata: {
+        name: '',
+        description: '',
+        tags: ''
+      }
+    };
+    const mediaSources = mediaEntry.sources.toJSON();
+    sourcesObject.hls = mediaSources.hls;
+    sourcesObject.dash = mediaSources.dash;
+    sourcesObject.progressive = mediaSources.progressive;
+    sourcesObject.id = mediaEntry.id;
+    sourcesObject.duration = mediaEntry.duration;
+    sourcesObject.type = mediaEntry.type;
+    sourcesObject.dvr = !!mediaEntry.dvrStatus;
+    sourcesObject.poster = mediaEntry.poster;
+    if (mediaEntry.metadata && typeof mediaEntry.metadata.tags === 'string' && mediaEntry.metadata.tags.indexOf('360') > -1) {
+      sourcesObject.sources.vr = {};
+    }
+    Object.assign(sourcesObject.metadata, mediaEntry.metadata);
+    return sourcesObject;
   }
 }
