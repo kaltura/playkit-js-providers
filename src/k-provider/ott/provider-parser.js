@@ -17,7 +17,7 @@ const MediaTypeCombinations: {[mediaType: string]: Object} = {
   [KalturaAsset.Type.MEDIA]: {
     [KalturaPlaybackContext.Type.TRAILER]: () => ({type: MediaEntry.Type.VOD}),
     [KalturaPlaybackContext.Type.PLAYBACK]: mediaAssetData => {
-      if ((mediaAssetData.externalIds && mediaAssetData.externalIds !== '0') || mediaAssetData.objectType === LIVE_ASST_OBJECT_TYPE) {
+      if (mediaAssetData.externalIds === '0' || mediaAssetData.objectType === LIVE_ASST_OBJECT_TYPE) {
         return {type: MediaEntry.Type.LIVE, dvrStatus: 0};
       }
       return {type: MediaEntry.Type.VOD};
