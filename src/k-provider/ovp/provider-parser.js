@@ -52,7 +52,7 @@ export default class OVPProviderParser extends BaseProviderParser {
    */
   static getPlaylist(playlistResponse: any): Playlist {
     const playlist = new Playlist();
-    const playlistData = playlistResponse.playlistData;
+    const playlistData = playlistResponse.playlistData || {};
     const playlistItems = playlistResponse.playlistItems.entries;
     playlist.id = playlistData.id;
     playlist.name = playlistData.name;

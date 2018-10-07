@@ -8,6 +8,7 @@ import OVPDataLoaderManager from './loaders/data-loader-manager';
 import OVPPlaylistLoader from './loaders/playlist-loader';
 import BaseProvider from '../common/base-provider';
 import MediaEntry from '../../entities/media-entry';
+import OVPPlaylistByEntriesLoader from './loaders/playlist-by-entries-loader';
 
 export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
   /**
@@ -39,7 +40,7 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
           ks = '{1:result:ks}';
           this._dataLoader.add(OVPSessionLoader, {partnerId: this.partnerId});
         }
-        this._dataLoader.add(OVPMediaEntryLoader, {entryId: entryId, ks: ks});
+        this._dataLoader.add(OVPMediaEntryLoader, {entryId, ks});
         this._dataLoader.fetchData().then(
           response => {
             resolve(this._parseDataFromResponse(response));
@@ -119,8 +120,41 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
           ks = '{1:result:ks}';
           this._dataLoader.add(OVPSessionLoader, {partnerId: this.partnerId});
         }
-        this._dataLoader.add(OVPPlaylistLoader, {playlistId: playlistId, ks: ks});
-        // this._dataLoader.add(OVPMediaEntryLoader, {entryId: '{3:result:0:id}', ks: ks});
+        this._dataLoader.add(OVPPlaylistLoader, {playlistId, ks});
+        // this._dataLoader.add(OVPMediaEntryLoader, {entryId: '{3:result:0:id}', ks});
+        this._dataLoader.fetchData().then(
+          response => {
+            resolve(this._parsePlaylistDataFromResponse(response));
+          },
+          err => {
+            reject(err);
+          }
+        );
+      } else {
+        reject({success: false, data: 'Missing mandatory parameter'});
+      }
+    });
+  }
+
+  /**
+   * Gets the backend playlist config.
+   * @param {ProviderPlaylistEntriesObject} playlistInfo - ovp playlist info
+   * @returns {Promise<ProviderPlaylistObject>} - The provider playlist config
+   */
+  getPlaylistConfigByEntries(playlistInfo: ProviderPlaylistEntriesObject): Promise<ProviderPlaylistObject> {
+    if (playlistInfo.ks) {
+      this.ks = playlistInfo.ks;
+    }
+    this._dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, this.ks);
+    return new Promise((resolve, reject) => {
+      const entries = playlistInfo.entries;
+      if (entries && entries.length) {
+        let ks: string = this.ks;
+        if (!ks) {
+          ks = '{1:result:ks}';
+          this._dataLoader.add(OVPSessionLoader, {partnerId: this.partnerId});
+        }
+        this._dataLoader.add(OVPPlaylistByEntriesLoader, {entries, ks});
         this._dataLoader.fetchData().then(
           response => {
             resolve(this._parsePlaylistDataFromResponse(response));
