@@ -104,9 +104,9 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
   /**
    * Gets the backend playlist config.
    * @param {ProviderPlaylistInfoObject} playlistInfo - ovp playlist info
-   * @returns {Promise<ProviderPlaylistConfigObject>} - The provider playlist config
+   * @returns {Promise<ProviderPlaylistObject>} - The provider playlist config
    */
-  getPlaylistConfig(playlistInfo: ProviderPlaylistInfoObject): Promise<ProviderPlaylistConfigObject> {
+  getPlaylistConfig(playlistInfo: ProviderPlaylistInfoObject): Promise<ProviderPlaylistObject> {
     if (playlistInfo.ks) {
       this.ks = playlistInfo.ks;
     }
@@ -135,59 +135,38 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
     });
   }
 
-  _parsePlaylistDataFromResponse(data: Map<string, Function>): ProviderPlaylistConfigObject {
+  _parsePlaylistDataFromResponse(data: Map<string, Function>): ProviderPlaylistObject {
     this._logger.debug('Data parsing started');
-    const playlistConfig: ProviderPlaylistConfigObject = {
-      session: {
-        isAnonymous: this._isAnonymous,
-        partnerId: this.partnerId
+    const playlistConfig: ProviderPlaylistObject = {
+      id: '',
+      metadata: {
+        name: '',
+        description: ''
       },
-      playlist: {
-        id: '',
-        metadata: {
-          name: '',
-          description: ''
-        },
-        poster: '',
-        items: []
-      },
-      plugins: {}
+      poster: '',
+      items: []
     };
 
-    if (this.uiConfId) {
-      playlistConfig.session.uiConfId = this.uiConfId;
-    }
-    if (data) {
-      if (data.has(OVPSessionLoader.id)) {
-        const sessionLoader = data.get(OVPSessionLoader.id);
-        if (sessionLoader && sessionLoader.response) {
-          this.ks = sessionLoader.response;
-          playlistConfig.session.ks = this.ks;
-        }
-      } else {
-        playlistConfig.session.ks = this.ks;
-      }
-      if (data.has(OVPPlaylistLoader.id)) {
-        const playlistLoader = data.get(OVPPlaylistLoader.id);
-        if (playlistLoader && playlistLoader.response) {
-          const blockedAction = OVPProviderParser.hasBlockActions(playlistLoader.response);
-          if (blockedAction) {
-            const errorMessage = OVPProviderParser.hasErrorMessage(playlistLoader.response);
-            if (errorMessage) {
-              this._logger.error(`Entry is blocked, error message: `, errorMessage);
-              throw errorMessage;
-            } else {
-              this._logger.error(`Entry is blocked, action: `, blockedAction);
-              throw blockedAction;
-            }
+    if (data && data.has(OVPPlaylistLoader.id)) {
+      const playlistLoader = data.get(OVPPlaylistLoader.id);
+      if (playlistLoader && playlistLoader.response) {
+        const blockedAction = OVPProviderParser.hasBlockActions(playlistLoader.response);
+        if (blockedAction) {
+          const errorMessage = OVPProviderParser.hasErrorMessage(playlistLoader.response);
+          if (errorMessage) {
+            this._logger.error(`Entry is blocked, error message: `, errorMessage);
+            throw errorMessage;
+          } else {
+            this._logger.error(`Entry is blocked, action: `, blockedAction);
+            throw blockedAction;
           }
-          const playlist = OVPProviderParser.getPlaylist(playlistLoader.response);
-          playlistConfig.playlist.id = playlist.id;
-          playlistConfig.playlist.poster = playlist.poster;
-          playlistConfig.playlist.metadata.name = playlist.name;
-          playlistConfig.playlist.metadata.description = playlist.description;
-          playlist.items.forEach(i => playlistConfig.playlist.items.push({sources: this._getSourcesObject(i)}));
         }
+        const playlist = OVPProviderParser.getPlaylist(playlistLoader.response);
+        playlistConfig.id = playlist.id;
+        playlistConfig.poster = playlist.poster;
+        playlistConfig.metadata.name = playlist.name;
+        playlistConfig.metadata.description = playlist.description;
+        playlist.items.forEach(i => playlistConfig.items.push({sources: this._getSourcesObject(i)}));
       }
     }
     this._logger.debug('Data parsing finished', playlistConfig);
