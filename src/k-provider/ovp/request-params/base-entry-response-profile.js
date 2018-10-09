@@ -1,4 +1,5 @@
 //@flow
+const FIELDS = 'id,name,description,thumbnailUrl,dataUrl,duration,msDuration,flavorParamsIds,mediaType,type,tags,dvrStatus';
 
 export default class BaseEntryResponseProfile {
   static Type: {[type: string]: number} = {
@@ -22,7 +23,6 @@ export default class BaseEntryResponseProfile {
    */
   constructor(responseProfile: Object = {}) {
     this.type = responseProfile.type || BaseEntryResponseProfile.Type.INCLUDE_FIELDS;
-    this.fields =
-      responseProfile.fields || 'id,name,description,thumbnailUrl,dataUrl,duration,msDuration,flavorParamsIds,mediaType,type,tags,dvrStatus';
+    this.fields = responseProfile.fields || FIELDS;
   }
 }

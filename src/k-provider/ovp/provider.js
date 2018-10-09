@@ -8,7 +8,7 @@ import OVPDataLoaderManager from './loaders/data-loader-manager';
 import OVPPlaylistLoader from './loaders/playlist-loader';
 import BaseProvider from '../common/base-provider';
 import MediaEntry from '../../entities/media-entry';
-import OVPPlaylistByEntriesLoader from './loaders/playlist-by-entries-loader';
+import OVPEntryListLoader from './loaders/entry-list-loader';
 
 export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
   /**
@@ -82,17 +82,7 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
       if (data.has(OVPMediaEntryLoader.id)) {
         const mediaLoader = data.get(OVPMediaEntryLoader.id);
         if (mediaLoader && mediaLoader.response) {
-          const blockedAction = OVPProviderParser.hasBlockActions(mediaLoader.response);
-          if (blockedAction) {
-            const errorMessage = OVPProviderParser.hasErrorMessage(mediaLoader.response);
-            if (errorMessage) {
-              this._logger.error(`Entry is blocked, error message: `, errorMessage);
-              throw errorMessage;
-            } else {
-              this._logger.error(`Entry is blocked, action: `, blockedAction);
-              throw blockedAction;
-            }
-          }
+          this._validateData(mediaLoader.response);
           const mediaEntry = OVPProviderParser.getMediaEntry(this.isAnonymous ? '' : this.ks, this.partnerId, this.uiConfId, mediaLoader.response);
           Object.assign(mediaConfig.sources, this._getSourcesObject(mediaEntry));
         }
@@ -136,28 +126,47 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
     });
   }
 
+  _parsePlaylistDataFromResponse(data: Map<string, Function>): ProviderPlaylistObject {
+    this._logger.debug('Data parsing started');
+    const playlistConfig: ProviderPlaylistObject = this._getPlaylistObject();
+    if (data && data.has(OVPPlaylistLoader.id)) {
+      const playlistLoader = data.get(OVPPlaylistLoader.id);
+      if (playlistLoader && playlistLoader.response) {
+        this._validateData(playlistLoader.response);
+        const playlist = OVPProviderParser.getPlaylist(playlistLoader.response);
+        playlistConfig.id = playlist.id;
+        playlistConfig.poster = playlist.poster;
+        playlistConfig.metadata.name = playlist.name;
+        playlistConfig.metadata.description = playlist.description;
+        playlist.items.forEach(i => playlistConfig.items.push({sources: this._getSourcesObject(i)}));
+      }
+    }
+    this._logger.debug('Data parsing finished', playlistConfig);
+    return playlistConfig;
+  }
+
   /**
-   * Gets the backend playlist config.
-   * @param {ProviderPlaylistEntriesObject} playlistInfo - ovp playlist info
+   * Gets playlist config from entry list.
+   * @param {ProviderEntryListObject} entryListInfo - ovp entry list info
    * @returns {Promise<ProviderPlaylistObject>} - The provider playlist config
    */
-  getPlaylistConfigByEntries(playlistInfo: ProviderPlaylistEntriesObject): Promise<ProviderPlaylistObject> {
-    if (playlistInfo.ks) {
-      this.ks = playlistInfo.ks;
+  getEntryListConfig(entryListInfo: ProviderEntryListObject): Promise<ProviderPlaylistObject> {
+    if (entryListInfo.ks) {
+      this.ks = entryListInfo.ks;
     }
     this._dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, this.ks);
     return new Promise((resolve, reject) => {
-      const entries = playlistInfo.entries;
+      const entries = entryListInfo.entries;
       if (entries && entries.length) {
         let ks: string = this.ks;
         if (!ks) {
           ks = '{1:result:ks}';
           this._dataLoader.add(OVPSessionLoader, {partnerId: this.partnerId});
         }
-        this._dataLoader.add(OVPPlaylistByEntriesLoader, {entries, ks});
+        this._dataLoader.add(OVPEntryListLoader, {entries, ks});
         this._dataLoader.fetchData().then(
           response => {
-            resolve(this._parsePlaylistDataFromResponse(response));
+            resolve(this._parseEntryListDataFromResponse(response));
           },
           err => {
             reject(err);
@@ -169,9 +178,23 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
     });
   }
 
-  _parsePlaylistDataFromResponse(data: Map<string, Function>): ProviderPlaylistObject {
+  _parseEntryListDataFromResponse(data: Map<string, Function>): ProviderPlaylistObject {
     this._logger.debug('Data parsing started');
-    const playlistConfig: ProviderPlaylistObject = {
+    const playlistConfig: ProviderPlaylistObject = this._getPlaylistObject();
+    if (data && data.has(OVPPlaylistLoader.id)) {
+      const playlistLoader = data.get(OVPPlaylistLoader.id);
+      if (playlistLoader && playlistLoader.response) {
+        this._validateData(playlistLoader.response);
+        const entryList = OVPProviderParser.getEntryList(playlistLoader.response);
+        entryList.items.forEach(i => playlistConfig.items.push({sources: this._getSourcesObject(i)}));
+      }
+    }
+    this._logger.debug('Data parsing finished', playlistConfig);
+    return playlistConfig;
+  }
+
+  _getPlaylistObject(): ProviderPlaylistObject {
+    return {
       id: '',
       metadata: {
         name: '',
@@ -180,31 +203,20 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
       poster: '',
       items: []
     };
+  }
 
-    if (data && data.has(OVPPlaylistLoader.id)) {
-      const playlistLoader = data.get(OVPPlaylistLoader.id);
-      if (playlistLoader && playlistLoader.response) {
-        const blockedAction = OVPProviderParser.hasBlockActions(playlistLoader.response);
-        if (blockedAction) {
-          const errorMessage = OVPProviderParser.hasErrorMessage(playlistLoader.response);
-          if (errorMessage) {
-            this._logger.error(`Entry is blocked, error message: `, errorMessage);
-            throw errorMessage;
-          } else {
-            this._logger.error(`Entry is blocked, action: `, blockedAction);
-            throw blockedAction;
-          }
-        }
-        const playlist = OVPProviderParser.getPlaylist(playlistLoader.response);
-        playlistConfig.id = playlist.id;
-        playlistConfig.poster = playlist.poster;
-        playlistConfig.metadata.name = playlist.name;
-        playlistConfig.metadata.description = playlist.description;
-        playlist.items.forEach(i => playlistConfig.items.push({sources: this._getSourcesObject(i)}));
+  _validateData(response: any): void {
+    const blockedAction = OVPProviderParser.hasBlockActions(response);
+    if (blockedAction) {
+      const errorMessage = OVPProviderParser.hasErrorMessage(response);
+      if (errorMessage) {
+        this._logger.error(`Entry is blocked, error message: `, errorMessage);
+        throw errorMessage;
+      } else {
+        this._logger.error(`Entry is blocked, action: `, blockedAction);
+        throw blockedAction;
       }
     }
-    this._logger.debug('Data parsing finished', playlistConfig);
-    return playlistConfig;
   }
 
   _getSourcesObject(mediaEntry: MediaEntry) {

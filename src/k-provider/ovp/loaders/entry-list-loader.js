@@ -4,7 +4,7 @@ import OVPConfiguration from '../config';
 import OVPBaseEntryService from '../services/base-entry-service';
 import KalturaBaseEntryListResponse from '../response-types/kaltura-base-entry-list-response';
 
-export default class OVPPlaylistByEntriesLoader implements ILoader {
+export default class OVPEntryListLoader implements ILoader {
   _entries: Array<string>;
   _requests: Array<RequestBuilder>;
   _response: any = {playlistItems: {entries: []}};

@@ -1,5 +1,5 @@
 // @flow
-declare type ProviderPlaylistEntriesObject = {
+declare type ProviderEntryListObject = {
   entries: Array<string>,
   ks?: string
 };
