@@ -59,7 +59,7 @@ export default class OVPProviderParser extends BaseProviderParser {
     playlist.name = playlistData.name;
     playlist.description = playlistData.description;
     playlist.poster = playlistData.poster;
-    playlistItems.forEach(entry => {
+    playlistItems.forEach((entry: KalturaMediaEntry) => {
       const mediaEntry = new MediaEntry();
       OVPProviderParser._fillBaseData(mediaEntry, entry);
       playlist.items.push(mediaEntry);
@@ -307,7 +307,7 @@ export default class OVPProviderParser extends BaseProviderParser {
    * @static
    * @private
    */
-  static _parseMetadata(metadataList: KalturaMetadataListResponse): Object {
+  static _parseMetadata(metadataList: ?KalturaMetadataListResponse): Object {
     const metadata = {};
     if (metadataList && metadataList.metas && metadataList.metas.length > 0) {
       metadataList.metas.forEach(meta => {

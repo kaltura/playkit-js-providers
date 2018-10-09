@@ -62,7 +62,7 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
         isAnonymous: this._isAnonymous,
         partnerId: this.partnerId
       },
-      sources: {},
+      sources: this._getDefaultSourcesObject(),
       plugins: {}
     };
 
@@ -219,8 +219,8 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
     }
   }
 
-  _getSourcesObject(mediaEntry: MediaEntry) {
-    const sourcesObject: ProviderMediaConfigSourcesObject = {
+  _getDefaultSourcesObject(): ProviderMediaConfigSourcesObject {
+    return {
       hls: [],
       dash: [],
       progressive: [],
@@ -236,6 +236,10 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
         tags: ''
       }
     };
+  }
+
+  _getSourcesObject(mediaEntry: MediaEntry) {
+    const sourcesObject: ProviderMediaConfigSourcesObject = this._getDefaultSourcesObject();
     const mediaSources = mediaEntry.sources.toJSON();
     sourcesObject.hls = mediaSources.hls;
     sourcesObject.dash = mediaSources.dash;
@@ -246,7 +250,7 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
     sourcesObject.dvr = !!mediaEntry.dvrStatus;
     sourcesObject.poster = mediaEntry.poster;
     if (mediaEntry.metadata && typeof mediaEntry.metadata.tags === 'string' && mediaEntry.metadata.tags.indexOf('360') > -1) {
-      sourcesObject.sources.vr = {};
+      sourcesObject.vr = {};
     }
     Object.assign(sourcesObject.metadata, mediaEntry.metadata);
     return sourcesObject;
