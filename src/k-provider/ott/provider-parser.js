@@ -11,13 +11,13 @@ import {SupportedStreamFormat} from '../../entities/media-format';
 import KalturaDrmPlaybackPluginData from '../common/response-types/kaltura-drm-playback-plugin-data';
 import BaseProviderParser from '../common/base-provider-parser';
 
-const LIVE_ASST_OBJECT_TYPE: string = 'KalturaLinearMediaAsset';
+const LIVE_ASST_OBJECT_TYPE: string = 'KalturaLiveAsset';
 
 const MediaTypeCombinations: {[mediaType: string]: Object} = {
   [KalturaAsset.Type.MEDIA]: {
     [KalturaPlaybackContext.Type.TRAILER]: () => ({type: MediaEntry.Type.VOD}),
     [KalturaPlaybackContext.Type.PLAYBACK]: mediaAssetData => {
-      if (mediaAssetData.externalIds || mediaAssetData.objectType === LIVE_ASST_OBJECT_TYPE) {
+      if (parseInt(mediaAssetData.externalIds) > 0 || mediaAssetData.objectType === LIVE_ASST_OBJECT_TYPE) {
         return {type: MediaEntry.Type.LIVE, dvrStatus: 0};
       }
       return {type: MediaEntry.Type.VOD};
