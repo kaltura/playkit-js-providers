@@ -14,6 +14,8 @@ import MediaSource from '../../entities/media-source';
 import MediaSources from '../../entities/media-sources';
 import {SupportedStreamFormat} from '../../entities/media-format';
 import BaseProviderParser from '../common/base-provider-parser';
+import Playlist from '../../entities/playlist';
+import EntryList from '../../entities/entry-list';
 
 export default class OVPProviderParser extends BaseProviderParser {
   static _logger = getLogger('OVPProviderParser');
@@ -37,6 +39,54 @@ export default class OVPProviderParser extends BaseProviderParser {
     const kalturaSources = playbackContext.sources;
 
     mediaEntry.sources = OVPProviderParser._getParsedSources(kalturaSources, ks, partnerId, uiConfId, entry, playbackContext);
+    OVPProviderParser._fillBaseData(mediaEntry, entry, metadataList);
+    return mediaEntry;
+  }
+
+  /**
+   * Returns parsed playlist by given OVP response objects
+   * @function getPlaylist
+   * @param {any} playlistResponse - The playlist response
+   * @returns {Playlist} - The playlist
+   * @static
+   * @public
+   */
+  static getPlaylist(playlistResponse: any): Playlist {
+    const playlist = new Playlist();
+    const playlistData = playlistResponse.playlistData;
+    const playlistItems = playlistResponse.playlistItems.entries;
+    playlist.id = playlistData.id;
+    playlist.name = playlistData.name;
+    playlist.description = playlistData.description;
+    playlist.poster = playlistData.poster;
+    playlistItems.forEach((entry: KalturaMediaEntry) => {
+      const mediaEntry = new MediaEntry();
+      OVPProviderParser._fillBaseData(mediaEntry, entry);
+      playlist.items.push(mediaEntry);
+    });
+    return playlist;
+  }
+
+  /**
+   * Returns parsed entry list by given OVP response objects
+   * @function getEntryList
+   * @param {any} playlistResponse - response
+   * @returns {Playlist} - The entry list
+   * @static
+   * @public
+   */
+  static getEntryList(playlistResponse: any): EntryList {
+    const entryList = new EntryList();
+    const playlistItems = playlistResponse.playlistItems.entries;
+    playlistItems.forEach(entry => {
+      const mediaEntry = new MediaEntry();
+      OVPProviderParser._fillBaseData(mediaEntry, entry);
+      entryList.items.push(mediaEntry);
+    });
+    return entryList;
+  }
+
+  static _fillBaseData(mediaEntry: MediaEntry, entry: KalturaMediaEntry, metadataList: ?KalturaMetadataListResponse) {
     mediaEntry.poster = entry.poster;
     mediaEntry.id = entry.id;
     mediaEntry.duration = entry.duration;
@@ -257,7 +307,7 @@ export default class OVPProviderParser extends BaseProviderParser {
    * @static
    * @private
    */
-  static _parseMetadata(metadataList: KalturaMetadataListResponse): Object {
+  static _parseMetadata(metadataList: ?KalturaMetadataListResponse): Object {
     const metadata = {};
     if (metadataList && metadataList.metas && metadataList.metas.length > 0) {
       metadataList.metas.forEach(meta => {

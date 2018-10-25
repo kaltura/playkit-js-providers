@@ -5,8 +5,10 @@ import OVPProviderParser from './provider-parser';
 import OVPMediaEntryLoader from './loaders/media-entry-loader';
 import OVPSessionLoader from './loaders/session-loader';
 import OVPDataLoaderManager from './loaders/data-loader-manager';
+import OVPPlaylistLoader from './loaders/playlist-loader';
 import BaseProvider from '../common/base-provider';
 import MediaEntry from '../../entities/media-entry';
+import OVPEntryListLoader from './loaders/entry-list-loader';
 
 export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
   /**
@@ -38,7 +40,7 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
           ks = '{1:result:ks}';
           this._dataLoader.add(OVPSessionLoader, {partnerId: this.partnerId});
         }
-        this._dataLoader.add(OVPMediaEntryLoader, {entryId: entryId, ks: ks});
+        this._dataLoader.add(OVPMediaEntryLoader, {entryId, ks});
         this._dataLoader.fetchData().then(
           response => {
             resolve(this._parseDataFromResponse(response));
@@ -60,22 +62,7 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
         isAnonymous: this._isAnonymous,
         partnerId: this.partnerId
       },
-      sources: {
-        hls: [],
-        dash: [],
-        progressive: [],
-        id: '',
-        duration: 0,
-        type: MediaEntry.Type.UNKNOWN,
-        poster: '',
-        dvr: false,
-        vr: null,
-        metadata: {
-          name: '',
-          description: '',
-          tags: ''
-        }
-      },
+      sources: this._getDefaultSourcesObject(),
       plugins: {}
     };
 
@@ -95,35 +82,177 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
       if (data.has(OVPMediaEntryLoader.id)) {
         const mediaLoader = data.get(OVPMediaEntryLoader.id);
         if (mediaLoader && mediaLoader.response) {
-          const blockedAction = OVPProviderParser.hasBlockActions(mediaLoader.response);
-          if (blockedAction) {
-            const errorMessage = OVPProviderParser.hasErrorMessage(mediaLoader.response);
-            if (errorMessage) {
-              this._logger.error(`Entry is blocked, error message: `, errorMessage);
-              throw errorMessage;
-            } else {
-              this._logger.error(`Entry is blocked, action: `, blockedAction);
-              throw blockedAction;
-            }
-          }
+          this._validateData(mediaLoader.response);
           const mediaEntry = OVPProviderParser.getMediaEntry(this.isAnonymous ? '' : this.ks, this.partnerId, this.uiConfId, mediaLoader.response);
-          const mediaSources = mediaEntry.sources.toJSON();
-          mediaConfig.sources.hls = mediaSources.hls;
-          mediaConfig.sources.dash = mediaSources.dash;
-          mediaConfig.sources.progressive = mediaSources.progressive;
-          mediaConfig.sources.id = mediaEntry.id;
-          mediaConfig.sources.duration = mediaEntry.duration;
-          mediaConfig.sources.type = mediaEntry.type;
-          mediaConfig.sources.dvr = !!mediaEntry.dvrStatus;
-          mediaConfig.sources.poster = mediaEntry.poster;
-          if (mediaEntry.metadata && typeof mediaEntry.metadata.tags === 'string' && mediaEntry.metadata.tags.indexOf('360') > -1) {
-            mediaConfig.sources.vr = {};
-          }
-          Object.assign(mediaConfig.sources.metadata, mediaEntry.metadata);
+          Object.assign(mediaConfig.sources, this._getSourcesObject(mediaEntry));
         }
       }
     }
     this._logger.debug('Data parsing finished', mediaConfig);
     return mediaConfig;
+  }
+
+  /**
+   * Gets the backend playlist config.
+   * @param {ProviderPlaylistInfoObject} playlistInfo - ovp playlist info
+   * @returns {Promise<ProviderPlaylistObject>} - The provider playlist config
+   */
+  getPlaylistConfig(playlistInfo: ProviderPlaylistInfoObject): Promise<ProviderPlaylistObject> {
+    if (playlistInfo.ks) {
+      this.ks = playlistInfo.ks;
+    }
+    this._dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, this.ks);
+    return new Promise((resolve, reject) => {
+      const playlistId = playlistInfo.playlistId;
+      if (playlistId) {
+        let ks: string = this.ks;
+        if (!ks) {
+          ks = '{1:result:ks}';
+          this._dataLoader.add(OVPSessionLoader, {partnerId: this.partnerId});
+        }
+        this._dataLoader.add(OVPPlaylistLoader, {playlistId, ks});
+        // this._dataLoader.add(OVPMediaEntryLoader, {entryId: '{3:result:0:id}', ks});
+        this._dataLoader.fetchData().then(
+          response => {
+            resolve(this._parsePlaylistDataFromResponse(response));
+          },
+          err => {
+            reject(err);
+          }
+        );
+      } else {
+        reject({success: false, data: 'Missing mandatory parameter'});
+      }
+    });
+  }
+
+  _parsePlaylistDataFromResponse(data: Map<string, Function>): ProviderPlaylistObject {
+    this._logger.debug('Data parsing started');
+    const playlistConfig: ProviderPlaylistObject = this._getPlaylistObject();
+    if (data && data.has(OVPPlaylistLoader.id)) {
+      const playlistLoader = data.get(OVPPlaylistLoader.id);
+      if (playlistLoader && playlistLoader.response) {
+        this._validateData(playlistLoader.response);
+        const playlist = OVPProviderParser.getPlaylist(playlistLoader.response);
+        playlistConfig.id = playlist.id;
+        playlistConfig.poster = playlist.poster;
+        playlistConfig.metadata.name = playlist.name;
+        playlistConfig.metadata.description = playlist.description;
+        playlist.items.forEach(i => playlistConfig.items.push({sources: this._getSourcesObject(i)}));
+      }
+    }
+    this._logger.debug('Data parsing finished', playlistConfig);
+    return playlistConfig;
+  }
+
+  /**
+   * Gets playlist config from entry list.
+   * @param {ProviderEntryListObject} entryListInfo - ovp entry list info
+   * @returns {Promise<ProviderPlaylistObject>} - The provider playlist config
+   */
+  getEntryListConfig(entryListInfo: ProviderEntryListObject): Promise<ProviderPlaylistObject> {
+    if (entryListInfo.ks) {
+      this.ks = entryListInfo.ks;
+    }
+    this._dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, this.ks);
+    return new Promise((resolve, reject) => {
+      const entries = entryListInfo.entries;
+      if (entries && entries.length) {
+        let ks: string = this.ks;
+        if (!ks) {
+          ks = '{1:result:ks}';
+          this._dataLoader.add(OVPSessionLoader, {partnerId: this.partnerId});
+        }
+        this._dataLoader.add(OVPEntryListLoader, {entries, ks});
+        this._dataLoader.fetchData().then(
+          response => {
+            resolve(this._parseEntryListDataFromResponse(response));
+          },
+          err => {
+            reject(err);
+          }
+        );
+      } else {
+        reject({success: false, data: 'Missing mandatory parameter'});
+      }
+    });
+  }
+
+  _parseEntryListDataFromResponse(data: Map<string, Function>): ProviderPlaylistObject {
+    this._logger.debug('Data parsing started');
+    const playlistConfig: ProviderPlaylistObject = this._getPlaylistObject();
+    if (data && data.has(OVPPlaylistLoader.id)) {
+      const playlistLoader = data.get(OVPPlaylistLoader.id);
+      if (playlistLoader && playlistLoader.response) {
+        this._validateData(playlistLoader.response);
+        const entryList = OVPProviderParser.getEntryList(playlistLoader.response);
+        entryList.items.forEach(i => playlistConfig.items.push({sources: this._getSourcesObject(i)}));
+      }
+    }
+    this._logger.debug('Data parsing finished', playlistConfig);
+    return playlistConfig;
+  }
+
+  _getPlaylistObject(): ProviderPlaylistObject {
+    return {
+      id: '',
+      metadata: {
+        name: '',
+        description: ''
+      },
+      poster: '',
+      items: []
+    };
+  }
+
+  _validateData(response: any): void {
+    const blockedAction = OVPProviderParser.hasBlockActions(response);
+    if (blockedAction) {
+      const errorMessage = OVPProviderParser.hasErrorMessage(response);
+      if (errorMessage) {
+        this._logger.error(`Entry is blocked, error message: `, errorMessage);
+        throw errorMessage;
+      } else {
+        this._logger.error(`Entry is blocked, action: `, blockedAction);
+        throw blockedAction;
+      }
+    }
+  }
+
+  _getDefaultSourcesObject(): ProviderMediaConfigSourcesObject {
+    return {
+      hls: [],
+      dash: [],
+      progressive: [],
+      id: '',
+      duration: 0,
+      type: MediaEntry.Type.UNKNOWN,
+      poster: '',
+      dvr: false,
+      vr: null,
+      metadata: {
+        name: '',
+        description: '',
+        tags: ''
+      }
+    };
+  }
+
+  _getSourcesObject(mediaEntry: MediaEntry) {
+    const sourcesObject: ProviderMediaConfigSourcesObject = this._getDefaultSourcesObject();
+    const mediaSources = mediaEntry.sources.toJSON();
+    sourcesObject.hls = mediaSources.hls;
+    sourcesObject.dash = mediaSources.dash;
+    sourcesObject.progressive = mediaSources.progressive;
+    sourcesObject.id = mediaEntry.id;
+    sourcesObject.duration = mediaEntry.duration;
+    sourcesObject.type = mediaEntry.type;
+    sourcesObject.dvr = !!mediaEntry.dvrStatus;
+    sourcesObject.poster = mediaEntry.poster;
+    if (mediaEntry.metadata && typeof mediaEntry.metadata.tags === 'string' && mediaEntry.metadata.tags.indexOf('360') > -1) {
+      sourcesObject.vr = {};
+    }
+    Object.assign(sourcesObject.metadata, mediaEntry.metadata);
+    return sourcesObject;
   }
 }

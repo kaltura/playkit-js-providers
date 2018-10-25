@@ -78,14 +78,14 @@ export default class KalturaMediaEntry {
   duration: number;
   /**
    * @member - The type of the entry, this is auto filled by the derived entry object
-   * @type {{ value: string | number }}
+   * @type {string | number}
    */
-  type: {value: string | number};
+  type: string | number;
   /**
    * @member - The type of the entry, this is auto filled by the derived entry object (Image, Audio etc.)
-   * @type {{ value: number }}
+   * @type {number}
    */
-  entryType: {value: number};
+  entryType: number;
   /**
    * @member - Entry poster image
    * @type {string}

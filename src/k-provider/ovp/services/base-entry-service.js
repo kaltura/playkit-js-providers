@@ -1,6 +1,7 @@
 //@flow
 import OVPService from './ovp-service';
 import RequestBuilder from '../../../util/request-builder';
+import BaseEntryResponseProfile from '../request-params/base-entry-response-profile';
 
 const SERVICE_NAME: string = 'baseEntry';
 
@@ -60,10 +61,6 @@ export default class OVPBaseEntryService extends OVPService {
    */
   static getEntryListReqParams(entryId: string, ks: string): any {
     const filterParams = {redirectFromEntryId: entryId};
-    const responseProfileParams = {
-      fields: 'id,name,description,thumbnailUrl,dataUrl,duration,msDuration,flavorParamsIds,mediaType,type,tags,dvrStatus',
-      type: 1
-    };
-    return {ks: ks, filter: filterParams, responseProfile: responseProfileParams};
+    return {ks: ks, filter: filterParams, responseProfile: new BaseEntryResponseProfile()};
   }
 }
