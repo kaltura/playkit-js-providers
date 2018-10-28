@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.8.0"></a>
+# [2.8.0](https://github.com/kaltura/playkit-js-providers/compare/v2.7.2...v2.8.0) (2018-10-28)
+
+
+### Bug Fixes
+
+* **FEC-8555:** phoenix provider live detection ([#64](https://github.com/kaltura/playkit-js-providers/issues/64)) ([c857176](https://github.com/kaltura/playkit-js-providers/commit/c857176))
+
+
+### Features
+
+* **FEC-8452:** playlist ([#63](https://github.com/kaltura/playkit-js-providers/issues/63)) ([903cc07](https://github.com/kaltura/playkit-js-providers/commit/903cc07))
+
+
+
 <a name="2.7.3"></a>
 ## [2.7.3](https://github.com/kaltura/playkit-js-providers/compare/v2.7.2...v2.7.3) (2018-10-14)
 
