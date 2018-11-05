@@ -2,7 +2,6 @@
 import OVPService from './ovp-service';
 import RequestBuilder from '../../../util/request-builder';
 import BaseEntryResponseProfile from '../request-params/base-entry-response-profile';
-import {FilterOptionsConfiguration} from '../filter-options-config';
 
 const SERVICE_NAME: string = 'baseEntry';
 
@@ -36,10 +35,11 @@ export default class OVPBaseEntryService extends OVPService {
    * @param {string} serviceUrl The base URL
    * @param {string} ks The ks
    * @param {string} entryId The entry ID
+   * @param {boolean} redirectFromEntryId whether the live entry should continue and play the VOD one after the live stream ends.
    * @returns {RequestBuilder} The request builder
    * @static
    */
-  static list(serviceUrl: string, ks: string, entryId: string): RequestBuilder {
+  static list(serviceUrl: string, ks: string, entryId: string, redirectFromEntryId: boolean): RequestBuilder {
     const headers: Map<string, string> = new Map();
     headers.set('Content-Type', 'application/json');
     const request = new RequestBuilder(headers);
@@ -48,7 +48,7 @@ export default class OVPBaseEntryService extends OVPService {
     request.method = 'POST';
     request.url = request.getUrl(serviceUrl);
     request.tag = 'list';
-    request.params = OVPBaseEntryService.getEntryListReqParams(entryId, ks);
+    request.params = OVPBaseEntryService.getEntryListReqParams(entryId, ks, redirectFromEntryId);
     return request;
   }
 
@@ -57,12 +57,12 @@ export default class OVPBaseEntryService extends OVPService {
    * @function getEntryListReqParams
    * @param {string} entryId The entry ID
    * @param {string} ks The ks
+   * @param {boolean} redirectFromEntryId whether the live entry should continue and play the VOD one after the live stream ends.
    * @returns {{ks: string, filter: {redirectFromEntryId: string}, responseProfile: {fields: string, type: number}}} The service params object
    * @static
    */
-  static getEntryListReqParams(entryId: string, ks: string): any {
-    const filterOptions = FilterOptionsConfiguration.get();
-    const filterParams = filterOptions.redirectFromEntryId ? {redirectFromEntryId: entryId} : {idEqual: entryId};
+  static getEntryListReqParams(entryId: string, ks: string, redirectFromEntryId: boolean): any {
+    const filterParams = redirectFromEntryId ? {redirectFromEntryId: entryId} : {idEqual: entryId};
     return {ks: ks, filter: filterParams, responseProfile: new BaseEntryResponseProfile()};
   }
 }

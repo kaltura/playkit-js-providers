@@ -9,9 +9,10 @@ import OVPPlaylistLoader from './loaders/playlist-loader';
 import BaseProvider from '../common/base-provider';
 import MediaEntry from '../../entities/media-entry';
 import OVPEntryListLoader from './loaders/entry-list-loader';
-import {FilterOptionsConfiguration} from './filter-options-config';
 
 export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
+  _filterOptionsConfig: ProviderFilterOptionsObject = {redirectFromEntryId: true};
+
   /**
    * @constructor
    * @param {ProviderOptionsObject} options - provider options
@@ -21,7 +22,7 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
     super(options, playerVersion);
     this._logger = getLogger('OVPProvider');
     OVPConfiguration.set(options.env);
-    FilterOptionsConfiguration.set(options);
+    this._setFilterOptionsConfig(options.filterOptions);
   }
 
   /**
@@ -42,7 +43,9 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
           ks = '{1:result:ks}';
           this._dataLoader.add(OVPSessionLoader, {partnerId: this.partnerId});
         }
-        this._dataLoader.add(OVPMediaEntryLoader, {entryId, ks});
+        const redirectFromEntryId =
+          typeof mediaInfo.redirectFromEntryId === 'boolean' ? mediaInfo.redirectFromEntryId : this._filterOptionsConfig.redirectFromEntryId;
+        this._dataLoader.add(OVPMediaEntryLoader, {entryId, ks, redirectFromEntryId});
         this._dataLoader.fetchData().then(
           response => {
             resolve(this._parseDataFromResponse(response));
@@ -55,6 +58,12 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
         reject({success: false, data: 'Missing mandatory parameter'});
       }
     });
+  }
+
+  _setFilterOptionsConfig(options: ProviderFilterOptionsObject): void {
+    if (options && typeof options.redirectFromEntryId == 'boolean') {
+      this._filterOptionsConfig.redirectFromEntryId = options.redirectFromEntryId;
+    }
   }
 
   _parseDataFromResponse(data: Map<string, Function>): ProviderMediaConfigObject {
@@ -165,7 +174,9 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
           ks = '{1:result:ks}';
           this._dataLoader.add(OVPSessionLoader, {partnerId: this.partnerId});
         }
-        this._dataLoader.add(OVPEntryListLoader, {entries, ks});
+        const redirectFromEntryId =
+          typeof entryListInfo.redirectFromEntryId === 'boolean' ? entryListInfo.redirectFromEntryId : this._filterOptionsConfig.redirectFromEntryId;
+        this._dataLoader.add(OVPEntryListLoader, {entries, ks, redirectFromEntryId});
         this._dataLoader.fetchData().then(
           response => {
             resolve(this._parseEntryListDataFromResponse(response));
