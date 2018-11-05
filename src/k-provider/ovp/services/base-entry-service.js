@@ -36,7 +36,6 @@ export default class OVPBaseEntryService extends OVPService {
    * @param {string} serviceUrl The base URL
    * @param {string} ks The ks
    * @param {string} entryId The entry ID
-   * @param {boolean} redirectFromEntryId If the live entry should be redirected to the vod one after it ends or not
    * @returns {RequestBuilder} The request builder
    * @static
    */
@@ -58,7 +57,6 @@ export default class OVPBaseEntryService extends OVPService {
    * @function getEntryListReqParams
    * @param {string} entryId The entry ID
    * @param {string} ks The ks
-   * @param {boolean} redirectFromEntryId If the live entry should be redirected to the vod one after it ends or not
    * @returns {{ks: string, filter: {redirectFromEntryId: string}, responseProfile: {fields: string, type: number}}} The service params object
    * @static
    */
