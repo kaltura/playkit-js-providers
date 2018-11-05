@@ -2,6 +2,7 @@
 import OVPService from './ovp-service';
 import RequestBuilder from '../../../util/request-builder';
 import BaseEntryResponseProfile from '../request-params/base-entry-response-profile';
+import {FilterOptionsConfiguration} from '../filter-options-config';
 
 const SERVICE_NAME: string = 'baseEntry';
 
@@ -39,7 +40,7 @@ export default class OVPBaseEntryService extends OVPService {
    * @returns {RequestBuilder} The request builder
    * @static
    */
-  static list(serviceUrl: string, ks: string, entryId: string, redirectFromEntryId: boolean): RequestBuilder {
+  static list(serviceUrl: string, ks: string, entryId: string): RequestBuilder {
     const headers: Map<string, string> = new Map();
     headers.set('Content-Type', 'application/json');
     const request = new RequestBuilder(headers);
@@ -48,7 +49,7 @@ export default class OVPBaseEntryService extends OVPService {
     request.method = 'POST';
     request.url = request.getUrl(serviceUrl);
     request.tag = 'list';
-    request.params = OVPBaseEntryService.getEntryListReqParams(entryId, ks, redirectFromEntryId);
+    request.params = OVPBaseEntryService.getEntryListReqParams(entryId, ks);
     return request;
   }
 
@@ -61,8 +62,9 @@ export default class OVPBaseEntryService extends OVPService {
    * @returns {{ks: string, filter: {redirectFromEntryId: string}, responseProfile: {fields: string, type: number}}} The service params object
    * @static
    */
-  static getEntryListReqParams(entryId: string, ks: string, redirectFromEntryId: boolean): any {
-    const filterParams = redirectFromEntryId ? {redirectFromEntryId: entryId} : {idEqual: entryId};
+  static getEntryListReqParams(entryId: string, ks: string): any {
+    const filterOptions = FilterOptionsConfiguration.get();
+    const filterParams = filterOptions.redirectFromEntryId ? {redirectFromEntryId: entryId} : {idEqual: entryId};
     return {ks: ks, filter: filterParams, responseProfile: new BaseEntryResponseProfile()};
   }
 }

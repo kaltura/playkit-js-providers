@@ -9,10 +9,9 @@ import OVPPlaylistLoader from './loaders/playlist-loader';
 import BaseProvider from '../common/base-provider';
 import MediaEntry from '../../entities/media-entry';
 import OVPEntryListLoader from './loaders/entry-list-loader';
+import {FilterOptionsConfiguration} from './filter-options-config';
 
 export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
-  _filterOptions: ProviderFilterOptionsObject = {redirectFromEntryId: true};
-
   /**
    * @constructor
    * @param {ProviderOptionsObject} options - provider options
@@ -22,7 +21,7 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
     super(options, playerVersion);
     this._logger = getLogger('OVPProvider');
     OVPConfiguration.set(options.env);
-    this._setFilterOptionsConfig(options);
+    FilterOptionsConfiguration.set(options);
   }
 
   /**
@@ -43,7 +42,7 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
           ks = '{1:result:ks}';
           this._dataLoader.add(OVPSessionLoader, {partnerId: this.partnerId});
         }
-        this._dataLoader.add(OVPMediaEntryLoader, {entryId, ks, filterOptions: this._filterOptions});
+        this._dataLoader.add(OVPMediaEntryLoader, {entryId, ks});
         this._dataLoader.fetchData().then(
           response => {
             resolve(this._parseDataFromResponse(response));
@@ -56,12 +55,6 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
         reject({success: false, data: 'Missing mandatory parameter'});
       }
     });
-  }
-
-  _setFilterOptionsConfig(options: ProviderOptionsObject): void {
-    if (options.filterOptions && typeof options.filterOptions.redirectFromEntryId === 'boolean') {
-      this._filterOptions.redirectFromEntryId = options.filterOptions.redirectFromEntryId;
-    }
   }
 
   _parseDataFromResponse(data: Map<string, Function>): ProviderMediaConfigObject {
@@ -172,7 +165,7 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
           ks = '{1:result:ks}';
           this._dataLoader.add(OVPSessionLoader, {partnerId: this.partnerId});
         }
-        this._dataLoader.add(OVPEntryListLoader, {entries, ks, filterOptions: this._filterOptions});
+        this._dataLoader.add(OVPEntryListLoader, {entries, ks});
         this._dataLoader.fetchData().then(
           response => {
             resolve(this._parseEntryListDataFromResponse(response));
