@@ -4,5 +4,6 @@ declare type ProviderOptionsObject = {
   logLevel?: string,
   ks?: string,
   uiConfId?: number,
-  env?: ProviderEnvConfigObject
+  env?: ProviderEnvConfigObject,
+  networkRetryParameters: ProviderNetworkRetryParameters
 };

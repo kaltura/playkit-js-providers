@@ -36,6 +36,8 @@ export default class RequestBuilder {
    */
   tag: string;
 
+  _retryConfig: ProviderNetworkRetryParameters;
+
   /**
    * @constructor
    * @param {Map<string, string>} headers The request headers
