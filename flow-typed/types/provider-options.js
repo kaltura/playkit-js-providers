@@ -5,5 +5,5 @@ declare type ProviderOptionsObject = {
   ks?: string,
   uiConfId?: number,
   env?: ProviderEnvConfigObject,
-  filterOptions: ProviderFilterOptionsObject
+  filterOptions?: ProviderFilterOptionsObject
 };
