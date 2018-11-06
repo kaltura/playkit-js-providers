@@ -59,11 +59,15 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
     });
   }
 
-  _getEntryRedirectFilter(mediaInfo: Object): string {
-    return typeof mediaInfo.redirectFromEntryId === 'boolean' ? mediaInfo.redirectFromEntryId : this._filterOptionsConfig.redirectFromEntryId;
+  _getEntryRedirectFilter(mediaInfo: Object): boolean {
+    return typeof mediaInfo.redirectFromEntryId === 'boolean'
+      ? mediaInfo.redirectFromEntryId
+      : typeof this._filterOptionsConfig.redirectFromEntryId === 'boolean'
+        ? this._filterOptionsConfig.redirectFromEntryId
+        : true;
   }
 
-  _setFilterOptionsConfig(options: ProviderFilterOptionsObject): void {
+  _setFilterOptionsConfig(options?: ProviderFilterOptionsObject): void {
     if (options && typeof options.redirectFromEntryId == 'boolean') {
       this._filterOptionsConfig.redirectFromEntryId = options.redirectFromEntryId;
     }
