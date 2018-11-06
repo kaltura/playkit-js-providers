@@ -130,4 +130,4 @@ var provider = new playkit.providers.ott.Provider(config);
 > }
 > ```
 >
-> ##### Description: Defines weather after a live stream ends there should be a redirect to the VOD entry or not.
+> ##### Description: Defines whether after a live stream ends there should be a redirect to the VOD entry or not.

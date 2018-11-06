@@ -43,8 +43,7 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
           ks = '{1:result:ks}';
           this._dataLoader.add(OVPSessionLoader, {partnerId: this.partnerId});
         }
-        const redirectFromEntryId =
-          typeof mediaInfo.redirectFromEntryId === 'boolean' ? mediaInfo.redirectFromEntryId : this._filterOptionsConfig.redirectFromEntryId;
+        const redirectFromEntryId = this._getEntryRedirectFilter(mediaInfo);
         this._dataLoader.add(OVPMediaEntryLoader, {entryId, ks, redirectFromEntryId});
         this._dataLoader.fetchData().then(
           response => {
@@ -58,6 +57,10 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
         reject({success: false, data: 'Missing mandatory parameter'});
       }
     });
+  }
+
+  _getEntryRedirectFilter(mediaInfo: Object): string {
+    return typeof mediaInfo.redirectFromEntryId === 'boolean' ? mediaInfo.redirectFromEntryId : this._filterOptionsConfig.redirectFromEntryId;
   }
 
   _setFilterOptionsConfig(options: ProviderFilterOptionsObject): void {
@@ -174,8 +177,7 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
           ks = '{1:result:ks}';
           this._dataLoader.add(OVPSessionLoader, {partnerId: this.partnerId});
         }
-        const redirectFromEntryId =
-          typeof entryListInfo.redirectFromEntryId === 'boolean' ? entryListInfo.redirectFromEntryId : this._filterOptionsConfig.redirectFromEntryId;
+        const redirectFromEntryId = this._getEntryRedirectFilter(entryListInfo);
         this._dataLoader.add(OVPEntryListLoader, {entries, ks, redirectFromEntryId});
         this._dataLoader.fetchData().then(
           response => {
