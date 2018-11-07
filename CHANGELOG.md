@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.9.0"></a>
+# [2.9.0](https://github.com/kaltura/playkit-js-providers/compare/v2.8.0...v2.9.0) (2018-11-07)
+
+
+### Features
+
+* **FEC-8541:** add redirectFromEntryId configuration ([4757831](https://github.com/kaltura/playkit-js-providers/commit/4757831))
+
+
+
 <a name="2.8.0"></a>
 # [2.8.0](https://github.com/kaltura/playkit-js-providers/compare/v2.7.3...v2.8.0) (2018-10-28)
 
