@@ -52,6 +52,16 @@ export default class KalturaMediaEntry {
    */
   id: string;
   /**
+   * @member - The entry referenceId
+   * @type {string}
+   */
+  referenceId: string;
+  /**
+   * @member - The entry externalSourceType
+   * @type {string}
+   */
+  externalSourceType: string;
+  /**
    * @member - Entry name (Min 1 chars)
    * @type {string}
    */
@@ -108,6 +118,8 @@ export default class KalturaMediaEntry {
    */
   constructor(entry: Object) {
     this.id = entry.id;
+    this.referenceId = entry.referenceId;
+    this.externalSourceType = entry.externalSourceType;
     this.name = entry.name;
     this.description = entry.description;
     this.dataUrl = entry.dataUrl;

@@ -1,5 +1,6 @@
 //@flow
-const FIELDS = 'id,name,description,thumbnailUrl,dataUrl,duration,msDuration,flavorParamsIds,mediaType,type,tags,dvrStatus';
+const FIELDS =
+  'id,referenceId,name,description,thumbnailUrl,dataUrl,duration,msDuration,flavorParamsIds,mediaType,type,tags,dvrStatus,externalSourceType';
 
 export default class BaseEntryResponseProfile {
   static Type: {[type: string]: number} = {

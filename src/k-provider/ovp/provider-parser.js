@@ -38,7 +38,16 @@ export default class OVPProviderParser extends BaseProviderParser {
     const metadataList = mediaEntryResponse.metadataListResult;
     const kalturaSources = playbackContext.sources;
 
-    mediaEntry.sources = OVPProviderParser._getParsedSources(kalturaSources, ks, partnerId, uiConfId, entry, playbackContext);
+    if (entry.type === KalturaMediaEntry.EntryType.EXTERNAL_MEDIA.value) {
+      mediaEntry.sources = new MediaSources();
+      mediaEntry.sources.progressive = {
+        mimetype: 'video/youtube',
+        url: entry.referenceId,
+        id: entry.id + '_youtube'
+      };
+    } else {
+      mediaEntry.sources = OVPProviderParser._getParsedSources(kalturaSources, ks, partnerId, uiConfId, entry, playbackContext);
+    }
     OVPProviderParser._fillBaseData(mediaEntry, entry, metadataList);
     return mediaEntry;
   }
