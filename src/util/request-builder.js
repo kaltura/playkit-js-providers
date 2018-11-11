@@ -1,4 +1,5 @@
 //@flow
+import Error from './error/error';
 
 const KALTURA_HEADER_PREFIX: string = '-x';
 
@@ -78,15 +79,19 @@ export default class RequestBuilder {
    * @returns {Promise.<any>} Service response as promise
    */
   doHttpRequest(): Promise<any> {
-    if (!this.url) {
-      throw new Error('serviceUrl is mandatory for request builder');
-    }
     return new Promise((resolve, reject) => {
+      if (!this.url) {
+        return reject(
+          new Error(Error.Severity.CRITICAL, Error.Category.NETWORK, Error.Code.MALFORMED_DATA_URI, {
+            url: this.url
+          })
+        );
+      }
       return this.createXHR(resolve, reject);
     });
   }
 
-  createXHR(resolve: Promise<*>, reject: Promise<*>): Promise<*> {
+  createXHR(resolve: Function, reject: Function): void {
     let request = new XMLHttpRequest();
     request.onreadystatechange = () => {
       if (request.readyState === 4) {
@@ -98,26 +103,48 @@ export default class RequestBuilder {
             return reject(`${e.message}, ${request.responseText}`);
           }
           if (jsonResponse && typeof jsonResponse === 'object' && jsonResponse.code && jsonResponse.message) {
-            return reject(jsonResponse);
+            return reject(
+              new Error(Error.Severity.CRITICAL, Error.Category.NETWORK, Error.Code.ERROR_FROM_SERVER, {
+                message: jsonResponse.message,
+                code: jsonResponse.code,
+                headers: this._getResponseHeaders(request)
+              })
+            );
           } else {
             return resolve(jsonResponse);
           }
         } else {
-          reject(request.responseText);
+          return reject(
+            new Error(Error.Severity.CRITICAL, Error.Category.NETWORK, Error.Code.BAD_HTTP_STATUS, {
+              text: request.responseText,
+              headers: this._getResponseHeaders(request)
+            })
+          );
         }
       }
     };
     request.open(this.method, this.url);
-    request.timeout = this.retryConfig.timeout;
+    request.timeout = this.retryConfig.timeout || 0;
 
     request.ontimeout = error => {
-      return this._makeReject(reject, error, request);
+      return reject(
+        new Error(Error.Severity.CRITICAL, Error.Category.NETWORK, Error.Code.TIMEOUT, {
+          error,
+          headers: this._getResponseHeaders(request)
+        })
+      );
     };
     request.onerror = error => {
-      if (this._attemptCounter < this.retryConfig.maxAttempts) {
+      if (this.retryConfig.maxAttempts && this._attemptCounter < this.retryConfig.maxAttempts) {
         this.createXHR(resolve, reject);
       } else {
-        return this._makeReject(reject, error, request);
+        return reject(
+          new Error(Error.Severity.CRITICAL, Error.Category.NETWORK, Error.Code.HTTP_ERROR, {
+            error,
+            attemp: this._attemptCounter,
+            headers: this._getResponseHeaders(request)
+          })
+        );
       }
       this._attemptCounter++;
     };
@@ -127,18 +154,10 @@ export default class RequestBuilder {
     request.send(this.params);
   }
 
-  _getResponseHeaders(request: XMLHttpRequest): void {
+  _getResponseHeaders(request: XMLHttpRequest): Array<string> {
     return request
       .getAllResponseHeaders()
       .split('\n')
       .filter(header => header.indexOf(KALTURA_HEADER_PREFIX) === 0);
-  }
-
-  _makeReject(reject: Promise<*>, error: Object, request: XMLHttpRequest): Promise<*> {
-    const data = {
-      error,
-      headers: this._getResponseHeaders(request)
-    };
-    return reject(data);
   }
 }
