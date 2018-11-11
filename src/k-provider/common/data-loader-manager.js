@@ -28,6 +28,15 @@ export default class DataLoaderManager {
    */
   _loaders: Map<string, ILoader> = new Map();
 
+  _networkRetryConfig: ProviderNetworkRetryParameters = {
+    timeout: 0,
+    maxAttempts: 4
+  };
+
+  constructor(networkRetryConfig?: ProviderNetworkRetryParameters) {
+    Object.assign(this._networkRetryConfig, networkRetryConfig);
+  }
+
   /**
    * Add loader too execution loaders map
    * @function
@@ -43,6 +52,7 @@ export default class DataLoaderManager {
       let startIndex = this._multiRequest.requests.length;
       // Get the requests
       let requests = execution_loader.requests;
+      this._multiRequest.retryConfig = this._networkRetryConfig;
       // Add requests to muktiRequest queue
       requests.forEach(request => {
         this._multiRequest.add(request);

@@ -11,6 +11,7 @@ import KalturaPlaybackContext from './response-types/kaltura-playback-context';
 import MediaEntry from '../../entities/media-entry';
 
 export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject> {
+  _networkRetryConfig: ProviderNetworkRetryParameters;
   /**
    * @constructor
    * @param {ProviderOptionsObject} options - provider options
@@ -20,6 +21,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
     super(options, playerVersion);
     this._logger = getLogger('OTTProvider');
     OTTConfiguration.set(options.env);
+    this._networkRetryConfig = options.networkRetryParameters;
   }
 
   /**
@@ -31,7 +33,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
     if (mediaInfo.ks) {
       this.ks = mediaInfo.ks;
     }
-    this._dataLoader = new OTTDataLoaderManager(this.partnerId, this.ks);
+    this._dataLoader = new OTTDataLoaderManager(this.partnerId, this.ks, this._networkRetryConfig);
     return new Promise((resolve, reject) => {
       const entryId = mediaInfo.entryId;
       if (entryId) {

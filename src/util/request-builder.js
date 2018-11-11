@@ -1,4 +1,7 @@
 //@flow
+
+const KALTURA_HEADER_PREFIX: string = '-x';
+
 export default class RequestBuilder {
   /**
    * @member - Service name
@@ -36,7 +39,20 @@ export default class RequestBuilder {
    */
   tag: string;
 
-  _retryConfig: ProviderNetworkRetryParameters;
+  /**
+   * @description network retry configuration
+   * @memberof RequestBuilder
+   * @type {ProviderNetworkRetryParameters}
+   */
+  retryConfig: ProviderNetworkRetryParameters;
+
+  /**
+   * @description number of xhr attempts for the same multi - request.
+   * @memberof RequestBuilder
+   * @type {number}
+   * @private
+   */
+  _attemptCounter: number = 1;
 
   /**
    * @constructor
@@ -65,29 +81,64 @@ export default class RequestBuilder {
     if (!this.url) {
       throw new Error('serviceUrl is mandatory for request builder');
     }
-    let request = new XMLHttpRequest();
     return new Promise((resolve, reject) => {
-      request.onreadystatechange = function() {
-        if (request.readyState === 4) {
-          if (request.status === 200) {
-            let jsonResponse;
-            try {
-              jsonResponse = JSON.parse(request.responseText);
-            } catch (e) {
-              return reject(`${e.message}, ${request.responseText}`);
-            }
-            if (jsonResponse && typeof jsonResponse === 'object' && jsonResponse.code && jsonResponse.message) reject(jsonResponse);
-            else resolve(jsonResponse);
-          } else {
-            reject(request.responseText);
-          }
-        }
-      };
-      request.open(this.method, this.url);
-      this.headers.forEach((value, key) => {
-        request.setRequestHeader(key, value);
-      });
-      request.send(this.params);
+      return this.createXHR(resolve, reject);
     });
+  }
+
+  createXHR(resolve: Promise<*>, reject: Promise<*>): Promise<*> {
+    let request = new XMLHttpRequest();
+    request.onreadystatechange = () => {
+      if (request.readyState === 4) {
+        if (request.status === 200) {
+          let jsonResponse;
+          try {
+            jsonResponse = JSON.parse(request.responseText);
+          } catch (e) {
+            return reject(`${e.message}, ${request.responseText}`);
+          }
+          if (jsonResponse && typeof jsonResponse === 'object' && jsonResponse.code && jsonResponse.message) {
+            return reject(jsonResponse);
+          } else {
+            return resolve(jsonResponse);
+          }
+        } else {
+          reject(request.responseText);
+        }
+      }
+    };
+    request.open(this.method, this.url);
+    request.timeout = this.retryConfig.timeout;
+
+    request.ontimeout = error => {
+      return this._makeReject(reject, error, request);
+    };
+    request.onerror = error => {
+      if (this._attemptCounter < this.retryConfig.maxAttempts) {
+        this.createXHR(resolve, reject);
+      } else {
+        return this._makeReject(reject, error, request);
+      }
+      this._attemptCounter++;
+    };
+    this.headers.forEach((value, key) => {
+      request.setRequestHeader(key, value);
+    });
+    request.send(this.params);
+  }
+
+  _getResponseHeaders(request: XMLHttpRequest): void {
+    return request
+      .getAllResponseHeaders()
+      .split('\n')
+      .filter(header => header.indexOf(KALTURA_HEADER_PREFIX) === 0);
+  }
+
+  _makeReject(reject: Promise<*>, error: Object, request: XMLHttpRequest): Promise<*> {
+    const data = {
+      error,
+      headers: this._getResponseHeaders(request)
+    };
+    return reject(data);
   }
 }

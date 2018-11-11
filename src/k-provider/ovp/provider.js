@@ -11,6 +11,7 @@ import MediaEntry from '../../entities/media-entry';
 import OVPEntryListLoader from './loaders/entry-list-loader';
 
 export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
+  _networkRetryConfig: ProviderNetworkRetryParameters;
   /**
    * @constructor
    * @param {ProviderOptionsObject} options - provider options
@@ -20,6 +21,7 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
     super(options, playerVersion);
     this._logger = getLogger('OVPProvider');
     OVPConfiguration.set(options.env);
+    this._networkRetryConfig = options.networkRetryParameters;
   }
 
   /**
@@ -31,7 +33,7 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
     if (mediaInfo.ks) {
       this.ks = mediaInfo.ks;
     }
-    this._dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, this.ks);
+    this._dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, this.ks, this._networkRetryConfig);
     return new Promise((resolve, reject) => {
       const entryId = mediaInfo.entryId;
       if (entryId) {
@@ -101,7 +103,7 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
     if (playlistInfo.ks) {
       this.ks = playlistInfo.ks;
     }
-    this._dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, this.ks);
+    this._dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, this.ks, this._networkRetryConfig);
     return new Promise((resolve, reject) => {
       const playlistId = playlistInfo.playlistId;
       if (playlistId) {
@@ -154,7 +156,7 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
     if (entryListInfo.ks) {
       this.ks = entryListInfo.ks;
     }
-    this._dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, this.ks);
+    this._dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, this.ks, this._networkRetryConfig);
     return new Promise((resolve, reject) => {
       const entries = entryListInfo.entries;
       if (entries && entries.length) {
