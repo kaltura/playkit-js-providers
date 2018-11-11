@@ -99,54 +99,38 @@ export default class RequestBuilder {
           let jsonResponse;
           try {
             jsonResponse = JSON.parse(request.responseText);
-          } catch (e) {
-            return reject(`${e.message}, ${request.responseText}`);
+          } catch (error) {
+            this._handleError(resolve, reject, request, Error.Code.HTTP_ERROR, {
+              message: error.message,
+              responseText: request.responseText
+            });
           }
           if (jsonResponse && typeof jsonResponse === 'object' && jsonResponse.code && jsonResponse.message) {
-            return reject(
-              new Error(Error.Severity.CRITICAL, Error.Category.NETWORK, Error.Code.ERROR_FROM_SERVER, {
-                message: jsonResponse.message,
-                code: jsonResponse.code,
-                headers: this._getResponseHeaders(request)
-              })
-            );
+            this._handleError(resolve, reject, request, Error.Code.HTTP_ERROR, {
+              message: jsonResponse.message,
+              code: jsonResponse.code
+            });
           } else {
             return resolve(jsonResponse);
           }
         } else {
-          return reject(
-            new Error(Error.Severity.CRITICAL, Error.Category.NETWORK, Error.Code.BAD_HTTP_STATUS, {
-              text: request.responseText,
-              headers: this._getResponseHeaders(request)
-            })
-          );
+          this._handleError(resolve, reject, request, Error.Code.BAD_HTTP_STATUS, {
+            text: request.responseText
+          });
         }
       }
     };
     request.open(this.method, this.url);
     request.timeout = this.retryConfig.timeout || 0;
-
     request.ontimeout = error => {
-      return reject(
-        new Error(Error.Severity.CRITICAL, Error.Category.NETWORK, Error.Code.TIMEOUT, {
-          error,
-          headers: this._getResponseHeaders(request)
-        })
-      );
+      this._rejectError(resolve, reject, request, Error.Code.TIMEOUT, {
+        error
+      });
     };
     request.onerror = error => {
-      if (this.retryConfig.maxAttempts && this._attemptCounter < this.retryConfig.maxAttempts) {
-        this.createXHR(resolve, reject);
-      } else {
-        return reject(
-          new Error(Error.Severity.CRITICAL, Error.Category.NETWORK, Error.Code.HTTP_ERROR, {
-            error,
-            attemp: this._attemptCounter,
-            headers: this._getResponseHeaders(request)
-          })
-        );
-      }
-      this._attemptCounter++;
+      this._handleError(resolve, reject, request, Error.Code.HTTP_ERROR, {
+        error
+      });
     };
     this.headers.forEach((value, key) => {
       request.setRequestHeader(key, value);
@@ -159,5 +143,20 @@ export default class RequestBuilder {
       .getAllResponseHeaders()
       .split('\n')
       .filter(header => header.indexOf(KALTURA_HEADER_PREFIX) === 0);
+  }
+
+  _handleError(resolve: Function, reject: Function, request: XMLHttpRequest, code: number, uniqueData: Object): Promise<*> {
+    const data = Object.assign({}, uniqueData, {
+      headers: this._getResponseHeaders(request),
+      attempt: this._attemptCounter
+    });
+    request = null;
+    const error = new Error(Error.Severity.CRITICAL, Error.Category.NETWORK, code, data);
+    if (this.retryConfig.maxAttempts && this._attemptCounter < this.retryConfig.maxAttempts) {
+      this._attemptCounter++;
+      this.createXHR(resolve, reject);
+    } else {
+      return reject(error);
+    }
   }
 }
