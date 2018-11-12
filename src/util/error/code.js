@@ -29,23 +29,9 @@ const Code: CodeType = {
   MALFORMED_DATA_URI: 1004,
 
   /**
-   * A network request was made with a data URI using an unknown encoding.
+   * The server responsded with 2xx response, but it contained an error from the server
    */
-  UNKNOWN_DATA_URI_ENCODING: 1005,
-
-  /**
-   * A request filter threw an error.
-   */
-  REQUEST_FILTER_ERROR: 1006,
-
-  /**
-   * A response filter threw an error.
-   */
-  RESPONSE_FILTER_ERROR: 1007,
-  /**
-   * The server responded with an error in the response
-   */
-  ERROR_FROM_SERVER: 1008
+  BAD_SERVER_RESPONSE: 1005
 };
 
 export {Code};

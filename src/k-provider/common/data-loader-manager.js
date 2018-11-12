@@ -1,5 +1,6 @@
 // @flow
 import MultiRequestBuilder, {MultiRequestResult} from './multi-request-builder';
+import Error from '../../util/error/error';
 
 export default class DataLoaderManager {
   /**
@@ -75,7 +76,7 @@ export default class DataLoaderManager {
         response => {
           this._multiResponse = response;
           if (!response.success) {
-            reject(response);
+            reject(new Error(Error.Severity.CRITICAL, Error.Category.NETWORK, Error.Code.BAD_SERVER_RESPONSE, response));
           } else {
             let preparedData: Object = this.prepareData(response);
             if (preparedData.success) {

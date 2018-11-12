@@ -1,7 +1,7 @@
 //@flow
 import Error from './error/error';
 
-const KALTURA_HEADER_PREFIX: string = '-x';
+const KALTURA_HEADER_PREFIX: string = 'x-';
 
 export default class RequestBuilder {
   /**
@@ -99,19 +99,16 @@ export default class RequestBuilder {
           let jsonResponse;
           try {
             jsonResponse = JSON.parse(request.responseText);
+            return resolve({
+              headers: this._getResponseHeaders(request),
+              url: this.url,
+              multiResponse: jsonResponse
+            });
           } catch (error) {
             this._handleError(resolve, reject, request, Error.Code.HTTP_ERROR, {
               message: error.message,
               responseText: request.responseText
             });
-          }
-          if (jsonResponse && typeof jsonResponse === 'object' && jsonResponse.code && jsonResponse.message) {
-            this._handleError(resolve, reject, request, Error.Code.HTTP_ERROR, {
-              message: jsonResponse.message,
-              code: jsonResponse.code
-            });
-          } else {
-            return resolve(jsonResponse);
           }
         } else {
           this._handleError(resolve, reject, request, Error.Code.BAD_HTTP_STATUS, {
@@ -123,7 +120,7 @@ export default class RequestBuilder {
     request.open(this.method, this.url);
     request.timeout = this.retryConfig.timeout || 0;
     request.ontimeout = error => {
-      this._rejectError(resolve, reject, request, Error.Code.TIMEOUT, {
+      this._handleError(resolve, reject, request, Error.Code.TIMEOUT, {
         error
       });
     };
@@ -147,9 +144,12 @@ export default class RequestBuilder {
 
   _handleError(resolve: Function, reject: Function, request: XMLHttpRequest, code: number, uniqueData: Object): Promise<*> {
     const data = Object.assign({}, uniqueData, {
+      url: this.url,
       headers: this._getResponseHeaders(request),
       attempt: this._attemptCounter
     });
+    request.onreadystatechange = null;
+    request.onerror = null;
     request = null;
     const error = new Error(Error.Severity.CRITICAL, Error.Category.NETWORK, code, data);
     if (this.retryConfig.maxAttempts && this._attemptCounter < this.retryConfig.maxAttempts) {

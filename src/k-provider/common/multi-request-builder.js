@@ -44,8 +44,7 @@ export default class MultiRequestBuilder extends RequestBuilder {
           resolve(new MultiRequestResult(data));
         },
         err => {
-          const errorText: string = `Error on multiRequest execution, error <${err}>.`;
-          reject(errorText);
+          reject(err);
         }
       );
     });
@@ -67,10 +66,13 @@ export class MultiRequestResult {
 
   /**
    * @constructor
-   * @param {Object} response data
+   * @param {Object} data data
    */
-  constructor(response: Object) {
+  constructor(data: Object) {
     this.success = true;
+    this.url = data.url;
+    this.headers = data.headers;
+    const response = data.multiResponse;
     const responseArr = response.result ? response.result : response;
     responseArr.forEach(result => {
       const serviceResult: ServiceResult = new ServiceResult(result);
