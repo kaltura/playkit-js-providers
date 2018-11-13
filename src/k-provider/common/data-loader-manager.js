@@ -82,7 +82,9 @@ export default class DataLoaderManager {
             if (preparedData.success) {
               resolve(this._loaders);
             } else {
-              reject({success: false, data: preparedData.error});
+              reject(
+                new Error(Error.Severity.CRITICAL, Error.Category.NETWORK, Error.Code.BAD_SERVER_RESPONSE, {success: false, data: preparedData.error})
+              );
             }
           }
         },

@@ -6,11 +6,10 @@ import ServiceResult from './base-service-result';
 export default class MultiRequestBuilder extends RequestBuilder {
   static _logger = getLogger('MultiRequestBuilder');
   /**
-   * @member - Array of requests
+   * @memberof - MultiRequestBuilder
    * @type {Array<RequestBuilder>}
    */
   requests: Array<RequestBuilder> = [];
-
   /**
    * Adds request to requests array
    * @function add
@@ -54,16 +53,25 @@ export default class MultiRequestBuilder extends RequestBuilder {
 export class MultiRequestResult {
   static _logger = getLogger('MultiRequestResult');
   /**
-   * @member - Is success
+   * @memberof MultiRequestResult
    * @type {boolean}
    */
   success: boolean;
   /**
-   * @member - Multi request response data
+   * @memberof MultiRequestResult
    * @type {Object}
    */
   results: Array<ServiceResult> = [];
-
+  /**
+   * @memberof - MultiRequestResult
+   * @type {string}
+   */
+  url: string;
+  /**
+   * @memberof MultiRequestResult
+   * @type {Array<string>}
+   */
+  headers: Array<string>;
   /**
    * @constructor
    * @param {Object} data data

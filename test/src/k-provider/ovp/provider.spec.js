@@ -163,11 +163,12 @@ describe('OVPProvider.partnerId:1068292', function() {
     });
     provider.getMediaConfig({entryId: '1_rwbj3j0affff'}).then(
       mediaConfig => {
-        done('Get config should throw error', mediaConfig);
+        should.fail(mediaConfig);
       },
       err => {
-        const expectedData = {success: false, results: MEDIA_CONFIG_DATA.entryIDError};
-        err.should.deep.equal(expectedData);
+        err.results.should.deep.equal(MEDIA_CONFIG_DATA.entryIDError);
+        err.success.should.equal(false);
+        err.headers.should.equal(BE_DATA.WrongEntryIDWithoutUIConf.headers);
         done();
       }
     );
@@ -208,11 +209,12 @@ describe('OVPProvider.partnerId:1068292', function() {
     });
     provider.getMediaConfig({entryId: '1_rwbj3j0a'}).then(
       mediaConfig => {
-        done('Get config should throw error', mediaConfig);
+        should.fail(mediaConfig);
       },
       err => {
-        const expectedData = {success: false, results: MEDIA_CONFIG_DATA.WrongUiConfID};
-        err.should.deep.equal(expectedData);
+        err.data.results.should.deep.equal(MEDIA_CONFIG_DATA.WrongUiConfID);
+        err.data.success.should.equal(false);
+        err.data.headers.should.equal(BE_DATA.WrongUiConfID.headers);
         done();
       }
     );

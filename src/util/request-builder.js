@@ -142,15 +142,15 @@ export default class RequestBuilder {
       .filter(header => header.indexOf(KALTURA_HEADER_PREFIX) === 0);
   }
 
-  _handleError(resolve: Function, reject: Function, request: XMLHttpRequest, code: number, uniqueData: Object): Promise<*> {
+  _handleError(resolve: Function, reject: Function, request: XMLHttpRequest, code: number, uniqueData: Object): Promise<*> | void {
     const data = Object.assign({}, uniqueData, {
       url: this.url,
       headers: this._getResponseHeaders(request),
       attempt: this._attemptCounter
     });
-    request.onreadystatechange = null;
-    request.onerror = null;
-    request = null;
+    request.onreadystatechange = function() {};
+    request.onerror = function() {};
+    request.ontimeout = function() {};
     const error = new Error(Error.Severity.CRITICAL, Error.Category.NETWORK, code, data);
     if (this.retryConfig.maxAttempts && this._attemptCounter < this.retryConfig.maxAttempts) {
       this._attemptCounter++;
