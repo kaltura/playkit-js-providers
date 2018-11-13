@@ -60,7 +60,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
           mediaType: mediaType,
           formats: mediaInfo.formats || []
         };
-        this._dataLoader.fetchData().then(
+        return this._dataLoader.fetchData().then(
           response => {
             try {
               resolve(this._parseDataFromResponse(response, requestData));
@@ -118,18 +118,14 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
       if (data.has(OTTAssetLoader.id)) {
         const assetLoader = data.get(OTTAssetLoader.id);
         if (assetLoader && assetLoader.response && Object.keys(assetLoader.response).length) {
-          const blockedAction = OTTProviderParser.hasBlockActions(assetLoader.response);
-          if (blockedAction) {
-            const errorMessage = OTTProviderParser.hasErrorMessage(assetLoader.response);
-            if (errorMessage) {
-              this._logger.error(`Asset is blocked, error message: `, errorMessage);
-              throw errorMessage;
-            } else {
-              this._logger.error(`Asset is blocked, action: `, blockedAction);
-              throw blockedAction;
-            }
+          const response = assetLoader.response;
+          if (OTTProviderParser.hasBlockAction(response)) {
+            throw {
+              action: OTTProviderParser.getBlockAction(response),
+              messages: OTTProviderParser.getErrorMessages(response)
+            };
           }
-          const mediaEntry = OTTProviderParser.getMediaEntry(assetLoader.response, requestData);
+          const mediaEntry = OTTProviderParser.getMediaEntry(response, requestData);
           const mediaSources = mediaEntry.sources.toJSON();
           mediaConfig.sources.hls = mediaSources.hls;
           mediaConfig.sources.dash = mediaSources.dash;

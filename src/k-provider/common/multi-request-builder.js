@@ -33,12 +33,14 @@ export default class MultiRequestBuilder extends RequestBuilder {
    * @returns {Promise} The multirequest execution promise
    */
   execute(): Promise<Object> {
-    try {
-      this.params = JSON.stringify(this.params);
-    } catch (err) {
-      MultiRequestBuilder._logger.error(`${err.message}`);
-    }
     return new Promise((resolve, reject) => {
+      try {
+        this.params = JSON.stringify(this.params);
+      } catch (err) {
+        MultiRequestBuilder._logger.error(`${err.message}`);
+        const errorText: string = `Error on multiRequest execution, failed parsing request <${err}>.`;
+        reject(errorText);
+      }
       this.doHttpRequest().then(
         data => {
           resolve(new MultiRequestResult(data));
