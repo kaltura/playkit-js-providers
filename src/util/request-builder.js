@@ -56,6 +56,14 @@ export default class RequestBuilder {
   _attemptCounter: number = 1;
 
   /**
+   * @description hold the promise result of the XHR request(s) - if all tries fails, it rejects with the error.
+   * @memberof RequestBuilder
+   * @type {number}
+   * @private
+   */
+  _requestPromise: Promise<*>;
+
+  /**
    * @constructor
    * @param {Map<string, string>} headers The request headers
    */
@@ -79,39 +87,35 @@ export default class RequestBuilder {
    * @returns {Promise.<any>} Service response as promise
    */
   doHttpRequest(): Promise<any> {
-    return new Promise((resolve, reject) => {
-      if (!this.url) {
-        return reject(
-          new Error(Error.Severity.CRITICAL, Error.Category.NETWORK, Error.Code.MALFORMED_DATA_URI, {
-            url: this.url
-          })
-        );
-      }
-      return this.createXHR(resolve, reject);
+    const promise = new Promise((resolve, reject) => {
+      this._requestPromise = {
+        resolve,
+        reject
+      };
     });
+    if (!this.url) {
+      this._requestPromise.reject(
+        new Error(Error.Severity.CRITICAL, Error.Category.NETWORK, Error.Code.MALFORMED_DATA_URI, {
+          url: this.url
+        })
+      );
+    }
+    this._createXHR();
+    return promise;
   }
 
-  createXHR(resolve: Function, reject: Function): void {
+  _createXHR(): void {
     let request = new XMLHttpRequest();
     request.onreadystatechange = () => {
       if (request.readyState === 4) {
         if (request.status === 200) {
-          let jsonResponse;
-          try {
-            jsonResponse = JSON.parse(request.responseText);
-            return resolve({
-              headers: this._getResponseHeaders(request),
-              url: this.url,
-              multiResponse: jsonResponse
-            });
-          } catch (error) {
-            this._handleError(resolve, reject, request, Error.Code.HTTP_ERROR, {
-              message: error.message,
-              responseText: request.responseText
-            });
-          }
+          return this._requestPromise.resolve({
+            headers: this._getResponseHeaders(request),
+            url: this.url,
+            response: request.responseText
+          });
         } else {
-          this._handleError(resolve, reject, request, Error.Code.BAD_HTTP_STATUS, {
+          this._handleError(request, Error.Code.BAD_HTTP_STATUS, {
             text: request.responseText
           });
         }
@@ -119,13 +123,14 @@ export default class RequestBuilder {
     };
     request.open(this.method, this.url);
     request.timeout = this.retryConfig.timeout || 0;
-    request.ontimeout = error => {
-      this._handleError(resolve, reject, request, Error.Code.TIMEOUT, {
-        error
+    const requestTime = performance.now();
+    request.ontimeout = () => {
+      this._handleError(request, Error.Code.TIMEOUT, {
+        timeout: performance.now() - requestTime
       });
     };
     request.onerror = error => {
-      this._handleError(resolve, reject, request, Error.Code.HTTP_ERROR, {
+      this._handleError(request, Error.Code.HTTP_ERROR, {
         error
       });
     };
@@ -139,11 +144,11 @@ export default class RequestBuilder {
     return request
       .getAllResponseHeaders()
       .split('\n')
-      .filter(header => header.indexOf(KALTURA_HEADER_PREFIX) === 0);
+      .filter(header => header.toLowerCase().indexOf(KALTURA_HEADER_PREFIX) === 0);
   }
 
-  _handleError(resolve: Function, reject: Function, request: XMLHttpRequest, code: number, uniqueData: Object): Promise<*> | void {
-    const data = Object.assign({}, uniqueData, {
+  _handleError(request: XMLHttpRequest, code: number, data: Object): Promise<*> | void {
+    Object.assign(data, {
       url: this.url,
       headers: this._getResponseHeaders(request),
       attempt: this._attemptCounter
@@ -154,9 +159,9 @@ export default class RequestBuilder {
     const error = new Error(Error.Severity.CRITICAL, Error.Category.NETWORK, code, data);
     if (this.retryConfig.maxAttempts && this._attemptCounter < this.retryConfig.maxAttempts) {
       this._attemptCounter++;
-      this.createXHR(resolve, reject);
+      this._createXHR();
     } else {
-      return reject(error);
+      return this._requestPromise.reject(error);
     }
   }
 }

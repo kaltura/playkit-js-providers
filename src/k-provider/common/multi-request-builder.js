@@ -61,7 +61,7 @@ export class MultiRequestResult {
    * @memberof MultiRequestResult
    * @type {Object}
    */
-  results: Array<ServiceResult> = [];
+  results: Array<ServiceResult | string> = [];
   /**
    * @memberof - MultiRequestResult
    * @type {string}
@@ -80,18 +80,24 @@ export class MultiRequestResult {
     this.success = true;
     this.url = data.url;
     this.headers = data.headers;
-    const response = data.multiResponse;
-    const responseArr = response.result ? response.result : response;
-    responseArr.forEach(result => {
-      const serviceResult: ServiceResult = new ServiceResult(result);
-      this.results.push(serviceResult);
-      if (serviceResult.hasError) {
-        MultiRequestResult._logger.error(
-          `Service returned an error with error code: ${serviceResult.error.code} and message: ${serviceResult.error.message}.`
-        );
-        this.success = false;
-        return;
-      }
-    });
+    const response = data.response;
+    try {
+      const jsonResponse = JSON.parse(response);
+      const responseArr = jsonResponse.result ? jsonResponse.result : jsonResponse;
+      responseArr.forEach(result => {
+        const serviceResult: ServiceResult = new ServiceResult(result);
+        this.results.push(serviceResult);
+        if (serviceResult.hasError) {
+          MultiRequestResult._logger.error(
+            `Service returned an error with error code: ${serviceResult.error.code} and message: ${serviceResult.error.message}.`
+          );
+          this.success = false;
+          return;
+        }
+      });
+    } catch (error) {
+      this.success = false;
+      this.results.push('Response parse error');
+    }
   }
 }
