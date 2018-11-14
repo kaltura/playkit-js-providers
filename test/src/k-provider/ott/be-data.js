@@ -1,5 +1,5 @@
 const AnonymousEntryWithoutUIConfWithDrmData = {
-  multiResponse: {
+  response: {
     result: [
       {
         ks:
@@ -674,7 +674,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
 };
 
 const LiveEntryNoDrmData = {
-  multiResponse: {
+  response: {
     result: [
       {
         ks:

@@ -9,7 +9,8 @@ const playerVersion = '1.2.3';
 
 describe('OTTProvider.partnerId:198', function() {
   let provider, sandbox;
-
+  BE_DATA.AnonymousEntryWithoutUIConfWithDrmData.response = JSON.stringify(BE_DATA.AnonymousEntryWithoutUIConfWithDrmData.response);
+  BE_DATA.LiveEntryNoDrmData.response = JSON.stringify(BE_DATA.LiveEntryNoDrmData.response);
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
     provider = new OTTProvider({partnerId: partnerId}, playerVersion);

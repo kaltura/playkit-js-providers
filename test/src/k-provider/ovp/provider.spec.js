@@ -8,7 +8,10 @@ describe('OVPProvider.partnerId:1082342', function() {
   let provider, sandbox;
   const partnerId = 1082342;
   const playerVersion = '1.2.3';
-
+  BE_DATA.AnonymousMocEntryWithoutUIConfNoDrmData.response = JSON.stringify(BE_DATA.AnonymousMocEntryWithoutUIConfNoDrmData.response);
+  BE_DATA.EntryWithUIConfNoDrmData.response = JSON.stringify(BE_DATA.EntryWithUIConfNoDrmData.response);
+  BE_DATA.AudioEntryWithoutPlugins.response = JSON.stringify(BE_DATA.AudioEntryWithoutPlugins.response);
+  BE_DATA.ImageEntryWithoutPlugins.response = JSON.stringify(BE_DATA.ImageEntryWithoutPlugins.response);
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
     provider = new OVPProvider({partnerId: partnerId}, playerVersion);
@@ -115,6 +118,10 @@ describe('OVPProvider.partnerId:1068292', function() {
   const ks =
     'NTAwZjViZWZjY2NjNTRkNGEyMjU1MTg4OGE1NmUwNDljZWJkMzk1MXwxMDY4MjkyOzEwNjgyOTI7MTQ5MDE3NjE0NjswOzE0OTAwODk3NDYuMDIyNjswO3ZpZXc6Kix3aWRnZXQ6MTs7';
   const playerVersion = '1.2.3';
+  BE_DATA.AnonymousMocEntryWithoutUIConfWithDrmData.response = JSON.stringify(BE_DATA.AnonymousMocEntryWithoutUIConfWithDrmData.response);
+  BE_DATA.WrongEntryIDWithoutUIConf.response = JSON.stringify(BE_DATA.WrongEntryIDWithoutUIConf.response);
+  BE_DATA.EntryWithUIConfWithDrmData.response = JSON.stringify(BE_DATA.EntryWithUIConfWithDrmData.response);
+  BE_DATA.WrongUiConfID.response = JSON.stringify(BE_DATA.WrongUiConfID.response);
 
   beforeEach(() => {
     sandbox = sinon.sandbox.create();

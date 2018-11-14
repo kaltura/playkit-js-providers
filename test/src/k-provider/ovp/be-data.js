@@ -1,6 +1,6 @@
 //@flow
 const AnonymousMocEntryWithoutUIConfNoDrmData = {
-  multiResponse: [
+  response: [
     {
       partnerId: 1082342,
       ks:
@@ -322,7 +322,7 @@ const AnonymousMocEntryWithoutUIConfNoDrmData = {
 };
 
 const AnonymousMocEntryWithoutUIConfWithDrmData = {
-  multiResponse: [
+  response: [
     {
       objects: [
         {
@@ -543,7 +543,7 @@ const AnonymousMocEntryWithoutUIConfWithDrmData = {
 
 const WrongEntryIDWithoutUIConf = {
   headers: ['x-kaltura: what?!'],
-  multiResponse: [
+  response: [
     {
       partnerId: 1068292,
       ks:
@@ -576,7 +576,7 @@ const WrongEntryIDWithoutUIConf = {
 };
 
 const EntryWithUIConfNoDrmData = {
-  multiResponse: [
+  response: [
     {
       partnerId: 1082342,
       ks:
@@ -922,7 +922,7 @@ const EntryWithUIConfNoDrmData = {
 };
 
 const EntryWithUIConfWithDrmData = {
-  multiResponse: [
+  response: [
     {
       objects: [
         {
@@ -1167,7 +1167,7 @@ const EntryWithUIConfWithDrmData = {
 
 const WrongUiConfID = {
   headers: ['x-kaltura: 1'],
-  multiResponse: [
+  response: [
     {
       partnerId: 1068292,
       ks:
@@ -1402,7 +1402,7 @@ const WrongUiConfID = {
 };
 
 const AudioEntryWithoutPlugins = {
-  multiResponse: [
+  response: [
     {
       partnerId: 1082342,
       ks:
@@ -1542,7 +1542,7 @@ const AudioEntryWithoutPlugins = {
 };
 
 const ImageEntryWithoutPlugins = {
-  multiResponse: [
+  response: [
     {
       partnerId: 1082342,
       ks:
