@@ -58,10 +58,10 @@ export default class RequestBuilder {
   /**
    * @description hold the promise result of the XHR request(s) - if all tries fails, it rejects with the error.
    * @memberof RequestBuilder
-   * @type {number}
+   * @type {Object}
    * @private
    */
-  _requestPromise: Promise<*>;
+  _requestPromise: Object;
 
   /**
    * @constructor
