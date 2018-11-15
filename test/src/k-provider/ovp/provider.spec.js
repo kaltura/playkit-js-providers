@@ -8,10 +8,6 @@ describe('OVPProvider.partnerId:1082342', function() {
   let provider, sandbox;
   const partnerId = 1082342;
   const playerVersion = '1.2.3';
-  BE_DATA.AnonymousMocEntryWithoutUIConfNoDrmData.response = JSON.stringify(BE_DATA.AnonymousMocEntryWithoutUIConfNoDrmData.response);
-  BE_DATA.EntryWithUIConfNoDrmData.response = JSON.stringify(BE_DATA.EntryWithUIConfNoDrmData.response);
-  BE_DATA.AudioEntryWithoutPlugins.response = JSON.stringify(BE_DATA.AudioEntryWithoutPlugins.response);
-  BE_DATA.ImageEntryWithoutPlugins.response = JSON.stringify(BE_DATA.ImageEntryWithoutPlugins.response);
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
     provider = new OVPProvider({partnerId: partnerId}, playerVersion);
@@ -25,8 +21,7 @@ describe('OVPProvider.partnerId:1082342', function() {
   it('should return config without plugins and without drm data', done => {
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
       return new Promise(resolve => {
-        const response = new MultiRequestResult(BE_DATA.AnonymousMocEntryWithoutUIConfNoDrmData);
-        resolve(response);
+        resolve({response: new MultiRequestResult(BE_DATA.AnonymousMocEntryWithoutUIConfNoDrmData)});
       });
     });
     provider.getMediaConfig({entryId: '1_rsrdfext'}).then(
@@ -48,8 +43,7 @@ describe('OVPProvider.partnerId:1082342', function() {
     provider = new OVPProvider({partnerId: partnerId, uiConfId: 38621471}, playerVersion);
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
       return new Promise(resolve => {
-        const response = new MultiRequestResult(BE_DATA.EntryWithUIConfNoDrmData);
-        resolve(response);
+        resolve({response: new MultiRequestResult(BE_DATA.EntryWithUIConfNoDrmData)});
       });
     });
     provider.getMediaConfig({entryId: '1_rsrdfext'}).then(
@@ -70,8 +64,7 @@ describe('OVPProvider.partnerId:1082342', function() {
   it('should return config without plugins and without drm data for audio', done => {
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
       return new Promise(resolve => {
-        const response = new MultiRequestResult(BE_DATA.AudioEntryWithoutPlugins);
-        resolve(response);
+        resolve({response: new MultiRequestResult(BE_DATA.AudioEntryWithoutPlugins)});
       });
     });
     provider.getMediaConfig({entryId: '0_vyzw3ceu'}).then(
@@ -92,8 +85,7 @@ describe('OVPProvider.partnerId:1082342', function() {
   it('should return config without plugins and without drm data for image', done => {
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
       return new Promise(resolve => {
-        const response = new MultiRequestResult(BE_DATA.ImageEntryWithoutPlugins);
-        resolve(response);
+        resolve({response: new MultiRequestResult(BE_DATA.ImageEntryWithoutPlugins)});
       });
     });
     provider.getMediaConfig({entryId: '0_vyzw3ceu'}).then(
@@ -118,10 +110,6 @@ describe('OVPProvider.partnerId:1068292', function() {
   const ks =
     'NTAwZjViZWZjY2NjNTRkNGEyMjU1MTg4OGE1NmUwNDljZWJkMzk1MXwxMDY4MjkyOzEwNjgyOTI7MTQ5MDE3NjE0NjswOzE0OTAwODk3NDYuMDIyNjswO3ZpZXc6Kix3aWRnZXQ6MTs7';
   const playerVersion = '1.2.3';
-  BE_DATA.AnonymousMocEntryWithoutUIConfWithDrmData.response = JSON.stringify(BE_DATA.AnonymousMocEntryWithoutUIConfWithDrmData.response);
-  BE_DATA.WrongEntryIDWithoutUIConf.response = JSON.stringify(BE_DATA.WrongEntryIDWithoutUIConf.response);
-  BE_DATA.EntryWithUIConfWithDrmData.response = JSON.stringify(BE_DATA.EntryWithUIConfWithDrmData.response);
-  BE_DATA.WrongUiConfID.response = JSON.stringify(BE_DATA.WrongUiConfID.response);
 
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
@@ -136,8 +124,7 @@ describe('OVPProvider.partnerId:1068292', function() {
   it('should return config without plugins with drm data', done => {
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
       return new Promise(resolve => {
-        const response = new MultiRequestResult(BE_DATA.AnonymousMocEntryWithoutUIConfWithDrmData);
-        resolve(response);
+        resolve({response: new MultiRequestResult(BE_DATA.AnonymousMocEntryWithoutUIConfWithDrmData)});
       });
     });
     provider.getMediaConfig({entryId: '1_rwbj3j0a'}).then(
@@ -162,7 +149,9 @@ describe('OVPProvider.partnerId:1068292', function() {
       return new Promise((resolve, reject) => {
         const response = new MultiRequestResult(BE_DATA.WrongEntryIDWithoutUIConf);
         if (response.success) {
-          resolve(response);
+          resolve({
+            response
+          });
         } else {
           reject(response);
         }
@@ -174,8 +163,6 @@ describe('OVPProvider.partnerId:1068292', function() {
       },
       err => {
         err.results.should.deep.equal(MEDIA_CONFIG_DATA.entryIDError);
-        err.success.should.equal(false);
-        err.headers.should.equal(BE_DATA.WrongEntryIDWithoutUIConf.headers);
         done();
       }
     );
@@ -186,7 +173,9 @@ describe('OVPProvider.partnerId:1068292', function() {
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
       return new Promise(resolve => {
         const response = new MultiRequestResult(BE_DATA.EntryWithUIConfWithDrmData);
-        resolve(response);
+        resolve({
+          response
+        });
       });
     });
     provider.getMediaConfig({entryId: '1_rwbj3j0a'}).then(
@@ -209,9 +198,15 @@ describe('OVPProvider.partnerId:1068292', function() {
   it('should return reject when try to get config with wrong uiConf ID', done => {
     provider = new OVPProvider({partnerId: partnerId, ks: ks, uiConfId: 38601981}, playerVersion);
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
-      return new Promise(resolve => {
+      return new Promise((resolve, reject) => {
         const response = new MultiRequestResult(BE_DATA.WrongUiConfID);
-        resolve(response);
+        if (response.success) {
+          resolve({
+            response
+          });
+        } else {
+          reject(response);
+        }
       });
     });
     provider.getMediaConfig({entryId: '1_rwbj3j0a'}).then(
@@ -219,9 +214,7 @@ describe('OVPProvider.partnerId:1068292', function() {
         should.fail(mediaConfig);
       },
       err => {
-        err.data.results.should.deep.equal(MEDIA_CONFIG_DATA.WrongUiConfID);
-        err.data.success.should.equal(false);
-        err.data.headers.should.equal(BE_DATA.WrongUiConfID.headers);
+        err.results.should.deep.equal(MEDIA_CONFIG_DATA.WrongUiConfID);
         done();
       }
     );
