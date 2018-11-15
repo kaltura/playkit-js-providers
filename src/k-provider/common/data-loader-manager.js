@@ -75,21 +75,17 @@ export default class DataLoaderManager {
       this._multiRequest.execute().then(
         response => {
           this._multiResponse = response;
-          if (!response.success) {
-            reject(new Error(Error.Severity.CRITICAL, Error.Category.NETWORK, Error.Code.BAD_SERVER_RESPONSE, response));
+          let preparedData: Object = this.prepareData(response);
+          if (preparedData.success) {
+            resolve(this._loaders);
           } else {
-            let preparedData: Object = this.prepareData(response);
-            if (preparedData.success) {
-              resolve(this._loaders);
-            } else {
-              reject(
-                new Error(Error.Severity.CRITICAL, Error.Category.NETWORK, Error.Code.BAD_SERVER_RESPONSE, {success: false, data: preparedData.error})
-              );
-            }
+            reject(
+              new Error(Error.Severity.CRITICAL, Error.Category.NETWORK, Error.Code.BAD_SERVER_RESPONSE, {success: false, data: preparedData.error})
+            );
           }
         },
         err => {
-          reject(err);
+          reject(new Error(Error.Severity.CRITICAL, Error.Category.NETWORK, Error.Code.BAD_SERVER_RESPONSE, err));
         }
       );
     });

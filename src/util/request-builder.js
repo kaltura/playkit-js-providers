@@ -108,16 +108,21 @@ export default class RequestBuilder {
     let request = new XMLHttpRequest();
     request.onreadystatechange = () => {
       if (request.readyState === 4) {
-        if (request.status === 200) {
-          return this._requestPromise.resolve({
-            headers: this._getResponseHeaders(request),
-            url: this.url,
-            response: request.responseText
-          });
-        } else {
-          this._handleError(request, Error.Code.BAD_HTTP_STATUS, {
-            text: request.responseText
-          });
+        try {
+          if (request.status === 200) {
+            const response = JSON.parse(request.responseText);
+            return this._requestPromise.resolve({
+              headers: this._getResponseHeaders(request),
+              url: this.url,
+              response
+            });
+          } else {
+            this._handleError(request, Error.Code.BAD_HTTP_STATUS, {
+              text: request.responseText
+            });
+          }
+        } catch (error) {
+          this._requestPromise.reject(new Error(Error.Severity.CRITICAL, Error.Category.NETWORK, Error.Code.BAD_SERVER_RESPONSE, error));
         }
       }
     };

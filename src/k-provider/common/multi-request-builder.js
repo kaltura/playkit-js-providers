@@ -40,7 +40,17 @@ export default class MultiRequestBuilder extends RequestBuilder {
     return new Promise((resolve, reject) => {
       this.doHttpRequest().then(
         data => {
-          resolve(new MultiRequestResult(data));
+          const multiRequestResult = new MultiRequestResult(data);
+          if (multiRequestResult.success) {
+            resolve(multiRequestResult);
+          } else {
+            reject({
+              url: data.url,
+              headers: data.headers,
+              serviceErrors: multiRequestResult.error
+            });
+          }
+          resolve();
         },
         err => {
           reject(err);
@@ -73,6 +83,11 @@ export class MultiRequestResult {
    */
   headers: Array<string>;
   /**
+   * @memberof MultiRequestResult
+   * @type {Array<any>}
+   */
+  error: Array<any> = [];
+  /**
    * @constructor
    * @param {Object} data data
    */
@@ -81,23 +96,18 @@ export class MultiRequestResult {
     this.url = data.url;
     this.headers = data.headers;
     const response = data.response;
-    try {
-      const jsonResponse = JSON.parse(response);
-      const responseArr = jsonResponse.result ? jsonResponse.result : jsonResponse;
-      responseArr.forEach(result => {
-        const serviceResult: ServiceResult = new ServiceResult(result);
-        this.results.push(serviceResult);
-        if (serviceResult.hasError) {
-          MultiRequestResult._logger.error(
-            `Service returned an error with error code: ${serviceResult.error.code} and message: ${serviceResult.error.message}.`
-          );
-          this.success = false;
-          return;
-        }
-      });
-    } catch (error) {
-      this.success = false;
-      this.results.push('Response parse error');
-    }
+    const responseArr = response.result ? response.result : response;
+    responseArr.forEach(result => {
+      const serviceResult: ServiceResult = new ServiceResult(result);
+      this.results.push(serviceResult);
+      if (serviceResult.hasError) {
+        MultiRequestResult._logger.error(
+          `Service returned an error with error code: ${serviceResult.error.code} and message: ${serviceResult.error.message}.`
+        );
+        this.success = false;
+        this.error.push(serviceResult.error);
+        return;
+      }
+    });
   }
 }
