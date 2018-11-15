@@ -20,26 +20,30 @@ export default class RequestBuilder {
    */
   params: any;
   /**
-   * @member - Service headers
+   * @memberof - Service headers
    * @type {Map<string, string>}
    */
   headers: Map<string, string>;
   /**
-   * @member - Service URL
+   * @memberof - Service URL
    * @type {string}
    */
   url: string;
   /**
-   * @member - Service method (POST,GET,DELETE etc..)
+   * @memberof - Service method (POST,GET,DELETE etc..)
    * @type {string}
    */
   method: string;
   /**
-   * @member - Service tag
+   * @memberof - Service tag
    * @type {string}
    */
   tag: string;
-
+  /**
+   * @memberof - the response headers of the arra
+   * @type {Array<string>}
+   */
+  responseHeaders: Array<string>;
   /**
    * @description network retry configuration
    * @memberof RequestBuilder
@@ -111,11 +115,8 @@ export default class RequestBuilder {
         try {
           if (request.status === 200) {
             const response = JSON.parse(request.responseText);
-            return this._requestPromise.resolve({
-              headers: this._getResponseHeaders(request),
-              url: this.url,
-              response
-            });
+            this.responseHeaders = this._getResponseHeaders(request);
+            return this._requestPromise.resolve(response);
           } else {
             this._handleError(request, Error.Code.BAD_HTTP_STATUS, {
               text: request.responseText

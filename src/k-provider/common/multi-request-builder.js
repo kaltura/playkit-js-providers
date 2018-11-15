@@ -40,13 +40,17 @@ export default class MultiRequestBuilder extends RequestBuilder {
     return new Promise((resolve, reject) => {
       this.doHttpRequest().then(
         data => {
-          const multiRequestResult = new MultiRequestResult(data);
+          const multiRequestResult = new MultiRequestResult({
+            response: data,
+            headers: this.responseHeaders,
+            url: this.url
+          });
           if (multiRequestResult.success) {
             resolve(multiRequestResult);
           } else {
             reject({
-              url: data.url,
-              headers: data.headers,
+              url: this.url,
+              headers: this.responseHeaders,
               serviceErrors: multiRequestResult.error
             });
           }
