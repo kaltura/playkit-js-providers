@@ -54,7 +54,6 @@ export default class MultiRequestBuilder extends RequestBuilder {
               serviceErrors: multiRequestResult.error
             });
           }
-          resolve();
         },
         err => {
           reject(err);
