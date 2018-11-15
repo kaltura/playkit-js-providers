@@ -116,14 +116,20 @@ export default class RequestBuilder {
           if (request.status === 200) {
             const response = JSON.parse(request.responseText);
             this.responseHeaders = this._getResponseHeaders(request);
+            // the promise returns the response for backwards compatibility
             return this._requestPromise.resolve(response);
           } else {
             this._handleError(request, Error.Code.BAD_HTTP_STATUS, {
-              text: request.responseText
+              text: request.responseText,
+              status: request.status
             });
           }
         } catch (error) {
-          this._requestPromise.reject(new Error(Error.Severity.CRITICAL, Error.Category.NETWORK, Error.Code.BAD_SERVER_RESPONSE, error));
+          this._requestPromise.reject(
+            this._createError(request, Error.Code.BAD_SERVER_RESPONSE, {
+              text: request.responseText
+            })
+          );
         }
       }
     };
@@ -132,12 +138,13 @@ export default class RequestBuilder {
     const requestTime = performance.now();
     request.ontimeout = () => {
       this._handleError(request, Error.Code.TIMEOUT, {
-        timeout: performance.now() - requestTime
+        timeout: (performance.now() - requestTime) / 1000
       });
     };
-    request.onerror = error => {
+    request.onerror = () => {
       this._handleError(request, Error.Code.HTTP_ERROR, {
-        error
+        text: request.responseText,
+        status: request.status
       });
     };
     this.headers.forEach((value, key) => {
@@ -154,20 +161,24 @@ export default class RequestBuilder {
   }
 
   _handleError(request: XMLHttpRequest, code: number, data: Object): Promise<*> | void {
-    Object.assign(data, {
-      url: this.url,
-      headers: this._getResponseHeaders(request),
-      attempt: this._attemptCounter
-    });
+    const error = this._createError(request, code, data);
     request.onreadystatechange = function() {};
     request.onerror = function() {};
     request.ontimeout = function() {};
-    const error = new Error(Error.Severity.CRITICAL, Error.Category.NETWORK, code, data);
     if (this.retryConfig.maxAttempts && this._attemptCounter < this.retryConfig.maxAttempts) {
       this._attemptCounter++;
       this._createXHR();
     } else {
       return this._requestPromise.reject(error);
     }
+  }
+
+  _createError(request: XMLHttpRequest, code: number, data: Object): Error {
+    Object.assign(data, {
+      url: this.url,
+      headers: this._getResponseHeaders(request),
+      attempt: this._attemptCounter
+    });
+    return new Error(Error.Severity.CRITICAL, Error.Category.NETWORK, code, data);
   }
 }

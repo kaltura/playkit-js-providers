@@ -73,19 +73,21 @@ export default class DataLoaderManager {
   fetchData(): Promise<any> {
     return new Promise((resolve, reject) => {
       this._multiRequest.execute().then(
-        response => {
-          this._multiResponse = response;
-          let preparedData: Object = this.prepareData(response);
+        data => {
+          this._multiResponse = data.response;
+          let preparedData: Object = this.prepareData(data.response);
           if (preparedData.success) {
             resolve(this._loaders);
           } else {
             reject(
-              new Error(Error.Severity.CRITICAL, Error.Category.NETWORK, Error.Code.BAD_SERVER_RESPONSE, {success: false, data: preparedData.error})
+              new Error(Error.Severity.CRITICAL, Error.Category.NETWORK, Error.Code.API_RESPONSE_MISMATCH, {
+                headers: data.headers
+              })
             );
           }
         },
         err => {
-          reject(new Error(Error.Severity.CRITICAL, Error.Category.NETWORK, Error.Code.BAD_SERVER_RESPONSE, err));
+          reject(err);
         }
       );
     });

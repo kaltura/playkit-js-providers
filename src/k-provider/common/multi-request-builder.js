@@ -2,6 +2,7 @@
 import RequestBuilder from '../../util/request-builder';
 import getLogger from '../../util/logger';
 import ServiceResult from './base-service-result';
+import Error from '../../util/error/error';
 
 export default class MultiRequestBuilder extends RequestBuilder {
   static _logger = getLogger('MultiRequestBuilder');
@@ -41,18 +42,21 @@ export default class MultiRequestBuilder extends RequestBuilder {
       this.doHttpRequest().then(
         data => {
           const multiRequestResult = new MultiRequestResult({
-            response: data,
-            headers: this.responseHeaders,
-            url: this.url
+            response: data
           });
           if (multiRequestResult.success) {
-            resolve(multiRequestResult);
-          } else {
-            reject({
-              url: this.url,
+            resolve({
               headers: this.responseHeaders,
-              serviceErrors: multiRequestResult.error
+              response: multiRequestResult
             });
+          } else {
+            reject(
+              new Error(Error.Severity.CRITICAL, Error.Category.NETWORK, Error.Code.MULTIREQUEST_API_ERROR, {
+                url: this.url,
+                headers: this.responseHeaders,
+                serviceErrors: multiRequestResult.error
+              })
+            );
           }
         },
         err => {
@@ -74,17 +78,7 @@ export class MultiRequestResult {
    * @memberof MultiRequestResult
    * @type {Object}
    */
-  results: Array<ServiceResult | string> = [];
-  /**
-   * @memberof - MultiRequestResult
-   * @type {string}
-   */
-  url: string;
-  /**
-   * @memberof MultiRequestResult
-   * @type {Array<string>}
-   */
-  headers: Array<string>;
+  results: Array<ServiceResult> = [];
   /**
    * @memberof MultiRequestResult
    * @type {Array<any>}
@@ -96,8 +90,6 @@ export class MultiRequestResult {
    */
   constructor(data: Object) {
     this.success = true;
-    this.url = data.url;
-    this.headers = data.headers;
     const response = data.response;
     const responseArr = response.result ? response.result : response;
     responseArr.forEach(result => {
