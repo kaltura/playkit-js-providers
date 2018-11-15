@@ -52,7 +52,7 @@ export default class MultiRequestBuilder extends RequestBuilder {
               new Error(Error.Severity.CRITICAL, Error.Category.NETWORK, Error.Code.MULTIREQUEST_API_ERROR, {
                 url: this.url,
                 headers: this.responseHeaders,
-                errors: multiRequestResult.error
+                results: multiRequestResult.results
               })
             );
           }
@@ -78,11 +78,6 @@ export class MultiRequestResult {
    */
   results: Array<ServiceResult> = [];
   /**
-   * @memberof MultiRequestResult
-   * @type {Array<any>}
-   */
-  error: Array<any> = [];
-  /**
    * @constructor
    * @param {Object} response data
    */
@@ -97,7 +92,6 @@ export class MultiRequestResult {
           `Service returned an error with error code: ${serviceResult.error.code} and message: ${serviceResult.error.message}.`
         );
         this.success = false;
-        this.error.push(serviceResult.error);
         return;
       }
     });
