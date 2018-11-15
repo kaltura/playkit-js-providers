@@ -21,7 +21,7 @@ describe('OVPProvider.partnerId:1082342', function() {
   it('should return config without plugins and without drm data', done => {
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
       return new Promise(resolve => {
-        resolve({response: new MultiRequestResult(BE_DATA.AnonymousMocEntryWithoutUIConfNoDrmData)});
+        resolve({response: new MultiRequestResult(BE_DATA.AnonymousMocEntryWithoutUIConfNoDrmData.response)});
       });
     });
     provider.getMediaConfig({entryId: '1_rsrdfext'}).then(
@@ -43,7 +43,7 @@ describe('OVPProvider.partnerId:1082342', function() {
     provider = new OVPProvider({partnerId: partnerId, uiConfId: 38621471}, playerVersion);
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
       return new Promise(resolve => {
-        resolve({response: new MultiRequestResult(BE_DATA.EntryWithUIConfNoDrmData)});
+        resolve({response: new MultiRequestResult(BE_DATA.EntryWithUIConfNoDrmData.response)});
       });
     });
     provider.getMediaConfig({entryId: '1_rsrdfext'}).then(
@@ -64,7 +64,7 @@ describe('OVPProvider.partnerId:1082342', function() {
   it('should return config without plugins and without drm data for audio', done => {
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
       return new Promise(resolve => {
-        resolve({response: new MultiRequestResult(BE_DATA.AudioEntryWithoutPlugins)});
+        resolve({response: new MultiRequestResult(BE_DATA.AudioEntryWithoutPlugins.response)});
       });
     });
     provider.getMediaConfig({entryId: '0_vyzw3ceu'}).then(
@@ -85,7 +85,7 @@ describe('OVPProvider.partnerId:1082342', function() {
   it('should return config without plugins and without drm data for image', done => {
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
       return new Promise(resolve => {
-        resolve({response: new MultiRequestResult(BE_DATA.ImageEntryWithoutPlugins)});
+        resolve({response: new MultiRequestResult(BE_DATA.ImageEntryWithoutPlugins.response)});
       });
     });
     provider.getMediaConfig({entryId: '0_vyzw3ceu'}).then(
@@ -124,7 +124,7 @@ describe('OVPProvider.partnerId:1068292', function() {
   it('should return config without plugins with drm data', done => {
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
       return new Promise(resolve => {
-        resolve({response: new MultiRequestResult(BE_DATA.AnonymousMocEntryWithoutUIConfWithDrmData)});
+        resolve({response: new MultiRequestResult(BE_DATA.AnonymousMocEntryWithoutUIConfWithDrmData.response)});
       });
     });
     provider.getMediaConfig({entryId: '1_rwbj3j0a'}).then(
@@ -147,7 +147,7 @@ describe('OVPProvider.partnerId:1068292', function() {
   it('should return reject when try to get config with wrong entryId', done => {
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
       return new Promise((resolve, reject) => {
-        const response = new MultiRequestResult(BE_DATA.WrongEntryIDWithoutUIConf);
+        const response = new MultiRequestResult(BE_DATA.WrongEntryIDWithoutUIConf.response);
         if (response.success) {
           resolve({
             response
@@ -172,7 +172,7 @@ describe('OVPProvider.partnerId:1068292', function() {
     provider = new OVPProvider({partnerId: partnerId, ks: ks, uiConfId: 38601981}, playerVersion);
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
       return new Promise(resolve => {
-        const response = new MultiRequestResult(BE_DATA.EntryWithUIConfWithDrmData);
+        const response = new MultiRequestResult(BE_DATA.EntryWithUIConfWithDrmData.response);
         resolve({
           response
         });
@@ -199,7 +199,7 @@ describe('OVPProvider.partnerId:1068292', function() {
     provider = new OVPProvider({partnerId: partnerId, ks: ks, uiConfId: 38601981}, playerVersion);
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
       return new Promise((resolve, reject) => {
-        const response = new MultiRequestResult(BE_DATA.WrongUiConfID);
+        const response = new MultiRequestResult(BE_DATA.WrongUiConfID.response);
         if (response.success) {
           resolve({
             response

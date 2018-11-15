@@ -41,9 +41,7 @@ export default class MultiRequestBuilder extends RequestBuilder {
     return new Promise((resolve, reject) => {
       this.doHttpRequest().then(
         data => {
-          const multiRequestResult = new MultiRequestResult({
-            response: data
-          });
+          const multiRequestResult = new MultiRequestResult(data);
           if (multiRequestResult.success) {
             resolve({
               headers: this.responseHeaders,
@@ -54,7 +52,7 @@ export default class MultiRequestBuilder extends RequestBuilder {
               new Error(Error.Severity.CRITICAL, Error.Category.NETWORK, Error.Code.MULTIREQUEST_API_ERROR, {
                 url: this.url,
                 headers: this.responseHeaders,
-                serviceErrors: multiRequestResult.error
+                errors: multiRequestResult.error
               })
             );
           }
@@ -86,11 +84,10 @@ export class MultiRequestResult {
   error: Array<any> = [];
   /**
    * @constructor
-   * @param {Object} data data
+   * @param {Object} response data
    */
-  constructor(data: Object) {
+  constructor(response: Object) {
     this.success = true;
-    const response = data.response;
     const responseArr = response.result ? response.result : response;
     responseArr.forEach(result => {
       const serviceResult: ServiceResult = new ServiceResult(result);

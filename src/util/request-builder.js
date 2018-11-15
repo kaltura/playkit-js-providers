@@ -112,24 +112,19 @@ export default class RequestBuilder {
     let request = new XMLHttpRequest();
     request.onreadystatechange = () => {
       if (request.readyState === 4) {
-        try {
-          if (request.status === 200) {
+        if (request.status === 200) {
+          try {
             const response = JSON.parse(request.responseText);
             this.responseHeaders = this._getResponseHeaders(request);
             // the promise returns the response for backwards compatibility
             return this._requestPromise.resolve(response);
-          } else {
-            this._handleError(request, Error.Code.BAD_HTTP_STATUS, {
-              text: request.responseText,
-              status: request.status
-            });
+          } catch (error) {
+            this._requestPromise.reject(
+              this._createError(request, Error.Code.BAD_SERVER_RESPONSE, {
+                text: request.responseText
+              })
+            );
           }
-        } catch (error) {
-          this._requestPromise.reject(
-            this._createError(request, Error.Code.BAD_SERVER_RESPONSE, {
-              text: request.responseText
-            })
-          );
         }
       }
     };
@@ -138,13 +133,14 @@ export default class RequestBuilder {
     const requestTime = performance.now();
     request.ontimeout = () => {
       this._handleError(request, Error.Code.TIMEOUT, {
-        timeout: (performance.now() - requestTime) / 1000
+        timeout: (performance.now() - requestTime) / 1000,
+        statusText: request.statusText
       });
     };
-    request.onerror = () => {
+    request.onerror = request.onabort = () => {
       this._handleError(request, Error.Code.HTTP_ERROR, {
         text: request.responseText,
-        status: request.status
+        statusText: request.statusText
       });
     };
     this.headers.forEach((value, key) => {
@@ -165,6 +161,7 @@ export default class RequestBuilder {
     request.onreadystatechange = function() {};
     request.onerror = function() {};
     request.ontimeout = function() {};
+    request.onabort = function() {};
     if (this.retryConfig.maxAttempts && this._attemptCounter < this.retryConfig.maxAttempts) {
       this._attemptCounter++;
       this._createXHR();
