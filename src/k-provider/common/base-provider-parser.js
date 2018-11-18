@@ -5,6 +5,8 @@ import MediaSources from '../../entities/media-sources';
 import MediaSource from '../../entities/media-source';
 import type {OTTKalturaPlaybackSource} from '../ott/response-types/kaltura-playback-source';
 import type {OVPKalturaPlaybackSource} from '../ovp/response-types/kaltura-playback-source';
+import KalturaRuleAction from './response-types/kaltura-rule-action';
+import KalturaAccessControlMessage from './response-types/kaltura-access-control-message';
 
 export default class BaseProviderParser {
   // eslint-disable-next-line no-unused-vars
@@ -27,25 +29,19 @@ export default class BaseProviderParser {
     return !!sourceFormat && sourceFormat.name === 'mp4';
   }
 
-  static hasBlockActions(assetResponse: any): any {
-    if (assetResponse && assetResponse.playBackContextResult) {
-      const playbackContext = assetResponse.playBackContextResult;
-      for (let actionIndex = 0; actionIndex < playbackContext.actions.length; actionIndex++) {
-        if (playbackContext.actions[actionIndex].type === 'BLOCK') {
-          return playbackContext.actions[actionIndex];
-        }
-      }
-    }
-    return null;
+  static hasBlockAction(assetResponse: any): boolean {
+    return BaseProviderParser.getBlockAction(assetResponse) !== undefined;
   }
 
-  static hasErrorMessage(assetResponse: any): any {
-    const messages = assetResponse.playBackContextResult.messages;
-    for (let messagesIndex = 0; messagesIndex < messages.length; messagesIndex++) {
-      if (messages[messagesIndex].code !== 'OK') {
-        return messages[messagesIndex];
-      }
+  static getBlockAction(assetResponse: any): ?KalturaRuleAction {
+    let blockAction;
+    if (assetResponse && assetResponse.playBackContextResult) {
+      blockAction = assetResponse.playBackContextResult.actions.find(action => action.type === KalturaRuleAction.Type.BLOCK);
     }
-    return null;
+    return blockAction;
+  }
+
+  static getErrorMessages(assetResponse: any): Array<KalturaAccessControlMessage> {
+    return assetResponse.playBackContextResult.messages;
   }
 }

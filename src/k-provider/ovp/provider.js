@@ -9,6 +9,7 @@ import OVPPlaylistLoader from './loaders/playlist-loader';
 import BaseProvider from '../common/base-provider';
 import MediaEntry from '../../entities/media-entry';
 import OVPEntryListLoader from './loaders/entry-list-loader';
+import Error from '../../util/error/error';
 
 export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
   _filterOptionsConfig: ProviderFilterOptionsObject = {redirectFromEntryId: true};
@@ -46,16 +47,20 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
         }
         const redirectFromEntryId = this._getEntryRedirectFilter(mediaInfo);
         this._dataLoader.add(OVPMediaEntryLoader, {entryId, ks, redirectFromEntryId});
-        this._dataLoader.fetchData().then(
+        return this._dataLoader.fetchData().then(
           response => {
-            resolve(this._parseDataFromResponse(response));
+            try {
+              resolve(this._parseDataFromResponse(response));
+            } catch (err) {
+              reject(err);
+            }
           },
           err => {
             reject(err);
           }
         );
       } else {
-        reject({success: false, data: 'Missing mandatory parameter'});
+        reject(new Error(Error.Severity.CRITICAL, Error.Category.PROVIDER, Error.Code.MISSING_MANDATORY_PARAMS, {message: 'missing entry id'}));
       }
     });
   }
@@ -101,8 +106,14 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
       if (data.has(OVPMediaEntryLoader.id)) {
         const mediaLoader = data.get(OVPMediaEntryLoader.id);
         if (mediaLoader && mediaLoader.response) {
-          this._validateData(mediaLoader.response);
-          const mediaEntry = OVPProviderParser.getMediaEntry(this.isAnonymous ? '' : this.ks, this.partnerId, this.uiConfId, mediaLoader.response);
+          const response = mediaLoader.response;
+          if (OVPProviderParser.hasBlockAction(response)) {
+            throw new Error(Error.Severity.CRITICAL, Error.Category.SERVICE, Error.Code.BLOCK_ACTION, {
+              action: OVPProviderParser.getBlockAction(response),
+              messages: OVPProviderParser.getErrorMessages(response)
+            });
+          }
+          const mediaEntry = OVPProviderParser.getMediaEntry(this.isAnonymous ? '' : this.ks, this.partnerId, this.uiConfId, response);
           Object.assign(mediaConfig.sources, this._getSourcesObject(mediaEntry));
         }
       }
@@ -151,7 +162,6 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
     if (data && data.has(OVPPlaylistLoader.id)) {
       const playlistLoader = data.get(OVPPlaylistLoader.id);
       if (playlistLoader && playlistLoader.response) {
-        this._validateData(playlistLoader.response);
         const playlist = OVPProviderParser.getPlaylist(playlistLoader.response);
         playlistConfig.id = playlist.id;
         playlistConfig.poster = playlist.poster;
@@ -204,7 +214,6 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
     if (data && data.has(OVPPlaylistLoader.id)) {
       const playlistLoader = data.get(OVPPlaylistLoader.id);
       if (playlistLoader && playlistLoader.response) {
-        this._validateData(playlistLoader.response);
         const entryList = OVPProviderParser.getEntryList(playlistLoader.response);
         entryList.items.forEach(i => playlistConfig.items.push({sources: this._getSourcesObject(i)}));
       }
@@ -223,20 +232,6 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
       poster: '',
       items: []
     };
-  }
-
-  _validateData(response: any): void {
-    const blockedAction = OVPProviderParser.hasBlockActions(response);
-    if (blockedAction) {
-      const errorMessage = OVPProviderParser.hasErrorMessage(response);
-      if (errorMessage) {
-        this._logger.error(`Entry is blocked, error message: `, errorMessage);
-        throw errorMessage;
-      } else {
-        this._logger.error(`Entry is blocked, action: `, blockedAction);
-        throw blockedAction;
-      }
-    }
   }
 
   _getDefaultSourcesObject(): ProviderMediaConfigSourcesObject {
