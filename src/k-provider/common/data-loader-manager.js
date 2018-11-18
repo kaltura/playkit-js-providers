@@ -1,5 +1,6 @@
 // @flow
 import MultiRequestBuilder, {MultiRequestResult} from './multi-request-builder';
+import Error from '../../util/error/error';
 
 export default class DataLoaderManager {
   /**
@@ -28,6 +29,15 @@ export default class DataLoaderManager {
    */
   _loaders: Map<string, ILoader> = new Map();
 
+  _networkRetryConfig: ProviderNetworkRetryParameters = {
+    timeout: 0,
+    maxAttempts: 4
+  };
+
+  constructor(networkRetryConfig?: ProviderNetworkRetryParameters) {
+    Object.assign(this._networkRetryConfig, networkRetryConfig);
+  }
+
   /**
    * Add loader too execution loaders map
    * @function
@@ -43,6 +53,7 @@ export default class DataLoaderManager {
       let startIndex = this._multiRequest.requests.length;
       // Get the requests
       let requests = execution_loader.requests;
+      this._multiRequest.retryConfig = this._networkRetryConfig;
       // Add requests to muktiRequest queue
       requests.forEach(request => {
         this._multiRequest.add(request);
@@ -62,17 +73,17 @@ export default class DataLoaderManager {
   fetchData(): Promise<any> {
     return new Promise((resolve, reject) => {
       this._multiRequest.execute().then(
-        response => {
-          this._multiResponse = response;
-          if (!response.success) {
-            reject(response);
+        data => {
+          this._multiResponse = data.response;
+          let preparedData: Object = this.prepareData(data.response);
+          if (preparedData.success) {
+            resolve(this._loaders);
           } else {
-            let preparedData: Object = this.prepareData(response);
-            if (preparedData.success) {
-              resolve(this._loaders);
-            } else {
-              reject({success: false, data: preparedData.error});
-            }
+            reject(
+              new Error(Error.Severity.CRITICAL, Error.Category.NETWORK, Error.Code.API_RESPONSE_MISMATCH, {
+                headers: data.headers
+              })
+            );
           }
         },
         err => {

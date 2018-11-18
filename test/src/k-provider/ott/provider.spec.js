@@ -9,7 +9,6 @@ const playerVersion = '1.2.3';
 
 describe('OTTProvider.partnerId:198', function() {
   let provider, sandbox;
-
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
     provider = new OTTProvider({partnerId: partnerId}, playerVersion);
@@ -23,8 +22,7 @@ describe('OTTProvider.partnerId:198', function() {
   it('should return config without plugins and with drm data', done => {
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
       return new Promise(resolve => {
-        const response = new MultiRequestResult(BE_DATA.AnonymousEntryWithoutUIConfWithDrmData);
-        resolve(response);
+        resolve({response: new MultiRequestResult(BE_DATA.AnonymousEntryWithoutUIConfWithDrmData.response)});
       });
     });
     provider.getMediaConfig({entryId: 480097}).then(
@@ -45,8 +43,7 @@ describe('OTTProvider.partnerId:198', function() {
   it('should return config filtered by device types', done => {
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
       return new Promise(resolve => {
-        const response = new MultiRequestResult(BE_DATA.AnonymousEntryWithoutUIConfWithDrmData);
-        resolve(response);
+        resolve({response: new MultiRequestResult(BE_DATA.AnonymousEntryWithoutUIConfWithDrmData.response)});
       });
     });
     provider
@@ -72,8 +69,7 @@ describe('OTTProvider.partnerId:198', function() {
   it('should return entry of live type', done => {
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
       return new Promise(resolve => {
-        const response = new MultiRequestResult(BE_DATA.LiveEntryNoDrmData);
-        resolve(response);
+        resolve({response: new MultiRequestResult(BE_DATA.LiveEntryNoDrmData.response)});
       });
     });
     provider.getMediaConfig({entryId: 276507}).then(
