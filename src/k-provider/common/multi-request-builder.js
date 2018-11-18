@@ -2,15 +2,15 @@
 import RequestBuilder from '../../util/request-builder';
 import getLogger from '../../util/logger';
 import ServiceResult from './base-service-result';
+import Error from '../../util/error/error';
 
 export default class MultiRequestBuilder extends RequestBuilder {
   static _logger = getLogger('MultiRequestBuilder');
   /**
-   * @member - Array of requests
+   * @memberof - MultiRequestBuilder
    * @type {Array<RequestBuilder>}
    */
   requests: Array<RequestBuilder> = [];
-
   /**
    * Adds request to requests array
    * @function add
@@ -43,11 +43,24 @@ export default class MultiRequestBuilder extends RequestBuilder {
       }
       this.doHttpRequest().then(
         data => {
-          resolve(new MultiRequestResult(data));
+          const multiRequestResult = new MultiRequestResult(data);
+          if (multiRequestResult.success) {
+            resolve({
+              headers: this.responseHeaders,
+              response: multiRequestResult
+            });
+          } else {
+            reject(
+              new Error(Error.Severity.CRITICAL, Error.Category.NETWORK, Error.Code.MULTIREQUEST_API_ERROR, {
+                url: this.url,
+                headers: this.responseHeaders,
+                results: multiRequestResult.results
+              })
+            );
+          }
         },
         err => {
-          const errorText: string = `Error on multiRequest execution, error <${err}>.`;
-          reject(errorText);
+          reject(err);
         }
       );
     });
@@ -57,16 +70,15 @@ export default class MultiRequestBuilder extends RequestBuilder {
 export class MultiRequestResult {
   static _logger = getLogger('MultiRequestResult');
   /**
-   * @member - Is success
+   * @memberof MultiRequestResult
    * @type {boolean}
    */
   success: boolean;
   /**
-   * @member - Multi request response data
+   * @memberof MultiRequestResult
    * @type {Object}
    */
   results: Array<ServiceResult> = [];
-
   /**
    * @constructor
    * @param {Object} response data
