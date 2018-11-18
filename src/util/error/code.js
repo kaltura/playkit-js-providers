@@ -41,7 +41,22 @@ const Code: CodeType = {
   /**
    * The server response had a valid structure and valid API result, but it did not match the request
    */
-  API_RESPONSE_MISMATCH: 1007
+  API_RESPONSE_MISMATCH: 1007,
+
+  /**
+   * The server responded with an error
+   */
+  ERROR: 2000,
+
+  /**
+   * The server responded with a block action
+   */
+  BLOCK_ACTION: 2001,
+
+  /**
+   * The server responded with a block action
+   */
+  MISSING_MANDATORY_PARAMS: 3000
 };
 
 export {Code};

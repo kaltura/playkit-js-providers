@@ -38,8 +38,12 @@ export default class MultiRequestBuilder extends RequestBuilder {
         this.params = JSON.stringify(this.params);
       } catch (err) {
         MultiRequestBuilder._logger.error(`${err.message}`);
-        const errorText: string = `Error on multiRequest execution, failed parsing request <${err}>.`;
-        reject(errorText);
+        reject(
+          new Error(Error.Severity.CRITICAL, Error.Category.PROVIDER, Error.Code.FAILED_PARSING_REQUEST, {
+            error: err,
+            params: this.params
+          })
+        );
       }
       this.doHttpRequest().then(
         data => {

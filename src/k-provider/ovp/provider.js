@@ -9,6 +9,7 @@ import OVPPlaylistLoader from './loaders/playlist-loader';
 import BaseProvider from '../common/base-provider';
 import MediaEntry from '../../entities/media-entry';
 import OVPEntryListLoader from './loaders/entry-list-loader';
+import Error from '../../util/error/error';
 
 export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
   _filterOptionsConfig: ProviderFilterOptionsObject = {redirectFromEntryId: true};
@@ -51,7 +52,7 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
             try {
               resolve(this._parseDataFromResponse(response));
             } catch (err) {
-              reject({success: false, data: err});
+              reject(err);
             }
           },
           err => {
@@ -59,7 +60,7 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
           }
         );
       } else {
-        reject({success: false, data: 'Missing mandatory parameter'});
+        reject(new Error(Error.Severity.CRITICAL, Error.Category.PROVIDER, Error.Code.MISSING_MANDATORY_PARAMS, {message: 'missing entry id'}));
       }
     });
   }
@@ -107,10 +108,10 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
         if (mediaLoader && mediaLoader.response) {
           const response = mediaLoader.response;
           if (OVPProviderParser.hasBlockAction(response)) {
-            throw {
+            throw new Error(Error.Severity.CRITICAL, Error.Category.SERVICE, Error.Code.BLOCK_ACTION, {
               action: OVPProviderParser.getBlockAction(response),
               messages: OVPProviderParser.getErrorMessages(response)
-            };
+            });
           }
           const mediaEntry = OVPProviderParser.getMediaEntry(this.isAnonymous ? '' : this.ks, this.partnerId, this.uiConfId, response);
           Object.assign(mediaConfig.sources, this._getSourcesObject(mediaEntry));

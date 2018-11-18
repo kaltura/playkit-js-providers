@@ -9,6 +9,7 @@ import OTTProviderParser from './provider-parser';
 import KalturaAsset from './response-types/kaltura-asset';
 import KalturaPlaybackContext from './response-types/kaltura-playback-context';
 import MediaEntry from '../../entities/media-entry';
+import Error from '../../util/error/error';
 
 export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject> {
   _networkRetryConfig: ProviderNetworkRetryParameters;
@@ -67,7 +68,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
             try {
               resolve(this._parseDataFromResponse(response, requestData));
             } catch (err) {
-              reject({success: false, data: err});
+              reject(err);
             }
           },
           err => {
@@ -75,7 +76,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
           }
         );
       } else {
-        reject({success: false, data: 'Missing mandatory parameter'});
+        reject(new Error(Error.Severity.CRITICAL, Error.Category.PROVIDER, Error.Code.MISSING_MANDATORY_PARAMS, {message: 'missing entry id'}));
       }
     });
   }
@@ -122,10 +123,10 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
         if (assetLoader && assetLoader.response && Object.keys(assetLoader.response).length) {
           const response = assetLoader.response;
           if (OTTProviderParser.hasBlockAction(response)) {
-            throw {
+            throw new Error(Error.Severity.CRITICAL, Error.Category.SERVICE, Error.Code.BLOCK_ACTION, {
               action: OTTProviderParser.getBlockAction(response),
               messages: OTTProviderParser.getErrorMessages(response)
-            };
+            });
           }
           const mediaEntry = OTTProviderParser.getMediaEntry(response, requestData);
           const mediaSources = mediaEntry.sources.toJSON();
