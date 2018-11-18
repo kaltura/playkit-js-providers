@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.10.0"></a>
+# [2.10.0](https://github.com/kaltura/playkit-js-providers/compare/v2.9.0...v2.10.0) (2018-11-18)
+
+
+### Bug Fixes
+
+* **FEC-8660:** handle API block action ([#67](https://github.com/kaltura/playkit-js-providers/issues/67)) ([78b3f22](https://github.com/kaltura/playkit-js-providers/commit/78b3f22))
+
+
+### Features
+
+* **FEC-8601:** Add network requests retry mechanism and headers data to the error  ([#66](https://github.com/kaltura/playkit-js-providers/issues/66)) ([695f68a](https://github.com/kaltura/playkit-js-providers/commit/695f68a))
+
+
+
 <a name="2.9.0"></a>
 # [2.9.0](https://github.com/kaltura/playkit-js-providers/compare/v2.8.0...v2.9.0) (2018-11-07)
 
