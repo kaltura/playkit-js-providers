@@ -23,7 +23,7 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
     super(options, playerVersion);
     this._logger = getLogger('OVPProvider');
     OVPConfiguration.set(options.env);
-    this._networkRetryConfig = options.networkRetryParameters;
+    this._networkRetryConfig = options.networkRetryParameters || {};
     this._setFilterOptionsConfig(options.filterOptions);
   }
 

@@ -5,6 +5,6 @@ declare type ProviderOptionsObject = {
   ks?: string,
   uiConfId?: number,
   env?: ProviderEnvConfigObject,
-  networkRetryParameters: ProviderNetworkRetryParameters,
+  networkRetryParameters?: ProviderNetworkRetryParameters,
   filterOptions?: ProviderFilterOptionsObject
 };

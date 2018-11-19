@@ -22,7 +22,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
     super(options, playerVersion);
     this._logger = getLogger('OTTProvider');
     OTTConfiguration.set(options.env);
-    this._networkRetryConfig = options.networkRetryParameters;
+    this._networkRetryConfig = options.networkRetryParameters || {};
   }
 
   /**

@@ -28,8 +28,9 @@ var provider = new playkit.providers.ott.Provider(config);
   logLevel: string, // optional
   ks: string, // optional
   uiConfId: number, // optional
-  env: ProviderEnvConfigObject // optional
-  filterOptions: ProviderFilterOptionsObject //optional
+  env: ProviderEnvConfigObject, // optional
+  networkRetryParameters: ProviderNetworkRetryParameters, // optional
+  filterOptions: ProviderFilterOptionsObject // optional
 }
 ```
 
@@ -111,6 +112,35 @@ var provider = new playkit.providers.ott.Provider(config);
 > ##### Description: Defines the server environment to run against.
 
 ##
+
+> ### config.networkRetryParameters
+>
+> ##### Type: `ProviderNetworkRetryParameters`
+>
+> ```js
+> {
+>  timeout?: number,
+>  maxAttempts?: number
+> }
+> ```
+>
+> > ### config.networkRetryParameters.timeout
+> >
+> > ##### Type: `number`
+> >
+> > ##### Default: `0` - this means it will use the browser default timeout.
+> >
+> > ##### Description: Defines the timeout for the provider requests in milliseconds.
+>
+> ##
+>
+> > ### config.networkRetryParameters.maxAttempts
+> >
+> > ##### Type: `number`
+> >
+> > ##### Default: `4`
+> >
+> > ##### Description: Defines the number of attemps the providers should try make a request before it fails.
 
 > ### config.filterOptions
 >
