@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.10.1"></a>
+## [2.10.1](https://github.com/kaltura/playkit-js-providers/compare/v2.10.0...v2.10.1) (2018-11-19)
+
+
+### Bug Fixes
+
+* **FEC-8679:** isAnonymous is set incorrectly ([#68](https://github.com/kaltura/playkit-js-providers/issues/68)) ([c843f73](https://github.com/kaltura/playkit-js-providers/commit/c843f73))
+* 'networkRetryParameters' type causes KalturaPlayerJS build (flow) to fail [#69](https://github.com/kaltura/playkit-js-providers/issues/69) ([6c67907](https://github.com/kaltura/playkit-js-providers/commit/6c67907))
+
+
+
 <a name="2.10.0"></a>
 # [2.10.0](https://github.com/kaltura/playkit-js-providers/compare/v2.9.0...v2.10.0) (2018-11-18)
 
