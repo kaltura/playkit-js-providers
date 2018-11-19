@@ -10,7 +10,7 @@ import OVPService from '../services/ovp-service';
  * @param {ProviderNetworkRetryParameters} [networkRetryConfig] - network retry configuration
  */
 export default class OVPDataLoaderManager extends DataLoaderManager {
-  constructor(playerVersion: string, partnerId: number, ks: string = '', networkRetryConfig?: ProviderNetworkRetryParameters) {
+  constructor(playerVersion: string, partnerId: number, ks: string = '', networkRetryConfig: ProviderNetworkRetryParameters) {
     super(networkRetryConfig);
     this._multiRequest = OVPService.getMultiRequest(playerVersion, ks, partnerId);
   }

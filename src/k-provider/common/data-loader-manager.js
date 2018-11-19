@@ -29,13 +29,10 @@ export default class DataLoaderManager {
    */
   _loaders: Map<string, ILoader> = new Map();
 
-  _networkRetryConfig: ProviderNetworkRetryParameters = {
-    timeout: 0,
-    maxAttempts: 4
-  };
+  _networkRetryConfig: ProviderNetworkRetryParameters;
 
-  constructor(networkRetryConfig?: ProviderNetworkRetryParameters) {
-    Object.assign(this._networkRetryConfig, networkRetryConfig);
+  constructor(networkRetryConfig: ProviderNetworkRetryParameters) {
+    this._networkRetryConfig = networkRetryConfig;
   }
 
   /**

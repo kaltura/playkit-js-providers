@@ -8,7 +8,7 @@ import OTTService from '../services/ott-service';
  * @param {ProviderNetworkRetryParameters} [networkRetryConfig] - network retry configuration
  */
 export default class OTTDataLoaderManager extends DataLoaderManager {
-  constructor(partnerId: number, ks: string = '', networkRetryConfig?: ProviderNetworkRetryParameters) {
+  constructor(partnerId: number, ks: string = '', networkRetryConfig: ProviderNetworkRetryParameters) {
     super(networkRetryConfig);
     this._multiRequest = OTTService.getMultiRequest(ks, partnerId);
   }
