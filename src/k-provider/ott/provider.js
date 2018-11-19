@@ -33,6 +33,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
   getMediaConfig(mediaInfo: OTTProviderMediaInfoObject): Promise<ProviderMediaConfigObject> {
     if (mediaInfo.ks) {
       this.ks = mediaInfo.ks;
+      this._isAnonymous = false;
     }
     this._dataLoader = new OTTDataLoaderManager(this.partnerId, this.ks, this._networkRetryConfig);
     return new Promise((resolve, reject) => {

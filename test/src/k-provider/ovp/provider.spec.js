@@ -221,6 +221,45 @@ describe('OVPProvider.partnerId:1068292', function() {
   });
 });
 
+describe('getMediaConfig', function() {
+  let provider, sandbox;
+  const partnerId = 1068292;
+  const ks =
+    'NTAwZjViZWZjY2NjNTRkNGEyMjU1MTg4OGE1NmUwNDljZWJkMzk1MXwxMDY4MjkyOzEwNjgyOTI7MTQ5MDE3NjE0NjswOzE0OTAwODk3NDYuMDIyNjswO3ZpZXc6Kix3aWRnZXQ6MTs7';
+  const playerVersion = '1.2.3';
+
+  beforeEach(() => {
+    sandbox = sinon.sandbox.create();
+    provider = new OVPProvider({partnerId: partnerId}, playerVersion);
+  });
+
+  afterEach(() => {
+    sandbox.restore();
+    MultiRequestBuilder.prototype.execute.restore();
+  });
+
+  it('should set anonymous to false when given a KS', done => {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+      return new Promise(resolve => {
+        resolve({response: new MultiRequestResult(BE_DATA.AnonymousMocEntryWithoutUIConfWithDrmData.response)});
+      });
+    });
+    provider.getMediaConfig({entryId: '1_rwbj3j0a', ks: ks}).then(
+      mediaConfig => {
+        try {
+          mediaConfig.session.isAnonymous.should.be.false;
+          done();
+        } catch (err) {
+          done(err);
+        }
+      },
+      err => {
+        done(err);
+      }
+    );
+  });
+});
+
 describe('logger', () => {
   const partnerId = 1068292;
   const playerVersion = '1.2.3';
