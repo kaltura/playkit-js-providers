@@ -13,7 +13,6 @@ import Error from '../../util/error/error';
 
 export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
   _filterOptionsConfig: ProviderFilterOptionsObject = {redirectFromEntryId: true};
-  _networkRetryConfig: ProviderNetworkRetryParameters;
   /**
    * @constructor
    * @param {ProviderOptionsObject} options - provider options
@@ -23,8 +22,8 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
     super(options, playerVersion);
     this._logger = getLogger('OVPProvider');
     OVPConfiguration.set(options.env);
-    this._networkRetryConfig = options.networkRetryParameters || {};
     this._setFilterOptionsConfig(options.filterOptions);
+    this._networkRetryConfig = Object.assign(this._networkRetryConfig, options.networkRetryParameters);
   }
 
   /**

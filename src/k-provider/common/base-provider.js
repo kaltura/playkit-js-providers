@@ -10,6 +10,10 @@ export default class BaseProvider<MI> {
   _playerVersion: string;
   _logger: any;
   _isAnonymous: boolean;
+  _networkRetryConfig: ProviderNetworkRetryParameters = {
+    timeout: 0,
+    maxAttempts: 4
+  };
 
   get partnerId(): number {
     return this._partnerId;
