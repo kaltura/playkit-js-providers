@@ -40,11 +40,11 @@ export default class OVPProviderParser extends BaseProviderParser {
 
     if (entry.type === KalturaMediaEntry.EntryType.EXTERNAL_MEDIA.value) {
       mediaEntry.sources = new MediaSources();
-      mediaEntry.sources.progressive = {
-        mimetype: 'video/youtube',
-        url: entry.referenceId,
-        id: entry.id + '_youtube'
-      };
+      const mediaSource = new MediaSource();
+      mediaSource.mimetype = 'video/youtube';
+      mediaSource.url = entry.referenceId;
+      mediaSource.id = entry.id + '_youtube';
+      mediaEntry.sources.progressive.push(mediaSource);
     } else {
       mediaEntry.sources = OVPProviderParser._getParsedSources(kalturaSources, ks, partnerId, uiConfId, entry, playbackContext);
     }
