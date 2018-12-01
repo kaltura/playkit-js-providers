@@ -20,7 +20,7 @@ export default class BaseProviderParser {
   }
 
   // eslint-disable-next-line no-unused-vars
-  static _parseAdaptiveSource(...parms): MediaSource {
+  static _parseAdaptiveSource(...parms): ?MediaSource {
     throw new TypeError(`_parseAdaptiveSource method must be implement by the derived class`);
   }
 
