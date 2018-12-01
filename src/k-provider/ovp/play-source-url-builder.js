@@ -2,14 +2,14 @@
 import OVPConfiguration from './config';
 
 type urlParamsType = {
-  partnerId: string,
+  partnerId: number,
   entryId: string,
   ks: string,
-  uiConfId: string,
+  uiConfId: ?number,
   format: string,
   protocol: string,
   extension: string,
-  flavorIds: string
+  flavorIds: ?string
 };
 
 export default class PlaySourceUrlBuilder {
@@ -36,9 +36,9 @@ export default class PlaySourceUrlBuilder {
     }
     playUrl += 'p/' + partnerId + '/sp/' + partnerId + '00' + '/playManifest/entryId/' + entryId + '/protocol/' + protocol + '/format/' + format;
 
-    if (flavorIds !== '') {
+    if (flavorIds) {
       playUrl += '/flavorIds/' + flavorIds;
-    } else if (uiConfId !== '') {
+    } else if (uiConfId) {
       playUrl += '/uiConfId/' + uiConfId;
     }
 
