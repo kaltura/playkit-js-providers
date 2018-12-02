@@ -271,7 +271,7 @@ export default class OVPProviderParser extends BaseProviderParser {
         mediaSource.width = flavor.width;
         mediaSource.bandwidth = flavor.bitrate * 1024;
         mediaSource.label = flavor.label || flavor.language;
-        let playUrl = PlaySourceUrlBuilder.build({
+        const playUrl = PlaySourceUrlBuilder.build({
           entryId: entryId,
           flavorIds: flavor.id,
           format: format,
@@ -353,7 +353,7 @@ export default class OVPProviderParser extends BaseProviderParser {
       const regexAction = playbackContext.actions.find(action => action.type === KalturaRuleAction.Type.REQUEST_HOST_REGEX);
       const regex = new RegExp(regexAction.pattern, 'i');
       if (playUrl.match(regex)) {
-        playUrl = playUrl.replace(regex, regexAction.replacement + '/');
+        return playUrl.replace(regex, regexAction.replacement + '/');
       }
     }
     return playUrl;
