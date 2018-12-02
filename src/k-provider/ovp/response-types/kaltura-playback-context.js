@@ -3,6 +3,7 @@ import ServiceResult from '../../common/base-service-result';
 import KalturaAccessControlMessage from '../../common/response-types/kaltura-access-control-message';
 import KalturaPlaybackSource from './kaltura-playback-source';
 import KalturaRuleAction from '../../common/response-types/kaltura-rule-action';
+import KalturaAccessControlModifyRequestHostRegexAction from '../../common/response-types/kaltura-access-control-modify-request-host-regex-action';
 import KalturaFlavorAsset from './kaltura-flavor-asset';
 
 export default class KalturaPlaybackContext extends ServiceResult {
@@ -40,7 +41,13 @@ export default class KalturaPlaybackContext extends ServiceResult {
       }
       const actions = response.actions;
       if (actions) {
-        actions.map(action => this.actions.push(new KalturaRuleAction(action)));
+        actions.map(action => {
+          if (action.type === KalturaRuleAction.Type.REQUEST_HOST_REGEX) {
+            this.actions.push(new KalturaAccessControlModifyRequestHostRegexAction(action));
+          } else {
+            this.actions.push(new KalturaRuleAction(action));
+          }
+        });
       }
       const sources = response.sources;
       if (sources) {
