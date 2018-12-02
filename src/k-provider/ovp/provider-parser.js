@@ -12,12 +12,11 @@ import MediaEntry from '../../entities/media-entry';
 import Drm from '../../entities/drm';
 import MediaSource from '../../entities/media-source';
 import MediaSources from '../../entities/media-sources';
-import {SupportedStreamFormat} from '../../entities/media-format';
-import BaseProviderParser from '../common/base-provider-parser';
+import {SupportedStreamFormat, isProgressiveSource} from '../../entities/media-format';
 import Playlist from '../../entities/playlist';
 import EntryList from '../../entities/entry-list';
 
-export default class OVPProviderParser extends BaseProviderParser {
+export default class OVPProviderParser {
   static _logger = getLogger('OVPProviderParser');
 
   /**
@@ -156,10 +155,10 @@ export default class OVPProviderParser extends BaseProviderParser {
       sources.map(parsedSource, sourceFormat);
     };
     const parseAdaptiveSources = () => {
-      kalturaSources.filter(source => !OVPProviderParser._isProgressiveSource(source)).forEach(addAdaptiveSource);
+      kalturaSources.filter(source => !isProgressiveSource(source.format)).forEach(addAdaptiveSource);
     };
     const parseProgressiveSources = () => {
-      const progressiveSource = kalturaSources.find(OVPProviderParser._isProgressiveSource);
+      const progressiveSource = kalturaSources.find(source => isProgressiveSource(source.format));
       sources.progressive = OVPProviderParser._parseProgressiveSources(
         progressiveSource,
         playbackContext.flavorAssets,

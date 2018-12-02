@@ -6,6 +6,8 @@ import OVPConfiguration from '../config';
 import KalturaPlaybackContext from '../response-types/kaltura-playback-context';
 import KalturaMetadataListResponse from '../response-types/kaltura-metadata-list-response';
 import KalturaBaseEntryListResponse from '../response-types/kaltura-base-entry-list-response';
+import KalturaRuleAction from '../response-types/kaltura-rule-action';
+import KalturaAccessControlMessage from '../../common/response-types/kaltura-access-control-message';
 
 export default class OVPMediaEntryLoader implements ILoader {
   _entryId: string;
@@ -67,5 +69,17 @@ export default class OVPMediaEntryLoader implements ILoader {
    */
   isValid(): boolean {
     return !!this._entryId;
+  }
+
+  hasBlockAction(): boolean {
+    return this._response.playBackContextResult.hasBlockAction();
+  }
+
+  getBlockAction(): ?KalturaRuleAction {
+    return this._response.playBackContextResult.getBlockAction();
+  }
+
+  getErrorMessages(): Array<KalturaAccessControlMessage> {
+    return this._response.playBackContextResult.messages;
   }
 }
