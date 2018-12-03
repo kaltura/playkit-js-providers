@@ -321,6 +321,17 @@ const AnonymousMocEntryWithoutUIConfNoDrmData = {
   ]
 };
 
+const AnonymousMocEntryWithRequestHostRegexAction = JSON.parse(JSON.stringify(AnonymousMocEntryWithoutUIConfNoDrmData));
+AnonymousMocEntryWithRequestHostRegexAction.response[2].actions = [
+  {
+    pattern: '^(https?):\\/\\/([^\\/]+)(\\/)?',
+    replacement: '$1://qa-kes-ebu-01.dev.kaltura.com/kAPI/$2',
+    replacmenServerNodeId: 71,
+    type: 7,
+    objectType: 'KalturaAccessControlModifyRequestHostRegexAction'
+  }
+];
+
 const AnonymousMocEntryWithoutUIConfWithDrmData = {
   response: [
     {
@@ -1587,6 +1598,7 @@ const ImageEntryWithoutPlugins = {
 
 export {
   AnonymousMocEntryWithoutUIConfNoDrmData,
+  AnonymousMocEntryWithRequestHostRegexAction,
   AnonymousMocEntryWithoutUIConfWithDrmData,
   WrongEntryIDWithoutUIConf,
   EntryWithUIConfNoDrmData,

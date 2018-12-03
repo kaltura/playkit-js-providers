@@ -59,4 +59,16 @@ export default class KalturaPlaybackContext extends ServiceResult {
       }
     }
   }
+
+  /**
+   * Get the KalturaAccessControlModifyRequestHostRegexAction action
+   * @function getRequestHostRegexAction
+   * @returns {?KalturaAccessControlModifyRequestHostRegexAction} The action
+   * */
+  getRequestHostRegexAction(): ?KalturaAccessControlModifyRequestHostRegexAction {
+    const action = this.actions.find(action => action.type === KalturaRuleAction.Type.REQUEST_HOST_REGEX);
+    if (action instanceof KalturaAccessControlModifyRequestHostRegexAction) {
+      return action;
+    }
+  }
 }

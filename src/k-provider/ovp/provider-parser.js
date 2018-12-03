@@ -1,9 +1,9 @@
 //@flow
+import KalturaPlaybackContext from './response-types/kaltura-playback-context';
 import KalturaMetadataListResponse from './response-types/kaltura-metadata-list-response';
 import KalturaMediaEntry from './response-types/kaltura-media-entry';
 import KalturaPlaybackSource from './response-types/kaltura-playback-source';
 import KalturaDrmPlaybackPluginData from '../common/response-types/kaltura-drm-playback-plugin-data';
-import KalturaRuleAction from '../common/response-types/kaltura-rule-action';
 import PlaySourceUrlBuilder from './play-source-url-builder';
 import XmlParser from '../../util/xml-parser';
 import getLogger from '../../util/logger';
@@ -136,7 +136,7 @@ export default class OVPProviderParser extends BaseProviderParser {
    * @param {number} partnerId - The partner ID
    * @param {number} uiConfId - The uiConf ID
    * @param {Object} entry - The entry
-   * @param {Object} playbackContext - The playback context
+   * @param {KalturaPlaybackContext} playbackContext - The playback context
    * @return {MediaSources} - A media sources
    * @static
    * @private
@@ -147,7 +147,7 @@ export default class OVPProviderParser extends BaseProviderParser {
     partnerId: number,
     uiConfId: ?number,
     entry: Object,
-    playbackContext: Object
+    playbackContext: KalturaPlaybackContext
   ): MediaSources {
     const sources = new MediaSources();
     const addAdaptiveSource = (source: KalturaPlaybackSource) => {
@@ -173,7 +173,7 @@ export default class OVPProviderParser extends BaseProviderParser {
    * Returns a parsed adaptive source
    * @function _parseAdaptiveSource
    * @param {KalturaPlaybackSource} kalturaSource - A kaltura source
-   * @param {Object} playbackContext - The playback context
+   * @param {KalturaPlaybackContext} playbackContext - The playback context
    * @param {string} ks - The ks
    * @param {number} partnerId - The partner ID
    * @param {number} uiConfId - The uiConf ID
@@ -184,7 +184,7 @@ export default class OVPProviderParser extends BaseProviderParser {
    */
   static _parseAdaptiveSource(
     kalturaSource: ?KalturaPlaybackSource,
-    playbackContext: Object,
+    playbackContext: KalturaPlaybackContext,
     ks: string,
     partnerId: number,
     uiConfId: ?number,
@@ -240,7 +240,7 @@ export default class OVPProviderParser extends BaseProviderParser {
    * Returns parsed progressive sources
    * @function _parseProgressiveSources
    * @param {KalturaPlaybackSource} kalturaSource - A kaltura source
-   * @param {Object} playbackContext - The playback context
+   * @param {KalturaPlaybackContext} playbackContext - The playback context
    * @param {string} ks - The ks
    * @param {number} partnerId - The partner ID
    * @param {number} uiConfId - The uiConf ID
@@ -251,7 +251,7 @@ export default class OVPProviderParser extends BaseProviderParser {
    */
   static _parseProgressiveSources(
     kalturaSource: ?KalturaPlaybackSource,
-    playbackContext: Object,
+    playbackContext: KalturaPlaybackContext,
     ks: string,
     partnerId: number,
     uiConfId: ?number,
@@ -342,15 +342,15 @@ export default class OVPProviderParser extends BaseProviderParser {
   /**
    * Applies the request host regex on the url
    * @function _applyRegexAction
-   * @param {Object} playbackContext - The playback context
+   * @param {KalturaPlaybackContext} playbackContext - The playback context
    * @param {string} playUrl - The original url
    * @returns {string} - The request host regex applied url
    * @static
    * @private
    */
-  static _applyRegexAction(playbackContext: Object, playUrl: string): string {
-    if (playbackContext.actions) {
-      const regexAction = playbackContext.actions.find(action => action.type === KalturaRuleAction.Type.REQUEST_HOST_REGEX);
+  static _applyRegexAction(playbackContext: KalturaPlaybackContext, playUrl: string): string {
+    const regexAction = playbackContext.getRequestHostRegexAction();
+    if (regexAction) {
       const regex = new RegExp(regexAction.pattern, 'i');
       if (playUrl.match(regex)) {
         return playUrl.replace(regex, regexAction.replacement + '/');
