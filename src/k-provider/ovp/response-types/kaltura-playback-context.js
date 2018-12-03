@@ -2,7 +2,7 @@
 import ServiceResult from '../../common/base-service-result';
 import KalturaAccessControlMessage from '../../common/response-types/kaltura-access-control-message';
 import KalturaPlaybackSource from './kaltura-playback-source';
-import KalturaAccessControlModifyRequestHostRegexAction from '../../common/response-types/kaltura-access-control-modify-request-host-regex-action';
+import KalturaAccessControlModifyRequestHostRegexAction from './kaltura-access-control-modify-request-host-regex-action';
 import KalturaRuleAction from './kaltura-rule-action';
 import KalturaFlavorAsset from './kaltura-flavor-asset';
 
