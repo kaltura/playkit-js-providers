@@ -91,7 +91,7 @@ describe('OVPProvider.partnerId:1082342', function() {
     provider.getMediaConfig({entryId: '0_vyzw3ceu'}).then(
       mediaConfig => {
         try {
-          mediaConfig.sources.should.deep.equal(MEDIA_CONFIG_DATA.AudioEntryWithoutPlugins.sources);
+          mediaConfig.should.deep.equal(MEDIA_CONFIG_DATA.AudioEntryWithoutPlugins);
           done();
         } catch (err) {
           done(err);
