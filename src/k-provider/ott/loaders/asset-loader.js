@@ -4,8 +4,9 @@ import OTTConfiguration from '../config';
 import RequestBuilder from '../../../util/request-builder';
 import KalturaPlaybackContext from '../response-types/kaltura-playback-context';
 import KalturaAsset from '../response-types/kaltura-asset';
-import KalturaRuleAction from '../response-types/kaltura-rule-action';
-import KalturaAccessControlMessage from '../../common/response-types/kaltura-access-control-message';
+
+type OTTAssetLoaderResponse = {mediaDataResult: KalturaAsset, playBackContextResult: KalturaPlaybackContext};
+export type {OTTAssetLoaderResponse};
 
 export default class OTTAssetLoader implements ILoader {
   _entryId: string;
@@ -38,7 +39,7 @@ export default class OTTAssetLoader implements ILoader {
     this._response.playBackContextResult = new KalturaPlaybackContext(response[1].data);
   }
 
-  get response(): any {
+  get response(): OTTAssetLoaderResponse {
     return this._response;
   }
 
@@ -64,17 +65,5 @@ export default class OTTAssetLoader implements ILoader {
    */
   isValid(): boolean {
     return !!this._entryId;
-  }
-
-  hasBlockAction(): boolean {
-    return this._response.playBackContextResult.hasBlockAction();
-  }
-
-  getBlockAction(): ?KalturaRuleAction {
-    return this._response.playBackContextResult.getBlockAction();
-  }
-
-  getErrorMessages(): Array<KalturaAccessControlMessage> {
-    return this._response.playBackContextResult.messages;
   }
 }

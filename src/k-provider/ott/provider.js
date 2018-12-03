@@ -121,11 +121,11 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
       if (data.has(OTTAssetLoader.id)) {
         const assetLoader = data.get(OTTAssetLoader.id);
         if (assetLoader && assetLoader.response && Object.keys(assetLoader.response).length) {
-          const response = assetLoader.response;
-          if (assetLoader.hasBlockAction()) {
+          const response = (assetLoader: OTTAssetLoader).response;
+          if (OTTProviderParser.hasBlockAction(response)) {
             throw new Error(Error.Severity.CRITICAL, Error.Category.SERVICE, Error.Code.BLOCK_ACTION, {
-              action: assetLoader.getBlockAction(),
-              messages: assetLoader.getErrorMessages()
+              action: OTTProviderParser.getBlockAction(response),
+              messages: OTTProviderParser.getErrorMessages(response)
             });
           }
           const mediaEntry = OTTProviderParser.getMediaEntry(response, requestData);

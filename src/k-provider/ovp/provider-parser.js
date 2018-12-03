@@ -15,6 +15,9 @@ import MediaSources from '../../entities/media-sources';
 import {SupportedStreamFormat, isProgressiveSource} from '../../entities/media-format';
 import Playlist from '../../entities/playlist';
 import EntryList from '../../entities/entry-list';
+import KalturaRuleAction from './response-types/kaltura-rule-action';
+import KalturaAccessControlMessage from '../common/response-types/kaltura-access-control-message';
+import type {OVPMediaEntryLoaderResponse} from './loaders/media-entry-loader';
 
 export default class OVPProviderParser {
   static _logger = getLogger('OVPProviderParser');
@@ -342,5 +345,17 @@ export default class OVPProviderParser {
       return protocol.slice(0, -1); // remove ':' from the end
     }
     return 'https';
+  }
+
+  static hasBlockAction(response: OVPMediaEntryLoaderResponse): boolean {
+    return response.playBackContextResult.hasBlockAction();
+  }
+
+  static getBlockAction(response: OVPMediaEntryLoaderResponse): ?KalturaRuleAction {
+    return response.playBackContextResult.getBlockAction();
+  }
+
+  static getErrorMessages(response: OVPMediaEntryLoaderResponse): Array<KalturaAccessControlMessage> {
+    return response.playBackContextResult.getErrorMessages();
   }
 }

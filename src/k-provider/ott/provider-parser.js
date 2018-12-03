@@ -9,6 +9,9 @@ import MediaSource from '../../entities/media-source';
 import MediaSources from '../../entities/media-sources';
 import {SupportedStreamFormat, isProgressiveSource} from '../../entities/media-format';
 import KalturaDrmPlaybackPluginData from '../common/response-types/kaltura-drm-playback-plugin-data';
+import KalturaRuleAction from './response-types/kaltura-rule-action';
+import KalturaAccessControlMessage from '../common/response-types/kaltura-access-control-message';
+import type {OTTAssetLoaderResponse} from './loaders/asset-loader';
 
 const LIVE_ASST_OBJECT_TYPE: string = 'KalturaLiveAsset';
 
@@ -203,5 +206,17 @@ export default class OTTProviderParser {
       }
     }
     return mediaSource;
+  }
+
+  static hasBlockAction(response): boolean {
+    return response.playBackContextResult.hasBlockAction();
+  }
+
+  static getBlockAction(response): ?KalturaRuleAction {
+    return response.playBackContextResult.getBlockAction();
+  }
+
+  static getErrorMessages(response: OTTAssetLoaderResponse): Array<KalturaAccessControlMessage> {
+    return response.playBackContextResult.getErrorMessages();
   }
 }

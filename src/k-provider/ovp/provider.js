@@ -106,11 +106,11 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
       if (data.has(OVPMediaEntryLoader.id)) {
         const mediaLoader = data.get(OVPMediaEntryLoader.id);
         if (mediaLoader && mediaLoader.response) {
-          const response = mediaLoader.response;
-          if (mediaLoader.hasBlockAction()) {
+          const response = (mediaLoader: OVPMediaEntryLoader).response;
+          if (OVPProviderParser.hasBlockAction(response)) {
             throw new Error(Error.Severity.CRITICAL, Error.Category.SERVICE, Error.Code.BLOCK_ACTION, {
-              action: mediaLoader.getBlockAction(),
-              messages: mediaLoader.getErrorMessages()
+              action: OVPProviderParser.getBlockAction(response),
+              messages: OVPProviderParser.getErrorMessages(response)
             });
           }
           const mediaEntry = OVPProviderParser.getMediaEntry(this.isAnonymous ? '' : this.ks, this.partnerId, this.uiConfId, response);

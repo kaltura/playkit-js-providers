@@ -6,8 +6,14 @@ import OVPConfiguration from '../config';
 import KalturaPlaybackContext from '../response-types/kaltura-playback-context';
 import KalturaMetadataListResponse from '../response-types/kaltura-metadata-list-response';
 import KalturaBaseEntryListResponse from '../response-types/kaltura-base-entry-list-response';
-import KalturaRuleAction from '../response-types/kaltura-rule-action';
-import KalturaAccessControlMessage from '../../common/response-types/kaltura-access-control-message';
+import KalturaMediaEntry from '../response-types/kaltura-media-entry';
+
+type OVPMediaEntryLoaderResponse = {
+  entry: KalturaMediaEntry,
+  playBackContextResult: KalturaPlaybackContext,
+  metadataListResult: KalturaMetadataListResponse
+};
+export type {OVPMediaEntryLoaderResponse};
 
 export default class OVPMediaEntryLoader implements ILoader {
   _entryId: string;
@@ -42,7 +48,7 @@ export default class OVPMediaEntryLoader implements ILoader {
     this._response.metadataListResult = new KalturaMetadataListResponse(response[2].data);
   }
 
-  get response(): any {
+  get response(): OVPMediaEntryLoaderResponse {
     return this._response;
   }
 
@@ -69,17 +75,5 @@ export default class OVPMediaEntryLoader implements ILoader {
    */
   isValid(): boolean {
     return !!this._entryId;
-  }
-
-  hasBlockAction(): boolean {
-    return this._response.playBackContextResult.hasBlockAction();
-  }
-
-  getBlockAction(): ?KalturaRuleAction {
-    return this._response.playBackContextResult.getBlockAction();
-  }
-
-  getErrorMessages(): Array<KalturaAccessControlMessage> {
-    return this._response.playBackContextResult.messages;
   }
 }
