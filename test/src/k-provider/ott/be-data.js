@@ -1165,4 +1165,46 @@ const LiveEntryNoDrmData = {
   }
 };
 
-export {AnonymousEntryWithoutUIConfWithDrmData, LiveEntryNoDrmData};
+const BlockActionEntry = {
+  response: {
+    result: [
+      {
+        ks:
+          'djJ8MTk4fEiDJqfTA_nqary8_jB-U-W0ne3JNVaZW5JmZDufdRcmcTGy3pAquXoMvFbANe6h63lEhxCo7mMZTsMTP5k4QDmOq99dRsPEsHUwOknv_9wvR_J2pbNzdXmlZ4JlYgO0ZcUr9_7tsZhqrHRfIcgrSj4=',
+        refreshToken: 'b07f74dfe6584790b272eb742577369b',
+        objectType: 'KalturaLoginSession'
+      },
+      {
+        externalIds: '1234',
+        catchUpBuffer: 4320,
+        trickPlayBuffer: 0,
+        enableRecordingPlaybackNonEntitledChannel: false,
+        entryId: '',
+        id: 1234,
+        type: 549,
+        name: 'test',
+        description: 'test',
+        images: [],
+        mediaFiles: [],
+        metas: {},
+        tags: {},
+        startDate: 1509545700,
+        endDate: 4070908800,
+        enableCdvr: false,
+        enableCatchUp: true,
+        enableStartOver: true,
+        enableTrickPlay: true,
+        objectType: 'KalturaMediaAsset'
+      },
+      {
+        sources: [],
+        actions: [{type: 'BLOCK', objectType: 'KalturaAccessControlBlockAction'}],
+        messages: [{message: 'Concurrency limitation', code: 'ConcurrencyLimitation', objectType: 'KalturaAccessControlMessage'}],
+        objectType: 'KalturaPlaybackContext'
+      }
+    ],
+    executionTime: 0.2346709
+  }
+};
+
+export {AnonymousEntryWithoutUIConfWithDrmData, LiveEntryNoDrmData, BlockActionEntry};
