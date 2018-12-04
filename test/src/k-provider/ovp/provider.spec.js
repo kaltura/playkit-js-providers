@@ -123,6 +123,47 @@ describe('OVPProvider.partnerId:1082342', function() {
       }
     );
   });
+
+  it('should return block error for server block response', done => {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+      return new Promise(resolve => {
+        resolve({response: new MultiRequestResult(BE_DATA.BlockActionEntry.response)});
+      });
+    });
+    provider.getMediaConfig({entryId: 1234}).then(
+      mediaConfig => {
+        try {
+          throw new Error('no error returned where block action error was expected', mediaConfig);
+        } catch (e) {
+          done(e);
+        }
+      },
+      err => {
+        const expected = {
+          severity: 2,
+          category: 2,
+          code: 2001,
+          data: {
+            action: {
+              type: 1
+            },
+            messages: [
+              {
+                message: "Un authorized country\nWe're sorry, this content is only available in certain countries.",
+                code: 'COUNTRY_RESTRICTED'
+              }
+            ]
+          }
+        };
+        try {
+          err.should.deep.equal(expected);
+          done();
+        } catch (e) {
+          done(e);
+        }
+      }
+    );
+  });
 });
 
 describe('OVPProvider.partnerId:1068292', function() {

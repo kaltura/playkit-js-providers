@@ -5,6 +5,9 @@ import RequestBuilder from '../../../util/request-builder';
 import KalturaPlaybackContext from '../response-types/kaltura-playback-context';
 import KalturaAsset from '../response-types/kaltura-asset';
 
+type OTTAssetLoaderResponse = {mediaDataResult: KalturaAsset, playBackContextResult: KalturaPlaybackContext};
+export type {OTTAssetLoaderResponse};
+
 export default class OTTAssetLoader implements ILoader {
   _entryId: string;
   _requests: Array<RequestBuilder>;
@@ -36,7 +39,7 @@ export default class OTTAssetLoader implements ILoader {
     this._response.playBackContextResult = new KalturaPlaybackContext(response[1].data);
   }
 
-  get response(): any {
+  get response(): OTTAssetLoaderResponse {
     return this._response;
   }
 

@@ -7,9 +7,11 @@ import MediaEntry from '../../entities/media-entry';
 import Drm from '../../entities/drm';
 import MediaSource from '../../entities/media-source';
 import MediaSources from '../../entities/media-sources';
-import {SupportedStreamFormat} from '../../entities/media-format';
+import {SupportedStreamFormat, isProgressiveSource} from '../../entities/media-format';
 import KalturaDrmPlaybackPluginData from '../common/response-types/kaltura-drm-playback-plugin-data';
-import BaseProviderParser from '../common/base-provider-parser';
+import KalturaRuleAction from './response-types/kaltura-rule-action';
+import KalturaAccessControlMessage from '../common/response-types/kaltura-access-control-message';
+import type {OTTAssetLoaderResponse} from './loaders/asset-loader';
 
 const LIVE_ASST_OBJECT_TYPE: string = 'KalturaLiveAsset';
 
@@ -32,7 +34,7 @@ const MediaTypeCombinations: {[mediaType: string]: Object} = {
   }
 };
 
-export default class OTTProviderParser extends BaseProviderParser {
+export default class OTTProviderParser {
   static _logger = getLogger('OTTProviderParser');
 
   /**
@@ -159,10 +161,10 @@ export default class OTTProviderParser extends BaseProviderParser {
       sources.map(parsedSource, sourceFormat);
     };
     const parseAdaptiveSources = () => {
-      kalturaSources.filter(source => !OTTProviderParser._isProgressiveSource(source)).forEach(addAdaptiveSource);
+      kalturaSources.filter(source => !isProgressiveSource(source.format)).forEach(addAdaptiveSource);
     };
     const parseProgressiveSources = () => {
-      kalturaSources.filter(source => OTTProviderParser._isProgressiveSource(source)).forEach(addAdaptiveSource);
+      kalturaSources.filter(source => isProgressiveSource(source.format)).forEach(addAdaptiveSource);
     };
     if (kalturaSources && kalturaSources.length > 0) {
       parseAdaptiveSources();
@@ -204,5 +206,17 @@ export default class OTTProviderParser extends BaseProviderParser {
       }
     }
     return mediaSource;
+  }
+
+  static hasBlockAction(response): boolean {
+    return response.playBackContextResult.hasBlockAction();
+  }
+
+  static getBlockAction(response): ?KalturaRuleAction {
+    return response.playBackContextResult.getBlockAction();
+  }
+
+  static getErrorMessages(response: OTTAssetLoaderResponse): Array<KalturaAccessControlMessage> {
+    return response.playBackContextResult.getErrorMessages();
   }
 }

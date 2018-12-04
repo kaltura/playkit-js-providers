@@ -86,6 +86,47 @@ describe('OTTProvider.partnerId:198', function() {
       }
     );
   });
+
+  it('should return block error for server block response', done => {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+      return new Promise(resolve => {
+        resolve({response: new MultiRequestResult(BE_DATA.BlockActionEntry.response)});
+      });
+    });
+    provider.getMediaConfig({entryId: 1234}).then(
+      mediaConfig => {
+        try {
+          throw new Error('no error returned where block action error was expected', mediaConfig);
+        } catch (e) {
+          done(e);
+        }
+      },
+      err => {
+        const expected = {
+          severity: 2,
+          category: 2,
+          code: 2001,
+          data: {
+            action: {
+              type: 'BLOCK'
+            },
+            messages: [
+              {
+                message: 'Concurrency limitation',
+                code: 'ConcurrencyLimitation'
+              }
+            ]
+          }
+        };
+        try {
+          err.should.deep.equal(expected);
+          done();
+        } catch (e) {
+          done(e);
+        }
+      }
+    );
+  });
 });
 
 describe('logger', () => {

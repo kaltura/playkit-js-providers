@@ -32,3 +32,15 @@ export const SupportedStreamFormat: Map<string, ProviderMediaFormatType> = new M
   ['applehttp', MediaFormat.HLS],
   ['url', MediaFormat.MP4]
 ]);
+
+/**
+ * returns a boolean whether a source is progressive or not
+ * @param {string} formatName - the format name
+ * @returns {boolean} - if source is progressive or not
+ */
+function isProgressiveSource(formatName: string): boolean {
+  const sourceFormat = SupportedStreamFormat.get(formatName);
+  return !!sourceFormat && sourceFormat.name === MediaFormat.MP4.name;
+}
+
+export {isProgressiveSource};
