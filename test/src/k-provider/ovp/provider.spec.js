@@ -322,6 +322,140 @@ describe('getMediaConfig', function() {
   });
 });
 
+describe('getPlaylistConfig', function() {
+  let provider, sandbox;
+  const partnerId = 1091;
+  const ks = 'MDlkOTIzMzRhZmM4MmJmNTIwYzZkYzZhMzc0ZTRiNWI1NTRiZjNhM3wxMDkxOzEwOTE7MTU0NDc5NzcyMjswOzE1NDQ3MTEzMjIuODk2MTswO3ZpZXc6Kix3aWRnZXQ6MTs7';
+  const playerVersion = '1.2.3';
+
+  beforeEach(() => {
+    sandbox = sinon.sandbox.create();
+    provider = new OVPProvider({partnerId}, playerVersion);
+  });
+
+  afterEach(() => {
+    sandbox.restore();
+    MultiRequestBuilder.prototype.execute.restore();
+  });
+
+  it('should load a playlist by id - anonymous', done => {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+      return new Promise(resolve => {
+        resolve({response: new MultiRequestResult(BE_DATA.AnonymousPlaylistById.response)});
+      });
+    });
+    provider.getPlaylistConfig({playlistId: '0_wckoqjnn'}).then(
+      playlistConfig => {
+        try {
+          playlistConfig.id.should.equal('0_wckoqjnn');
+          playlistConfig.items.length.should.equal(8);
+          playlistConfig.metadata.name.should.equal('Playlist_VOD_Only');
+          playlistConfig.metadata.description.should.equal('Playlist_VOD_Only_desc');
+          playlistConfig.poster.should.equal('http://cdntesting.qa.mkaltura.com/p/1091/sp/0/thumbnail/entry_id/0_wckoqjnn/version/100162');
+          done();
+        } catch (err) {
+          done(err);
+        }
+      },
+      err => {
+        done(err);
+      }
+    );
+  });
+
+  it('should load a playlist by id - with KS', done => {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+      return new Promise(resolve => {
+        resolve({response: new MultiRequestResult(BE_DATA.PlaylistById.response)});
+      });
+    });
+    provider.getPlaylistConfig({playlistId: '0_wckoqjnn', ks}).then(
+      playlistConfig => {
+        try {
+          playlistConfig.id.should.equal('0_wckoqjnn');
+          playlistConfig.items.length.should.equal(8);
+          playlistConfig.metadata.name.should.equal('Playlist_VOD_Only');
+          playlistConfig.metadata.description.should.equal('Playlist_VOD_Only_desc');
+          playlistConfig.poster.should.equal('http://cdntesting.qa.mkaltura.com/p/1091/sp/0/thumbnail/entry_id/0_wckoqjnn/version/100162');
+          done();
+        } catch (err) {
+          done(err);
+        }
+      },
+      err => {
+        done(err);
+      }
+    );
+  });
+});
+
+describe('getEntryListConfig', function() {
+  let provider, sandbox;
+  const partnerId = 1091;
+  const ks = 'MGVjMWI2ZDRkNmUwNTU4ODk5MWQyZmU4NzZlMmU4OGJjYzI5OTFmYnwxMDkxOzEwOTE7MTU0NDc5NDg4NzswOzE1NDQ3MDg0ODcuOTY1OTswO3ZpZXc6Kix3aWRnZXQ6MTs7';
+  const playerVersion = '1.2.3';
+
+  beforeEach(() => {
+    sandbox = sinon.sandbox.create();
+    provider = new OVPProvider({partnerId: partnerId}, playerVersion);
+  });
+
+  afterEach(() => {
+    sandbox.restore();
+    MultiRequestBuilder.prototype.execute.restore();
+  });
+
+  it('should load a playlist by entry list - anonymous', done => {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+      return new Promise(resolve => {
+        resolve({response: new MultiRequestResult(BE_DATA.AnonymousPlaylistByEntryList.response)});
+      });
+    });
+    provider.getEntryListConfig({entries: ['0_nwkp7jtx', {entryId: '0_wifqaipd'}, '0_p8aigvgu']}).then(
+      entryListConfig => {
+        try {
+          entryListConfig.id.should.equal('');
+          entryListConfig.items.length.should.equal(3);
+          entryListConfig.metadata.name.should.equal('');
+          entryListConfig.metadata.description.should.equal('');
+          entryListConfig.poster.should.equal('');
+          done();
+        } catch (err) {
+          done(err);
+        }
+      },
+      err => {
+        done(err);
+      }
+    );
+  });
+
+  it('should load a playlist by entry list - with KS', done => {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+      return new Promise(resolve => {
+        resolve({response: new MultiRequestResult(BE_DATA.PlaylistByEntryList.response)});
+      });
+    });
+    provider.getEntryListConfig({entries: ['0_nwkp7jtx', {entryId: '0_wifqaipd'}, '0_p8aigvgu'], ks}).then(
+      entryListConfig => {
+        try {
+          entryListConfig.id.should.equal('');
+          entryListConfig.items.length.should.equal(3);
+          entryListConfig.metadata.name.should.equal('');
+          entryListConfig.metadata.description.should.equal('');
+          entryListConfig.poster.should.equal('');
+          done();
+        } catch (err) {
+          done(err);
+        }
+      },
+      err => {
+        done(err);
+      }
+    );
+  });
+});
+
 describe('logger', () => {
   const partnerId = 1068292;
   const playerVersion = '1.2.3';
