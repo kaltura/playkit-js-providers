@@ -1,7 +1,7 @@
 //@flow
 import ServiceResult from '../../common/base-service-result';
 import KalturaAccessControlMessage from '../../common/response-types/kaltura-access-control-message';
-import KalturaRuleAction from '../../common/response-types/kaltura-rule-action';
+import KalturaRuleAction from './kaltura-rule-action';
 import KalturaPlaybackSource from './kaltura-playback-source';
 
 export default class KalturaPlaybackContext extends ServiceResult {
@@ -47,5 +47,17 @@ export default class KalturaPlaybackContext extends ServiceResult {
         sources.map(source => this.sources.push(new KalturaPlaybackSource(source)));
       }
     }
+  }
+
+  hasBlockAction(): boolean {
+    return this.getBlockAction() !== undefined;
+  }
+
+  getBlockAction(): ?KalturaRuleAction {
+    return this.actions.find(action => action.type === KalturaRuleAction.Type.BLOCK);
+  }
+
+  getErrorMessages(): Array<KalturaAccessControlMessage> {
+    return this.messages;
   }
 }

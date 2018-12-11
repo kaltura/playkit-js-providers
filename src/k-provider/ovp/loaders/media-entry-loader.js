@@ -6,6 +6,14 @@ import OVPConfiguration from '../config';
 import KalturaPlaybackContext from '../response-types/kaltura-playback-context';
 import KalturaMetadataListResponse from '../response-types/kaltura-metadata-list-response';
 import KalturaBaseEntryListResponse from '../response-types/kaltura-base-entry-list-response';
+import KalturaMediaEntry from '../response-types/kaltura-media-entry';
+
+type OVPMediaEntryLoaderResponse = {
+  entry: KalturaMediaEntry,
+  playBackContextResult: KalturaPlaybackContext,
+  metadataListResult: KalturaMetadataListResponse
+};
+export type {OVPMediaEntryLoaderResponse};
 
 export default class OVPMediaEntryLoader implements ILoader {
   _entryId: string;
@@ -40,7 +48,7 @@ export default class OVPMediaEntryLoader implements ILoader {
     this._response.metadataListResult = new KalturaMetadataListResponse(response[2].data);
   }
 
-  get response(): any {
+  get response(): OVPMediaEntryLoaderResponse {
     return this._response;
   }
 

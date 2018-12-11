@@ -321,6 +321,97 @@ const AnonymousMocEntryWithoutUIConfNoDrmData = {
   ]
 };
 
+const BlockActionEntry = {
+  response: [
+    {
+      partnerId: 1082342,
+      ks:
+        'OGM0ZWM0Y2IwOWI5ZjM0MDcyZmQ3YmYxNzBiMGEwNGYxNWQ0ZTcyOXwxMDgyMzQyOzEwODIzNDI7MTQ5MDExNTg5MzswOzE0OTAwMjk0OTMuMTY3ODswO3ZpZXc6Kix3aWRnZXQ6MTs7',
+      userId: 0,
+      objectType: 'KalturaStartWidgetSessionResponse'
+    },
+    {
+      objects: [
+        {
+          mediaType: 1,
+          dataUrl: 'http://cdnapi.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/format/url/protocol/http',
+          flavorParamsIds: '0,487041,487051,487061,487071,487081,487091',
+          duration: 55,
+          msDuration: 55047,
+          id: '1_rsrdfext',
+          name: 'FO21934-HDTX-SWE',
+          tags: '',
+          type: 1,
+          description:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.',
+          thumbnailUrl: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
+          objectType: 'KalturaMediaEntry'
+        }
+      ],
+      totalCount: 1,
+      objectType: 'KalturaBaseEntryListResponse'
+    },
+    {
+      actions: [{type: 1, objectType: 'KalturaAccessControlBlockAction'}],
+      messages: [
+        {
+          message: "Un authorized country\nWe're sorry, this content is only available in certain countries.",
+          code: 'COUNTRY_RESTRICTED',
+          objectType: 'KalturaAccessControlMessage'
+        }
+      ],
+      objectType: 'KalturaPlaybackContext'
+    },
+    {
+      objects: [
+        {
+          id: 331744001,
+          partnerId: 1082342,
+          metadataProfileId: 244381,
+          metadataProfileVersion: 421,
+          metadataObjectType: 1,
+          objectId: '1_rsrdfext',
+          version: 1,
+          createdAt: 1484776887,
+          updatedAt: 1484776887,
+          status: 1,
+          xml:
+            '<?xml version="1.0" encoding="ASCII"?>\n<metadata><OriginalFilename>FO21934-HDTX-SWE.mov</OriginalFilename>\n<Locale>sv_SE</Locale>\n<PropertyCode>FTA-nm</PropertyCode>\n<SiteSection>tv-dc</SiteSection>\n<ContentType>clip</ContentType>\n<BusinessUnit>Disney Channel</BusinessUnit>\n<Origin>IBMS</Origin>\n<PromoType>Show - TV</PromoType>\n<StartDate>1483225200</StartDate>\n<EndDate>1485903600</EndDate>\n<AgeConsent>No Age Consent</AgeConsent></metadata>\n',
+          objectType: 'KalturaMetadata'
+        },
+        {
+          id: 331744121,
+          partnerId: 1082342,
+          metadataProfileId: 7330521,
+          metadataProfileVersion: 61,
+          metadataObjectType: 1,
+          objectId: '1_rsrdfext',
+          version: 11,
+          createdAt: 1484776903,
+          updatedAt: 1489508219,
+          status: 1,
+          xml:
+            '<metadata>\n  <TXID>FO21934-HDTX-SWE</TXID>\n  <ZeroTouchIds>se-dc-lf</ZeroTouchIds>\n  <ScheduleSource>VOD</ScheduleSource>\n  <HLSOnly>android</HLSOnly>\n  <ChannelName>Disney Channel SE</ChannelName>\n</metadata>\n',
+          objectType: 'KalturaMetadata'
+        }
+      ],
+      totalCount: 2,
+      objectType: 'KalturaMetadataListResponse'
+    }
+  ]
+};
+
+const AnonymousMocEntryWithRequestHostRegexAction = JSON.parse(JSON.stringify(AnonymousMocEntryWithoutUIConfNoDrmData));
+AnonymousMocEntryWithRequestHostRegexAction.response[2].actions = [
+  {
+    pattern: '^(https?):\\/\\/([^\\/]+)(\\/)?',
+    replacement: '$1://qa-kes-ebu-01.dev.kaltura.com/kAPI/$2',
+    replacmenServerNodeId: 71,
+    type: 7,
+    objectType: 'KalturaAccessControlModifyRequestHostRegexAction'
+  }
+];
+
 const AnonymousMocEntryWithoutUIConfWithDrmData = {
   response: [
     {
@@ -1587,6 +1678,8 @@ const ImageEntryWithoutPlugins = {
 
 export {
   AnonymousMocEntryWithoutUIConfNoDrmData,
+  BlockActionEntry,
+  AnonymousMocEntryWithRequestHostRegexAction,
   AnonymousMocEntryWithoutUIConfWithDrmData,
   WrongEntryIDWithoutUIConf,
   EntryWithUIConfNoDrmData,

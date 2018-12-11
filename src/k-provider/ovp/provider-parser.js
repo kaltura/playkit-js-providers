@@ -1,5 +1,5 @@
 //@flow
-import KalturaFlavorAsset from './response-types/kaltura-flavor-asset';
+import KalturaPlaybackContext from './response-types/kaltura-playback-context';
 import KalturaMetadataListResponse from './response-types/kaltura-metadata-list-response';
 import KalturaMediaEntry from './response-types/kaltura-media-entry';
 import KalturaPlaybackSource from './response-types/kaltura-playback-source';
@@ -12,12 +12,14 @@ import MediaEntry from '../../entities/media-entry';
 import Drm from '../../entities/drm';
 import MediaSource from '../../entities/media-source';
 import MediaSources from '../../entities/media-sources';
-import {SupportedStreamFormat} from '../../entities/media-format';
-import BaseProviderParser from '../common/base-provider-parser';
+import {SupportedStreamFormat, isProgressiveSource} from '../../entities/media-format';
 import Playlist from '../../entities/playlist';
 import EntryList from '../../entities/entry-list';
+import KalturaRuleAction from './response-types/kaltura-rule-action';
+import KalturaAccessControlMessage from '../common/response-types/kaltura-access-control-message';
+import type {OVPMediaEntryLoaderResponse} from './loaders/media-entry-loader';
 
-export default class OVPProviderParser extends BaseProviderParser {
+export default class OVPProviderParser {
   static _logger = getLogger('OVPProviderParser');
 
   /**
@@ -136,7 +138,7 @@ export default class OVPProviderParser extends BaseProviderParser {
    * @param {number} partnerId - The partner ID
    * @param {number} uiConfId - The uiConf ID
    * @param {Object} entry - The entry
-   * @param {Object} playbackContext - The playback context
+   * @param {KalturaPlaybackContext} playbackContext - The playback context
    * @return {MediaSources} - A media sources
    * @static
    * @private
@@ -147,29 +149,22 @@ export default class OVPProviderParser extends BaseProviderParser {
     partnerId: number,
     uiConfId: ?number,
     entry: Object,
-    playbackContext: Object
+    playbackContext: KalturaPlaybackContext
   ): MediaSources {
     const sources = new MediaSources();
     const addAdaptiveSource = (source: KalturaPlaybackSource) => {
-      const parsedSource = OVPProviderParser._parseAdaptiveSource(source, playbackContext.flavorAssets, ks, partnerId, uiConfId, entry.id);
+      const parsedSource = OVPProviderParser._parseAdaptiveSource(source, playbackContext, ks, partnerId, uiConfId, entry.id);
       if (parsedSource) {
         const sourceFormat = SupportedStreamFormat.get(source.format);
         sources.map(parsedSource, sourceFormat);
       }
     };
     const parseAdaptiveSources = () => {
-      kalturaSources.filter(source => !OVPProviderParser._isProgressiveSource(source)).forEach(addAdaptiveSource);
+      kalturaSources.filter(source => !isProgressiveSource(source.format)).forEach(addAdaptiveSource);
     };
     const parseProgressiveSources = () => {
-      const progressiveSource = kalturaSources.find(OVPProviderParser._isProgressiveSource);
-      sources.progressive = OVPProviderParser._parseProgressiveSources(
-        progressiveSource,
-        playbackContext.flavorAssets,
-        ks,
-        partnerId,
-        uiConfId,
-        entry.id
-      );
+      const progressiveSource = kalturaSources.find(source => isProgressiveSource(source.format));
+      sources.progressive = OVPProviderParser._parseProgressiveSources(progressiveSource, playbackContext, ks, partnerId, uiConfId, entry.id);
     };
     if (kalturaSources && kalturaSources.length > 0) {
       parseAdaptiveSources();
@@ -182,7 +177,7 @@ export default class OVPProviderParser extends BaseProviderParser {
    * Returns a parsed adaptive source
    * @function _parseAdaptiveSource
    * @param {KalturaPlaybackSource} kalturaSource - A kaltura source
-   * @param {Array<KalturaFlavorAsset>} flavorAssets - The flavor Assets of the kaltura source
+   * @param {KalturaPlaybackContext} playbackContext - The playback context
    * @param {string} ks - The ks
    * @param {number} partnerId - The partner ID
    * @param {number} uiConfId - The uiConf ID
@@ -193,7 +188,7 @@ export default class OVPProviderParser extends BaseProviderParser {
    */
   static _parseAdaptiveSource(
     kalturaSource: ?KalturaPlaybackSource,
-    flavorAssets: Array<KalturaFlavorAsset>,
+    playbackContext: KalturaPlaybackContext,
     ks: string,
     partnerId: number,
     uiConfId: ?number,
@@ -213,8 +208,8 @@ export default class OVPProviderParser extends BaseProviderParser {
       }
       // in case playbackSource doesn't have flavors we don't need to build the url and we'll use the provided one.
       if (kalturaSource.hasFlavorIds()) {
-        if (!extension && flavorAssets && flavorAssets.length > 0) {
-          extension = flavorAssets[0].fileExt;
+        if (!extension && playbackContext.flavorAssets && playbackContext.flavorAssets.length > 0) {
+          extension = playbackContext.flavorAssets[0].fileExt;
         }
         playUrl = PlaySourceUrlBuilder.build({
           entryId,
@@ -234,7 +229,7 @@ export default class OVPProviderParser extends BaseProviderParser {
         OVPProviderParser._logger.warn(message);
         return null;
       }
-      mediaSource.url = playUrl;
+      mediaSource.url = OVPProviderParser._applyRegexAction(playbackContext, playUrl);
       mediaSource.id = entryId + '_' + deliveryProfileId + ',' + format;
       if (kalturaSource.hasDrmData()) {
         const drmParams: Array<Drm> = [];
@@ -251,7 +246,7 @@ export default class OVPProviderParser extends BaseProviderParser {
    * Returns parsed progressive sources
    * @function _parseProgressiveSources
    * @param {KalturaPlaybackSource} kalturaSource - A kaltura source
-   * @param {Array<KalturaFlavorAsset>} flavorAssets - The flavor Assets of the kaltura source
+   * @param {KalturaPlaybackContext} playbackContext - The playback context
    * @param {string} ks - The ks
    * @param {number} partnerId - The partner ID
    * @param {number} uiConfId - The uiConf ID
@@ -262,7 +257,7 @@ export default class OVPProviderParser extends BaseProviderParser {
    */
   static _parseProgressiveSources(
     kalturaSource: ?KalturaPlaybackSource,
-    flavorAssets: Array<KalturaFlavorAsset>,
+    playbackContext: KalturaPlaybackContext,
     ks: string,
     partnerId: number,
     uiConfId: ?number,
@@ -275,7 +270,7 @@ export default class OVPProviderParser extends BaseProviderParser {
       const format = kalturaSource.format;
       const deliveryProfileId = kalturaSource.deliveryProfileId;
       const sourceId = deliveryProfileId + ',' + format;
-      flavorAssets.map(flavor => {
+      playbackContext.flavorAssets.map(flavor => {
         const mediaSource: MediaSource = new MediaSource();
         mediaSource.id = flavor.id + sourceId;
         mediaSource.mimetype = flavor.fileExt === 'mp3' ? 'audio/mp3' : 'video/mp4';
@@ -283,7 +278,7 @@ export default class OVPProviderParser extends BaseProviderParser {
         mediaSource.width = flavor.width;
         mediaSource.bandwidth = flavor.bitrate * 1024;
         mediaSource.label = flavor.label || flavor.language;
-        mediaSource.url = PlaySourceUrlBuilder.build({
+        const playUrl = PlaySourceUrlBuilder.build({
           entryId,
           flavorIds: flavor.id,
           format,
@@ -293,9 +288,10 @@ export default class OVPProviderParser extends BaseProviderParser {
           extension: flavor.fileExt,
           protocol
         });
-        if (mediaSource.url === '') {
+        if (playUrl === '') {
           OVPProviderParser._logger.warn(`failed to create play url from source, discarding source: (${entryId}_${deliveryProfileId}), ${format}.`);
         } else {
+          mediaSource.url = OVPProviderParser._applyRegexAction(playbackContext, playUrl);
           if (flavor.height && flavor.width) {
             videoSources.push(mediaSource);
           } else {
@@ -352,5 +348,37 @@ export default class OVPProviderParser extends BaseProviderParser {
       return protocol.slice(0, -1); // remove ':' from the end
     }
     return 'https';
+  }
+
+  static hasBlockAction(response: OVPMediaEntryLoaderResponse): boolean {
+    return response.playBackContextResult.hasBlockAction();
+  }
+
+  static getBlockAction(response: OVPMediaEntryLoaderResponse): ?KalturaRuleAction {
+    return response.playBackContextResult.getBlockAction();
+  }
+
+  static getErrorMessages(response: OVPMediaEntryLoaderResponse): Array<KalturaAccessControlMessage> {
+    return response.playBackContextResult.getErrorMessages();
+  }
+
+  /**
+   * Applies the request host regex on the url
+   * @function _applyRegexAction
+   * @param {KalturaPlaybackContext} playbackContext - The playback context
+   * @param {string} playUrl - The original url
+   * @returns {string} - The request host regex applied url
+   * @static
+   * @private
+   */
+  static _applyRegexAction(playbackContext: KalturaPlaybackContext, playUrl: string): string {
+    const regexAction = playbackContext.getRequestHostRegexAction();
+    if (regexAction) {
+      const regex = new RegExp(regexAction.pattern, 'i');
+      if (playUrl.match(regex)) {
+        return playUrl.replace(regex, regexAction.replacement + '/');
+      }
+    }
+    return playUrl;
   }
 }

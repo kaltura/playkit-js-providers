@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.11.0"></a>
+# [2.11.0](https://github.com/kaltura/playkit-js-providers/compare/v2.10.1...v2.11.0) (2018-12-04)
+
+
+### Bug Fixes
+
+* **FEC-8739:** block action is not fired from OTT provider ([#71](https://github.com/kaltura/playkit-js-providers/issues/71)) ([2a318db](https://github.com/kaltura/playkit-js-providers/commit/2a318db))
+
+
+### Features
+
+* **FEC-8730:** add kaltura regex action support to providers ([#72](https://github.com/kaltura/playkit-js-providers/issues/72)) ([bb3a9da](https://github.com/kaltura/playkit-js-providers/commit/bb3a9da))
+
+
+
 <a name="2.10.1"></a>
 ## [2.10.1](https://github.com/kaltura/playkit-js-providers/compare/v2.10.0...v2.10.1) (2018-11-19)
 
