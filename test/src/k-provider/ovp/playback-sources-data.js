@@ -4,7 +4,7 @@ export const kalturaSourceProtocolMismatch = new KalturaPlaybackSource({
   format: 'applehttp',
   deliveryProfileId: 12345,
   url: 'myUrl',
-  protocols: 'https',
+  protocols: 'http',
   flavorIds: '0_mw390bu0,0_bx6b5i2a,0_ao23nl3z,0_lwxuraqs'
 });
 export const kalturaSourceProtocolMismatchFlavorAssets = [
