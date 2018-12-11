@@ -92,7 +92,7 @@ export default class OVPProviderParser {
     mediaEntry.poster = entry.poster;
     mediaEntry.id = entry.id;
     mediaEntry.duration = entry.duration;
-    mediaEntry.metadata = this._parseMetadata(metadataList);
+    mediaEntry.metadata = OVPProviderParser._parseMetadata(metadataList);
     mediaEntry.metadata.description = entry.description || '';
     mediaEntry.metadata.name = entry.name || '';
     mediaEntry.metadata.tags = entry.tags || '';
@@ -154,8 +154,10 @@ export default class OVPProviderParser {
     const sources = new MediaSources();
     const addAdaptiveSource = (source: KalturaPlaybackSource) => {
       const parsedSource = OVPProviderParser._parseAdaptiveSource(source, playbackContext, ks, partnerId, uiConfId, entry.id);
-      const sourceFormat = SupportedStreamFormat.get(source.format);
-      sources.map(parsedSource, sourceFormat);
+      if (parsedSource) {
+        const sourceFormat = SupportedStreamFormat.get(source.format);
+        sources.map(parsedSource, sourceFormat);
+      }
     };
     const parseAdaptiveSources = () => {
       kalturaSources.filter(source => !isProgressiveSource(source.format)).forEach(addAdaptiveSource);
@@ -180,7 +182,7 @@ export default class OVPProviderParser {
    * @param {number} partnerId - The partner ID
    * @param {number} uiConfId - The uiConf ID
    * @param {string} entryId - The entry id
-   * @returns {MediaSource} - The parsed adaptive kalturaSource
+   * @returns {?MediaSource} - The parsed adaptive kalturaSource
    * @static
    * @private
    */
@@ -191,11 +193,14 @@ export default class OVPProviderParser {
     partnerId: number,
     uiConfId: ?number,
     entryId: string
-  ): MediaSource {
+  ): ?MediaSource {
     const mediaSource: MediaSource = new MediaSource();
     if (kalturaSource) {
       let playUrl: string = '';
       const mediaFormat = SupportedStreamFormat.get(kalturaSource.format);
+      const protocol = kalturaSource.getProtocol(OVPProviderParser._getBaseProtocol());
+      const deliveryProfileId = kalturaSource.deliveryProfileId;
+      const format = kalturaSource.format;
       let extension: string = '';
       if (mediaFormat) {
         extension = mediaFormat.pathExt;
@@ -207,26 +212,25 @@ export default class OVPProviderParser {
           extension = playbackContext.flavorAssets[0].fileExt;
         }
         playUrl = PlaySourceUrlBuilder.build({
-          entryId: entryId,
+          entryId,
           flavorIds: kalturaSource.flavorIds,
-          format: kalturaSource.format,
-          ks: ks,
-          partnerId: partnerId,
-          uiConfId: uiConfId,
-          extension: extension,
-          protocol: kalturaSource.getProtocol(this._getBaseProtocol())
+          format,
+          ks,
+          partnerId,
+          uiConfId,
+          extension,
+          protocol
         });
       } else {
         playUrl = kalturaSource.url;
       }
-      if (playUrl === '') {
-        OVPProviderParser._logger.error(
-          `failed to create play url from source, discarding source: (${entryId}_${kalturaSource.deliveryProfileId}), ${kalturaSource.format}.`
-        );
-        return mediaSource;
+      if (!playUrl) {
+        const message = `failed to create play url from source, discarding source: (${entryId}_${deliveryProfileId}), ${format}`;
+        OVPProviderParser._logger.warn(message);
+        return null;
       }
       mediaSource.url = OVPProviderParser._applyRegexAction(playbackContext, playUrl);
-      mediaSource.id = entryId + '_' + kalturaSource.deliveryProfileId + ',' + kalturaSource.format;
+      mediaSource.id = entryId + '_' + deliveryProfileId + ',' + format;
       if (kalturaSource.hasDrmData()) {
         const drmParams: Array<Drm> = [];
         kalturaSource.drm.forEach(drm => {
@@ -262,9 +266,10 @@ export default class OVPProviderParser {
     const videoSources: Array<MediaSource> = [];
     const audioSources: Array<MediaSource> = [];
     if (kalturaSource) {
-      const protocol = kalturaSource.getProtocol(this._getBaseProtocol());
+      const protocol = kalturaSource.getProtocol(OVPProviderParser._getBaseProtocol());
       const format = kalturaSource.format;
-      const sourceId = kalturaSource.deliveryProfileId + ',' + kalturaSource.format;
+      const deliveryProfileId = kalturaSource.deliveryProfileId;
+      const sourceId = deliveryProfileId + ',' + format;
       playbackContext.flavorAssets.map(flavor => {
         const mediaSource: MediaSource = new MediaSource();
         mediaSource.id = flavor.id + sourceId;
@@ -274,20 +279,25 @@ export default class OVPProviderParser {
         mediaSource.bandwidth = flavor.bitrate * 1024;
         mediaSource.label = flavor.label || flavor.language;
         const playUrl = PlaySourceUrlBuilder.build({
-          entryId: entryId,
+          entryId,
           flavorIds: flavor.id,
-          format: format,
-          ks: ks,
+          format,
+          ks,
           partnerId: partnerId,
           uiConfId: uiConfId,
           extension: flavor.fileExt,
-          protocol: protocol
+          protocol
         });
-        mediaSource.url = OVPProviderParser._applyRegexAction(playbackContext, playUrl);
-        if (flavor.height && flavor.width) {
-          videoSources.push(mediaSource);
+        if (playUrl === '') {
+          OVPProviderParser._logger.warn(`failed to create play url from source, discarding source: (${entryId}_${deliveryProfileId}), ${format}.`);
+          return null;
         } else {
-          audioSources.push(mediaSource);
+          mediaSource.url = OVPProviderParser._applyRegexAction(playbackContext, playUrl);
+          if (flavor.height && flavor.width) {
+            videoSources.push(mediaSource);
+          } else {
+            audioSources.push(mediaSource);
+          }
         }
       });
     }
