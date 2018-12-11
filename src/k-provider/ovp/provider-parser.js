@@ -290,6 +290,7 @@ export default class OVPProviderParser {
         });
         if (playUrl === '') {
           OVPProviderParser._logger.warn(`failed to create play url from source, discarding source: (${entryId}_${deliveryProfileId}), ${format}.`);
+          return null;
         } else {
           mediaSource.url = OVPProviderParser._applyRegexAction(playbackContext, playUrl);
           if (flavor.height && flavor.width) {
