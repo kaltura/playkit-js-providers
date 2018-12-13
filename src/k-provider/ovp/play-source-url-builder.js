@@ -1,27 +1,32 @@
 //@flow
 import OVPConfiguration from './config';
 
+type urlParamsType = {
+  partnerId: number,
+  entryId: string,
+  ks: string,
+  uiConfId: ?number,
+  format: string,
+  protocol: string,
+  extension: string,
+  flavorIds: ?string
+};
+
 export default class PlaySourceUrlBuilder {
   /**
    * Returns source url by given url params
    * @function build
-   * @param {Object} urlParams The params
+   * @param {urlParamsType} urlParams The params
    * @returns {string} The URL
    * @static
    */
-  static build(urlParams: Object): string {
+  static build(urlParams: urlParamsType): string {
     const config = OVPConfiguration.get();
     const cdnUrl: string = config.cdnUrl;
-    const partnerId: string = urlParams.partnerId;
-    const entryId: string = urlParams.entryId;
-    const ks: string = urlParams.ks;
-    const uiConfId: string = urlParams.uiConfId;
-    const format: string = urlParams.format;
-    const protocol: string = urlParams.protocol;
-    const extension: string = urlParams.extension;
-    const flavorIds: string = urlParams.flavorIds;
+    const {partnerId, entryId, ks, uiConfId, format, protocol, extension, flavorIds} = urlParams;
 
-    if (cdnUrl === '' && partnerId === '' && entryId === '' && extension === '' && format === '') {
+    //verify mandatory params
+    if (!cdnUrl || !partnerId || !entryId || !extension || !format || !protocol || !extension) {
       return '';
     }
 
@@ -31,9 +36,9 @@ export default class PlaySourceUrlBuilder {
     }
     playUrl += 'p/' + partnerId + '/sp/' + partnerId + '00' + '/playManifest/entryId/' + entryId + '/protocol/' + protocol + '/format/' + format;
 
-    if (flavorIds !== '') {
+    if (flavorIds) {
       playUrl += '/flavorIds/' + flavorIds;
-    } else if (uiConfId !== '') {
+    } else if (uiConfId) {
       playUrl += '/uiConfId/' + uiConfId;
     }
 

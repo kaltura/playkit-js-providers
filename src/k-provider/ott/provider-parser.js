@@ -183,8 +183,10 @@ export default class OTTProviderParser {
     const sources = new MediaSources();
     const addAdaptiveSource = (source: KalturaPlaybackSource) => {
       const parsedSource = OTTProviderParser._parseAdaptiveSource(source);
-      const sourceFormat = SupportedStreamFormat.get(source.format);
-      sources.map(parsedSource, sourceFormat);
+      if (parsedSource) {
+        const sourceFormat = SupportedStreamFormat.get(source.format);
+        sources.map(parsedSource, sourceFormat);
+      }
     };
     const parseAdaptiveSources = () => {
       kalturaSources.filter(source => !isProgressiveSource(source.format)).forEach(addAdaptiveSource);
@@ -203,11 +205,11 @@ export default class OTTProviderParser {
    * Returns a parsed adaptive source
    * @function _parseAdaptiveSource
    * @param {KalturaPlaybackSource} kalturaSource - A kaltura source
-   * @returns {MediaSource} - The parsed adaptive kalturaSource
+   * @returns {?MediaSource} - The parsed adaptive kalturaSource
    * @static
    * @private
    */
-  static _parseAdaptiveSource(kalturaSource: ?KalturaPlaybackSource): MediaSource {
+  static _parseAdaptiveSource(kalturaSource: ?KalturaPlaybackSource): ?MediaSource {
     const mediaSource = new MediaSource();
     if (kalturaSource) {
       const playUrl = kalturaSource.url;
@@ -215,11 +217,11 @@ export default class OTTProviderParser {
       if (mediaFormat) {
         mediaSource.mimetype = mediaFormat.mimeType;
       }
-      if (playUrl === '') {
+      if (!playUrl) {
         OTTProviderParser._logger.error(
           `failed to create play url from source, discarding source: (${kalturaSource.fileId}), ${kalturaSource.format}.`
         );
-        return mediaSource;
+        return null;
       }
       mediaSource.url = playUrl;
       mediaSource.id = kalturaSource.fileId + ',' + kalturaSource.format;
