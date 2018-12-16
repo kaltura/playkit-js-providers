@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.13.0"></a>
+# [2.13.0](https://github.com/kaltura/playkit-js-providers/compare/v2.12.0...v2.13.0) (2018-12-16)
+
+
+### Features
+
+* **FEC-8705:** playlist - OTT support ([#73](https://github.com/kaltura/playkit-js-providers/issues/73)) ([a15c53c](https://github.com/kaltura/playkit-js-providers/commit/a15c53c))
+
+
+
 <a name="2.12.0"></a>
 # [2.12.0](https://github.com/kaltura/playkit-js-providers/compare/v2.11.0...v2.12.0) (2018-12-12)
 
