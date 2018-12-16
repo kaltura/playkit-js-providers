@@ -1,16 +1,16 @@
 //@flow
 import RequestBuilder from '../../../util/request-builder';
-import OVPConfiguration from '../config';
-import OVPBaseEntryService from '../services/base-entry-service';
-import KalturaBaseEntryListResponse from '../response-types/kaltura-base-entry-list-response';
+import OTTConfiguration from '../config';
+import OTTAssetService from '../services/asset-service';
+import KalturaAsset from '../response-types/kaltura-asset';
 
-export default class OVPEntryListLoader implements ILoader {
+export default class OTTAssetListLoader implements ILoader {
   _entries: Array<string>;
   _requests: Array<RequestBuilder>;
   _response: any = {playlistItems: {entries: []}};
 
   static get id(): string {
-    return 'entry_list';
+    return 'asset_list';
   }
 
   /**
@@ -31,10 +31,8 @@ export default class OVPEntryListLoader implements ILoader {
   }
 
   set response(response: any) {
-    let mediaEntryResponse: KalturaBaseEntryListResponse;
     response.forEach(item => {
-      mediaEntryResponse = new KalturaBaseEntryListResponse(item.data);
-      this._response.playlistItems.entries.push(mediaEntryResponse.entries[0]);
+      this._response.playlistItems.entries.push({mediaDataResult: new KalturaAsset(item.data)});
     });
   }
 
@@ -50,10 +48,11 @@ export default class OVPEntryListLoader implements ILoader {
    * @static
    */
   buildRequests(params: Object): Array<RequestBuilder> {
-    const config = OVPConfiguration.get();
+    const config = OTTConfiguration.get();
     const requests: Array<RequestBuilder> = [];
     params.entries.forEach(entry => {
-      requests.push(OVPBaseEntryService.list(config.serviceUrl, params.ks, entry.entryId || entry, params.redirectFromEntryId));
+      const assetReferenceType = entry.assetReferenceType || KalturaAsset.AssetReferenceType.MEDIA;
+      requests.push(OTTAssetService.get(config.serviceUrl, params.ks, entry.entryId || entry, assetReferenceType));
     });
     return requests;
   }

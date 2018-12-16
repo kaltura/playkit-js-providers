@@ -11,7 +11,7 @@ import MediaEntry from '../../entities/media-entry';
 import OVPEntryListLoader from './loaders/entry-list-loader';
 import Error from '../../util/error/error';
 
-export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
+export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject> {
   _filterOptionsConfig: ProviderFilterOptionsObject = {redirectFromEntryId: true};
   /**
    * @constructor
@@ -28,10 +28,10 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
 
   /**
    * Gets the backend media config.
-   * @param {ProviderMediaInfoObject} mediaInfo - ovp media info
+   * @param {OVPProviderMediaInfoObject} mediaInfo - ovp media info
    * @returns {Promise<ProviderMediaConfigObject>} - The provider media config
    */
-  getMediaConfig(mediaInfo: ProviderMediaInfoObject): Promise<ProviderMediaConfigObject> {
+  getMediaConfig(mediaInfo: OVPProviderMediaInfoObject): Promise<ProviderMediaConfigObject> {
     if (mediaInfo.ks) {
       this.ks = mediaInfo.ks;
       this._isAnonymous = false;
@@ -130,6 +130,7 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
   getPlaylistConfig(playlistInfo: ProviderPlaylistInfoObject): Promise<ProviderPlaylistObject> {
     if (playlistInfo.ks) {
       this.ks = playlistInfo.ks;
+      this._isAnonymous = false;
     }
     this._dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, this.ks, this._networkRetryConfig);
     return new Promise((resolve, reject) => {
@@ -141,7 +142,6 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
           this._dataLoader.add(OVPSessionLoader, {partnerId: this.partnerId});
         }
         this._dataLoader.add(OVPPlaylistLoader, {playlistId, ks});
-        // this._dataLoader.add(OVPMediaEntryLoader, {entryId: '{3:result:0:id}', ks});
         this._dataLoader.fetchData().then(
           response => {
             resolve(this._parsePlaylistDataFromResponse(response));
@@ -182,6 +182,7 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
   getEntryListConfig(entryListInfo: ProviderEntryListObject): Promise<ProviderPlaylistObject> {
     if (entryListInfo.ks) {
       this.ks = entryListInfo.ks;
+      this._isAnonymous = false;
     }
     this._dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, this.ks, this._networkRetryConfig);
     return new Promise((resolve, reject) => {
@@ -211,8 +212,8 @@ export default class OVPProvider extends BaseProvider<ProviderMediaInfoObject> {
   _parseEntryListDataFromResponse(data: Map<string, Function>): ProviderPlaylistObject {
     this._logger.debug('Data parsing started');
     const playlistConfig: ProviderPlaylistObject = this._getPlaylistObject();
-    if (data && data.has(OVPPlaylistLoader.id)) {
-      const playlistLoader = data.get(OVPPlaylistLoader.id);
+    if (data && data.has(OVPEntryListLoader.id)) {
+      const playlistLoader = data.get(OVPEntryListLoader.id);
       if (playlistLoader && playlistLoader.response) {
         const entryList = OVPProviderParser.getEntryList(playlistLoader.response);
         entryList.items.forEach(i => playlistConfig.items.push({sources: this._getSourcesObject(i)}));

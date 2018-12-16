@@ -1676,6 +1676,366 @@ const ImageEntryWithoutPlugins = {
   ]
 };
 
+const PlaylistById = {
+  response: [
+    {
+      objectType: 'KalturaPlaylist',
+      id: '0_wckoqjnn',
+      name: 'Playlist_VOD_Only',
+      description: 'Playlist_VOD_Only_desc',
+      thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/0/thumbnail/entry_id/0_wckoqjnn/version/100162'
+    },
+    [
+      {
+        mediaType: 1,
+        dataUrl: 'http://qa-apache-php7.dev.kaltura.com/p/1091/sp/109100/playManifest/entryId/0_fu4ifhie/format/url/protocol/http',
+        flavorParamsIds: '0,2,3,4,5,6,7',
+        duration: 596,
+        msDuration: 596000,
+        id: '0_fu4ifhie',
+        name: 'big_buck_bunny_1080p_h264',
+        type: 1,
+        thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_fu4ifhie/version/100002',
+        objectType: 'KalturaMediaEntry'
+      },
+      {
+        mediaType: 1,
+        dataUrl: 'http://qa-apache-php7.dev.kaltura.com/p/1091/sp/109100/playManifest/entryId/0_15xrxwvo/format/url/protocol/http',
+        flavorParamsIds: '0,2,3,4,5',
+        duration: 141,
+        msDuration: 141000,
+        id: '0_15xrxwvo',
+        name: 'The Night King kills Viserion - Game of Thrones S07E06 Edited',
+        type: 1,
+        thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_15xrxwvo/version/100002',
+        objectType: 'KalturaMediaEntry'
+      },
+      {
+        mediaType: 5,
+        dataUrl: 'http://qa-apache-php7.dev.kaltura.com/p/1091/sp/109100/playManifest/entryId/0_p8aigvgu/format/url/protocol/http',
+        flavorParamsIds: '0,1,5,8',
+        duration: 320,
+        msDuration: 320000,
+        id: '0_p8aigvgu',
+        name: 'Californication',
+        type: 1,
+        thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_p8aigvgu/version/100022',
+        objectType: 'KalturaMediaEntry'
+      },
+      {
+        mediaType: 1,
+        dataUrl: 'http://qa-apache-php7.dev.kaltura.com/p/1091/sp/109100/playManifest/entryId/0_ttfy4uu0/format/url/protocol/http',
+        flavorParamsIds: '0,1,2,3,4,5,582941,582971,583574',
+        duration: 734,
+        msDuration: 734000,
+        id: '0_ttfy4uu0',
+        name: 'Mutli Audio  Eng,Rus,It',
+        tags: '',
+        type: 1,
+        thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_ttfy4uu0/version/100032',
+        objectType: 'KalturaMediaEntry'
+      },
+      {
+        mediaType: 1,
+        dataUrl: 'http://qa-apache-php7.dev.kaltura.com/p/1091/sp/109100/playManifest/entryId/0_df8g87v8/format/url/protocol/http',
+        flavorParamsIds: '0,1,2,3,4,5,582941,583327',
+        duration: 741,
+        msDuration: 741000,
+        id: '0_df8g87v8',
+        name: '"Multi Audio and Captions for Player V3"',
+        tags: '',
+        type: 1,
+        thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_df8g87v8/version/100032',
+        objectType: 'KalturaMediaEntry'
+      },
+      {
+        mediaType: 1,
+        dataUrl: 'http://qa-apache-php7.dev.kaltura.com/p/1091/sp/109100/playManifest/entryId/0_hut6q26s/format/url/protocol/http',
+        flavorParamsIds: '0,2,3,4,5',
+        duration: 739,
+        msDuration: 739000,
+        id: '0_hut6q26s',
+        name: 'Multi Captions Languages',
+        tags: '',
+        type: 1,
+        thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_hut6q26s/version/100002',
+        objectType: 'KalturaMediaEntry'
+      },
+      {
+        mediaType: 1,
+        dataUrl: 'http://qa-apache-php7.dev.kaltura.com/p/1091/sp/109100/playManifest/entryId/0_x8n0mub7/format/url/protocol/http',
+        flavorParamsIds: '0,2,3,5',
+        duration: 128,
+        msDuration: 128000,
+        id: '0_x8n0mub7',
+        name: 'PiratesCaribbean6 - default Eng captions',
+        tags: '',
+        type: 1,
+        thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_x8n0mub7/version/100002',
+        objectType: 'KalturaMediaEntry'
+      },
+      {
+        mediaType: 1,
+        dataUrl: 'http://qa-apache-php7.dev.kaltura.com/p/1091/sp/109100/playManifest/entryId/0_4ktof5po/format/url/protocol/http',
+        flavorParamsIds: '0,2',
+        duration: 9868,
+        msDuration: 9868120,
+        id: '0_4ktof5po',
+        name: 'More than 2G media',
+        type: 1,
+        thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_4ktof5po/version/100000',
+        objectType: 'KalturaMediaEntry'
+      }
+    ]
+  ]
+};
+
+const AnonymousPlaylistById = {
+  response: [
+    {
+      objectType: 'KalturaStartWidgetSessionResponse',
+      partnerId: 1091,
+      ks: 'ZDY2NGVhYzkyNTg0Yjc0OTA3ZjA5Mzc2M2IwODA3NDFlYmZmMTNkOXwxMDkxOzEwOTE7MTU0NDc5MzY2NzswOzE1NDQ3MDcyNjcuODk2NTswO3ZpZXc6Kix3aWRnZXQ6MTs7',
+      userId: 0
+    },
+    {
+      id: '0_wckoqjnn',
+      name: 'Playlist_VOD_Only',
+      description: 'Playlist_VOD_Only_desc',
+      thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/0/thumbnail/entry_id/0_wckoqjnn/version/100162',
+      objectType: 'KalturaPlaylist'
+    },
+    [
+      {
+        mediaType: 1,
+        dataUrl: 'http://qa-apache-php7.dev.kaltura.com/p/1091/sp/109100/playManifest/entryId/0_fu4ifhie/format/url/protocol/http',
+        flavorParamsIds: '0,2,3,4,5,6,7',
+        duration: 596,
+        msDuration: 596000,
+        id: '0_fu4ifhie',
+        name: 'big_buck_bunny_1080p_h264',
+        type: 1,
+        thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_fu4ifhie/version/100002',
+        objectType: 'KalturaMediaEntry'
+      },
+      {
+        mediaType: 1,
+        dataUrl: 'http://qa-apache-php7.dev.kaltura.com/p/1091/sp/109100/playManifest/entryId/0_15xrxwvo/format/url/protocol/http',
+        flavorParamsIds: '0,2,3,4,5',
+        duration: 141,
+        msDuration: 141000,
+        id: '0_15xrxwvo',
+        name: 'The Night King kills Viserion - Game of Thrones S07E06 Edited',
+        type: 1,
+        thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_15xrxwvo/version/100002',
+        objectType: 'KalturaMediaEntry'
+      },
+      {
+        mediaType: 5,
+        dataUrl: 'http://qa-apache-php7.dev.kaltura.com/p/1091/sp/109100/playManifest/entryId/0_p8aigvgu/format/url/protocol/http',
+        flavorParamsIds: '0,1,5,8',
+        duration: 320,
+        msDuration: 320000,
+        id: '0_p8aigvgu',
+        name: 'Californication',
+        type: 1,
+        thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_p8aigvgu/version/100022',
+        objectType: 'KalturaMediaEntry'
+      },
+      {
+        mediaType: 1,
+        dataUrl: 'http://qa-apache-php7.dev.kaltura.com/p/1091/sp/109100/playManifest/entryId/0_ttfy4uu0/format/url/protocol/http',
+        flavorParamsIds: '0,1,2,3,4,5,582941,582971,583574',
+        duration: 734,
+        msDuration: 734000,
+        id: '0_ttfy4uu0',
+        name: 'Mutli Audio  Eng,Rus,It',
+        tags: '',
+        type: 1,
+        thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_ttfy4uu0/version/100032',
+        objectType: 'KalturaMediaEntry'
+      },
+      {
+        mediaType: 1,
+        dataUrl: 'http://qa-apache-php7.dev.kaltura.com/p/1091/sp/109100/playManifest/entryId/0_df8g87v8/format/url/protocol/http',
+        flavorParamsIds: '0,1,2,3,4,5,582941,583327',
+        duration: 741,
+        msDuration: 741000,
+        id: '0_df8g87v8',
+        name: '"Multi Audio and Captions for Player V3"',
+        tags: '',
+        type: 1,
+        thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_df8g87v8/version/100032',
+        objectType: 'KalturaMediaEntry'
+      },
+      {
+        mediaType: 1,
+        dataUrl: 'http://qa-apache-php7.dev.kaltura.com/p/1091/sp/109100/playManifest/entryId/0_hut6q26s/format/url/protocol/http',
+        flavorParamsIds: '0,2,3,4,5',
+        duration: 739,
+        msDuration: 739000,
+        id: '0_hut6q26s',
+        name: 'Multi Captions Languages',
+        tags: '',
+        type: 1,
+        thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_hut6q26s/version/100002',
+        objectType: 'KalturaMediaEntry'
+      },
+      {
+        mediaType: 1,
+        dataUrl: 'http://qa-apache-php7.dev.kaltura.com/p/1091/sp/109100/playManifest/entryId/0_x8n0mub7/format/url/protocol/http',
+        flavorParamsIds: '0,2,3,5',
+        duration: 128,
+        msDuration: 128000,
+        id: '0_x8n0mub7',
+        name: 'PiratesCaribbean6 - default Eng captions',
+        tags: '',
+        type: 1,
+        thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_x8n0mub7/version/100002',
+        objectType: 'KalturaMediaEntry'
+      },
+      {
+        mediaType: 1,
+        dataUrl: 'http://qa-apache-php7.dev.kaltura.com/p/1091/sp/109100/playManifest/entryId/0_4ktof5po/format/url/protocol/http',
+        flavorParamsIds: '0,2',
+        duration: 9868,
+        msDuration: 9868120,
+        id: '0_4ktof5po',
+        name: 'More than 2G media',
+        type: 1,
+        thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_4ktof5po/version/100000',
+        objectType: 'KalturaMediaEntry'
+      }
+    ]
+  ]
+};
+
+const PlaylistByEntryList = {
+  response: [
+    {
+      objectType: 'KalturaBaseEntryListResponse',
+      objects: [
+        {
+          dvrStatus: 1,
+          mediaType: 201,
+          flavorParamsIds: '32,33,34,35',
+          duration: 86406,
+          msDuration: 86406027,
+          id: '0_nwkp7jtx',
+          name: 'Kaltura Live with DVR new - 08.17',
+          description: '',
+          type: 7,
+          thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_nwkp7jtx/version/0',
+          objectType: 'KalturaLiveStreamEntry'
+        }
+      ],
+      totalCount: 1
+    },
+    {
+      objectType: 'KalturaBaseEntryListResponse',
+      objects: [
+        {
+          mediaType: 1,
+          dataUrl: 'http://qa-apache-php7.dev.kaltura.com/p/1091/sp/109100/playManifest/entryId/0_wifqaipd/format/url/protocol/http',
+          flavorParamsIds: '0,1,2,3,4,5,6,582941,583327',
+          duration: 741,
+          msDuration: 741000,
+          id: '0_wifqaipd',
+          name: 'MPEG Dash with MultiAudio New Transcoding',
+          type: 1,
+          thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_wifqaipd/version/100042',
+          objectType: 'KalturaMediaEntry'
+        }
+      ],
+      totalCount: 1
+    },
+    {
+      objects: [
+        {
+          mediaType: 5,
+          dataUrl: 'http://qa-apache-php7.dev.kaltura.com/p/1091/sp/109100/playManifest/entryId/0_p8aigvgu/format/url/protocol/http',
+          flavorParamsIds: '0,1,5,8',
+          duration: 320,
+          msDuration: 320000,
+          id: '0_p8aigvgu',
+          name: 'Californication',
+          type: 1,
+          thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_p8aigvgu/version/100022',
+          objectType: 'KalturaMediaEntry'
+        }
+      ],
+      totalCount: 1,
+      objectType: 'KalturaBaseEntryListResponse'
+    }
+  ]
+};
+
+const AnonymousPlaylistByEntryList = {
+  response: [
+    {
+      objectType: 'KalturaStartWidgetSessionResponse',
+      partnerId: 1091,
+      ks: 'YmEwODMwNDZhZWVkZGNlYzBhZjkwN2JjYmMxNzViOWFkMWE4ZWE5YnwxMDkxOzEwOTE7MTU0NDc5ODQ3NDswOzE1NDQ3MTIwNzUuMDAyODswO3ZpZXc6Kix3aWRnZXQ6MTs7',
+      userId: 0
+    },
+    {
+      objectType: 'KalturaBaseEntryListResponse',
+      objects: [
+        {
+          dvrStatus: 1,
+          mediaType: 201,
+          flavorParamsIds: '32,33,34,35',
+          duration: 86406,
+          msDuration: 86406027,
+          id: '0_nwkp7jtx',
+          name: 'Kaltura Live with DVR new - 08.17',
+          description: '',
+          type: 7,
+          thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_nwkp7jtx/version/0',
+          objectType: 'KalturaLiveStreamEntry'
+        }
+      ],
+      totalCount: 1
+    },
+    {
+      objects: [
+        {
+          mediaType: 1,
+          dataUrl: 'http://qa-apache-php7.dev.kaltura.com/p/1091/sp/109100/playManifest/entryId/0_wifqaipd/format/url/protocol/http',
+          flavorParamsIds: '0,1,2,3,4,5,6,582941,583327',
+          duration: 741,
+          msDuration: 741000,
+          id: '0_wifqaipd',
+          name: 'MPEG Dash with MultiAudio New Transcoding',
+          type: 1,
+          thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_wifqaipd/version/100042',
+          objectType: 'KalturaMediaEntry'
+        }
+      ],
+      totalCount: 1,
+      objectType: 'KalturaBaseEntryListResponse'
+    },
+    {
+      objects: [
+        {
+          mediaType: 5,
+          dataUrl: 'http://qa-apache-php7.dev.kaltura.com/p/1091/sp/109100/playManifest/entryId/0_p8aigvgu/format/url/protocol/http',
+          flavorParamsIds: '0,1,5,8',
+          duration: 320,
+          msDuration: 320000,
+          id: '0_p8aigvgu',
+          name: 'Californication',
+          type: 1,
+          thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_p8aigvgu/version/100022',
+          objectType: 'KalturaMediaEntry'
+        }
+      ],
+      totalCount: 1,
+      objectType: 'KalturaBaseEntryListResponse'
+    }
+  ]
+};
+
 export {
   AnonymousMocEntryWithoutUIConfNoDrmData,
   BlockActionEntry,
@@ -1686,5 +2046,9 @@ export {
   EntryWithUIConfWithDrmData,
   WrongUiConfID,
   AudioEntryWithoutPlugins,
-  ImageEntryWithoutPlugins
+  ImageEntryWithoutPlugins,
+  PlaylistById,
+  AnonymousPlaylistById,
+  PlaylistByEntryList,
+  AnonymousPlaylistByEntryList
 };

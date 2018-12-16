@@ -1207,4 +1207,1858 @@ const BlockActionEntry = {
   }
 };
 
-export {AnonymousEntryWithoutUIConfWithDrmData, LiveEntryNoDrmData, BlockActionEntry};
+const PlaylistByEntryList = {
+  response: {
+    result: [
+      {
+        ks:
+          'djJ8MTk4fBa3rps5BV6SgJ-skY9XtHSse9q1Z_b6bwviDj24wpk1LPtaUrslmRUQI96GJ9Rqf-T8s2Jx1Xx60QlFWcJj9GutrjgWSb0kIBgFfLG8Wv_2-fAm1QgjgDXYDs2FidSs7UvT1fsgpPyzu27T_H1FY9I=',
+        refreshToken: 'd0ee0f31b3ed4f9eaff93ae03d9bcdf5',
+        objectType: 'KalturaLoginSession'
+      },
+      {
+        catchUpBuffer: 0,
+        trickPlayBuffer: 0,
+        enableRecordingPlaybackNonEntitledChannel: false,
+        entryId: '123456',
+        id: 259153,
+        type: 420,
+        name: 'Citizenfour',
+        description:
+          '*** Rent MoviePerViewGold *** In June 2013, Laura Poitras and reporter Glenn Greenwald flew to Hong Kong for the first of many meetings with Edward Snowden. She brought her camera with her. The film that resulted from this series of tense encounters is absolutely sui generis in the history of cinema:  a 100% real-life thriller unfolding minute by minute before our eyes. Poitras is a great and brave filmmaker, but she is also a masterful storyteller: she compresses the many days of questioning, waiting, confirming, watching the world’s reaction and agonizing over the next move, into both a great character study of Snowden and a narrative that will leave you on the edge of your seat as it inexorably moves toward its conclusion.',
+        images: [
+          {
+            ratio: '16:9',
+            width: 153,
+            height: 86,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/153/height/86/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 302,
+            height: 170,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/302/height/170/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 568,
+            height: 320,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/568/height/320/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 960,
+            height: 540,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/960/height/540/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 1280,
+            height: 720,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/1280/height/720/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 2048,
+            height: 1152,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/2048/height/1152/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '1:1',
+            width: 70,
+            height: 70,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_12/version/0/width/70/height/70/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_12',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '1:1',
+            width: 100,
+            height: 100,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_12/version/0/width/100/height/100/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_12',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '2:3',
+            width: 103,
+            height: 154,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/103/height/154/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_2',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '2:3',
+            width: 149,
+            height: 223,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/149/height/223/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_2',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '2:3',
+            width: 212,
+            height: 318,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/212/height/318/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_2',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '2:3',
+            width: 355,
+            height: 534,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/355/height/534/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_2',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '2:3',
+            width: 800,
+            height: 1111,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/800/height/1111/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_2',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '2:3',
+            width: 600,
+            height: 900,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/600/height/900/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_2',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 282,
+            height: 158,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/282/height/158/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '2:3',
+            width: 180,
+            height: 270,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/180/height/270/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_2',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 105,
+            height: 80,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/105/height/80/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 195,
+            height: 150,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/195/height/150/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 105,
+            height: 55,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/105/height/55/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 70,
+            height: 52,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/70/height/52/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 590,
+            height: 445,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/590/height/445/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 300,
+            height: 250,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/300/height/250/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '1:1',
+            width: 500,
+            height: 500,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_12/version/0/width/500/height/500/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_12',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '2:1',
+            width: 200,
+            height: 100,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_17/version/0/width/200/height/100/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_17',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '4:3',
+            width: 400,
+            height: 300,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_3/version/0/width/400/height/300/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_3',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 1080,
+            height: 1960,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/1080/height/1960/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '1:1',
+            width: 800,
+            height: 800,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_12/version/0/width/800/height/800/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_12',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          }
+        ],
+        mediaFiles: [
+          {
+            assetId: 259153,
+            id: 393231,
+            type: 'Web trailer',
+            url: 'http://cdnapi.kaltura.com/p/1774581/sp/177458100/playManifest/entryId/1_5cpvfprf/format/applehttp/tags/mbr/protocol/http/f/a.m3u8',
+            duration: 1000,
+            externalId: '',
+            fileSize: 0,
+            objectType: 'KalturaMediaFile'
+          },
+          {
+            assetId: 259153,
+            id: 393232,
+            type: 'Web SD',
+            url: 'http://cdnapi.kaltura.com/p/1774581/sp/177458100/playManifest/entryId/1_i8pie276/format/applehttp/tags/mbr/protocol/http/f/a.m3u8',
+            duration: 1000,
+            externalId: '',
+            fileSize: 0,
+            objectType: 'KalturaMediaFile'
+          },
+          {
+            assetId: 259153,
+            id: 398401,
+            type: 'Mobile_Devices_Main_HD_FP',
+            url: 'http://cdnapi.kaltura.com/p/1774581/sp/177458100/playManifest/entryId/1_i8pie276/format/applehttp/tags/ipad/protocol/http/f/a.m3u8',
+            duration: 1000,
+            externalId: '',
+            fileSize: 0,
+            objectType: 'KalturaMediaFile'
+          },
+          {
+            assetId: 259153,
+            id: 398402,
+            type: 'Mobile_Devices_Trailer',
+            url: 'http://cdnapi.kaltura.com/p/1774581/sp/177458100/playManifest/entryId/1_5cpvfprf/format/applehttp/tags/ipad/protocol/http/f/a.m3u8',
+            duration: 1000,
+            externalId: '',
+            fileSize: 0,
+            objectType: 'KalturaMediaFile'
+          },
+          {
+            assetId: 259153,
+            id: 804398,
+            type: 'Mobile_Devices_Main_SD',
+            url: 'http://cdnapi.kaltura.com/p/1774581/sp/177458100/playManifest/entryId/1_tzhsuqij/format/applehttp/tags/ipad/protocol/http/f/a.m3u8',
+            duration: 0,
+            externalId: '',
+            fileSize: 0,
+            objectType: 'KalturaMediaFile'
+          }
+        ],
+        metas: {
+          synopsis: {
+            value: '',
+            objectType: 'KalturaMultilingualStringValue'
+          },
+          'Short title': {
+            value: '',
+            objectType: 'KalturaMultilingualStringValue'
+          },
+          Runtime: {
+            value: '114',
+            objectType: 'KalturaMultilingualStringValue'
+          },
+          'Catchup logo URL': {
+            value: '',
+            objectType: 'KalturaMultilingualStringValue'
+          },
+          'App Link': {
+            value: '',
+            objectType: 'KalturaMultilingualStringValue'
+          },
+          Country: {
+            value: '',
+            objectType: 'KalturaMultilingualStringValue'
+          },
+          QUALITY: {
+            value: '',
+            objectType: 'KalturaMultilingualStringValue'
+          },
+          'Epg ID': {
+            value: '',
+            objectType: 'KalturaMultilingualStringValue'
+          },
+          'Catchup allowed': {
+            value: false,
+            objectType: 'KalturaBooleanValue'
+          }
+        },
+        tags: {
+          Free: {
+            objects: [
+              {
+                value: 'yes',
+                objectType: 'KalturaMultilingualStringValue'
+              },
+              {
+                value: 'no',
+                objectType: 'KalturaMultilingualStringValue'
+              }
+            ],
+            objectType: 'KalturaMultilingualStringValueArray'
+          },
+          Genre: {
+            objects: [
+              {
+                value: 'Documentary',
+                objectType: 'KalturaMultilingualStringValue'
+              }
+            ],
+            objectType: 'KalturaMultilingualStringValueArray'
+          },
+          'Parental Rating': {
+            objects: [
+              {
+                value: 'PG',
+                objectType: 'KalturaMultilingualStringValue'
+              }
+            ],
+            objectType: 'KalturaMultilingualStringValueArray'
+          },
+          QUALITY: {
+            objects: [
+              {
+                value: 'sd',
+                objectType: 'KalturaMultilingualStringValue'
+              },
+              {
+                value: 'hd',
+                objectType: 'KalturaMultilingualStringValue'
+              }
+            ],
+            objectType: 'KalturaMultilingualStringValueArray'
+          },
+          Source: {
+            objects: [
+              {
+                value: 'Web3',
+                objectType: 'KalturaMultilingualStringValue'
+              }
+            ],
+            objectType: 'KalturaMultilingualStringValueArray'
+          }
+        },
+        startDate: 946684800,
+        endDate: 2524608000,
+        enableCdvr: false,
+        enableCatchUp: false,
+        enableStartOver: false,
+        enableTrickPlay: false,
+        objectType: 'KalturaMediaAsset'
+      },
+      {
+        catchUpBuffer: 0,
+        trickPlayBuffer: 0,
+        enableRecordingPlaybackNonEntitledChannel: false,
+        entryId: '123456',
+        id: 258459,
+        type: 420,
+        name: 'John Wick',
+        description:
+          "*** Free *** After the sudden death of his beloved wife, John Wick receives one last gift from her, a beagle puppy named Daisy, and a note imploring him not to forget how to love. But John's mourning is interrupted when his 1969 Boss Mustang catches the eye of sadistic thug Iosef Tarasov who breaks into his house and steals it, beating John unconscious in the process. Unwittingly, he has just reawakened one of the most brutal assassins the underworld has ever known.",
+        images: [
+          {
+            ratio: '16:9',
+            width: 153,
+            height: 86,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/153/height/86/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 302,
+            height: 170,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/302/height/170/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 568,
+            height: 320,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/568/height/320/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 960,
+            height: 540,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/960/height/540/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 1280,
+            height: 720,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/1280/height/720/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 2048,
+            height: 1152,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/2048/height/1152/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '1:1',
+            width: 70,
+            height: 70,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_12/version/0/width/70/height/70/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_12',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '1:1',
+            width: 100,
+            height: 100,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_12/version/0/width/100/height/100/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_12',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '2:3',
+            width: 103,
+            height: 154,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/103/height/154/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_2',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '2:3',
+            width: 149,
+            height: 223,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/149/height/223/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_2',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '2:3',
+            width: 212,
+            height: 318,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/212/height/318/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_2',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '2:3',
+            width: 355,
+            height: 534,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/355/height/534/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_2',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '2:3',
+            width: 800,
+            height: 1111,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/800/height/1111/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_2',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '2:3',
+            width: 600,
+            height: 900,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/600/height/900/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_2',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 282,
+            height: 158,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/282/height/158/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '2:3',
+            width: 180,
+            height: 270,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/180/height/270/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_2',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 105,
+            height: 80,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/105/height/80/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 195,
+            height: 150,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/195/height/150/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 105,
+            height: 55,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/105/height/55/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 70,
+            height: 52,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/70/height/52/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 590,
+            height: 445,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/590/height/445/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 300,
+            height: 250,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/300/height/250/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '1:1',
+            width: 500,
+            height: 500,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_12/version/0/width/500/height/500/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_12',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '2:1',
+            width: 200,
+            height: 100,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_17/version/0/width/200/height/100/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_17',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '4:3',
+            width: 400,
+            height: 300,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_3/version/0/width/400/height/300/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_3',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 1080,
+            height: 1960,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/1080/height/1960/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '1:1',
+            width: 800,
+            height: 800,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_12/version/0/width/800/height/800/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_12',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          }
+        ],
+        mediaFiles: [
+          {
+            assetId: 258459,
+            id: 391842,
+            type: 'Web SD',
+            url: 'http://cdnapi.kaltura.com/p/1774581/sp/177458100/playManifest/entryId/1_mphei4ku/format/applehttp/tags/mbr/protocol/http/f/a.m3u8',
+            duration: 1000,
+            externalId: '',
+            fileSize: 0,
+            objectType: 'KalturaMediaFile'
+          },
+          {
+            assetId: 258459,
+            id: 397011,
+            type: 'Mobile_Devices_Main_SD',
+            url: 'http://cdnapi.kaltura.com/p/1774581/sp/177458100/playManifest/entryId/1_mphei4ku/format/applehttp/tags/ipad/protocol/http/f/a.m3u8',
+            duration: 1000,
+            externalId: '',
+            fileSize: 0,
+            objectType: 'KalturaMediaFile'
+          },
+          {
+            assetId: 258459,
+            id: 397012,
+            type: 'Mobile_Devices_Trailer',
+            url: 'http://cdnapi.kaltura.com/p/1774581/sp/177458100/playManifest/entryId/1_fuuycq1y/format/applehttp/tags/ipad/protocol/http/f/a.m3u8',
+            duration: 1000,
+            externalId: '',
+            fileSize: 0,
+            objectType: 'KalturaMediaFile'
+          }
+        ],
+        metas: {
+          synopsis: {
+            value: '',
+            objectType: 'KalturaMultilingualStringValue'
+          },
+          'Short title': {
+            value: '',
+            objectType: 'KalturaMultilingualStringValue'
+          },
+          Runtime: {
+            value: '101',
+            objectType: 'KalturaMultilingualStringValue'
+          },
+          'Catchup logo URL': {
+            value: '',
+            objectType: 'KalturaMultilingualStringValue'
+          },
+          'App Link': {
+            value: '',
+            objectType: 'KalturaMultilingualStringValue'
+          },
+          Country: {
+            value: '',
+            objectType: 'KalturaMultilingualStringValue'
+          },
+          QUALITY: {
+            value: '',
+            objectType: 'KalturaMultilingualStringValue'
+          },
+          'Epg ID': {
+            value: '',
+            objectType: 'KalturaMultilingualStringValue'
+          },
+          tags: {
+            value: '360',
+            objectType: 'KalturaMultilingualStringValue'
+          },
+          'Catchup allowed': {
+            value: false,
+            objectType: 'KalturaBooleanValue'
+          }
+        },
+        tags: {
+          Free: {
+            objects: [
+              {
+                value: 'yes',
+                objectType: 'KalturaMultilingualStringValue'
+              },
+              {
+                value: 'no',
+                objectType: 'KalturaMultilingualStringValue'
+              }
+            ],
+            objectType: 'KalturaMultilingualStringValueArray'
+          },
+          Genre: {
+            objects: [
+              {
+                value: 'Action',
+                objectType: 'KalturaMultilingualStringValue'
+              },
+              {
+                value: 'Thriller',
+                objectType: 'KalturaMultilingualStringValue'
+              }
+            ],
+            objectType: 'KalturaMultilingualStringValueArray'
+          },
+          'Parental Rating': {
+            objects: [
+              {
+                value: 'G',
+                objectType: 'KalturaMultilingualStringValue'
+              },
+              {
+                value: 'PG',
+                objectType: 'KalturaMultilingualStringValue'
+              }
+            ],
+            objectType: 'KalturaMultilingualStringValueArray'
+          },
+          QUALITY: {
+            objects: [
+              {
+                value: 'hd',
+                objectType: 'KalturaMultilingualStringValue'
+              },
+              {
+                value: 'sd',
+                objectType: 'KalturaMultilingualStringValue'
+              }
+            ],
+            objectType: 'KalturaMultilingualStringValueArray'
+          },
+          Source: {
+            objects: [
+              {
+                value: 'Web3',
+                objectType: 'KalturaMultilingualStringValue'
+              }
+            ],
+            objectType: 'KalturaMultilingualStringValueArray'
+          }
+        },
+        startDate: 946684800,
+        endDate: 2524608000,
+        enableCdvr: false,
+        enableCatchUp: false,
+        enableStartOver: false,
+        enableTrickPlay: false,
+        objectType: 'KalturaMediaAsset'
+      }
+    ],
+    executionTime: 1.15160215
+  }
+};
+
+const AnonymousPlaylistByEntryList = {
+  response: {
+    result: [
+      {
+        objectType: 'KalturaMediaAsset',
+        catchUpBuffer: 0,
+        trickPlayBuffer: 0,
+        enableRecordingPlaybackNonEntitledChannel: false,
+        entryId: '123456',
+        id: 259153,
+        type: 420,
+        name: 'Citizenfour',
+        description:
+          '*** Rent MoviePerViewGold *** In June 2013, Laura Poitras and reporter Glenn Greenwald flew to Hong Kong for the first of many meetings with Edward Snowden. She brought her camera with her. The film that resulted from this series of tense encounters is absolutely sui generis in the history of cinema:  a 100% real-life thriller unfolding minute by minute before our eyes. Poitras is a great and brave filmmaker, but she is also a masterful storyteller: she compresses the many days of questioning, waiting, confirming, watching the world’s reaction and agonizing over the next move, into both a great character study of Snowden and a narrative that will leave you on the edge of your seat as it inexorably moves toward its conclusion.',
+        images: [
+          {
+            ratio: '16:9',
+            width: 153,
+            height: 86,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/153/height/86/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 302,
+            height: 170,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/302/height/170/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 568,
+            height: 320,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/568/height/320/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 960,
+            height: 540,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/960/height/540/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 1280,
+            height: 720,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/1280/height/720/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 2048,
+            height: 1152,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/2048/height/1152/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '1:1',
+            width: 70,
+            height: 70,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_12/version/0/width/70/height/70/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_12',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '1:1',
+            width: 100,
+            height: 100,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_12/version/0/width/100/height/100/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_12',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '2:3',
+            width: 103,
+            height: 154,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/103/height/154/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_2',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '2:3',
+            width: 149,
+            height: 223,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/149/height/223/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_2',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '2:3',
+            width: 212,
+            height: 318,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/212/height/318/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_2',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '2:3',
+            width: 355,
+            height: 534,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/355/height/534/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_2',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '2:3',
+            width: 800,
+            height: 1111,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/800/height/1111/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_2',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '2:3',
+            width: 600,
+            height: 900,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/600/height/900/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_2',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 282,
+            height: 158,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/282/height/158/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '2:3',
+            width: 180,
+            height: 270,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/180/height/270/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_2',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 105,
+            height: 80,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/105/height/80/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 195,
+            height: 150,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/195/height/150/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 105,
+            height: 55,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/105/height/55/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 70,
+            height: 52,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/70/height/52/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 590,
+            height: 445,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/590/height/445/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 300,
+            height: 250,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/300/height/250/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '1:1',
+            width: 500,
+            height: 500,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_12/version/0/width/500/height/500/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_12',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '2:1',
+            width: 200,
+            height: 100,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_17/version/0/width/200/height/100/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_17',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '4:3',
+            width: 400,
+            height: 300,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_3/version/0/width/400/height/300/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_3',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 1080,
+            height: 1960,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/1080/height/1960/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '1:1',
+            width: 800,
+            height: 800,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_12/version/0/width/800/height/800/quality/100',
+            version: 0,
+            id: 'a77c3f7b5d084d59b6e5363a3087fc2e_12',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          }
+        ],
+        mediaFiles: [
+          {
+            assetId: 259153,
+            id: 393231,
+            type: 'Web trailer',
+            url: 'http://cdnapi.kaltura.com/p/1774581/sp/177458100/playManifest/entryId/1_5cpvfprf/format/applehttp/tags/mbr/protocol/http/f/a.m3u8',
+            duration: 1000,
+            externalId: '',
+            fileSize: 0,
+            objectType: 'KalturaMediaFile'
+          },
+          {
+            assetId: 259153,
+            id: 393232,
+            type: 'Web SD',
+            url: 'http://cdnapi.kaltura.com/p/1774581/sp/177458100/playManifest/entryId/1_i8pie276/format/applehttp/tags/mbr/protocol/http/f/a.m3u8',
+            duration: 1000,
+            externalId: '',
+            fileSize: 0,
+            objectType: 'KalturaMediaFile'
+          },
+          {
+            assetId: 259153,
+            id: 398401,
+            type: 'Mobile_Devices_Main_HD_FP',
+            url: 'http://cdnapi.kaltura.com/p/1774581/sp/177458100/playManifest/entryId/1_i8pie276/format/applehttp/tags/ipad/protocol/http/f/a.m3u8',
+            duration: 1000,
+            externalId: '',
+            fileSize: 0,
+            objectType: 'KalturaMediaFile'
+          },
+          {
+            assetId: 259153,
+            id: 398402,
+            type: 'Mobile_Devices_Trailer',
+            url: 'http://cdnapi.kaltura.com/p/1774581/sp/177458100/playManifest/entryId/1_5cpvfprf/format/applehttp/tags/ipad/protocol/http/f/a.m3u8',
+            duration: 1000,
+            externalId: '',
+            fileSize: 0,
+            objectType: 'KalturaMediaFile'
+          },
+          {
+            assetId: 259153,
+            id: 804398,
+            type: 'Mobile_Devices_Main_SD',
+            url: 'http://cdnapi.kaltura.com/p/1774581/sp/177458100/playManifest/entryId/1_tzhsuqij/format/applehttp/tags/ipad/protocol/http/f/a.m3u8',
+            duration: 0,
+            externalId: '',
+            fileSize: 0,
+            objectType: 'KalturaMediaFile'
+          }
+        ],
+        metas: {
+          synopsis: {
+            value: '',
+            objectType: 'KalturaMultilingualStringValue'
+          },
+          'Short title': {
+            value: '',
+            objectType: 'KalturaMultilingualStringValue'
+          },
+          Runtime: {
+            value: '114',
+            objectType: 'KalturaMultilingualStringValue'
+          },
+          'Catchup logo URL': {
+            value: '',
+            objectType: 'KalturaMultilingualStringValue'
+          },
+          'App Link': {
+            value: '',
+            objectType: 'KalturaMultilingualStringValue'
+          },
+          Country: {
+            value: '',
+            objectType: 'KalturaMultilingualStringValue'
+          },
+          QUALITY: {
+            value: '',
+            objectType: 'KalturaMultilingualStringValue'
+          },
+          'Epg ID': {
+            value: '',
+            objectType: 'KalturaMultilingualStringValue'
+          },
+          'Catchup allowed': {
+            value: false,
+            objectType: 'KalturaBooleanValue'
+          }
+        },
+        tags: {
+          Free: {
+            objects: [
+              {
+                value: 'yes',
+                objectType: 'KalturaMultilingualStringValue'
+              },
+              {
+                value: 'no',
+                objectType: 'KalturaMultilingualStringValue'
+              }
+            ],
+            objectType: 'KalturaMultilingualStringValueArray'
+          },
+          Genre: {
+            objects: [
+              {
+                value: 'Documentary',
+                objectType: 'KalturaMultilingualStringValue'
+              }
+            ],
+            objectType: 'KalturaMultilingualStringValueArray'
+          },
+          'Parental Rating': {
+            objects: [
+              {
+                value: 'PG',
+                objectType: 'KalturaMultilingualStringValue'
+              }
+            ],
+            objectType: 'KalturaMultilingualStringValueArray'
+          },
+          QUALITY: {
+            objects: [
+              {
+                value: 'sd',
+                objectType: 'KalturaMultilingualStringValue'
+              },
+              {
+                value: 'hd',
+                objectType: 'KalturaMultilingualStringValue'
+              }
+            ],
+            objectType: 'KalturaMultilingualStringValueArray'
+          },
+          Source: {
+            objects: [
+              {
+                value: 'Web3',
+                objectType: 'KalturaMultilingualStringValue'
+              }
+            ],
+            objectType: 'KalturaMultilingualStringValueArray'
+          }
+        },
+        startDate: 946684800,
+        endDate: 2524608000,
+        enableCdvr: false,
+        enableCatchUp: false,
+        enableStartOver: false,
+        enableTrickPlay: false
+      },
+      {
+        objectType: 'KalturaMediaAsset',
+        catchUpBuffer: 0,
+        trickPlayBuffer: 0,
+        enableRecordingPlaybackNonEntitledChannel: false,
+        entryId: '123456',
+        id: 258459,
+        type: 420,
+        name: 'John Wick',
+        description:
+          "*** Free *** After the sudden death of his beloved wife, John Wick receives one last gift from her, a beagle puppy named Daisy, and a note imploring him not to forget how to love. But John's mourning is interrupted when his 1969 Boss Mustang catches the eye of sadistic thug Iosef Tarasov who breaks into his house and steals it, beating John unconscious in the process. Unwittingly, he has just reawakened one of the most brutal assassins the underworld has ever known.",
+        images: [
+          {
+            ratio: '16:9',
+            width: 153,
+            height: 86,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/153/height/86/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 302,
+            height: 170,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/302/height/170/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 568,
+            height: 320,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/568/height/320/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 960,
+            height: 540,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/960/height/540/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 1280,
+            height: 720,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/1280/height/720/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 2048,
+            height: 1152,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/2048/height/1152/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '1:1',
+            width: 70,
+            height: 70,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_12/version/0/width/70/height/70/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_12',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '1:1',
+            width: 100,
+            height: 100,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_12/version/0/width/100/height/100/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_12',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '2:3',
+            width: 103,
+            height: 154,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/103/height/154/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_2',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '2:3',
+            width: 149,
+            height: 223,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/149/height/223/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_2',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '2:3',
+            width: 212,
+            height: 318,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/212/height/318/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_2',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '2:3',
+            width: 355,
+            height: 534,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/355/height/534/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_2',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '2:3',
+            width: 800,
+            height: 1111,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/800/height/1111/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_2',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '2:3',
+            width: 600,
+            height: 900,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/600/height/900/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_2',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 282,
+            height: 158,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/282/height/158/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '2:3',
+            width: 180,
+            height: 270,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/180/height/270/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_2',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 105,
+            height: 80,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/105/height/80/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 195,
+            height: 150,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/195/height/150/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 105,
+            height: 55,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/105/height/55/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 70,
+            height: 52,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/70/height/52/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 590,
+            height: 445,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/590/height/445/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 300,
+            height: 250,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/300/height/250/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '1:1',
+            width: 500,
+            height: 500,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_12/version/0/width/500/height/500/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_12',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '2:1',
+            width: 200,
+            height: 100,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_17/version/0/width/200/height/100/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_17',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '4:3',
+            width: 400,
+            height: 300,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_3/version/0/width/400/height/300/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_3',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '16:9',
+            width: 1080,
+            height: 1960,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/1080/height/1960/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_1',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          },
+          {
+            ratio: '1:1',
+            width: 800,
+            height: 800,
+            url:
+              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_12/version/0/width/800/height/800/quality/100',
+            version: 0,
+            id: '9ffec13301184334acf6b491ce035ee9_12',
+            isDefault: false,
+            objectType: 'KalturaMediaImage'
+          }
+        ],
+        mediaFiles: [
+          {
+            assetId: 258459,
+            id: 391842,
+            type: 'Web SD',
+            url: 'http://cdnapi.kaltura.com/p/1774581/sp/177458100/playManifest/entryId/1_mphei4ku/format/applehttp/tags/mbr/protocol/http/f/a.m3u8',
+            duration: 1000,
+            externalId: '',
+            fileSize: 0,
+            objectType: 'KalturaMediaFile'
+          },
+          {
+            assetId: 258459,
+            id: 397011,
+            type: 'Mobile_Devices_Main_SD',
+            url: 'http://cdnapi.kaltura.com/p/1774581/sp/177458100/playManifest/entryId/1_mphei4ku/format/applehttp/tags/ipad/protocol/http/f/a.m3u8',
+            duration: 1000,
+            externalId: '',
+            fileSize: 0,
+            objectType: 'KalturaMediaFile'
+          },
+          {
+            assetId: 258459,
+            id: 397012,
+            type: 'Mobile_Devices_Trailer',
+            url: 'http://cdnapi.kaltura.com/p/1774581/sp/177458100/playManifest/entryId/1_fuuycq1y/format/applehttp/tags/ipad/protocol/http/f/a.m3u8',
+            duration: 1000,
+            externalId: '',
+            fileSize: 0,
+            objectType: 'KalturaMediaFile'
+          }
+        ],
+        metas: {
+          synopsis: {
+            value: '',
+            objectType: 'KalturaMultilingualStringValue'
+          },
+          'Short title': {
+            value: '',
+            objectType: 'KalturaMultilingualStringValue'
+          },
+          Runtime: {
+            value: '101',
+            objectType: 'KalturaMultilingualStringValue'
+          },
+          'Catchup logo URL': {
+            value: '',
+            objectType: 'KalturaMultilingualStringValue'
+          },
+          'App Link': {
+            value: '',
+            objectType: 'KalturaMultilingualStringValue'
+          },
+          Country: {
+            value: '',
+            objectType: 'KalturaMultilingualStringValue'
+          },
+          QUALITY: {
+            value: '',
+            objectType: 'KalturaMultilingualStringValue'
+          },
+          'Epg ID': {
+            value: '',
+            objectType: 'KalturaMultilingualStringValue'
+          },
+          tags: {
+            value: '360',
+            objectType: 'KalturaMultilingualStringValue'
+          },
+          'Catchup allowed': {
+            value: false,
+            objectType: 'KalturaBooleanValue'
+          }
+        },
+        tags: {
+          Free: {
+            objects: [
+              {
+                value: 'yes',
+                objectType: 'KalturaMultilingualStringValue'
+              },
+              {
+                value: 'no',
+                objectType: 'KalturaMultilingualStringValue'
+              }
+            ],
+            objectType: 'KalturaMultilingualStringValueArray'
+          },
+          Genre: {
+            objects: [
+              {
+                value: 'Action',
+                objectType: 'KalturaMultilingualStringValue'
+              },
+              {
+                value: 'Thriller',
+                objectType: 'KalturaMultilingualStringValue'
+              }
+            ],
+            objectType: 'KalturaMultilingualStringValueArray'
+          },
+          'Parental Rating': {
+            objects: [
+              {
+                value: 'G',
+                objectType: 'KalturaMultilingualStringValue'
+              },
+              {
+                value: 'PG',
+                objectType: 'KalturaMultilingualStringValue'
+              }
+            ],
+            objectType: 'KalturaMultilingualStringValueArray'
+          },
+          QUALITY: {
+            objects: [
+              {
+                value: 'hd',
+                objectType: 'KalturaMultilingualStringValue'
+              },
+              {
+                value: 'sd',
+                objectType: 'KalturaMultilingualStringValue'
+              }
+            ],
+            objectType: 'KalturaMultilingualStringValueArray'
+          },
+          Source: {
+            objects: [
+              {
+                value: 'Web3',
+                objectType: 'KalturaMultilingualStringValue'
+              }
+            ],
+            objectType: 'KalturaMultilingualStringValueArray'
+          }
+        },
+        startDate: 946684800,
+        endDate: 2524608000,
+        enableCdvr: false,
+        enableCatchUp: false,
+        enableStartOver: false,
+        enableTrickPlay: false
+      }
+    ],
+    executionTime: 1.09587932
+  }
+};
+
+export {AnonymousEntryWithoutUIConfWithDrmData, LiveEntryNoDrmData, BlockActionEntry, PlaylistByEntryList, AnonymousPlaylistByEntryList};

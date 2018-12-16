@@ -129,6 +129,74 @@ describe('OTTProvider.partnerId:198', function() {
   });
 });
 
+describe('getEntryListConfig', function() {
+  let provider, sandbox;
+  const partnerId = 198;
+  const ks =
+    'djJ8MTk4fCkf82moylM8rVli2azka7KoJea3ITlM8Vh3_dYGU722OoJWDCS7_Pp8cqm1z6QtZAfqjGr36SjPr2GbuNKy1ejIDs7KLFpWd_VCEKKtOcwzaJ11FopaSEspI-uJMGFTvS0AmIBE1f137G36MYjOlMc=';
+  const playerVersion = '1.2.3';
+
+  beforeEach(() => {
+    sandbox = sinon.sandbox.create();
+    provider = new OTTProvider({partnerId: partnerId}, playerVersion);
+  });
+
+  afterEach(() => {
+    sandbox.restore();
+    MultiRequestBuilder.prototype.execute.restore();
+  });
+
+  it('should load a playlist by entry list - anonymous', done => {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+      return new Promise(resolve => {
+        resolve({response: new MultiRequestResult(BE_DATA.PlaylistByEntryList.response)});
+      });
+    });
+    provider.getEntryListConfig({entries: ['259153', {entryId: '258459'}]}).then(
+      entryListConfig => {
+        try {
+          entryListConfig.id.should.equal('');
+          entryListConfig.items.length.should.equal(2);
+          entryListConfig.metadata.name.should.equal('');
+          entryListConfig.metadata.description.should.equal('');
+          entryListConfig.poster.should.equal('');
+          done();
+        } catch (err) {
+          done(err);
+        }
+      },
+      err => {
+        done(err);
+      }
+    );
+  });
+
+  it('should load a playlist by entry list - with KS', done => {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+      return new Promise(resolve => {
+        resolve({response: new MultiRequestResult(BE_DATA.AnonymousPlaylistByEntryList.response)});
+      });
+    });
+    provider.getEntryListConfig({entries: ['259153', {entryId: '258459'}], ks}).then(
+      entryListConfig => {
+        try {
+          entryListConfig.id.should.equal('');
+          entryListConfig.items.length.should.equal(2);
+          entryListConfig.metadata.name.should.equal('');
+          entryListConfig.metadata.description.should.equal('');
+          entryListConfig.poster.should.equal('');
+          done();
+        } catch (err) {
+          done(err);
+        }
+      },
+      err => {
+        done(err);
+      }
+    );
+  });
+});
+
 describe('logger', () => {
   const provider = new OTTProvider({partnerId: partnerId}, playerVersion);
 

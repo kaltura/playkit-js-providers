@@ -5,6 +5,7 @@ import OTTConfiguration from './config';
 import OTTDataLoaderManager from './loaders/data-loader-manager';
 import OTTSessionLoader from './loaders/session-loader';
 import OTTAssetLoader from './loaders/asset-loader';
+import OTTAssetListLoader from './loaders/asset-list-loader';
 import OTTProviderParser from './provider-parser';
 import KalturaAsset from './response-types/kaltura-asset';
 import KalturaPlaybackContext from './response-types/kaltura-playback-context';
@@ -88,21 +89,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
         isAnonymous: this._isAnonymous,
         partnerId: this.partnerId
       },
-      sources: {
-        hls: [],
-        dash: [],
-        progressive: [],
-        id: '',
-        duration: 0,
-        type: MediaEntry.Type.UNKNOWN,
-        poster: '',
-        dvr: false,
-        vr: null,
-        metadata: {
-          name: '',
-          description: ''
-        }
-      },
+      sources: this._getDefaultSourcesObject(),
       plugins: {}
     };
     if (this.uiConfId) {
@@ -129,28 +116,109 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
             });
           }
           const mediaEntry = OTTProviderParser.getMediaEntry(response, requestData);
-          const mediaSources = mediaEntry.sources.toJSON();
-          mediaConfig.sources.hls = mediaSources.hls;
-          mediaConfig.sources.dash = mediaSources.dash;
-          mediaConfig.sources.progressive = mediaSources.progressive;
-          mediaConfig.sources.id = mediaEntry.id;
-          mediaConfig.sources.duration = mediaEntry.duration;
-          mediaConfig.sources.type = mediaEntry.type;
-          mediaConfig.sources.dvr = !!mediaEntry.dvrStatus;
-          mediaConfig.sources.poster = mediaEntry.poster;
-          if (
-            mediaEntry.metadata &&
-            mediaEntry.metadata.metas &&
-            typeof mediaEntry.metadata.metas.tags === 'string' &&
-            mediaEntry.metadata.metas.tags.indexOf('360') > -1
-          ) {
-            mediaConfig.sources.vr = {};
-          }
-          Object.assign(mediaConfig.sources.metadata, mediaEntry.metadata);
+          Object.assign(mediaConfig.sources, this._getSourcesObject(mediaEntry));
         }
       }
     }
     this._logger.debug('Data parsing finished', mediaConfig);
     return mediaConfig;
+  }
+
+  /**
+   * Gets playlist config from entry list.
+   * @param {ProviderEntryListObject} entryListInfo - ott entry list info
+   * @returns {Promise<ProviderPlaylistObject>} - The provider playlist config
+   */
+  getEntryListConfig(entryListInfo: ProviderEntryListObject): Promise<ProviderPlaylistObject> {
+    if (entryListInfo.ks) {
+      this.ks = entryListInfo.ks;
+      this._isAnonymous = false;
+    }
+    this._dataLoader = new OTTDataLoaderManager(this.partnerId, this.ks, this._networkRetryConfig);
+    return new Promise((resolve, reject) => {
+      const entries = entryListInfo.entries;
+      if (entries && entries.length) {
+        let ks: string = this.ks;
+        if (!ks) {
+          ks = '{1:result:ks}';
+          this._dataLoader.add(OTTSessionLoader, {partnerId: this.partnerId});
+        }
+        this._dataLoader.add(OTTAssetListLoader, {entries, ks});
+        this._dataLoader.fetchData().then(
+          response => {
+            resolve(this._parseEntryListDataFromResponse(response));
+          },
+          err => {
+            reject(err);
+          }
+        );
+      } else {
+        reject({success: false, data: 'Missing mandatory parameter'});
+      }
+    });
+  }
+
+  _parseEntryListDataFromResponse(data: Map<string, Function>): ProviderPlaylistObject {
+    this._logger.debug('Data parsing started');
+    const playlistConfig: ProviderPlaylistObject = {
+      id: '',
+      metadata: {
+        name: '',
+        description: ''
+      },
+      poster: '',
+      items: []
+    };
+    if (data && data.has(OTTAssetListLoader.id)) {
+      const playlistLoader = data.get(OTTAssetListLoader.id);
+      if (playlistLoader && playlistLoader.response) {
+        const entryList = OTTProviderParser.getEntryList(playlistLoader.response);
+        entryList.items.forEach(i => playlistConfig.items.push({sources: this._getSourcesObject(i)}));
+      }
+    }
+    this._logger.debug('Data parsing finished', playlistConfig);
+    return playlistConfig;
+  }
+
+  _getDefaultSourcesObject(): ProviderMediaConfigSourcesObject {
+    return {
+      hls: [],
+      dash: [],
+      progressive: [],
+      id: '',
+      duration: 0,
+      type: MediaEntry.Type.UNKNOWN,
+      poster: '',
+      dvr: false,
+      vr: null,
+      metadata: {
+        name: '',
+        description: '',
+        tags: ''
+      }
+    };
+  }
+
+  _getSourcesObject(mediaEntry: MediaEntry) {
+    const sourcesObject: ProviderMediaConfigSourcesObject = this._getDefaultSourcesObject();
+    const mediaSources = mediaEntry.sources.toJSON();
+    sourcesObject.hls = mediaSources.hls;
+    sourcesObject.dash = mediaSources.dash;
+    sourcesObject.progressive = mediaSources.progressive;
+    sourcesObject.id = mediaEntry.id;
+    sourcesObject.duration = mediaEntry.duration;
+    sourcesObject.type = mediaEntry.type;
+    sourcesObject.dvr = !!mediaEntry.dvrStatus;
+    sourcesObject.poster = mediaEntry.poster;
+    if (
+      mediaEntry.metadata &&
+      mediaEntry.metadata.metas &&
+      typeof mediaEntry.metadata.metas.tags === 'string' &&
+      mediaEntry.metadata.metas.tags.indexOf('360') > -1
+    ) {
+      sourcesObject.vr = {};
+    }
+    Object.assign(sourcesObject.metadata, mediaEntry.metadata);
+    return sourcesObject;
   }
 }

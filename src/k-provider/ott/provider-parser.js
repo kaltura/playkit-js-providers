@@ -7,6 +7,7 @@ import MediaEntry from '../../entities/media-entry';
 import Drm from '../../entities/drm';
 import MediaSource from '../../entities/media-source';
 import MediaSources from '../../entities/media-sources';
+import EntryList from '../../entities/entry-list';
 import {SupportedStreamFormat, isProgressiveSource} from '../../entities/media-format';
 import KalturaDrmPlaybackPluginData from '../common/response-types/kaltura-drm-playback-plugin-data';
 import KalturaRuleAction from './response-types/kaltura-rule-action';
@@ -48,21 +49,46 @@ export default class OTTProviderParser {
    */
   static getMediaEntry(assetResponse: any, requestData: Object): MediaEntry {
     const mediaEntry = new MediaEntry();
+    OTTProviderParser._fillBaseData(mediaEntry, assetResponse);
     const playbackContext = assetResponse.playBackContextResult;
     const mediaAsset = assetResponse.mediaDataResult;
     const kalturaSources = playbackContext.sources;
-    const metaData = OTTProviderParser.reconstructMetadata(mediaAsset);
-    metaData.description = mediaAsset.description;
-    metaData.name = mediaAsset.name;
-    mediaEntry.metadata = metaData;
-    mediaEntry.poster = OTTProviderParser._getPoster(mediaAsset.pictures);
-    mediaEntry.id = mediaAsset.id;
     const filteredKalturaSources = OTTProviderParser._filterSourcesByFormats(kalturaSources, requestData.formats);
     mediaEntry.sources = OTTProviderParser._getParsedSources(filteredKalturaSources);
     const typeData = OTTProviderParser._getMediaType(mediaAsset.data, requestData.mediaType, requestData.contextType);
     mediaEntry.type = typeData.type;
     mediaEntry.dvrStatus = typeData.dvrStatus;
     mediaEntry.duration = Math.max.apply(Math, kalturaSources.map(source => source.duration));
+    return mediaEntry;
+  }
+
+  /**
+   * Returns parsed entry list by given OTT response objects
+   * @function getEntryList
+   * @param {any} playlistResponse - response
+   * @returns {Playlist} - The entry list
+   * @static
+   * @public
+   */
+  static getEntryList(playlistResponse: any): EntryList {
+    const entryList = new EntryList();
+    const playlistItems = playlistResponse.playlistItems.entries;
+    playlistItems.forEach(entry => {
+      const mediaEntry = new MediaEntry();
+      OTTProviderParser._fillBaseData(mediaEntry, entry);
+      entryList.items.push(mediaEntry);
+    });
+    return entryList;
+  }
+
+  static _fillBaseData(mediaEntry: MediaEntry, assetResponse: any) {
+    const mediaAsset = assetResponse.mediaDataResult;
+    const metaData = OTTProviderParser.reconstructMetadata(mediaAsset);
+    metaData.description = mediaAsset.description;
+    metaData.name = mediaAsset.name;
+    mediaEntry.metadata = metaData;
+    mediaEntry.poster = OTTProviderParser._getPoster(mediaAsset.pictures);
+    mediaEntry.id = mediaAsset.id;
     return mediaEntry;
   }
 
