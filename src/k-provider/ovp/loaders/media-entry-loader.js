@@ -7,11 +7,14 @@ import KalturaPlaybackContext from '../response-types/kaltura-playback-context';
 import KalturaMetadataListResponse from '../response-types/kaltura-metadata-list-response';
 import KalturaBaseEntryListResponse from '../response-types/kaltura-base-entry-list-response';
 import KalturaMediaEntry from '../response-types/kaltura-media-entry';
+import OVPCaptionService from '../services/captions-service';
+import KalturaExternalCaptionsList from '../response-types/kaltura-external-captions-list';
 
 type OVPMediaEntryLoaderResponse = {
   entry: KalturaMediaEntry,
   playBackContextResult: KalturaPlaybackContext,
-  metadataListResult: KalturaMetadataListResponse
+  metadataListResult: KalturaMetadataListResponse,
+  captionsResult: KalturaExternalCaptionsList
 };
 export type {OVPMediaEntryLoaderResponse};
 
@@ -46,6 +49,7 @@ export default class OVPMediaEntryLoader implements ILoader {
     this._response.entry = mediaEntryResponse.entries[0];
     this._response.playBackContextResult = new KalturaPlaybackContext(response[1].data);
     this._response.metadataListResult = new KalturaMetadataListResponse(response[2].data);
+    this._response.captionsResult = new KalturaExternalCaptionsList(response[3].data, response[4].data);
   }
 
   get response(): OVPMediaEntryLoaderResponse {
@@ -65,6 +69,8 @@ export default class OVPMediaEntryLoader implements ILoader {
     requests.push(OVPBaseEntryService.list(config.serviceUrl, params.ks, params.entryId, params.redirectFromEntryId));
     requests.push(OVPBaseEntryService.getPlaybackContext(config.serviceUrl, params.ks, params.entryId));
     requests.push(OVPMetadataService.list(config.serviceUrl, params.ks, params.entryId));
+    requests.push(OVPCaptionService.metadataList(config.serviceUrl, params.ks, params.entryId));
+    requests.push(OVPCaptionService.getUrl(config.serviceUrl, params.ks, params.entryId));
     return requests;
   }
 
