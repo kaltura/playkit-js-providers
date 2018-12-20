@@ -10,5 +10,5 @@ declare type ProviderMediaConfigSourcesObject = {
   dvr: boolean,
   vr: ?Object,
   metadata: ProviderMediaConfigMetadataObject,
-  captions?: Array<Object>
+  captions?: Array<PKExternalCaptionObject>
 };
