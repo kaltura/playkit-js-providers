@@ -55,7 +55,7 @@ export default class OVPProviderParser {
 
   static parseCaptionResponses(metadata: Object, baseUrl: string): Array<PKExternalCaptionObject> {
     let assetUrl = baseUrl.split('/');
-    return metadata.map(meta => {
+    return metadata.filter(meta => meta.fileExt).map(meta => {
       assetUrl[ASSET_ID_URL_INDEX] = meta.id;
       return {
         type: meta.fileExt,
