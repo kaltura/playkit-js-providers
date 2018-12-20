@@ -21,6 +21,7 @@ export default class MediaSources {
    * @public
    */
   hls: Array<MediaSource>;
+  captions: Array<Object>;
 
   /**
    * @constructor

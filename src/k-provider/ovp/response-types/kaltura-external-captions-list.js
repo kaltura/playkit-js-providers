@@ -20,7 +20,7 @@ export default class KalturaExternalCaptionsList extends ServiceResult {
         const getUrlServiceResult = new ServiceResult(urlObject);
         // need to check if the second request (getURL) didn't have an error
         if (!getUrlServiceResult.hasError) {
-          const templateUrl = getUrlServiceResult.data;
+          const templateUrl = JSON.stringify(getUrlServiceResult.data);
           this.captions = metaDataResponse.objects.map(captionMetadata => {
             return {
               type: captionMetadata.fileExt,
