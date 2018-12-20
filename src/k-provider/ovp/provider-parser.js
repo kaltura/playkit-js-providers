@@ -22,6 +22,11 @@ import {KalturaCaptionType} from './kaltura-caption-type';
 
 const ASSET_ID_URL_INDEX: number = 10;
 
+const CaptionType = {
+  WEBVTT: 'vtt',
+  SRT: 'srt'
+};
+
 export default class OVPProviderParser {
   static _logger = getLogger('OVPProviderParser');
 
@@ -59,7 +64,7 @@ export default class OVPProviderParser {
     return metadata.filter(meta => [KalturaCaptionType.WEBVTT, KalturaCaptionType.SRT].includes(meta.format)).map(meta => {
       assetUrl[ASSET_ID_URL_INDEX] = meta.id;
       return {
-        type: meta.format === KalturaCaptionType.WEBVTT ? 'vtt' : 'srt',
+        type: meta.format === KalturaCaptionType.WEBVTT ? CaptionType.WEBVTT : CaptionType.SRT,
         language: meta.language,
         label: meta.label,
         url: assetUrl.join('/')

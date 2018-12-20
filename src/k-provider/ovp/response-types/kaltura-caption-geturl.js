@@ -10,11 +10,12 @@ export default class KalturaCaptionAssetGetUrlResponse extends ServiceResult {
    * @param {Object} getUrlResponse The response
    */
   constructor(getUrlResponse: Object) {
-    super(getUrlResponse);
+    super({});
+    // As this is a non fatal error, we cannot let this fail all the MultiRequest.
     if (!this.hasError) {
       this.totalCount = getUrlResponse.length;
       if (this.totalCount > 0) {
-        this.baseUrl = this.data;
+        this.baseUrl = getUrlResponse;
       }
     }
   }
