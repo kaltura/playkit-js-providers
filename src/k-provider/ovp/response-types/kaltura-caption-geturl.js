@@ -3,7 +3,7 @@ import ServiceResult from '../../common/base-service-result';
 
 export default class KalturaCaptionAssetGetUrlResponse extends ServiceResult {
   totalCount: number;
-  baseUrl: Array<PKExternalCaptionObject>;
+  baseUrl: Object;
 
   /**
    * @constructor
