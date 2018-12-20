@@ -8,13 +8,14 @@ import KalturaMetadataListResponse from '../response-types/kaltura-metadata-list
 import KalturaBaseEntryListResponse from '../response-types/kaltura-base-entry-list-response';
 import KalturaMediaEntry from '../response-types/kaltura-media-entry';
 import OVPCaptionService from '../services/captions-service';
-import KalturaExternalCaptionsList from '../response-types/kaltura-external-captions-list';
+import KalturaCaptionAssetListResponse from '../response-types/kaltura-caption-list';
+import KalturaCaptionAssetGetUrlResponse from '../response-types/kaltura-caption-geturl';
 
 type OVPMediaEntryLoaderResponse = {
   entry: KalturaMediaEntry,
   playBackContextResult: KalturaPlaybackContext,
   metadataListResult: KalturaMetadataListResponse,
-  captionsResult?: KalturaExternalCaptionsList
+  captionResult?: KalturaCaptionAssetListResponse
 };
 export type {OVPMediaEntryLoaderResponse};
 
@@ -51,8 +52,9 @@ export default class OVPMediaEntryLoader implements ILoader {
     this._response.entry = mediaEntryResponse.entries[0];
     this._response.playBackContextResult = new KalturaPlaybackContext(response[1].data);
     this._response.metadataListResult = new KalturaMetadataListResponse(response[2].data);
-    if (config.experimentalExternalCaptions) {
-      this._response.captionsResult = new KalturaExternalCaptionsList(response[3].data, response[4].data);
+    if (config.experimentalLoadApiCaptions) {
+      this._response.captionResult = new KalturaCaptionAssetListResponse(response[3].data);
+      this._response.getUrlResult = new KalturaCaptionAssetGetUrlResponse(response[4].data);
     }
   }
 
@@ -73,8 +75,8 @@ export default class OVPMediaEntryLoader implements ILoader {
     requests.push(OVPBaseEntryService.list(config.serviceUrl, params.ks, params.entryId, params.redirectFromEntryId));
     requests.push(OVPBaseEntryService.getPlaybackContext(config.serviceUrl, params.ks, params.entryId));
     requests.push(OVPMetadataService.list(config.serviceUrl, params.ks, params.entryId));
-    if (config.experimentalExternalCaptions) {
-      requests.push(OVPCaptionService.metadataList(config.serviceUrl, params.ks, params.entryId));
+    if (config.experimentalLoadApiCaptions) {
+      requests.push(OVPCaptionService.list(config.serviceUrl, params.ks, params.entryId));
       requests.push(OVPCaptionService.getUrl(config.serviceUrl, params.ks, params.entryId));
     }
     return requests;

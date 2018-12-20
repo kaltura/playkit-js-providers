@@ -14,7 +14,7 @@ export default class OVPCaptionService extends OVPService {
    * @returns {RequestBuilder} The request builder
    * @static
    */
-  static metadataList(serviceUrl: string, ks: string, entryId: string): RequestBuilder {
+  static list(serviceUrl: string, ks: string, entryId: string): RequestBuilder {
     const headers: Map<string, string> = new Map();
     headers.set('Content-Type', 'application/json');
     const request = new RequestBuilder(headers);

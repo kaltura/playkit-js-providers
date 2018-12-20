@@ -19,6 +19,8 @@ import KalturaRuleAction from './response-types/kaltura-rule-action';
 import KalturaAccessControlMessage from '../common/response-types/kaltura-access-control-message';
 import type {OVPMediaEntryLoaderResponse} from './loaders/media-entry-loader';
 
+const ASSET_ID_URL_INDEX: number = 10;
+
 export default class OVPProviderParser {
   static _logger = getLogger('OVPProviderParser');
 
@@ -41,11 +43,27 @@ export default class OVPProviderParser {
     const kalturaSources = playbackContext.sources;
 
     mediaEntry.sources = OVPProviderParser._getParsedSources(kalturaSources, ks, partnerId, uiConfId, entry, playbackContext);
-    if (mediaEntryResponse.captionsResult) {
-      mediaEntry.sources.captions = mediaEntryResponse.captionsResult.captions;
+    if (mediaEntryResponse.captionResult) {
+      mediaEntry.sources.captions = OVPProviderParser.parseCaptionResponses(
+        mediaEntryResponse.captionResult.data,
+        mediaEntryResponse.getUrlResult.baseUrl
+      );
     }
     OVPProviderParser._fillBaseData(mediaEntry, entry, metadataList);
     return mediaEntry;
+  }
+
+  static parseCaptionResponses(metadata: Object, baseUrl: string): Array<PKExternalCaptionObject> {
+    let assetUrl = baseUrl.split('/');
+    return metadata.map(meta => {
+      assetUrl[ASSET_ID_URL_INDEX] = meta.id;
+      return {
+        type: meta.fileExt,
+        language: meta.language,
+        label: meta.label,
+        url: assetUrl.join('/')
+      };
+    });
   }
 
   /**

@@ -8,7 +8,7 @@ const defaultConfig: Object = {
     apiVersion: '3.3.0',
     format: 1
   },
-  experimentalExternalCaptions: false
+  experimentalLoadApiCaptions: false
 };
 
 export default class OVPConfiguration {
