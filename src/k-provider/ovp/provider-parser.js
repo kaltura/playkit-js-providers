@@ -18,6 +18,7 @@ import EntryList from '../../entities/entry-list';
 import KalturaRuleAction from './response-types/kaltura-rule-action';
 import KalturaAccessControlMessage from '../common/response-types/kaltura-access-control-message';
 import type {OVPMediaEntryLoaderResponse} from './loaders/media-entry-loader';
+import {KalturaCaptionType} from './kaltura-caption-type';
 
 const ASSET_ID_URL_INDEX: number = 10;
 
@@ -55,10 +56,10 @@ export default class OVPProviderParser {
 
   static parseCaptionResponses(metadata: Object, baseUrl: string): Array<PKExternalCaptionObject> {
     let assetUrl = baseUrl.split('/');
-    return metadata.filter(meta => ['vtt', 'srt'].includes(meta.fileExt)).map(meta => {
+    return metadata.filter(meta => [KalturaCaptionType.WEBVTT, KalturaCaptionType.SRT].includes(meta.format)).map(meta => {
       assetUrl[ASSET_ID_URL_INDEX] = meta.id;
       return {
-        type: meta.fileExt,
+        type: meta.format === KalturaCaptionType.WEBVTT ? 'vtt' : 'srt',
         language: meta.language,
         label: meta.label,
         url: assetUrl.join('/')
