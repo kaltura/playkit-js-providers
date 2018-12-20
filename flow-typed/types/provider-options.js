@@ -6,6 +6,5 @@ declare type ProviderOptionsObject = {
   uiConfId?: number,
   env?: ProviderEnvConfigObject,
   networkRetryParameters?: ProviderNetworkRetryParameters,
-  filterOptions?: ProviderFilterOptionsObject,
-  useExternalCaptions?: boolean
+  filterOptions?: ProviderFilterOptionsObject
 };

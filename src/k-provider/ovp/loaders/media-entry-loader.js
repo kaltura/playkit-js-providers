@@ -14,7 +14,7 @@ type OVPMediaEntryLoaderResponse = {
   entry: KalturaMediaEntry,
   playBackContextResult: KalturaPlaybackContext,
   metadataListResult: KalturaMetadataListResponse,
-  captionsResult: KalturaExternalCaptionsList
+  captionsResult?: KalturaExternalCaptionsList
 };
 export type {OVPMediaEntryLoaderResponse};
 
@@ -30,6 +30,7 @@ export default class OVPMediaEntryLoader implements ILoader {
   /**
    * @constructor
    * @param {Object} params loader params
+   * @boolean {boolean} useExternalCaptions - if we should add captions request to the multirequests.
    */
   constructor(params: Object) {
     this.requests = this.buildRequests(params);
@@ -45,11 +46,14 @@ export default class OVPMediaEntryLoader implements ILoader {
   }
 
   set response(response: any) {
+    const config = OVPConfiguration.get();
     let mediaEntryResponse: KalturaBaseEntryListResponse = new KalturaBaseEntryListResponse(response[0].data);
     this._response.entry = mediaEntryResponse.entries[0];
     this._response.playBackContextResult = new KalturaPlaybackContext(response[1].data);
     this._response.metadataListResult = new KalturaMetadataListResponse(response[2].data);
-    this._response.captionsResult = new KalturaExternalCaptionsList(response[3].data, response[4].data);
+    if (config.experimentalExternalCaptions) {
+      this._response.captionsResult = new KalturaExternalCaptionsList(response[3].data, response[4].data);
+    }
   }
 
   get response(): OVPMediaEntryLoaderResponse {
@@ -69,8 +73,10 @@ export default class OVPMediaEntryLoader implements ILoader {
     requests.push(OVPBaseEntryService.list(config.serviceUrl, params.ks, params.entryId, params.redirectFromEntryId));
     requests.push(OVPBaseEntryService.getPlaybackContext(config.serviceUrl, params.ks, params.entryId));
     requests.push(OVPMetadataService.list(config.serviceUrl, params.ks, params.entryId));
-    requests.push(OVPCaptionService.metadataList(config.serviceUrl, params.ks, params.entryId));
-    requests.push(OVPCaptionService.getUrl(config.serviceUrl, params.ks, params.entryId));
+    if (config.experimentalExternalCaptions) {
+      requests.push(OVPCaptionService.metadataList(config.serviceUrl, params.ks, params.entryId));
+      requests.push(OVPCaptionService.getUrl(config.serviceUrl, params.ks, params.entryId));
+    }
     return requests;
   }
 
