@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.14.0"></a>
+# [2.14.0](https://github.com/kaltura/playkit-js-providers/compare/v2.13.0...v2.14.0) (2018-12-24)
+
+
+### Features
+
+* **FEC-8766:** add closed captions from multi request to external [#74](https://github.com/kaltura/playkit-js-providers/issues/74) ([c10a5c9](https://github.com/kaltura/playkit-js-providers/commit/c10a5c9))
+
+
+
 <a name="2.13.0"></a>
 # [2.13.0](https://github.com/kaltura/playkit-js-providers/compare/v2.12.0...v2.13.0) (2018-12-16)
 
