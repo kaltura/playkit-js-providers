@@ -25,25 +25,4 @@ export default class OVPCaptionService extends OVPService {
     request.params = {ks: ks, 'filter:entryIdEqual': entryId};
     return request;
   }
-
-  /**
-   * Creates an instance of RequestBuilder for caption_captionasset.geturl
-   * @function post
-   * @param {string} serviceUrl The service base URL
-   * @param {string} ks The ks
-   * @param {string} entryId The uiConf ID
-   * @returns {RequestBuilder} The request builder
-   * @static
-   */
-  static getUrl(serviceUrl: string, ks: string): RequestBuilder {
-    const headers: Map<string, string> = new Map();
-    headers.set('Content-Type', 'application/json');
-    const request = new RequestBuilder(headers);
-    request.service = SERVICE_NAME;
-    request.action = 'getUrl';
-    request.method = 'POST';
-    request.url = request.getUrl(serviceUrl);
-    request.params = {id: '{5:result:objects:0:id}', ks: ks};
-    return request;
-  }
 }

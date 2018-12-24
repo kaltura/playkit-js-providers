@@ -9,7 +9,6 @@ import KalturaBaseEntryListResponse from '../response-types/kaltura-base-entry-l
 import KalturaMediaEntry from '../response-types/kaltura-media-entry';
 import OVPCaptionService from '../services/captions-service';
 import KalturaCaptionAssetListResponse from '../response-types/kaltura-caption-list';
-import KalturaCaptionAssetGetUrlResponse from '../response-types/kaltura-caption-geturl';
 
 type OVPMediaEntryLoaderResponse = {
   entry: KalturaMediaEntry,
@@ -54,7 +53,6 @@ export default class OVPMediaEntryLoader implements ILoader {
     this._response.metadataListResult = new KalturaMetadataListResponse(response[2].data);
     if (config.experimentalLoadApiCaptions) {
       this._response.captionResult = new KalturaCaptionAssetListResponse(response[3].data);
-      this._response.getUrlResult = new KalturaCaptionAssetGetUrlResponse(response[4].data);
     }
   }
 
@@ -77,7 +75,6 @@ export default class OVPMediaEntryLoader implements ILoader {
     requests.push(OVPMetadataService.list(config.serviceUrl, params.ks, params.entryId));
     if (config.experimentalLoadApiCaptions) {
       requests.push(OVPCaptionService.list(config.serviceUrl, params.ks, params.entryId));
-      requests.push(OVPCaptionService.getUrl(config.serviceUrl, params.ks, params.entryId));
     }
     return requests;
   }

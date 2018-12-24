@@ -18,14 +18,7 @@ import EntryList from '../../entities/entry-list';
 import KalturaRuleAction from './response-types/kaltura-rule-action';
 import KalturaAccessControlMessage from '../common/response-types/kaltura-access-control-message';
 import type {OVPMediaEntryLoaderResponse} from './loaders/media-entry-loader';
-import {KalturaCaptionType} from './kaltura-caption-type';
-
-const ASSET_ID_URL_INDEX: number = 10;
-
-const CaptionType = {
-  WEBVTT: 'vtt',
-  SRT: 'srt'
-};
+import {ExternalCaptionsBuilder} from './external-captions-builder';
 
 export default class OVPProviderParser {
   static _logger = getLogger('OVPProviderParser');
@@ -50,26 +43,10 @@ export default class OVPProviderParser {
 
     mediaEntry.sources = OVPProviderParser._getParsedSources(kalturaSources, ks, partnerId, uiConfId, entry, playbackContext);
     if (mediaEntryResponse.captionResult) {
-      mediaEntry.sources.captions = OVPProviderParser.parseCaptionResponses(
-        mediaEntryResponse.captionResult.data,
-        mediaEntryResponse.getUrlResult.baseUrl
-      );
+      mediaEntry.sources.captions = ExternalCaptionsBuilder.createConfig(mediaEntryResponse.captionResult.data, ks);
     }
     OVPProviderParser._fillBaseData(mediaEntry, entry, metadataList);
     return mediaEntry;
-  }
-
-  static parseCaptionResponses(metadata: Object, baseUrl: string): Array<PKExternalCaptionObject> {
-    let assetUrl = baseUrl.split('/');
-    return metadata.filter(meta => [KalturaCaptionType.WEBVTT, KalturaCaptionType.SRT].includes(meta.format)).map(meta => {
-      assetUrl[ASSET_ID_URL_INDEX] = meta.id;
-      return {
-        type: meta.format === KalturaCaptionType.WEBVTT ? CaptionType.WEBVTT : CaptionType.SRT,
-        language: meta.language,
-        label: meta.label,
-        url: assetUrl.join('/')
-      };
-    });
   }
 
   /**
