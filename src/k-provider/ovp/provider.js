@@ -265,6 +265,9 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     sourcesObject.type = mediaEntry.type;
     sourcesObject.dvr = !!mediaEntry.dvrStatus;
     sourcesObject.poster = mediaEntry.poster;
+    if (mediaEntry.sources.captions) {
+      sourcesObject.captions = mediaEntry.sources.captions;
+    }
     if (mediaEntry.metadata && typeof mediaEntry.metadata.tags === 'string' && mediaEntry.metadata.tags.indexOf('360') > -1) {
       sourcesObject.vr = {};
     }

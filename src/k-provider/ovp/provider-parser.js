@@ -18,6 +18,7 @@ import EntryList from '../../entities/entry-list';
 import KalturaRuleAction from './response-types/kaltura-rule-action';
 import KalturaAccessControlMessage from '../common/response-types/kaltura-access-control-message';
 import type {OVPMediaEntryLoaderResponse} from './loaders/media-entry-loader';
+import {ExternalCaptionsBuilder} from './external-captions-builder';
 
 export default class OVPProviderParser {
   static _logger = getLogger('OVPProviderParser');
@@ -41,6 +42,9 @@ export default class OVPProviderParser {
     const kalturaSources = playbackContext.sources;
 
     mediaEntry.sources = OVPProviderParser._getParsedSources(kalturaSources, ks, partnerId, uiConfId, entry, playbackContext);
+    if (mediaEntryResponse.captionResult) {
+      mediaEntry.sources.captions = ExternalCaptionsBuilder.createConfig(mediaEntryResponse.captionResult.data, ks);
+    }
     OVPProviderParser._fillBaseData(mediaEntry, entry, metadataList);
     return mediaEntry;
   }

@@ -7,7 +7,8 @@ const defaultConfig: Object = {
   serviceParams: {
     apiVersion: '3.3.0',
     format: 1
-  }
+  },
+  experimentalLoadApiCaptions: false
 };
 
 export default class OVPConfiguration {
