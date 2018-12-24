@@ -14,9 +14,7 @@ export default class KalturaCaptionAssetListResponse extends ServiceResult {
     super(metaDataResponse);
     if (!this.hasError) {
       this.totalCount = metaDataResponse.totalCount;
-      if (this.totalCount > 0) {
-        this.data = metaDataResponse.objects;
-      }
+      this.data = metaDataResponse.objects;
     }
   }
 }
