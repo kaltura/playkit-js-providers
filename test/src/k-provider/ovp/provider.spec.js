@@ -286,13 +286,18 @@ describe('OVPProvider.partnerId:1068292', function() {
 describe('getMediaConfig', function() {
   let provider, sandbox;
   const partnerId = 1068292;
+  const widgetId = '_123456';
   const ks =
     'NTAwZjViZWZjY2NjNTRkNGEyMjU1MTg4OGE1NmUwNDljZWJkMzk1MXwxMDY4MjkyOzEwNjgyOTI7MTQ5MDE3NjE0NjswOzE0OTAwODk3NDYuMDIyNjswO3ZpZXc6Kix3aWRnZXQ6MTs7';
   const playerVersion = '1.2.3';
 
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
-    provider = new OVPProvider({partnerId: partnerId}, playerVersion);
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+      return new Promise(resolve => {
+        resolve({response: new MultiRequestResult(BE_DATA.AnonymousMocEntryWithoutUIConfWithDrmData.response)});
+      });
+    });
   });
 
   afterEach(() => {
@@ -301,11 +306,7 @@ describe('getMediaConfig', function() {
   });
 
   it('should set anonymous to false when given a KS', done => {
-    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
-      return new Promise(resolve => {
-        resolve({response: new MultiRequestResult(BE_DATA.AnonymousMocEntryWithoutUIConfWithDrmData.response)});
-      });
-    });
+    provider = new OVPProvider({partnerId: partnerId}, playerVersion);
     provider.getMediaConfig({entryId: '1_rwbj3j0a', ks: ks}).then(
       mediaConfig => {
         try {
@@ -319,6 +320,22 @@ describe('getMediaConfig', function() {
         done(err);
       }
     );
+  });
+
+  it('should pass widgetId to the session loader', done => {
+    provider = new OVPProvider({partnerId, widgetId}, playerVersion);
+    provider.getMediaConfig({entryId: '1_rwbj3j0a'}).catch(() => {
+      provider._dataLoader._loaders.get('session')._widgetId.should.equal('_123456');
+      done();
+    });
+  });
+
+  it('should pass _partnerId to the session loader', done => {
+    provider = new OVPProvider({partnerId}, playerVersion);
+    provider.getMediaConfig({entryId: '1_rwbj3j0a'}).catch(() => {
+      provider._dataLoader._loaders.get('session')._widgetId.should.equal('_1068292');
+      done();
+    });
   });
 });
 
