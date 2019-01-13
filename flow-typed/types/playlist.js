@@ -1,7 +1,7 @@
 // @flow
 declare type ProviderPlaylistObject = {
   id: string,
-  metadata: ProviderMediaConfigMetadataObject,
-  poster: string | Array<Object>,
+  metadata: ProviderPlaylistMetadataObject,
+  poster: string,
   items: Array<ProviderPlaylistItemObject>
 };

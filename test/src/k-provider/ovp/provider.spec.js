@@ -8,7 +8,6 @@ describe('OVPProvider.partnerId:1082342', function() {
   let provider, sandbox;
   const partnerId = 1082342;
   const playerVersion = '1.2.3';
-
   beforeEach(() => {
     sandbox = sinon.sandbox.create();
     provider = new OVPProvider({partnerId: partnerId}, playerVersion);
@@ -22,8 +21,7 @@ describe('OVPProvider.partnerId:1082342', function() {
   it('should return config without plugins and without drm data', done => {
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
       return new Promise(resolve => {
-        const response = new MultiRequestResult(BE_DATA.AnonymousMocEntryWithoutUIConfNoDrmData);
-        resolve(response);
+        resolve({response: new MultiRequestResult(BE_DATA.AnonymousMocEntryWithoutUIConfNoDrmData.response)});
       });
     });
     provider.getMediaConfig({entryId: '1_rsrdfext'}).then(
@@ -41,12 +39,32 @@ describe('OVPProvider.partnerId:1082342', function() {
     );
   });
 
+  it('should apply the request host regex on the source urls', done => {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+      return new Promise(resolve => {
+        resolve({response: new MultiRequestResult(BE_DATA.AnonymousMocEntryWithRequestHostRegexAction.response)});
+      });
+    });
+    provider.getMediaConfig({entryId: '1_rsrdfext'}).then(
+      mediaConfig => {
+        try {
+          mediaConfig.should.deep.equal(MEDIA_CONFIG_DATA.RegexAppliedSources);
+          done();
+        } catch (err) {
+          done(err);
+        }
+      },
+      err => {
+        done(err);
+      }
+    );
+  });
+
   it('should return config with plugins and without drm data', done => {
     provider = new OVPProvider({partnerId: partnerId, uiConfId: 38621471}, playerVersion);
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
       return new Promise(resolve => {
-        const response = new MultiRequestResult(BE_DATA.EntryWithUIConfNoDrmData);
-        resolve(response);
+        resolve({response: new MultiRequestResult(BE_DATA.EntryWithUIConfNoDrmData.response)});
       });
     });
     provider.getMediaConfig({entryId: '1_rsrdfext'}).then(
@@ -67,8 +85,7 @@ describe('OVPProvider.partnerId:1082342', function() {
   it('should return config without plugins and without drm data for audio', done => {
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
       return new Promise(resolve => {
-        const response = new MultiRequestResult(BE_DATA.AudioEntryWithoutPlugins);
-        resolve(response);
+        resolve({response: new MultiRequestResult(BE_DATA.AudioEntryWithoutPlugins.response)});
       });
     });
     provider.getMediaConfig({entryId: '0_vyzw3ceu'}).then(
@@ -89,8 +106,7 @@ describe('OVPProvider.partnerId:1082342', function() {
   it('should return config without plugins and without drm data for image', done => {
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
       return new Promise(resolve => {
-        const response = new MultiRequestResult(BE_DATA.ImageEntryWithoutPlugins);
-        resolve(response);
+        resolve({response: new MultiRequestResult(BE_DATA.ImageEntryWithoutPlugins.response)});
       });
     });
     provider.getMediaConfig({entryId: '0_vyzw3ceu'}).then(
@@ -104,6 +120,47 @@ describe('OVPProvider.partnerId:1082342', function() {
       },
       err => {
         done(err);
+      }
+    );
+  });
+
+  it('should return block error for server block response', done => {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+      return new Promise(resolve => {
+        resolve({response: new MultiRequestResult(BE_DATA.BlockActionEntry.response)});
+      });
+    });
+    provider.getMediaConfig({entryId: 1234}).then(
+      mediaConfig => {
+        try {
+          throw new Error('no error returned where block action error was expected', mediaConfig);
+        } catch (e) {
+          done(e);
+        }
+      },
+      err => {
+        const expected = {
+          severity: 2,
+          category: 2,
+          code: 2001,
+          data: {
+            action: {
+              type: 1
+            },
+            messages: [
+              {
+                message: "Un authorized country\nWe're sorry, this content is only available in certain countries.",
+                code: 'COUNTRY_RESTRICTED'
+              }
+            ]
+          }
+        };
+        try {
+          err.should.deep.equal(expected);
+          done();
+        } catch (e) {
+          done(e);
+        }
       }
     );
   });
@@ -129,8 +186,7 @@ describe('OVPProvider.partnerId:1068292', function() {
   it('should return config without plugins with drm data', done => {
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
       return new Promise(resolve => {
-        const response = new MultiRequestResult(BE_DATA.AnonymousMocEntryWithoutUIConfWithDrmData);
-        resolve(response);
+        resolve({response: new MultiRequestResult(BE_DATA.AnonymousMocEntryWithoutUIConfWithDrmData.response)});
       });
     });
     provider.getMediaConfig({entryId: '1_rwbj3j0a'}).then(
@@ -153,9 +209,11 @@ describe('OVPProvider.partnerId:1068292', function() {
   it('should return reject when try to get config with wrong entryId', done => {
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
       return new Promise((resolve, reject) => {
-        const response = new MultiRequestResult(BE_DATA.WrongEntryIDWithoutUIConf);
+        const response = new MultiRequestResult(BE_DATA.WrongEntryIDWithoutUIConf.response);
         if (response.success) {
-          resolve(response);
+          resolve({
+            response
+          });
         } else {
           reject(response);
         }
@@ -163,11 +221,10 @@ describe('OVPProvider.partnerId:1068292', function() {
     });
     provider.getMediaConfig({entryId: '1_rwbj3j0affff'}).then(
       mediaConfig => {
-        done('Get config should throw error', mediaConfig);
+        should.fail(mediaConfig);
       },
       err => {
-        const expectedData = {success: false, results: MEDIA_CONFIG_DATA.entryIDError};
-        err.should.deep.equal(expectedData);
+        err.results.should.deep.equal(MEDIA_CONFIG_DATA.entryIDError);
         done();
       }
     );
@@ -177,8 +234,10 @@ describe('OVPProvider.partnerId:1068292', function() {
     provider = new OVPProvider({partnerId: partnerId, ks: ks, uiConfId: 38601981}, playerVersion);
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
       return new Promise(resolve => {
-        const response = new MultiRequestResult(BE_DATA.EntryWithUIConfWithDrmData);
-        resolve(response);
+        const response = new MultiRequestResult(BE_DATA.EntryWithUIConfWithDrmData.response);
+        resolve({
+          response
+        });
       });
     });
     provider.getMediaConfig({entryId: '1_rwbj3j0a'}).then(
@@ -201,19 +260,197 @@ describe('OVPProvider.partnerId:1068292', function() {
   it('should return reject when try to get config with wrong uiConf ID', done => {
     provider = new OVPProvider({partnerId: partnerId, ks: ks, uiConfId: 38601981}, playerVersion);
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
-      return new Promise(resolve => {
-        const response = new MultiRequestResult(BE_DATA.WrongUiConfID);
-        resolve(response);
+      return new Promise((resolve, reject) => {
+        const response = new MultiRequestResult(BE_DATA.WrongUiConfID.response);
+        if (response.success) {
+          resolve({
+            response
+          });
+        } else {
+          reject(response);
+        }
       });
     });
     provider.getMediaConfig({entryId: '1_rwbj3j0a'}).then(
       mediaConfig => {
-        done('Get config should throw error', mediaConfig);
+        should.fail(mediaConfig);
       },
       err => {
-        const expectedData = {success: false, results: MEDIA_CONFIG_DATA.WrongUiConfID};
-        err.should.deep.equal(expectedData);
+        err.results.should.deep.equal(MEDIA_CONFIG_DATA.WrongUiConfID);
         done();
+      }
+    );
+  });
+});
+
+describe('getMediaConfig', function() {
+  let provider, sandbox;
+  const partnerId = 1068292;
+  const ks =
+    'NTAwZjViZWZjY2NjNTRkNGEyMjU1MTg4OGE1NmUwNDljZWJkMzk1MXwxMDY4MjkyOzEwNjgyOTI7MTQ5MDE3NjE0NjswOzE0OTAwODk3NDYuMDIyNjswO3ZpZXc6Kix3aWRnZXQ6MTs7';
+  const playerVersion = '1.2.3';
+
+  beforeEach(() => {
+    sandbox = sinon.sandbox.create();
+    provider = new OVPProvider({partnerId: partnerId}, playerVersion);
+  });
+
+  afterEach(() => {
+    sandbox.restore();
+    MultiRequestBuilder.prototype.execute.restore();
+  });
+
+  it('should set anonymous to false when given a KS', done => {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+      return new Promise(resolve => {
+        resolve({response: new MultiRequestResult(BE_DATA.AnonymousMocEntryWithoutUIConfWithDrmData.response)});
+      });
+    });
+    provider.getMediaConfig({entryId: '1_rwbj3j0a', ks: ks}).then(
+      mediaConfig => {
+        try {
+          mediaConfig.session.isAnonymous.should.be.false;
+          done();
+        } catch (err) {
+          done(err);
+        }
+      },
+      err => {
+        done(err);
+      }
+    );
+  });
+});
+
+describe('getPlaylistConfig', function() {
+  let provider, sandbox;
+  const partnerId = 1091;
+  const ks = 'MDlkOTIzMzRhZmM4MmJmNTIwYzZkYzZhMzc0ZTRiNWI1NTRiZjNhM3wxMDkxOzEwOTE7MTU0NDc5NzcyMjswOzE1NDQ3MTEzMjIuODk2MTswO3ZpZXc6Kix3aWRnZXQ6MTs7';
+  const playerVersion = '1.2.3';
+
+  beforeEach(() => {
+    sandbox = sinon.sandbox.create();
+    provider = new OVPProvider({partnerId}, playerVersion);
+  });
+
+  afterEach(() => {
+    sandbox.restore();
+    MultiRequestBuilder.prototype.execute.restore();
+  });
+
+  it('should load a playlist by id - anonymous', done => {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+      return new Promise(resolve => {
+        resolve({response: new MultiRequestResult(BE_DATA.AnonymousPlaylistById.response)});
+      });
+    });
+    provider.getPlaylistConfig({playlistId: '0_wckoqjnn'}).then(
+      playlistConfig => {
+        try {
+          playlistConfig.id.should.equal('0_wckoqjnn');
+          playlistConfig.items.length.should.equal(8);
+          playlistConfig.metadata.name.should.equal('Playlist_VOD_Only');
+          playlistConfig.metadata.description.should.equal('Playlist_VOD_Only_desc');
+          playlistConfig.poster.should.equal('http://cdntesting.qa.mkaltura.com/p/1091/sp/0/thumbnail/entry_id/0_wckoqjnn/version/100162');
+          done();
+        } catch (err) {
+          done(err);
+        }
+      },
+      err => {
+        done(err);
+      }
+    );
+  });
+
+  it('should load a playlist by id - with KS', done => {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+      return new Promise(resolve => {
+        resolve({response: new MultiRequestResult(BE_DATA.PlaylistById.response)});
+      });
+    });
+    provider.getPlaylistConfig({playlistId: '0_wckoqjnn', ks}).then(
+      playlistConfig => {
+        try {
+          playlistConfig.id.should.equal('0_wckoqjnn');
+          playlistConfig.items.length.should.equal(8);
+          playlistConfig.metadata.name.should.equal('Playlist_VOD_Only');
+          playlistConfig.metadata.description.should.equal('Playlist_VOD_Only_desc');
+          playlistConfig.poster.should.equal('http://cdntesting.qa.mkaltura.com/p/1091/sp/0/thumbnail/entry_id/0_wckoqjnn/version/100162');
+          done();
+        } catch (err) {
+          done(err);
+        }
+      },
+      err => {
+        done(err);
+      }
+    );
+  });
+});
+
+describe('getEntryListConfig', function() {
+  let provider, sandbox;
+  const partnerId = 1091;
+  const ks = 'MGVjMWI2ZDRkNmUwNTU4ODk5MWQyZmU4NzZlMmU4OGJjYzI5OTFmYnwxMDkxOzEwOTE7MTU0NDc5NDg4NzswOzE1NDQ3MDg0ODcuOTY1OTswO3ZpZXc6Kix3aWRnZXQ6MTs7';
+  const playerVersion = '1.2.3';
+
+  beforeEach(() => {
+    sandbox = sinon.sandbox.create();
+    provider = new OVPProvider({partnerId: partnerId}, playerVersion);
+  });
+
+  afterEach(() => {
+    sandbox.restore();
+    MultiRequestBuilder.prototype.execute.restore();
+  });
+
+  it('should load a playlist by entry list - anonymous', done => {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+      return new Promise(resolve => {
+        resolve({response: new MultiRequestResult(BE_DATA.AnonymousPlaylistByEntryList.response)});
+      });
+    });
+    provider.getEntryListConfig({entries: ['0_nwkp7jtx', {entryId: '0_wifqaipd'}, '0_p8aigvgu']}).then(
+      entryListConfig => {
+        try {
+          entryListConfig.id.should.equal('');
+          entryListConfig.items.length.should.equal(3);
+          entryListConfig.metadata.name.should.equal('');
+          entryListConfig.metadata.description.should.equal('');
+          entryListConfig.poster.should.equal('');
+          done();
+        } catch (err) {
+          done(err);
+        }
+      },
+      err => {
+        done(err);
+      }
+    );
+  });
+
+  it('should load a playlist by entry list - with KS', done => {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+      return new Promise(resolve => {
+        resolve({response: new MultiRequestResult(BE_DATA.PlaylistByEntryList.response)});
+      });
+    });
+    provider.getEntryListConfig({entries: ['0_nwkp7jtx', {entryId: '0_wifqaipd'}, '0_p8aigvgu'], ks}).then(
+      entryListConfig => {
+        try {
+          entryListConfig.id.should.equal('');
+          entryListConfig.items.length.should.equal(3);
+          entryListConfig.metadata.name.should.equal('');
+          entryListConfig.metadata.description.should.equal('');
+          entryListConfig.poster.should.equal('');
+          done();
+        } catch (err) {
+          done(err);
+        }
+      },
+      err => {
+        done(err);
       }
     );
   });

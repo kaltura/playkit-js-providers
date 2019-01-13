@@ -1,5 +1,5 @@
 // @flow
 declare type ProviderEntryListObject = {
-  entries: Array<string>,
+  entries: Array<ProviderMediaInfoObject>,
   ks?: string
 };

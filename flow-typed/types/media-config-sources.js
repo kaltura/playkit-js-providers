@@ -9,5 +9,6 @@ declare type ProviderMediaConfigSourcesObject = {
   poster: string | Array<Object>,
   dvr: boolean,
   vr: ?Object,
-  metadata: ProviderMediaConfigMetadataObject
+  metadata: ProviderMediaConfigMetadataObject,
+  captions?: Array<PKExternalCaptionObject>
 };

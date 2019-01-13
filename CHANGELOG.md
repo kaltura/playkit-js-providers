@@ -2,6 +2,87 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.14.0"></a>
+# [2.14.0](https://github.com/kaltura/playkit-js-providers/compare/v2.13.0...v2.14.0) (2018-12-24)
+
+
+### Features
+
+* **FEC-8766:** add closed captions from multi request to external [#74](https://github.com/kaltura/playkit-js-providers/issues/74) ([c10a5c9](https://github.com/kaltura/playkit-js-providers/commit/c10a5c9))
+
+
+
+<a name="2.13.0"></a>
+# [2.13.0](https://github.com/kaltura/playkit-js-providers/compare/v2.12.0...v2.13.0) (2018-12-16)
+
+
+### Features
+
+* **FEC-8705:** playlist - OTT support ([#73](https://github.com/kaltura/playkit-js-providers/issues/73)) ([a15c53c](https://github.com/kaltura/playkit-js-providers/commit/a15c53c))
+
+
+
+<a name="2.12.0"></a>
+# [2.12.0](https://github.com/kaltura/playkit-js-providers/compare/v2.11.0...v2.12.0) (2018-12-12)
+
+
+### Features
+
+* **FEC-8734:** add protection for invalid source creation ([#70](https://github.com/kaltura/playkit-js-providers/issues/70)) ([8fd30fd](https://github.com/kaltura/playkit-js-providers/commit/8fd30fd))
+
+
+
+<a name="2.11.0"></a>
+# [2.11.0](https://github.com/kaltura/playkit-js-providers/compare/v2.10.1...v2.11.0) (2018-12-04)
+
+
+### Bug Fixes
+
+* **FEC-8739:** block action is not fired from OTT provider ([#71](https://github.com/kaltura/playkit-js-providers/issues/71)) ([2a318db](https://github.com/kaltura/playkit-js-providers/commit/2a318db))
+
+
+### Features
+
+* **FEC-8730:** add kaltura regex action support to providers ([#72](https://github.com/kaltura/playkit-js-providers/issues/72)) ([bb3a9da](https://github.com/kaltura/playkit-js-providers/commit/bb3a9da))
+
+
+
+<a name="2.10.1"></a>
+## [2.10.1](https://github.com/kaltura/playkit-js-providers/compare/v2.10.0...v2.10.1) (2018-11-19)
+
+
+### Bug Fixes
+
+* **FEC-8679:** isAnonymous is set incorrectly ([#68](https://github.com/kaltura/playkit-js-providers/issues/68)) ([c843f73](https://github.com/kaltura/playkit-js-providers/commit/c843f73))
+* 'networkRetryParameters' type causes KalturaPlayerJS build (flow) to fail [#69](https://github.com/kaltura/playkit-js-providers/issues/69) ([6c67907](https://github.com/kaltura/playkit-js-providers/commit/6c67907))
+
+
+
+<a name="2.10.0"></a>
+# [2.10.0](https://github.com/kaltura/playkit-js-providers/compare/v2.9.0...v2.10.0) (2018-11-18)
+
+
+### Bug Fixes
+
+* **FEC-8660:** handle API block action ([#67](https://github.com/kaltura/playkit-js-providers/issues/67)) ([78b3f22](https://github.com/kaltura/playkit-js-providers/commit/78b3f22))
+
+
+### Features
+
+* **FEC-8601:** Add network requests retry mechanism and headers data to the error  ([#66](https://github.com/kaltura/playkit-js-providers/issues/66)) ([695f68a](https://github.com/kaltura/playkit-js-providers/commit/695f68a))
+
+
+
+<a name="2.9.0"></a>
+# [2.9.0](https://github.com/kaltura/playkit-js-providers/compare/v2.8.0...v2.9.0) (2018-11-07)
+
+
+### Features
+
+* **FEC-8541:** add redirectFromEntryId configuration ([4757831](https://github.com/kaltura/playkit-js-providers/commit/4757831))
+
+
+
 <a name="2.8.0"></a>
 # [2.8.0](https://github.com/kaltura/playkit-js-providers/compare/v2.7.3...v2.8.0) (2018-10-28)
 

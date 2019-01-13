@@ -7,9 +7,12 @@ import MediaEntry from '../../entities/media-entry';
 import Drm from '../../entities/drm';
 import MediaSource from '../../entities/media-source';
 import MediaSources from '../../entities/media-sources';
-import {SupportedStreamFormat} from '../../entities/media-format';
+import EntryList from '../../entities/entry-list';
+import {SupportedStreamFormat, isProgressiveSource} from '../../entities/media-format';
 import KalturaDrmPlaybackPluginData from '../common/response-types/kaltura-drm-playback-plugin-data';
-import BaseProviderParser from '../common/base-provider-parser';
+import KalturaRuleAction from './response-types/kaltura-rule-action';
+import KalturaAccessControlMessage from '../common/response-types/kaltura-access-control-message';
+import type {OTTAssetLoaderResponse} from './loaders/asset-loader';
 
 const LIVE_ASST_OBJECT_TYPE: string = 'KalturaLiveAsset';
 
@@ -32,7 +35,7 @@ const MediaTypeCombinations: {[mediaType: string]: Object} = {
   }
 };
 
-export default class OTTProviderParser extends BaseProviderParser {
+export default class OTTProviderParser {
   static _logger = getLogger('OTTProviderParser');
 
   /**
@@ -46,21 +49,46 @@ export default class OTTProviderParser extends BaseProviderParser {
    */
   static getMediaEntry(assetResponse: any, requestData: Object): MediaEntry {
     const mediaEntry = new MediaEntry();
+    OTTProviderParser._fillBaseData(mediaEntry, assetResponse);
     const playbackContext = assetResponse.playBackContextResult;
     const mediaAsset = assetResponse.mediaDataResult;
     const kalturaSources = playbackContext.sources;
-    const metaData = OTTProviderParser.reconstructMetadata(mediaAsset);
-    metaData.description = mediaAsset.description;
-    metaData.name = mediaAsset.name;
-    mediaEntry.metadata = metaData;
-    mediaEntry.poster = OTTProviderParser._getPoster(mediaAsset.pictures);
-    mediaEntry.id = mediaAsset.id;
     const filteredKalturaSources = OTTProviderParser._filterSourcesByFormats(kalturaSources, requestData.formats);
     mediaEntry.sources = OTTProviderParser._getParsedSources(filteredKalturaSources);
     const typeData = OTTProviderParser._getMediaType(mediaAsset.data, requestData.mediaType, requestData.contextType);
     mediaEntry.type = typeData.type;
     mediaEntry.dvrStatus = typeData.dvrStatus;
     mediaEntry.duration = Math.max.apply(Math, kalturaSources.map(source => source.duration));
+    return mediaEntry;
+  }
+
+  /**
+   * Returns parsed entry list by given OTT response objects
+   * @function getEntryList
+   * @param {any} playlistResponse - response
+   * @returns {Playlist} - The entry list
+   * @static
+   * @public
+   */
+  static getEntryList(playlistResponse: any): EntryList {
+    const entryList = new EntryList();
+    const playlistItems = playlistResponse.playlistItems.entries;
+    playlistItems.forEach(entry => {
+      const mediaEntry = new MediaEntry();
+      OTTProviderParser._fillBaseData(mediaEntry, entry);
+      entryList.items.push(mediaEntry);
+    });
+    return entryList;
+  }
+
+  static _fillBaseData(mediaEntry: MediaEntry, assetResponse: any) {
+    const mediaAsset = assetResponse.mediaDataResult;
+    const metaData = OTTProviderParser.reconstructMetadata(mediaAsset);
+    metaData.description = mediaAsset.description;
+    metaData.name = mediaAsset.name;
+    mediaEntry.metadata = metaData;
+    mediaEntry.poster = OTTProviderParser._getPoster(mediaAsset.pictures);
+    mediaEntry.id = mediaAsset.id;
     return mediaEntry;
   }
 
@@ -155,14 +183,16 @@ export default class OTTProviderParser extends BaseProviderParser {
     const sources = new MediaSources();
     const addAdaptiveSource = (source: KalturaPlaybackSource) => {
       const parsedSource = OTTProviderParser._parseAdaptiveSource(source);
-      const sourceFormat = SupportedStreamFormat.get(source.format);
-      sources.map(parsedSource, sourceFormat);
+      if (parsedSource) {
+        const sourceFormat = SupportedStreamFormat.get(source.format);
+        sources.map(parsedSource, sourceFormat);
+      }
     };
     const parseAdaptiveSources = () => {
-      kalturaSources.filter(source => !OTTProviderParser._isProgressiveSource(source)).forEach(addAdaptiveSource);
+      kalturaSources.filter(source => !isProgressiveSource(source.format)).forEach(addAdaptiveSource);
     };
     const parseProgressiveSources = () => {
-      kalturaSources.filter(source => OTTProviderParser._isProgressiveSource(source)).forEach(addAdaptiveSource);
+      kalturaSources.filter(source => isProgressiveSource(source.format)).forEach(addAdaptiveSource);
     };
     if (kalturaSources && kalturaSources.length > 0) {
       parseAdaptiveSources();
@@ -175,11 +205,11 @@ export default class OTTProviderParser extends BaseProviderParser {
    * Returns a parsed adaptive source
    * @function _parseAdaptiveSource
    * @param {KalturaPlaybackSource} kalturaSource - A kaltura source
-   * @returns {MediaSource} - The parsed adaptive kalturaSource
+   * @returns {?MediaSource} - The parsed adaptive kalturaSource
    * @static
    * @private
    */
-  static _parseAdaptiveSource(kalturaSource: ?KalturaPlaybackSource): MediaSource {
+  static _parseAdaptiveSource(kalturaSource: ?KalturaPlaybackSource): ?MediaSource {
     const mediaSource = new MediaSource();
     if (kalturaSource) {
       const playUrl = kalturaSource.url;
@@ -187,11 +217,11 @@ export default class OTTProviderParser extends BaseProviderParser {
       if (mediaFormat) {
         mediaSource.mimetype = mediaFormat.mimeType;
       }
-      if (playUrl === '') {
+      if (!playUrl) {
         OTTProviderParser._logger.error(
           `failed to create play url from source, discarding source: (${kalturaSource.fileId}), ${kalturaSource.format}.`
         );
-        return mediaSource;
+        return null;
       }
       mediaSource.url = playUrl;
       mediaSource.id = kalturaSource.fileId + ',' + kalturaSource.format;
@@ -204,5 +234,17 @@ export default class OTTProviderParser extends BaseProviderParser {
       }
     }
     return mediaSource;
+  }
+
+  static hasBlockAction(response): boolean {
+    return response.playBackContextResult.hasBlockAction();
+  }
+
+  static getBlockAction(response): ?KalturaRuleAction {
+    return response.playBackContextResult.getBlockAction();
+  }
+
+  static getErrorMessages(response: OTTAssetLoaderResponse): Array<KalturaAccessControlMessage> {
+    return response.playBackContextResult.getErrorMessages();
   }
 }

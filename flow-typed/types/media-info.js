@@ -1,10 +1,10 @@
 // @flow
-declare type ProviderMediaInfoObject = {
+declare type OVPProviderMediaInfoObject = {
   entryId: string,
   ks?: string
 };
 
-declare type OTTProviderMediaInfoObject = ProviderMediaInfoObject & {
+declare type OTTProviderMediaInfoObject = OVPProviderMediaInfoObject & {
   mediaType: string,
   contextType: string,
   protocol?: string,
@@ -12,3 +12,5 @@ declare type OTTProviderMediaInfoObject = ProviderMediaInfoObject & {
   assetReferenceType?: string,
   formats?: Array<string>
 };
+
+declare type ProviderMediaInfoObject = OVPProviderMediaInfoObject | OTTProviderMediaInfoObject;
