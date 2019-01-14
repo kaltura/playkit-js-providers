@@ -9,11 +9,11 @@ export default class OVPSessionService extends OVPService {
    * Creates an instance of RequestBuilder for session.startWidgetSession
    * @function anonymousSession
    * @param {string} serviceUrl The service base URL
-   * @param {string} partnerId The partner ID
+   * @param {string} widgetId The widget ID
    * @returns {RequestBuilder} The request builder
    * @static
    */
-  static anonymousSession(serviceUrl: string, partnerId: number): RequestBuilder {
+  static anonymousSession(serviceUrl: string, widgetId: string): RequestBuilder {
     const headers: Map<string, string> = new Map();
     headers.set('Content-Type', 'application/json');
     const request = new RequestBuilder(headers);
@@ -22,7 +22,7 @@ export default class OVPSessionService extends OVPService {
     request.method = 'POST';
     request.url = request.getUrl(serviceUrl);
     request.tag = 'session-startWidget';
-    request.params = {widgetId: '_' + partnerId};
+    request.params = {widgetId};
     return request;
   }
 }

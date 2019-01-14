@@ -4,7 +4,7 @@ import OVPConfiguration from '../config';
 import RequestBuilder from '../../../util/request-builder';
 
 export default class OVPSessionLoader implements ILoader {
-  _partnerId: number;
+  _widgetId: string;
   _requests: Array<RequestBuilder>;
   _response: any = {};
 
@@ -34,7 +34,7 @@ export default class OVPSessionLoader implements ILoader {
    */
   constructor(params: Object) {
     this.requests = this.buildRequests(params);
-    this._partnerId = params.partnerId;
+    this._widgetId = params.widgetId;
   }
 
   /**
@@ -47,7 +47,7 @@ export default class OVPSessionLoader implements ILoader {
   buildRequests(params: Object): Array<RequestBuilder> {
     const config = OVPConfiguration.get();
     const requests: Array<RequestBuilder> = [];
-    requests.push(OVPSessionService.anonymousSession(config.serviceUrl, params.partnerId));
+    requests.push(OVPSessionService.anonymousSession(config.serviceUrl, params.widgetId));
     return requests;
   }
 
@@ -57,6 +57,6 @@ export default class OVPSessionLoader implements ILoader {
    * @returns {boolean} Is valid
    */
   isValid(): boolean {
-    return !!this._partnerId;
+    return !!this._widgetId;
   }
 }
