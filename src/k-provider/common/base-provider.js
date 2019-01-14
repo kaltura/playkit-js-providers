@@ -20,7 +20,7 @@ export default class BaseProvider<MI> {
     return this._partnerId;
   }
 
-  get widgetId(): ?string {
+  get widgetId(): string {
     return this._widgetId || '_' + this._partnerId;
   }
 
