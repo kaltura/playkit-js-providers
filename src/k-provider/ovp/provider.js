@@ -43,7 +43,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
         let ks: string = this.ks;
         if (!ks) {
           ks = '{1:result:ks}';
-          this._dataLoader.add(OVPSessionLoader, {widgetId: this.widgetId || '_' + this.partnerId});
+          this._dataLoader.add(OVPSessionLoader, {widgetId: this.widgetId});
         }
         const redirectFromEntryId = this._getEntryRedirectFilter(mediaInfo);
         this._dataLoader.add(OVPMediaEntryLoader, {entryId, ks, redirectFromEntryId});
@@ -139,7 +139,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
         let ks: string = this.ks;
         if (!ks) {
           ks = '{1:result:ks}';
-          this._dataLoader.add(OVPSessionLoader, {widgetId: this.widgetId || '_' + this.partnerId});
+          this._dataLoader.add(OVPSessionLoader, {widgetId: this.widgetId});
         }
         this._dataLoader.add(OVPPlaylistLoader, {playlistId, ks});
         this._dataLoader.fetchData().then(
@@ -191,7 +191,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
         let ks: string = this.ks;
         if (!ks) {
           ks = '{1:result:ks}';
-          this._dataLoader.add(OVPSessionLoader, {widgetId: this.widgetId || '_' + this.partnerId});
+          this._dataLoader.add(OVPSessionLoader, {widgetId: this.widgetId});
         }
         const redirectFromEntryId = this._getEntryRedirectFilter(entryListInfo);
         this._dataLoader.add(OVPEntryListLoader, {entries, ks, redirectFromEntryId});

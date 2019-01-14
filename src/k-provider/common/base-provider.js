@@ -21,7 +21,7 @@ export default class BaseProvider<MI> {
   }
 
   get widgetId(): ?string {
-    return this._widgetId;
+    return this._widgetId || '_' + this._partnerId;
   }
 
   get uiConfId(): ?number {
