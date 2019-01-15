@@ -4,6 +4,7 @@ import DataLoaderManager from './data-loader-manager';
 
 export default class BaseProvider<MI> {
   _partnerId: number;
+  _widgetId: ?string;
   _ks: string;
   _uiConfId: ?number;
   _dataLoader: DataLoaderManager;
@@ -17,6 +18,10 @@ export default class BaseProvider<MI> {
 
   get partnerId(): number {
     return this._partnerId;
+  }
+
+  get widgetId(): string {
+    return this._widgetId || '_' + this._partnerId;
   }
 
   get uiConfId(): ?number {
@@ -41,6 +46,7 @@ export default class BaseProvider<MI> {
 
   constructor(options: ProviderOptionsObject, playerVersion: string) {
     this._partnerId = options.partnerId;
+    this._widgetId = options.widgetId;
     this._uiConfId = options.uiConfId;
     this._isAnonymous = !options.ks;
     this._ks = options.ks || '';
