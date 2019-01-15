@@ -170,7 +170,18 @@ export default class OVPProviderParser {
       const progressiveSource = kalturaSources.find(source => isProgressiveSource(source.format));
       sources.progressive = OVPProviderParser._parseProgressiveSources(progressiveSource, playbackContext, ks, partnerId, uiConfId, entry.id);
     };
-    if (kalturaSources && kalturaSources.length > 0) {
+
+    const parseExternalMedia = () => {
+      const mediaSource = new MediaSource();
+      mediaSource.mimetype = 'video/youtube';
+      mediaSource.url = entry.referenceId;
+      mediaSource.id = entry.id + '_youtube';
+      sources.progressive.push(mediaSource);
+    };
+
+    if (entry.type === KalturaMediaEntry.EntryType.EXTERNAL_MEDIA.value) {
+      parseExternalMedia();
+    } else if (kalturaSources && kalturaSources.length > 0) {
       parseAdaptiveSources();
       parseProgressiveSources();
     }
