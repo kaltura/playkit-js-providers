@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.15.0"></a>
+# [2.15.0](https://github.com/kaltura/playkit-js-providers/compare/v2.14.0...v2.15.0) (2019-01-20)
+
+
+### Features
+
+* **FEC-8746:** add wid parameter with the OVP provider ([#75](https://github.com/kaltura/playkit-js-providers/issues/75)) ([05028e7](https://github.com/kaltura/playkit-js-providers/commit/05028e7))
+* support external media sources for Youtube ([#76](https://github.com/kaltura/playkit-js-providers/issues/76)) ([443acab](https://github.com/kaltura/playkit-js-providers/commit/443acab))
+
+
+
 <a name="2.14.0"></a>
 # [2.14.0](https://github.com/kaltura/playkit-js-providers/compare/v2.13.0...v2.14.0) (2018-12-24)
 
