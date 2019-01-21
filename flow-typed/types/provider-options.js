@@ -1,7 +1,7 @@
 // @flow
 declare type ProviderOptionsObject = {
   partnerId: number,
-  widgetId: ?string,
+  widgetId?: string,
   logLevel?: string,
   ks?: string,
   uiConfId?: number,
