@@ -1,5 +1,4 @@
 // @flow
-import OVPConfiguration from './config';
 
 const KalturaCaptionType: CaptionType = {
   SRT: '1',
@@ -8,35 +7,22 @@ const KalturaCaptionType: CaptionType = {
   CAP: '4'
 };
 
-const CaptionsFormats: {[format: string]: string} = {
-  WEBVTT: 'vtt'
+const CaptionsFormatsMap: {[format: string]: string} = {
+  '3': 'vtt',
+  '1': 'srt'
 };
 
-const BASE_URL: string = 'index.php/service/caption_captionasset/action/serveWebVTT/captionAssetId/ASSET_ID/segmentIndex/-1/version/2/captions.vtt';
-
-const ASSET_ID_INDEX: number = 6;
-const VERSION_INDEX: number = 10;
-
 class ExternalCaptionsBuilder {
-  static createConfig(metadata: Object, ks: string): Array<PKExternalCaptionObject> {
-    return metadata.filter(meta => [KalturaCaptionType.WEBVTT, KalturaCaptionType.SRT].includes(meta.format)).map(meta => {
+  static createConfig(captions: Array<Object>): Array<PKExternalCaptionObject> {
+    return captions.filter(caption => [KalturaCaptionType.WEBVTT, KalturaCaptionType.SRT].includes(caption.format)).map(caption => {
       return {
-        type: CaptionsFormats.WEBVTT,
-        language: meta.language,
-        label: meta.label,
-        url: ExternalCaptionsBuilder.createUrl(meta, ks)
+        default: caption.isDefault,
+        type: CaptionsFormatsMap[caption.format],
+        language: caption.language,
+        label: caption.label,
+        url: caption.url
       };
     });
-  }
-
-  static createUrl(metadata: Object, ks: string): string {
-    const config = OVPConfiguration.get();
-    let path = BASE_URL.split('/');
-    path[ASSET_ID_INDEX] = metadata.id;
-    path[VERSION_INDEX] = metadata.version;
-    path = path.join('/');
-    ks = ks ? `/ks/${ks}` : ``;
-    return `${config.serviceUrl}/${path}${ks}`;
   }
 }
 
