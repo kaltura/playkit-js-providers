@@ -42,7 +42,7 @@ export default class OVPProviderParser {
     const kalturaSources = playbackContext.sources;
 
     mediaEntry.sources = OVPProviderParser._getParsedSources(kalturaSources, ks, partnerId, uiConfId, entry, playbackContext);
-    if (OVPConfiguration.get().experimentalLoadApiCaptions && playbackContext.data.playbackCaptions) {
+    if (OVPConfiguration.get().useApiCaptions && playbackContext.data.playbackCaptions) {
       mediaEntry.sources.captions = ExternalCaptionsBuilder.createConfig(playbackContext.data.playbackCaptions);
     }
     OVPProviderParser._fillBaseData(mediaEntry, entry, metadataList);

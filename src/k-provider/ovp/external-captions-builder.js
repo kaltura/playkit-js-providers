@@ -16,6 +16,7 @@ class ExternalCaptionsBuilder {
   static createConfig(captions: Array<Object>): Array<PKExternalCaptionObject> {
     return captions.filter(caption => [KalturaCaptionType.WEBVTT, KalturaCaptionType.SRT].includes(caption.format)).map(caption => {
       return {
+        default: caption.isDefault,
         type: CaptionsFormatsMap[caption.format],
         language: caption.language,
         label: caption.label,
