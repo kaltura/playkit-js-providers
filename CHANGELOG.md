@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.16.0"></a>
+# [2.16.0](https://github.com/kaltura/playkit-js-providers/compare/v2.15.1...v2.16.0) (2019-01-24)
+
+
+### Features
+
+* **FEC-8816:** support the new captions API structure in getPlaybackContext ([#78](https://github.com/kaltura/playkit-js-providers/issues/78)) ([15db3de](https://github.com/kaltura/playkit-js-providers/commit/15db3de))
+
+
+
 <a name="2.15.1"></a>
 ## [2.15.1](https://github.com/kaltura/playkit-js-providers/compare/v2.15.0...v2.15.1) (2019-01-21)
 
