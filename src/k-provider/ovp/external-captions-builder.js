@@ -18,7 +18,7 @@ class ExternalCaptionsBuilder {
       return {
         default: caption.isDefault,
         type: CaptionsFormatsMap[caption.format],
-        language: caption.language,
+        language: caption.languageCode,
         label: caption.label,
         url: caption.url
       };
