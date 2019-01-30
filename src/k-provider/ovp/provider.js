@@ -115,6 +115,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
           }
           const mediaEntry = OVPProviderParser.getMediaEntry(this.isAnonymous ? '' : this.ks, this.partnerId, this.uiConfId, response);
           Object.assign(mediaConfig.sources, this._getSourcesObject(mediaEntry));
+          this._verifyHasSources(mediaConfig.sources);
         }
       }
     }

@@ -56,7 +56,12 @@ const Code: CodeType = {
   /**
    * The server responded with a block action
    */
-  MISSING_MANDATORY_PARAMS: 3000
+  MISSING_MANDATORY_PARAMS: 3000,
+
+  /**
+   * The server responded with empty sources objects (for HLS, Dash and progressive)
+   */
+  MISSING_PLAY_SOURCE: 3001
 };
 
 export {Code};
