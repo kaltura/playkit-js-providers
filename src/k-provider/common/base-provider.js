@@ -67,11 +67,11 @@ export default class BaseProvider<MI> {
     throw new TypeError(`_parseDataFromResponse method must be implement by the derived class`);
   }
 
-  _verifyHasSources(sources: PKSourcesConfigObject) {
+  _verifyHasSources(sources: ProviderMediaSourcesObject) {
     if ([...sources.hls, ...sources.dash, ...sources.progressive].length === 0) {
       throw new Error(Error.Severity.CRITICAL, Error.Category.SERVICE, Error.Code.MISSING_PLAY_SOURCE, {
         action: '',
-        messages: `No play source for entry id: ${sources.id}`
+        messages: `No play source for entry id: ${typeof sources.id === 'string' ? sources.id : 'no entry id'}`
       });
     }
   }
