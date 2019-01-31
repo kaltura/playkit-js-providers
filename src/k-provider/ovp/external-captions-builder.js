@@ -22,7 +22,7 @@ class ExternalCaptionsBuilder {
         type = CaptionsFormatsMap[KalturaCaptionType.WEBVTT];
       }
       return {
-        default: caption.isDefault ? caption.isDefault : false,
+        default: !!caption.isDefault,
         type: type,
         language: caption.languageCode,
         label: caption.label,
