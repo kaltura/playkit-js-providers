@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.17.0"></a>
+# [2.17.0](https://github.com/kaltura/playkit-js-providers/compare/v2.16.0...v2.17.0) (2019-02-04)
+
+
+### Bug Fixes
+
+* **FEC-8858:** the captions in languages list displayed twice ([#79](https://github.com/kaltura/playkit-js-providers/issues/79)) ([553df9a](https://github.com/kaltura/playkit-js-providers/commit/553df9a))
+
+
+### Features
+
+* **FEC-8875:** when an external caption format is DFXP return the webvtt url ([#81](https://github.com/kaltura/playkit-js-providers/issues/81)) ([49581ad](https://github.com/kaltura/playkit-js-providers/commit/49581ad))
+
+
+
 <a name="2.16.1"></a>
 ## [2.16.1](https://github.com/kaltura/playkit-js-providers/compare/v2.16.0...v2.16.1) (2019-01-31)
 
