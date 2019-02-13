@@ -85,7 +85,8 @@ var provider = new playkit.providers.ott.Provider(config);
 > ```js
 > {
 >  serviceUrl: string,
->  cdnUrl: string
+>  cdnUrl: string,
+>  useApiCaptions: boolean
 > }
 > ```
 >
@@ -96,7 +97,8 @@ var provider = new playkit.providers.ott.Provider(config);
 > ```js
 > {
 >  serviceUrl: "//www.kaltura.com/api_v3",
->  cdnUrl: "//cdnapisec.kaltura.com"
+>  cdnUrl: "//cdnapisec.kaltura.com",
+>  useApiCaptions: true
 > }
 > ```
 >
@@ -110,6 +112,8 @@ var provider = new playkit.providers.ott.Provider(config);
 > ```
 >
 > ##### Description: Defines the server environment to run against.
+>
+> ##### On an OVP provider, the flag `useApiCaptions` is used to show captions when playing a video using flash. This feature can be turned off by setting its value to `false`.
 
 ##
 
