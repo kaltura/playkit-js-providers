@@ -14,13 +14,19 @@ const CaptionsFormatsMap: {[format: string]: string} = {
 
 class ExternalCaptionsBuilder {
   static createConfig(captions: Array<Object>): Array<PKExternalCaptionObject> {
-    return captions.filter(caption => [KalturaCaptionType.WEBVTT, KalturaCaptionType.SRT].includes(caption.format)).map(caption => {
+    return captions.map(caption => {
+      let url = caption.url;
+      let type = CaptionsFormatsMap[caption.format];
+      if ([KalturaCaptionType.DFXP, KalturaCaptionType.CAP].includes(caption.format)) {
+        url = caption.webVttUrl;
+        type = CaptionsFormatsMap[KalturaCaptionType.WEBVTT];
+      }
       return {
-        default: caption.isDefault,
-        type: CaptionsFormatsMap[caption.format],
+        default: !!caption.isDefault,
+        type: type,
         language: caption.languageCode,
         label: caption.label,
-        url: caption.url
+        url: url
       };
     });
   }
