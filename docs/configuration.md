@@ -113,7 +113,13 @@ var provider = new playkit.providers.ott.Provider(config);
 >
 > ##### Description: Defines the server environment to run against.
 >
-> ##### On an OVP provider, the flag `useApiCaptions` is used to show captions when playing a video using flash. This feature can be turned off by setting its value to `false`.
+> > ### config.env.useApiCaptions
+> >
+> > ##### Type: `boolean`
+> >
+> > ##### Default: true
+> >
+> > ##### Description: Show captions on platforms that does not support inband captions (example: playing using flash). This flag is for the OVP provider, and can be turned off by setting its value to `false`.
 
 ##
 
