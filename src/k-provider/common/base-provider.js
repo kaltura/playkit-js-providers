@@ -68,10 +68,10 @@ export default class BaseProvider<MI> {
   }
 
   _verifyHasSources(sources: ProviderMediaSourcesObject) {
-    if ([...sources.hls, ...sources.dash, ...sources.progressive].length === 0) {
+    if (sources.hls.concat(sources.dash).concat(sources.progressive).length === 0) {
       throw new Error(Error.Severity.CRITICAL, Error.Category.SERVICE, Error.Code.MISSING_PLAY_SOURCE, {
         action: '',
-        messages: `No play source for entry id: ${typeof sources.id === 'string' ? sources.id : 'no entry id'}`
+        messages: `No play source for entry id: ${sources.id}`
       });
     }
   }
