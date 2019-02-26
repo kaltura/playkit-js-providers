@@ -4,7 +4,8 @@ import {clone} from '../../util/clone';
 const defaultConfig: Object = {
   serviceParams: {
     apiVersion: '4.7.1'
-  }
+  },
+  useApiCaptions: true
 };
 
 export default class OTTConfiguration {
