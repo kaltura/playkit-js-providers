@@ -67,7 +67,7 @@ export default class BaseProvider<MI> {
     throw new TypeError(`_parseDataFromResponse method must be implement by the derived class`);
   }
 
-  _verifyHasSources(sources: ProviderMediaSourcesObject) {
+  _verifyHasSources(sources: ProviderMediaConfigSourcesObject) {
     if (sources.hls.concat(sources.dash, sources.progressive).length === 0) {
       throw new Error(Error.Severity.CRITICAL, Error.Category.SERVICE, Error.Code.MISSING_PLAY_SOURCE, {
         action: '',
