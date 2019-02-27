@@ -119,7 +119,7 @@ var provider = new playkit.providers.ott.Provider(config);
 > >
 > > ##### Default: true
 > >
-> > ##### Description: Show captions on platforms that does not support inband captions (example: playing using flash). This flag is for the OVP provider, and can be turned off by setting its value to `false`.
+> > ##### Description: Show captions on platforms that don't support inband captions (for example: playing using Flash). This flag is for the OVP provider, and can be turned off by setting its value to `false`.
 
 ##
 
@@ -138,9 +138,9 @@ var provider = new playkit.providers.ott.Provider(config);
 > >
 > > ##### Type: `number`
 > >
-> > ##### Default: `0` - this means it will use the browser default timeout.
+> > ##### Default: `0` - This means it will use the browser default timeout.
 > >
-> > ##### Description: Defines the timeout for the provider requests in milliseconds.
+> > ##### Description: Defines the timeout for provider requests in milliseconds.
 >
 > ##
 >
@@ -150,7 +150,7 @@ var provider = new playkit.providers.ott.Provider(config);
 > >
 > > ##### Default: `4`
 > >
-> > ##### Description: Defines the number of attemps the providers should try make a request before it fails.
+> > ##### Description: Defines the number of attemps the provider should try make a request before the request fails.
 
 > ### config.filterOptions
 >
@@ -170,4 +170,4 @@ var provider = new playkit.providers.ott.Provider(config);
 > }
 > ```
 >
-> ##### Description: Defines whether after a live stream ends there should be a redirect to the VOD entry or not.
+> ##### Description: Defines whether after a livestream ends there should be a redirect to the VOD entry or not.
