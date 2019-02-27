@@ -26,7 +26,7 @@ export default class PlaySourceUrlBuilder {
     const {partnerId, entryId, ks, uiConfId, format, protocol, extension, flavorIds} = urlParams;
 
     //verify mandatory params
-    if (!cdnUrl || !partnerId || !entryId || !extension || !format || !protocol || !extension) {
+    if (!cdnUrl || !partnerId || !entryId || !format || !protocol) {
       return '';
     }
 
@@ -46,7 +46,9 @@ export default class PlaySourceUrlBuilder {
       playUrl += '/ks/' + ks;
     }
 
-    playUrl += '/a.' + extension;
+    if (extension !== '') {
+      playUrl += '/a.' + extension;
+    }
 
     if (uiConfId && flavorIds !== '') {
       playUrl += '?uiConfId=' + uiConfId;
