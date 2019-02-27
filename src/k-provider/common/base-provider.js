@@ -1,6 +1,7 @@
 // @flow
 import {setLogLevel, getLogLevel, LogLevel} from '../../util/logger';
 import DataLoaderManager from './data-loader-manager';
+import Error from '../../util/error/error';
 
 export default class BaseProvider<MI> {
   _partnerId: number;
@@ -64,6 +65,15 @@ export default class BaseProvider<MI> {
   // eslint-disable-next-line no-unused-vars
   _parseDataFromResponse(data: Map<string, Function>, ...params: any): ProviderMediaConfigObject {
     throw new TypeError(`_parseDataFromResponse method must be implement by the derived class`);
+  }
+
+  _verifyHasSources(sources: ProviderMediaConfigSourcesObject) {
+    if (sources.hls.concat(sources.dash, sources.progressive).length === 0) {
+      throw new Error(Error.Severity.CRITICAL, Error.Category.SERVICE, Error.Code.MISSING_PLAY_SOURCE, {
+        action: '',
+        messages: `No play source for entry id: ${sources.id}`
+      });
+    }
   }
 
   get LogLevel(): {[level: string]: Object} {
