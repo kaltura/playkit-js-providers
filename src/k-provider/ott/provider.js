@@ -117,6 +117,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
           }
           const mediaEntry = OTTProviderParser.getMediaEntry(response, requestData);
           Object.assign(mediaConfig.sources, this._getSourcesObject(mediaEntry));
+          this._verifyHasSources(mediaConfig.sources);
         }
       }
     }

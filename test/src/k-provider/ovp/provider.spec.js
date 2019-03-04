@@ -103,7 +103,8 @@ describe('OVPProvider.partnerId:1082342', function() {
     );
   });
 
-  it('should return config without plugins and without drm data for image', done => {
+  // currently. the player cannot handle an image (need to add support). So this test is not valid.
+  it.skip('should return config without plugins and without drm data for image', done => {
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
       return new Promise(resolve => {
         resolve({response: new MultiRequestResult(BE_DATA.ImageEntryWithoutPlugins.response)});

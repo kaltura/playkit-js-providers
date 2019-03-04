@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.17.2"></a>
+## [2.17.2](https://github.com/kaltura/playkit-js-providers/compare/v2.17.1...v2.17.2) (2019-02-27)
+
+
+### Bug Fixes
+
+* **FEC-8935:** Unable to play remote flavors ([#84](https://github.com/kaltura/playkit-js-providers/issues/84)) ([7624e8b](https://github.com/kaltura/playkit-js-providers/commit/7624e8b))
+
+
+
+<a name="2.17.1"></a>
+## [2.17.1](https://github.com/kaltura/playkit-js-providers/compare/v2.17.0...v2.17.1) (2019-02-27)
+
+
+### Bug Fixes
+
+* **FEC-8725:** player stuck in loading state with deleted entries ([#80](https://github.com/kaltura/playkit-js-providers/issues/80)) ([677f36f](https://github.com/kaltura/playkit-js-providers/commit/677f36f))
+
+
+
 <a name="2.17.0"></a>
 # [2.17.0](https://github.com/kaltura/playkit-js-providers/compare/v2.16.0...v2.17.0) (2019-02-04)
 
