@@ -128,8 +128,10 @@ export default class RequestBuilder {
         }
       }
     };
-    request.open(this.method, this.url);
-    request.timeout = this.retryConfig.timeout || 0;
+    request.open(this.method, this.url, this.retryConfig.async);
+    if (this.retryConfig.async && this.retryConfig.timeout) {
+      request.timeout = this.retryConfig.timeout;
+    }
     const requestTime = performance.now();
     request.ontimeout = () => {
       this._handleError(request, Error.Code.TIMEOUT, {
