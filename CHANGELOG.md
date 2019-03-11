@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.18.0"></a>
+# [2.18.0](https://github.com/kaltura/playkit-js-providers/compare/v2.17.2...v2.18.0) (2019-03-11)
+
+
+### Features
+
+* **FEC-8974:** add async config option for XHR ([#85](https://github.com/kaltura/playkit-js-providers/issues/85)) ([1b3545c](https://github.com/kaltura/playkit-js-providers/commit/1b3545c))
+
+
+
 <a name="2.17.2"></a>
 ## [2.17.2](https://github.com/kaltura/playkit-js-providers/compare/v2.17.1...v2.17.2) (2019-02-27)
 
