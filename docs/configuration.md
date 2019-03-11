@@ -139,7 +139,7 @@ var provider = new playkit.providers.ott.Provider(config);
 > >
 > > ##### Type: `boolean`
 > >
-> > ##### Default: `true` - if XMLHttpRequest is async or sync, true is async.
+> > ##### Default: `true`
 > >
 > > ##### Description: Defines whether or not to perform the request operation asynchronously.
 >
