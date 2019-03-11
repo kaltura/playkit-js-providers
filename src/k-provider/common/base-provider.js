@@ -13,6 +13,7 @@ export default class BaseProvider<MI> {
   _logger: any;
   _isAnonymous: boolean;
   _networkRetryConfig: ProviderNetworkRetryParameters = {
+    async: true,
     timeout: 0,
     maxAttempts: 4
   };

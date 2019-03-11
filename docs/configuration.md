@@ -129,10 +129,21 @@ var provider = new playkit.providers.ott.Provider(config);
 >
 > ```js
 > {
+>  async?: boolean,
 >  timeout?: number,
 >  maxAttempts?: number
 > }
 > ```
+>
+> > ### config.networkRetryParameters.async
+> >
+> > ##### Type: `boolean`
+> >
+> > ##### Default: `true`
+> >
+> > ##### Description: Defines whether or not to perform the request operation asynchronously.
+>
+> ##
 >
 > > ### config.networkRetryParameters.timeout
 > >
