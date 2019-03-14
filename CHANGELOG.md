@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.18.1"></a>
+## [2.18.1](https://github.com/kaltura/playkit-js-providers/compare/v2.18.0...v2.18.1) (2019-03-14)
+
+
+### Bug Fixes
+
+* **FEC-8978:** multiple players doing multi requests simultaneously may fail ([#86](https://github.com/kaltura/playkit-js-providers/issues/86)) ([b7376ce](https://github.com/kaltura/playkit-js-providers/commit/b7376ce))
+
+
+
 <a name="2.18.0"></a>
 # [2.18.0](https://github.com/kaltura/playkit-js-providers/compare/v2.17.2...v2.18.0) (2019-03-11)
 
