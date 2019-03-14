@@ -7,9 +7,8 @@ export default class DataLoaderManager {
    * @member - Loaders response map index
    * @type {Map<string,Array<number>>}
    * @private
-   * @static
    */
-  static _loadersResponseMap: Map<string, Array<number>> = new Map();
+  _loadersResponseMap: Map<string, Array<number>> = new Map();
   /**
    * @member - Loaders multi request
    * @type {MultiRequestBuilder}
@@ -58,7 +57,7 @@ export default class DataLoaderManager {
       // Create range array of current execution_loader requests
       let executionLoaderResponseMap = Array.from(new Array(requests.length), (val, index) => index + startIndex);
       // Add to map
-      DataLoaderManager._loadersResponseMap.set(loader.id, executionLoaderResponseMap);
+      this._loadersResponseMap.set(loader.id, executionLoaderResponseMap);
     }
   }
 
@@ -97,8 +96,8 @@ export default class DataLoaderManager {
    * @returns {Object} - The prepared data
    */
   prepareData(response: MultiRequestResult): Object {
-    this._loaders.forEach(function(loader, name) {
-      let loaderDataIndexes = DataLoaderManager._loadersResponseMap.get(name);
+    this._loaders.forEach((loader, name) => {
+      let loaderDataIndexes = this._loadersResponseMap.get(name);
       try {
         if (loaderDataIndexes && loaderDataIndexes.length > 0) {
           loader.response = response.results.slice(loaderDataIndexes[0], loaderDataIndexes[loaderDataIndexes.length - 1] + 1);

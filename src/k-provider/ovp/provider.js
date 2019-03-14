@@ -97,8 +97,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
       if (data.has(OVPSessionLoader.id)) {
         const sessionLoader = data.get(OVPSessionLoader.id);
         if (sessionLoader && sessionLoader.response) {
-          this.ks = sessionLoader.response;
-          mediaConfig.session.ks = this.ks;
+          mediaConfig.session.ks = sessionLoader.response;
         }
       } else {
         mediaConfig.session.ks = this.ks;
