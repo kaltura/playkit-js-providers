@@ -13,7 +13,7 @@ const CaptionsFormatsMap: {[format: string]: string} = {
 };
 
 class ExternalCaptionsBuilder {
-  static createConfig(captions: Array<Object>): Array<PKExternalCaptionObject> {
+  static createConfig(captions: Array<Object>, useLanguageField?: boolean): Array<PKExternalCaptionObject> {
     return captions.map(caption => {
       let url = caption.url;
       let type = CaptionsFormatsMap[caption.format];
@@ -24,7 +24,7 @@ class ExternalCaptionsBuilder {
       return {
         default: !!caption.isDefault,
         type: type,
-        language: caption.languageCode,
+        language: useLanguageField ? caption.language : caption.languageCode,
         label: caption.label,
         url: url
       };

@@ -13,6 +13,8 @@ import KalturaDrmPlaybackPluginData from '../common/response-types/kaltura-drm-p
 import KalturaRuleAction from './response-types/kaltura-rule-action';
 import KalturaAccessControlMessage from '../common/response-types/kaltura-access-control-message';
 import type {OTTAssetLoaderResponse} from './loaders/asset-loader';
+import {ExternalCaptionsBuilder} from '../../util/external-captions-builder';
+import OTTConfiguration from './config';
 
 const LIVE_ASST_OBJECT_TYPE: string = 'KalturaLiveAsset';
 
@@ -55,6 +57,9 @@ export default class OTTProviderParser {
     const kalturaSources = playbackContext.sources;
     const filteredKalturaSources = OTTProviderParser._filterSourcesByFormats(kalturaSources, requestData.formats);
     mediaEntry.sources = OTTProviderParser._getParsedSources(filteredKalturaSources);
+    if (OTTConfiguration.get().useApiCaptions && playbackContext.data.playbackCaptions) {
+      mediaEntry.sources.captions = ExternalCaptionsBuilder.createConfig(playbackContext.data.playbackCaptions, true);
+    }
     const typeData = OTTProviderParser._getMediaType(mediaAsset.data, requestData.mediaType, requestData.contextType);
     mediaEntry.type = typeData.type;
     mediaEntry.dvrStatus = typeData.dvrStatus;

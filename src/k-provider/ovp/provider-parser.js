@@ -18,7 +18,7 @@ import EntryList from '../../entities/entry-list';
 import KalturaRuleAction from './response-types/kaltura-rule-action';
 import KalturaAccessControlMessage from '../common/response-types/kaltura-access-control-message';
 import type {OVPMediaEntryLoaderResponse} from './loaders/media-entry-loader';
-import {ExternalCaptionsBuilder} from './external-captions-builder';
+import {ExternalCaptionsBuilder} from '../../util/external-captions-builder';
 
 export default class OVPProviderParser {
   static _logger = getLogger('OVPProviderParser');
