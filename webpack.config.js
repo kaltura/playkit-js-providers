@@ -23,6 +23,7 @@ const baseConfig = {
   output: {
     path: path.join(__dirname, 'dist'),
     libraryTarget: 'umd',
+    umdNamedDefine: true,
     devtoolModuleFilenameTemplate: './providers/[resource-path]'
   },
   devtool: 'source-map',
