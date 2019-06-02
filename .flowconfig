@@ -1,5 +1,8 @@
 [ignore]
-.*/node_modules
+.*/node_modules/*
+.*/packages/common/node_modules/*
+.*/packages/ovp/node_modules/*
+.*/packages/ptt/node_modules/*
 [include]
 [options]
 unsafe.enable_getters_and_setters=true
