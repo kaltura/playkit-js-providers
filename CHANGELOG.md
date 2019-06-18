@@ -358,7 +358,7 @@ API has been changed.
 ```json
 {
   partnerId: number,
-  log?: ProviderLogConfigObject,
+  logLevel?: string,
   ks?: string,
   uiConfId?: number,
   env?: ProviderEnvConfigObject
