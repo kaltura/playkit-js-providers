@@ -14,16 +14,16 @@ PlayKit JS Providers is written in [ECMAScript6], analyzed statically using [Flo
 
 ## Table of Contents
 
-* [Getting Started](#getting-started)
-  * [Installing](#installing)
-  * [Building](#building)
-  * [Embed the Library In Your Test Page](#embed-the-library-in-your-test-page)
-* [Documentation](#documentation)
-* [Running the Tests](#running-the-tests)
-* [Compatibility](#compatibility)
-* [Contributing](#contributing)
-* [Versioning](#versioning)
-* [Licensing](#licensing)
+- [Getting Started](#getting-started)
+  - [Installing](#installing)
+  - [Building](#building)
+  - [Embed the Library In Your Test Page](#embed-the-library-in-your-test-page)
+- [Documentation](#documentation)
+- [Running the Tests](#running-the-tests)
+- [Compatibility](#compatibility)
+- [Contributing](#contributing)
+- [Versioning](#versioning)
+- [Licensing](#licensing)
 
 ## Getting Started
 
@@ -61,7 +61,9 @@ Finally, add the bundle as a script tag in your page, and initialize the provide
 var options = {
   partnerId: "YOUR_PARTNER_ID", // Mandatory
   ks: "YOUR_KS", // Optional
-  logLevel: "LOG_LEVEL", // Optional
+  log:{
+    level: "LOG_LEVEL", // Optional
+  }
   uiConfId: UI_CONF_ID,  // Optional
   env: {  // Optional
     serviceUrl: "YOUR_SERVICE_URL",
@@ -92,7 +94,9 @@ provider.getMediaConfig(mediaInfo).then(function(mediaConfig) {
 var options = {
   partnerId: "YOUR_PARTNER_ID", // Mandatory
   ks: "YOUR_KS", // Optional
-  logLevel: "LOG_LEVEL", // Optional
+  log:{
+   level:"LOG_LEVEL", // Optional
+  }
   uiConfId: UI_CONF_ID,  // Optional
   env: {  // Optional
     serviceUrl: "YOUR_SERVICE_URL",
@@ -119,8 +123,8 @@ provider.getMediaConfig(mediaInfo).then(function(mediaConfig) {
 
 ## Documentation
 
-* **[Configuration](docs/configuration.md)**
-* **API**
+- **[Configuration](docs/configuration.md)**
+- **API**
 
 ## Running the Tests
 

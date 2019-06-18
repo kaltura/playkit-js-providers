@@ -25,7 +25,7 @@ var provider = new playkit.providers.ott.Provider(config);
 ```js
 {
   partnerId: number,
-  logLevel: string, // optional
+  log?: ProviderLogConfigObject, // optional
   ks: string, // optional
   uiConfId: number, // optional
   env: ProviderEnvConfigObject, // optional
@@ -36,7 +36,11 @@ var provider = new playkit.providers.ott.Provider(config);
 
 ##
 
-> ### config.logLevel
+> ### config.log
+>
+> ##### Type: `Object`
+>
+> ### config.log.level
 >
 > ##### Type: `string`
 >
@@ -45,6 +49,12 @@ var provider = new playkit.providers.ott.Provider(config);
 > ##### Description: Defines the provider log level.
 >
 > Possible values: `"DEBUG", "INFO", "TIME", "WARN", "ERROR", "OFF"`
+>
+> ### config.log.handler
+>
+> ##### Type: `function`
+>
+> ##### Description: Defines the log handler function by default will write to console.
 
 ##
 
