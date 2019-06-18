@@ -53,10 +53,10 @@ export default class BaseProvider<MI> {
     this._isAnonymous = !options.ks;
     this._ks = options.ks || '';
     this._playerVersion = playerVersion;
-    if (options.log.level && this.LogLevel[options.log.level]) {
+    if (options.log && options.log.level && this.LogLevel[options.log.level]) {
       setLogLevel(this.LogLevel[options.log.level]);
     }
-    if (typeof options.log.handler === 'function') {
+    if (options.log && typeof options.log.handler === 'function') {
       setLogHandler(options.log.handler);
     }
   }
