@@ -2,7 +2,7 @@
 declare type ProviderOptionsObject = {
   partnerId: number,
   widgetId?: string,
-  logLevel?: string,
+  log?: ProviderLogConfigObject,
   ks?: string,
   uiConfId?: number,
   env?: ProviderEnvConfigObject,
