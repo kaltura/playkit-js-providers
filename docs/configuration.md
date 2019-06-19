@@ -25,7 +25,7 @@ var provider = new playkit.providers.ott.Provider(config);
 ```js
 {
   partnerId: number,
-  log?: ProviderLogConfigObject, // optional
+  log: ProviderLogConfigObject, // optional
   ks: string, // optional
   uiConfId: number, // optional
   env: ProviderEnvConfigObject, // optional
