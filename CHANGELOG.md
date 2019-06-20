@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.19.0"></a>
+# [2.19.0](https://github.com/kaltura/playkit-js-providers/compare/v2.18.1...v2.19.0) (2019-06-20)
+
+
+### Features
+
+* **FEC-9023:** More logger options ([#90](https://github.com/kaltura/playkit-js-providers/issues/90)) ([8b62656](https://github.com/kaltura/playkit-js-providers/commit/8b62656))
+
+
+
 <a name="2.18.1"></a>
 ## [2.18.1](https://github.com/kaltura/playkit-js-providers/compare/v2.18.0...v2.18.1) (2019-03-14)
 
