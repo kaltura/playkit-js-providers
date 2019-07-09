@@ -52,7 +52,7 @@ const baseConfig = (entryName, libraryName, dirPath) => ({
     filename: '[name].js',
     library: ['playkit', 'providers', libraryName],
     libraryTarget: 'umd',
-    devtoolModuleFilenameTemplate: './providers/' + libraryName + '/[resource-path]'
+    devtoolModuleFilenameTemplate: './playkit/providers/' + libraryName + '/[resource-path]'
   },
   devtool: 'source-map',
   plugins: getPlugins(dirPath),
