@@ -57,32 +57,14 @@ const baseConfig = (entryName, libraryName, dirPath) => ({
   devtool: 'source-map',
   plugins: getPlugins(dirPath),
   module: {
-    rules: [
-      {
-        test: /\.js$/,
-        use: [
-          {
-            loader: 'babel-loader'
-          }
-        ],
-        exclude: [/node_modules/]
-      },
-      {
-        test: /\.js$/,
-        exclude: [/node_modules/],
-        enforce: 'pre',
-        use: [
-          {
-            loader: 'eslint-loader',
-            options: {
-              rules: {
-                semi: 0
-              }
-            }
-          }
-        ]
-      }
-    ]
+    rules: [{
+      test: /\.js$/,
+      exclude: /node_modules/,
+      use: [
+        'babel-loader',
+        'eslint-loader',
+      ]
+    }]
   },
   devServer: {
     contentBase: __dirname + dirPath + '/src'
