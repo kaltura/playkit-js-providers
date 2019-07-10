@@ -8,11 +8,13 @@ import Drm from '@playkit-js/core-provider/src/entities/drm';
 import MediaSource from '@playkit-js/core-provider/src/entities/media-source';
 import MediaSources from '@playkit-js/core-provider/src/entities/media-sources';
 import EntryList from '@playkit-js/core-provider/src/entities/entry-list';
+import Bumper from '@playkit-js/core-provider/src/entities/bumper';
 import {SupportedStreamFormat, isProgressiveSource} from '@playkit-js/core-provider/src/entities/media-format';
 import KalturaDrmPlaybackPluginData from '@playkit-js/core-provider/src/response-types/kaltura-drm-playback-plugin-data';
 import KalturaRuleAction from './response-types/kaltura-rule-action';
 import KalturaAccessControlMessage from '@playkit-js/core-provider/src/response-types/kaltura-access-control-message';
 import type {OTTAssetLoaderResponse} from './loaders/asset-loader';
+import KalturaBumpersPlaybackPluginData from './response-types/kaltura-bumper-playback-plugin-data';
 
 const LIVE_ASST_OBJECT_TYPE: string = 'KalturaLiveAsset';
 
@@ -79,6 +81,24 @@ export default class OTTProviderParser {
       entryList.items.push(mediaEntry);
     });
     return entryList;
+  }
+
+  /**
+   * Returns parsed bumper by given OTT response objects.
+   * @function getBumper
+   * @param {any} assetResponse - The asset response.
+   * @returns {?Bumper} - The bumper
+   * @static
+   * @public
+   */
+  static getBumper(assetResponse: any): ?Bumper {
+    const playbackContext = assetResponse.playBackContextResult;
+    const progressiveBumper = playbackContext.plugins.find(
+      bumper => bumper.streamertype === KalturaBumpersPlaybackPluginData.StreamerType.PROGRESSIVE
+    );
+    if (progressiveBumper) {
+      return new Bumper(progressiveBumper);
+    }
   }
 
   static _fillBaseData(mediaEntry: MediaEntry, assetResponse: any) {

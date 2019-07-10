@@ -3,6 +3,7 @@ import ServiceResult from '@playkit-js/core-provider/src/base-service-result';
 import KalturaAccessControlMessage from '@playkit-js/core-provider/src/response-types/kaltura-access-control-message';
 import KalturaRuleAction from './kaltura-rule-action';
 import KalturaPlaybackSource from './kaltura-playback-source';
+import KalturaBumpersPlaybackPluginData from './kaltura-bumper-playback-plugin-data';
 
 export default class KalturaPlaybackContext extends ServiceResult {
   static Type: {[type: string]: string} = {
@@ -22,10 +23,15 @@ export default class KalturaPlaybackContext extends ServiceResult {
    */
   actions: Array<KalturaRuleAction> = [];
   /**
-   * @member - Array of actions as received from the rules that invalidated
+   * @member - Array of access control massages
    * @type {Array<KalturaAccessControlMessage>}
    */
   messages: Array<KalturaAccessControlMessage> = [];
+  /**
+   * @member - Array of bumper plugins
+   * @type {Array<KalturaBumpersPlaybackPluginData>}
+   */
+  plugins: Array<KalturaBumpersPlaybackPluginData> = [];
 
   /**
    * @constructor
@@ -45,6 +51,10 @@ export default class KalturaPlaybackContext extends ServiceResult {
       const sources = response.sources;
       if (sources) {
         sources.map(source => this.sources.push(new KalturaPlaybackSource(source)));
+      }
+      const plugins = response.plugins;
+      if (plugins) {
+        plugins.map(plugin => this.plugins.push(new KalturaBumpersPlaybackPluginData(plugin)));
       }
     }
   }

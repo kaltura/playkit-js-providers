@@ -728,4 +728,42 @@ const LiveEntryNoDrm = {
   plugins: {}
 };
 
-export {NoPluginsWithDrm, FilteredSourcesByDeviceType, LiveEntryNoDrm};
+const EntryWithBumper = {
+  session: {
+    isAnonymous: false,
+    partnerId: 147,
+    ks: 'ks'
+  },
+  sources: {
+    hls: [],
+    dash: [
+      {
+        id: '630312,mpegdash',
+        url: 'dash_url',
+        mimetype: 'application/dash+xml',
+        drmData: [
+          {
+            licenseUrl: 'license_url',
+            scheme: 'com.widevine.alpha'
+          }
+        ]
+      }
+    ],
+    progressive: [],
+    id: 324284,
+    duration: 60,
+    type: 'Vod',
+    poster: '',
+    dvr: false,
+    vr: null,
+    metadata: {
+      name: 'avichay series1 VOD',
+      description: 'avichay VOD',
+      tags: {},
+      metas: {}
+    }
+  },
+  plugins: {bumper: {url: 'bumper_url.mp4'}}
+};
+
+export {NoPluginsWithDrm, FilteredSourcesByDeviceType, LiveEntryNoDrm, EntryWithBumper};
