@@ -3061,4 +3061,77 @@ const AnonymousPlaylistByEntryList = {
   }
 };
 
-export {AnonymousEntryWithoutUIConfWithDrmData, LiveEntryNoDrmData, BlockActionEntry, PlaylistByEntryList, AnonymousPlaylistByEntryList};
+const EntryWithBumper = {
+  response: {
+    result: [
+      {
+        objectType: 'KalturaMediaAsset',
+        createDate: 1559544691,
+        description: 'avichay VOD',
+        enableCatchUp: false,
+        enableCdvr: false,
+        enableStartOver: false,
+        enableTrickPlay: false,
+        endDate: 1572451200,
+        id: 324284,
+        metas: {},
+        name: 'avichay series1 VOD',
+        startDate: 1558022400,
+        tags: {},
+        type: 340,
+        updateDate: 1560668342,
+        catchUpBuffer: 0,
+        enableRecordingPlaybackNonEntitledChannel: false,
+        entryId: '0_tle49uqr',
+        externalIds: '0',
+        status: true,
+        trickPlayBuffer: 0,
+        typeDescription: 'Episode'
+      },
+      {
+        objectType: 'KalturaPlaybackContext',
+        actions: [],
+        messages: [{objectType: 'KalturaAccessControlMessage', code: 'OK', message: 'OK'}],
+        playbackCaptions: [],
+        plugins: [
+          {
+            objectType: 'KalturaBumpersPlaybackPluginData',
+            streamertype: 'progressive',
+            url: 'bumper_url.mp4'
+          }
+        ],
+        sources: [
+          {
+            objectType: 'KalturaPlaybackSource',
+            assetId: 324284,
+            duration: 60,
+            externalId: 'DASH_WIDEVINE_90a80eff-c6e9-4ff7-b15f-1538384786b0',
+            fileSize: 0,
+            id: 630312,
+            url: 'dash_url',
+            drm: [
+              {
+                objectType: 'KalturaCustomDrmPlaybackPluginData',
+                licenseURL: 'license_url',
+                scheme: 'WIDEVINE_CENC'
+              }
+            ],
+            format: 'mpegdash',
+            isTokenized: true,
+            protocols: 'https'
+          }
+        ]
+      }
+    ],
+    executionTime: 1.09587932
+  }
+};
+
+export {
+  AnonymousEntryWithoutUIConfWithDrmData,
+  LiveEntryNoDrmData,
+  BlockActionEntry,
+  PlaylistByEntryList,
+  AnonymousPlaylistByEntryList,
+  EntryWithBumper
+};

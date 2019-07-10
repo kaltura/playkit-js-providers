@@ -197,6 +197,44 @@ describe('getEntryListConfig', function() {
   });
 });
 
+describe('getEntryWithBumper', function() {
+  let provider, sandbox;
+  const partnerId = 147;
+  const ks = 'ks';
+  const playerVersion = '1.2.3';
+
+  beforeEach(() => {
+    sandbox = sinon.sandbox.create();
+    provider = new OTTProvider({partnerId: partnerId}, playerVersion);
+  });
+
+  afterEach(() => {
+    sandbox.restore();
+    MultiRequestBuilder.prototype.execute.restore();
+  });
+
+  it('should load the entry with bumper', done => {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+      return new Promise(resolve => {
+        resolve({response: new MultiRequestResult(BE_DATA.EntryWithBumper.response)});
+      });
+    });
+    provider.getMediaConfig({entryId: '324284', fileIds: '630312', ks}).then(
+      mediaConfig => {
+        try {
+          mediaConfig.should.deep.equal(MEDIA_CONFIG_DATA.EntryWithBumper);
+          done();
+        } catch (err) {
+          done(err);
+        }
+      },
+      err => {
+        done(err);
+      }
+    );
+  });
+});
+
 describe('logger', () => {
   const provider = new OTTProvider({partnerId: partnerId}, playerVersion);
 
