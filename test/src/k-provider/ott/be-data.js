@@ -3061,4 +3061,549 @@ const AnonymousPlaylistByEntryList = {
   }
 };
 
-export {AnonymousEntryWithoutUIConfWithDrmData, LiveEntryNoDrmData, BlockActionEntry, PlaylistByEntryList, AnonymousPlaylistByEntryList};
+const EntryWithBumper = {
+  response: {
+    result: [
+      {
+        objectType: 'KalturaMediaAsset',
+        createDate: 1559544691,
+        description: 'avichay  HOOQ  VOD',
+        enableCatchUp: false,
+        enableCdvr: false,
+        enableStartOver: false,
+        enableTrickPlay: false,
+        endDate: 1572451200,
+        externalId: 'AVICHAYHOOQ517021030001',
+        id: 324284,
+        images: [
+          {
+            objectType: 'KalturaMediaImage',
+            height: 441,
+            id: 'e19c5a5b23dc4b61ad38f78be9e39b23_1',
+            isDefault: false,
+            ratio: '16:9',
+            url:
+              'http://images-eus1.ott.kaltura.com/Service.svc/GetImage/p/147/entry_id/e19c5a5b23dc4b61ad38f78be9e39b23_1/version/4/width/784/height/441/quality/100',
+            version: 4,
+            width: 784
+          },
+          {
+            objectType: 'KalturaMediaImage',
+            height: 360,
+            id: 'e19c5a5b23dc4b61ad38f78be9e39b23_1',
+            isDefault: false,
+            ratio: '16:9',
+            url:
+              'http://images-eus1.ott.kaltura.com/Service.svc/GetImage/p/147/entry_id/e19c5a5b23dc4b61ad38f78be9e39b23_1/version/4/width/640/height/360/quality/100',
+            version: 4,
+            width: 640
+          },
+          {
+            objectType: 'KalturaMediaImage',
+            height: 279,
+            id: 'e19c5a5b23dc4b61ad38f78be9e39b23_1',
+            isDefault: false,
+            ratio: '16:9',
+            url:
+              'http://images-eus1.ott.kaltura.com/Service.svc/GetImage/p/147/entry_id/e19c5a5b23dc4b61ad38f78be9e39b23_1/version/4/width/496/height/279/quality/100',
+            version: 4,
+            width: 496
+          },
+          {
+            objectType: 'KalturaMediaImage',
+            height: 180,
+            id: 'e19c5a5b23dc4b61ad38f78be9e39b23_1',
+            isDefault: false,
+            ratio: '16:9',
+            url:
+              'http://images-eus1.ott.kaltura.com/Service.svc/GetImage/p/147/entry_id/e19c5a5b23dc4b61ad38f78be9e39b23_1/version/4/width/320/height/180/quality/100',
+            version: 4,
+            width: 320
+          },
+          {
+            objectType: 'KalturaMediaImage',
+            height: 144,
+            id: 'e19c5a5b23dc4b61ad38f78be9e39b23_1',
+            isDefault: false,
+            ratio: '16:9',
+            url:
+              'http://images-eus1.ott.kaltura.com/Service.svc/GetImage/p/147/entry_id/e19c5a5b23dc4b61ad38f78be9e39b23_1/version/4/width/256/height/144/quality/100',
+            version: 4,
+            width: 256
+          },
+          {
+            objectType: 'KalturaMediaImage',
+            height: 126,
+            id: 'e19c5a5b23dc4b61ad38f78be9e39b23_1',
+            isDefault: false,
+            ratio: '16:9',
+            url:
+              'http://images-eus1.ott.kaltura.com/Service.svc/GetImage/p/147/entry_id/e19c5a5b23dc4b61ad38f78be9e39b23_1/version/4/width/224/height/126/quality/100',
+            version: 4,
+            width: 224
+          },
+          {
+            objectType: 'KalturaMediaImage',
+            height: 108,
+            id: 'e19c5a5b23dc4b61ad38f78be9e39b23_1',
+            isDefault: false,
+            ratio: '16:9',
+            url:
+              'http://images-eus1.ott.kaltura.com/Service.svc/GetImage/p/147/entry_id/e19c5a5b23dc4b61ad38f78be9e39b23_1/version/4/width/192/height/108/quality/100',
+            version: 4,
+            width: 192
+          },
+          {
+            objectType: 'KalturaMediaImage',
+            height: 90,
+            id: 'e19c5a5b23dc4b61ad38f78be9e39b23_1',
+            isDefault: false,
+            ratio: '16:9',
+            url:
+              'http://images-eus1.ott.kaltura.com/Service.svc/GetImage/p/147/entry_id/e19c5a5b23dc4b61ad38f78be9e39b23_1/version/4/width/160/height/90/quality/100',
+            version: 4,
+            width: 160
+          },
+          {
+            objectType: 'KalturaMediaImage',
+            height: 63,
+            id: 'e19c5a5b23dc4b61ad38f78be9e39b23_1',
+            isDefault: false,
+            ratio: '16:9',
+            url:
+              'http://images-eus1.ott.kaltura.com/Service.svc/GetImage/p/147/entry_id/e19c5a5b23dc4b61ad38f78be9e39b23_1/version/4/width/112/height/63/quality/100',
+            version: 4,
+            width: 112
+          },
+          {
+            objectType: 'KalturaMediaImage',
+            height: 137,
+            id: 'e19c5a5b23dc4b61ad38f78be9e39b23_1',
+            isDefault: false,
+            ratio: '16:9',
+            url:
+              'http://images-eus1.ott.kaltura.com/Service.svc/GetImage/p/147/entry_id/e19c5a5b23dc4b61ad38f78be9e39b23_1/version/4/width/244/height/137/quality/100',
+            version: 4,
+            width: 244
+          },
+          {
+            objectType: 'KalturaMediaImage',
+            height: 89,
+            id: 'e19c5a5b23dc4b61ad38f78be9e39b23_1',
+            isDefault: false,
+            ratio: '16:9',
+            url:
+              'http://images-eus1.ott.kaltura.com/Service.svc/GetImage/p/147/entry_id/e19c5a5b23dc4b61ad38f78be9e39b23_1/version/4/width/158/height/89/quality/100',
+            version: 4,
+            width: 158
+          },
+          {
+            objectType: 'KalturaMediaImage',
+            height: 274,
+            id: 'e19c5a5b23dc4b61ad38f78be9e39b23_1',
+            isDefault: false,
+            ratio: '16:9',
+            url:
+              'http://images-eus1.ott.kaltura.com/Service.svc/GetImage/p/147/entry_id/e19c5a5b23dc4b61ad38f78be9e39b23_1/version/4/width/488/height/274/quality/100',
+            version: 4,
+            width: 488
+          },
+          {
+            objectType: 'KalturaMediaImage',
+            height: 178,
+            id: 'e19c5a5b23dc4b61ad38f78be9e39b23_1',
+            isDefault: false,
+            ratio: '16:9',
+            url:
+              'http://images-eus1.ott.kaltura.com/Service.svc/GetImage/p/147/entry_id/e19c5a5b23dc4b61ad38f78be9e39b23_1/version/4/width/316/height/178/quality/100',
+            version: 4,
+            width: 316
+          },
+          {
+            objectType: 'KalturaMediaImage',
+            height: 250,
+            id: 'e19c5a5b23dc4b61ad38f78be9e39b23_1',
+            isDefault: false,
+            ratio: '16:9',
+            url:
+              'http://images-eus1.ott.kaltura.com/Service.svc/GetImage/p/147/entry_id/e19c5a5b23dc4b61ad38f78be9e39b23_1/version/4/width/444/height/250/quality/100',
+            version: 4,
+            width: 444
+          },
+          {
+            objectType: 'KalturaMediaImage',
+            height: 500,
+            id: 'e19c5a5b23dc4b61ad38f78be9e39b23_1',
+            isDefault: false,
+            ratio: '16:9',
+            url:
+              'http://images-eus1.ott.kaltura.com/Service.svc/GetImage/p/147/entry_id/e19c5a5b23dc4b61ad38f78be9e39b23_1/version/4/width/888/height/500/quality/100',
+            version: 4,
+            width: 888
+          },
+          {
+            objectType: 'KalturaMediaImage',
+            height: 159,
+            id: 'e19c5a5b23dc4b61ad38f78be9e39b23_1',
+            isDefault: false,
+            ratio: '16:9',
+            url:
+              'http://images-eus1.ott.kaltura.com/Service.svc/GetImage/p/147/entry_id/e19c5a5b23dc4b61ad38f78be9e39b23_1/version/4/width/282/height/159/quality/100',
+            version: 4,
+            width: 282
+          },
+          {
+            objectType: 'KalturaMediaImage',
+            height: 318,
+            id: 'e19c5a5b23dc4b61ad38f78be9e39b23_1',
+            isDefault: false,
+            ratio: '16:9',
+            url:
+              'http://images-eus1.ott.kaltura.com/Service.svc/GetImage/p/147/entry_id/e19c5a5b23dc4b61ad38f78be9e39b23_1/version/4/width/564/height/318/quality/100',
+            version: 4,
+            width: 564
+          },
+          {
+            objectType: 'KalturaMediaImage',
+            height: 130,
+            id: 'e19c5a5b23dc4b61ad38f78be9e39b23_1',
+            isDefault: false,
+            ratio: '16:9',
+            url:
+              'http://images-eus1.ott.kaltura.com/Service.svc/GetImage/p/147/entry_id/e19c5a5b23dc4b61ad38f78be9e39b23_1/version/4/width/230/height/130/quality/100',
+            version: 4,
+            width: 230
+          },
+          {
+            objectType: 'KalturaMediaImage',
+            height: 260,
+            id: 'e19c5a5b23dc4b61ad38f78be9e39b23_1',
+            isDefault: false,
+            ratio: '16:9',
+            url:
+              'http://images-eus1.ott.kaltura.com/Service.svc/GetImage/p/147/entry_id/e19c5a5b23dc4b61ad38f78be9e39b23_1/version/4/width/460/height/260/quality/100',
+            version: 4,
+            width: 460
+          },
+          {
+            objectType: 'KalturaMediaImage',
+            height: 203,
+            id: 'e19c5a5b23dc4b61ad38f78be9e39b23_1',
+            isDefault: false,
+            ratio: '16:9',
+            url:
+              'http://images-eus1.ott.kaltura.com/Service.svc/GetImage/p/147/entry_id/e19c5a5b23dc4b61ad38f78be9e39b23_1/version/4/width/361/height/203/quality/100',
+            version: 4,
+            width: 361
+          },
+          {
+            objectType: 'KalturaMediaImage',
+            height: 406,
+            id: 'e19c5a5b23dc4b61ad38f78be9e39b23_1',
+            isDefault: false,
+            ratio: '16:9',
+            url:
+              'http://images-eus1.ott.kaltura.com/Service.svc/GetImage/p/147/entry_id/e19c5a5b23dc4b61ad38f78be9e39b23_1/version/4/width/722/height/406/quality/100',
+            version: 4,
+            width: 722
+          },
+          {
+            objectType: 'KalturaMediaImage',
+            height: 102,
+            id: 'e19c5a5b23dc4b61ad38f78be9e39b23_1',
+            isDefault: false,
+            ratio: '16:9',
+            url:
+              'http://images-eus1.ott.kaltura.com/Service.svc/GetImage/p/147/entry_id/e19c5a5b23dc4b61ad38f78be9e39b23_1/version/4/width/181/height/102/quality/100',
+            version: 4,
+            width: 181
+          },
+          {
+            objectType: 'KalturaMediaImage',
+            height: 204,
+            id: 'e19c5a5b23dc4b61ad38f78be9e39b23_1',
+            isDefault: false,
+            ratio: '16:9',
+            url:
+              'http://images-eus1.ott.kaltura.com/Service.svc/GetImage/p/147/entry_id/e19c5a5b23dc4b61ad38f78be9e39b23_1/version/4/width/362/height/204/quality/100',
+            version: 4,
+            width: 362
+          },
+          {
+            objectType: 'KalturaMediaImage',
+            height: 71,
+            id: 'e19c5a5b23dc4b61ad38f78be9e39b23_1',
+            isDefault: false,
+            ratio: '16:9',
+            url:
+              'http://images-eus1.ott.kaltura.com/Service.svc/GetImage/p/147/entry_id/e19c5a5b23dc4b61ad38f78be9e39b23_1/version/4/width/126/height/71/quality/100',
+            version: 4,
+            width: 126
+          },
+          {
+            objectType: 'KalturaMediaImage',
+            height: 142,
+            id: 'e19c5a5b23dc4b61ad38f78be9e39b23_1',
+            isDefault: false,
+            ratio: '16:9',
+            url:
+              'http://images-eus1.ott.kaltura.com/Service.svc/GetImage/p/147/entry_id/e19c5a5b23dc4b61ad38f78be9e39b23_1/version/4/width/252/height/142/quality/100',
+            version: 4,
+            width: 252
+          },
+          {
+            objectType: 'KalturaMediaImage',
+            height: 538,
+            id: 'e19c5a5b23dc4b61ad38f78be9e39b23_1',
+            isDefault: false,
+            ratio: '16:9',
+            url:
+              'http://images-eus1.ott.kaltura.com/Service.svc/GetImage/p/147/entry_id/e19c5a5b23dc4b61ad38f78be9e39b23_1/version/4/width/956/height/538/quality/100',
+            version: 4,
+            width: 956
+          },
+          {
+            objectType: 'KalturaMediaImage',
+            height: 170,
+            id: 'e19c5a5b23dc4b61ad38f78be9e39b23_1',
+            isDefault: false,
+            ratio: '16:9',
+            url:
+              'http://images-eus1.ott.kaltura.com/Service.svc/GetImage/p/147/entry_id/e19c5a5b23dc4b61ad38f78be9e39b23_1/version/4/width/301/height/170/quality/100',
+            version: 4,
+            width: 301
+          },
+          {
+            objectType: 'KalturaMediaImage',
+            height: 68,
+            id: 'e19c5a5b23dc4b61ad38f78be9e39b23_1',
+            isDefault: false,
+            ratio: '16:9',
+            url:
+              'http://images-eus1.ott.kaltura.com/Service.svc/GetImage/p/147/entry_id/e19c5a5b23dc4b61ad38f78be9e39b23_1/version/4/width/120/height/68/quality/100',
+            version: 4,
+            width: 120
+          },
+          {
+            objectType: 'KalturaMediaImage',
+            height: 123,
+            id: 'e19c5a5b23dc4b61ad38f78be9e39b23_1',
+            isDefault: false,
+            ratio: '16:9',
+            url:
+              'http://images-eus1.ott.kaltura.com/Service.svc/GetImage/p/147/entry_id/e19c5a5b23dc4b61ad38f78be9e39b23_1/version/4/width/219/height/123/quality/100',
+            version: 4,
+            width: 219
+          },
+          {
+            objectType: 'KalturaMediaImage',
+            height: 246,
+            id: 'e19c5a5b23dc4b61ad38f78be9e39b23_1',
+            isDefault: false,
+            ratio: '16:9',
+            url:
+              'http://images-eus1.ott.kaltura.com/Service.svc/GetImage/p/147/entry_id/e19c5a5b23dc4b61ad38f78be9e39b23_1/version/4/width/438/height/246/quality/100',
+            version: 4,
+            width: 438
+          }
+        ],
+        mediaFiles: [
+          {
+            objectType: 'KalturaMediaFile',
+            altCdnCode: '',
+            assetId: 324284,
+            billingType: 'none',
+            catalogEndDate: 4070908800,
+            cdnCode: '574',
+            duration: 60,
+            externalId: 'DASH_WIDEVINE_90a80eff-c6e9-4ff7-b15f-1538384786b0',
+            fileSize: 0,
+            id: 630312,
+            type: 'DASH/WIDEVINE',
+            url: 'https://www.hooq.com/dummy.mpd'
+          },
+          {
+            objectType: 'KalturaMediaFile',
+            altCdnCode: '',
+            assetId: 324284,
+            billingType: 'none',
+            catalogEndDate: 4070908800,
+            cdnCode: '574',
+            duration: 60,
+            externalId: 'DASH_PLAYREADY_90a80eff-c6e9-4ff7-b15f-1538384786b0',
+            fileSize: 0,
+            id: 630317,
+            type: 'DASH/PLAYREADY',
+            url: 'https://www.hooq.com/dummy.mpd'
+          },
+          {
+            objectType: 'KalturaMediaFile',
+            altCdnCode: '',
+            assetId: 324284,
+            billingType: 'none',
+            catalogEndDate: 4070908800,
+            cdnCode: '574',
+            duration: 60,
+            externalId: 'HLS_FAIRPLAY_90a80eff-c6e9-4ff7-b15f-1538384786b0',
+            fileSize: 0,
+            id: 630318,
+            type: 'HLS/FAIRPLAY',
+            url: 'https://www.hooq.com/dummy.m3u8'
+          },
+          {
+            objectType: 'KalturaMediaFile',
+            altCdnCode: '',
+            assetId: 324284,
+            billingType: 'none',
+            catalogEndDate: 4070908800,
+            cdnCode: '574',
+            duration: 60,
+            externalId: 'SS_PLAYREADY_90a80eff-c6e9-4ff7-b15f-1538384786b0',
+            fileSize: 0,
+            id: 630319,
+            type: 'SS/PLAYREADY',
+            url: 'https://www.hooq.com/dummy.ism'
+          }
+        ],
+        metas: {
+          'Short summary': {objectType: 'KalturaMultilingualStringValue', value: 'Test duplicate series'},
+          'Short title': {objectType: 'KalturaMultilingualStringValue', value: 'Test duplicate seri'},
+          'Episode name': {objectType: 'KalturaMultilingualStringValue', value: 'Ep1'},
+          'Billing ID': {objectType: 'KalturaMultilingualStringValue', value: '99990'},
+          'Licensing window start': {objectType: 'KalturaMultilingualStringValue', value: '16/05/2019 16:00:00'},
+          'Licensing window end': {objectType: 'KalturaMultilingualStringValue', value: '30/10/2019 16:00:00'},
+          'Short Pinyin title': {objectType: 'KalturaMultilingualStringValue', value: ''},
+          'Long Pinyin title': {objectType: 'KalturaMultilingualStringValue', value: ''},
+          Hashtag: {objectType: 'KalturaMultilingualStringValue', value: ''},
+          'Intro Cue': {objectType: 'KalturaMultilingualStringValue', value: ''},
+          'TX Date': {objectType: 'KalturaMultilingualStringValue', value: '16/05/2019 16:00'},
+          'Product Code': {objectType: 'KalturaMultilingualStringValue', value: ''},
+          'DTW Product': {objectType: 'KalturaMultilingualStringValue', value: ''},
+          'DTW Billing Code': {objectType: 'KalturaMultilingualStringValue', value: ''},
+          'Credit Cue': {objectType: 'KalturaMultilingualStringValue', value: ''},
+          AudioTracks: {objectType: 'KalturaMultilingualStringValue', value: 'English'},
+          tags: {objectType: 'KalturaMultilingualStringValue', value: ''},
+          'Media Sub Type': {objectType: 'KalturaMultilingualStringValue', value: ''},
+          'EPG Program CRID': {objectType: 'KalturaMultilingualStringValue', value: ''},
+          'Release year': {objectType: 'KalturaDoubleValue', value: 2019},
+          'Episode number': {objectType: 'KalturaDoubleValue', value: 1},
+          'Season Number': {objectType: 'KalturaDoubleValue', value: 1},
+          'Test Content': {objectType: 'KalturaBooleanValue', value: false},
+          Airplay: {objectType: 'KalturaBooleanValue', value: true},
+          'Closed captions available': {objectType: 'KalturaBooleanValue', value: false},
+          Interactive: {objectType: 'KalturaBooleanValue', value: false},
+          Anonymous_access_block: {objectType: 'KalturaBooleanValue', value: false},
+          Embedding: {objectType: 'KalturaBooleanValue', value: false},
+          Encryption: {objectType: 'KalturaBooleanValue', value: false},
+          'Hide Episode Number': {objectType: 'KalturaBooleanValue', value: false},
+          'VPN Proxy': {objectType: 'KalturaBooleanValue', value: false},
+          'Clock Setting': {objectType: 'KalturaBooleanValue', value: false}
+        },
+        name: 'avichay HOOQ series1 VOD',
+        startDate: 1558022400,
+        tags: {
+          'Audio language': {
+            objectType: 'KalturaMultilingualStringValueArray',
+            objects: [{objectType: 'KalturaMultilingualStringValue', value: 'English'}]
+          },
+          Product: {objectType: 'KalturaMultilingualStringValueArray', objects: [{objectType: 'KalturaMultilingualStringValue', value: 'PREV'}]},
+          Territory: {
+            objectType: 'KalturaMultilingualStringValueArray',
+            objects: [{objectType: 'KalturaMultilingualStringValue', value: 'Singapore'}]
+          },
+          'Provider ID': {
+            objectType: 'KalturaMultilingualStringValueArray',
+            objects: [{objectType: 'KalturaMultilingualStringValue', value: 'TestProvider'}]
+          },
+          Category: {objectType: 'KalturaMultilingualStringValueArray', objects: [{objectType: 'KalturaMultilingualStringValue', value: 'testList'}]},
+          'Display Season': {
+            objectType: 'KalturaMultilingualStringValueArray',
+            objects: [{objectType: 'KalturaMultilingualStringValue', value: 'false'}]
+          },
+          DTW: {objectType: 'KalturaMultilingualStringValueArray', objects: [{objectType: 'KalturaMultilingualStringValue', value: 'false'}]},
+          Watermark: {objectType: 'KalturaMultilingualStringValueArray', objects: [{objectType: 'KalturaMultilingualStringValue', value: 'false'}]},
+          'License window end': {
+            objectType: 'KalturaMultilingualStringValueArray',
+            objects: [{objectType: 'KalturaMultilingualStringValue', value: '30/10/2019 16:00:00'}]
+          },
+          'Provider External ID': {
+            objectType: 'KalturaMultilingualStringValueArray',
+            objects: [{objectType: 'KalturaMultilingualStringValue', value: '90a80eff-c6e9-4ff7-b15f-1538384786b0'}]
+          },
+          'Ad tag 2': {
+            objectType: 'KalturaMultilingualStringValueArray',
+            objects: [{objectType: 'KalturaMultilingualStringValue', value: 'Test duplicate series'}]
+          },
+          'External ID': {
+            objectType: 'KalturaMultilingualStringValueArray',
+            objects: [{objectType: 'KalturaMultilingualStringValue', value: 'MSYPKVOD0190517021030073'}]
+          },
+          'Parent Ref ID': {
+            objectType: 'KalturaMultilingualStringValueArray',
+            objects: [{objectType: 'KalturaMultilingualStringValue', value: 'SAMSYPKVOD0190517021030073'}]
+          },
+          'Series name': {
+            objectType: 'KalturaMultilingualStringValueArray',
+            objects: [{objectType: 'KalturaMultilingualStringValue', value: 'avichay series1'}]
+          },
+          Provider: {objectType: 'KalturaMultilingualStringValueArray', objects: [{objectType: 'KalturaMultilingualStringValue', value: 'HOOQ'}]}
+        },
+        type: 340,
+        updateDate: 1560668342,
+        catchUpBuffer: 0,
+        enableRecordingPlaybackNonEntitledChannel: false,
+        entryId: '0_tle49uqr',
+        externalIds: '0',
+        status: true,
+        trickPlayBuffer: 0,
+        typeDescription: 'Episode'
+      },
+      {
+        objectType: 'KalturaPlaybackContext',
+        actions: [],
+        messages: [{objectType: 'KalturaAccessControlMessage', code: 'OK', message: 'OK'}],
+        playbackCaptions: [],
+        plugins: [
+          {
+            objectType: 'KalturaBumpersPlaybackPluginData',
+            streamertype: 'progressive',
+            url: 'https://cdnapisec.kaltura.com/content/r71v1/entry/data/972/459/1_tu1vmejz_1_r3twslpv_11.mp4'
+          }
+        ],
+        sources: [
+          {
+            objectType: 'KalturaPlaybackSource',
+            assetId: 324284,
+            duration: 60,
+            externalId: 'DASH_WIDEVINE_90a80eff-c6e9-4ff7-b15f-1538384786b0',
+            fileSize: 0,
+            id: 630312,
+            url:
+              'https://manifest.prod.boltdns.net/manifest/v1/dash/live-baseurl/bccenc/5819061491001/c4b2cbf0-a229-4bab-9b6b-47f5b47b4df0/6s/manifest.mpd?fastly_token=NWQyNjAyNDhfZjU4NmM2NWE0OWVkMDllOTFhYzFlM2YzZWE3MmMzNWQ1MTYxNTYyZTI0OGU4MjgyYTU2OWUzMTQ2ZGU5MjI1Mg%3D%3D',
+            drm: [
+              {
+                objectType: 'KalturaCustomDrmPlaybackPluginData',
+                licenseURL:
+                  'https://manifest.prod.boltdns.net/license/v1/cenc/widevine/5819061491001/c4b2cbf0-a229-4bab-9b6b-47f5b47b4df0/4d7795e4-ca2b-4c22-b41e-4a028e7eaa86?fastly_token=NWQyNjAyNDhfMDllZjFlNzFiMjY1YzM3Y2UxMjI5MWE5YzNmNDBjNjY1N2UzOGViMTU1MTExNWI3N2M4N2E5YmE0NzliZDc5OQ%3D%3D',
+                scheme: 'WIDEVINE_CENC'
+              }
+            ],
+            format: 'mpegdash',
+            isTokenized: true,
+            protocols: 'https'
+          }
+        ]
+      }
+    ],
+    executionTime: 1.09587932
+  }
+};
+
+export {
+  AnonymousEntryWithoutUIConfWithDrmData,
+  LiveEntryNoDrmData,
+  BlockActionEntry,
+  PlaylistByEntryList,
+  AnonymousPlaylistByEntryList,
+  EntryWithBumper
+};
