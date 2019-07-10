@@ -3067,16 +3067,15 @@ const EntryWithBumper = {
       {
         objectType: 'KalturaMediaAsset',
         createDate: 1559544691,
-        description: 'avichay  HOOQ  VOD',
+        description: 'avichay VOD',
         enableCatchUp: false,
         enableCdvr: false,
         enableStartOver: false,
         enableTrickPlay: false,
         endDate: 1572451200,
-        externalId: 'AVICHAYHOOQ517021030001',
         id: 324284,
         metas: {},
-        name: 'avichay HOOQ series1 VOD',
+        name: 'avichay series1 VOD',
         startDate: 1558022400,
         tags: {},
         type: 340,
@@ -3098,7 +3097,7 @@ const EntryWithBumper = {
           {
             objectType: 'KalturaBumpersPlaybackPluginData',
             streamertype: 'progressive',
-            url: 'https://cdnapisec.kaltura.com/content/r71v1/entry/data/972/459/1_tu1vmejz_1_r3twslpv_11.mp4'
+            url: 'bumper_url.mp4'
           }
         ],
         sources: [
@@ -3109,13 +3108,11 @@ const EntryWithBumper = {
             externalId: 'DASH_WIDEVINE_90a80eff-c6e9-4ff7-b15f-1538384786b0',
             fileSize: 0,
             id: 630312,
-            url:
-              'https://manifest.prod.boltdns.net/manifest/v1/dash/live-baseurl/bccenc/5819061491001/c4b2cbf0-a229-4bab-9b6b-47f5b47b4df0/6s/manifest.mpd?fastly_token=NWQyNjAyNDhfZjU4NmM2NWE0OWVkMDllOTFhYzFlM2YzZWE3MmMzNWQ1MTYxNTYyZTI0OGU4MjgyYTU2OWUzMTQ2ZGU5MjI1Mg%3D%3D',
+            url: 'dash_url',
             drm: [
               {
                 objectType: 'KalturaCustomDrmPlaybackPluginData',
-                licenseURL:
-                  'https://manifest.prod.boltdns.net/license/v1/cenc/widevine/5819061491001/c4b2cbf0-a229-4bab-9b6b-47f5b47b4df0/4d7795e4-ca2b-4c22-b41e-4a028e7eaa86?fastly_token=NWQyNjAyNDhfMDllZjFlNzFiMjY1YzM3Y2UxMjI5MWE5YzNmNDBjNjY1N2UzOGViMTU1MTExNWI3N2M4N2E5YmE0NzliZDc5OQ%3D%3D',
+                licenseURL: 'license_url',
                 scheme: 'WIDEVINE_CENC'
               }
             ],

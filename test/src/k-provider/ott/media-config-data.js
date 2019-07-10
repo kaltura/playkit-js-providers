@@ -732,21 +732,18 @@ const EntryWithBumper = {
   session: {
     isAnonymous: false,
     partnerId: 147,
-    ks:
-      'djJ8MTQ3fOhO4yWfNCecJlZnJAGy10q1YBx9W4ItGQ4MdkFCVmEUtuOn2x76jK3ZFgEIlDSRSjxkXUmlLN0kkAPfxfFYqgvu5TVBucEGtulAnuee1GfbqjzqIl7ataB3oQK8Me4hBxcscVVrwZImF9jitGp7ocQy5tJ6L0QcoOA4HxBqkvri'
+    ks: 'ks'
   },
   sources: {
     hls: [],
     dash: [
       {
         id: '630312,mpegdash',
-        url:
-          'https://manifest.prod.boltdns.net/manifest/v1/dash/live-baseurl/bccenc/5819061491001/c4b2cbf0-a229-4bab-9b6b-47f5b47b4df0/6s/manifest.mpd?fastly_token=NWQyNjAyNDhfZjU4NmM2NWE0OWVkMDllOTFhYzFlM2YzZWE3MmMzNWQ1MTYxNTYyZTI0OGU4MjgyYTU2OWUzMTQ2ZGU5MjI1Mg%3D%3D',
+        url: 'dash_url',
         mimetype: 'application/dash+xml',
         drmData: [
           {
-            licenseUrl:
-              'https://manifest.prod.boltdns.net/license/v1/cenc/widevine/5819061491001/c4b2cbf0-a229-4bab-9b6b-47f5b47b4df0/4d7795e4-ca2b-4c22-b41e-4a028e7eaa86?fastly_token=NWQyNjAyNDhfMDllZjFlNzFiMjY1YzM3Y2UxMjI5MWE5YzNmNDBjNjY1N2UzOGViMTU1MTExNWI3N2M4N2E5YmE0NzliZDc5OQ%3D%3D',
+            licenseUrl: 'license_url',
             scheme: 'com.widevine.alpha'
           }
         ]
@@ -760,13 +757,13 @@ const EntryWithBumper = {
     dvr: false,
     vr: null,
     metadata: {
-      name: 'avichay HOOQ series1 VOD',
-      description: 'avichay  HOOQ  VOD',
+      name: 'avichay series1 VOD',
+      description: 'avichay VOD',
       tags: {},
       metas: {}
     }
   },
-  plugins: {bumper: {url: 'https://cdnapisec.kaltura.com/content/r71v1/entry/data/972/459/1_tu1vmejz_1_r3twslpv_11.mp4'}}
+  plugins: {bumper: {url: 'bumper_url.mp4'}}
 };
 
 export {NoPluginsWithDrm, FilteredSourcesByDeviceType, LiveEntryNoDrm, EntryWithBumper};

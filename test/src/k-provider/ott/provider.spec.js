@@ -200,8 +200,7 @@ describe('getEntryListConfig', function() {
 describe('getEntryWithBumper', function() {
   let provider, sandbox;
   const partnerId = 147;
-  const ks =
-    'djJ8MTQ3fOhO4yWfNCecJlZnJAGy10q1YBx9W4ItGQ4MdkFCVmEUtuOn2x76jK3ZFgEIlDSRSjxkXUmlLN0kkAPfxfFYqgvu5TVBucEGtulAnuee1GfbqjzqIl7ataB3oQK8Me4hBxcscVVrwZImF9jitGp7ocQy5tJ6L0QcoOA4HxBqkvri';
+  const ks = 'ks';
   const playerVersion = '1.2.3';
 
   beforeEach(() => {
