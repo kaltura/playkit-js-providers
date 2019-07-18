@@ -1,5 +1,5 @@
 //@flow
-import RequestBuilder from '../../src/util/request-builder'
+import RequestBuilder from '../../src/util/request-builder';
 
 declare interface ILoader {
   static name: string;

@@ -1,8 +1,10 @@
 [ignore]
 .*/node_modules/*
-.*/packages/common/node_modules/*
+.*/packages/core/node_modules/*
 .*/packages/ovp/node_modules/*
-.*/packages/ptt/node_modules/*
+.*/packages/ott/node_modules/*
 [include]
+[libs]
+packages/core/flow-typed
 [options]
 unsafe.enable_getters_and_setters=true
