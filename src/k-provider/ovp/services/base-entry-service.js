@@ -16,7 +16,7 @@ export default class OVPBaseEntryService extends OVPService {
    */
   static getPlaybackContext(serviceUrl: string, ks: string): RequestBuilder {
     const headers: Map<string, string> = new Map();
-    const baseEntryServiceEntryId = ks === '{1:result:ks}' ? '{2:result:objects:0:id}' : '{1:result:objects:0:id}';
+    const serviceEntryId = ks === '{1:result:ks}' ? '{2:result:objects:0:id}' : '{1:result:objects:0:id}';
     headers.set('Content-Type', 'application/json');
     const request = new RequestBuilder(headers);
     request.service = SERVICE_NAME;
@@ -25,7 +25,7 @@ export default class OVPBaseEntryService extends OVPService {
     request.url = request.getUrl(serviceUrl);
     request.tag = 'baseEntry-getPlaybackContext';
     const contextDataParams = {objectType: 'KalturaContextDataParams', flavorTags: 'all'};
-    request.params = {entryId: baseEntryServiceEntryId, ks: ks, contextDataParams: contextDataParams};
+    request.params = {entryId: serviceEntryId, ks: ks, contextDataParams: contextDataParams};
     return request;
   }
 
