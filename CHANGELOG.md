@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.20.0"></a>
+# [2.20.0](https://github.com/kaltura/playkit-js-providers/compare/v2.19.0...v2.20.0) (2019-07-28)
+
+
+### Bug Fixes
+
+* **FEC-9212:** support redirectFromEntryId logic ([#92](https://github.com/kaltura/playkit-js-providers/issues/92)) ([810685b](https://github.com/kaltura/playkit-js-providers/commit/810685b))
+
+
+### Features
+
+* **FEC-9156:** getting bumper from playback context ([#91](https://github.com/kaltura/playkit-js-providers/issues/91)) ([de7c668](https://github.com/kaltura/playkit-js-providers/commit/de7c668))
+
+
+
 <a name="2.19.0"></a>
 # [2.19.0](https://github.com/kaltura/playkit-js-providers/compare/v2.18.1...v2.19.0) (2019-06-20)
 
