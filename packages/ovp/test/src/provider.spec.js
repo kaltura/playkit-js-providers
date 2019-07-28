@@ -473,6 +473,62 @@ describe('getEntryListConfig', function() {
   });
 });
 
+describe('getPlaybackContext', () => {
+  let provider, sandbox;
+  const partnerId = 1068292;
+  const ks =
+    'NTAwZjViZWZjY2NjNTRkNGEyMjU1MTg4OGE1NmUwNDljZWJkMzk1MXwxMDY4MjkyOzEwNjgyOTI7MTQ5MDE3NjE0NjswOzE0OTAwODk3NDYuMDIyNjswO3ZpZXc6Kix3aWRnZXQ6MTs7';
+  const playerVersion = '1.2.3';
+
+  afterEach(() => {
+    sandbox.restore();
+    MultiRequestBuilder.prototype.execute.restore();
+  });
+
+  it('should request entryId token {1:result:objects:0:id} in request with valid KS', done => {
+    sandbox = sinon.sandbox.create();
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+      return new Promise(resolve => {
+        resolve({response: new MultiRequestResult(BE_DATA.AnonymousMocEntryWithoutUIConfWithDrmData.response)});
+      });
+    });
+    provider = new OVPProvider({partnerId: partnerId}, playerVersion);
+    provider
+      .getMediaConfig({entryId: '1_rwbj3j0a', ks: ks})
+      .then(() => {
+        const getPlaybackContext = provider._dataLoader._multiRequest.requests.find(request => {
+          return request.action === 'getPlaybackContext';
+        });
+        getPlaybackContext.params.entryId.should.equal('{1:result:objects:0:id}');
+        done();
+      })
+      .catch(err => {
+        done(err);
+      });
+  });
+
+  it('should request entryId token {2:result:objects:0:id} in request with anonymous KS', done => {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+      return new Promise(resolve => {
+        resolve({response: new MultiRequestResult(BE_DATA.AnonymousMocEntryWithoutUIConfNoDrmData.response)});
+      });
+    });
+    provider = new OVPProvider({partnerId: 1082342}, playerVersion);
+    provider
+      .getMediaConfig({entryId: '1_rsrdfext'})
+      .then(() => {
+        const getPlaybackContext = provider._dataLoader._multiRequest.requests.find(request => {
+          return request.action === 'getPlaybackContext';
+        });
+        getPlaybackContext.params.entryId.should.equal('{2:result:objects:0:id}');
+        done();
+      })
+      .catch(err => {
+        done(err);
+      });
+  });
+});
+
 describe('logger', () => {
   const partnerId = 1068292;
   const playerVersion = '1.2.3';
