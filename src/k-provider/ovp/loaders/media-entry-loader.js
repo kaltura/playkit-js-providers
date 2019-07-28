@@ -64,7 +64,7 @@ export default class OVPMediaEntryLoader implements ILoader {
     const config = OVPConfiguration.get();
     const requests: Array<RequestBuilder> = [];
     requests.push(OVPBaseEntryService.list(config.serviceUrl, params.ks, params.entryId, params.redirectFromEntryId));
-    requests.push(OVPBaseEntryService.getPlaybackContext(config.serviceUrl, params.ks, params.entryId));
+    requests.push(OVPBaseEntryService.getPlaybackContext(config.serviceUrl, params.ks));
     requests.push(OVPMetadataService.list(config.serviceUrl, params.ks, params.entryId));
     return requests;
   }
