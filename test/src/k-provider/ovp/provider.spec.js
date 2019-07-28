@@ -486,26 +486,7 @@ describe('getPlaybackContext', () => {
     MultiRequestBuilder.prototype.execute.restore();
   });
 
-  it('should entryId be equal to the requested entryId', done => {
-    sandbox = sinon.sandbox.create();
-    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
-      return new Promise(resolve => {
-        resolve({response: new MultiRequestResult(BE_DATA.AnonymousMocEntryWithoutUIConfWithDrmData.response)});
-      });
-    });
-    provider = new OVPProvider({partnerId: partnerId}, playerVersion);
-    provider
-      .getMediaConfig({entryId: '1_rwbj3j0a', ks: ks})
-      .then(mediaConfig => {
-        mediaConfig.sources.id.should.equal('1_rwbj3j0a');
-        done();
-      })
-      .catch(err => {
-        done(err);
-      });
-  });
-
-  it('should return token with KS for getPlaybackContext', done => {
+  it('should entryId token with KS equal to {1:result:objects:0:id} in getPlaybackContext request', done => {
     sandbox = sinon.sandbox.create();
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
       return new Promise(resolve => {
@@ -527,7 +508,7 @@ describe('getPlaybackContext', () => {
       });
   });
 
-  it('should return token without KS for getPlaybackContext', done => {
+  it('should entryId token without KS equal to {2:result:objects:0:id} in getPlaybackContext request', done => {
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
       return new Promise(resolve => {
         resolve({response: new MultiRequestResult(BE_DATA.AnonymousMocEntryWithoutUIConfNoDrmData.response)});
