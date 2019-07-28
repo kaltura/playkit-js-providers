@@ -486,7 +486,7 @@ describe('getPlaybackContext', () => {
     MultiRequestBuilder.prototype.execute.restore();
   });
 
-  it('should entryId token with KS equal to {1:result:objects:0:id} in getPlaybackContext request', done => {
+  it('should request entryId token {1:result:objects:0:id} in request with valid KS', done => {
     sandbox = sinon.sandbox.create();
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
       return new Promise(resolve => {
@@ -508,7 +508,7 @@ describe('getPlaybackContext', () => {
       });
   });
 
-  it('should entryId token without KS equal to {2:result:objects:0:id} in getPlaybackContext request', done => {
+  it('should request entryId token {2:result:objects:0:id} in request with anonymous KS', done => {
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
       return new Promise(resolve => {
         resolve({response: new MultiRequestResult(BE_DATA.AnonymousMocEntryWithoutUIConfNoDrmData.response)});
