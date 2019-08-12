@@ -36,6 +36,11 @@ export default class MediaEntry {
    */
   type: string;
   /**
+   * @member - entry mediaType
+   * @type {string}
+   */
+  mediaType: string;
+  /**
    * @member - entry metadata
    * @type {Object}
    */

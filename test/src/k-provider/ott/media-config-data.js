@@ -283,6 +283,7 @@ const NoPluginsWithDrm = {
     ],
     duration: 123000,
     type: 'Vod',
+    mediaType: 'media',
     dvr: false,
     vr: null,
     id: 480097
@@ -301,6 +302,7 @@ const FilteredSourcesByDeviceType = {
     id: 480097,
     duration: 123000,
     type: 'Vod',
+    mediaType: 'media',
     dvr: false,
     vr: null,
     poster: [
@@ -518,6 +520,7 @@ const LiveEntryNoDrm = {
     id: 276507,
     duration: 0,
     type: 'Live',
+    mediaType: 'media',
     dvr: false,
     vr: null,
     poster: [
@@ -753,6 +756,7 @@ const EntryWithBumper = {
     id: 324284,
     duration: 60,
     type: 'Vod',
+    mediaType: 'media',
     poster: '',
     dvr: false,
     vr: null,
