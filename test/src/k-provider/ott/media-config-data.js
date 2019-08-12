@@ -115,6 +115,7 @@ const NoPluginsWithDrm = {
       }
     ],
     metadata: {
+      mediaType: 'media',
       name: 'Trolls',
       metas: {
         'App Link': '',
@@ -283,7 +284,6 @@ const NoPluginsWithDrm = {
     ],
     duration: 123000,
     type: 'Vod',
-    mediaType: 'media',
     dvr: false,
     vr: null,
     id: 480097
@@ -302,7 +302,6 @@ const FilteredSourcesByDeviceType = {
     id: 480097,
     duration: 123000,
     type: 'Vod',
-    mediaType: 'media',
     dvr: false,
     vr: null,
     poster: [
@@ -480,6 +479,7 @@ const FilteredSourcesByDeviceType = {
       }
     ],
     metadata: {
+      mediaType: 'media',
       name: 'Trolls',
       metas: {
         'App Link': '',
@@ -520,7 +520,6 @@ const LiveEntryNoDrm = {
     id: 276507,
     duration: 0,
     type: 'Live',
-    mediaType: 'media',
     dvr: false,
     vr: null,
     poster: [
@@ -704,6 +703,7 @@ const LiveEntryNoDrm = {
       }
     ],
     metadata: {
+      mediaType: 'media',
       name: 'USA',
       metas: {
         'App Link': '',
@@ -756,11 +756,11 @@ const EntryWithBumper = {
     id: 324284,
     duration: 60,
     type: 'Vod',
-    mediaType: 'media',
     poster: '',
     dvr: false,
     vr: null,
     metadata: {
+      mediaType: 'media',
       name: 'avichay series1 VOD',
       description: 'avichay VOD',
       tags: {},

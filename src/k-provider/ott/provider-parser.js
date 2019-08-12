@@ -51,7 +51,7 @@ export default class OTTProviderParser {
    */
   static getMediaEntry(assetResponse: any, requestData: Object): MediaEntry {
     const mediaEntry = new MediaEntry();
-    OTTProviderParser._fillBaseData(mediaEntry, assetResponse);
+    OTTProviderParser._fillBaseData(mediaEntry, assetResponse, requestData);
     const playbackContext = assetResponse.playBackContextResult;
     const mediaAsset = assetResponse.mediaDataResult;
     const kalturaSources = playbackContext.sources;
@@ -59,7 +59,6 @@ export default class OTTProviderParser {
     mediaEntry.sources = OTTProviderParser._getParsedSources(filteredKalturaSources);
     const typeData = OTTProviderParser._getMediaType(mediaAsset.data, requestData.mediaType, requestData.contextType);
     mediaEntry.type = typeData.type;
-    mediaEntry.mediaType = requestData.mediaType;
     mediaEntry.dvrStatus = typeData.dvrStatus;
     mediaEntry.duration = Math.max.apply(Math, kalturaSources.map(source => source.duration));
     return mediaEntry;
@@ -78,7 +77,7 @@ export default class OTTProviderParser {
     const playlistItems = playlistResponse.playlistItems.entries;
     playlistItems.forEach(entry => {
       const mediaEntry = new MediaEntry();
-      OTTProviderParser._fillBaseData(mediaEntry, entry);
+      OTTProviderParser._fillBaseData(mediaEntry, entry, null);
       entryList.items.push(mediaEntry);
     });
     return entryList;
@@ -102,11 +101,12 @@ export default class OTTProviderParser {
     }
   }
 
-  static _fillBaseData(mediaEntry: MediaEntry, assetResponse: any) {
+  static _fillBaseData(mediaEntry: MediaEntry, assetResponse: any, requestData: any) {
     const mediaAsset = assetResponse.mediaDataResult;
     const metaData = OTTProviderParser.reconstructMetadata(mediaAsset);
     metaData.description = mediaAsset.description;
     metaData.name = mediaAsset.name;
+    if (requestData && requestData.mediaType) metaData.mediaType = requestData.mediaType;
     mediaEntry.metadata = metaData;
     mediaEntry.poster = OTTProviderParser._getPoster(mediaAsset.pictures);
     mediaEntry.id = mediaAsset.id;

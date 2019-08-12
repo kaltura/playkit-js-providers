@@ -5,7 +5,6 @@ declare type ProviderMediaConfigSourcesObject = {
   progressive: Array<ProviderMediaSourceObject>,
   duration: number,
   type: string,
-  mediaType?: string,
   id: string,
   poster: string | Array<Object>,
   dvr: boolean,
