@@ -212,6 +212,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
     sourcesObject.id = mediaEntry.id;
     sourcesObject.duration = mediaEntry.duration;
     sourcesObject.type = mediaEntry.type;
+    if (mediaEntry.mediaType) sourcesObject.mediaType = mediaEntry.mediaType;
     sourcesObject.dvr = !!mediaEntry.dvrStatus;
     sourcesObject.poster = mediaEntry.poster;
     if (
