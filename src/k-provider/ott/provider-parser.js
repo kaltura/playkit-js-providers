@@ -68,16 +68,18 @@ export default class OTTProviderParser {
    * Returns parsed entry list by given OTT response objects
    * @function getEntryList
    * @param {any} playlistResponse - response
+   * @param {Array<ProviderMediaInfoObject>} requestEntries - entries list
    * @returns {Playlist} - The entry list
    * @static
    * @public
    */
-  static getEntryList(playlistResponse: any): EntryList {
+  static getEntryList(playlistResponse: any, requestEntries: Array<ProviderMediaInfoObject>): EntryList {
     const entryList = new EntryList();
     const playlistItems = playlistResponse.playlistItems.entries;
     playlistItems.forEach(entry => {
       const mediaEntry = new MediaEntry();
-      OTTProviderParser._fillBaseData(mediaEntry, entry, null);
+      const requestData = requestEntries.find(requestEntry => requestEntry.entryId === entry.mediaDataResult.id);
+      OTTProviderParser._fillBaseData(mediaEntry, entry, requestData);
       entryList.items.push(mediaEntry);
     });
     return entryList;
