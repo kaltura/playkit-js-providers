@@ -1,3 +1,7 @@
+import KalturaAsset from '../../../../src/k-provider/ott/response-types/kaltura-asset';
+
+const mediaTypeConf = KalturaAsset.Type.MEDIA;
+
 const NoPluginsWithDrm = {
   session: {
     isAnonymous: true,
@@ -115,6 +119,7 @@ const NoPluginsWithDrm = {
       }
     ],
     metadata: {
+      mediaType: mediaTypeConf,
       name: 'Trolls',
       metas: {
         'App Link': '',
@@ -478,6 +483,7 @@ const FilteredSourcesByDeviceType = {
       }
     ],
     metadata: {
+      mediaType: KalturaAsset.Type.RECORDING,
       name: 'Trolls',
       metas: {
         'App Link': '',
@@ -518,7 +524,7 @@ const LiveEntryNoDrm = {
     id: 276507,
     duration: 0,
     type: 'Live',
-    dvr: false,
+    dvr: true,
     vr: null,
     poster: [
       {
@@ -701,6 +707,7 @@ const LiveEntryNoDrm = {
       }
     ],
     metadata: {
+      mediaType: KalturaAsset.Type.EPG,
       name: 'USA',
       metas: {
         'App Link': '',
@@ -757,6 +764,7 @@ const EntryWithBumper = {
     dvr: false,
     vr: null,
     metadata: {
+      mediaType: mediaTypeConf,
       name: 'avichay series1 VOD',
       description: 'avichay VOD',
       tags: {},

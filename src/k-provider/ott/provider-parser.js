@@ -51,7 +51,7 @@ export default class OTTProviderParser {
    */
   static getMediaEntry(assetResponse: any, requestData: Object): MediaEntry {
     const mediaEntry = new MediaEntry();
-    OTTProviderParser._fillBaseData(mediaEntry, assetResponse);
+    OTTProviderParser._fillBaseData(mediaEntry, assetResponse, requestData);
     const playbackContext = assetResponse.playBackContextResult;
     const mediaAsset = assetResponse.mediaDataResult;
     const kalturaSources = playbackContext.sources;
@@ -68,16 +68,18 @@ export default class OTTProviderParser {
    * Returns parsed entry list by given OTT response objects
    * @function getEntryList
    * @param {any} playlistResponse - response
+   * @param {Array<ProviderMediaInfoObject>} requestEntries - entries list
    * @returns {Playlist} - The entry list
    * @static
    * @public
    */
-  static getEntryList(playlistResponse: any): EntryList {
+  static getEntryList(playlistResponse: any, requestEntries: Array<ProviderMediaInfoObject>): EntryList {
     const entryList = new EntryList();
     const playlistItems = playlistResponse.playlistItems.entries;
     playlistItems.forEach(entry => {
       const mediaEntry = new MediaEntry();
-      OTTProviderParser._fillBaseData(mediaEntry, entry);
+      const requestData = requestEntries.find(requestEntry => requestEntry.entryId === entry.mediaDataResult.id);
+      OTTProviderParser._fillBaseData(mediaEntry, entry, requestData);
       entryList.items.push(mediaEntry);
     });
     return entryList;
@@ -101,11 +103,12 @@ export default class OTTProviderParser {
     }
   }
 
-  static _fillBaseData(mediaEntry: MediaEntry, assetResponse: any) {
+  static _fillBaseData(mediaEntry: MediaEntry, assetResponse: any, requestData: any) {
     const mediaAsset = assetResponse.mediaDataResult;
     const metaData = OTTProviderParser.reconstructMetadata(mediaAsset);
     metaData.description = mediaAsset.description;
     metaData.name = mediaAsset.name;
+    if (requestData && requestData.mediaType) metaData.mediaType = requestData.mediaType;
     mediaEntry.metadata = metaData;
     mediaEntry.poster = OTTProviderParser._getPoster(mediaAsset.pictures);
     mediaEntry.id = mediaAsset.id;

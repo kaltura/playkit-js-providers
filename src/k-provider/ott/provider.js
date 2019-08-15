@@ -150,7 +150,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
         this._dataLoader.add(OTTAssetListLoader, {entries, ks});
         this._dataLoader.fetchData().then(
           response => {
-            resolve(this._parseEntryListDataFromResponse(response));
+            resolve(this._parseEntryListDataFromResponse(response, entries));
           },
           err => {
             reject(err);
@@ -162,7 +162,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
     });
   }
 
-  _parseEntryListDataFromResponse(data: Map<string, Function>): ProviderPlaylistObject {
+  _parseEntryListDataFromResponse(data: Map<string, Function>, requestEntries: Array<ProviderMediaInfoObject>): ProviderPlaylistObject {
     this._logger.debug('Data parsing started');
     const playlistConfig: ProviderPlaylistObject = {
       id: '',
@@ -176,7 +176,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
     if (data && data.has(OTTAssetListLoader.id)) {
       const playlistLoader = data.get(OTTAssetListLoader.id);
       if (playlistLoader && playlistLoader.response) {
-        const entryList = OTTProviderParser.getEntryList(playlistLoader.response);
+        const entryList = OTTProviderParser.getEntryList(playlistLoader.response, requestEntries);
         entryList.items.forEach(i => playlistConfig.items.push({sources: this._getSourcesObject(i)}));
       }
     }
