@@ -3,6 +3,8 @@ import * as BE_DATA from './be-data';
 import * as MEDIA_CONFIG_DATA from './media-config-data';
 import {MultiRequestResult} from '@playkit-js/core-provider/src/multi-request-builder';
 import MultiRequestBuilder from '@playkit-js/core-provider/src/multi-request-builder';
+import KalturaAsset from '../src/k-provider/ott/response-types/kaltura-asset';
+import KalturaPlaybackContext from '../src/k-provider/ott/response-types/kaltura-playback-context';
 
 const partnerId = 198;
 const playerVersion = '1.2.3';
@@ -49,7 +51,8 @@ describe('OTTProvider.partnerId:198', function() {
     provider
       .getMediaConfig({
         entryId: 480097,
-        formats: ['Mobile_Devices_Main_HD_FP', 'Mobile_Devices_Main_SD_FP']
+        formats: ['Mobile_Devices_Main_HD_FP', 'Mobile_Devices_Main_SD_FP'],
+        mediaType: KalturaAsset.Type.RECORDING
       })
       .then(
         mediaConfig => {
@@ -72,7 +75,7 @@ describe('OTTProvider.partnerId:198', function() {
         resolve({response: new MultiRequestResult(BE_DATA.LiveEntryNoDrmData.response)});
       });
     });
-    provider.getMediaConfig({entryId: 276507}).then(
+    provider.getMediaConfig({entryId: 276507, contextType: KalturaPlaybackContext.Type.START_OVER, mediaType: KalturaAsset.Type.EPG}).then(
       mediaConfig => {
         try {
           mediaConfig.should.deep.equal(MEDIA_CONFIG_DATA.LiveEntryNoDrm);
