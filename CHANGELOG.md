@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.20.1"></a>
+## [2.20.1](https://github.com/kaltura/playkit-js-providers/compare/v2.20.0...v2.20.1) (2019-08-19)
+
+
+### Bug Fixes
+
+* **FEC-9270:** add report for media type in OTT ([#93](https://github.com/kaltura/playkit-js-providers/issues/93)) ([bec6ebc](https://github.com/kaltura/playkit-js-providers/commit/bec6ebc))
+
+
+
 <a name="2.20.0"></a>
 # [2.20.0](https://github.com/kaltura/playkit-js-providers/compare/v2.19.0...v2.20.0) (2019-07-28)
 
