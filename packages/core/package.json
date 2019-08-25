@@ -1,6 +1,6 @@
 {
   "name": "@playkit-js/core-provider",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "",
   "scripts": {
     "test": "NODE_ENV=test karma start --color",
@@ -43,5 +43,6 @@
   "bugs": {
     "url": "https://github.com/kaltura/playkit-js-providers/issues"
   },
-  "homepage": "https://github.com/kaltura/playkit-js-providers#readme"
+  "homepage": "https://github.com/kaltura/playkit-js-providers#readme",
+  "gitHead": "c6f19f2328c5108ecfc6651bdc5ebeb6e5ecf4e1"
 }
