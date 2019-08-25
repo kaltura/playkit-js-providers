@@ -11,7 +11,8 @@ export default class KalturaAsset extends ServiceResult {
   static AssetReferenceType: {[type: string]: string} = {
     MEDIA: 'media',
     EPG_INTERNAL: 'epg_internal',
-    EPG_EXTERNAL: 'epg_external'
+    EPG_EXTERNAL: 'epg_external',
+    NPVR: 'nvpr'
   };
   /**
    * @member - The asset id
