@@ -1,4 +1,4 @@
-import KalturaAsset from '../../../../src/k-provider/ott/response-types/kaltura-asset';
+import KalturaAsset from '../../src/response-types/kaltura-asset';
 
 const mediaTypeConf = KalturaAsset.Type.MEDIA;
 
