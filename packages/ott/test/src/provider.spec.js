@@ -3,8 +3,8 @@ import * as BE_DATA from './be-data';
 import * as MEDIA_CONFIG_DATA from './media-config-data';
 import {MultiRequestResult} from '@playkit-js/core-provider/src/multi-request-builder';
 import MultiRequestBuilder from '@playkit-js/core-provider/src/multi-request-builder';
-import KalturaAsset from '../src/k-provider/ott/response-types/kaltura-asset';
-import KalturaPlaybackContext from '../src/k-provider/ott/response-types/kaltura-playback-context';
+import KalturaAsset from '../../src/response-types/kaltura-asset';
+import KalturaPlaybackContext from '../../src/response-types/kaltura-playback-context';
 
 const partnerId = 198;
 const playerVersion = '1.2.3';
