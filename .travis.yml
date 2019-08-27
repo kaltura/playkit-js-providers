@@ -5,6 +5,10 @@ language: node_js
 node_js:
   - "node"
 
+git:
+  depth: 25
+  quiet: true
+  
 addons:
   chrome: stable
 
