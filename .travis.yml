@@ -6,9 +6,9 @@ node_js:
   - "node"
 
 git:
-  depth: 25
+  depth: 100
   quiet: true
-  
+
 addons:
   chrome: stable
 
