@@ -1,4 +1,4 @@
-/packages/*/flow-typed/**/*.js
+flow-typed/**/*.js
 /coverage
 /dist
 karma.conf.js
