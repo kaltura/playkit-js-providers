@@ -6,7 +6,7 @@ node_js:
   - "node"
 
 git:
-  depth: 100
+  depth: 500
   quiet: true
 
 addons:
