@@ -79,6 +79,15 @@ export default class BaseProvider<MI> {
     );
   }
 
+  // eslint-disable-next-line no-unused-vars
+  getEntryListConfig(entryListInfo: ProviderEntryListObject): Promise<ProviderPlaylistObject> {
+    return Promise.reject(
+      new Error(Error.Severity.CRITICAL, Error.Category.PROVIDER, Error.Code.METHOD_NOT_IMPLEMENTED, {
+        message: 'The provider does not support loading entry list'
+      })
+    );
+  }
+
   _verifyHasSources(sources: ProviderMediaConfigSourcesObject) {
     if (sources.hls.concat(sources.dash, sources.progressive).length === 0) {
       throw new Error(Error.Severity.CRITICAL, Error.Category.SERVICE, Error.Code.MISSING_PLAY_SOURCE, {
