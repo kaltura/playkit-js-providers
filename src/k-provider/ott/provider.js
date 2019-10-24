@@ -129,18 +129,6 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
   }
 
   /**
-   * Gets the backend playlist config.
-   * @returns {Promise<Error>} - Not implemented method
-   */
-  getPlaylistConfig(): Promise<Error> {
-    return Promise.reject(
-      new Error(Error.Severity.CRITICAL, Error.Category.PROVIDER, Error.Code.METHOD_NOT_IMPLEMENTED, {
-        message: 'OTT player does not support loading playlist by id'
-      })
-    );
-  }
-
-  /**
    * Gets playlist config from entry list.
    * @param {ProviderEntryListObject} entryListInfo - ott entry list info
    * @returns {Promise<ProviderPlaylistObject>} - The provider playlist config
