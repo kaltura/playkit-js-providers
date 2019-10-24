@@ -63,12 +63,29 @@ export default class BaseProvider<MI> {
 
   // eslint-disable-next-line no-unused-vars
   getMediaConfig(mediaInfo: MI): Promise<ProviderMediaConfigObject> {
-    throw new TypeError(`getMediaConfig method must be implement by the derived class`);
+    return Promise.reject(
+      new Error(Error.Severity.CRITICAL, Error.Category.PROVIDER, Error.Code.METHOD_NOT_IMPLEMENTED, {
+        message: 'getMediaConfig method must be implement by the derived class'
+      })
+    );
   }
 
   // eslint-disable-next-line no-unused-vars
-  _parseDataFromResponse(data: Map<string, Function>, ...params: any): ProviderMediaConfigObject {
-    throw new TypeError(`_parseDataFromResponse method must be implement by the derived class`);
+  getPlaylistConfig(playlistInfo: ProviderPlaylistInfoObject): Promise<ProviderPlaylistObject> {
+    return Promise.reject(
+      new Error(Error.Severity.CRITICAL, Error.Category.PROVIDER, Error.Code.METHOD_NOT_IMPLEMENTED, {
+        message: 'The provider does not support loading playlist by id'
+      })
+    );
+  }
+
+  // eslint-disable-next-line no-unused-vars
+  getEntryListConfig(entryListInfo: ProviderEntryListObject): Promise<ProviderPlaylistObject> {
+    return Promise.reject(
+      new Error(Error.Severity.CRITICAL, Error.Category.PROVIDER, Error.Code.METHOD_NOT_IMPLEMENTED, {
+        message: 'The provider does not support loading entry list'
+      })
+    );
   }
 
   _verifyHasSources(sources: ProviderMediaConfigSourcesObject) {
