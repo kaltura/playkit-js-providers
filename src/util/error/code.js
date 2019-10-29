@@ -54,14 +54,19 @@ const Code: CodeType = {
   BLOCK_ACTION: 2001,
 
   /**
-   * The server responded with a block action
+   * The provider is missing mandatory parameter/s
    */
   MISSING_MANDATORY_PARAMS: 3000,
 
   /**
    * The server responded with empty sources objects (for HLS, Dash and progressive)
    */
-  MISSING_PLAY_SOURCE: 3001
+  MISSING_PLAY_SOURCE: 3001,
+
+  /**
+   * The provider doesn't implement the called api
+   */
+  METHOD_NOT_IMPLEMENTED: 3002
 };
 
 export {Code};
