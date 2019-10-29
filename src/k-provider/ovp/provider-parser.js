@@ -168,7 +168,8 @@ export default class OVPProviderParser {
     };
     const parseProgressiveSources = () => {
       const progressiveSource = kalturaSources.find(source => {
-        return isProgressiveSource(source.format) && source.protocols.includes(this._getBaseProtocol());
+        //A use case on when we get more than 2 sources on progressive. IE when we get 2 separate protocols on separate Delivery profiles
+        return isProgressiveSource(source.format) && source.getProtocol(OVPProviderParser._getBaseProtocol()) !== '';
       });
       sources.progressive = OVPProviderParser._parseProgressiveSources(progressiveSource, playbackContext, ks, partnerId, uiConfId, entry.id);
     };
