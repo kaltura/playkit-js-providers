@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.20.3"></a>
+## [2.20.3](https://github.com/kaltura/playkit-js-providers/compare/v2.20.2...v2.20.3) (2019-10-31)
+
+
+### Bug Fixes
+
+* **FEC-9304:** OTT provider doesn't implement getPlaylistConfig api ([#97](https://github.com/kaltura/playkit-js-providers/issues/97)) ([02bf2c7](https://github.com/kaltura/playkit-js-providers/commit/02bf2c7))
+* **FEC-9354:** change apiVersion and fix asset type ([#98](https://github.com/kaltura/playkit-js-providers/issues/98)) ([28261ee](https://github.com/kaltura/playkit-js-providers/commit/28261ee))
+
+
+
 <a name="2.20.2"></a>
 ## [2.20.2](https://github.com/kaltura/playkit-js-providers/compare/v2.20.0...v2.20.2) (2019-08-26)
 
