@@ -76,6 +76,34 @@ export const kalturaDashSource = new KalturaPlaybackSource({
   protocols: 'http,https',
   flavorIds: '0_m131krws,0_5407xm9j,0_xcrwyk2n'
 });
+
+export const kalturaProgressiveSourceNotSecured = new KalturaPlaybackSource({
+  drm: [],
+  format: 'url',
+  deliveryProfileId: 19931,
+  url: 'myUrl',
+  protocols: 'http',
+  flavorIds: '0_m131krws,0_5407xm9j,0_xcrwyk2n'
+});
+
+export const kalturaProgressiveSourceSecured = new KalturaPlaybackSource({
+  drm: [],
+  format: 'url',
+  deliveryProfileId: 19951,
+  url: 'myUrl',
+  protocols: 'https',
+  flavorIds: '0_m131krws,0_5407xm9j,0_xcrwyk2n'
+});
+
+export const kalturaProgressive = new KalturaPlaybackSource({
+  drm: [],
+  format: 'url',
+  deliveryProfileId: 19961,
+  url: 'myUrl',
+  protocols: 'https,http',
+  flavorIds: '0_m131krws,0_5407xm9j,0_xcrwyk2n'
+});
+
 export const kalturaDashSourceFlavorAssets = [
   {
     id: '0_ep7yqavp',
