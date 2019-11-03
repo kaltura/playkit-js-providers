@@ -167,7 +167,10 @@ export default class OVPProviderParser {
       kalturaSources.filter(source => !isProgressiveSource(source.format)).forEach(addAdaptiveSource);
     };
     const parseProgressiveSources = () => {
-      const progressiveSource = kalturaSources.find(source => isProgressiveSource(source.format));
+      const progressiveSource = kalturaSources.find(source => {
+        //match progressive source with supported protocol(http/s)
+        return isProgressiveSource(source.format) && source.getProtocol(OVPProviderParser._getBaseProtocol()) !== '';
+      });
       sources.progressive = OVPProviderParser._parseProgressiveSources(progressiveSource, playbackContext, ks, partnerId, uiConfId, entry.id);
     };
 
