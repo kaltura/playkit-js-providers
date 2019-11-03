@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.20.4"></a>
+## [2.20.4](https://github.com/kaltura/playkit-js-providers/compare/v2.20.3...v2.20.4) (2019-11-03)
+
+
+### Bug Fixes
+
+* **FEC-9467:** progressive sources are not filtered correctly. ([#96](https://github.com/kaltura/playkit-js-providers/issues/96)) ([d0e815f](https://github.com/kaltura/playkit-js-providers/commit/d0e815f))
+
+
+
 <a name="2.20.3"></a>
 ## [2.20.3](https://github.com/kaltura/playkit-js-providers/compare/v2.20.2...v2.20.3) (2019-10-31)
 
