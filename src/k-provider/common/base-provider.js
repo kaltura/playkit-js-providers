@@ -23,7 +23,11 @@ export default class BaseProvider<MI> {
   }
 
   get widgetId(): string {
-    return this._widgetId || '_' + this._partnerId;
+    return this._widgetId || this.defaultWidgetId;
+  }
+
+  get defaultWidgetId(): string {
+    return '_' + this._partnerId;
   }
 
   get uiConfId(): ?number {
