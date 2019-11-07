@@ -36,7 +36,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
       this.ks = mediaInfo.ks;
       this._isAnonymous = false;
     }
-    if (this.widgetId !== OVPProvider.defaultWidgetId) {
+    if (this.widgetId !== this.defaultWidgetId) {
       this._isAnonymous = false;
     }
     this._dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, this.ks, this._networkRetryConfig);
@@ -101,6 +101,9 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
         const sessionLoader = data.get(OVPSessionLoader.id);
         if (sessionLoader && sessionLoader.response) {
           mediaConfig.session.ks = sessionLoader.response;
+          if (this.widgetId !== this.defaultWidgetId) {
+            this.ks = mediaConfig.session.ks;
+          }
         }
       } else {
         mediaConfig.session.ks = this.ks;
@@ -135,7 +138,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
       this.ks = playlistInfo.ks;
       this._isAnonymous = false;
     }
-    if (this.widgetId !== OVPProvider.defaultWidgetId) {
+    if (this.widgetId !== this.defaultWidgetId) {
       this._isAnonymous = false;
     }
     this._dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, this.ks, this._networkRetryConfig);
@@ -190,7 +193,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
       this.ks = entryListInfo.ks;
       this._isAnonymous = false;
     }
-    if (this.widgetId !== OVPProvider.defaultWidgetId) {
+    if (this.widgetId !== this.defaultWidgetId) {
       this._isAnonymous = false;
     }
     this._dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, this.ks, this._networkRetryConfig);
