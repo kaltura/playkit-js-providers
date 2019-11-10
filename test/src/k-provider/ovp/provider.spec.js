@@ -331,10 +331,33 @@ describe('getMediaConfig', function() {
     });
   });
 
+  it('should not be anonymous with widgetId', done => {
+    provider = new OVPProvider({partnerId, widgetId}, playerVersion);
+    provider.getMediaConfig({entryId: '1_rwbj3j0a'}).catch(() => {
+      provider._isAnonymous.should.be.false;
+      done();
+    });
+  });
+
   it('should pass _partnerId to the session loader', done => {
     provider = new OVPProvider({partnerId}, playerVersion);
     provider.getMediaConfig({entryId: '1_rwbj3j0a'}).catch(() => {
       provider._dataLoader._loaders.get('session')._widgetId.should.equal('_1068292');
+      done();
+    });
+  });
+
+  it('should send the response ks on request with widgetId', done => {
+    MultiRequestBuilder.prototype.execute.restore();
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+      return new Promise(resolve => {
+        resolve({response: new MultiRequestResult(BE_DATA.EntryWithUIConfNoDrmData.response)});
+      });
+    });
+
+    provider = new OVPProvider({partnerId, widgetId}, playerVersion);
+    provider.getMediaConfig({entryId: '1_rwbj3j0a'}).then(() => {
+      provider.ks.should.equal(BE_DATA.EntryWithUIConfNoDrmData.response[0].ks);
       done();
     });
   });
