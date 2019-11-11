@@ -331,7 +331,7 @@ describe('getMediaConfig', function() {
     });
   });
 
-  it('should not be anonymous with widgetId', done => {
+  it('should set anonymous to false when given a widgetId', done => {
     provider = new OVPProvider({partnerId, widgetId}, playerVersion);
     provider.getMediaConfig({entryId: '1_rwbj3j0a'}).catch(() => {
       provider._isAnonymous.should.be.false;
@@ -347,7 +347,7 @@ describe('getMediaConfig', function() {
     });
   });
 
-  it('should send the response ks on request with widgetId', done => {
+  it('should use the response KS on request with widgetId', done => {
     MultiRequestBuilder.prototype.execute.restore();
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
       return new Promise(resolve => {
