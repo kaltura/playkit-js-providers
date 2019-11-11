@@ -36,6 +36,9 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
       this.ks = mediaInfo.ks;
       this._isAnonymous = false;
     }
+    if (this.widgetId !== this.defaultWidgetId) {
+      this._isAnonymous = false;
+    }
     this._dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, this.ks, this._networkRetryConfig);
     return new Promise((resolve, reject) => {
       const entryId = mediaInfo.entryId;
@@ -98,6 +101,9 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
         const sessionLoader = data.get(OVPSessionLoader.id);
         if (sessionLoader && sessionLoader.response) {
           mediaConfig.session.ks = sessionLoader.response;
+          if (this.widgetId !== this.defaultWidgetId) {
+            this.ks = mediaConfig.session.ks;
+          }
         }
       } else {
         mediaConfig.session.ks = this.ks;
@@ -130,6 +136,9 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
   getPlaylistConfig(playlistInfo: ProviderPlaylistInfoObject): Promise<ProviderPlaylistObject> {
     if (playlistInfo.ks) {
       this.ks = playlistInfo.ks;
+      this._isAnonymous = false;
+    }
+    if (this.widgetId !== this.defaultWidgetId) {
       this._isAnonymous = false;
     }
     this._dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, this.ks, this._networkRetryConfig);
@@ -182,6 +191,9 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
   getEntryListConfig(entryListInfo: ProviderEntryListObject): Promise<ProviderPlaylistObject> {
     if (entryListInfo.ks) {
       this.ks = entryListInfo.ks;
+      this._isAnonymous = false;
+    }
+    if (this.widgetId !== this.defaultWidgetId) {
       this._isAnonymous = false;
     }
     this._dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, this.ks, this._networkRetryConfig);
