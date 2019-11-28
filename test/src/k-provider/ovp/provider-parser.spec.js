@@ -4,7 +4,8 @@ import {
   kalturaDashSource,
   kalturaProgressiveSourceNotSecured,
   kalturaProgressiveSourceSecured,
-  kalturaProgressive,
+  kalturaProgressiveMultiProtocol,
+  kalturaProgressiveSourceFlavorAssets,
   kalturaDashSourceFlavorAssets,
   kalturaSourceProtocolMismatch,
   kalturaSourceProtocolMismatchFlavorAssets
@@ -41,7 +42,7 @@ describe('provider parser', function() {
   describe('_parseProgressiveSource', () => {
     it('should return a valid progressive sources when getting separate http/s', () => {
       const context = new playbackContext({});
-      context.flavorAssets = kalturaDashSourceFlavorAssets;
+      context.flavorAssets = kalturaProgressiveSourceFlavorAssets;
       const progressiveSource = OVPProviderParser._getParsedSources(
         [kalturaProgressiveSourceNotSecured, kalturaProgressiveSourceSecured],
         'myKS',
@@ -53,12 +54,16 @@ describe('provider parser', function() {
         context
       );
       progressiveSource.should.exist;
+      progressiveSource.progressive[0].id.should.equal('0_5407xm9j19951,url');
+      progressiveSource.progressive[0].url.should.equal(
+        'https://cdnapisec.kaltura.com/p/1234/sp/123400/playManifest/entryId/1_938734/protocol/https/format/url/flavorIds/0_5407xm9j/ks/myKS/a.mp4?uiConfId=1234'
+      );
     });
     it('should return a valid progressive source for a valid input', () => {
       const context = new playbackContext({});
-      context.flavorAssets = kalturaDashSourceFlavorAssets;
+      context.flavorAssets = kalturaProgressiveSourceFlavorAssets;
       const progressiveSource = OVPProviderParser._getParsedSources(
-        [kalturaProgressive],
+        [kalturaProgressiveMultiProtocol],
         'myKS',
         1234,
         1234,
@@ -68,6 +73,10 @@ describe('provider parser', function() {
         context
       );
       progressiveSource.should.exist;
+      progressiveSource.progressive[0].id.should.equal('0_5407xm9j19961,url');
+      progressiveSource.progressive[0].url.should.equal(
+        'https://cdnapisec.kaltura.com/p/1234/sp/123400/playManifest/entryId/1_938734/protocol/https/format/url/flavorIds/0_5407xm9j/ks/myKS/a.mp4?uiConfId=1234'
+      );
     });
   });
   describe('getMediaEntry', () => {
