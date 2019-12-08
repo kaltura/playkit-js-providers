@@ -292,50 +292,137 @@ describe('getMediaConfig', function() {
     'NTAwZjViZWZjY2NjNTRkNGEyMjU1MTg4OGE1NmUwNDljZWJkMzk1MXwxMDY4MjkyOzEwNjgyOTI7MTQ5MDE3NjE0NjswOzE0OTAwODk3NDYuMDIyNjswO3ZpZXc6Kix3aWRnZXQ6MTs7';
   const playerVersion = '1.2.3';
 
-  beforeEach(() => {
-    sandbox = sinon.sandbox.create();
-    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
-      return new Promise(resolve => {
-        resolve({response: new MultiRequestResult(BE_DATA.AnonymousMocEntryWithoutUIConfWithDrmData.response)});
+  describe('getMediaConfig with ks', function() {
+    beforeEach(() => {
+      sandbox = sinon.sandbox.create();
+      sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+        return new Promise(resolve => {
+          resolve({response: new MultiRequestResult(BE_DATA.AnonymousMocEntryWithoutUIConfWithDrmData.response)});
+        });
       });
     });
-  });
 
-  afterEach(() => {
-    sandbox.restore();
-    MultiRequestBuilder.prototype.execute.restore();
-  });
+    afterEach(() => {
+      sandbox.restore();
+      MultiRequestBuilder.prototype.execute.restore();
+    });
 
-  it('should set anonymous to false when given a KS', done => {
-    provider = new OVPProvider({partnerId: partnerId}, playerVersion);
-    provider.getMediaConfig({entryId: '1_rwbj3j0a', ks: ks}).then(
-      mediaConfig => {
-        try {
-          mediaConfig.session.isAnonymous.should.be.false;
-          done();
-        } catch (err) {
+    it('should set anonymous to false when given a KS', done => {
+      provider = new OVPProvider({partnerId: partnerId}, playerVersion);
+      provider.getMediaConfig({entryId: '1_rwbj3j0a', ks: ks}).then(
+        mediaConfig => {
+          try {
+            mediaConfig.session.isAnonymous.should.be.false;
+            done();
+          } catch (err) {
+            done(err);
+          }
+        },
+        err => {
           done(err);
         }
-      },
-      err => {
-        done(err);
-      }
-    );
-  });
+      );
+    });
 
-  it('should pass widgetId to the session loader', done => {
-    provider = new OVPProvider({partnerId, widgetId}, playerVersion);
-    provider.getMediaConfig({entryId: '1_rwbj3j0a'}).catch(() => {
-      provider._dataLoader._loaders.get('session')._widgetId.should.equal('_123456');
-      done();
+    it('should use the response KS on request with widgetId', done => {
+      provider = new OVPProvider({partnerId, widgetId}, playerVersion);
+      provider.getMediaConfig({entryId: '1_rwbj3j0a', ks: ks}).then(
+        () => {
+          try {
+            provider.ks.should.equal(ks);
+            done();
+          } catch (err) {
+            done(err);
+          }
+        },
+        err => {
+          done(err);
+        }
+      );
     });
   });
 
-  it('should pass _partnerId to the session loader', done => {
-    provider = new OVPProvider({partnerId}, playerVersion);
-    provider.getMediaConfig({entryId: '1_rwbj3j0a'}).catch(() => {
-      provider._dataLoader._loaders.get('session')._widgetId.should.equal('_1068292');
-      done();
+  describe('getMediaConfig without ks', function() {
+    beforeEach(() => {
+      sandbox = sinon.sandbox.create();
+      sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+        return new Promise(resolve => {
+          resolve({response: new MultiRequestResult(BE_DATA.AnonymousMocEntryWithoutUIConfNoDrmData.response)});
+        });
+      });
+    });
+
+    afterEach(() => {
+      sandbox.restore();
+      MultiRequestBuilder.prototype.execute.restore();
+    });
+
+    it('should pass widgetId to the session loader', done => {
+      provider = new OVPProvider({partnerId, widgetId}, playerVersion);
+      provider.getMediaConfig({entryId: '1_rwbj3j0a'}).then(
+        () => {
+          try {
+            provider._dataLoader._loaders.get('session')._widgetId.should.equal('_123456');
+            done();
+          } catch (err) {
+            done(err);
+          }
+        },
+        err => {
+          done(err);
+        }
+      );
+    });
+
+    it('should set anonymous to false when given a widgetId', done => {
+      provider = new OVPProvider({partnerId, widgetId}, playerVersion);
+      provider.getMediaConfig({entryId: '1_rwbj3j0a'}).then(
+        () => {
+          try {
+            provider._isAnonymous.should.be.false;
+            done();
+          } catch (err) {
+            done(err);
+          }
+        },
+        err => {
+          done(err);
+        }
+      );
+    });
+
+    it('should pass _partnerId to the session loader', done => {
+      provider = new OVPProvider({partnerId}, playerVersion);
+      provider.getMediaConfig({entryId: '1_rwbj3j0a'}).then(
+        () => {
+          try {
+            provider._dataLoader._loaders.get('session')._widgetId.should.equal('_1068292');
+            done();
+          } catch (err) {
+            done(err);
+          }
+        },
+        err => {
+          done(err);
+        }
+      );
+    });
+
+    it('should use the response KS on request with widgetId', done => {
+      provider = new OVPProvider({partnerId, widgetId}, playerVersion);
+      provider.getMediaConfig({entryId: '1_rwbj3j0a'}).then(
+        () => {
+          try {
+            provider.ks.should.equal(BE_DATA.AnonymousMocEntryWithoutUIConfNoDrmData.response[0].ks);
+            done();
+          } catch (err) {
+            done(err);
+          }
+        },
+        err => {
+          done(err);
+        }
+      );
     });
   });
 });

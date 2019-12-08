@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.20.5"></a>
+## [2.20.5](https://github.com/kaltura/playkit-js-providers/compare/v2.20.4...v2.20.5) (2019-11-12)
+
+
+### Bug Fixes
+
+* widget id as anonymous ([#105](https://github.com/kaltura/playkit-js-providers/issues/105)) ([c813e4b](https://github.com/kaltura/playkit-js-providers/commit/c813e4b))
+
+
+
 <a name="2.20.4"></a>
 ## [2.20.4](https://github.com/kaltura/playkit-js-providers/compare/v2.20.3...v2.20.4) (2019-11-03)
 
