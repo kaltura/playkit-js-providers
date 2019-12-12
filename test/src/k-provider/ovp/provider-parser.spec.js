@@ -55,9 +55,6 @@ describe('provider parser', function() {
       );
       progressiveSource.should.exist;
       progressiveSource.progressive[0].id.should.equal('0_5407xm9j19951,url');
-      progressiveSource.progressive[0].url.should.equal(
-        'https://cdnapisec.kaltura.com/p/1234/sp/123400/playManifest/entryId/1_938734/protocol/https/format/url/flavorIds/0_5407xm9j/ks/myKS/a.mp4?uiConfId=1234'
-      );
     });
     it('should return a valid progressive source for a valid input', () => {
       const context = new playbackContext({});
@@ -74,9 +71,6 @@ describe('provider parser', function() {
       );
       progressiveSource.should.exist;
       progressiveSource.progressive[0].id.should.equal('0_5407xm9j19961,url');
-      progressiveSource.progressive[0].url.should.equal(
-        'https://cdnapisec.kaltura.com/p/1234/sp/123400/playManifest/entryId/1_938734/protocol/https/format/url/flavorIds/0_5407xm9j/ks/myKS/a.mp4?uiConfId=1234'
-      );
     });
   });
   describe('getMediaEntry', () => {
