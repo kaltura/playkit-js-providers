@@ -2,6 +2,10 @@ import OVPProviderParser from '../../../../src/k-provider/ovp/provider-parser';
 import playbackContext from '../../../../src/k-provider/ovp/response-types/kaltura-playback-context';
 import {
   kalturaDashSource,
+  kalturaProgressiveSourceNotSecured,
+  kalturaProgressiveSourceSecured,
+  kalturaProgressiveMultiProtocol,
+  kalturaProgressiveSourceFlavorAssets,
   kalturaDashSourceFlavorAssets,
   kalturaSourceProtocolMismatch,
   kalturaSourceProtocolMismatchFlavorAssets
@@ -33,6 +37,40 @@ describe('provider parser', function() {
       context.flavorAssets = kalturaSourceProtocolMismatchFlavorAssets;
       const adaptiveSource = OVPProviderParser._parseAdaptiveSource(kalturaSourceProtocolMismatch, context, 'myKS', 'myPid', 1234, 1234);
       (adaptiveSource === null).should.be.true;
+    });
+  });
+  describe('_parseProgressiveSource', () => {
+    it('should return a valid progressive sources when getting separate http/s', () => {
+      const context = new playbackContext({});
+      context.flavorAssets = kalturaProgressiveSourceFlavorAssets;
+      const progressiveSource = OVPProviderParser._getParsedSources(
+        [kalturaProgressiveSourceNotSecured, kalturaProgressiveSourceSecured],
+        'myKS',
+        1234,
+        1234,
+        {
+          id: '1_938734'
+        },
+        context
+      );
+      progressiveSource.should.exist;
+      progressiveSource.progressive[0].id.should.equal('0_5407xm9j19951,url');
+    });
+    it('should return a valid progressive source for a valid input', () => {
+      const context = new playbackContext({});
+      context.flavorAssets = kalturaProgressiveSourceFlavorAssets;
+      const progressiveSource = OVPProviderParser._getParsedSources(
+        [kalturaProgressiveMultiProtocol],
+        'myKS',
+        1234,
+        1234,
+        {
+          id: '1_938734'
+        },
+        context
+      );
+      progressiveSource.should.exist;
+      progressiveSource.progressive[0].id.should.equal('0_5407xm9j19961,url');
     });
   });
   describe('getMediaEntry', () => {

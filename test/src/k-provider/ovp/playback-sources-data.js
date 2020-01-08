@@ -76,6 +76,52 @@ export const kalturaDashSource = new KalturaPlaybackSource({
   protocols: 'http,https',
   flavorIds: '0_m131krws,0_5407xm9j,0_xcrwyk2n'
 });
+
+export const kalturaProgressiveSourceNotSecured = new KalturaPlaybackSource({
+  drm: [],
+  format: 'url',
+  deliveryProfileId: 19931,
+  url: 'myUrl',
+  protocols: 'http',
+  flavorIds: '0_5407xm9j'
+});
+
+export const kalturaProgressiveSourceSecured = new KalturaPlaybackSource({
+  drm: [],
+  format: 'url',
+  deliveryProfileId: 19951,
+  url: 'myUrl',
+  protocols: 'https',
+  flavorIds: '0_5407xm9j'
+});
+
+export const kalturaProgressiveMultiProtocol = new KalturaPlaybackSource({
+  drm: [],
+  format: 'url',
+  deliveryProfileId: 19961,
+  url: 'myUrl',
+  protocols: 'https,http',
+  flavorIds: '0_5407xm9j'
+});
+
+export const kalturaProgressiveSourceFlavorAssets = [
+  {
+    id: '0_5407xm9j',
+    flavorParamsId: 5,
+    fileExt: 'mp4',
+    bitrate: 1628,
+    width: 1280,
+    height: 720,
+    frameRate: 25,
+    isOriginal: false,
+    isWeb: true,
+    containerFormat: 'isom',
+    videoCodecId: 'avc1',
+    status: 2,
+    language: 'Undefined'
+  }
+];
+
 export const kalturaDashSourceFlavorAssets = [
   {
     id: '0_ep7yqavp',
