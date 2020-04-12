@@ -46,6 +46,11 @@ export default class MediaEntry {
    */
   dvrStatus: number;
   /**
+   * @member - media status
+   * @type {number}
+   */
+  status: number;
+  /**
    * @member - media poster
    * @type {string | Array<Object>}
    */
@@ -76,6 +81,7 @@ export default class MediaEntry {
       name: this.name,
       sources: this.sources.toJSON(),
       duration: this.duration,
+      status: this.status,
       dvrStatus: this.dvrStatus,
       metadata: this.metadata,
       type: this.type,
