@@ -440,7 +440,7 @@ describe('getMediaConfig', function() {
       provider.getMediaConfig({entryId: '0_fknc1xml'}).catch(err => {
         try {
           err.severity.should.equal(Error.Severity.CRITICAL);
-          err.code.should.equal(Error.Code.MEDIA_STATUS_IN_PREPARATION);
+          err.code.should.equal(Error.Code.MEDIA_STATUS_NOT_READY);
           done();
         } catch (e) {
           done(e);
