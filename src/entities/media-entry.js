@@ -81,7 +81,6 @@ export default class MediaEntry {
       name: this.name,
       sources: this.sources.toJSON(),
       duration: this.duration,
-      status: this.status,
       dvrStatus: this.dvrStatus,
       metadata: this.metadata,
       type: this.type,
