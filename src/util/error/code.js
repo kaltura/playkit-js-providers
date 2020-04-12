@@ -66,7 +66,12 @@ const Code: CodeType = {
   /**
    * The provider doesn't implement the called api
    */
-  METHOD_NOT_IMPLEMENTED: 3002
+  METHOD_NOT_IMPLEMENTED: 3002,
+
+  /**
+   * The server responded with status import or pre convert
+   */
+  MEDIA_STATUS_IN_PREPARATION: 3003
 };
 
 export {Code};

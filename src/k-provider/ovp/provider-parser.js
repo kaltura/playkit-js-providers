@@ -100,6 +100,7 @@ export default class OVPProviderParser {
     mediaEntry.metadata.description = entry.description || '';
     mediaEntry.metadata.name = entry.name || '';
     mediaEntry.metadata.tags = entry.tags || '';
+    mediaEntry.status = entry.status;
 
     mediaEntry.type = OVPProviderParser._getEntryType(entry.entryType, entry.type);
     if (mediaEntry.type === MediaEntry.Type.LIVE) {

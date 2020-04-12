@@ -113,6 +113,12 @@ export default class KalturaMediaEntry {
   tags: string;
 
   /**
+   * @member - Entry status
+   * @type {number}
+   */
+  status: number;
+
+  /**
    * @constructor
    * @param {Object} entry The json response
    */
@@ -128,6 +134,7 @@ export default class KalturaMediaEntry {
     this.flavorParamsIds = entry.flavorParamsIds;
     this.duration = entry.duration;
     this.poster = entry.thumbnailUrl;
+    this.status = entry.status;
     this.dvrStatus = entry.dvrStatus;
     this.tags = entry.tags;
   }
