@@ -2036,6 +2036,50 @@ const AnonymousPlaylistByEntryList = {
   ]
 };
 
+const EntryInPreparation = {
+  response: {
+    result: [
+      {
+        partnerId: 2506752,
+        ks: 'djJ8MjUwNjc1MnxwyWJo0ceKNSAU-NO1ohJWlRyPdr8oNQbFFAZ9SP-HxFUeE2YXnlW_sO7A7VqfcqCba_BEx6KwR4stpw4VemPQMDBYKTSxllcQyPfT8ET-vg==',
+        userId: 0,
+        objectType: 'KalturaStartWidgetSessionResponse'
+      },
+      {
+        objects: [
+          {
+            mediaType: 1,
+            dataUrl: 'http://cdnapi.kaltura.com/p/2506752/sp/250675200/playManifest/entryId/0_fknc1xml/format/url/protocol/http',
+            duration: 0,
+            msDuration: 0,
+            id: '0_fknc1xml',
+            name: 's15e18',
+            status: 0,
+            type: 1,
+            thumbnailUrl: 'http://cfvod.kaltura.com/p/2506752/sp/250675200/thumbnail/entry_id/0_fknc1xml/version/0',
+            objectType: 'KalturaMediaEntry'
+          }
+        ],
+        totalCount: 1,
+        objectType: 'KalturaBaseEntryListResponse'
+      },
+      {
+        sources: [],
+        playbackCaptions: [],
+        flavorAssets: [],
+        actions: [],
+        messages: [],
+        objectType: 'KalturaPlaybackContext'
+      },
+      {
+        objects: [],
+        totalCount: 0,
+        objectType: 'KalturaMetadataListResponse'
+      }
+    ]
+  }
+};
+
 export {
   AnonymousMocEntryWithoutUIConfNoDrmData,
   BlockActionEntry,
@@ -2050,5 +2094,6 @@ export {
   PlaylistById,
   AnonymousPlaylistById,
   PlaylistByEntryList,
-  AnonymousPlaylistByEntryList
+  AnonymousPlaylistByEntryList,
+  EntryInPreparation
 };
