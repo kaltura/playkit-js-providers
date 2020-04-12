@@ -137,8 +137,9 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
    */
   _verifyMediaStatus(mediaEntry: MediaEntry) {
     if ([KalturaMediaEntry.EntryStatus.IMPORT, KalturaMediaEntry.EntryStatus.PRECONVERT].includes(mediaEntry.status)) {
-      throw new Error(Error.Severity.CRITICAL, Error.Category.SERVICE, Error.Code.MEDIA_STATUS_IN_PREPARATION, {
-        messages: `Status of entry id ${mediaEntry.id} is ${mediaEntry.status} and is still being imported or converted`
+      throw new Error(Error.Severity.CRITICAL, Error.Category.SERVICE, Error.Code.MEDIA_STATUS_NOT_READY, {
+        messages: `Status of entry id ${mediaEntry.id} is ${mediaEntry.status} and is still being imported or converted`,
+        data: {status}
       });
     }
   }

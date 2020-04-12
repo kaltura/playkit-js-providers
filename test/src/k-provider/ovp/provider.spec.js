@@ -426,14 +426,14 @@ describe('getMediaConfig', function() {
       );
     });
   });
-  describe('getMediaConfig error handling', function() {
+  describe('getMediaConfig status check', function() {
     afterEach(() => {
       MultiRequestBuilder.prototype.execute.restore();
     });
     it('should request entryId with status in import', done => {
       sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
         return new Promise(resolve => {
-          resolve({response: new MultiRequestResult(BE_DATA.EntryInPreparation.response)});
+          resolve({response: new MultiRequestResult(BE_DATA.EntryInImport.response)});
         });
       });
       provider = new OVPProvider({partnerId: 2506752}, playerVersion);
@@ -445,6 +445,34 @@ describe('getMediaConfig', function() {
         } catch (e) {
           done(e);
         }
+      });
+    });
+    it('should request entryId with status in preconvert', done => {
+      sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+        return new Promise(resolve => {
+          resolve({response: new MultiRequestResult(BE_DATA.EntryInPreConvert.response)});
+        });
+      });
+      provider = new OVPProvider({partnerId: 2506752}, playerVersion);
+      provider.getMediaConfig({entryId: '0_fknc1xml'}).catch(err => {
+        try {
+          err.severity.should.equal(Error.Severity.CRITICAL);
+          err.code.should.equal(Error.Code.MEDIA_STATUS_NOT_READY);
+          done();
+        } catch (e) {
+          done(e);
+        }
+      });
+    });
+    it('should request entryId with status ready', done => {
+      sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+        return new Promise(resolve => {
+          resolve({response: new MultiRequestResult(BE_DATA.EntryInReady.response)});
+        });
+      });
+      provider = new OVPProvider({partnerId: 2506752}, playerVersion);
+      provider.getMediaConfig({entryId: '0_yp010l8a'}).then(() => {
+        done();
       });
     });
   });

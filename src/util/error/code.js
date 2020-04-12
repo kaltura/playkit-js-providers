@@ -71,7 +71,7 @@ const Code: CodeType = {
   /**
    * The server responded with status import or pre convert
    */
-  MEDIA_STATUS_IN_PREPARATION: 3003
+  MEDIA_STATUS_NOT_READY: 3003
 };
 
 export {Code};
