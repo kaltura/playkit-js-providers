@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.21.0"></a>
+# [2.21.0](https://github.com/kaltura/playkit-js-providers/compare/v2.20.6...v2.21.0) (2020-04-13)
+
+
+### Features
+
+* **FEC-8872:** add provider check for entry status import and converting ([#107](https://github.com/kaltura/playkit-js-providers/issues/107)) ([04d677f](https://github.com/kaltura/playkit-js-providers/commit/04d677f))
+
+
+
 <a name="2.20.6"></a>
 ## [2.20.6](https://github.com/kaltura/playkit-js-providers/compare/v2.20.5...v2.20.6) (2020-01-29)
 
