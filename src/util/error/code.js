@@ -54,8 +54,14 @@ const Code: CodeType = {
   BLOCK_ACTION: 2001,
 
   /**
+   * The server responded with status import or pre convert
+   */
+  MEDIA_STATUS_NOT_READY: 2002,
+
+  /**
    * The provider is missing mandatory parameter/s
    */
+
   MISSING_MANDATORY_PARAMS: 3000,
 
   /**
@@ -66,12 +72,7 @@ const Code: CodeType = {
   /**
    * The provider doesn't implement the called api
    */
-  METHOD_NOT_IMPLEMENTED: 3002,
-
-  /**
-   * The server responded with status import or pre convert
-   */
-  MEDIA_STATUS_NOT_READY: 3003
+  METHOD_NOT_IMPLEMENTED: 3002
 };
 
 export {Code};
