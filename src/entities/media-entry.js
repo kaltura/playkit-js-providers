@@ -46,6 +46,11 @@ export default class MediaEntry {
    */
   dvrStatus: number;
   /**
+   * @member - media status
+   * @type {number}
+   */
+  status: number;
+  /**
    * @member - media poster
    * @type {string | Array<Object>}
    */

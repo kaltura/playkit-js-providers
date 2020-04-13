@@ -5,6 +5,7 @@ const youtubeMediaEntryData = [
   {
     entry: {
       id: '1234',
+      status: 2,
       referenceId: 'abcdefg',
       externalSourceType: 'YouTube',
       name: 'test youtube entry',
@@ -45,6 +46,7 @@ const youtubeMediaEntryData = [
 
 const youtubeMediaEntryResult = {
   id: '1234',
+  status: 2,
   sources: {
     progressive: [
       {

@@ -2,6 +2,7 @@
 import getLogger from '../../util/logger';
 import OVPConfiguration from './config';
 import OVPProviderParser from './provider-parser';
+import KalturaMediaEntry from './response-types/kaltura-media-entry';
 import OVPMediaEntryLoader from './loaders/media-entry-loader';
 import OVPSessionLoader from './loaders/session-loader';
 import OVPDataLoaderManager from './loaders/data-loader-manager';
@@ -120,6 +121,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
           }
           const mediaEntry = OVPProviderParser.getMediaEntry(this.isAnonymous ? '' : this.ks, this.partnerId, this.uiConfId, response);
           Object.assign(mediaConfig.sources, this._getSourcesObject(mediaEntry));
+          this._verifyMediaStatus(mediaEntry);
           this._verifyHasSources(mediaConfig.sources);
         }
       }
@@ -128,6 +130,19 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     return mediaConfig;
   }
 
+  /**
+   * Checks media is ready for playback (not being imported or converted)
+   * @param {MediaEntry} mediaEntry - the media entry info
+   * @returns {void}
+   */
+  _verifyMediaStatus(mediaEntry: MediaEntry) {
+    if ([KalturaMediaEntry.EntryStatus.IMPORT, KalturaMediaEntry.EntryStatus.PRECONVERT].includes(mediaEntry.status)) {
+      throw new Error(Error.Severity.CRITICAL, Error.Category.SERVICE, Error.Code.MEDIA_STATUS_NOT_READY, {
+        messages: `Status of entry id ${mediaEntry.id} is ${mediaEntry.status} and is still being imported or converted`,
+        data: {status}
+      });
+    }
+  }
   /**
    * Gets the backend playlist config.
    * @param {ProviderPlaylistInfoObject} playlistInfo - ovp playlist info
