@@ -22,16 +22,16 @@ export default class PlaySourceUrlBuilder {
    */
   static build(urlParams: urlParamsType): string {
     const config = OVPConfiguration.get();
-    const cdnUrl: string = config.cdnUrl;
+    const serviceUrlOrigin: string = new URL(config.serviceUrl).origin;
     const {partnerId, entryId, ks, uiConfId, format, protocol, extension, flavorIds} = urlParams;
 
     //verify mandatory params
-    if (!cdnUrl || !partnerId || !entryId || !format || !protocol) {
+    if (!serviceUrlOrigin || !partnerId || !entryId || !format || !protocol) {
       return '';
     }
 
-    let playUrl = cdnUrl;
-    if (!cdnUrl.endsWith('/')) {
+    let playUrl = serviceUrlOrigin;
+    if (!serviceUrlOrigin.endsWith('/')) {
       playUrl += '/';
     }
     playUrl += 'p/' + partnerId + '/sp/' + partnerId + '00' + '/playManifest/entryId/' + entryId + '/protocol/' + protocol + '/format/' + format;
