@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.21.1"></a>
+## [2.21.1](https://github.com/kaltura/playkit-js-providers/compare/v2.21.0...v2.21.1) (2020-05-10)
+
+
+### Bug Fixes
+
+* **FEC-10023:** use serviceUrl instead of cdnUrl to create playback urls in V7 ([#108](https://github.com/kaltura/playkit-js-providers/issues/108)) ([0fd9f8f](https://github.com/kaltura/playkit-js-providers/commit/0fd9f8f))
+
+
+
 <a name="2.21.0"></a>
 # [2.21.0](https://github.com/kaltura/playkit-js-providers/compare/v2.20.6...v2.21.0) (2020-04-13)
 
