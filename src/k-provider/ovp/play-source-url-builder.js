@@ -22,7 +22,7 @@ export default class PlaySourceUrlBuilder {
    */
   static build(urlParams: urlParamsType): string {
     const config = OVPConfiguration.get();
-    const serviceUrlOrigin: string = new URL(config.serviceUrl).origin;
+    const serviceUrlOrigin: string = config.serviceUrl.substr(0, config.serviceUrl.lastIndexOf('/'));
     const {partnerId, entryId, ks, uiConfId, format, protocol, extension, flavorIds} = urlParams;
 
     //verify mandatory params
