@@ -43,6 +43,7 @@
     "babel-register": "^6.23.0",
     "chai": "^3.5.0",
     "clone": "^2.1.1",
+    "conventional-github-releaser": "^1.1.13",
     "cross-env": "^3.1.4",
     "eslint": "^3.10.0",
     "eslint-config-prettier": "^2.9.0",

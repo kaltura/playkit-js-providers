@@ -23,3 +23,8 @@ script:
 - npm run eslint
 - npm run flow
 - npm run test
+- if [ "${TRAVIS_MODE}" = "release" ]; then
+-   conventional-github-releaser -t $GH_NOTE_TOKEN
+- fi
+
+
