@@ -160,10 +160,10 @@ export default class RequestBuilder {
 
   _handleError(request: XMLHttpRequest, code: number, data: Object): Promise<*> | void {
     const error = this._createError(request, code, data);
-    request.onreadystatechange = function() {};
-    request.onerror = function() {};
-    request.ontimeout = function() {};
-    request.onabort = function() {};
+    request.onreadystatechange = function () {};
+    request.onerror = function () {};
+    request.ontimeout = function () {};
+    request.onabort = function () {};
     if (this.retryConfig.maxAttempts && this._attemptCounter < this.retryConfig.maxAttempts) {
       this._attemptCounter++;
       this._createXHR();

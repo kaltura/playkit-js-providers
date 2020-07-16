@@ -2,13 +2,13 @@ import OTTBookmarkService from '../../../../../src/k-provider/ott/services/bookm
 import RequestBuilder from '../../../../../src/util/request-builder';
 import OTTConfiguration from '../../../../../src/k-provider/ott/config';
 
-describe('bookmark service - add', function() {
+describe('bookmark service - add', function () {
   const ottParams = OTTConfiguration.get();
   const ks = '1234';
   const serviceUrl = 'http://my/url';
   let bookMark, playerData;
 
-  beforeEach(function() {
+  beforeEach(function () {
     playerData = {
       action: 'MY_ACTION'
     };
@@ -20,7 +20,7 @@ describe('bookmark service - add', function() {
     };
   });
 
-  it('should be proper values', function() {
+  it('should be proper values', function () {
     const request = OTTBookmarkService.add(serviceUrl, ks, bookMark);
     (request instanceof RequestBuilder).should.be.true;
     request.service.should.be.equal('bookmark');

@@ -56,32 +56,33 @@ Finally, add the bundle as a script tag in your page, and initialize the provide
 ```html
 <script type="text/javascript" src="/PATH/TO/FILE/playkit-ovp-provider.js"></script>
 <div id="player-placeholder" style="height:360px; width:640px">
-<script type="text/javascript">
-// Step 1 - Create a provider options object
-var options = {
-  partnerId: "YOUR_PARTNER_ID", // Mandatory
-  ks: "YOUR_KS", // Optional
-  log:{
-    level: "LOG_LEVEL", // Optional
-  }
-  uiConfId: UI_CONF_ID,  // Optional
-  env: {  // Optional
-    serviceUrl: "YOUR_SERVICE_URL",
-    cdnUrl: "YOUR_CDN_URL"
-  }
-};
-// Step 2 - Create a provider instance
-var provider = new playkit.providers.ovp.Provider(options);
-// Step 3 - Create media info object
-var mediaInfo = {
-  entryId: "YOUR_ENTRY_ID" // Mandatory
-  ks: "YOUR_KS" // Optional
-};
-// Step 4 - Get the media config
-provider.getMediaConfig(mediaInfo).then(function(mediaConfig) {
-  // Manipulate media config
-});
-</script>
+  <script type="text/javascript">
+    // Step 1 - Create a provider options object
+    var options = {
+      partnerId: "YOUR_PARTNER_ID", // Mandatory
+      ks: "YOUR_KS", // Optional
+      log:{
+        level: "LOG_LEVEL", // Optional
+      }
+      uiConfId: UI_CONF_ID,  // Optional
+      env: {  // Optional
+        serviceUrl: "YOUR_SERVICE_URL",
+        cdnUrl: "YOUR_CDN_URL"
+      }
+    };
+    // Step 2 - Create a provider instance
+    var provider = new playkit.providers.ovp.Provider(options);
+    // Step 3 - Create media info object
+    var mediaInfo = {
+      entryId: "YOUR_ENTRY_ID" // Mandatory
+      ks: "YOUR_KS" // Optional
+    };
+    // Step 4 - Get the media config
+    provider.getMediaConfig(mediaInfo).then(function(mediaConfig) {
+      // Manipulate media config
+    });
+  </script>
+</div>
 ```
 
 **Cloud TV Provider**
@@ -89,36 +90,37 @@ provider.getMediaConfig(mediaInfo).then(function(mediaConfig) {
 ```html
 <script type="text/javascript" src="/PATH/TO/FILE/playkit-ott-provider.js"></script>
 <div id="player-placeholder" style="height:360px; width:640px">
-<script type="text/javascript">
-// Step 1 - Create a provider options object
-var options = {
-  partnerId: "YOUR_PARTNER_ID", // Mandatory
-  ks: "YOUR_KS", // Optional
-  log:{
-   level:"LOG_LEVEL", // Optional
-  }
-  uiConfId: UI_CONF_ID,  // Optional
-  env: {  // Optional
-    serviceUrl: "YOUR_SERVICE_URL",
-    cdnUrl: "YOUR_CDN_URL"
-  }
-};
-// Step 2 - Create a provider instance
-var provider = new playkit.providers.ott.Provider(options);
-// Step 3 - Create media info object
-var mediaInfo = {
-  entryId: "YOUR_ENTRY_ID", // Mandatory
-  ks: "YOUR_KS", // Optional,
-  mediaType: "YOUR_MEDIA_TYPE" // Optional, default: "MEDIA"
-  contextType: "YOUR_MEDIA_CONTEXT_TYPE", // Optional, default: "PLAYBACK"
-  protocol: "YOUR_PROTOCOL", // Optional
-  fileIds: "YOUR_FILE_IDS" // Optional
-};
-// Step 4 - Get the media config
-provider.getMediaConfig(mediaInfo).then(function(mediaConfig) {
-  // Manipulate media config
-});
-</script>
+  <script type="text/javascript">
+    // Step 1 - Create a provider options object
+    var options = {
+      partnerId: "YOUR_PARTNER_ID", // Mandatory
+      ks: "YOUR_KS", // Optional
+      log:{
+       level:"LOG_LEVEL", // Optional
+      }
+      uiConfId: UI_CONF_ID,  // Optional
+      env: {  // Optional
+        serviceUrl: "YOUR_SERVICE_URL",
+        cdnUrl: "YOUR_CDN_URL"
+      }
+    };
+    // Step 2 - Create a provider instance
+    var provider = new playkit.providers.ott.Provider(options);
+    // Step 3 - Create media info object
+    var mediaInfo = {
+      entryId: "YOUR_ENTRY_ID", // Mandatory
+      ks: "YOUR_KS", // Optional,
+      mediaType: "YOUR_MEDIA_TYPE" // Optional, default: "MEDIA"
+      contextType: "YOUR_MEDIA_CONTEXT_TYPE", // Optional, default: "PLAYBACK"
+      protocol: "YOUR_PROTOCOL", // Optional
+      fileIds: "YOUR_FILE_IDS" // Optional
+    };
+    // Step 4 - Get the media config
+    provider.getMediaConfig(mediaInfo).then(function(mediaConfig) {
+      // Manipulate media config
+    });
+  </script>
+</div>
 ```
 
 ## Documentation

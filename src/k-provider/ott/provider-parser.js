@@ -60,7 +60,10 @@ export default class OTTProviderParser {
     const typeData = OTTProviderParser._getMediaType(mediaAsset.data, requestData.mediaType, requestData.contextType);
     mediaEntry.type = typeData.type;
     mediaEntry.dvrStatus = typeData.dvrStatus;
-    mediaEntry.duration = Math.max.apply(Math, kalturaSources.map(source => source.duration));
+    mediaEntry.duration = Math.max.apply(
+      Math,
+      kalturaSources.map(source => source.duration)
+    );
     return mediaEntry;
   }
 

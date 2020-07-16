@@ -13,10 +13,6 @@ let plugins = [
   })
 ];
 
-if (PROD) {
-  plugins.push(new webpack.optimize.UglifyJsPlugin({sourceMap: true}));
-}
-
 const baseConfig = {
   context: __dirname + '/src',
   entry: {},
@@ -62,6 +58,10 @@ const baseConfig = {
     modules: [path.resolve(__dirname, 'src'), 'node_modules']
   }
 };
+
+if (PROD) {
+  baseConfig.optimization = {minimize: true};
+}
 
 const providersConfig = clone(baseConfig);
 const servicesConfig = clone(baseConfig);

@@ -9,10 +9,10 @@ import KalturaPlaybackContext from '../../../../src/k-provider/ott/response-type
 const partnerId = 198;
 const playerVersion = '1.2.3';
 
-describe('OTTProvider.partnerId:198', function() {
+describe('OTTProvider.partnerId:198', function () {
   let provider, sandbox;
   beforeEach(() => {
-    sandbox = sinon.sandbox.create();
+    sandbox = sinon.createSandbox();
     provider = new OTTProvider({partnerId: partnerId}, playerVersion);
   });
 
@@ -22,7 +22,7 @@ describe('OTTProvider.partnerId:198', function() {
   });
 
   it('should return config without plugins and with drm data', done => {
-    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
       return new Promise(resolve => {
         resolve({response: new MultiRequestResult(BE_DATA.AnonymousEntryWithoutUIConfWithDrmData.response)});
       });
@@ -43,7 +43,7 @@ describe('OTTProvider.partnerId:198', function() {
   });
 
   it('should return config filtered by device types', done => {
-    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
       return new Promise(resolve => {
         resolve({response: new MultiRequestResult(BE_DATA.AnonymousEntryWithoutUIConfWithDrmData.response)});
       });
@@ -70,7 +70,7 @@ describe('OTTProvider.partnerId:198', function() {
   });
 
   it('should return entry of live type', done => {
-    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
       return new Promise(resolve => {
         resolve({response: new MultiRequestResult(BE_DATA.LiveEntryNoDrmData.response)});
       });
@@ -91,7 +91,7 @@ describe('OTTProvider.partnerId:198', function() {
   });
 
   it('should return block error for server block response', done => {
-    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
       return new Promise(resolve => {
         resolve({response: new MultiRequestResult(BE_DATA.BlockActionEntry.response)});
       });
@@ -132,7 +132,7 @@ describe('OTTProvider.partnerId:198', function() {
   });
 });
 
-describe('getEntryListConfig', function() {
+describe('getEntryListConfig', function () {
   let provider, sandbox;
   const partnerId = 198;
   const ks =
@@ -140,7 +140,7 @@ describe('getEntryListConfig', function() {
   const playerVersion = '1.2.3';
 
   beforeEach(() => {
-    sandbox = sinon.sandbox.create();
+    sandbox = sinon.createSandbox();
     provider = new OTTProvider({partnerId: partnerId}, playerVersion);
   });
 
@@ -150,7 +150,7 @@ describe('getEntryListConfig', function() {
   });
 
   it('should load a playlist by entry list - anonymous', done => {
-    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
       return new Promise(resolve => {
         resolve({response: new MultiRequestResult(BE_DATA.PlaylistByEntryList.response)});
       });
@@ -175,7 +175,7 @@ describe('getEntryListConfig', function() {
   });
 
   it('should load a playlist by entry list - with KS', done => {
-    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
       return new Promise(resolve => {
         resolve({response: new MultiRequestResult(BE_DATA.AnonymousPlaylistByEntryList.response)});
       });
@@ -200,14 +200,14 @@ describe('getEntryListConfig', function() {
   });
 });
 
-describe('getEntryWithBumper', function() {
+describe('getEntryWithBumper', function () {
   let provider, sandbox;
   const partnerId = 147;
   const ks = 'ks';
   const playerVersion = '1.2.3';
 
   beforeEach(() => {
-    sandbox = sinon.sandbox.create();
+    sandbox = sinon.createSandbox();
     provider = new OTTProvider({partnerId: partnerId}, playerVersion);
   });
 
@@ -217,7 +217,7 @@ describe('getEntryWithBumper', function() {
   });
 
   it('should load the entry with bumper', done => {
-    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
       return new Promise(resolve => {
         resolve({response: new MultiRequestResult(BE_DATA.EntryWithBumper.response)});
       });
