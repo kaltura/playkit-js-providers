@@ -262,11 +262,11 @@ export default class OTTProviderParser {
     return mediaSource;
   }
 
-  static hasBlockAction(response): boolean {
+  static hasBlockAction(response: OTTAssetLoaderResponse): boolean {
     return response.playBackContextResult.hasBlockAction();
   }
 
-  static getBlockAction(response): ?KalturaRuleAction {
+  static getBlockAction(response: OTTAssetLoaderResponse): ?KalturaRuleAction {
     return response.playBackContextResult.getBlockAction();
   }
 
