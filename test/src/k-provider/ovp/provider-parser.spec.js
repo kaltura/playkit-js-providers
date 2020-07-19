@@ -12,7 +12,7 @@ import {
 } from './playback-sources-data';
 import {youtubeMediaEntryResult, youtubeMediaEntryData} from './provider-parser-data';
 
-describe('provider parser', function() {
+describe('provider parser', function () {
   let sandbox;
 
   beforeEach(() => {
