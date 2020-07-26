@@ -5,12 +5,12 @@ import {MultiRequestResult} from '../../../../src/k-provider/common/multi-reques
 import MultiRequestBuilder from '../../../../src/k-provider/common/multi-request-builder';
 import Error from '../../../../src/util/error/error';
 
-describe('OVPProvider.partnerId:1082342', function() {
+describe('OVPProvider.partnerId:1082342', function () {
   let provider, sandbox;
   const partnerId = 1082342;
   const playerVersion = '1.2.3';
   beforeEach(() => {
-    sandbox = sinon.sandbox.create();
+    sandbox = sinon.createSandbox();
     provider = new OVPProvider({partnerId: partnerId}, playerVersion);
   });
 
@@ -20,7 +20,7 @@ describe('OVPProvider.partnerId:1082342', function() {
   });
 
   it('should return config without plugins and without drm data', done => {
-    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
       return new Promise(resolve => {
         resolve({response: new MultiRequestResult(BE_DATA.AnonymousMocEntryWithoutUIConfNoDrmData.response)});
       });
@@ -41,7 +41,7 @@ describe('OVPProvider.partnerId:1082342', function() {
   });
 
   it('should apply the request host regex on the source urls', done => {
-    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
       return new Promise(resolve => {
         resolve({response: new MultiRequestResult(BE_DATA.AnonymousMocEntryWithRequestHostRegexAction.response)});
       });
@@ -63,7 +63,7 @@ describe('OVPProvider.partnerId:1082342', function() {
 
   it('should return config with plugins and without drm data', done => {
     provider = new OVPProvider({partnerId: partnerId, uiConfId: 38621471}, playerVersion);
-    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
       return new Promise(resolve => {
         resolve({response: new MultiRequestResult(BE_DATA.EntryWithUIConfNoDrmData.response)});
       });
@@ -84,7 +84,7 @@ describe('OVPProvider.partnerId:1082342', function() {
   });
 
   it('should return config without plugins and without drm data for audio', done => {
-    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
       return new Promise(resolve => {
         resolve({response: new MultiRequestResult(BE_DATA.AudioEntryWithoutPlugins.response)});
       });
@@ -106,7 +106,7 @@ describe('OVPProvider.partnerId:1082342', function() {
 
   // currently. the player cannot handle an image (need to add support). So this test is not valid.
   it.skip('should return config without plugins and without drm data for image', done => {
-    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
       return new Promise(resolve => {
         resolve({response: new MultiRequestResult(BE_DATA.ImageEntryWithoutPlugins.response)});
       });
@@ -127,7 +127,7 @@ describe('OVPProvider.partnerId:1082342', function() {
   });
 
   it('should return block error for server block response', done => {
-    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
       return new Promise(resolve => {
         resolve({response: new MultiRequestResult(BE_DATA.BlockActionEntry.response)});
       });
@@ -168,7 +168,7 @@ describe('OVPProvider.partnerId:1082342', function() {
   });
 });
 
-describe('OVPProvider.partnerId:1068292', function() {
+describe('OVPProvider.partnerId:1068292', function () {
   let provider, sandbox;
   const partnerId = 1068292;
   const ks =
@@ -176,7 +176,7 @@ describe('OVPProvider.partnerId:1068292', function() {
   const playerVersion = '1.2.3';
 
   beforeEach(() => {
-    sandbox = sinon.sandbox.create();
+    sandbox = sinon.createSandbox();
     provider = new OVPProvider({partnerId: partnerId, ks: ks}, playerVersion);
   });
 
@@ -186,7 +186,7 @@ describe('OVPProvider.partnerId:1068292', function() {
   });
 
   it('should return config without plugins with drm data', done => {
-    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
       return new Promise(resolve => {
         resolve({response: new MultiRequestResult(BE_DATA.AnonymousMocEntryWithoutUIConfWithDrmData.response)});
       });
@@ -209,7 +209,7 @@ describe('OVPProvider.partnerId:1068292', function() {
   });
 
   it('should return reject when try to get config with wrong entryId', done => {
-    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
       return new Promise((resolve, reject) => {
         const response = new MultiRequestResult(BE_DATA.WrongEntryIDWithoutUIConf.response);
         if (response.success) {
@@ -234,7 +234,7 @@ describe('OVPProvider.partnerId:1068292', function() {
 
   it('should return config with plugins and with drm data', done => {
     provider = new OVPProvider({partnerId: partnerId, ks: ks, uiConfId: 38601981}, playerVersion);
-    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
       return new Promise(resolve => {
         const response = new MultiRequestResult(BE_DATA.EntryWithUIConfWithDrmData.response);
         resolve({
@@ -261,7 +261,7 @@ describe('OVPProvider.partnerId:1068292', function() {
 
   it('should return reject when try to get config with wrong uiConf ID', done => {
     provider = new OVPProvider({partnerId: partnerId, ks: ks, uiConfId: 38601981}, playerVersion);
-    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
       return new Promise((resolve, reject) => {
         const response = new MultiRequestResult(BE_DATA.WrongUiConfID.response);
         if (response.success) {
@@ -285,7 +285,7 @@ describe('OVPProvider.partnerId:1068292', function() {
   });
 });
 
-describe('getMediaConfig', function() {
+describe('getMediaConfig', function () {
   let provider, sandbox;
   const partnerId = 1068292;
   const widgetId = '_123456';
@@ -293,10 +293,10 @@ describe('getMediaConfig', function() {
     'NTAwZjViZWZjY2NjNTRkNGEyMjU1MTg4OGE1NmUwNDljZWJkMzk1MXwxMDY4MjkyOzEwNjgyOTI7MTQ5MDE3NjE0NjswOzE0OTAwODk3NDYuMDIyNjswO3ZpZXc6Kix3aWRnZXQ6MTs7';
   const playerVersion = '1.2.3';
 
-  describe('getMediaConfig with ks', function() {
+  describe('getMediaConfig with ks', function () {
     beforeEach(() => {
-      sandbox = sinon.sandbox.create();
-      sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+      sandbox = sinon.createSandbox();
+      sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
         return new Promise(resolve => {
           resolve({response: new MultiRequestResult(BE_DATA.AnonymousMocEntryWithoutUIConfWithDrmData.response)});
         });
@@ -343,10 +343,10 @@ describe('getMediaConfig', function() {
     });
   });
 
-  describe('getMediaConfig without ks', function() {
+  describe('getMediaConfig without ks', function () {
     beforeEach(() => {
-      sandbox = sinon.sandbox.create();
-      sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+      sandbox = sinon.createSandbox();
+      sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
         return new Promise(resolve => {
           resolve({response: new MultiRequestResult(BE_DATA.AnonymousMocEntryWithoutUIConfNoDrmData.response)});
         });
@@ -426,12 +426,12 @@ describe('getMediaConfig', function() {
       );
     });
   });
-  describe('getMediaConfig status check', function() {
+  describe('getMediaConfig status check', function () {
     afterEach(() => {
       MultiRequestBuilder.prototype.execute.restore();
     });
     it('should request entryId with status in import', done => {
-      sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+      sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
         return new Promise(resolve => {
           resolve({response: new MultiRequestResult(BE_DATA.EntryInImport.response)});
         });
@@ -448,7 +448,7 @@ describe('getMediaConfig', function() {
       });
     });
     it('should request entryId with status in preconvert', done => {
-      sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+      sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
         return new Promise(resolve => {
           resolve({response: new MultiRequestResult(BE_DATA.EntryInPreConvert.response)});
         });
@@ -465,7 +465,7 @@ describe('getMediaConfig', function() {
       });
     });
     it('should request entryId with status ready', done => {
-      sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+      sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
         return new Promise(resolve => {
           resolve({response: new MultiRequestResult(BE_DATA.EntryInReady.response)});
         });
@@ -478,14 +478,14 @@ describe('getMediaConfig', function() {
   });
 });
 
-describe('getPlaylistConfig', function() {
+describe('getPlaylistConfig', function () {
   let provider, sandbox;
   const partnerId = 1091;
   const ks = 'MDlkOTIzMzRhZmM4MmJmNTIwYzZkYzZhMzc0ZTRiNWI1NTRiZjNhM3wxMDkxOzEwOTE7MTU0NDc5NzcyMjswOzE1NDQ3MTEzMjIuODk2MTswO3ZpZXc6Kix3aWRnZXQ6MTs7';
   const playerVersion = '1.2.3';
 
   beforeEach(() => {
-    sandbox = sinon.sandbox.create();
+    sandbox = sinon.createSandbox();
     provider = new OVPProvider({partnerId}, playerVersion);
   });
 
@@ -495,7 +495,7 @@ describe('getPlaylistConfig', function() {
   });
 
   it('should load a playlist by id - anonymous', done => {
-    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
       return new Promise(resolve => {
         resolve({response: new MultiRequestResult(BE_DATA.AnonymousPlaylistById.response)});
       });
@@ -520,7 +520,7 @@ describe('getPlaylistConfig', function() {
   });
 
   it('should load a playlist by id - with KS', done => {
-    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
       return new Promise(resolve => {
         resolve({response: new MultiRequestResult(BE_DATA.PlaylistById.response)});
       });
@@ -545,14 +545,14 @@ describe('getPlaylistConfig', function() {
   });
 });
 
-describe('getEntryListConfig', function() {
+describe('getEntryListConfig', function () {
   let provider, sandbox;
   const partnerId = 1091;
   const ks = 'MGVjMWI2ZDRkNmUwNTU4ODk5MWQyZmU4NzZlMmU4OGJjYzI5OTFmYnwxMDkxOzEwOTE7MTU0NDc5NDg4NzswOzE1NDQ3MDg0ODcuOTY1OTswO3ZpZXc6Kix3aWRnZXQ6MTs7';
   const playerVersion = '1.2.3';
 
   beforeEach(() => {
-    sandbox = sinon.sandbox.create();
+    sandbox = sinon.createSandbox();
     provider = new OVPProvider({partnerId: partnerId}, playerVersion);
   });
 
@@ -562,7 +562,7 @@ describe('getEntryListConfig', function() {
   });
 
   it('should load a playlist by entry list - anonymous', done => {
-    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
       return new Promise(resolve => {
         resolve({response: new MultiRequestResult(BE_DATA.AnonymousPlaylistByEntryList.response)});
       });
@@ -587,7 +587,7 @@ describe('getEntryListConfig', function() {
   });
 
   it('should load a playlist by entry list - with KS', done => {
-    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
       return new Promise(resolve => {
         resolve({response: new MultiRequestResult(BE_DATA.PlaylistByEntryList.response)});
       });
@@ -625,8 +625,8 @@ describe('getPlaybackContext', () => {
   });
 
   it('should request entryId token {1:result:objects:0:id} in request with valid KS', done => {
-    sandbox = sinon.sandbox.create();
-    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+    sandbox = sinon.createSandbox();
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
       return new Promise(resolve => {
         resolve({response: new MultiRequestResult(BE_DATA.AnonymousMocEntryWithoutUIConfWithDrmData.response)});
       });
@@ -647,7 +647,7 @@ describe('getPlaybackContext', () => {
   });
 
   it('should request entryId token {2:result:objects:0:id} in request with anonymous KS', done => {
-    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function() {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
       return new Promise(resolve => {
         resolve({response: new MultiRequestResult(BE_DATA.AnonymousMocEntryWithoutUIConfNoDrmData.response)});
       });

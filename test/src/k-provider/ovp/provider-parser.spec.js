@@ -12,11 +12,11 @@ import {
 } from './playback-sources-data';
 import {youtubeMediaEntryResult, youtubeMediaEntryData} from './provider-parser-data';
 
-describe('provider parser', function() {
+describe('provider parser', function () {
   let sandbox;
 
   beforeEach(() => {
-    sandbox = sinon.sandbox.create();
+    sandbox = sinon.createSandbox();
   });
 
   afterEach(() => {
@@ -73,10 +73,13 @@ describe('provider parser', function() {
       progressiveSource.progressive[0].id.should.equal('0_5407xm9j19961,url');
     });
   });
+
   describe('getMediaEntry', () => {
     it('should return a valid youtube source for a valid input', () => {
       const mediaEntry = OVPProviderParser.getMediaEntry(...youtubeMediaEntryData);
-      mediaEntry.should.deep.equal(youtubeMediaEntryResult);
+      const mediaEntryObject = mediaEntry.toJSON();
+      Object.keys(mediaEntryObject).forEach(key => mediaEntryObject[key] === undefined && delete mediaEntryObject[key]);
+      mediaEntryObject.should.deep.equal(youtubeMediaEntryResult);
     });
   });
 });

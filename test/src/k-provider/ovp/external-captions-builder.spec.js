@@ -1,6 +1,6 @@
 import {ExternalCaptionsBuilder} from '../../../../src/k-provider/ovp/external-captions-builder';
 
-describe('external captions parser', function() {
+describe('external captions parser', function () {
   const playbackCaptions = [
     {
       format: '1',
