@@ -3,7 +3,6 @@
 const clone = require('clone');
 const webpack = require('webpack');
 const path = require('path');
-const PROD = process.env.NODE_ENV === 'production';
 const packageData = require('./package.json');
 
 let plugins = [
@@ -58,10 +57,6 @@ const baseConfig = {
     modules: [path.resolve(__dirname, 'src'), 'node_modules']
   }
 };
-
-if (PROD) {
-  baseConfig.optimization = {minimize: true};
-}
 
 const providersConfig = clone(baseConfig);
 const servicesConfig = clone(baseConfig);
