@@ -49,7 +49,7 @@ export default class RequestBuilder {
    * @memberof RequestBuilder
    * @type {ProviderNetworkRetryParameters}
    */
-  retryConfig: ProviderNetworkRetryParameters;
+  retryConfig: ProviderNetworkRetryParameters = {};
 
   /**
    * @description number of xhr attempts for the same multi - request.
