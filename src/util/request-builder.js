@@ -129,7 +129,7 @@ export default class RequestBuilder {
       }
     };
     request.open(this.method, this.url, this.retryConfig && this.retryConfig.async);
-    if (this.retryConfig.async && this.retryConfig.timeout) {
+    if (this.retryConfig && this.retryConfig.async && this.retryConfig.timeout) {
       request.timeout = this.retryConfig.timeout;
     }
     const requestTime = performance.now();
