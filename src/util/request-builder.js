@@ -49,7 +49,11 @@ export default class RequestBuilder {
    * @memberof RequestBuilder
    * @type {ProviderNetworkRetryParameters}
    */
-  retryConfig: ProviderNetworkRetryParameters = {};
+  retryConfig: ProviderNetworkRetryParameters = {
+    async: true,
+    timeout: 0,
+    maxAttempts: 4
+  };
 
   /**
    * @description number of xhr attempts for the same multi - request.
@@ -128,8 +132,8 @@ export default class RequestBuilder {
         }
       }
     };
-    request.open(this.method, this.url, this.retryConfig && this.retryConfig.async);
-    if (this.retryConfig && this.retryConfig.async && this.retryConfig.timeout) {
+    request.open(this.method, this.url, this.retryConfig.async);
+    if (this.retryConfig.async && this.retryConfig.timeout) {
       request.timeout = this.retryConfig.timeout;
     }
     const requestTime = performance.now();
