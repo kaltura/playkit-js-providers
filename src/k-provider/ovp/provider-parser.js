@@ -336,17 +336,19 @@ export default class OVPProviderParser {
     const metadata = {};
     if (metadataList && metadataList.metas && metadataList.metas.length > 0) {
       metadataList.metas.forEach(meta => {
-        let metaXml: Object;
-        const domParser: DOMParser = new DOMParser();
-        meta.xml = meta.xml.replace(/\r?\n|\r/g, '');
-        meta.xml = meta.xml.replace(/>\s*/g, '>');
-        meta.xml = meta.xml.replace(/>\s*/g, '>');
-        metaXml = domParser.parseFromString(meta.xml, 'text/xml');
-        const metasObj: Object = XmlParser.xmlToJson(metaXml);
-        const metaKeys = Object.keys(metasObj.metadata);
-        metaKeys.forEach(key => {
-          metadata[key] = metasObj.metadata[key]['#text'];
-        });
+        if (meta.xml) {
+          let metaXml: Object;
+          const domParser: DOMParser = new DOMParser();
+          meta.xml = meta.xml.replace(/\r?\n|\r/g, '');
+          meta.xml = meta.xml.replace(/>\s*/g, '>');
+          meta.xml = meta.xml.replace(/>\s*/g, '>');
+          metaXml = domParser.parseFromString(meta.xml, 'text/xml');
+          const metasObj: Object = XmlParser.xmlToJson(metaXml);
+          const metaKeys = Object.keys(metasObj.metadata);
+          metaKeys.forEach(key => {
+            metadata[key] = metasObj.metadata[key]['#text'];
+          });
+        }
       });
     }
     return metadata;
