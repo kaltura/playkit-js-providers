@@ -2,7 +2,7 @@ sudo: required
 dist: xenial
 language: node_js
 node_js:
-  - "node"
+  - 'node'
 
 services:
   - xvfb
@@ -12,14 +12,14 @@ cache:
     - node_modules
 
 before_install:
- - export CHROME_BIN=/usr/bin/google-chrome
- - export DISPLAY=:99.0
- - sudo apt-get update
- - sudo apt-get install -y libappindicator1 fonts-liberation
- - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
- - sudo dpkg -i google-chrome*.deb
+  - export CHROME_BIN=/usr/bin/google-chrome
+  - export DISPLAY=:99.0
+  - sudo apt-get update
+  - sudo apt-get install -y libappindicator1 fonts-liberation
+  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  - sudo dpkg -i google-chrome*.deb
 
 script:
-- npm run eslint
-- npm run flow
-- npm run test
+  - npm run eslint
+  - npm run flow
+  - npm run test

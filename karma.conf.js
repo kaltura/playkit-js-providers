@@ -1,9 +1,3 @@
-let webpackConfig = require('./webpack.config.js')[0];
-// Need to remove externals otherwise they won't be included in test
-delete webpackConfig.externals;
-// Need to define inline source maps when using karma
-webpackConfig.devtool = 'inline-source-map';
-
 const isWindows = /^win/.test(process.platform);
 const isMacOS = /^darwin/.test(process.platform);
 // Create custom launcher in case running with Travis
@@ -14,7 +8,7 @@ const customLaunchers = {
   }
 };
 
-module.exports = function(config) {
+module.exports = function (config) {
   let karmaConf = {
     logLevel: config.LOG_INFO,
     browsers: ['Chrome', 'Firefox'],
@@ -28,7 +22,12 @@ module.exports = function(config) {
       'test/setup/karma.js': ['webpack', 'sourcemap']
     },
     reporters: ['mocha', 'coverage'],
-    webpack: webpackConfig,
+    webpack: {
+      ...require('./webpack.config.js')[0],
+      externals: {}, //Need to remove externals otherwise they won't be included in test
+      devtool: 'inline-source-map', // Need to define inline source maps when using karma
+      mode: config.mode || 'development' // run in development mode by default to avoid minifying -> faster
+    },
     webpackServer: {
       noInfo: true
     },

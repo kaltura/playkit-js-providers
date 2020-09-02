@@ -1,6 +1,23 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [2.22.0](https://github.com/kaltura/playkit-js-providers/compare/v2.20.4...v2.22.0) (2020-08-05)
+
+
+### Bug Fixes
+
+* add defaults to request builder ([#114](https://github.com/kaltura/playkit-js-providers/issues/114)) ([9ddacb1](https://github.com/kaltura/playkit-js-providers/commit/9ddacb1))
+* **FEC-10023:** use serviceUrl instead of cdnUrl to create playback urls in V7 ([#108](https://github.com/kaltura/playkit-js-providers/issues/108)) ([0fd9f8f](https://github.com/kaltura/playkit-js-providers/commit/0fd9f8f))
+* widget id as anonymous ([#105](https://github.com/kaltura/playkit-js-providers/issues/105)) ([c813e4b](https://github.com/kaltura/playkit-js-providers/commit/c813e4b))
+
+
+### Features
+
+* **FEC-10290:** upgrade NPM packages ([#112](https://github.com/kaltura/playkit-js-providers/issues/112)) ([45c4038](https://github.com/kaltura/playkit-js-providers/commit/45c4038))
+* **FEC-8872:** add provider check for entry status import and converting ([#107](https://github.com/kaltura/playkit-js-providers/issues/107)) ([04d677f](https://github.com/kaltura/playkit-js-providers/commit/04d677f))
+
+
 
 <a name="2.21.1"></a>
 ## [2.21.1](https://github.com/kaltura/playkit-js-providers/compare/v2.21.0...v2.21.1) (2020-05-10)

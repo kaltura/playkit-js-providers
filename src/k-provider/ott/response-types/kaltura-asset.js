@@ -63,10 +63,10 @@ export default class KalturaAsset extends ServiceResult {
 
   _formatTagsMetas(objectToParse: any): Array<Object> {
     const parsed = [];
-    Object.keys(objectToParse).forEach(function(key) {
+    Object.keys(objectToParse).forEach(function (key) {
       if (objectToParse[key].objects) {
         let value = '';
-        objectToParse[key].objects.forEach(function(object) {
+        objectToParse[key].objects.forEach(function (object) {
           value += object.value + '|';
         });
         parsed.push({key: key, value: value});

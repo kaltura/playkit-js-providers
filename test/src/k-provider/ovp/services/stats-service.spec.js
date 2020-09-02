@@ -3,17 +3,17 @@ import RequestBuilder from '../../../../../src/util/request-builder';
 import OVPConfiguration from '../../../../../src/k-provider/ovp/config';
 import {param} from '../../../../../src/util/param';
 
-describe('stats service - collect', function() {
+describe('stats service - collect', function () {
   let ovpParams, ks, event;
   const playerVersion = '1.2.3';
 
-  beforeEach(function() {
+  beforeEach(function () {
     ovpParams = OVPConfiguration.get();
     ks = '1234';
     event = {a: 1};
   });
 
-  it('should be proper values', function() {
+  it('should be proper values', function () {
     const serviceUrl = 'http://my/url';
     const request = OVPStatsService.collect(serviceUrl, ks, playerVersion, event);
     (request instanceof RequestBuilder).should.be.true;

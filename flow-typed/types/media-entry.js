@@ -5,6 +5,7 @@ declare type ProviderMediaEntryObject = {
   sources: ProviderMediaSourcesObject,
   duration: number,
   dvrStatus: number,
+  status: number,
   metadata: Object,
   type: string,
   poster: string | Array<Object>
