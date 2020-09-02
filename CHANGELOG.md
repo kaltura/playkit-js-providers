@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.22.1](https://github.com/kaltura/playkit-js-providers/compare/v2.22.0...v2.22.1) (2020-09-02)
+
+
+### Bug Fixes
+
+* **FEC-10161:** add kava anayltics url from server response ([#117](https://github.com/kaltura/playkit-js-providers/issues/117)) ([f059217](https://github.com/kaltura/playkit-js-providers/commit/f059217))
+* **FEC-10394:** Empty metadata xml field throws provider error ([#115](https://github.com/kaltura/playkit-js-providers/issues/115)) ([abb3317](https://github.com/kaltura/playkit-js-providers/commit/abb3317))
+
+
+### Tests
+
+* faster unit tests ([#116](https://github.com/kaltura/playkit-js-providers/issues/116)) ([79e1f4e](https://github.com/kaltura/playkit-js-providers/commit/79e1f4e))
+
+
+
 ## [2.22.0](https://github.com/kaltura/playkit-js-providers/compare/v2.20.4...v2.22.0) (2020-08-05)
 
 
