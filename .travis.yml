@@ -1,8 +1,12 @@
+conditions: v1
 sudo: required
 dist: xenial
 language: node_js
 node_js:
   - 'node'
+
+addons:
+  chrome: stable
 
 services:
   - xvfb
@@ -12,14 +16,38 @@ cache:
     - node_modules
 
 before_install:
-  - export CHROME_BIN=/usr/bin/google-chrome
   - export DISPLAY=:99.0
-  - sudo apt-get update
-  - sudo apt-get install -y libappindicator1 fonts-liberation
-  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-  - sudo dpkg -i google-chrome*.deb
 
 script:
-  - npm run eslint
-  - npm run flow
-  - npm run test
+  - set -ev
+  - yarn install
+
+stages:
+  - Tests
+  - Release
+
+jobs:
+  fast_finish: true
+  include:
+    # https://docs.travis-ci.com/user/build-stages/deploy-github-releases/
+    - stage: Release
+      if: (tag IS present)
+      name: 'Release'
+      script:
+        - conventional-github-releaser -p angular -t $GH_TOKEN
+    # Required tests
+    - stage: Tests
+      if: (branch = master) OR (tag IS present) OR (type = pull_request)
+      name: 'Running lint'
+      script:
+        - yarn run eslint
+    - stage: Tests
+      if: (branch = master) OR (tag IS present) OR (type = pull_request)
+      name: 'Running Flow type check'
+      script:
+        - yarn run flow
+    - stage: Tests
+      if: (branch = master) OR (tag IS present) OR (type = pull_request)
+      name: 'Running unit tests'
+      script:
+        - yarn run test
