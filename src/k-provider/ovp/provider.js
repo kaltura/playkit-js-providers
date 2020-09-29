@@ -18,9 +18,10 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
    * @constructor
    * @param {ProviderOptionsObject} options - provider options
    * @param {string} playerVersion - player version
+   * @param {function} logger - get logger instance
    */
-  constructor(options: ProviderOptionsObject, playerVersion: string) {
-    super(options, playerVersion);
+  constructor(options: ProviderOptionsObject, playerVersion: string, logger?: function) {
+    super(options, playerVersion, logger);
     this._logger = getLogger('OVPProvider');
     OVPConfiguration.set(options.env);
     this._setFilterOptionsConfig(options.filterOptions);
