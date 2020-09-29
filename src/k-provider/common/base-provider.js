@@ -50,8 +50,8 @@ export default class BaseProvider<MI> {
     return this._isAnonymous;
   }
 
-  constructor(options: ProviderOptionsObject, playerVersion: string, logger?: function) {
-    setLogger(logger);
+  constructor(options: ProviderOptionsObject, playerVersion: string) {
+    setLogger(config.logger);
     this._partnerId = options.partnerId;
     this._widgetId = options.widgetId;
     this._uiConfId = options.uiConfId;

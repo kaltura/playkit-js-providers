@@ -17,10 +17,9 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
    * @constructor
    * @param {ProviderOptionsObject} options - provider options
    * @param {string} playerVersion - player version
-   * @param {function} logger - get logger instance
    */
-  constructor(options: ProviderOptionsObject, playerVersion: string, logger?: function) {
-    super(options, playerVersion, logger);
+  constructor(options: ProviderOptionsObject, playerVersion: string) {
+    super(options, playerVersion);
     this._logger = getLogger('OTTProvider');
     OTTConfiguration.set(options.env);
     this._networkRetryConfig = Object.assign(this._networkRetryConfig, options.networkRetryParameters);
