@@ -237,24 +237,3 @@ describe('getEntryWithBumper', function () {
     );
   });
 });
-
-describe('logger', () => {
-  const provider = new OTTProvider({partnerId: partnerId}, playerVersion);
-
-  afterEach(() => {
-    provider.setLogLevel(provider.LogLevel.ERROR);
-  });
-
-  it('should return the current log level', () => {
-    const currentLogLevel = provider.getLogLevel();
-    currentLogLevel.should.equal(provider.LogLevel.ERROR);
-  });
-
-  it('should enable setting the current log level', () => {
-    let currentLogLevel = provider.getLogLevel();
-    currentLogLevel.should.equal(provider.LogLevel.ERROR);
-    provider.setLogLevel(provider.LogLevel.WARN);
-    currentLogLevel = provider.getLogLevel();
-    currentLogLevel.should.equal(provider.LogLevel.WARN);
-  });
-});
