@@ -51,7 +51,7 @@ export default class BaseProvider<MI> {
   }
 
   constructor(options: ProviderOptionsObject, playerVersion: string) {
-    setLogger(config.logger);
+    setLogger(options.logger);
     this._partnerId = options.partnerId;
     this._widgetId = options.widgetId;
     this._uiConfId = options.uiConfId;

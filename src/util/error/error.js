@@ -43,8 +43,6 @@ export default class Error {
     this.category = category;
     this.code = code;
     this.data = data;
-    if (getLogLevel(CLASS_NAME) !== LogLevel.OFF) {
-      Error._logger.error(`Category:${category} | Code:${code} |`, data);
-    }
+    Error._logger.error(`Category:${category} | Code:${code} |`, data);
   }
 }
