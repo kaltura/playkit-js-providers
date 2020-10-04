@@ -1,5 +1,5 @@
 // @flow
-import {setLogLevel, getLogLevel, LogLevel, setLogger, LogLevelType} from '../../util/logger';
+import {getLogLevel, setLogLevel, setLogger, type LogLevelType, LogLevel} from '../../util/logger';
 import DataLoaderManager from './data-loader-manager';
 import Error from '../../util/error/error';
 
