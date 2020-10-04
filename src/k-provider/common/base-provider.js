@@ -1,5 +1,5 @@
 // @flow
-import {setLogLevel, getLogLevel, setLogger} from '../../util/logger';
+import {setLogLevel, getLogLevel, LogLevel, setLogger, LogLevelType} from '../../util/logger';
 import DataLoaderManager from './data-loader-manager';
 import Error from '../../util/error/error';
 
@@ -94,6 +94,10 @@ export default class BaseProvider<MI> {
         messages: `No play source for entry id: ${sources.id}`
       });
     }
+  }
+
+  get LogLevel(): LogLevelType {
+    return LogLevel;
   }
 
   getLogLevel(name?: string): Object {
