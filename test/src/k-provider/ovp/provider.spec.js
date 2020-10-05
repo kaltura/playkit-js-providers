@@ -667,26 +667,3 @@ describe('getPlaybackContext', () => {
       });
   });
 });
-
-describe('logger', () => {
-  const partnerId = 1068292;
-  const playerVersion = '1.2.3';
-  const provider = new OVPProvider({partnerId: partnerId}, playerVersion);
-
-  afterEach(() => {
-    provider.setLogLevel(provider.LogLevel.ERROR);
-  });
-
-  it('should return the current log level', () => {
-    const currentLogLevel = provider.getLogLevel();
-    currentLogLevel.should.equal(provider.LogLevel.ERROR);
-  });
-
-  it('should enable setting the current log level', () => {
-    let currentLogLevel = provider.getLogLevel();
-    currentLogLevel.should.equal(provider.LogLevel.ERROR);
-    provider.setLogLevel(provider.LogLevel.WARN);
-    currentLogLevel = provider.getLogLevel();
-    currentLogLevel.should.equal(provider.LogLevel.WARN);
-  });
-});

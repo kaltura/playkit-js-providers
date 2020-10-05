@@ -1,8 +1,10 @@
 // @flow
+import {LoggerType} from '../../src/util/logger';
+
 declare type ProviderOptionsObject = {
   partnerId: number,
   widgetId?: string,
-  log?: ProviderLogConfigObject,
+  logger?: LoggerType,
   ks?: string,
   uiConfId?: number,
   env?: ProviderEnvConfigObject,

@@ -1,5 +1,5 @@
 // @flow
-import {setLogLevel, getLogLevel, LogLevel, setLogHandler} from '../../util/logger';
+import {getLogLevel, setLogLevel, setLogger, type LogLevelType, LogLevel} from '../../util/logger';
 import DataLoaderManager from './data-loader-manager';
 import Error from '../../util/error/error';
 
@@ -51,18 +51,13 @@ export default class BaseProvider<MI> {
   }
 
   constructor(options: ProviderOptionsObject, playerVersion: string) {
+    setLogger(options.logger);
     this._partnerId = options.partnerId;
     this._widgetId = options.widgetId;
     this._uiConfId = options.uiConfId;
     this._isAnonymous = !options.ks;
     this._ks = options.ks || '';
     this._playerVersion = playerVersion;
-    if (options.log && options.log.level && this.LogLevel[options.log.level]) {
-      setLogLevel(this.LogLevel[options.log.level]);
-    }
-    if (options.log && typeof options.log.handler === 'function') {
-      setLogHandler(options.log.handler);
-    }
   }
 
   // eslint-disable-next-line no-unused-vars
@@ -101,7 +96,7 @@ export default class BaseProvider<MI> {
     }
   }
 
-  get LogLevel(): {[level: string]: Object} {
+  get LogLevel(): LogLevelType {
     return LogLevel;
   }
 
