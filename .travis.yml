@@ -41,7 +41,7 @@ jobs:
       script:
         - git checkout master
         - yarn install
-        - yarn run build
+        - yarn run build && commit:dist
         - git push https://$GH_TOKEN@github.com/kaltura/playkit-js-providers "master" > /dev/null 2>&1
     # Required tests
     - stage: Tests
