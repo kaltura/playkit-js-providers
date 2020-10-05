@@ -35,6 +35,14 @@ jobs:
       name: 'Release'
       script:
         - conventional-github-releaser -p angular -t $GH_TOKEN
+    - stage: Release canary
+      if: (branch = master) AND (type != pull_request) AND commit_message !~ /^chore\(release\)/ AND commit_message !~ /^(chore).*(update dist)$/
+      name: 'Release canary'
+      script:
+        - git checkout master
+        - yarn install
+        - yarn run build
+        - git push https://$GH_TOKEN@github.com/kaltura/playkit-js-providers "master" > /dev/null 2>&1
     # Required tests
     - stage: Tests
       if: (branch = master) OR (tag IS present) OR (type = pull_request)
