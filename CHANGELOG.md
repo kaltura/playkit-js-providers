@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.22.2](https://github.com/kaltura/playkit-js-providers/compare/v2.22.1...v2.22.2) (2020-10-06)
+
+
+### Bug Fixes
+
+* **FEC-10524:** stub logger and get logger from Kaltura player ([#119](https://github.com/kaltura/playkit-js-providers/issues/119)) ([1d32a94](https://github.com/kaltura/playkit-js-providers/commit/1d32a94))
+
+
+### Build System
+
+* add commit after the build process. ([#121](https://github.com/kaltura/playkit-js-providers/issues/121)) ([d2d81ba](https://github.com/kaltura/playkit-js-providers/commit/d2d81ba))
+* create canary build on changes on master branch ([#120](https://github.com/kaltura/playkit-js-providers/issues/120)) ([821edb3](https://github.com/kaltura/playkit-js-providers/commit/821edb3))
+* missing yarn in commit command ([#122](https://github.com/kaltura/playkit-js-providers/issues/122)) ([01a0d1e](https://github.com/kaltura/playkit-js-providers/commit/01a0d1e))
+* **FEC-10064:** add automatic release notes ([#118](https://github.com/kaltura/playkit-js-providers/issues/118)) ([e6ed497](https://github.com/kaltura/playkit-js-providers/commit/e6ed497))
+
+
+
 ### [2.22.1](https://github.com/kaltura/playkit-js-providers/compare/v2.22.0...v2.22.1) (2020-09-02)
 
 
