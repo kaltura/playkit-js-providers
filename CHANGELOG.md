@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.23.0](https://github.com/kaltura/playkit-js-providers/compare/v2.22.2...v2.23.0) (2020-10-14)
+
+
+### Features
+
+* **FEC-9197:** add streamerType and urlType into the getPlaybackContext ([#124](https://github.com/kaltura/playkit-js-providers/issues/124)) ([6a82d05](https://github.com/kaltura/playkit-js-providers/commit/6a82d05))
+
+
+
 ### [2.22.2](https://github.com/kaltura/playkit-js-providers/compare/v2.22.1...v2.22.2) (2020-10-06)
 
 
