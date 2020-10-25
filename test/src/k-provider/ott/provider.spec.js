@@ -5,6 +5,7 @@ import {MultiRequestResult} from '../../../../src/k-provider/common/multi-reques
 import MultiRequestBuilder from '../../../../src/k-provider/common/multi-request-builder';
 import KalturaAsset from '../../../../src/k-provider/ott/response-types/kaltura-asset';
 import KalturaPlaybackContext from '../../../../src/k-provider/ott/response-types/kaltura-playback-context';
+import OTTAssetLoader from '../../../../src/k-provider/ott/loaders/asset-loader';
 
 const partnerId = 198;
 const playerVersion = '1.2.3';
@@ -18,7 +19,12 @@ describe('OTTProvider.partnerId:198', function () {
 
   afterEach(() => {
     sandbox.restore();
-    MultiRequestBuilder.prototype.execute.restore();
+    if (MultiRequestBuilder.prototype.execute.restore) {
+      MultiRequestBuilder.prototype.execute.restore();
+    }
+    if (OTTAssetLoader.prototype.buildRequests.restore) {
+      OTTAssetLoader.prototype.buildRequests.restore();
+    }
   });
 
   it('should return config without plugins and with drm data', done => {
@@ -129,6 +135,19 @@ describe('OTTProvider.partnerId:198', function () {
         }
       }
     );
+  });
+
+  it('should pass streamerType and urlType on the playback context object', done => {
+    sinon.stub(OTTAssetLoader.prototype, 'buildRequests').callsFake(function (params: Object) {
+      try {
+        params.playbackContext.streamerType.should.equal('mpegdash');
+        params.playbackContext.urlType.should.equal('DIRECT');
+        done();
+      } catch (e) {
+        done(e);
+      }
+    });
+    provider.getMediaConfig({entryId: 1234, streamerType: 'mpegdash', urlType: 'DIRECT'});
   });
 });
 
