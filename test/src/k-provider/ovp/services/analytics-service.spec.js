@@ -3,7 +3,7 @@ import RequestBuilder from '../../../../../src/util/request-builder';
 import OVPConfiguration from '../../../../../src/k-provider/ovp/config';
 import {param} from '../../../../../src/util/param';
 
-describe.only('analytics service - trackEvent', function () {
+describe('analytics service - trackEvent', function () {
   const ovpParams = OVPConfiguration.get();
   const eventParams = {
     param1: 'param1',
