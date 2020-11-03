@@ -12,10 +12,17 @@ export default class OVPAnalyticsService extends OVPService {
    * @function trackEvent
    * @param {string} serviceUrl - The service base url
    * @param {Object} params - The event params
+   * @param {string} [requestMethod] - The request method GET or POST
    * @returns {RequestBuilder} - The request builder
    * @static
    */
-  static trackEvent(serviceUrl: string, params: Object): RequestBuilder {
+  static trackEvent(serviceUrl: string, params: Object, requestMethod: ?string): RequestBuilder {
+    return requestMethod === 'POST'
+      ? OVPAnalyticsService._trackEventByPOST(serviceUrl, params)
+      : OVPAnalyticsService._trackEventByGET(serviceUrl, params);
+  }
+
+  static _trackEventByGET(serviceUrl: string, params: Object): RequestBuilder {
     const ovpParams = OVPConfiguration.get();
     const serviceParams = {};
     Object.assign(serviceParams, ovpParams.serviceParams, params);
@@ -26,6 +33,25 @@ export default class OVPAnalyticsService extends OVPService {
     request.tag = 'analytics-trackEvent';
     request.params = serviceParams;
     request.url = serviceUrl + '?service=' + request.service + '&action=' + request.action + '&' + param(request.params);
+    return request;
+  }
+
+  static _trackEventByPOST(serviceUrl: string, params: Object): RequestBuilder {
+    const ovpParams = OVPConfiguration.get();
+    const serviceParams = {};
+    Object.assign(serviceParams, ovpParams.serviceParams, params);
+    const headers: Map<string, string> = new Map();
+    headers.set('Content-Type', 'application/json');
+    const request = new RequestBuilder(headers);
+    const {eventType, partnerId, entryId, sessionId} = serviceParams;
+    const urlParams = {eventType, partnerId, entryId, sessionId};
+    ['eventType', 'partnerId', 'entryId', 'sessionId'].forEach(key => delete serviceParams[key]);
+    request.service = SERVICE_NAME;
+    request.action = 'trackEvent';
+    request.method = 'POST';
+    request.tag = 'analytics-trackEvent';
+    request.params = JSON.stringify(serviceParams);
+    request.url = serviceUrl + '?service=' + request.service + '&action=' + request.action + '&' + param(urlParams);
     return request;
   }
 }
