@@ -23,7 +23,7 @@ export default class OVPMetadataService extends OVPService {
     request.method = 'POST';
     request.url = request.getUrl(serviceUrl);
     request.tag = 'metadata_metadata-list';
-    const filter = {objectIdEqual: entryId, metadataObjectTypeEqual: '1'};
+    const filter = {objectType: 'KalturaMetadataFilter', objectIdEqual: entryId, metadataObjectTypeEqual: '1'};
     request.params = {filter: filter, ks: ks};
     return request;
   }
