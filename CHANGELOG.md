@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.24.0](https://github.com/kaltura/playkit-js-providers/compare/v2.23.0...v2.24.0) (2020-11-03)
+
+
+### Build System
+
+* remove plugins that already exist on preset-env ([#123](https://github.com/kaltura/playkit-js-providers/issues/123)) ([d750150](https://github.com/kaltura/playkit-js-providers/commit/d750150))
+
+
+### Features
+
+* **FEC-10615:** support sending Kava beacons as POST ([0b317fd](https://github.com/kaltura/playkit-js-providers/commit/0b317fd))
+* **FEC-10615:** support sending Kava beacons as POST ([#125](https://github.com/kaltura/playkit-js-providers/issues/125)) ([7fe3284](https://github.com/kaltura/playkit-js-providers/commit/7fe3284))
+
+
+
 ## [2.23.0](https://github.com/kaltura/playkit-js-providers/compare/v2.22.2...v2.23.0) (2020-10-14)
 
 
