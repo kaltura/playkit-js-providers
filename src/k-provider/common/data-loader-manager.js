@@ -35,7 +35,7 @@ export default class DataLoaderManager {
   }
 
   /**
-   * Add loader too execution loaders map
+   * Add loader to execution loaders map
    * @function
    * @param {Function} loader Loader to add
    * @param {Object} params Loader params

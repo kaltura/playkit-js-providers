@@ -17,6 +17,7 @@ export type {OVPMediaEntryLoaderResponse};
 
 export default class OVPMediaEntryLoader implements ILoader {
   _entryId: string;
+  _referenceId: string;
   _requests: Array<RequestBuilder>;
   _response: any = {};
 
@@ -32,6 +33,7 @@ export default class OVPMediaEntryLoader implements ILoader {
   constructor(params: Object) {
     this.requests = this.buildRequests(params);
     this._entryId = params.entryId;
+    this._referenceId = params.referenceId;
   }
 
   set requests(requests: Array<RequestBuilder>) {
@@ -63,9 +65,11 @@ export default class OVPMediaEntryLoader implements ILoader {
   buildRequests(params: Object): Array<RequestBuilder> {
     const config = OVPConfiguration.get();
     const requests: Array<RequestBuilder> = [];
-    requests.push(OVPBaseEntryService.list(config.serviceUrl, params.ks, params.entryId, params.redirectFromEntryId));
-    requests.push(OVPBaseEntryService.getPlaybackContext(config.serviceUrl, params.ks));
-    requests.push(OVPMetadataService.list(config.serviceUrl, params.ks, params.entryId));
+    requests.push(OVPBaseEntryService.list(config.serviceUrl, params.ks, params.entryId, params.redirectFromEntryId, params.referenceId));
+    // Use the entry id from the request result to support loading by referenceId
+    const serviceEntryId = params.ks === '{1:result:ks}' ? '{2:result:objects:0:id}' : '{1:result:objects:0:id}';
+    requests.push(OVPBaseEntryService.getPlaybackContext(config.serviceUrl, params.ks, serviceEntryId));
+    requests.push(OVPMetadataService.list(config.serviceUrl, params.ks, serviceEntryId));
     return requests;
   }
 
@@ -75,6 +79,6 @@ export default class OVPMediaEntryLoader implements ILoader {
    * @returns {boolean} Is valid
    */
   isValid(): boolean {
-    return !!this._entryId;
+    return !!this._entryId || !!this._referenceId;
   }
 }

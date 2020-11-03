@@ -43,14 +43,15 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     this._dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, this.ks, this._networkRetryConfig);
     return new Promise((resolve, reject) => {
       const entryId = mediaInfo.entryId;
-      if (entryId) {
+      const referenceId = mediaInfo.referenceId;
+      if (entryId || referenceId) {
         let ks: string = this.ks;
         if (!ks) {
           ks = '{1:result:ks}';
           this._dataLoader.add(OVPSessionLoader, {widgetId: this.widgetId});
         }
         const redirectFromEntryId = this._getEntryRedirectFilter(mediaInfo);
-        this._dataLoader.add(OVPMediaEntryLoader, {entryId, ks, redirectFromEntryId});
+        this._dataLoader.add(OVPMediaEntryLoader, {entryId, ks, redirectFromEntryId, referenceId});
         return this._dataLoader.fetchData().then(
           response => {
             try {
