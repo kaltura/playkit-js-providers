@@ -83,6 +83,28 @@ describe('OVPProvider.partnerId:1082342', function () {
     );
   });
 
+  it('should be able to get media config by referenceId', done => {
+    provider = new OVPProvider({partnerId: partnerId, uiConfId: 38621471}, playerVersion);
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
+      return new Promise(resolve => {
+        resolve({response: new MultiRequestResult(BE_DATA.EntryWithUIConfNoDrmData.response)});
+      });
+    });
+    provider.getMediaConfig({referenceId: '1_rsrdfext'}).then(
+      mediaConfig => {
+        try {
+          mediaConfig.should.deep.equal(MEDIA_CONFIG_DATA.WithPluginsNoDrm);
+          done();
+        } catch (err) {
+          done(err);
+        }
+      },
+      err => {
+        done(err);
+      }
+    );
+  });
+
   it('should return config without plugins and without drm data for audio', done => {
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
       return new Promise(resolve => {
