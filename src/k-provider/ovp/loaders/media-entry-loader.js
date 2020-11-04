@@ -79,6 +79,6 @@ export default class OVPMediaEntryLoader implements ILoader {
    * @returns {boolean} Is valid
    */
   isValid(): boolean {
-    return !!this._entryId || !!this._referenceId;
+    return !!(this._entryId || this._referenceId);
   }
 }
