@@ -1,10 +1,8 @@
 // @flow
 declare type OVPProviderMediaInfoObject = {
   entryId?: string,
-  ks?: string,
-    entryId?: string,
-    referenceId?: string,
-    ks?: string
+  referenceId?: string,
+  ks?: string
 };
 
 declare type OTTProviderMediaInfoObject = OVPProviderMediaInfoObject & {
