@@ -3,6 +3,7 @@ import KalturaPlaybackContext from './response-types/kaltura-playback-context';
 import KalturaMetadataListResponse from './response-types/kaltura-metadata-list-response';
 import KalturaMediaEntry from './response-types/kaltura-media-entry';
 import KalturaPlaybackSource from './response-types/kaltura-playback-source';
+import KalturaBumper from './response-types/kaltura-bumper';
 import KalturaDrmPlaybackPluginData from '../common/response-types/kaltura-drm-playback-plugin-data';
 import PlaySourceUrlBuilder from './play-source-url-builder';
 import XmlParser from '../../util/xml-parser';
@@ -15,6 +16,7 @@ import MediaSources from '../../entities/media-sources';
 import {SupportedStreamFormat, isProgressiveSource} from '../../entities/media-format';
 import Playlist from '../../entities/playlist';
 import EntryList from '../../entities/entry-list';
+import Bumper from '../../entities/bumper';
 import KalturaRuleAction from './response-types/kaltura-rule-action';
 import KalturaAccessControlMessage from '../common/response-types/kaltura-access-control-message';
 import type {OVPMediaEntryLoaderResponse} from './loaders/media-entry-loader';
@@ -90,6 +92,31 @@ export default class OVPProviderParser {
       entryList.items.push(mediaEntry);
     });
     return entryList;
+  }
+
+  /**
+   * Returns parsed bumper by given OTT response objects.
+   * @function getBumper
+   * @param {any} assetResponse - The asset response.
+   * @param {string} ks - The ks
+   * @param {number} partnerId - The partner ID
+   * @returns {?Bumper} - The bumper
+   * @static
+   * @public
+   */
+  static getBumper(assetResponse: any, ks: string, partnerId: number): ?Bumper {
+    const playbackContext = assetResponse.playBackContextResult;
+    const bumperData: KalturaBumper = playbackContext.bumperData[0];
+    if (bumperData) {
+      const bumperSources = bumperData && bumperData.sources;
+      const progressiveBumper = bumperSources.find(bumper => isProgressiveSource(bumper.format));
+      if (progressiveBumper) {
+        const parsedSources = OVPProviderParser._parseProgressiveSources(progressiveBumper, playbackContext, ks, partnerId, 0, bumperData.entryId);
+        if (parsedSources[0]) {
+          return new Bumper({url: parsedSources[0].url, clickThroughUrl: bumperData.clickThroughUrl});
+        }
+      }
+    }
   }
 
   static _fillBaseData(mediaEntry: MediaEntry, entry: KalturaMediaEntry, metadataList: ?KalturaMetadataListResponse) {

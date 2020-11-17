@@ -6,6 +6,11 @@ export default class Bumper {
    * @type {string}
    */
   url: string;
+  /**
+   * @member - bumper click through url
+   * @type {string}
+   */
+  clickThroughUrl: string;
 
   /**
    * @constructor
@@ -13,5 +18,6 @@ export default class Bumper {
    */
   constructor(data: Object) {
     this.url = data.url;
+    this.clickThroughUrl = data.clickThroughUrl;
   }
 }
