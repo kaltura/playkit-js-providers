@@ -426,6 +426,7 @@ describe('getMediaConfig', function () {
       );
     });
   });
+
   describe('getMediaConfig status check', function () {
     afterEach(() => {
       MultiRequestBuilder.prototype.execute.restore();
@@ -474,6 +475,67 @@ describe('getMediaConfig', function () {
       provider.getMediaConfig({entryId: '0_yp010l8a'}).then(() => {
         done();
       });
+    });
+  });
+
+  describe('getMediaConfig with bumper', function () {
+    let provider, sandbox;
+    const partnerId = 1091;
+    const ks =
+      'YmMzNzUyZWM4ZmVkYjRiMzRlOTBlYTZjMGY2YTI1NzRkZDUwZjZjNnwxMDkxOzEwOTE7MTYwNTcyMjI5NDsyOzE2MDU2MzU4OTQuMTA0MzthdmkuYmFydWNoQGthbHR1cmEuY29tOyosZGlzYWJsZWVudGl0bGVtZW50Ozs';
+    const playerVersion = '1.2.3';
+
+    beforeEach(() => {
+      sandbox = sinon.createSandbox();
+    });
+
+    afterEach(() => {
+      sandbox.restore();
+      MultiRequestBuilder.prototype.execute.restore();
+    });
+
+    it('should set the bumper plugin with no ks', done => {
+      sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
+        return new Promise(resolve => {
+          resolve({response: new MultiRequestResult(BE_DATA.EntryWithBumper.response)});
+        });
+      });
+      provider = new OVPProvider({partnerId: partnerId}, playerVersion);
+      provider.getMediaConfig({entryId: '0_wifqaipd'}).then(
+        mediaConfig => {
+          try {
+            mediaConfig.should.deep.equal(MEDIA_CONFIG_DATA.EntryWithBumper);
+            done();
+          } catch (err) {
+            done(err);
+          }
+        },
+        err => {
+          done(err);
+        }
+      );
+    });
+
+    it('should set the bumper plugin with ks', done => {
+      sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
+        return new Promise(resolve => {
+          resolve({response: new MultiRequestResult(BE_DATA.EntryWithBumperWithKs.response)});
+        });
+      });
+      provider = new OVPProvider({partnerId: partnerId}, playerVersion);
+      provider.getMediaConfig({entryId: '0_wifqaipd', ks}).then(
+        mediaConfig => {
+          try {
+            mediaConfig.should.deep.equal(MEDIA_CONFIG_DATA.EntryWithBumperWithKs);
+            done();
+          } catch (err) {
+            done(err);
+          }
+        },
+        err => {
+          done(err);
+        }
+      );
     });
   });
 });
