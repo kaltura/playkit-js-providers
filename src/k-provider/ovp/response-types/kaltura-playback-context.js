@@ -5,6 +5,7 @@ import KalturaPlaybackSource from './kaltura-playback-source';
 import KalturaAccessControlModifyRequestHostRegexAction from './kaltura-access-control-modify-request-host-regex-action';
 import KalturaRuleAction from './kaltura-rule-action';
 import KalturaFlavorAsset from './kaltura-flavor-asset';
+import KalturaBumper from './kaltura-bumper';
 
 export default class KalturaPlaybackContext extends ServiceResult {
   /**
@@ -27,6 +28,11 @@ export default class KalturaPlaybackContext extends ServiceResult {
    * @type {Array<KalturaFlavorAsset>}
    */
   flavorAssets: Array<KalturaFlavorAsset> = [];
+  /**
+   * @member - The bumper data
+   * @type {Array<KalturaBumper>}
+   */
+  bumperData: Array<KalturaBumper> = [];
 
   /**
    * @constructor
@@ -56,6 +62,10 @@ export default class KalturaPlaybackContext extends ServiceResult {
       const flavorAssets = response.flavorAssets;
       if (flavorAssets) {
         flavorAssets.map(flavor => this.flavorAssets.push(new KalturaFlavorAsset(flavor)));
+      }
+      const bumperData = response.bumperData;
+      if (bumperData) {
+        bumperData.map(bumper => this.bumperData.push(new KalturaBumper(bumper)));
       }
     }
   }

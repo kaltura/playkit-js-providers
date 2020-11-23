@@ -771,7 +771,7 @@ const EntryWithBumper = {
       metas: {}
     }
   },
-  plugins: {bumper: {url: 'bumper_url.mp4'}}
+  plugins: {bumper: {url: 'bumper_url.mp4', clickThroughUrl: undefined}}
 };
 
 export {NoPluginsWithDrm, FilteredSourcesByDeviceType, LiveEntryNoDrm, EntryWithBumper};

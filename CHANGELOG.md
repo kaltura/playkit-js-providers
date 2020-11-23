@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.25.0](https://github.com/kaltura/playkit-js-providers/compare/v2.24.0...v2.25.0) (2020-11-22)
+
+
+### Features
+
+* **FEC-9142:** getting bumper from providers by entry id (OVP) ([#88](https://github.com/kaltura/playkit-js-providers/issues/88)) ([907d0ea](https://github.com/kaltura/playkit-js-providers/commit/907d0ea))
+
+
+
 ## [2.24.0](https://github.com/kaltura/playkit-js-providers/compare/v2.23.0...v2.24.0) (2020-11-03)
 
 
