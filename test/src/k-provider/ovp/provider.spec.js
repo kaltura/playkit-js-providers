@@ -443,12 +443,7 @@ describe('getMediaConfig', function () {
       );
     });
   });
-<<<<<<< Updated upstream
-
-  describe('getMediaConfig status check', function() {
-=======
   describe('getMediaConfig status check', function () {
->>>>>>> Stashed changes
     afterEach(() => {
       MultiRequestBuilder.prototype.execute.restore();
     });
