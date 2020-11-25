@@ -53,15 +53,7 @@ export default class OVPEntryListLoader implements ILoader {
     const config = OVPConfiguration.get();
     const requests: Array<RequestBuilder> = [];
     params.entries.forEach(entry => {
-      requests.push(
-        OVPBaseEntryService.list(
-          config.serviceUrl,
-          params.ks,
-          entry.entryId || (typeof entry === 'string' && entry),
-          params.redirectFromEntryId,
-          entry.referenceId
-        )
-      );
+      requests.push(OVPBaseEntryService.list(config.serviceUrl, params.ks, entry.entryId || entry, params.redirectFromEntryId, entry.referenceId));
     });
     return requests;
   }
