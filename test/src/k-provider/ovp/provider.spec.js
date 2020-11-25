@@ -83,6 +83,19 @@ describe('OVPProvider.partnerId:1082342', function () {
     );
   });
 
+  it('should be able to get media config by referenceId', done => {
+    provider = new OVPProvider({partnerId: partnerId, uiConfId: 38621471}, playerVersion);
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
+      try {
+        this.requests[1].params.filter.referenceIdEqual.should.equal('1_rsrdfext');
+        done();
+      } catch (err) {
+        done(err);
+      }
+    });
+    provider.getMediaConfig({referenceId: '1_rsrdfext'});
+  });
+
   it('should return config without plugins and without drm data for audio', done => {
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
       return new Promise(resolve => {
@@ -426,7 +439,6 @@ describe('getMediaConfig', function () {
       );
     });
   });
-
   describe('getMediaConfig status check', function () {
     afterEach(() => {
       MultiRequestBuilder.prototype.execute.restore();

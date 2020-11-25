@@ -1,6 +1,7 @@
 // @flow
 declare type OVPProviderMediaInfoObject = {
-  entryId: string,
+  entryId?: string,
+  referenceId?: string,
   ks?: string
 };
 
