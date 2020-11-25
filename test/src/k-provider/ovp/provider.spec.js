@@ -439,6 +439,7 @@ describe('getMediaConfig', function () {
       );
     });
   });
+
   describe('getMediaConfig status check', function () {
     afterEach(() => {
       MultiRequestBuilder.prototype.execute.restore();
@@ -539,6 +540,28 @@ describe('getMediaConfig', function () {
         mediaConfig => {
           try {
             mediaConfig.should.deep.equal(MEDIA_CONFIG_DATA.EntryWithBumperWithKs);
+            done();
+          } catch (err) {
+            done(err);
+          }
+        },
+        err => {
+          done(err);
+        }
+      );
+    });
+
+    it('should not set the bumper plugin when no sources given', done => {
+      sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
+        return new Promise(resolve => {
+          resolve({response: new MultiRequestResult(BE_DATA.EntryWithBumperWitNoSources.response)});
+        });
+      });
+      provider = new OVPProvider({partnerId: partnerId}, playerVersion);
+      provider.getMediaConfig({entryId: '0_wifqaipd', ks}).then(
+        mediaConfig => {
+          try {
+            mediaConfig.should.deep.equal(MEDIA_CONFIG_DATA.EntryWithNoBumper);
             done();
           } catch (err) {
             done(err);
