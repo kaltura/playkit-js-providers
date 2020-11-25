@@ -92,7 +92,6 @@ describe('OVPProvider.partnerId:1082342', function () {
       } catch (err) {
         done(err);
       }
-      return new Promise(() => {});
     });
     provider.getMediaConfig({referenceId: '1_rsrdfext'});
   });
