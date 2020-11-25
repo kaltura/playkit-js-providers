@@ -93,7 +93,6 @@ describe('OVPProvider.partnerId:1082342', function () {
     provider.getMediaConfig({referenceId: '1_rsrdfext'}).then(mediaConfig => {
       try {
         mediaConfig.should.deep.equal(MEDIA_CONFIG_DATA.WithPluginsNoDrm);
-        done();
       } catch (err) {
         done(err);
       }
