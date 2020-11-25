@@ -21,6 +21,6 @@ export default class KalturaBumper {
   constructor(data: any) {
     this.entryId = data.entryId;
     this.clickThroughUrl = data.url;
-    this.sources = data.sources.map(source => new KalturaPlaybackSource(source));
+    this.sources = data.sources ? data.sources.map(source => new KalturaPlaybackSource(source)) : [];
   }
 }
