@@ -3589,5 +3589,7 @@ export {
   EntryInReady,
   EntryWithBumper,
   EntryWithBumperWithKs,
-  EntryWithBumperWitNoSources
+  EntryWithBumperWitNoSources,
+  EntryWithBumper as EntryExternalCaptionNoKS,
+  EntryWithBumperWithKs as EntryExternalCaptionWithKS
 };

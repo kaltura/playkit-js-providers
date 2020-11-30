@@ -743,6 +743,32 @@ describe('getPlaybackContext', () => {
       });
   });
 
+  it('should add KS to external captions response', done => {
+    sandbox = sinon.createSandbox();
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
+      return new Promise(resolve => {
+        resolve({response: new MultiRequestResult(BE_DATA.EntryExternalCaptionWithKS.response)});
+      });
+    });
+    provider = new OVPProvider({partnerId: partnerId}, playerVersion);
+    provider.getMediaConfig({entryId: '1_rwbj3j0a', ks: ks}).then(
+      mediaConfig => {
+        try {
+          const result = mediaConfig.sources.captions.filter(caption => {
+            return caption.url.indexOf('/ks/' + ks) !== -1;
+          });
+          result.should.deep.equal(mediaConfig.sources.captions);
+          done();
+        } catch (err) {
+          done(err);
+        }
+      },
+      err => {
+        done(err);
+      }
+    );
+  });
+
   it('should request entryId token {2:result:objects:0:id} in request with anonymous KS', done => {
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
       return new Promise(resolve => {
@@ -762,5 +788,31 @@ describe('getPlaybackContext', () => {
       .catch(err => {
         done(err);
       });
+  });
+
+  it('should not add KS to external captions', done => {
+    sandbox = sinon.createSandbox();
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
+      return new Promise(resolve => {
+        resolve({response: new MultiRequestResult(BE_DATA.EntryExternalCaptionNoKS.response)});
+      });
+    });
+    provider = new OVPProvider({partnerId: partnerId}, playerVersion);
+    provider.getMediaConfig({entryId: '1_rwbj3j0a'}).then(
+      mediaConfig => {
+        try {
+          const result = mediaConfig.sources.captions.filter(caption => {
+            return caption.url.indexOf('/ks/' + ks) === -1;
+          });
+          result.should.deep.equal(mediaConfig.sources.captions);
+          done();
+        } catch (err) {
+          done(err);
+        }
+      },
+      err => {
+        done(err);
+      }
+    );
   });
 });
