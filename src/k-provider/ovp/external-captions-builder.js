@@ -21,7 +21,8 @@ class ExternalCaptionsBuilder {
         url = caption.webVttUrl;
         type = CaptionsFormatsMap[KalturaCaptionType.WEBVTT];
       }
-      url = ks ? url + '/ks/' + ks : url;
+      const ksParam = url.indexOf('?') === -1 ? '/ks/' : '&ks=';
+      url = ks ? url + ksParam + ks : url;
       return {
         default: !!caption.isDefault,
         type: type,
