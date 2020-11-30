@@ -1105,14 +1105,16 @@ const EntryWithBumperWithKs = {
         type: 'srt',
         language: 'en',
         label: 'En',
-        url: 'http://cdntesting.qa.mkaltura.com/api_v3/index.php/service/caption_captionAsset/action/serve/captionAssetId/0_kozg4x1x/v/2'
+        url:
+          'http://cdntesting.qa.mkaltura.com/api_v3/index.php/service/caption_captionAsset/action/serve/captionAssetId/0_kozg4x1x/v/2/ks/YmMzNzUyZWM4ZmVkYjRiMzRlOTBlYTZjMGY2YTI1NzRkZDUwZjZjNnwxMDkxOzEwOTE7MTYwNTcyMjI5NDsyOzE2MDU2MzU4OTQuMTA0MzthdmkuYmFydWNoQGthbHR1cmEuY29tOyosZGlzYWJsZWVudGl0bGVtZW50Ozs'
       },
       {
         default: false,
         type: 'srt',
         language: 'es',
         label: 'Esp',
-        url: 'http://cdntesting.qa.mkaltura.com/api_v3/index.php/service/caption_captionAsset/action/serve/captionAssetId/0_njhnv6na/v/2'
+        url:
+          'http://cdntesting.qa.mkaltura.com/api_v3/index.php/service/caption_captionAsset/action/serve/captionAssetId/0_njhnv6na/v/2/?testParam=abc&ks=YmMzNzUyZWM4ZmVkYjRiMzRlOTBlYTZjMGY2YTI1NzRkZDUwZjZjNnwxMDkxOzEwOTE7MTYwNTcyMjI5NDsyOzE2MDU2MzU4OTQuMTA0MzthdmkuYmFydWNoQGthbHR1cmEuY29tOyosZGlzYWJsZWVudGl0bGVtZW50Ozs'
       }
     ]
   },
@@ -1123,6 +1125,117 @@ const EntryWithBumperWithKs = {
       clickThroughUrl: 'https://www.ynet.co.il/home/0,7340,L-8,00.html'
     }
   }
+};
+
+const EntryWithNoBumper = {
+  session: {
+    isAnonymous: false,
+    partnerId: 1091,
+    ks:
+      'YmMzNzUyZWM4ZmVkYjRiMzRlOTBlYTZjMGY2YTI1NzRkZDUwZjZjNnwxMDkxOzEwOTE7MTYwNTcyMjI5NDsyOzE2MDU2MzU4OTQuMTA0MzthdmkuYmFydWNoQGthbHR1cmEuY29tOyosZGlzYWJsZWVudGl0bGVtZW50Ozs'
+  },
+  sources: {
+    hls: [
+      {
+        id: '0_wifqaipd_861,applehttp',
+        url:
+          'https://cdnapisec.kaltura.com/p/1091/sp/109100/playManifest/entryId/0_wifqaipd/protocol/https/format/applehttp/flavorIds/0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/ks/YmMzNzUyZWM4ZmVkYjRiMzRlOTBlYTZjMGY2YTI1NzRkZDUwZjZjNnwxMDkxOzEwOTE7MTYwNTcyMjI5NDsyOzE2MDU2MzU4OTQuMTA0MzthdmkuYmFydWNoQGthbHR1cmEuY29tOyosZGlzYWJsZWVudGl0bGVtZW50Ozs/a.m3u8',
+        mimetype: 'application/x-mpegURL'
+      }
+    ],
+    dash: [
+      {
+        id: '0_wifqaipd_911,mpegdash',
+        url:
+          'https://cdnapisec.kaltura.com/p/1091/sp/109100/playManifest/entryId/0_wifqaipd/protocol/https/format/mpegdash/flavorIds/0_m131krws,0_5407xm9j,0_xcrwyk2n/ks/YmMzNzUyZWM4ZmVkYjRiMzRlOTBlYTZjMGY2YTI1NzRkZDUwZjZjNnwxMDkxOzEwOTE7MTYwNTcyMjI5NDsyOzE2MDU2MzU4OTQuMTA0MzthdmkuYmFydWNoQGthbHR1cmEuY29tOyosZGlzYWJsZWVudGl0bGVtZW50Ozs/a.mpd',
+        mimetype: 'application/dash+xml'
+      }
+    ],
+    progressive: [
+      {
+        id: '0_h65mfj7f261,url',
+        url:
+          'https://cdnapisec.kaltura.com/p/1091/sp/109100/playManifest/entryId/0_wifqaipd/protocol/https/format/url/flavorIds/0_h65mfj7f/ks/YmMzNzUyZWM4ZmVkYjRiMzRlOTBlYTZjMGY2YTI1NzRkZDUwZjZjNnwxMDkxOzEwOTE7MTYwNTcyMjI5NDsyOzE2MDU2MzU4OTQuMTA0MzthdmkuYmFydWNoQGthbHR1cmEuY29tOyosZGlzYWJsZWVudGl0bGVtZW50Ozs/a.mp4',
+        mimetype: 'video/mp4',
+        bandwidth: 480256,
+        width: 480,
+        height: 272,
+        label: 'Undefined'
+      },
+      {
+        id: '0_3flmvnwc261,url',
+        url:
+          'https://cdnapisec.kaltura.com/p/1091/sp/109100/playManifest/entryId/0_wifqaipd/protocol/https/format/url/flavorIds/0_3flmvnwc/ks/YmMzNzUyZWM4ZmVkYjRiMzRlOTBlYTZjMGY2YTI1NzRkZDUwZjZjNnwxMDkxOzEwOTE7MTYwNTcyMjI5NDsyOzE2MDU2MzU4OTQuMTA0MzthdmkuYmFydWNoQGthbHR1cmEuY29tOyosZGlzYWJsZWVudGl0bGVtZW50Ozs/a.mp4',
+        mimetype: 'video/mp4',
+        bandwidth: 686080,
+        width: 640,
+        height: 360,
+        label: 'Undefined'
+      },
+      {
+        id: '0_m131krws261,url',
+        url:
+          'https://cdnapisec.kaltura.com/p/1091/sp/109100/playManifest/entryId/0_wifqaipd/protocol/https/format/url/flavorIds/0_m131krws/ks/YmMzNzUyZWM4ZmVkYjRiMzRlOTBlYTZjMGY2YTI1NzRkZDUwZjZjNnwxMDkxOzEwOTE7MTYwNTcyMjI5NDsyOzE2MDU2MzU4OTQuMTA0MzthdmkuYmFydWNoQGthbHR1cmEuY29tOyosZGlzYWJsZWVudGl0bGVtZW50Ozs/a.mp4',
+        mimetype: 'video/mp4',
+        bandwidth: 987136,
+        width: 640,
+        height: 360,
+        label: 'Undefined'
+      },
+      {
+        id: '0_5407xm9j261,url',
+        url:
+          'https://cdnapisec.kaltura.com/p/1091/sp/109100/playManifest/entryId/0_wifqaipd/protocol/https/format/url/flavorIds/0_5407xm9j/ks/YmMzNzUyZWM4ZmVkYjRiMzRlOTBlYTZjMGY2YTI1NzRkZDUwZjZjNnwxMDkxOzEwOTE7MTYwNTcyMjI5NDsyOzE2MDU2MzU4OTQuMTA0MzthdmkuYmFydWNoQGthbHR1cmEuY29tOyosZGlzYWJsZWVudGl0bGVtZW50Ozs/a.mp4',
+        mimetype: 'video/mp4',
+        bandwidth: 1667072,
+        width: 1280,
+        height: 720,
+        label: 'Undefined'
+      },
+      {
+        id: '0_xcrwyk2n261,url',
+        url:
+          'https://cdnapisec.kaltura.com/p/1091/sp/109100/playManifest/entryId/0_wifqaipd/protocol/https/format/url/flavorIds/0_xcrwyk2n/ks/YmMzNzUyZWM4ZmVkYjRiMzRlOTBlYTZjMGY2YTI1NzRkZDUwZjZjNnwxMDkxOzEwOTE7MTYwNTcyMjI5NDsyOzE2MDU2MzU4OTQuMTA0MzthdmkuYmFydWNoQGthbHR1cmEuY29tOyosZGlzYWJsZWVudGl0bGVtZW50Ozs/a.mp4',
+        mimetype: 'video/mp4',
+        bandwidth: 2691072,
+        width: 1280,
+        height: 720,
+        label: 'Undefined'
+      }
+    ],
+    id: '0_wifqaipd',
+    duration: 741,
+    type: 'Vod',
+    poster: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_wifqaipd/version/100042',
+    dvr: false,
+    vr: null,
+    metadata: {
+      name: 'MPEG Dash with MultiAudio New Transcoding',
+      description: '',
+      tags: '',
+      MediaType: 'Movie',
+      WatchPermissionRule: 'Parrent Allowed'
+    },
+    captions: [
+      {
+        default: false,
+        type: 'srt',
+        language: 'en',
+        label: 'En',
+        url:
+          'http://cdntesting.qa.mkaltura.com/api_v3/index.php/service/caption_captionAsset/action/serve/captionAssetId/0_kozg4x1x/v/2/ks/YmMzNzUyZWM4ZmVkYjRiMzRlOTBlYTZjMGY2YTI1NzRkZDUwZjZjNnwxMDkxOzEwOTE7MTYwNTcyMjI5NDsyOzE2MDU2MzU4OTQuMTA0MzthdmkuYmFydWNoQGthbHR1cmEuY29tOyosZGlzYWJsZWVudGl0bGVtZW50Ozs'
+      },
+      {
+        default: false,
+        type: 'srt',
+        language: 'es',
+        label: 'Esp',
+        url:
+          'http://cdntesting.qa.mkaltura.com/api_v3/index.php/service/caption_captionAsset/action/serve/captionAssetId/0_njhnv6na/v/2/ks/YmMzNzUyZWM4ZmVkYjRiMzRlOTBlYTZjMGY2YTI1NzRkZDUwZjZjNnwxMDkxOzEwOTE7MTYwNTcyMjI5NDsyOzE2MDU2MzU4OTQuMTA0MzthdmkuYmFydWNoQGthbHR1cmEuY29tOyosZGlzYWJsZWVudGl0bGVtZW50Ozs'
+      }
+    ]
+  },
+  plugins: {}
 };
 
 export {
@@ -1136,5 +1249,6 @@ export {
   entryIDError,
   WrongUiConfID,
   EntryWithBumper,
-  EntryWithBumperWithKs
+  EntryWithBumperWithKs,
+  EntryWithNoBumper
 };
