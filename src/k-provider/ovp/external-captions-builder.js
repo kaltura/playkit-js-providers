@@ -13,7 +13,7 @@ const CaptionsFormatsMap: {[format: string]: string} = {
 };
 
 class ExternalCaptionsBuilder {
-  static createConfig(captions: Array<Object>): Array<PKExternalCaptionObject> {
+  static createConfig(captions: Array<Object>, ks: string): Array<PKExternalCaptionObject> {
     return captions.map(caption => {
       let url = caption.url;
       let type = CaptionsFormatsMap[caption.format];
@@ -21,6 +21,7 @@ class ExternalCaptionsBuilder {
         url = caption.webVttUrl;
         type = CaptionsFormatsMap[KalturaCaptionType.WEBVTT];
       }
+      url = ks ? url + '/ks/' + ks : url;
       return {
         default: !!caption.isDefault,
         type: type,
