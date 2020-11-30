@@ -1105,14 +1105,16 @@ const EntryWithBumperWithKs = {
         type: 'srt',
         language: 'en',
         label: 'En',
-        url: 'http://cdntesting.qa.mkaltura.com/api_v3/index.php/service/caption_captionAsset/action/serve/captionAssetId/0_kozg4x1x/v/2'
+        url:
+          'http://cdntesting.qa.mkaltura.com/api_v3/index.php/service/caption_captionAsset/action/serve/captionAssetId/0_kozg4x1x/v/2/ks/YmMzNzUyZWM4ZmVkYjRiMzRlOTBlYTZjMGY2YTI1NzRkZDUwZjZjNnwxMDkxOzEwOTE7MTYwNTcyMjI5NDsyOzE2MDU2MzU4OTQuMTA0MzthdmkuYmFydWNoQGthbHR1cmEuY29tOyosZGlzYWJsZWVudGl0bGVtZW50Ozs'
       },
       {
         default: false,
         type: 'srt',
         language: 'es',
         label: 'Esp',
-        url: 'http://cdntesting.qa.mkaltura.com/api_v3/index.php/service/caption_captionAsset/action/serve/captionAssetId/0_njhnv6na/v/2'
+        url:
+          'http://cdntesting.qa.mkaltura.com/api_v3/index.php/service/caption_captionAsset/action/serve/captionAssetId/0_njhnv6na/v/2/ks/YmMzNzUyZWM4ZmVkYjRiMzRlOTBlYTZjMGY2YTI1NzRkZDUwZjZjNnwxMDkxOzEwOTE7MTYwNTcyMjI5NDsyOzE2MDU2MzU4OTQuMTA0MzthdmkuYmFydWNoQGthbHR1cmEuY29tOyosZGlzYWJsZWVudGl0bGVtZW50Ozs'
       }
     ]
   },
@@ -1220,14 +1222,16 @@ const EntryWithNoBumper = {
         type: 'srt',
         language: 'en',
         label: 'En',
-        url: 'http://cdntesting.qa.mkaltura.com/api_v3/index.php/service/caption_captionAsset/action/serve/captionAssetId/0_kozg4x1x/v/2'
+        url:
+          'http://cdntesting.qa.mkaltura.com/api_v3/index.php/service/caption_captionAsset/action/serve/captionAssetId/0_kozg4x1x/v/2/ks/YmMzNzUyZWM4ZmVkYjRiMzRlOTBlYTZjMGY2YTI1NzRkZDUwZjZjNnwxMDkxOzEwOTE7MTYwNTcyMjI5NDsyOzE2MDU2MzU4OTQuMTA0MzthdmkuYmFydWNoQGthbHR1cmEuY29tOyosZGlzYWJsZWVudGl0bGVtZW50Ozs'
       },
       {
         default: false,
         type: 'srt',
         language: 'es',
         label: 'Esp',
-        url: 'http://cdntesting.qa.mkaltura.com/api_v3/index.php/service/caption_captionAsset/action/serve/captionAssetId/0_njhnv6na/v/2'
+        url:
+          'http://cdntesting.qa.mkaltura.com/api_v3/index.php/service/caption_captionAsset/action/serve/captionAssetId/0_njhnv6na/v/2/ks/YmMzNzUyZWM4ZmVkYjRiMzRlOTBlYTZjMGY2YTI1NzRkZDUwZjZjNnwxMDkxOzEwOTE7MTYwNTcyMjI5NDsyOzE2MDU2MzU4OTQuMTA0MzthdmkuYmFydWNoQGthbHR1cmEuY29tOyosZGlzYWJsZWVudGl0bGVtZW50Ozs'
       }
     ]
   },
