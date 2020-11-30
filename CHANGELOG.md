@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.25.1](https://github.com/kaltura/playkit-js-providers/compare/v2.25.0...v2.25.1) (2020-11-30)
+
+
+### Bug Fixes
+
+* **FEC-10722:** ks missing for external captions ([6cae1ec](https://github.com/kaltura/playkit-js-providers/commit/6cae1ec))
+
+
+
 ## [2.25.0](https://github.com/kaltura/playkit-js-providers/compare/v2.24.0...v2.25.0) (2020-11-22)
 
 
