@@ -2935,8 +2935,9 @@ const EntryWithBumperWithKs = {
           format: '1',
           language: 'Spanish',
           webVttUrl:
-            'http://cdntesting.qa.mkaltura.com/api_v3/index.php/service/caption_captionasset/action/serveWebVTT/captionAssetId/0_njhnv6na/segmentIndex/-1/version/2/captions.vtt',
-          url: 'http://cdntesting.qa.mkaltura.com/api_v3/index.php/service/caption_captionAsset/action/serve/captionAssetId/0_njhnv6na/v/2',
+            'http://cdntesting.qa.mkaltura.com/api_v3/index.php/service/caption_captionasset/action/serveWebVTT/captionAssetId/0_njhnv6na/segmentIndex/-1/version/2/captions.vtt?testParam=abc',
+          url:
+            'http://cdntesting.qa.mkaltura.com/api_v3/index.php/service/caption_captionAsset/action/serve/captionAssetId/0_njhnv6na/v/2/?testParam=abc',
           languageCode: 'es',
           objectType: 'KalturaCaptionPlaybackPluginData'
         }

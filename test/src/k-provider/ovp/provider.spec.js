@@ -743,7 +743,7 @@ describe('getPlaybackContext', () => {
       });
   });
 
-  it('should add KS to external captions response', done => {
+  it('should add KS to external captions url', done => {
     sandbox = sinon.createSandbox();
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
       return new Promise(resolve => {
@@ -755,7 +755,8 @@ describe('getPlaybackContext', () => {
       mediaConfig => {
         try {
           const result = mediaConfig.sources.captions.filter(caption => {
-            return caption.url.indexOf('/ks/' + ks) !== -1;
+            const ksParam = caption.url.indexOf('?') === -1 ? '/ks/' : '&ks=';
+            return caption.url.indexOf(ksParam + ks) !== -1;
           });
           result.should.deep.equal(mediaConfig.sources.captions);
           done();
