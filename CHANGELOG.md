@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.26.0](https://github.com/kaltura/playkit-js-providers/compare/v2.25.0...v2.26.0) (2020-12-07)
+
+
+### Bug Fixes
+
+* **FEC-10698:** multi-request return entryId instead of sources, no playback ([#127](https://github.com/kaltura/playkit-js-providers/issues/127)) ([9e634f1](https://github.com/kaltura/playkit-js-providers/commit/9e634f1))
+* **FEC-10722:** ks missing for external captions ([#128](https://github.com/kaltura/playkit-js-providers/issues/128)) ([7400262](https://github.com/kaltura/playkit-js-providers/commit/7400262))
+
+
+### Features
+
+* **FEC-10387:** add support for referenceId filter in provider ([#126](https://github.com/kaltura/playkit-js-providers/issues/126)) ([738e8a9](https://github.com/kaltura/playkit-js-providers/commit/738e8a9))
+
+
+
 ## [2.25.0](https://github.com/kaltura/playkit-js-providers/compare/v2.24.0...v2.25.0) (2020-11-22)
 
 
