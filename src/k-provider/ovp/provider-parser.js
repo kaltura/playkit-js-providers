@@ -268,7 +268,9 @@ export default class OVPProviderParser {
           protocol
         });
       } else {
-        playUrl = kalturaSource.url;
+        const url = kalturaSource.url;
+        const ksParam = url.indexOf('?') === -1 ? '/ks/' : '&ks=';
+        playUrl = ks ? url + ksParam + ks : url;
       }
       if (!playUrl) {
         const message = `failed to create play url from source, discarding source: (${entryId}_${deliveryProfileId}), ${format}`;
