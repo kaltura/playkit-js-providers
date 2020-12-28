@@ -268,9 +268,15 @@ export default class OVPProviderParser {
           protocol
         });
       } else {
-        const url = kalturaSource.url;
-        const ksParam = url.indexOf('?') === -1 ? '/ks/' : '&ks=';
-        playUrl = ks ? url + ksParam + ks : url;
+        playUrl = kalturaSource.url;
+        if (ks) {
+          if (playUrl.indexOf('?') === -1) {
+            const lastSlash = playUrl.lastIndexOf('/');
+            playUrl = playUrl.substr(0, lastSlash) + /ks/ + ks + playUrl.substr(lastSlash, playUrl.length);
+          } else {
+            playUrl = playUrl + '&ks=' + ks;
+          }
+        }
       }
       if (!playUrl) {
         const message = `failed to create play url from source, discarding source: (${entryId}_${deliveryProfileId}), ${format}`;

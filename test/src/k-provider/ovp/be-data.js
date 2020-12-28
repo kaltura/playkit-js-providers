@@ -3234,6 +3234,81 @@ const EntryWithBumperWithKs = {
   ]
 };
 
+const EntryDirectWithKs = {
+  response: [
+    {
+      objects: [
+        {
+          mediaType: 1,
+          dataUrl: 'http://qa-apache-php7.dev.kaltura.com/p/1091/sp/109100/playManifest/entryId/0_wifqaipd/format/url/protocol/http',
+          flavorParamsIds: '',
+          duration: 741,
+          msDuration: 741000,
+          id: '0_wifqaipd',
+          name: 'MPEG Dash with MultiAudio New Transcoding',
+          status: 2,
+          type: 1,
+          thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_wifqaipd/version/100042',
+          objectType: 'KalturaMediaEntry'
+        }
+      ],
+      totalCount: 1,
+      objectType: 'KalturaBaseEntryListResponse'
+    },
+    {
+      sources: [
+        {
+          deliveryProfileId: 911,
+          format: 'mpegdash',
+          protocols: 'http,https',
+          flavorIds: '',
+          url:
+            'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/911/protocol/https/format/mpegdash/manifest.mpd',
+          drm: [],
+          objectType: 'KalturaPlaybackSource'
+        }
+      ],
+      actions: [],
+      messages: [],
+      objectType: 'KalturaPlaybackContext'
+    },
+    {
+      objects: [
+        {
+          id: 13624421,
+          partnerId: 1091,
+          metadataProfileId: 4771,
+          metadataProfileVersion: 12,
+          metadataObjectType: 1,
+          objectId: '0_wifqaipd',
+          version: 12,
+          createdAt: 1499600020,
+          updatedAt: 1499600285,
+          status: 1,
+          xml: '<metadata/>',
+          objectType: 'KalturaMetadata'
+        },
+        {
+          id: 13624422,
+          partnerId: 1091,
+          metadataProfileId: 13126,
+          metadataProfileVersion: 2,
+          metadataObjectType: 1,
+          objectId: '0_wifqaipd',
+          version: 2,
+          createdAt: 1499600285,
+          updatedAt: 1499600285,
+          status: 1,
+          xml: '<metadata>\n  <MediaType>Movie</MediaType>\n  <WatchPermissionRule>Parrent Allowed</WatchPermissionRule>\n</metadata>',
+          objectType: 'KalturaMetadata'
+        }
+      ],
+      totalCount: 2,
+      objectType: 'KalturaMetadataListResponse'
+    }
+  ]
+};
+
 const EntryWithBumperWitNoSources = {
   response: [
     {
@@ -3592,5 +3667,6 @@ export {
   EntryWithBumperWithKs,
   EntryWithBumperWitNoSources,
   EntryWithBumper as EntryExternalCaptionNoKS,
-  EntryWithBumperWithKs as EntryExternalCaptionWithKS
+  EntryWithBumperWithKs as EntryExternalCaptionWithKS,
+  EntryDirectWithKs
 };
