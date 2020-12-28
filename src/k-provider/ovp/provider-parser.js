@@ -272,7 +272,7 @@ export default class OVPProviderParser {
         if (ks) {
           if (playUrl.indexOf('?') === -1) {
             const lastSlash = playUrl.lastIndexOf('/');
-            playUrl = playUrl.substr(0, lastSlash) + /ks/ + ks + playUrl.substr(lastSlash, playUrl.length);
+            playUrl = playUrl.substr(0, lastSlash) + '/ks/' + ks + playUrl.substr(lastSlash, playUrl.length);
           } else {
             playUrl = playUrl + '&ks=' + ks;
           }
