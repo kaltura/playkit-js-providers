@@ -743,6 +743,33 @@ describe('getPlaybackContext', () => {
       });
   });
 
+  it('should add KS to direct playbackContext', done => {
+    sandbox = sinon.createSandbox();
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
+      return new Promise(resolve => {
+        resolve({response: new MultiRequestResult(BE_DATA.EntryDirectWithKs.response)});
+      });
+    });
+    provider = new OVPProvider({partnerId: partnerId}, playerVersion);
+    provider.getMediaConfig({entryId: '0_wifqaipd', ks: ks}).then(
+      mediaConfig => {
+        try {
+          const result = mediaConfig.sources.dash.filter(source => {
+            const ksParam = source.url.indexOf('?') === -1 ? '/ks/' : '&ks=';
+            return source.url.indexOf(ksParam + ks) !== -1;
+          });
+          result.should.deep.equal(mediaConfig.sources.dash);
+          done();
+        } catch (err) {
+          done(err);
+        }
+      },
+      err => {
+        done(err);
+      }
+    );
+  });
+
   it('should add KS to external captions url', done => {
     sandbox = sinon.createSandbox();
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
