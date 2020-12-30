@@ -149,6 +149,30 @@ describe('OTTProvider.partnerId:198', function () {
     });
     provider.getMediaConfig({entryId: 1234, streamerType: 'mpegdash', urlType: 'DIRECT'});
   });
+
+  it('should pass adapterData on the playback context object', done => {
+    const adapterDataConfig = [
+      {
+        supported_files: {
+          objectType: 'KalturaStringValue',
+          value: 'HLS_FPS'
+        },
+        supported_codec: {
+          objectType: 'KalturaStringValue',
+          value: 'HEVC'
+        }
+      }
+    ];
+    sinon.stub(OTTAssetLoader.prototype, 'buildRequests').callsFake(function (params: Object) {
+      try {
+        params.playbackContext.adapterData.should.deep.equal(adapterDataConfig);
+        done();
+      } catch (e) {
+        done(e);
+      }
+    });
+    provider.getMediaConfig({entryId: 1234, adapterData: adapterDataConfig});
+  });
 });
 
 describe('getEntryListConfig', function () {
