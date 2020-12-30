@@ -151,18 +151,16 @@ describe('OTTProvider.partnerId:198', function () {
   });
 
   it('should pass adapterData on the playback context object', done => {
-    const adapterDataConfig = [
-      {
-        supported_files: {
-          objectType: 'KalturaStringValue',
-          value: 'HLS_FPS'
-        },
-        supported_codec: {
-          objectType: 'KalturaStringValue',
-          value: 'HEVC'
-        }
+    const adapterDataConfig = {
+      supported_files: {
+        objectType: 'KalturaStringValue',
+        value: 'HLS_FPS'
+      },
+      supported_codec: {
+        objectType: 'KalturaStringValue',
+        value: 'HEVC'
       }
-    ];
+    };
     sinon.stub(OTTAssetLoader.prototype, 'buildRequests').callsFake(function (params: Object) {
       try {
         params.playbackContext.adapterData.should.deep.equal(adapterDataConfig);

@@ -5,5 +5,5 @@ declare type ProviderPlaybackContextOptions = {
   context?: string,
   streamerType?: string,
   urlType?: string,
-  adapterData?: Array<Object>
+  adapterData?: Object
 };
