@@ -58,7 +58,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
         if (mediaInfo.urlType) {
           playbackContext.urlType = mediaInfo.urlType;
         }
-        if(mediaInfo.adapterData){
+        if (mediaInfo.adapterData) {
           playbackContext.adapterData = mediaInfo.adapterData;
         }
         this._dataLoader.add(OTTAssetLoader, {
