@@ -4,5 +4,6 @@ declare type ProviderPlaybackContextOptions = {
   assetFileIds?: string,
   context?: string,
   streamerType?: string,
-  urlType?: string
+  urlType?: string,
+  adapterData?: AdapterDataConfig
 };
