@@ -12,7 +12,7 @@ declare type OTTProviderMediaInfoObject = OVPProviderMediaInfoObject & {
   fileIds?: string,
   streamerType?: string,
   urlType?: string,
-  adapterData?: Object,
+  adapterData?: AdapterDataConfig,
   assetReferenceType?: string,
   formats?: Array<string>
 };
