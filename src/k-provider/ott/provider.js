@@ -128,6 +128,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
           this._verifyHasSources(mediaConfig.sources);
           const bumper = OTTProviderParser.getBumper(response);
           if (bumper) {
+            mediaConfig.plugins = mediaConfig.plugins || {};
             Object.assign(mediaConfig.plugins, {bumper});
           }
         }

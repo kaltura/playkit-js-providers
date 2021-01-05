@@ -126,6 +126,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
           this._verifyHasSources(mediaConfig.sources);
           const bumper = OVPProviderParser.getBumper(response, this.isAnonymous ? '' : this.ks, this.partnerId);
           if (bumper) {
+            mediaConfig.plugins = mediaConfig.plugins || {};
             Object.assign(mediaConfig.plugins, {bumper});
           }
         }
