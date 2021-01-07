@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.27.0](https://github.com/kaltura/playkit-js-providers/compare/v2.26.0...v2.27.0) (2021-01-07)
+
+
+### Bug Fixes
+
+* **FEC-10636:** Add KS to playbackUrl for direct playbackContext url ([#131](https://github.com/kaltura/playkit-js-providers/issues/131)) ([aaa4484](https://github.com/kaltura/playkit-js-providers/commit/aaa4484))
+* **FEC-10779:** add the all JSLogger for stubbing ([#129](https://github.com/kaltura/playkit-js-providers/issues/129)) ([09ddef6](https://github.com/kaltura/playkit-js-providers/commit/09ddef6))
+
+
+### Features
+
+* **FEC-10804:** add adapterData to getPlayback context request ([#132](https://github.com/kaltura/playkit-js-providers/issues/132)) ([f4c9ebb](https://github.com/kaltura/playkit-js-providers/commit/f4c9ebb))
+
+
+
 ## [2.26.0](https://github.com/kaltura/playkit-js-providers/compare/v2.25.0...v2.26.0) (2020-12-07)
 
 
