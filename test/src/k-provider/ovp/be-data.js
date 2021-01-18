@@ -2926,7 +2926,8 @@ const EntryWithBumperWithKs = {
           language: 'English',
           webVttUrl:
             'http://cdntesting.qa.mkaltura.com/api_v3/index.php/service/caption_captionasset/action/serveWebVTT/captionAssetId/0_kozg4x1x/segmentIndex/-1/version/2/captions.vtt',
-          url: 'http://cdntesting.qa.mkaltura.com/api_v3/index.php/service/caption_captionAsset/action/serve/captionAssetId/0_kozg4x1x/v/2',
+          url:
+            'http://cdntesting.qa.mkaltura.com/api_v3/index.php/service/caption_captionAsset/action/serve/captionAssetId/0_kozg4x1x/v/2/captions.vtt',
           languageCode: 'en',
           objectType: 'KalturaCaptionPlaybackPluginData'
         },
@@ -2937,7 +2938,7 @@ const EntryWithBumperWithKs = {
           webVttUrl:
             'http://cdntesting.qa.mkaltura.com/api_v3/index.php/service/caption_captionasset/action/serveWebVTT/captionAssetId/0_njhnv6na/segmentIndex/-1/version/2/captions.vtt?testParam=abc',
           url:
-            'http://cdntesting.qa.mkaltura.com/api_v3/index.php/service/caption_captionAsset/action/serve/captionAssetId/0_njhnv6na/v/2/?testParam=abc',
+            'http://cdntesting.qa.mkaltura.com/api_v3/index.php/service/caption_captionAsset/action/serve/captionAssetId/0_njhnv6na/v/2/captions.vtt?testParam=abc',
           languageCode: 'es',
           objectType: 'KalturaCaptionPlaybackPluginData'
         }
@@ -3410,7 +3411,7 @@ const EntryWithBumperWitNoSources = {
           language: 'Spanish',
           webVttUrl:
             'http://cdntesting.qa.mkaltura.com/api_v3/index.php/service/caption_captionasset/action/serveWebVTT/captionAssetId/0_njhnv6na/segmentIndex/-1/version/2/captions.vtt',
-          url: 'http://cdntesting.qa.mkaltura.com/api_v3/index.php/service/caption_captionAsset/action/serve/captionAssetId/0_njhnv6na/v/2',
+          url: 'http://cdntesting.qa.mkaltura.com/api_v3/index.php/service/caption_captionAsset/action/serve/captionAssetId/0_njhnv6na/v/2/',
           languageCode: 'es',
           objectType: 'KalturaCaptionPlaybackPluginData'
         }

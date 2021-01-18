@@ -52,6 +52,29 @@ export default class OVPProviderParser {
   }
 
   /**
+   * Returns the url with KS
+   * @function addKsToUrl
+   * @param {String} url - The url to add the KS
+   * @param {string} ks - The ks
+   * @returns {string} - The url with KS
+   * @static
+   * @public
+   */
+  static addKsToUrl(url: string, ks: string): string {
+    let urlWithKs = url;
+    if (ks) {
+      if (urlWithKs.indexOf('?') === -1) {
+        const finishWithSlash = urlWithKs.lastIndexOf('/') === urlWithKs.length - 1;
+        urlWithKs = finishWithSlash ? urlWithKs + 'ks/' + ks : urlWithKs + '?ks=' + ks;
+      } else {
+        urlWithKs = urlWithKs + '&ks=' + ks;
+      }
+      return urlWithKs;
+    }
+    return url;
+  }
+
+  /**
    * Returns parsed playlist by given OVP response objects
    * @function getPlaylist
    * @param {any} playlistResponse - The playlist response
@@ -268,15 +291,7 @@ export default class OVPProviderParser {
           protocol
         });
       } else {
-        playUrl = kalturaSource.url;
-        if (ks) {
-          if (playUrl.indexOf('?') === -1) {
-            const lastSlash = playUrl.lastIndexOf('/');
-            playUrl = playUrl.substr(0, lastSlash) + '/ks/' + ks + playUrl.substr(lastSlash, playUrl.length);
-          } else {
-            playUrl = playUrl + '&ks=' + ks;
-          }
-        }
+        playUrl = OVPProviderParser.addKsToUrl(kalturaSource.url, ks);
       }
       if (!playUrl) {
         const message = `failed to create play url from source, discarding source: (${entryId}_${deliveryProfileId}), ${format}`;
