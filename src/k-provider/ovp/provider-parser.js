@@ -61,15 +61,18 @@ export default class OVPProviderParser {
    * @public
    */
   static addKsToUrl(url: string, ks: string): string {
-    let urlWithKs = url;
+    const hasUrlExtension = path => {
+      const pathName = new URL(path).pathname;
+      return pathName.replace(/^.*[\\/]/, '').indexOf('.') !== -1;
+    };
+    let ksParam;
     if (ks) {
-      if (urlWithKs.indexOf('?') === -1) {
-        const finishWithSlash = urlWithKs.lastIndexOf('/') === urlWithKs.length - 1;
-        urlWithKs = finishWithSlash ? urlWithKs + 'ks/' + ks : urlWithKs + '?ks=' + ks;
+      if (hasUrlExtension(url)) {
+        ksParam = url.indexOf('?') === -1 ? '?ks=' : '&ks=';
       } else {
-        urlWithKs = urlWithKs + '&ks=' + ks;
+        ksParam = '/ks/';
       }
-      return urlWithKs;
+      return url + ksParam + ks;
     }
     return url;
   }
