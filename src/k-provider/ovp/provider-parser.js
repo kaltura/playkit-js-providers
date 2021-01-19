@@ -22,7 +22,7 @@ import KalturaAccessControlMessage from '../common/response-types/kaltura-access
 import type {OVPMediaEntryLoaderResponse} from './loaders/media-entry-loader';
 import {ExternalCaptionsBuilder} from './external-captions-builder';
 
-export default class OVPProviderParser {
+class OVPProviderParser {
   static _logger = getLogger('OVPProviderParser');
 
   /**
@@ -457,3 +457,6 @@ export default class OVPProviderParser {
     return playUrl;
   }
 }
+
+export const addKsToUrl = OVPProviderParser.addKsToUrl;
+export default OVPProviderParser;

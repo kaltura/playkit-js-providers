@@ -1,6 +1,6 @@
 // @flow
 
-import OVPProviderParser from './provider-parser';
+import {addKsToUrl} from './provider-parser';
 
 const KalturaCaptionType: CaptionType = {
   SRT: '1',
@@ -23,7 +23,7 @@ class ExternalCaptionsBuilder {
         url = caption.webVttUrl;
         type = CaptionsFormatsMap[KalturaCaptionType.WEBVTT];
       }
-      url = OVPProviderParser.addKsToUrl(url, ks);
+      url = addKsToUrl(url, ks);
       return {
         default: !!caption.isDefault,
         type: type,
