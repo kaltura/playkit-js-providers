@@ -755,7 +755,7 @@ describe('getPlaybackContext', () => {
       mediaConfig => {
         try {
           const result = mediaConfig.sources.dash.filter(source => {
-            const ksParam = source.url.indexOf('?') === -1 ? '/ks/' : '&ks=';
+            const ksParam = source.url.indexOf('?') === -1 ? 'ks/' : source.url.indexOf('?ks') === -1 ? '&ks=' : '?ks=';
             return source.url.indexOf(ksParam + ks) !== -1;
           });
           result.should.deep.equal(mediaConfig.sources.dash);
@@ -782,7 +782,7 @@ describe('getPlaybackContext', () => {
       mediaConfig => {
         try {
           const result = mediaConfig.sources.captions.filter(caption => {
-            const ksParam = caption.url.indexOf('?') === -1 ? '/ks/' : '&ks=';
+            const ksParam = caption.url.indexOf('?') === -1 ? 'ks/' : caption.url.indexOf('?ks') === -1 ? '&ks=' : '?ks=';
             return caption.url.indexOf(ksParam + ks) !== -1;
           });
           result.should.deep.equal(mediaConfig.sources.captions);
@@ -830,7 +830,8 @@ describe('getPlaybackContext', () => {
       mediaConfig => {
         try {
           const result = mediaConfig.sources.captions.filter(caption => {
-            return caption.url.indexOf('/ks/' + ks) === -1;
+            const ksParam = caption.url.indexOf('?') === -1 ? 'ks/' : caption.url.indexOf('?ks') === -1 ? '&ks=' : '?ks=';
+            return caption.url.indexOf(ksParam + ks) === -1;
           });
           result.should.deep.equal(mediaConfig.sources.captions);
           done();

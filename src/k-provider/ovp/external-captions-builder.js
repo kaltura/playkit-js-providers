@@ -1,5 +1,7 @@
 // @flow
 
+import {addKsToUrl} from './provider-parser';
+
 const KalturaCaptionType: CaptionType = {
   SRT: '1',
   DFXP: '2',
@@ -21,8 +23,7 @@ class ExternalCaptionsBuilder {
         url = caption.webVttUrl;
         type = CaptionsFormatsMap[KalturaCaptionType.WEBVTT];
       }
-      const ksParam = url.indexOf('?') === -1 ? '/ks/' : '&ks=';
-      url = ks ? url + ksParam + ks : url;
+      url = addKsToUrl(url, ks);
       return {
         default: !!caption.isDefault,
         type: type,
