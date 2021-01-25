@@ -9,6 +9,10 @@ export default class MediaEntry {
     AUDIO: 'Audio',
     UNKNOWN: 'Unknown'
   };
+  static DvrStatus: {[type: string]: number} = {
+    ON: 1,
+    OFF: 0
+  };
 
   /**
    * @member - entry id
