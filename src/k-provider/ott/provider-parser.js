@@ -23,16 +23,16 @@ const MediaTypeCombinations: {[mediaType: string]: Object} = {
     [KalturaPlaybackContext.Type.TRAILER]: () => ({type: MediaEntry.Type.VOD}),
     [KalturaPlaybackContext.Type.PLAYBACK]: mediaAssetData => {
       if (parseInt(mediaAssetData.externalIds) > 0) {
-        return {type: MediaEntry.Type.LIVE, dvrStatus: 0};
+        return {type: MediaEntry.Type.LIVE, dvrStatus: MediaEntry.DvrStatus.OFF};
       } else if (mediaAssetData.objectType === LIVE_ASST_OBJECT_TYPE) {
-        return {type: MediaEntry.Type.LIVE, dvrStatus: mediaAssetData.enableTrickPlay ? 1 : 0};
+        return {type: MediaEntry.Type.LIVE, dvrStatus: mediaAssetData.enableTrickPlay ? MediaEntry.DvrStatus.ON : MediaEntry.DvrStatus.OFF};
       }
       return {type: MediaEntry.Type.VOD};
     }
   },
   [KalturaAsset.Type.EPG]: {
     [KalturaPlaybackContext.Type.CATCHUP]: () => ({type: MediaEntry.Type.VOD}),
-    [KalturaPlaybackContext.Type.START_OVER]: () => ({type: MediaEntry.Type.LIVE, dvrStatus: 1})
+    [KalturaPlaybackContext.Type.START_OVER]: () => ({type: MediaEntry.Type.LIVE, dvrStatus: MediaEntry.DvrStatus.ON})
   },
   [KalturaAsset.Type.RECORDING]: {
     [KalturaPlaybackContext.Type.PLAYBACK]: () => ({type: MediaEntry.Type.VOD})
