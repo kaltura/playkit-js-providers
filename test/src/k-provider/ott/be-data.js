@@ -3127,11 +3127,164 @@ const EntryWithBumper = {
   }
 };
 
+const MediaLiveAssetData = {
+  objectType: 'KalturaLiveAsset',
+  createDate: 1594310672,
+  description: 'ESPNU - Columbus Local.',
+  endDate: 32472151200,
+  externalId: 'ESPNU',
+  id: 2106875,
+  images: [
+    {
+      objectType: 'KalturaMediaImage',
+      id: '0cd2243873f04cf090e3211defbeddd1',
+      isDefault: false,
+      ratio: '1x1',
+      url: 'https://images.frs1.ott.kaltura.com/service.svc/GetImage/p/3207/entry_id/0cd2243873f04cf090e3211defbeddd1/version/0',
+      version: 0
+    },
+    {
+      objectType: 'KalturaMediaImage',
+      id: 'f2b785a9d4ad486f96b4ac5c0f6df5fe',
+      isDefault: false,
+      ratio: '16x9',
+      url: 'https://images.frs1.ott.kaltura.com/service.svc/GetImage/p/3207/entry_id/f2b785a9d4ad486f96b4ac5c0f6df5fe/version/0',
+      version: 0
+    }
+  ],
+  indexStatus: 'Ok',
+  mediaFiles: [
+    {
+      objectType: 'KalturaMediaFile',
+      additionalData: '',
+      alternativeCdnAdapaterProfileId: 0,
+      altExternalId: '',
+      altStreamingCode: '',
+      assetId: 2106875,
+      catalogEndDate: 4070908800,
+      cdnAdapaterProfileId: 2089,
+      duration: 0,
+      externalId: 'https://cdn.beetv.kz/btv/live/mpd/000004947.mpd',
+      externalStoreId: '',
+      fileSize: 0,
+      id: 12949477,
+      isDefaultLanguage: false,
+      language: '',
+      opl: '',
+      orderNum: 0,
+      startDate: 1597845303,
+      status: true,
+      type: 'STB_Devices_Main_DASH',
+      typeId: 3428,
+      url: 'https://01-ucdn-3201-preprod.tv.cetin.cz/bpk-tv/cetin_1_hd_3011/output0/manifest.mpd?accountId=3201'
+    },
+    {
+      objectType: 'KalturaMediaFile',
+      additionalData: '',
+      alternativeCdnAdapaterProfileId: 0,
+      altExternalId: '',
+      altStreamingCode: '',
+      assetId: 2106875,
+      catalogEndDate: 4070908800,
+      cdnAdapaterProfileId: 2089,
+      duration: 0,
+      externalId: 'https://cdn.beetv.kz/btv/live/hls/000004947.m3u8',
+      externalStoreId: '',
+      fileSize: 0,
+      id: 12949478,
+      isDefaultLanguage: false,
+      language: '',
+      opl: '',
+      orderNum: 0,
+      startDate: 1597845303,
+      status: true,
+      type: 'STB_Devices_Main_HLS',
+      typeId: 3429,
+      url: 'https://01-ucdn-3201-preprod.tv.cetin.cz/bpk-tv/cetin_1_hd_3011/output0/index.m3u8?accountId=3201'
+    }
+  ],
+  metas: {
+    ChannelNumber: {
+      objectType: 'KalturaDoubleValue',
+      value: 3
+    },
+    Downloadable: {
+      objectType: 'KalturaBooleanValue',
+      value: false
+    },
+    Adult: {
+      objectType: 'KalturaBooleanValue',
+      value: true
+    },
+    RepresentPackage: {
+      objectType: 'KalturaBooleanValue',
+      value: false
+    },
+    CatalogStartDateTime: {
+      objectType: 'KalturaLongValue',
+      value: 1594294440
+    },
+    PlaybackEndDateTime: {
+      objectType: 'KalturaLongValue',
+      value: 32472151200
+    }
+  },
+  name: 'ESPNU',
+  relatedEntities: {},
+  startDate: 1594294440,
+  tags: {
+    Genre: {
+      objectType: 'KalturaMultilingualStringValueArray',
+      objects: [
+        {
+          objectType: 'KalturaMultilingualStringValue',
+          value: 'sport'
+        }
+      ]
+    },
+    ParentalRating: {
+      objectType: 'KalturaMultilingualStringValueArray',
+      objects: [
+        {
+          objectType: 'KalturaMultilingualStringValue',
+          value: '0'
+        }
+      ]
+    }
+  },
+  type: 1757,
+  updateDate: 1611321849,
+  entryId: '',
+  externalIds: '26368',
+  geoBlockRuleId: 779,
+  inheritancePolicy: 'Enable',
+  status: true,
+  typeDescription: 'Linear',
+  bufferCatchUpSetting: 604800,
+  bufferTrickPlaySetting: 0,
+  enableCatchUp: true,
+  enableCdvr: true,
+  channelType: 'OTT',
+  enableCatchUpState: 'ENABLED',
+  enableCdvrState: 'INHERITED',
+  enableRecordingPlaybackNonEntitledChannelState: 'INHERITED',
+  enableStartOverState: 'ENABLED',
+  enableTrickPlayState: 'INHERITED',
+  externalCdvrId: 'MTV_90s_1249',
+  externalEpgIngestId: '60696',
+  enableRecordingPlaybackNonEntitledChannel: true,
+  enableStartOver: true,
+  catchUpBuffer: 604800,
+  trickPlayBuffer: 500,
+  enableTrickPlay: true
+};
+
 export {
   AnonymousEntryWithoutUIConfWithDrmData,
   LiveEntryNoDrmData,
   BlockActionEntry,
   PlaylistByEntryList,
   AnonymousPlaylistByEntryList,
-  EntryWithBumper
+  EntryWithBumper,
+  MediaLiveAssetData
 };
