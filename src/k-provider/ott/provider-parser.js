@@ -22,10 +22,10 @@ const MediaTypeCombinations: {[mediaType: string]: Object} = {
   [KalturaAsset.Type.MEDIA]: {
     [KalturaPlaybackContext.Type.TRAILER]: () => ({type: MediaEntry.Type.VOD}),
     [KalturaPlaybackContext.Type.PLAYBACK]: mediaAssetData => {
-      if (parseInt(mediaAssetData.externalIds) > 0) {
-        return {type: MediaEntry.Type.LIVE, dvrStatus: MediaEntry.DvrStatus.OFF};
-      } else if (mediaAssetData.objectType === LIVE_ASST_OBJECT_TYPE) {
+      if (mediaAssetData.objectType === LIVE_ASST_OBJECT_TYPE) {
         return {type: MediaEntry.Type.LIVE, dvrStatus: mediaAssetData.enableTrickPlay ? MediaEntry.DvrStatus.ON : MediaEntry.DvrStatus.OFF};
+      } else if (parseInt(mediaAssetData.externalIds) > 0) {
+        return {type: MediaEntry.Type.LIVE, dvrStatus: MediaEntry.DvrStatus.OFF};
       }
       return {type: MediaEntry.Type.VOD};
     }
