@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.28.0](https://github.com/kaltura/playkit-js-providers/compare/v2.27.0...v2.28.0) (2021-01-28)
+
+
+### Bug Fixes
+
+* **FEC-10699:** objectType KalturaLiveAsset should check enableTrickPlay even if externalIds > 0 ([#137](https://github.com/kaltura/playkit-js-providers/issues/137)) ([66c15f3](https://github.com/kaltura/playkit-js-providers/commit/66c15f3))
+* **FEC-10722:** add KS to external captions ([#134](https://github.com/kaltura/playkit-js-providers/issues/134)) ([c25096f](https://github.com/kaltura/playkit-js-providers/commit/c25096f))
+
+
+### Features
+
+* **FEC-10699:** add Linear media type recognition by OTT BE response ([#136](https://github.com/kaltura/playkit-js-providers/issues/136)) ([23a3f99](https://github.com/kaltura/playkit-js-providers/commit/23a3f99))
+
+
+
 ## [2.27.0](https://github.com/kaltura/playkit-js-providers/compare/v2.26.0...v2.27.0) (2021-01-07)
 
 
