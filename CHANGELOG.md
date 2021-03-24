@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.28.1](https://github.com/kaltura/playkit-js-providers/compare/v2.28.0...v2.28.1) (2021-03-24)
+
+
+### Bug Fixes
+
+* **FEC-11104:** Crash on IE11 URL doesn't exist ([#139](https://github.com/kaltura/playkit-js-providers/issues/139)) ([81c81a3](https://github.com/kaltura/playkit-js-providers/commit/81c81a3))
+
+
+
 ## [2.28.0](https://github.com/kaltura/playkit-js-providers/compare/v2.27.0...v2.28.0) (2021-01-28)
 
 
