@@ -79,7 +79,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
       return dataLoader.fetchData().then(
         response => {
           try {
-            resolve(this._parseDataFromResponse(response));
+            resolve(this._parseCustomDataFromResponse(response));
           } catch (err) {
             reject(err);
           }
@@ -104,6 +104,20 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     }
   }
 
+  _parseCustomDataFromResponse(data: Map<string, Function>): any {
+    this._logger.debug('Custom Data parsing started');
+    let response = {};
+    if (data) {
+      if (data.has(OVPCustomDataLoader.id)) {
+        const customLoader = data.get(OVPCustomDataLoader.id);
+        if (customLoader && customLoader.response) {
+          Object.assign(response, (customLoader: OVPCustomDataLoader).response);
+        }
+      }
+    }
+    this._logger.debug('Custom Data parsing finished', response);
+    return response;
+  }
   _parseDataFromResponse(data: Map<string, Function>): ProviderMediaConfigObject {
     this._logger.debug('Data parsing started');
     const mediaConfig: ProviderMediaConfigObject = {
@@ -148,16 +162,6 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
           if (bumper) {
             Object.assign(mediaConfig.plugins, {bumper});
           }
-        }
-      }
-      if (data.has(OVPCustomDataLoader.id)) {
-        const customLoader = data.get(OVPCustomDataLoader.id);
-        if (customLoader && customLoader.response) {
-          const pluginName = customLoader.pluginName;
-          const data = {
-            [pluginName]: (customLoader: OVPCustomDataLoader).response
-          };
-          Object.assign(mediaConfig.plugins, data);
         }
       }
     }
