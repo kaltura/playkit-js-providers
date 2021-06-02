@@ -11,6 +11,7 @@ import BaseProvider from '../common/base-provider';
 import MediaEntry from '../../entities/media-entry';
 import OVPEntryListLoader from './loaders/entry-list-loader';
 import Error from '../../util/error/error';
+import OVPCustomDataLoader from './loaders/custom-data-loader';
 
 export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject> {
   _filterOptionsConfig: ProviderFilterOptionsObject = {redirectFromEntryId: true};
@@ -70,6 +71,25 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     });
   }
 
+  getCustomData(params: any): Promise<ProviderMediaConfigObject> {
+    const dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, params.ks || this.ks, this._networkRetryConfig);
+
+    return new Promise((resolve, reject) => {
+      dataLoader.add(OVPCustomDataLoader, {...params, ks: params.ks || this.ks});
+      return dataLoader.fetchData().then(
+        response => {
+          try {
+            resolve(this._parseDataFromResponse(response));
+          } catch (err) {
+            reject(err);
+          }
+        },
+        err => {
+          reject(err);
+        }
+      );
+    });
+  }
   _getEntryRedirectFilter(mediaInfo: Object): boolean {
     return typeof mediaInfo.redirectFromEntryId === 'boolean'
       ? mediaInfo.redirectFromEntryId
@@ -128,6 +148,16 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
           if (bumper) {
             Object.assign(mediaConfig.plugins, {bumper});
           }
+        }
+      }
+      if (data.has(OVPCustomDataLoader.id)) {
+        const customLoader = data.get(OVPCustomDataLoader.id);
+        if (customLoader && customLoader.response) {
+          const pluginName = customLoader.pluginName;
+          const data = {
+            [pluginName]: (customLoader: OVPCustomDataLoader).response
+          };
+          Object.assign(mediaConfig.plugins, data);
         }
       }
     }

@@ -1,7 +1,7 @@
 //@flow
 import OVPService from './ovp-service';
 import RequestBuilder from '../../../util/request-builder';
-import BaseEntryResponseProfile from '../request-params/base-entry-response-profile';
+import {BaseEntryResponseProfile} from '../request-params/base-entry-response-profile';
 
 const SERVICE_NAME: string = 'baseEntry';
 
