@@ -11,7 +11,6 @@ import BaseProvider from '../common/base-provider';
 import MediaEntry from '../../entities/media-entry';
 import OVPEntryListLoader from './loaders/entry-list-loader';
 import Error from '../../util/error/error';
-import OVPCustomDataLoader from './loaders/custom-data-loader';
 
 export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject> {
   _filterOptionsConfig: ProviderFilterOptionsObject = {redirectFromEntryId: true};
@@ -71,15 +70,17 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     });
   }
 
-  getCustomData(params: any): Promise<ProviderMediaConfigObject> {
+  doRequest(loaders: Array<ExternalRequestLoader>, params: any = {}): Promise<any> {
     const dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, params.ks || this.ks, this._networkRetryConfig);
 
     return new Promise((resolve, reject) => {
-      dataLoader.add(OVPCustomDataLoader, {...params, ks: params.ks || this.ks});
+      loaders.forEach((loaderRequest: ExternalRequestLoader) => {
+        dataLoader.add(loaderRequest.loader, loaderRequest.params);
+      });
       return dataLoader.fetchData().then(
         response => {
           try {
-            resolve(this._parseCustomDataFromResponse(response));
+            resolve(response);
           } catch (err) {
             reject(err);
           }
@@ -104,20 +105,6 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     }
   }
 
-  _parseCustomDataFromResponse(data: Map<string, Function>): any {
-    this._logger.debug('Custom Data parsing started');
-    let response = {};
-    if (data) {
-      if (data.has(OVPCustomDataLoader.id)) {
-        const customLoader = data.get(OVPCustomDataLoader.id);
-        if (customLoader && customLoader.response) {
-          Object.assign(response, (customLoader: OVPCustomDataLoader).response);
-        }
-      }
-    }
-    this._logger.debug('Custom Data parsing finished', response);
-    return response;
-  }
   _parseDataFromResponse(data: Map<string, Function>): ProviderMediaConfigObject {
     this._logger.debug('Data parsing started');
     const mediaConfig: ProviderMediaConfigObject = {
