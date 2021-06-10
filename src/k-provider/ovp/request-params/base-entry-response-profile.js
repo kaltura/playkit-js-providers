@@ -1,12 +1,12 @@
 //@flow
 const FIELDS =
   'id,referenceId,name,description,thumbnailUrl,dataUrl,duration,msDuration,flavorParamsIds,mediaType,type,tags,dvrStatus,externalSourceType,status';
-
-export default class BaseEntryResponseProfile {
-  static Type: {[type: string]: number} = {
-    INCLUDE_FIELDS: 1,
-    EXCLUDE_FIELDS: 2
-  };
+const RESPONSE_PROFILE_TYPE = {
+  INCLUDE_FIELDS: 1,
+  EXCLUDE_FIELDS: 2
+};
+export class BaseEntryResponseProfile {
+  static Type: {[type: string]: number} = RESPONSE_PROFILE_TYPE;
   /**
    * @member - the response profile type
    * @type {number}

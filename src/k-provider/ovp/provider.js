@@ -70,6 +70,27 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     });
   }
 
+  doRequest(loaders: Array<RequestLoader>): Promise<any> {
+    const dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, this.ks, this._networkRetryConfig);
+
+    return new Promise((resolve, reject) => {
+      loaders.forEach((loaderRequest: RequestLoader) => {
+        dataLoader.add(loaderRequest.loader, loaderRequest.params);
+      });
+      return dataLoader.fetchData().then(
+        response => {
+          try {
+            resolve(response);
+          } catch (err) {
+            reject(err);
+          }
+        },
+        err => {
+          reject(err);
+        }
+      );
+    });
+  }
   _getEntryRedirectFilter(mediaInfo: Object): boolean {
     return typeof mediaInfo.redirectFromEntryId === 'boolean'
       ? mediaInfo.redirectFromEntryId
