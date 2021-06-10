@@ -1,5 +1,5 @@
 // @flow
 declare type ExternalRequestLoader = {
-  loader: Function,
+  loader: ILoader,
   params: Object
 };
