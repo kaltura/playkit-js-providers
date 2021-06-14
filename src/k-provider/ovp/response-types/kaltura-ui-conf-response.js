@@ -1,7 +1,7 @@
 //@flow
 import ServiceResult from '../../common/base-service-result';
 
-export default class KalturaUIConfResponse extends ServiceResult {
+export class KalturaUIConfResponse extends ServiceResult {
   static Type: {[type: string]: number} = {
     PLAYER: 1,
     CONTRIBUTION_WIZARD: 2,

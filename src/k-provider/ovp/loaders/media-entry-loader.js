@@ -3,10 +3,10 @@ import RequestBuilder from '../../../util/request-builder';
 import OVPBaseEntryService from '../services/base-entry-service';
 import OVPMetadataService from '../services/meta-data-service';
 import OVPConfiguration from '../config';
-import KalturaPlaybackContext from '../response-types/kaltura-playback-context';
-import KalturaMetadataListResponse from '../response-types/kaltura-metadata-list-response';
-import KalturaBaseEntryListResponse from '../response-types/kaltura-base-entry-list-response';
-import KalturaMediaEntry from '../response-types/kaltura-media-entry';
+import {KalturaPlaybackContext} from '../response-types/kaltura-playback-context';
+import {KalturaMetadataListResponse} from '../response-types/kaltura-metadata-list-response';
+import {KalturaBaseEntryListResponse} from '../response-types/kaltura-base-entry-list-response';
+import {KalturaMediaEntry} from '../response-types/kaltura-media-entry';
 
 type OVPMediaEntryLoaderResponse = {
   entry: KalturaMediaEntry,

@@ -2,7 +2,7 @@
 import RequestBuilder from '../../../util/request-builder';
 import OVPConfiguration from '../config';
 import OVPBaseEntryService from '../services/base-entry-service';
-import KalturaBaseEntryListResponse from '../response-types/kaltura-base-entry-list-response';
+import {KalturaBaseEntryListResponse} from '../response-types/kaltura-base-entry-list-response';
 
 export default class OVPEntryListLoader implements ILoader {
   _entries: Array<string>;

@@ -1,5 +1,5 @@
 //@flow
-import KalturaDrmPlaybackPluginData from '../../common/response-types/kaltura-drm-playback-plugin-data';
+import {KalturaDrmPlaybackPluginData} from '../../common/response-types/kaltura-drm-playback-plugin-data';
 
 export type OTTKalturaPlaybackSource = KalturaPlaybackSource;
 

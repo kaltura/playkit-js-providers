@@ -1,5 +1,5 @@
 //@flow
-export default class KalturaDrmPlaybackPluginData {
+export class KalturaDrmPlaybackPluginData {
   static Scheme: {[scheme: string]: string} = {
     'drm.PLAYREADY_CENC': 'com.microsoft.playready',
     'drm.WIDEVINE_CENC': 'com.widevine.alpha',

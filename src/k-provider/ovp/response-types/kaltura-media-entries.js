@@ -1,8 +1,8 @@
 //@flow
 import ServiceResult from '../../common/base-service-result';
-import KalturaMediaEntry from './kaltura-media-entry';
+import {KalturaMediaEntry} from './kaltura-media-entry';
 
-export default class KalturaMediaEntries extends ServiceResult {
+export class KalturaMediaEntries extends ServiceResult {
   /**
    * @member - The entries
    * @type {Array<KalturaMediaEntry>}

@@ -2,8 +2,8 @@
 import RequestBuilder from '../../../util/request-builder';
 import OVPPlaylistService from '../services/playlist-service';
 import OVPConfiguration from '../config';
-import KalturaPlaylist from '../response-types/kaltura-playlist';
-import KalturaMediaEntries from '../response-types/kaltura-media-entries';
+import {KalturaPlaylist} from '../response-types/kaltura-playlist';
+import {KalturaMediaEntries} from '../response-types/kaltura-media-entries';
 
 export default class OVPPlaylistLoader implements ILoader {
   _playlistId: string;

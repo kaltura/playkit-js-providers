@@ -1,7 +1,7 @@
 //@flow
-import KalturaPlaybackSource from './kaltura-playback-source';
+import {KalturaPlaybackSource} from './kaltura-playback-source';
 
-export default class KalturaBumper {
+export class KalturaBumper {
   /**
    * @member - The bumper entry ID
    * @type {string}

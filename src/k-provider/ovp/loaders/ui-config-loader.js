@@ -1,6 +1,6 @@
 //@flow
 import OVPUIConfService from '../services/ui-conf-service';
-import KalturaUIConfResponse from '../response-types/kaltura-ui-conf-response';
+import {KalturaUIConfResponse} from '../response-types/kaltura-ui-conf-response';
 import OVPConfiguration from '../config';
 import RequestBuilder from '../../../util/request-builder';
 

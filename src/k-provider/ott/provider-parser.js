@@ -10,9 +10,9 @@ import MediaSources from '../../entities/media-sources';
 import EntryList from '../../entities/entry-list';
 import Bumper from '../../entities/bumper';
 import {SupportedStreamFormat, isProgressiveSource} from '../../entities/media-format';
-import KalturaDrmPlaybackPluginData from '../common/response-types/kaltura-drm-playback-plugin-data';
+import {KalturaDrmPlaybackPluginData} from '../common/response-types/kaltura-drm-playback-plugin-data';
 import KalturaRuleAction from './response-types/kaltura-rule-action';
-import KalturaAccessControlMessage from '../common/response-types/kaltura-access-control-message';
+import {KalturaAccessControlMessage} from '../common/response-types/kaltura-access-control-message';
 import type {OTTAssetLoaderResponse} from './loaders/asset-loader';
 import KalturaBumpersPlaybackPluginData from './response-types/kaltura-bumper-playback-plugin-data';
 

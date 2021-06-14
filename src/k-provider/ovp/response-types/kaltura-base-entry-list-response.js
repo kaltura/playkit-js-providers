@@ -1,8 +1,8 @@
 //@flow
 import ServiceResult from '../../common/base-service-result';
-import KalturaMediaEntry from './kaltura-media-entry';
+import {KalturaMediaEntry} from './kaltura-media-entry';
 
-export default class KalturaBaseEntryListResponse extends ServiceResult {
+export class KalturaBaseEntryListResponse extends ServiceResult {
   /**
    * @member - The total count
    * @type {number}
