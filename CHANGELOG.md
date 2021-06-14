@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.29.0](https://github.com/kaltura/playkit-js-providers/compare/v2.28.1...v2.29.0) (2021-06-14)
+
+
+### Features
+
+* **FEC-11300:** dual screen provider changes ([#148](https://github.com/kaltura/playkit-js-providers/issues/148)) ([61ac652](https://github.com/kaltura/playkit-js-providers/commit/61ac652))
+* **FEC-11300:** export response types  ([#149](https://github.com/kaltura/playkit-js-providers/issues/149)) ([97cbd15](https://github.com/kaltura/playkit-js-providers/commit/97cbd15)), closes [kaltura/playkit-js-dual-screen#6](https://github.com/kaltura/playkit-js-providers/issues/6)
+
+
+
 ### [2.28.1](https://github.com/kaltura/playkit-js-providers/compare/v2.28.0...v2.28.1) (2021-03-24)
 
 
