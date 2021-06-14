@@ -1,5 +1,5 @@
 import OVPProviderParser from '../../../../src/k-provider/ovp/provider-parser';
-import {playbackContext} from '../../../../src/k-provider/ovp/response-types/kaltura-playback-context';
+import {KalturaPlaybackContext} from '../../../../src/k-provider/ovp/response-types/kaltura-playback-context';
 import {
   kalturaDashSource,
   kalturaProgressiveSourceNotSecured,
@@ -24,7 +24,7 @@ describe('provider parser', function () {
   });
   describe('_parseAdaptiveSource', () => {
     it('should return a valid adaptive source for a valid input', () => {
-      const context = new playbackContext({});
+      const context = new KalturaPlaybackContext({});
       context.flavorAssets = kalturaDashSourceFlavorAssets;
       const adaptiveSource = OVPProviderParser._parseAdaptiveSource(kalturaDashSource, context, 'myKS', 'myPid', 1234, 1234);
       adaptiveSource.should.exist;
@@ -33,7 +33,7 @@ describe('provider parser', function () {
       adaptiveSource.url.should.be.a('string');
     });
     it('should return null if play url is empty', () => {
-      const context = new playbackContext({});
+      const context = new KalturaPlaybackContext({});
       context.flavorAssets = kalturaSourceProtocolMismatchFlavorAssets;
       const adaptiveSource = OVPProviderParser._parseAdaptiveSource(kalturaSourceProtocolMismatch, context, 'myKS', 'myPid', 1234, 1234);
       (adaptiveSource === null).should.be.true;
@@ -41,7 +41,7 @@ describe('provider parser', function () {
   });
   describe('_parseProgressiveSource', () => {
     it('should return a valid progressive sources when getting separate http/s', () => {
-      const context = new playbackContext({});
+      const context = new KalturaPlaybackContext({});
       context.flavorAssets = kalturaProgressiveSourceFlavorAssets;
       const progressiveSource = OVPProviderParser._getParsedSources(
         [kalturaProgressiveSourceNotSecured, kalturaProgressiveSourceSecured],
@@ -57,7 +57,7 @@ describe('provider parser', function () {
       progressiveSource.progressive[0].id.should.equal('0_5407xm9j19951,url');
     });
     it('should return a valid progressive source for a valid input', () => {
-      const context = new playbackContext({});
+      const context = new KalturaPlaybackContext({});
       context.flavorAssets = kalturaProgressiveSourceFlavorAssets;
       const progressiveSource = OVPProviderParser._getParsedSources(
         [kalturaProgressiveMultiProtocol],
