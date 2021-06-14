@@ -1,5 +1,5 @@
 export {KalturaBaseEntryListResponse} from './kaltura-base-entry-list-response';
-export {KalturaMediaEntry} from './kaltura-base-entry-list-response';
+export {KalturaMediaEntry} from './kaltura-media-entry';
 export {KalturaAccessControlModifyRequestHostRegexAction} from './kaltura-access-control-modify-request-host-regex-action';
 export {KalturaBumper} from './kaltura-bumper';
 export {KalturaFlavorAsset} from './kaltura-flavor-asset';
