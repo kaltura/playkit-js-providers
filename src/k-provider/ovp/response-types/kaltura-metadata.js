@@ -1,5 +1,5 @@
 //@flow
-export default class KalturaMetadata {
+export class KalturaMetadata {
   static ObjectType: {[type: string]: string | number} = {
     AD_CUE_POINT: 'adCuePointMetadata.AdCuePoint',
     ANNOTATION: 'annotationMetadata.Annotation',

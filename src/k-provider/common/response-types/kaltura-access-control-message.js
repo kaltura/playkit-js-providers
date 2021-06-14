@@ -1,5 +1,5 @@
 //@flow
-export default class KalturaAccessControlMessage {
+export class KalturaAccessControlMessage {
   /**
    * @member - The access control message
    * @type {string}

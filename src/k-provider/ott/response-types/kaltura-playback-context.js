@@ -1,6 +1,6 @@
 //@flow
 import ServiceResult from '../../common/base-service-result';
-import KalturaAccessControlMessage from '../../common/response-types/kaltura-access-control-message';
+import {KalturaAccessControlMessage} from '../../common/response-types/kaltura-access-control-message';
 import KalturaRuleAction from './kaltura-rule-action';
 import KalturaPlaybackSource from './kaltura-playback-source';
 import KalturaBumpersPlaybackPluginData from './kaltura-bumper-playback-plugin-data';

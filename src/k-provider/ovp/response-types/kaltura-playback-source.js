@@ -1,9 +1,9 @@
 //@flow
-import KalturaDrmPlaybackPluginData from '../../common/response-types/kaltura-drm-playback-plugin-data';
+import {KalturaDrmPlaybackPluginData} from '../../common/response-types/kaltura-drm-playback-plugin-data';
 
 export type OVPKalturaPlaybackSource = KalturaPlaybackSource;
 
-export default class KalturaPlaybackSource {
+export class KalturaPlaybackSource {
   /**
    * @member - source format according to delivery profile streamer type (applehttp, mpegdash etc.)
    * @type {string}

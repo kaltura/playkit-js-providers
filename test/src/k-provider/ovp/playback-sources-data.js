@@ -1,4 +1,4 @@
-import KalturaPlaybackSource from '../../../../src/k-provider/ovp/response-types/kaltura-playback-source';
+import {KalturaPlaybackSource} from '../../../../src/k-provider/ovp/response-types/kaltura-playback-source';
 
 export const kalturaSourceProtocolMismatch = new KalturaPlaybackSource({
   format: 'applehttp',

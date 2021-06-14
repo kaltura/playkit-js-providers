@@ -1,5 +1,5 @@
 //@flow
-export default class KalturaMediaEntry {
+export class KalturaMediaEntry {
   static EntryType: {[entryType: string]: {value: number | string}} = {
     AUTOMATIC: {value: -1},
     EXTERNAL_MEDIA: {value: 'externalMedia.externalMedia'},

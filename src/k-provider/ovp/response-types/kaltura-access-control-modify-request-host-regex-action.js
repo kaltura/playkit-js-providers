@@ -1,7 +1,7 @@
 //@flow
-import KalturaRuleAction from './kaltura-rule-action';
+import {KalturaRuleAction} from './kaltura-rule-action';
 
-export default class KalturaAccessControlModifyRequestHostRegexAction extends KalturaRuleAction {
+export class KalturaAccessControlModifyRequestHostRegexAction extends KalturaRuleAction {
   /**
    * @member - Request host regex pattern
    * @type {string}
