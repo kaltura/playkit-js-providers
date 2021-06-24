@@ -6,6 +6,7 @@ import MultiRequestBuilder from '../../../../src/k-provider/common/multi-request
 import KalturaAsset from '../../../../src/k-provider/ott/response-types/kaltura-asset';
 import KalturaPlaybackContext from '../../../../src/k-provider/ott/response-types/kaltura-playback-context';
 import OTTAssetLoader from '../../../../src/k-provider/ott/loaders/asset-loader';
+import Error from '../../../../src/util/error/error';
 
 const partnerId = 198;
 const playerVersion = '1.2.3';
@@ -137,6 +138,55 @@ describe('OTTProvider.partnerId:198', function () {
     );
   });
 
+  it('should return error for invalid KS format', done => {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
+      return new Promise((resolve, reject) => {
+        reject(
+          new Error(Error.Severity.CRITICAL, Error.Category.NETWORK, Error.Code.MULTIREQUEST_API_ERROR, {
+            url: 'serviceurl',
+            headers: [],
+            results: new MultiRequestResult(BE_DATA.InvalidKSFormat.response).results
+          })
+        );
+      });
+    });
+    provider.getMediaConfig({entryId: 1234}).then(
+      mediaConfig => {
+        try {
+          throw new Error('no error returned where block action error was expected', mediaConfig);
+        } catch (e) {
+          done(e);
+        }
+      },
+      err => {
+        const expected = {
+          severity: 2,
+          category: 1,
+          code: 1006,
+          data: {
+            headers: [],
+            results: [
+              {
+                error: {
+                  code: '500015',
+                  message: 'Invalid KS format'
+                },
+                hasError: true
+              }
+            ],
+            url: 'serviceurl'
+          }
+        };
+        try {
+          err.should.deep.equal(expected);
+          done();
+        } catch (e) {
+          done(e);
+        }
+      }
+    );
+  });
+
   it('should pass streamerType and urlType on the playback context object', done => {
     sinon.stub(OTTAssetLoader.prototype, 'buildRequests').callsFake(function (params: Object) {
       try {
@@ -146,6 +196,7 @@ describe('OTTProvider.partnerId:198', function () {
       } catch (e) {
         done(e);
       }
+      return [];
     });
     provider.getMediaConfig({entryId: 1234, streamerType: 'mpegdash', urlType: 'DIRECT'});
   });

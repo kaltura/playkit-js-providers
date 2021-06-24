@@ -1207,6 +1207,19 @@ const BlockActionEntry = {
   }
 };
 
+const InvalidKSFormat = {
+  response: {
+    executionTime: 0.0003546,
+    result: {
+      error: {
+        code: '500015',
+        message: 'Invalid KS format',
+        objectType: 'KalturaAPIException'
+      }
+    }
+  }
+};
+
 const PlaylistByEntryList = {
   response: {
     result: [
@@ -3283,6 +3296,7 @@ export {
   AnonymousEntryWithoutUIConfWithDrmData,
   LiveEntryNoDrmData,
   BlockActionEntry,
+  InvalidKSFormat,
   PlaylistByEntryList,
   AnonymousPlaylistByEntryList,
   EntryWithBumper,
