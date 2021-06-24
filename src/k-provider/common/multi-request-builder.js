@@ -89,7 +89,8 @@ export class MultiRequestResult {
    */
   constructor(response: Object) {
     this.success = true;
-    const responseArr = response.result ? (Array.isArray(response.result) ? response.result : [response.result]) : response;
+    const result = response.result ? response.result : response;
+    const responseArr = Array.isArray(result) ? result : [result];
     responseArr.forEach(result => {
       const serviceResult: ServiceResult = new ServiceResult(result);
       this.results.push(serviceResult);
