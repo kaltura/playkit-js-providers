@@ -1209,7 +1209,6 @@ const BlockActionEntry = {
 
 const InvalidKSFormat = {
   response: {
-    executionTime: 0.0003546,
     result: {
       error: {
         code: '500015',
