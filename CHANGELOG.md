@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.29.1](https://github.com/kaltura/playkit-js-providers/compare/v2.29.0...v2.29.1) (2021-07-01)
+
+
+### Bug Fixes
+
+* **FEC-11363:** OTT player doesn't get error for invalid KS ([#150](https://github.com/kaltura/playkit-js-providers/issues/150)) ([e565490](https://github.com/kaltura/playkit-js-providers/commit/e565490))
+
+
+
 ## [2.29.0](https://github.com/kaltura/playkit-js-providers/compare/v2.28.1...v2.29.0) (2021-06-14)
 
 
