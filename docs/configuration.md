@@ -30,7 +30,8 @@ var provider = new playkit.providers.ott.Provider(config);
   uiConfId: number, // optional
   env: ProviderEnvConfigObject, // optional
   networkRetryParameters: ProviderNetworkRetryParameters, // optional
-  filterOptions: ProviderFilterOptionsObject // optional
+  filterOptions: ProviderFilterOptionsObject, // optional
+  ignoreServerConfig: boolean // optional
 }
 ```
 
@@ -192,3 +193,12 @@ var provider = new playkit.providers.ott.Provider(config);
 > ```
 >
 > ##### Description: Defines whether after a livestream ends there should be a redirect to the VOD entry or not.
+
+> ##
+>
+> ### config.ignoreServerConfig
+>
+> ##### Type: `boolean`
+>
+>
+> ##### Description: Instructs the player to ignore the server configuration.
