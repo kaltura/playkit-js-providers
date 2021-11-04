@@ -38,6 +38,7 @@ export default class OTTBookmarkService extends OTTService {
       position: bookmark.position,
       playerData: playerData
     };
+    if (bookmark.programId) bookmarkServiceParams.programId = bookmark.programId;
     const config = OTTConfiguration.get();
     const serviceParams = config.serviceParams;
     Object.assign(serviceParams, {bookmark: bookmarkServiceParams, ks: ks});
