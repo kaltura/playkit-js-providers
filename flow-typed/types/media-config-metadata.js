@@ -1,5 +1,6 @@
 // @flow
 declare type ProviderMediaConfigMetadataObject = {
   name: string,
-  description: string
+  description: string,
+  epgId?: string
 };
