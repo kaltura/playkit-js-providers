@@ -121,6 +121,8 @@ const NoPluginsWithDrm = {
     metadata: {
       mediaType: mediaTypeConf,
       name: 'Trolls',
+      epgId: '454032895',
+      recordingId: '774036475',
       metas: {
         'App Link': '',
         'Catchup allowed': false,
@@ -485,6 +487,8 @@ const FilteredSourcesByDeviceType = {
     metadata: {
       mediaType: KalturaAsset.Type.RECORDING,
       name: 'Trolls',
+      epgId: '454032895',
+      recordingId: '774036475',
       metas: {
         'App Link': '',
         'Catchup allowed': false,
@@ -509,9 +513,7 @@ const FilteredSourcesByDeviceType = {
       },
       description:
         "After the Bergens invade Troll Village, Poppy, the happiest Troll ever born, and the curmudgeonly Branch set off on a journey to rescue her friends. DreamWorks Animation's TROLLS is an irreverent comedy extravaganza with incredible music! From the genius creators of SHREK, TROLLS stars Anna Kendrick as Poppy, the optimistic leader of the Trolls, and her polar opposite, Branch, played by Justin Timberlake. Together, this unlikely pair of Trolls must embark on an adventure that takes them far beyond the only world they've ever known."
-    },
-    epgId: '454032895',
-    recordingId: '774036475'
+    }
   }
 };
 
