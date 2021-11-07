@@ -4,7 +4,7 @@ declare type ProviderMediaConfigMetadataObject = {
   description?: string,
   mediaType?: string,
   metas?: Object,
-  tags: Object,
+  tags?: Object,
   epgId?: string,
   recordingId?: string
 };
