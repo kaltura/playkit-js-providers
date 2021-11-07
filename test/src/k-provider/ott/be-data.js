@@ -502,7 +502,9 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
         enableCatchUp: false,
         enableStartOver: false,
         enableTrickPlay: false,
-        objectType: 'KalturaMediaAsset'
+        objectType: 'KalturaMediaAsset',
+        epgId: '454032895',
+        recordingId: '774036475'
       },
       {
         sources: [
@@ -1114,6 +1116,7 @@ const LiveEntryNoDrmData = {
         },
         startDate: 946684800,
         endDate: 2524608000,
+        epgId: '454032895',
         enableCdvr: true,
         enableCatchUp: true,
         enableStartOver: true,
