@@ -2,10 +2,18 @@
 import OTTService from '../ott-service';
 import RequestBuilder from '../../../../util/request-builder';
 import OTTConfiguration from '../../config';
+import getLogger from '../../../../util/logger';
 
 const SERVICE_NAME: string = 'bookmark';
 
 export default class OTTBookmarkService extends OTTService {
+  /**
+   * The BookmarkService logger
+   * @member {OTTBookmarkService} _logger
+   * @private
+   * @static
+   */
+  static _logger: any = getLogger('BookmarkService');
   /**
    * Creates an instance of RequestBuilder for session.startWidgetSession
    * @function add
@@ -38,6 +46,8 @@ export default class OTTBookmarkService extends OTTService {
       position: bookmark.position,
       playerData: playerData
     };
+    if (bookmark.programId) bookmarkServiceParams.programId = bookmark.programId;
+    this._logger.debug('bookmark added', bookmarkServiceParams);
     const config = OTTConfiguration.get();
     const serviceParams = config.serviceParams;
     Object.assign(serviceParams, {bookmark: bookmarkServiceParams, ks: ks});

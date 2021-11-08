@@ -121,6 +121,8 @@ const NoPluginsWithDrm = {
     metadata: {
       mediaType: mediaTypeConf,
       name: 'Trolls',
+      epgId: '454032895',
+      recordingId: '774036475',
       metas: {
         'App Link': '',
         'Catchup allowed': false,
@@ -485,6 +487,8 @@ const FilteredSourcesByDeviceType = {
     metadata: {
       mediaType: KalturaAsset.Type.RECORDING,
       name: 'Trolls',
+      epgId: '454032895',
+      recordingId: '774036475',
       metas: {
         'App Link': '',
         'Catchup allowed': false,
@@ -729,7 +733,8 @@ const LiveEntryNoDrm = {
         QUALITY: 'hd|',
         Source: 'Web3|'
       },
-      description: '***nadya_aes***'
+      description: '***nadya_aes***',
+      epgId: '454032895'
     }
   },
   plugins: {}
