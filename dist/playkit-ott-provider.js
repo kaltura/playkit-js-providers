@@ -1,2 +1,3407 @@
-!function(e,t){"object"==typeof exports&&"object"==typeof module?module.exports=t():"function"==typeof define&&define.amd?define([],t):"object"==typeof exports?exports.ott=t():(e.playkit=e.playkit||{},e.playkit.providers=e.playkit.providers||{},e.playkit.providers.ott=t())}(window,(function(){return function(e){var t={};function r(n){if(t[n])return t[n].exports;var a=t[n]={i:n,l:!1,exports:{}};return e[n].call(a.exports,a,a.exports,r),a.l=!0,a.exports}return r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var a in e)r.d(n,a,function(t){return e[t]}.bind(null,a));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,"a",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p="",r(r.s=18)}([function(e,t,r){"use strict";r.d(t,"a",(function(){return i}));var n=r(3);function a(e,t,r){return t in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}var i=function e(t,r,n,a){void 0===a&&(a={}),this.severity=t,this.category=r,this.code=n,this.data=a,e._logger.error("Category:"+r+" | Code:"+n+" |",a)};a(i,"Severity",{RECOVERABLE:1,CRITICAL:2}),a(i,"Category",{NETWORK:1,SERVICE:2,PROVIDER:3}),a(i,"Code",{UNSUPPORTED_SCHEME:1e3,BAD_HTTP_STATUS:1001,HTTP_ERROR:1002,TIMEOUT:1003,MALFORMED_DATA_URI:1004,BAD_SERVER_RESPONSE:1005,MULTIREQUEST_API_ERROR:1006,API_RESPONSE_MISMATCH:1007,ERROR:2e3,BLOCK_ACTION:2001,MEDIA_STATUS_NOT_READY:2002,MISSING_MANDATORY_PARAMS:3e3,MISSING_PLAY_SOURCE:3001,METHOD_NOT_IMPLEMENTED:3002}),a(i,"_logger",Object(n.b)("Error"))},function(e,t,r){"use strict";r.d(t,"a",(function(){return i}));var n=r(8);function a(e,t,r){return t in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}var i=function(){function e(){this.metadata=new Map,this.sources=new n.a,this.type=e.Type.UNKNOWN}return e.prototype.toJSON=function(){return{id:this.id,name:this.name,sources:this.sources.toJSON(),duration:this.duration,dvrStatus:this.dvrStatus,status:this.status,metadata:this.metadata,type:this.type,poster:this.poster,assetReferenceType:this.assetReferenceType}},e}();a(i,"Type",{VOD:"Vod",LIVE:"Live",IMAGE:"Image",AUDIO:"Audio",UNKNOWN:"Unknown"}),a(i,"DvrStatus",{ON:1,OFF:0})},function(e,t,r){"use strict";r.d(t,"a",(function(){return i}));var n=r(0);function a(e,t,r){return t in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}var i=function(){function e(e){void 0===e&&(e=new Map),a(this,"retryConfig",{async:!0,timeout:0,maxAttempts:4}),a(this,"_attemptCounter",1),this.headers=e}var t=e.prototype;return t.getUrl=function(e){return e+"/service/"+this.service+(this.action?"/action/"+this.action:"")},t.doHttpRequest=function(){var e=this,t=new Promise((function(t,r){e._requestPromise={resolve:t,reject:r}}));return this.url||this._requestPromise.reject(new n.a(n.a.Severity.CRITICAL,n.a.Category.NETWORK,n.a.Code.MALFORMED_DATA_URI,{url:this.url})),this._createXHR(),t},t._createXHR=function(){var e=this,t=new XMLHttpRequest;t.onreadystatechange=function(){if(4===t.readyState&&200===t.status)try{var r=JSON.parse(t.responseText);return e.responseHeaders=e._getResponseHeaders(t),e._requestPromise.resolve(r)}catch(r){e._requestPromise.reject(e._createError(t,n.a.Code.BAD_SERVER_RESPONSE,{text:t.responseText}))}},t.open(this.method,this.url,this.retryConfig.async),this.retryConfig.async&&this.retryConfig.timeout&&(t.timeout=this.retryConfig.timeout);var r=performance.now();t.ontimeout=function(){e._handleError(t,n.a.Code.TIMEOUT,{timeout:(performance.now()-r)/1e3,statusText:t.statusText})},t.onerror=t.onabort=function(){e._handleError(t,n.a.Code.HTTP_ERROR,{text:t.responseText,statusText:t.statusText})},this.headers.forEach((function(e,r){t.setRequestHeader(r,e)})),t.send(this.params)},t._getResponseHeaders=function(e){return e.getAllResponseHeaders().split("\n").filter((function(e){return 0===e.toLowerCase().indexOf("x-")}))},t._handleError=function(e,t,r){var n=this._createError(e,t,r);if(e.onreadystatechange=function(){},e.onerror=function(){},e.ontimeout=function(){},e.onabort=function(){},!(this.retryConfig.maxAttempts&&this._attemptCounter<this.retryConfig.maxAttempts))return this._requestPromise.reject(n);this._attemptCounter++,this._createXHR()},t._createError=function(e,t,r){return Object.assign(r,{url:this.url,headers:this._getResponseHeaders(e),attempt:this._attemptCounter}),new n.a(n.a.Severity.CRITICAL,n.a.Category.NETWORK,t,r)},e}()},function(e,t,r){"use strict";r.d(t,"c",(function(){return o})),r.d(t,"d",(function(){return u})),r.d(t,"e",(function(){return i})),r.d(t,"a",(function(){return a}));var n={get:function(){return{VERSION:"",DEBUG:{value:"",name:""},ERROR:{value:"",name:""},INFO:{value:"",name:""},OFF:{value:"",name:""},TIME:{value:"",name:""},TRACE:{value:"",name:""},WARN:{value:"",name:""},createDefaultHandler:function(){},debug:function(){},enabledFor:function(){},error:function(){},get:function(){},getLevel:function(){},info:function(){},log:function(){},setHandler:function(){},setLevel:function(){},time:function(){},timeEnd:function(){},trace:function(){},useDefaults:function(){},warn:function(){}}}},a={};function i(e){e&&"function"==typeof e.getLogger&&(n.get=e.getLogger),e&&e.LogLevel&&(a=e.LogLevel)}function s(e){return n.get(e)}function o(e){return s(e).getLevel()}function u(e,t){s(t).setLevel(e)}t.b=s},function(e,t,r){"use strict";r.d(t,"a",(function(){return n})),r.d(t,"b",(function(){return a})),r.d(t,"c",(function(){return i}));var n={DASH:{name:"dash",mimeType:"application/dash+xml",pathExt:"mpd"},HLS:{name:"hls",mimeType:"application/x-mpegURL",pathExt:"m3u8"},WVM:{name:"wvm",mimeType:"video/wvm",pathExt:"wvm"},MP4:{name:"mp4",mimeType:"video/mp4",pathExt:"mp4"},MP3:{name:"mp3",mimeType:"audio/mpeg",pathExt:"mp3"}},a=new Map([["mpegdash",n.DASH],["applehttp",n.HLS],["url",n.MP4]]);function i(e){var t=a.get(e);return!!t&&t.name===n.MP4.name}},function(e,t,r){"use strict";r.d(t,"a",(function(){return n}));var n=function(e){var t,r,n;n=!1,(r="hasError")in(t=this)?Object.defineProperty(t,r,{value:n,enumerable:!0,configurable:!0,writable:!0}):t[r]=n,"KalturaAPIException"===e.objectType?(this.hasError=!0,this.error=new a(e.code,e.message)):e.error&&"KalturaAPIException"===e.error.objectType?(this.hasError=!0,this.error=new a(e.error.code,e.error.message)):this.data=e},a=function(e,t){this.code=e,this.message=t}},function(e,t,r){"use strict";r.d(t,"a",(function(){return s}));var n,a,i,s=function(e){this.scheme=e.scheme,this.licenseURL=e.licenseURL,this.certificate=e.certificate};i={"drm.PLAYREADY_CENC":"com.microsoft.playready","drm.WIDEVINE_CENC":"com.widevine.alpha","fairplay.FAIRPLAY":"com.apple.fairplay",WIDEVINE_CENC:"com.widevine.alpha",PLAYREADY_CENC:"com.microsoft.playready",FAIRPLAY:"com.apple.fairplay"},(a="Scheme")in(n=s)?Object.defineProperty(n,a,{value:i,enumerable:!0,configurable:!0,writable:!0}):n[a]=i},function(e,t,r){"use strict";r.d(t,"a",(function(){return n}));var n=function(e){this.message=e.message,this.code=e.code}},function(e,t,r){"use strict";r.d(t,"a",(function(){return a}));r(9);var n=r(4),a=function(){function e(){this.progressive=[],this.dash=[],this.hls=[]}var t=e.prototype;return t.map=function(e,t){if(t)switch(t.name){case n.a.MP4.name:this.progressive.push(e);break;case n.a.DASH.name:this.dash.push(e);break;case n.a.HLS.name:this.hls.push(e)}},t.toJSON=function(){var e={progressive:[],dash:[],hls:[]};return this.progressive.forEach((function(t){return e.progressive.push(t.toJSON())})),this.hls.forEach((function(t){return e.hls.push(t.toJSON())})),this.dash.forEach((function(t){return e.dash.push(t.toJSON())})),e},e}()},function(e,t,r){"use strict";r.d(t,"a",(function(){return n}));r(12);var n=function(){function e(){}return e.prototype.toJSON=function(){var e={id:this.id,url:this.url,mimetype:this.mimetype};return this.bandwidth&&(e.bandwidth=this.bandwidth),this.width&&(e.width=this.width),this.height&&(e.height=this.height),this.label&&(e.label=this.label),this.drmData&&this.drmData.length>0&&(e.drmData=[],this.drmData.forEach((function(t){Array.isArray(e.drmData)&&e.drmData.push(t.toJSON())}))),e},e}()},function(e,t,r){"use strict";r.d(t,"a",(function(){return i}));r(11);var n=r(0);function a(e,t,r){return t in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}var i=function(){function e(e){a(this,"_loadersResponseMap",new Map),a(this,"_loaders",new Map),this._networkRetryConfig=e}var t=e.prototype;return t.add=function(e,t){var r=this,n=new e(t);if(n.isValid()){this._loaders.set(e.id,n);var a=this._multiRequest.requests.length,i=n.requests;this._multiRequest.retryConfig=this._networkRetryConfig,i.forEach((function(e){r._multiRequest.add(e)}));var s=Array.from(new Array(i.length),(function(e,t){return t+a}));this._loadersResponseMap.set(e.id,s)}},t.fetchData=function(){var e=this;return new Promise((function(t,r){e._multiRequest.execute().then((function(a){e._multiResponse=a.response,e.prepareData(a.response).success?t(e._loaders):r(new n.a(n.a.Severity.CRITICAL,n.a.Category.NETWORK,n.a.Code.API_RESPONSE_MISMATCH,{headers:a.headers}))}),(function(e){r(e)}))}))},t.prepareData=function(e){var t=this;return this._loaders.forEach((function(r,n){var a=t._loadersResponseMap.get(n);try{a&&a.length>0&&(r.response=e.results.slice(a[0],a[a.length-1]+1))}catch(e){return{success:!1,error:e}}})),{success:!0,data:this._loaders}},e}()},function(e,t,r){"use strict";r.d(t,"a",(function(){return c}));var n=r(2),a=r(3),i=r(5),s=r(0);function o(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}function u(e,t,r){return t in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}var c=function(e){var t,r;function n(){for(var t,r=arguments.length,n=new Array(r),a=0;a<r;a++)n[a]=arguments[a];return u(o(t=e.call.apply(e,[this].concat(n))||this),"requests",[]),t}r=e,(t=n).prototype=Object.create(r.prototype),t.prototype.constructor=t,t.__proto__=r;var a=n.prototype;return a.add=function(e){var t;this.requests.push(e);var r={},n={service:e.service,action:e.action};return Object.assign(r,((t={})[this.requests.length]=Object.assign(n,e.params),t)),Object.assign(r,this.params),this.params=r,this},a.execute=function(){var e=this;return new Promise((function(t,r){try{e.params=JSON.stringify(e.params)}catch(t){n._logger.error(""+t.message),r(new s.a(s.a.Severity.CRITICAL,s.a.Category.PROVIDER,s.a.Code.FAILED_PARSING_REQUEST,{error:t,params:e.params}))}e.doHttpRequest().then((function(n){var a=new p(n);a.success?t({headers:e.responseHeaders,response:a}):r(new s.a(s.a.Severity.CRITICAL,s.a.Category.NETWORK,s.a.Code.MULTIREQUEST_API_ERROR,{url:e.url,headers:e.responseHeaders,results:a.results}))}),(function(e){r(e)}))}))},n}(n.a);u(c,"_logger",Object(a.b)("MultiRequestBuilder"));var p=function e(t){var r=this;u(this,"results",[]),this.success=!0;var n=t.result?t.result:t;(Array.isArray(n)?n:[n]).forEach((function(t){var n=new i.a(t);if(r.results.push(n),n.hasError)return e._logger.error("Service returned an error with error code: "+n.error.code+" and message: "+n.error.message+"."),void(r.success=!1)}))};u(p,"_logger",Object(a.b)("MultiRequestResult"))},function(e,t,r){"use strict";r.d(t,"a",(function(){return n}));var n=function(){function e(e,t,r){this.licenseUrl=e,this.scheme=t,r&&(this.certificate=r)}return e.prototype.toJSON=function(){var e={licenseUrl:this.licenseUrl,scheme:this.scheme};return this.certificate&&(e.certificate=this.certificate),e},e}()},function(e,t,r){"use strict";r.d(t,"a",(function(){return o}));var n=r(3),a=(r(10),r(0));function i(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}function s(e,t,r){return t&&i(e.prototype,t),r&&i(e,r),e}var o=function(){function e(e,t){var r,a,i;i={async:!0,timeout:0,maxAttempts:4},(a="_networkRetryConfig")in(r=this)?Object.defineProperty(r,a,{value:i,enumerable:!0,configurable:!0,writable:!0}):r[a]=i,Object(n.e)(e.logger),this._partnerId=e.partnerId,this._widgetId=e.widgetId,this._uiConfId=e.uiConfId,this._isAnonymous=!e.ks,this._ks=e.ks||"",this._playerVersion=t}s(e,[{key:"partnerId",get:function(){return this._partnerId}},{key:"widgetId",get:function(){return this._widgetId||this.defaultWidgetId}},{key:"defaultWidgetId",get:function(){return"_"+this._partnerId}},{key:"uiConfId",get:function(){return this._uiConfId}},{key:"ks",get:function(){return this._ks},set:function(e){this._ks=e}},{key:"playerVersion",get:function(){return this._playerVersion}},{key:"isAnonymous",get:function(){return this._isAnonymous}}]);var t=e.prototype;return t.getMediaConfig=function(e){return Promise.reject(new a.a(a.a.Severity.CRITICAL,a.a.Category.PROVIDER,a.a.Code.METHOD_NOT_IMPLEMENTED,{message:"getMediaConfig method must be implement by the derived class"}))},t.getPlaylistConfig=function(e){return Promise.reject(new a.a(a.a.Severity.CRITICAL,a.a.Category.PROVIDER,a.a.Code.METHOD_NOT_IMPLEMENTED,{message:"The provider does not support loading playlist by id"}))},t.getEntryListConfig=function(e){return Promise.reject(new a.a(a.a.Severity.CRITICAL,a.a.Category.PROVIDER,a.a.Code.METHOD_NOT_IMPLEMENTED,{message:"The provider does not support loading entry list"}))},t._verifyHasSources=function(e){if(0===e.hls.concat(e.dash,e.progressive).length)throw new a.a(a.a.Severity.CRITICAL,a.a.Category.SERVICE,a.a.Code.MISSING_PLAY_SOURCE,{action:"",messages:"No play source for entry id: "+e.id})},t.getLogLevel=function(e){return Object(n.c)(e)},t.setLogLevel=function(e,t){Object(n.d)(e,t)},s(e,[{key:"LogLevel",get:function(){return n.a}}]),e}()},function(e,t,r){"use strict";r.d(t,"a",(function(){return n}));var n=function e(t){var r;return Array.isArray(t)?(r=t.length>0?t.slice(0):[]).forEach((function(t,n){("object"==typeof t&&t!=={}||Array.isArray(t)&&t.length>0)&&(r[n]=e(t))})):"object"==typeof t?(r=Object.assign({},t),Object.keys(r).forEach((function(t){("object"==typeof r[t]&&r[t]!=={}||Array.isArray(r[t])&&r[t].length>0)&&(r[t]=e(r[t]))}))):r=t,r}},function(e,t,r){"use strict";r.d(t,"a",(function(){return n}));r(1);var n=function(){this.items=[]}},function(e,t,r){"use strict";r.d(t,"a",(function(){return n}));var n=function(e){this.url=e.url,this.clickThroughUrl=e.clickThroughUrl}},,function(e,t,r){"use strict";r.r(t),r.d(t,"Provider",(function(){return $})),r.d(t,"ContextType",(function(){return re})),r.d(t,"MediaType",(function(){return ne})),r.d(t,"NAME",(function(){return ee})),r.d(t,"VERSION",(function(){return te}));var n=r(13),a=r(3),i=r(14),s={serviceParams:{apiVersion:"5.2.6"}},o=function(){function e(){}return e.set=function(e){e&&Object.assign(s,e)},e.get=function(){return Object(i.a)(s)},e}(),u=r(10),c=r(11),p=function(){function e(){}return e.getMultiRequest=function(e,t){var r=o.get(),n=r.serviceParams;e&&Object.assign(n,{ks:e}),t&&Object.assign(n,{partnerId:t});var a=new Map;a.set("Content-Type","application/json");var i=new c.a(a);return i.method="POST",i.service="multirequest",i.url=i.getUrl(r.serviceUrl),i.params=n,i},e}();var f=function(e){var t,r;function n(t,r,n){var a;return void 0===r&&(r=""),(a=e.call(this,n)||this)._multiRequest=p.getMultiRequest(r,t),a}return r=e,(t=n).prototype=Object.create(r.prototype),t.prototype.constructor=t,t.__proto__=r,n}(u.a),d=r(2);var l=function(e){var t,r;function n(){return e.apply(this,arguments)||this}return r=e,(t=n).prototype=Object.create(r.prototype),t.prototype.constructor=t,t.__proto__=r,n.anonymousLogin=function(e,t,r){var n=new Map;n.set("Content-Type","application/json");var a=new d.a(n);a.service="ottuser",a.action="anonymousLogin",a.method="POST",a.url=a.getUrl(e);var i={partnerId:t};return r&&Object.assign(i,{udid:r}),a.params=i,a},n}(p);function h(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}function y(e,t,r){return t&&h(e.prototype,t),r&&h(e,r),e}var g=function(){function e(e){var t,r,n;n={},(r="_response")in(t=this)?Object.defineProperty(t,r,{value:n,enumerable:!0,configurable:!0,writable:!0}):t[r]=n,this.requests=this.buildRequests(e),this._partnerId=e.partnerId}y(e,null,[{key:"id",get:function(){return"session"}}]);var t=e.prototype;return t.buildRequests=function(e){var t=o.get(),r=[];return r.push(l.anonymousLogin(t.serviceUrl,e.partnerId,e.udid)),r},t.isValid=function(){return!!this._partnerId},y(e,[{key:"requests",set:function(e){this._requests=e},get:function(){return this._requests}},{key:"response",set:function(e){this._response.ks=e[0].data.ks},get:function(){return this._response.ks}}]),e}();var m=function(e){var t,r;function n(){return e.apply(this,arguments)||this}return r=e,(t=n).prototype=Object.create(r.prototype),t.prototype.constructor=t,t.__proto__=r,n.getPlaybackContext=function(e,t,r,n,a){var i=new Map;i.set("Content-Type","application/json");var s=new d.a(i);s.service="asset",s.action="getPlaybackContext",s.method="POST",s.url=s.getUrl(e);var o={objectType:"KalturaPlaybackContextOptions"};return Object.assign(o,a),s.params={assetId:r,assetType:n,contextDataParams:o,ks:t},s},n.get=function(e,t,r,n){var a=new Map;a.set("Content-Type","application/json");var i=new d.a(a);return i.service="asset",i.action="get",i.method="POST",i.url=i.getUrl(e),i.params={id:r,assetReferenceType:n,ks:t},i},n}(p),v=r(5),_=r(7);var b,E,T,R=function(e){this.type=e.type};T={BLOCK:"BLOCK",START_DATE_OFFSET:"START_DATE_OFFSET",END_DATE_OFFSET:"END_DATE_OFFSET",USER_BLOCK:"USER_BLOCK",ALLOW_PLAYBACK:"ALLOW_PLAYBACK",BLOCK_PLAYBACK:"BLOCK_PLAYBACK",APPLY_DISCOUNT_MODULE:"APPLY_DISCOUNT_MODULE"},(E="Type")in(b=R)?Object.defineProperty(b,E,{value:T,enumerable:!0,configurable:!0,writable:!0}):b[E]=T;var O=r(6);var I=function(){function e(e){var t=this;!function(e,t,r){t in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r}(this,"drm",[]),this.format=e.format,this.adsPolicy=e.adsPolicy,this.adsParam=e.adsParam,this.duration=e.duration,this.url=e.url,this.type=e.type,this.fileId=e.id,this.protocols=e.protocols,e.drm&&e.drm.map((function(e){return t.drm.push(new O.a(e))}))}var t=e.prototype;return t.hasDrmData=function(){return this.drm&&this.drm.length>0},t.getProtocol=function(e){var t="";if(this.protocols&&this.protocols.length>0)this.protocols.split(",").forEach((function(r){r===e&&(t=r)}));else if("http"===e)return e;return t},e}();var A=function(e){this.streamertype=e.streamertype,this.url=e.url};function C(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}function P(e,t,r){return t in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}!function(e,t,r){t in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r}(A,"StreamerType",{HLS:"hls",DASH:"dash",PROGRESSIVE:"progressive"});var S=function(e){var t,r;function n(t){var r;if(P(C(r=e.call(this,t)||this),"sources",[]),P(C(r),"actions",[]),P(C(r),"messages",[]),P(C(r),"plugins",[]),!r.hasError){var n=t.messages;n&&n.map((function(e){return r.messages.push(new _.a(e))}));var a=t.actions;a&&a.map((function(e){return r.actions.push(new R(e))}));var i=t.sources;i&&i.map((function(e){return r.sources.push(new I(e))}));var s=t.plugins;s&&s.map((function(e){return r.plugins.push(new A(e))}))}return r}r=e,(t=n).prototype=Object.create(r.prototype),t.prototype.constructor=t,t.__proto__=r;var a=n.prototype;return a.hasBlockAction=function(){return void 0!==this.getBlockAction()},a.getBlockAction=function(){return this.actions.find((function(e){return e.type===R.Type.BLOCK}))},a.getErrorMessages=function(){return this.messages},n}(v.a);function w(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return e}function L(e,t,r){return t in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}P(S,"Type",{TRAILER:"TRAILER",CATCHUP:"CATCHUP",START_OVER:"START_OVER",PLAYBACK:"PLAYBACK"});var D=function(e){var t,r;function n(t){var r;return L(w(r=e.call(this,t)||this),"name",""),L(w(r),"description",""),L(w(r),"tags",[]),L(w(r),"metas",[]),L(w(r),"pictures",[]),r.hasError||(r.id=t.id,r.name=t.name,r.description=t.description,r.metas=r._formatTagsMetas(t.metas),r.tags=r._formatTagsMetas(t.tags),r.pictures=t.images),r}return r=e,(t=n).prototype=Object.create(r.prototype),t.prototype.constructor=t,t.__proto__=r,n.prototype._formatTagsMetas=function(e){var t=[];return Object.keys(e).forEach((function(r){if(e[r].objects){var n="";e[r].objects.forEach((function(e){n+=e.value+"|"})),t.push({key:r,value:n})}else t.push({key:r,value:e[r].value})})),t},n}(v.a);function k(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}function j(e,t,r){return t&&k(e.prototype,t),r&&k(e,r),e}L(D,"Type",{MEDIA:"media",RECORDING:"recording",EPG:"epg"}),L(D,"AssetReferenceType",{MEDIA:"media",EPG_INTERNAL:"epg_internal",EPG_EXTERNAL:"epg_external",NPVR:"nPVR"});var M=function(){function e(e){!function(e,t,r){t in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r}(this,"_response",{}),this.requests=this.buildRequests(e),this._entryId=e.entryId}j(e,null,[{key:"id",get:function(){return"asset"}}]);var t=e.prototype;return t.buildRequests=function(e){var t=o.get(),r=[];return r.push(m.get(t.serviceUrl,e.ks,e.entryId,e.assetReferenceType)),r.push(m.getPlaybackContext(t.serviceUrl,e.ks,e.entryId,e.type,e.playbackContext)),r},t.isValid=function(){return!!this._entryId},j(e,[{key:"requests",set:function(e){this._requests=e},get:function(){return this._requests}},{key:"response",set:function(e){this._response.mediaDataResult=new D(e[0].data),this._response.playBackContextResult=new S(e[1].data)},get:function(){return this._response}}]),e}();function N(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}function x(e,t,r){return t&&N(e.prototype,t),r&&N(e,r),e}var U,B,q,V,H=function(){function e(e){!function(e,t,r){t in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r}(this,"_response",{playlistItems:{entries:[]}}),this.requests=this.buildRequests(e),this._entries=e.entries}x(e,null,[{key:"id",get:function(){return"asset_list"}}]);var t=e.prototype;return t.buildRequests=function(e){var t=o.get(),r=[];return e.entries.forEach((function(n){var a=n.assetReferenceType||D.AssetReferenceType.MEDIA;r.push(m.get(t.serviceUrl,e.ks,n.entryId||n,a))})),r},t.isValid=function(){return!(!this._entries||!this._entries.length)},x(e,[{key:"requests",set:function(e){this._requests=e},get:function(){return this._requests}},{key:"response",set:function(e){var t=this;e.forEach((function(e){t._response.playlistItems.entries.push({mediaDataResult:new D(e.data)})}))},get:function(){return this._response}}]),e}(),K=r(1),F=r(12),Y=r(9),W=r(8),G=r(15),J=r(16),X=r(4);var Q=((V={})[D.Type.MEDIA]=((U={})[S.Type.TRAILER]=function(){return{type:K.a.Type.VOD}},U[S.Type.PLAYBACK]=function(e){return"KalturaLiveAsset"===e.objectType?{type:K.a.Type.LIVE,dvrStatus:e.enableTrickPlay?K.a.DvrStatus.ON:K.a.DvrStatus.OFF}:parseInt(e.externalIds)>0?{type:K.a.Type.LIVE,dvrStatus:K.a.DvrStatus.OFF}:{type:K.a.Type.VOD}},U),V[D.Type.EPG]=((B={})[S.Type.CATCHUP]=function(){return{type:K.a.Type.VOD}},B[S.Type.START_OVER]=function(){return{type:K.a.Type.LIVE,dvrStatus:K.a.DvrStatus.ON}},B),V[D.Type.RECORDING]=((q={})[S.Type.PLAYBACK]=function(){return{type:K.a.Type.VOD}},q),V),z=function(){function e(){}return e.getMediaEntry=function(t,r){var n=new K.a;e._fillBaseData(n,t,r);var a=t.playBackContextResult,i=t.mediaDataResult,s=a.sources,o=e._filterSourcesByFormats(s,r.formats);n.sources=e._getParsedSources(o);var u=e._getMediaType(i.data,r.mediaType,r.contextType);return n.type=u.type,n.dvrStatus=u.dvrStatus,n.duration=Math.max.apply(Math,s.map((function(e){return e.duration}))),n},e.getEntryList=function(t,r){var n=new G.a;return t.playlistItems.entries.forEach((function(t){var a=new K.a,i=r.find((function(e){return e.entryId===t.mediaDataResult.id}));e._fillBaseData(a,t,i),n.items.push(a)})),n},e.getBumper=function(e){var t=e.playBackContextResult.plugins.find((function(e){return e.streamertype===A.StreamerType.PROGRESSIVE}));if(t)return new J.a(t)},e._fillBaseData=function(t,r,n){var a=r.mediaDataResult,i=e.reconstructMetadata(a);return i.description=a.description,i.name=a.name,a.data.epgId&&(i.epgId=a.data.epgId),a.data.recordingId&&(i.recordingId=a.data.recordingId),n&&n.mediaType&&(i.mediaType=n.mediaType),t.metadata=i,t.poster=e._getPoster(a.pictures),t.id=a.id,t},e.reconstructMetadata=function(t){return{metas:e.addToMetaObject(t.metas),tags:e.addToMetaObject(t.tags)}},e.addToMetaObject=function(e){var t={};return e&&e.forEach((function(e){t[e.key]=e.value})),t},e._getPoster=function(e){if(e&&e.length>0){var t=e[0].url;return/.*\/thumbnail\/.*(?:width|height)\/\d+\/(?:height|width)\/\d+/.test(t)?t:e.map((function(e){return{url:e.url,width:e.width,height:e.height}}))}return""},e._getMediaType=function(e,t,r){var n={type:K.a.Type.UNKNOWN};return Q[t]&&Q[t][r]&&(n=Q[t][r](e)),n},e._filterSourcesByFormats=function(e,t){return t.length>0&&(e=e.filter((function(e){return t.includes(e.type)}))),e},e._getParsedSources=function(t){var r=new W.a,n=function(t){var n=e._parseAdaptiveSource(t);if(n){var a=X.b.get(t.format);r.map(n,a)}};return t&&t.length>0&&(t.filter((function(e){return!Object(X.c)(e.format)})).forEach(n),t.filter((function(e){return Object(X.c)(e.format)})).forEach(n)),r},e._parseAdaptiveSource=function(t){var r=new Y.a;if(t){var n=t.url,a=X.b.get(t.format);if(a&&(r.mimetype=a.mimeType),!n)return e._logger.error("failed to create play url from source, discarding source: ("+t.fileId+"), "+t.format+"."),null;if(r.url=n,r.id=t.fileId+","+t.format,t.hasDrmData()){var i=[];t.drm.forEach((function(e){i.push(new F.a(e.licenseURL,O.a.Scheme[e.scheme],e.certificate))})),r.drmData=i}}return r},e.hasBlockAction=function(e){return e.playBackContextResult.hasBlockAction()},e.getBlockAction=function(e){return e.playBackContextResult.getBlockAction()},e.getErrorMessages=function(e){return e.playBackContextResult.getErrorMessages()},e}();!function(e,t,r){t in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r}(z,"_logger",Object(a.b)("OTTProviderParser"));var Z=r(0);var $=function(e){var t,r;function n(t,r){var n;return(n=e.call(this,t,r)||this)._logger=Object(a.b)("OTTProvider"),o.set(t.env),n._networkRetryConfig=Object.assign(n._networkRetryConfig,t.networkRetryParameters),n}r=e,(t=n).prototype=Object.create(r.prototype),t.prototype.constructor=t,t.__proto__=r;var i=n.prototype;return i.getMediaConfig=function(e){var t=this;return e.ks&&(this.ks=e.ks,this._isAnonymous=!1),this._dataLoader=new f(this.partnerId,this.ks,this._networkRetryConfig),new Promise((function(r,n){var a=e.entryId;if(a){var i=t.ks;i||(i="{1:result:ks}",t._dataLoader.add(g,{partnerId:t.partnerId}));var s=e.contextType||S.Type.PLAYBACK,o=e.mediaType||D.Type.MEDIA,u=e.assetReferenceType||D.AssetReferenceType.MEDIA,c={mediaProtocol:e.protocol,assetFileIds:e.fileIds,context:s};e.streamerType&&(c.streamerType=e.streamerType),e.urlType&&(c.urlType=e.urlType),e.adapterData&&(c.adapterData=e.adapterData),t._dataLoader.add(M,{entryId:a,ks:i,type:o,playbackContext:c,assetReferenceType:u});var p={contextType:s,mediaType:o,formats:e.formats||[]};return t._dataLoader.fetchData().then((function(e){try{r(t._parseDataFromResponse(e,p))}catch(e){n(e)}}),(function(e){n(e)}))}n(new Z.a(Z.a.Severity.CRITICAL,Z.a.Category.PROVIDER,Z.a.Code.MISSING_MANDATORY_PARAMS,{message:"missing entry id"}))}))},i._parseDataFromResponse=function(e,t){this._logger.debug("Data parsing started");var r={session:{isAnonymous:this._isAnonymous,partnerId:this.partnerId},sources:this._getDefaultSourcesObject(),plugins:{}};if(this.uiConfId&&(r.session.uiConfId=this.uiConfId),e){if(e.has(g.id)){var n=e.get(g.id);n&&n.response&&(r.session.ks=n.response)}else r.session.ks=this.ks;if(e.has(M.id)){var a=e.get(M.id);if(a&&a.response&&Object.keys(a.response).length){var i=a.response;if(z.hasBlockAction(i))throw new Z.a(Z.a.Severity.CRITICAL,Z.a.Category.SERVICE,Z.a.Code.BLOCK_ACTION,{action:z.getBlockAction(i),messages:z.getErrorMessages(i)});var s=z.getMediaEntry(i,t);Object.assign(r.sources,this._getSourcesObject(s)),this._verifyHasSources(r.sources);var o=z.getBumper(i);o&&Object.assign(r.plugins,{bumper:o})}}}return this._logger.debug("Data parsing finished",r),r},i.getEntryListConfig=function(e){var t=this;return e.ks&&(this.ks=e.ks,this._isAnonymous=!1),this._dataLoader=new f(this.partnerId,this.ks,this._networkRetryConfig),new Promise((function(r,n){var a=e.entries;if(a&&a.length){var i=t.ks;i||(i="{1:result:ks}",t._dataLoader.add(g,{partnerId:t.partnerId})),t._dataLoader.add(H,{entries:a,ks:i}),t._dataLoader.fetchData().then((function(e){r(t._parseEntryListDataFromResponse(e,a))}),(function(e){n(e)}))}else n({success:!1,data:"Missing mandatory parameter"})}))},i._parseEntryListDataFromResponse=function(e,t){var r=this;this._logger.debug("Data parsing started");var n={id:"",metadata:{name:"",description:""},poster:"",items:[]};if(e&&e.has(H.id)){var a=e.get(H.id);if(a&&a.response)z.getEntryList(a.response,t).items.forEach((function(e){return n.items.push({sources:r._getSourcesObject(e)})}))}return this._logger.debug("Data parsing finished",n),n},i._getDefaultSourcesObject=function(){return{hls:[],dash:[],progressive:[],id:"",duration:0,type:K.a.Type.UNKNOWN,poster:"",dvr:!1,vr:null,metadata:{name:"",description:"",tags:""}}},i._getSourcesObject=function(e){var t=this._getDefaultSourcesObject(),r=e.sources.toJSON();return t.hls=r.hls,t.dash=r.dash,t.progressive=r.progressive,t.id=e.id,t.duration=e.duration,t.type=e.type,t.dvr=!!e.dvrStatus,t.poster=e.poster,e.metadata&&e.metadata.metas&&"string"==typeof e.metadata.metas.tags&&e.metadata.metas.tags.indexOf("360")>-1&&(t.vr={}),Object.assign(t.metadata,e.metadata),t},n}(n.a),ee="playkit-js-providers-ott",te="2.30.0",re=S.Type,ne=D.Type}])}));
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else if(typeof exports === 'object')
+		exports["ott"] = factory();
+	else
+		root["playkit"] = root["playkit"] || {}, root["playkit"]["providers"] = root["playkit"]["providers"] || {}, root["playkit"]["providers"]["ott"] = factory();
+})(window, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "./k-provider/ott/index.js");
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./entities/bumper.js":
+/*!****************************!*\
+  !*** ./entities/bumper.js ***!
+  \****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Bumper; });
+var Bumper =
+/**
+ * @member - bumper url
+ * @type {string}
+ */
+
+/**
+ * @member - bumper click through url
+ * @type {string}
+ */
+
+/**
+ * @constructor
+ * @param {Object} data - The bumper response
+ */
+function Bumper(data) {
+  this.url = data.url;
+  this.clickThroughUrl = data.clickThroughUrl;
+};
+
+
+
+/***/ }),
+
+/***/ "./entities/drm.js":
+/*!*************************!*\
+  !*** ./entities/drm.js ***!
+  \*************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Drm; });
+var Drm = /*#__PURE__*/function () {
+  /**
+   * @member - license url
+   * @type {string}
+   */
+
+  /**
+   * @member - drm scheme
+   * @type {string}
+   */
+
+  /**
+   * @member - drm certificate
+   * @type {string}
+   */
+
+  /**
+   * @constructor
+   * @param {string} licenseUrl - the license url
+   * @param {string} scheme - the drm scheme
+   * @param {?string} certificate - the drm certificate
+   */
+  function Drm(licenseUrl, scheme, certificate) {
+    this.licenseUrl = licenseUrl;
+    this.scheme = scheme;
+
+    if (certificate) {
+      this.certificate = certificate;
+    }
+  }
+  /**
+   * Convert class to native js object.
+   * @returns {ProviderDrmDataObject} - The json class object.
+   */
+
+
+  var _proto = Drm.prototype;
+
+  _proto.toJSON = function toJSON() {
+    var response = {
+      licenseUrl: this.licenseUrl,
+      scheme: this.scheme
+    };
+    if (this.certificate) response.certificate = this.certificate;
+    return response;
+  };
+
+  return Drm;
+}();
+
+
+
+/***/ }),
+
+/***/ "./entities/entry-list.js":
+/*!********************************!*\
+  !*** ./entities/entry-list.js ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return EntryList; });
+/* harmony import */ var _entities_media_entry__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../entities/media-entry */ "./entities/media-entry.js");
+
+
+var EntryList =
+/**
+ * @member - entry list items
+ * @type {Array<MediaEntry>}
+ */
+function EntryList() {
+  this.items = [];
+};
+
+
+
+/***/ }),
+
+/***/ "./entities/media-entry.js":
+/*!*********************************!*\
+  !*** ./entities/media-entry.js ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MediaEntry; });
+/* harmony import */ var _media_sources__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./media-sources */ "./entities/media-sources.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var MediaEntry = /*#__PURE__*/function () {
+  /**
+   * @constructor
+   */
+  function MediaEntry() {
+    this.metadata = new Map();
+    this.sources = new _media_sources__WEBPACK_IMPORTED_MODULE_0__["default"]();
+    this.type = MediaEntry.Type.UNKNOWN;
+  }
+  /**
+   * Convert class to native js object.
+   * @returns {ProviderMediaEntryObject} - The json class object.
+   */
+
+
+  var _proto = MediaEntry.prototype;
+
+  _proto.toJSON = function toJSON() {
+    return {
+      id: this.id,
+      name: this.name,
+      sources: this.sources.toJSON(),
+      duration: this.duration,
+      dvrStatus: this.dvrStatus,
+      status: this.status,
+      metadata: this.metadata,
+      type: this.type,
+      poster: this.poster,
+      assetReferenceType: this.assetReferenceType
+    };
+  };
+
+  return MediaEntry;
+}();
+
+_defineProperty(MediaEntry, "Type", {
+  VOD: 'Vod',
+  LIVE: 'Live',
+  IMAGE: 'Image',
+  AUDIO: 'Audio',
+  UNKNOWN: 'Unknown'
+});
+
+_defineProperty(MediaEntry, "DvrStatus", {
+  ON: 1,
+  OFF: 0
+});
+
+
+
+/***/ }),
+
+/***/ "./entities/media-format.js":
+/*!**********************************!*\
+  !*** ./entities/media-format.js ***!
+  \**********************************/
+/*! exports provided: MediaFormat, SupportedStreamFormat, isProgressiveSource */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MediaFormat", function() { return MediaFormat; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SupportedStreamFormat", function() { return SupportedStreamFormat; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isProgressiveSource", function() { return isProgressiveSource; });
+var MediaFormat = {
+  DASH: {
+    name: 'dash',
+    mimeType: 'application/dash+xml',
+    pathExt: 'mpd'
+  },
+  HLS: {
+    name: 'hls',
+    mimeType: 'application/x-mpegURL',
+    pathExt: 'm3u8'
+  },
+  WVM: {
+    name: 'wvm',
+    mimeType: 'video/wvm',
+    pathExt: 'wvm'
+  },
+  MP4: {
+    name: 'mp4',
+    mimeType: 'video/mp4',
+    pathExt: 'mp4'
+  },
+  MP3: {
+    name: 'mp3',
+    mimeType: 'audio/mpeg',
+    pathExt: 'mp3'
+  }
+};
+var SupportedStreamFormat = new Map([['mpegdash', MediaFormat.DASH], ['applehttp', MediaFormat.HLS], ['url', MediaFormat.MP4]]);
+/**
+ * returns a boolean whether a source is progressive or not
+ * @param {string} formatName - the format name
+ * @returns {boolean} - if source is progressive or not
+ */
+
+function isProgressiveSource(formatName) {
+  var sourceFormat = SupportedStreamFormat.get(formatName);
+  return !!sourceFormat && sourceFormat.name === MediaFormat.MP4.name;
+}
+
+
+
+/***/ }),
+
+/***/ "./entities/media-source.js":
+/*!**********************************!*\
+  !*** ./entities/media-source.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MediaSource; });
+/* harmony import */ var _drm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./drm */ "./entities/drm.js");
+
+
+var MediaSource = /*#__PURE__*/function () {
+  function MediaSource() {}
+
+  var _proto = MediaSource.prototype;
+
+  /**
+   * @member - media source id
+   * @type {string}
+   */
+
+  /**
+   * @member - media source url
+   * @type {string}
+   */
+
+  /**
+   * @member - media source mimetype
+   * @type {string}
+   */
+
+  /**
+   * @member - media source drm data
+   * @type {Array<Drm>}
+   */
+
+  /**
+   * @member - media source bandwidth
+   * @type {number}
+   */
+
+  /**
+   * @member - media source width
+   * @type {number}
+   */
+
+  /**
+   * @member - media source height
+   * @type {number}
+   */
+
+  /**
+   * @member - media source label
+   * @type {string}
+   */
+
+  /**
+   * Convert class to native js object.
+   * @returns {ProviderMediaSourceObject} - The json class object.
+   */
+  _proto.toJSON = function toJSON() {
+    var response = {
+      id: this.id,
+      url: this.url,
+      mimetype: this.mimetype
+    };
+    if (this.bandwidth) response.bandwidth = this.bandwidth;
+    if (this.width) response.width = this.width;
+    if (this.height) response.height = this.height;
+    if (this.label) response.label = this.label;
+
+    if (this.drmData && this.drmData.length > 0) {
+      response.drmData = [];
+      this.drmData.forEach(function (d) {
+        if (Array.isArray(response.drmData)) {
+          response.drmData.push(d.toJSON());
+        }
+      });
+    }
+
+    return response;
+  };
+
+  return MediaSource;
+}();
+
+
+
+/***/ }),
+
+/***/ "./entities/media-sources.js":
+/*!***********************************!*\
+  !*** ./entities/media-sources.js ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MediaSources; });
+/* harmony import */ var _media_source__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./media-source */ "./entities/media-source.js");
+/* harmony import */ var _media_format__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./media-format */ "./entities/media-format.js");
+
+
+
+var MediaSources = /*#__PURE__*/function () {
+  /**
+   * Progressive download media sources container.
+   * @type {Array<MediaSource>}
+   * @public
+   */
+
+  /**
+   * Dash media sources container.
+   * @type {Array<MediaSource>}
+   * @public
+   */
+
+  /**
+   * Hls media sources container.
+   * @type {Array<MediaSource>}
+   * @public
+   */
+
+  /**
+   * @constructor
+   */
+  function MediaSources() {
+    this.progressive = [];
+    this.dash = [];
+    this.hls = [];
+  }
+  /**
+   * Maps the source to one of the containers according to his media format.
+   * @param {MediaSource} source - The source to add to one of the containers.
+   * @param {MediaFormat} mediaFormat - The media format of the source.
+   * @returns {void}
+   */
+
+
+  var _proto = MediaSources.prototype;
+
+  _proto.map = function map(source, mediaFormat) {
+    if (mediaFormat) {
+      switch (mediaFormat.name) {
+        case _media_format__WEBPACK_IMPORTED_MODULE_1__["MediaFormat"].MP4.name:
+          this.progressive.push(source);
+          break;
+
+        case _media_format__WEBPACK_IMPORTED_MODULE_1__["MediaFormat"].DASH.name:
+          this.dash.push(source);
+          break;
+
+        case _media_format__WEBPACK_IMPORTED_MODULE_1__["MediaFormat"].HLS.name:
+          this.hls.push(source);
+          break;
+
+        default:
+          break;
+      }
+    }
+  }
+  /**
+   * Convert class to native js object.
+   * @returns {ProviderMediaSourcesObject} - The json class object.
+   */
+  ;
+
+  _proto.toJSON = function toJSON() {
+    var response = {
+      progressive: [],
+      dash: [],
+      hls: []
+    };
+    this.progressive.forEach(function (p) {
+      return response.progressive.push(p.toJSON());
+    });
+    this.hls.forEach(function (h) {
+      return response.hls.push(h.toJSON());
+    });
+    this.dash.forEach(function (d) {
+      return response.dash.push(d.toJSON());
+    });
+    return response;
+  };
+
+  return MediaSources;
+}();
+
+
+
+/***/ }),
+
+/***/ "./k-provider/common/base-provider.js":
+/*!********************************************!*\
+  !*** ./k-provider/common/base-provider.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return BaseProvider; });
+/* harmony import */ var _util_logger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../util/logger */ "./util/logger.js");
+/* harmony import */ var _data_loader_manager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./data-loader-manager */ "./k-provider/common/data-loader-manager.js");
+/* harmony import */ var _util_error_error__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../util/error/error */ "./util/error/error.js");
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+var BaseProvider = /*#__PURE__*/function () {
+  _createClass(BaseProvider, [{
+    key: "partnerId",
+    get: function get() {
+      return this._partnerId;
+    }
+  }, {
+    key: "widgetId",
+    get: function get() {
+      return this._widgetId || this.defaultWidgetId;
+    }
+  }, {
+    key: "defaultWidgetId",
+    get: function get() {
+      return '_' + this._partnerId;
+    }
+  }, {
+    key: "uiConfId",
+    get: function get() {
+      return this._uiConfId;
+    }
+  }, {
+    key: "ks",
+    get: function get() {
+      return this._ks;
+    },
+    set: function set(value) {
+      this._ks = value;
+    }
+  }, {
+    key: "playerVersion",
+    get: function get() {
+      return this._playerVersion;
+    }
+  }, {
+    key: "isAnonymous",
+    get: function get() {
+      return this._isAnonymous;
+    }
+  }]);
+
+  function BaseProvider(options, playerVersion) {
+    _defineProperty(this, "_networkRetryConfig", {
+      async: true,
+      timeout: 0,
+      maxAttempts: 4
+    });
+
+    Object(_util_logger__WEBPACK_IMPORTED_MODULE_0__["setLogger"])(options.logger);
+    this._partnerId = options.partnerId;
+    this._widgetId = options.widgetId;
+    this._uiConfId = options.uiConfId;
+    this._isAnonymous = !options.ks;
+    this._ks = options.ks || '';
+    this._playerVersion = playerVersion;
+  } // eslint-disable-next-line no-unused-vars
+
+
+  var _proto = BaseProvider.prototype;
+
+  _proto.getMediaConfig = function getMediaConfig(mediaInfo) {
+    return Promise.reject(new _util_error_error__WEBPACK_IMPORTED_MODULE_2__["default"](_util_error_error__WEBPACK_IMPORTED_MODULE_2__["default"].Severity.CRITICAL, _util_error_error__WEBPACK_IMPORTED_MODULE_2__["default"].Category.PROVIDER, _util_error_error__WEBPACK_IMPORTED_MODULE_2__["default"].Code.METHOD_NOT_IMPLEMENTED, {
+      message: 'getMediaConfig method must be implement by the derived class'
+    }));
+  } // eslint-disable-next-line no-unused-vars
+  ;
+
+  _proto.getPlaylistConfig = function getPlaylistConfig(playlistInfo) {
+    return Promise.reject(new _util_error_error__WEBPACK_IMPORTED_MODULE_2__["default"](_util_error_error__WEBPACK_IMPORTED_MODULE_2__["default"].Severity.CRITICAL, _util_error_error__WEBPACK_IMPORTED_MODULE_2__["default"].Category.PROVIDER, _util_error_error__WEBPACK_IMPORTED_MODULE_2__["default"].Code.METHOD_NOT_IMPLEMENTED, {
+      message: 'The provider does not support loading playlist by id'
+    }));
+  } // eslint-disable-next-line no-unused-vars
+  ;
+
+  _proto.getEntryListConfig = function getEntryListConfig(entryListInfo) {
+    return Promise.reject(new _util_error_error__WEBPACK_IMPORTED_MODULE_2__["default"](_util_error_error__WEBPACK_IMPORTED_MODULE_2__["default"].Severity.CRITICAL, _util_error_error__WEBPACK_IMPORTED_MODULE_2__["default"].Category.PROVIDER, _util_error_error__WEBPACK_IMPORTED_MODULE_2__["default"].Code.METHOD_NOT_IMPLEMENTED, {
+      message: 'The provider does not support loading entry list'
+    }));
+  };
+
+  _proto._verifyHasSources = function _verifyHasSources(sources) {
+    if (sources.hls.concat(sources.dash, sources.progressive).length === 0) {
+      throw new _util_error_error__WEBPACK_IMPORTED_MODULE_2__["default"](_util_error_error__WEBPACK_IMPORTED_MODULE_2__["default"].Severity.CRITICAL, _util_error_error__WEBPACK_IMPORTED_MODULE_2__["default"].Category.SERVICE, _util_error_error__WEBPACK_IMPORTED_MODULE_2__["default"].Code.MISSING_PLAY_SOURCE, {
+        action: '',
+        messages: "No play source for entry id: " + sources.id
+      });
+    }
+  };
+
+  _proto.getLogLevel = function getLogLevel(name) {
+    return Object(_util_logger__WEBPACK_IMPORTED_MODULE_0__["getLogLevel"])(name);
+  };
+
+  _proto.setLogLevel = function setLogLevel(level, name) {
+    Object(_util_logger__WEBPACK_IMPORTED_MODULE_0__["setLogLevel"])(level, name);
+  };
+
+  _createClass(BaseProvider, [{
+    key: "LogLevel",
+    get: function get() {
+      return _util_logger__WEBPACK_IMPORTED_MODULE_0__["LogLevel"];
+    }
+  }]);
+
+  return BaseProvider;
+}();
+
+
+
+/***/ }),
+
+/***/ "./k-provider/common/base-service-result.js":
+/*!**************************************************!*\
+  !*** ./k-provider/common/base-service-result.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ServiceResult; });
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var ServiceResult =
+/**
+ * @member - Is service returned an error
+ * @type {boolean}
+ */
+
+/**
+ * @constructor
+ * @param {Object} response - Service response
+ */
+function ServiceResult(response) {
+  _defineProperty(this, "hasError", false);
+
+  if (response.objectType === 'KalturaAPIException') {
+    this.hasError = true;
+    this.error = new ServiceError(response.code, response.message);
+  } else if (response.error && response.error.objectType === 'KalturaAPIException') {
+    this.hasError = true;
+    this.error = new ServiceError(response.error.code, response.error.message);
+  } else {
+    this.data = response;
+  }
+};
+
+
+
+var ServiceError =
+/**
+ * @member - The error code
+ * @type {string}
+ */
+
+/**
+ * @member - The error message
+ * @type {string}
+ */
+
+/**
+ * @constructor
+ * @param {string} code - The result code
+ * @param {string} message - The result message
+ */
+function ServiceError(code, message) {
+  this.code = code;
+  this.message = message;
+};
+
+/***/ }),
+
+/***/ "./k-provider/common/data-loader-manager.js":
+/*!**************************************************!*\
+  !*** ./k-provider/common/data-loader-manager.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DataLoaderManager; });
+/* harmony import */ var _multi_request_builder__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./multi-request-builder */ "./k-provider/common/multi-request-builder.js");
+/* harmony import */ var _util_error_error__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../util/error/error */ "./util/error/error.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+var DataLoaderManager = /*#__PURE__*/function () {
+  /**
+   * @member - Loaders response map index
+   * @type {Map<string,Array<number>>}
+   * @private
+   */
+
+  /**
+   * @member - Loaders to execute
+   * @type {Map<string,Function>}
+   * @private
+   */
+  function DataLoaderManager(networkRetryConfig) {
+    _defineProperty(this, "_loadersResponseMap", new Map());
+
+    _defineProperty(this, "_loaders", new Map());
+
+    this._networkRetryConfig = networkRetryConfig;
+  }
+  /**
+   * Add loader to execution loaders map
+   * @function
+   * @param {Function} loader Loader to add
+   * @param {Object} params Loader params
+   * @returns {void}
+   */
+
+
+  var _proto = DataLoaderManager.prototype;
+
+  _proto.add = function add(loader, params) {
+    var _this = this;
+
+    var execution_loader = new loader(params);
+
+    if (execution_loader.isValid()) {
+      this._loaders.set(loader.id, execution_loader); // Get the start index from the multiReqeust before adding current execution_loader requests
+
+
+      var startIndex = this._multiRequest.requests.length; // Get the requests
+
+      var requests = execution_loader.requests;
+      this._multiRequest.retryConfig = this._networkRetryConfig; // Add requests to muktiRequest queue
+
+      requests.forEach(function (request) {
+        _this._multiRequest.add(request);
+      }); // Create range array of current execution_loader requests
+
+      var executionLoaderResponseMap = Array.from(new Array(requests.length), function (val, index) {
+        return index + startIndex;
+      }); // Add to map
+
+      this._loadersResponseMap.set(loader.id, executionLoaderResponseMap);
+    }
+  }
+  /**
+   * Get data from all loaders using multi request
+   * @function
+   * @returns {Promise} Promise
+   */
+  ;
+
+  _proto.fetchData = function fetchData() {
+    var _this2 = this;
+
+    return new Promise(function (resolve, reject) {
+      _this2._multiRequest.execute().then(function (data) {
+        _this2._multiResponse = data.response;
+
+        var preparedData = _this2.prepareData(data.response);
+
+        if (preparedData.success) {
+          resolve(_this2._loaders);
+        } else {
+          reject(new _util_error_error__WEBPACK_IMPORTED_MODULE_1__["default"](_util_error_error__WEBPACK_IMPORTED_MODULE_1__["default"].Severity.CRITICAL, _util_error_error__WEBPACK_IMPORTED_MODULE_1__["default"].Category.NETWORK, _util_error_error__WEBPACK_IMPORTED_MODULE_1__["default"].Code.API_RESPONSE_MISMATCH, {
+            headers: data.headers
+          }));
+        }
+      }, function (err) {
+        reject(err);
+      });
+    });
+  }
+  /**
+   * Prepare fetched data
+   * @function
+   * @param {MultiRequestResult} response - The multi request result
+   * @returns {Object} - The prepared data
+   */
+  ;
+
+  _proto.prepareData = function prepareData(response) {
+    var _this3 = this;
+
+    this._loaders.forEach(function (loader, name) {
+      var loaderDataIndexes = _this3._loadersResponseMap.get(name);
+
+      try {
+        if (loaderDataIndexes && loaderDataIndexes.length > 0) {
+          loader.response = response.results.slice(loaderDataIndexes[0], loaderDataIndexes[loaderDataIndexes.length - 1] + 1);
+        }
+      } catch (err) {
+        return {
+          success: false,
+          error: err
+        };
+      }
+    });
+
+    return {
+      success: true,
+      data: this._loaders
+    };
+  };
+
+  return DataLoaderManager;
+}();
+
+
+
+/***/ }),
+
+/***/ "./k-provider/common/multi-request-builder.js":
+/*!****************************************************!*\
+  !*** ./k-provider/common/multi-request-builder.js ***!
+  \****************************************************/
+/*! exports provided: default, MultiRequestResult */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MultiRequestBuilder; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MultiRequestResult", function() { return MultiRequestResult; });
+/* harmony import */ var _util_request_builder__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../util/request-builder */ "./util/request-builder.js");
+/* harmony import */ var _util_logger__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../util/logger */ "./util/logger.js");
+/* harmony import */ var _base_service_result__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./base-service-result */ "./k-provider/common/base-service-result.js");
+/* harmony import */ var _util_error_error__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../util/error/error */ "./util/error/error.js");
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+var MultiRequestBuilder = /*#__PURE__*/function (_RequestBuilder) {
+  _inheritsLoose(MultiRequestBuilder, _RequestBuilder);
+
+  function MultiRequestBuilder() {
+    var _this;
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _RequestBuilder.call.apply(_RequestBuilder, [this].concat(args)) || this;
+
+    _defineProperty(_assertThisInitialized(_this), "requests", []);
+
+    return _this;
+  }
+
+  var _proto = MultiRequestBuilder.prototype;
+
+  /**
+   * Adds request to requests array
+   * @function add
+   * @param {RequestBuilder} request The request
+   * @returns {MultiRequestBuilder} The multiRequest
+   */
+  _proto.add = function add(request) {
+    var _Object$assign;
+
+    this.requests.push(request);
+    var requestParams = {};
+    var serviceDef = {
+      service: request.service,
+      action: request.action
+    };
+    Object.assign(requestParams, (_Object$assign = {}, _Object$assign[this.requests.length] = Object.assign(serviceDef, request.params), _Object$assign));
+    Object.assign(requestParams, this.params);
+    this.params = requestParams;
+    return this;
+  }
+  /**
+   * Executes a multi request
+   * @function execute
+   * @returns {Promise} The multirequest execution promise
+   */
+  ;
+
+  _proto.execute = function execute() {
+    var _this2 = this;
+
+    return new Promise(function (resolve, reject) {
+      try {
+        _this2.params = JSON.stringify(_this2.params);
+      } catch (err) {
+        MultiRequestBuilder._logger.error("" + err.message);
+
+        reject(new _util_error_error__WEBPACK_IMPORTED_MODULE_3__["default"](_util_error_error__WEBPACK_IMPORTED_MODULE_3__["default"].Severity.CRITICAL, _util_error_error__WEBPACK_IMPORTED_MODULE_3__["default"].Category.PROVIDER, _util_error_error__WEBPACK_IMPORTED_MODULE_3__["default"].Code.FAILED_PARSING_REQUEST, {
+          error: err,
+          params: _this2.params
+        }));
+      }
+
+      _this2.doHttpRequest().then(function (data) {
+        var multiRequestResult = new MultiRequestResult(data);
+
+        if (multiRequestResult.success) {
+          resolve({
+            headers: _this2.responseHeaders,
+            response: multiRequestResult
+          });
+        } else {
+          reject(new _util_error_error__WEBPACK_IMPORTED_MODULE_3__["default"](_util_error_error__WEBPACK_IMPORTED_MODULE_3__["default"].Severity.CRITICAL, _util_error_error__WEBPACK_IMPORTED_MODULE_3__["default"].Category.NETWORK, _util_error_error__WEBPACK_IMPORTED_MODULE_3__["default"].Code.MULTIREQUEST_API_ERROR, {
+            url: _this2.url,
+            headers: _this2.responseHeaders,
+            results: multiRequestResult.results
+          }));
+        }
+      }, function (err) {
+        reject(err);
+      });
+    });
+  };
+
+  return MultiRequestBuilder;
+}(_util_request_builder__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+_defineProperty(MultiRequestBuilder, "_logger", Object(_util_logger__WEBPACK_IMPORTED_MODULE_1__["default"])('MultiRequestBuilder'));
+
+
+var MultiRequestResult =
+/**
+ * @memberof MultiRequestResult
+ * @type {Object}
+ */
+
+/**
+ * @constructor
+ * @param {Object} response data
+ */
+function MultiRequestResult(response) {
+  var _this3 = this;
+
+  _defineProperty(this, "results", []);
+
+  this.success = true;
+  var result = response.result ? response.result : response;
+  var responseArr = Array.isArray(result) ? result : [result];
+  responseArr.forEach(function (result) {
+    var serviceResult = new _base_service_result__WEBPACK_IMPORTED_MODULE_2__["default"](result);
+
+    _this3.results.push(serviceResult);
+
+    if (serviceResult.hasError) {
+      MultiRequestResult._logger.error("Service returned an error with error code: " + serviceResult.error.code + " and message: " + serviceResult.error.message + ".");
+
+      _this3.success = false;
+      return;
+    }
+  });
+};
+
+_defineProperty(MultiRequestResult, "_logger", Object(_util_logger__WEBPACK_IMPORTED_MODULE_1__["default"])('MultiRequestResult'));
+
+/***/ }),
+
+/***/ "./k-provider/common/response-types/kaltura-access-control-message.js":
+/*!****************************************************************************!*\
+  !*** ./k-provider/common/response-types/kaltura-access-control-message.js ***!
+  \****************************************************************************/
+/*! exports provided: KalturaAccessControlMessage */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "KalturaAccessControlMessage", function() { return KalturaAccessControlMessage; });
+var KalturaAccessControlMessage =
+/**
+ * @member - The access control message
+ * @type {string}
+ */
+
+/**
+ *  @member - The access control message code
+ * @@type {string}
+ */
+
+/**
+ * @constructor
+ * @param {Object} data The json response
+ */
+function KalturaAccessControlMessage(data) {
+  this.message = data.message;
+  this.code = data.code;
+};
+
+/***/ }),
+
+/***/ "./k-provider/common/response-types/kaltura-drm-playback-plugin-data.js":
+/*!******************************************************************************!*\
+  !*** ./k-provider/common/response-types/kaltura-drm-playback-plugin-data.js ***!
+  \******************************************************************************/
+/*! exports provided: KalturaDrmPlaybackPluginData */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "KalturaDrmPlaybackPluginData", function() { return KalturaDrmPlaybackPluginData; });
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var KalturaDrmPlaybackPluginData =
+/**
+ * @constructor
+ * @param {Object} drm The json response
+ */
+function KalturaDrmPlaybackPluginData(drm) {
+  this.scheme = drm.scheme;
+  this.licenseURL = drm.licenseURL;
+  this.certificate = drm.certificate;
+};
+
+_defineProperty(KalturaDrmPlaybackPluginData, "Scheme", {
+  'drm.PLAYREADY_CENC': 'com.microsoft.playready',
+  'drm.WIDEVINE_CENC': 'com.widevine.alpha',
+  'fairplay.FAIRPLAY': 'com.apple.fairplay',
+  WIDEVINE_CENC: 'com.widevine.alpha',
+  PLAYREADY_CENC: 'com.microsoft.playready',
+  FAIRPLAY: 'com.apple.fairplay'
+});
+
+/***/ }),
+
+/***/ "./k-provider/ott/config.js":
+/*!**********************************!*\
+  !*** ./k-provider/ott/config.js ***!
+  \**********************************/
+/*! exports provided: default, OTTConfiguration */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return OTTConfiguration; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OTTConfiguration", function() { return OTTConfiguration; });
+/* harmony import */ var _util_clone__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../util/clone */ "./util/clone.js");
+
+var defaultConfig = {
+  serviceParams: {
+    apiVersion: '5.2.6'
+  }
+};
+
+var OTTConfiguration = /*#__PURE__*/function () {
+  function OTTConfiguration() {}
+
+  OTTConfiguration.set = function set(clientConfig) {
+    if (clientConfig) {
+      Object.assign(defaultConfig, clientConfig);
+    }
+  };
+
+  OTTConfiguration.get = function get() {
+    return Object(_util_clone__WEBPACK_IMPORTED_MODULE_0__["clone"])(defaultConfig);
+  };
+
+  return OTTConfiguration;
+}();
+
+
+
+
+/***/ }),
+
+/***/ "./k-provider/ott/index.js":
+/*!*********************************!*\
+  !*** ./k-provider/ott/index.js ***!
+  \*********************************/
+/*! exports provided: Provider, ContextType, MediaType, NAME, VERSION */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ContextType", function() { return ContextType; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MediaType", function() { return MediaType; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NAME", function() { return NAME; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VERSION", function() { return VERSION; });
+/* harmony import */ var _provider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./provider */ "./k-provider/ott/provider.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Provider", function() { return _provider__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+/* harmony import */ var _response_types_kaltura_playback_context__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./response-types/kaltura-playback-context */ "./k-provider/ott/response-types/kaltura-playback-context.js");
+/* harmony import */ var _response_types_kaltura_asset__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./response-types/kaltura-asset */ "./k-provider/ott/response-types/kaltura-asset.js");
+
+
+
+var NAME = "playkit-js-providers" + '-ott';
+var VERSION = "2.30.0";
+var ContextType = _response_types_kaltura_playback_context__WEBPACK_IMPORTED_MODULE_1__["default"].Type;
+var MediaType = _response_types_kaltura_asset__WEBPACK_IMPORTED_MODULE_2__["default"].Type;
+
+
+/***/ }),
+
+/***/ "./k-provider/ott/loaders/asset-list-loader.js":
+/*!*****************************************************!*\
+  !*** ./k-provider/ott/loaders/asset-list-loader.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return OTTAssetListLoader; });
+/* harmony import */ var _util_request_builder__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../util/request-builder */ "./util/request-builder.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../config */ "./k-provider/ott/config.js");
+/* harmony import */ var _services_asset_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/asset-service */ "./k-provider/ott/services/asset-service.js");
+/* harmony import */ var _response_types_kaltura_asset__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../response-types/kaltura-asset */ "./k-provider/ott/response-types/kaltura-asset.js");
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+var OTTAssetListLoader = /*#__PURE__*/function () {
+  _createClass(OTTAssetListLoader, null, [{
+    key: "id",
+    get: function get() {
+      return 'asset_list';
+    }
+    /**
+     * @constructor
+     * @param {Object} params loader params
+     */
+
+  }]);
+
+  function OTTAssetListLoader(params) {
+    _defineProperty(this, "_response", {
+      playlistItems: {
+        entries: []
+      }
+    });
+
+    this.requests = this.buildRequests(params);
+    this._entries = params.entries;
+  }
+
+  var _proto = OTTAssetListLoader.prototype;
+
+  /**
+   * Builds loader requests
+   * @function
+   * @param {Object} params Requests parameters
+   * @returns {RequestBuilder} The request builder
+   * @static
+   */
+  _proto.buildRequests = function buildRequests(params) {
+    var config = _config__WEBPACK_IMPORTED_MODULE_1__["default"].get();
+    var requests = [];
+    params.entries.forEach(function (entry) {
+      var assetReferenceType = entry.assetReferenceType || _response_types_kaltura_asset__WEBPACK_IMPORTED_MODULE_3__["default"].AssetReferenceType.MEDIA;
+      requests.push(_services_asset_service__WEBPACK_IMPORTED_MODULE_2__["default"].get(config.serviceUrl, params.ks, entry.entryId || entry, assetReferenceType));
+    });
+    return requests;
+  }
+  /**
+   * Loader validation function
+   * @function
+   * @returns {boolean} Is valid
+   */
+  ;
+
+  _proto.isValid = function isValid() {
+    return !!(this._entries && this._entries.length);
+  };
+
+  _createClass(OTTAssetListLoader, [{
+    key: "requests",
+    set: function set(requests) {
+      this._requests = requests;
+    },
+    get: function get() {
+      return this._requests;
+    }
+  }, {
+    key: "response",
+    set: function set(response) {
+      var _this = this;
+
+      response.forEach(function (item) {
+        _this._response.playlistItems.entries.push({
+          mediaDataResult: new _response_types_kaltura_asset__WEBPACK_IMPORTED_MODULE_3__["default"](item.data)
+        });
+      });
+    },
+    get: function get() {
+      return this._response;
+    }
+  }]);
+
+  return OTTAssetListLoader;
+}();
+
+
+
+/***/ }),
+
+/***/ "./k-provider/ott/loaders/asset-loader.js":
+/*!************************************************!*\
+  !*** ./k-provider/ott/loaders/asset-loader.js ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return OTTAssetLoader; });
+/* harmony import */ var _services_asset_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services/asset-service */ "./k-provider/ott/services/asset-service.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../config */ "./k-provider/ott/config.js");
+/* harmony import */ var _util_request_builder__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../util/request-builder */ "./util/request-builder.js");
+/* harmony import */ var _response_types_kaltura_playback_context__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../response-types/kaltura-playback-context */ "./k-provider/ott/response-types/kaltura-playback-context.js");
+/* harmony import */ var _response_types_kaltura_asset__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../response-types/kaltura-asset */ "./k-provider/ott/response-types/kaltura-asset.js");
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+var OTTAssetLoader = /*#__PURE__*/function () {
+  _createClass(OTTAssetLoader, null, [{
+    key: "id",
+    get: function get() {
+      return 'asset';
+    }
+    /**
+     * @constructor
+     * @param {Object} params loader params
+     */
+
+  }]);
+
+  function OTTAssetLoader(params) {
+    _defineProperty(this, "_response", {});
+
+    this.requests = this.buildRequests(params);
+    this._entryId = params.entryId;
+  }
+
+  var _proto = OTTAssetLoader.prototype;
+
+  /**
+   * Builds loader requests
+   * @function
+   * @param {Object} params Requests parameters
+   * @returns {RequestBuilder} The request builder
+   * @static
+   */
+  _proto.buildRequests = function buildRequests(params) {
+    var config = _config__WEBPACK_IMPORTED_MODULE_1__["default"].get();
+    var requests = [];
+    requests.push(_services_asset_service__WEBPACK_IMPORTED_MODULE_0__["default"].get(config.serviceUrl, params.ks, params.entryId, params.assetReferenceType));
+    requests.push(_services_asset_service__WEBPACK_IMPORTED_MODULE_0__["default"].getPlaybackContext(config.serviceUrl, params.ks, params.entryId, params.type, params.playbackContext));
+    return requests;
+  }
+  /**
+   * Loader validation function
+   * @function
+   * @returns {boolean} Is valid
+   */
+  ;
+
+  _proto.isValid = function isValid() {
+    return !!this._entryId;
+  };
+
+  _createClass(OTTAssetLoader, [{
+    key: "requests",
+    set: function set(requests) {
+      this._requests = requests;
+    },
+    get: function get() {
+      return this._requests;
+    }
+  }, {
+    key: "response",
+    set: function set(response) {
+      this._response.mediaDataResult = new _response_types_kaltura_asset__WEBPACK_IMPORTED_MODULE_4__["default"](response[0].data);
+      this._response.playBackContextResult = new _response_types_kaltura_playback_context__WEBPACK_IMPORTED_MODULE_3__["default"](response[1].data);
+    },
+    get: function get() {
+      return this._response;
+    }
+  }]);
+
+  return OTTAssetLoader;
+}();
+
+
+
+/***/ }),
+
+/***/ "./k-provider/ott/loaders/data-loader-manager.js":
+/*!*******************************************************!*\
+  !*** ./k-provider/ott/loaders/data-loader-manager.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return OTTDataLoaderManager; });
+/* harmony import */ var _common_data_loader_manager__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../common/data-loader-manager */ "./k-provider/common/data-loader-manager.js");
+/* harmony import */ var _services_ott_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/ott-service */ "./k-provider/ott/services/ott-service.js");
+function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
+
+
+
+/**
+ * OTTDataLoaderManager is a class that handles the OTT data loading
+ * @param {string} partnerId - partner id
+ * @param {string} ks - ks
+ * @param {ProviderNetworkRetryParameters} [networkRetryConfig] - network retry configuration
+ */
+
+var OTTDataLoaderManager = /*#__PURE__*/function (_DataLoaderManager) {
+  _inheritsLoose(OTTDataLoaderManager, _DataLoaderManager);
+
+  function OTTDataLoaderManager(partnerId, ks, networkRetryConfig) {
+    var _this;
+
+    if (ks === void 0) {
+      ks = '';
+    }
+
+    _this = _DataLoaderManager.call(this, networkRetryConfig) || this;
+    _this._multiRequest = _services_ott_service__WEBPACK_IMPORTED_MODULE_1__["default"].getMultiRequest(ks, partnerId);
+    return _this;
+  }
+
+  return OTTDataLoaderManager;
+}(_common_data_loader_manager__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+
+
+/***/ }),
+
+/***/ "./k-provider/ott/loaders/session-loader.js":
+/*!**************************************************!*\
+  !*** ./k-provider/ott/loaders/session-loader.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return OTTSessionLoader; });
+/* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services/user-service */ "./k-provider/ott/services/user-service.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../config */ "./k-provider/ott/config.js");
+/* harmony import */ var _util_request_builder__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../util/request-builder */ "./util/request-builder.js");
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+var OTTSessionLoader = /*#__PURE__*/function () {
+  _createClass(OTTSessionLoader, null, [{
+    key: "id",
+    get: function get() {
+      return 'session';
+    }
+    /**
+     * @constructor
+     * @param {Object} params loader params
+     */
+
+  }]);
+
+  function OTTSessionLoader(params) {
+    _defineProperty(this, "_response", {});
+
+    this.requests = this.buildRequests(params);
+    this._partnerId = params.partnerId;
+  }
+
+  var _proto = OTTSessionLoader.prototype;
+
+  /**
+   * Builds loader requests
+   * @function
+   * @param {Object} params Requests parameters
+   * @returns {RequestBuilder} The request builder
+   * @static
+   */
+  _proto.buildRequests = function buildRequests(params) {
+    var config = _config__WEBPACK_IMPORTED_MODULE_1__["default"].get();
+    var requests = [];
+    requests.push(_services_user_service__WEBPACK_IMPORTED_MODULE_0__["default"].anonymousLogin(config.serviceUrl, params.partnerId, params.udid));
+    return requests;
+  }
+  /**
+   * Loader validation function
+   * @function
+   * @returns {boolean} Is valid
+   */
+  ;
+
+  _proto.isValid = function isValid() {
+    return !!this._partnerId;
+  };
+
+  _createClass(OTTSessionLoader, [{
+    key: "requests",
+    set: function set(requests) {
+      this._requests = requests;
+    },
+    get: function get() {
+      return this._requests;
+    }
+  }, {
+    key: "response",
+    set: function set(response) {
+      this._response.ks = response[0].data.ks;
+    },
+    get: function get() {
+      return this._response.ks;
+    }
+  }]);
+
+  return OTTSessionLoader;
+}();
+
+
+
+/***/ }),
+
+/***/ "./k-provider/ott/provider-parser.js":
+/*!*******************************************!*\
+  !*** ./k-provider/ott/provider-parser.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return OTTProviderParser; });
+/* harmony import */ var _util_logger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../util/logger */ "./util/logger.js");
+/* harmony import */ var _response_types_kaltura_playback_source__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./response-types/kaltura-playback-source */ "./k-provider/ott/response-types/kaltura-playback-source.js");
+/* harmony import */ var _response_types_kaltura_playback_context__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./response-types/kaltura-playback-context */ "./k-provider/ott/response-types/kaltura-playback-context.js");
+/* harmony import */ var _response_types_kaltura_asset__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./response-types/kaltura-asset */ "./k-provider/ott/response-types/kaltura-asset.js");
+/* harmony import */ var _entities_media_entry__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../entities/media-entry */ "./entities/media-entry.js");
+/* harmony import */ var _entities_drm__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../entities/drm */ "./entities/drm.js");
+/* harmony import */ var _entities_media_source__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../entities/media-source */ "./entities/media-source.js");
+/* harmony import */ var _entities_media_sources__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../entities/media-sources */ "./entities/media-sources.js");
+/* harmony import */ var _entities_entry_list__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../entities/entry-list */ "./entities/entry-list.js");
+/* harmony import */ var _entities_bumper__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../entities/bumper */ "./entities/bumper.js");
+/* harmony import */ var _entities_media_format__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../entities/media-format */ "./entities/media-format.js");
+/* harmony import */ var _common_response_types_kaltura_drm_playback_plugin_data__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../common/response-types/kaltura-drm-playback-plugin-data */ "./k-provider/common/response-types/kaltura-drm-playback-plugin-data.js");
+/* harmony import */ var _response_types_kaltura_rule_action__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./response-types/kaltura-rule-action */ "./k-provider/ott/response-types/kaltura-rule-action.js");
+/* harmony import */ var _common_response_types_kaltura_access_control_message__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../common/response-types/kaltura-access-control-message */ "./k-provider/common/response-types/kaltura-access-control-message.js");
+/* harmony import */ var _response_types_kaltura_bumper_playback_plugin_data__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./response-types/kaltura-bumper-playback-plugin-data */ "./k-provider/ott/response-types/kaltura-bumper-playback-plugin-data.js");
+var _KalturaAsset$Type$ME, _KalturaAsset$Type$EP, _KalturaAsset$Type$RE, _MediaTypeCombination;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var LIVE_ASST_OBJECT_TYPE = 'KalturaLiveAsset';
+var MediaTypeCombinations = (_MediaTypeCombination = {}, _MediaTypeCombination[_response_types_kaltura_asset__WEBPACK_IMPORTED_MODULE_3__["default"].Type.MEDIA] = (_KalturaAsset$Type$ME = {}, _KalturaAsset$Type$ME[_response_types_kaltura_playback_context__WEBPACK_IMPORTED_MODULE_2__["default"].Type.TRAILER] = function () {
+  return {
+    type: _entities_media_entry__WEBPACK_IMPORTED_MODULE_4__["default"].Type.VOD
+  };
+}, _KalturaAsset$Type$ME[_response_types_kaltura_playback_context__WEBPACK_IMPORTED_MODULE_2__["default"].Type.PLAYBACK] = function (mediaAssetData) {
+  if (mediaAssetData.objectType === LIVE_ASST_OBJECT_TYPE) {
+    return {
+      type: _entities_media_entry__WEBPACK_IMPORTED_MODULE_4__["default"].Type.LIVE,
+      dvrStatus: mediaAssetData.enableTrickPlay ? _entities_media_entry__WEBPACK_IMPORTED_MODULE_4__["default"].DvrStatus.ON : _entities_media_entry__WEBPACK_IMPORTED_MODULE_4__["default"].DvrStatus.OFF
+    };
+  } else if (parseInt(mediaAssetData.externalIds) > 0) {
+    return {
+      type: _entities_media_entry__WEBPACK_IMPORTED_MODULE_4__["default"].Type.LIVE,
+      dvrStatus: _entities_media_entry__WEBPACK_IMPORTED_MODULE_4__["default"].DvrStatus.OFF
+    };
+  }
+
+  return {
+    type: _entities_media_entry__WEBPACK_IMPORTED_MODULE_4__["default"].Type.VOD
+  };
+}, _KalturaAsset$Type$ME), _MediaTypeCombination[_response_types_kaltura_asset__WEBPACK_IMPORTED_MODULE_3__["default"].Type.EPG] = (_KalturaAsset$Type$EP = {}, _KalturaAsset$Type$EP[_response_types_kaltura_playback_context__WEBPACK_IMPORTED_MODULE_2__["default"].Type.CATCHUP] = function () {
+  return {
+    type: _entities_media_entry__WEBPACK_IMPORTED_MODULE_4__["default"].Type.VOD
+  };
+}, _KalturaAsset$Type$EP[_response_types_kaltura_playback_context__WEBPACK_IMPORTED_MODULE_2__["default"].Type.START_OVER] = function () {
+  return {
+    type: _entities_media_entry__WEBPACK_IMPORTED_MODULE_4__["default"].Type.LIVE,
+    dvrStatus: _entities_media_entry__WEBPACK_IMPORTED_MODULE_4__["default"].DvrStatus.ON
+  };
+}, _KalturaAsset$Type$EP), _MediaTypeCombination[_response_types_kaltura_asset__WEBPACK_IMPORTED_MODULE_3__["default"].Type.RECORDING] = (_KalturaAsset$Type$RE = {}, _KalturaAsset$Type$RE[_response_types_kaltura_playback_context__WEBPACK_IMPORTED_MODULE_2__["default"].Type.PLAYBACK] = function () {
+  return {
+    type: _entities_media_entry__WEBPACK_IMPORTED_MODULE_4__["default"].Type.VOD
+  };
+}, _KalturaAsset$Type$RE), _MediaTypeCombination);
+
+var OTTProviderParser = /*#__PURE__*/function () {
+  function OTTProviderParser() {}
+
+  /**
+   * Returns parsed media entry by given OTT response objects.
+   * @function getMediaEntry
+   * @param {any} assetResponse - The asset response.
+   * @param {Object} requestData - The request data object.
+   * @returns {MediaEntry} - The media entry
+   * @static
+   * @public
+   */
+  OTTProviderParser.getMediaEntry = function getMediaEntry(assetResponse, requestData) {
+    var mediaEntry = new _entities_media_entry__WEBPACK_IMPORTED_MODULE_4__["default"]();
+
+    OTTProviderParser._fillBaseData(mediaEntry, assetResponse, requestData);
+
+    var playbackContext = assetResponse.playBackContextResult;
+    var mediaAsset = assetResponse.mediaDataResult;
+    var kalturaSources = playbackContext.sources;
+
+    var filteredKalturaSources = OTTProviderParser._filterSourcesByFormats(kalturaSources, requestData.formats);
+
+    mediaEntry.sources = OTTProviderParser._getParsedSources(filteredKalturaSources);
+
+    var typeData = OTTProviderParser._getMediaType(mediaAsset.data, requestData.mediaType, requestData.contextType);
+
+    mediaEntry.type = typeData.type;
+    mediaEntry.dvrStatus = typeData.dvrStatus;
+    mediaEntry.duration = Math.max.apply(Math, kalturaSources.map(function (source) {
+      return source.duration;
+    }));
+    return mediaEntry;
+  }
+  /**
+   * Returns parsed entry list by given OTT response objects
+   * @function getEntryList
+   * @param {any} playlistResponse - response
+   * @param {Array<ProviderMediaInfoObject>} requestEntries - entries list
+   * @returns {Playlist} - The entry list
+   * @static
+   * @public
+   */
+  ;
+
+  OTTProviderParser.getEntryList = function getEntryList(playlistResponse, requestEntries) {
+    var entryList = new _entities_entry_list__WEBPACK_IMPORTED_MODULE_8__["default"]();
+    var playlistItems = playlistResponse.playlistItems.entries;
+    playlistItems.forEach(function (entry) {
+      var mediaEntry = new _entities_media_entry__WEBPACK_IMPORTED_MODULE_4__["default"]();
+      var requestData = requestEntries.find(function (requestEntry) {
+        return requestEntry.entryId === entry.mediaDataResult.id;
+      });
+
+      OTTProviderParser._fillBaseData(mediaEntry, entry, requestData);
+
+      entryList.items.push(mediaEntry);
+    });
+    return entryList;
+  }
+  /**
+   * Returns parsed bumper by given OTT response objects.
+   * @function getBumper
+   * @param {any} assetResponse - The asset response.
+   * @returns {?Bumper} - The bumper
+   * @static
+   * @public
+   */
+  ;
+
+  OTTProviderParser.getBumper = function getBumper(assetResponse) {
+    var playbackContext = assetResponse.playBackContextResult;
+    var progressiveBumper = playbackContext.plugins.find(function (bumper) {
+      return bumper.streamertype === _response_types_kaltura_bumper_playback_plugin_data__WEBPACK_IMPORTED_MODULE_14__["default"].StreamerType.PROGRESSIVE;
+    });
+
+    if (progressiveBumper) {
+      return new _entities_bumper__WEBPACK_IMPORTED_MODULE_9__["default"](progressiveBumper);
+    }
+  };
+
+  OTTProviderParser._fillBaseData = function _fillBaseData(mediaEntry, assetResponse, requestData) {
+    var mediaAsset = assetResponse.mediaDataResult;
+    var metaData = OTTProviderParser.reconstructMetadata(mediaAsset);
+    metaData.description = mediaAsset.description;
+    metaData.name = mediaAsset.name;
+    if (mediaAsset.data.epgId) metaData.epgId = mediaAsset.data.epgId;
+    if (mediaAsset.data.recordingId) metaData.recordingId = mediaAsset.data.recordingId;
+    if (requestData && requestData.mediaType) metaData.mediaType = requestData.mediaType;
+    mediaEntry.metadata = metaData;
+    mediaEntry.poster = OTTProviderParser._getPoster(mediaAsset.pictures);
+    mediaEntry.id = mediaAsset.id;
+    return mediaEntry;
+  }
+  /**
+   * reconstruct the metadata
+   * @param {Object} mediaAsset the mediaAsset that contains the response with the metadata.
+   * @returns {Object} reconstructed metadata object
+   */
+  ;
+
+  OTTProviderParser.reconstructMetadata = function reconstructMetadata(mediaAsset) {
+    var metadata = {
+      metas: OTTProviderParser.addToMetaObject(mediaAsset.metas),
+      tags: OTTProviderParser.addToMetaObject(mediaAsset.tags)
+    };
+    return metadata;
+  }
+  /**
+   * transform an array of [{key: value},{key: value}...] to an object
+   * @param {Array<Object>} list a list of objects
+   * @returns {Object} an mapped object of the arrayed list.
+   */
+  ;
+
+  OTTProviderParser.addToMetaObject = function addToMetaObject(list) {
+    var categoryObj = {};
+
+    if (list) {
+      list.forEach(function (item) {
+        categoryObj[item.key] = item.value;
+      });
+    }
+
+    return categoryObj;
+  }
+  /**
+   * Gets the poster url without width and height.
+   * @param {Array<Object>} pictures - Media pictures.
+   * @returns {string | Array<Object>} - Poster base url or array of poster candidates.
+   * @private
+   */
+  ;
+
+  OTTProviderParser._getPoster = function _getPoster(pictures) {
+    if (pictures && pictures.length > 0) {
+      var picObj = pictures[0];
+      var url = picObj.url; // Search for thumbnail service
+
+      var regex = /.*\/thumbnail\/.*(?:width|height)\/\d+\/(?:height|width)\/\d+/;
+
+      if (regex.test(url)) {
+        return url;
+      }
+
+      return pictures.map(function (pic) {
+        return {
+          url: pic.url,
+          width: pic.width,
+          height: pic.height
+        };
+      });
+    }
+
+    return '';
+  }
+  /**
+   * Gets the media type (LIVE/VOD)
+   * @param {Object} mediaAssetData - The media asset data.
+   * @param {string} mediaType - The asset media type.
+   * @param {string} contextType - The asset context type.
+   * @returns {Object} - The type data object.
+   * @private
+   */
+  ;
+
+  OTTProviderParser._getMediaType = function _getMediaType(mediaAssetData, mediaType, contextType) {
+    var typeData = {
+      type: _entities_media_entry__WEBPACK_IMPORTED_MODULE_4__["default"].Type.UNKNOWN
+    };
+
+    if (MediaTypeCombinations[mediaType] && MediaTypeCombinations[mediaType][contextType]) {
+      typeData = MediaTypeCombinations[mediaType][contextType](mediaAssetData);
+    }
+
+    return typeData;
+  }
+  /**
+   * Filtered the kalturaSources array by device type.
+   * @param {Array<KalturaPlaybackSource>} kalturaSources - The kaltura sources.
+   * @param {Array<string>} formats - Partner device formats.
+   * @returns {Array<KalturaPlaybackSource>} - Filtered kalturaSources array.
+   * @private
+   */
+  ;
+
+  OTTProviderParser._filterSourcesByFormats = function _filterSourcesByFormats(kalturaSources, formats) {
+    if (formats.length > 0) {
+      kalturaSources = kalturaSources.filter(function (source) {
+        return formats.includes(source.type);
+      });
+    }
+
+    return kalturaSources;
+  }
+  /**
+   * Returns the parsed sources
+   * @function _getParsedSources
+   * @param {Array<KalturaPlaybackSource>} kalturaSources - The kaltura sources
+   * @param {Object} playbackContext - The playback context
+   * @return {MediaSources} - A media sources
+   * @static
+   * @private
+   */
+  ;
+
+  OTTProviderParser._getParsedSources = function _getParsedSources(kalturaSources) {
+    var sources = new _entities_media_sources__WEBPACK_IMPORTED_MODULE_7__["default"]();
+
+    var addAdaptiveSource = function addAdaptiveSource(source) {
+      var parsedSource = OTTProviderParser._parseAdaptiveSource(source);
+
+      if (parsedSource) {
+        var sourceFormat = _entities_media_format__WEBPACK_IMPORTED_MODULE_10__["SupportedStreamFormat"].get(source.format);
+        sources.map(parsedSource, sourceFormat);
+      }
+    };
+
+    var parseAdaptiveSources = function parseAdaptiveSources() {
+      kalturaSources.filter(function (source) {
+        return !Object(_entities_media_format__WEBPACK_IMPORTED_MODULE_10__["isProgressiveSource"])(source.format);
+      }).forEach(addAdaptiveSource);
+    };
+
+    var parseProgressiveSources = function parseProgressiveSources() {
+      kalturaSources.filter(function (source) {
+        return Object(_entities_media_format__WEBPACK_IMPORTED_MODULE_10__["isProgressiveSource"])(source.format);
+      }).forEach(addAdaptiveSource);
+    };
+
+    if (kalturaSources && kalturaSources.length > 0) {
+      parseAdaptiveSources();
+      parseProgressiveSources();
+    }
+
+    return sources;
+  }
+  /**
+   * Returns a parsed adaptive source
+   * @function _parseAdaptiveSource
+   * @param {KalturaPlaybackSource} kalturaSource - A kaltura source
+   * @returns {?MediaSource} - The parsed adaptive kalturaSource
+   * @static
+   * @private
+   */
+  ;
+
+  OTTProviderParser._parseAdaptiveSource = function _parseAdaptiveSource(kalturaSource) {
+    var mediaSource = new _entities_media_source__WEBPACK_IMPORTED_MODULE_6__["default"]();
+
+    if (kalturaSource) {
+      var playUrl = kalturaSource.url;
+      var mediaFormat = _entities_media_format__WEBPACK_IMPORTED_MODULE_10__["SupportedStreamFormat"].get(kalturaSource.format);
+
+      if (mediaFormat) {
+        mediaSource.mimetype = mediaFormat.mimeType;
+      }
+
+      if (!playUrl) {
+        OTTProviderParser._logger.error("failed to create play url from source, discarding source: (" + kalturaSource.fileId + "), " + kalturaSource.format + ".");
+
+        return null;
+      }
+
+      mediaSource.url = playUrl;
+      mediaSource.id = kalturaSource.fileId + ',' + kalturaSource.format;
+
+      if (kalturaSource.hasDrmData()) {
+        var drmParams = [];
+        kalturaSource.drm.forEach(function (drm) {
+          drmParams.push(new _entities_drm__WEBPACK_IMPORTED_MODULE_5__["default"](drm.licenseURL, _common_response_types_kaltura_drm_playback_plugin_data__WEBPACK_IMPORTED_MODULE_11__["KalturaDrmPlaybackPluginData"].Scheme[drm.scheme], drm.certificate));
+        });
+        mediaSource.drmData = drmParams;
+      }
+    }
+
+    return mediaSource;
+  };
+
+  OTTProviderParser.hasBlockAction = function hasBlockAction(response) {
+    return response.playBackContextResult.hasBlockAction();
+  };
+
+  OTTProviderParser.getBlockAction = function getBlockAction(response) {
+    return response.playBackContextResult.getBlockAction();
+  };
+
+  OTTProviderParser.getErrorMessages = function getErrorMessages(response) {
+    return response.playBackContextResult.getErrorMessages();
+  };
+
+  return OTTProviderParser;
+}();
+
+_defineProperty(OTTProviderParser, "_logger", Object(_util_logger__WEBPACK_IMPORTED_MODULE_0__["default"])('OTTProviderParser'));
+
+
+
+/***/ }),
+
+/***/ "./k-provider/ott/provider.js":
+/*!************************************!*\
+  !*** ./k-provider/ott/provider.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return OTTProvider; });
+/* harmony import */ var _common_base_provider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../common/base-provider */ "./k-provider/common/base-provider.js");
+/* harmony import */ var _util_logger__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../util/logger */ "./util/logger.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./config */ "./k-provider/ott/config.js");
+/* harmony import */ var _loaders_data_loader_manager__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./loaders/data-loader-manager */ "./k-provider/ott/loaders/data-loader-manager.js");
+/* harmony import */ var _loaders_session_loader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./loaders/session-loader */ "./k-provider/ott/loaders/session-loader.js");
+/* harmony import */ var _loaders_asset_loader__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./loaders/asset-loader */ "./k-provider/ott/loaders/asset-loader.js");
+/* harmony import */ var _loaders_asset_list_loader__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./loaders/asset-list-loader */ "./k-provider/ott/loaders/asset-list-loader.js");
+/* harmony import */ var _provider_parser__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./provider-parser */ "./k-provider/ott/provider-parser.js");
+/* harmony import */ var _response_types_kaltura_asset__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./response-types/kaltura-asset */ "./k-provider/ott/response-types/kaltura-asset.js");
+/* harmony import */ var _response_types_kaltura_playback_context__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./response-types/kaltura-playback-context */ "./k-provider/ott/response-types/kaltura-playback-context.js");
+/* harmony import */ var _entities_media_entry__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../entities/media-entry */ "./entities/media-entry.js");
+/* harmony import */ var _util_error_error__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../util/error/error */ "./util/error/error.js");
+function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var OTTProvider = /*#__PURE__*/function (_BaseProvider) {
+  _inheritsLoose(OTTProvider, _BaseProvider);
+
+  /**
+   * @constructor
+   * @param {ProviderOptionsObject} options - provider options
+   * @param {string} playerVersion - player version
+   */
+  function OTTProvider(options, playerVersion) {
+    var _this;
+
+    _this = _BaseProvider.call(this, options, playerVersion) || this;
+    _this._logger = Object(_util_logger__WEBPACK_IMPORTED_MODULE_1__["default"])('OTTProvider');
+    _config__WEBPACK_IMPORTED_MODULE_2__["default"].set(options.env);
+    _this._networkRetryConfig = Object.assign(_this._networkRetryConfig, options.networkRetryParameters);
+    return _this;
+  }
+  /**
+   * Gets the backend media config.
+   * @param {OTTProviderMediaInfoObject} mediaInfo - ott media info
+   * @returns {Promise<ProviderMediaConfigObject>} - The provider media config
+   */
+
+
+  var _proto = OTTProvider.prototype;
+
+  _proto.getMediaConfig = function getMediaConfig(mediaInfo) {
+    var _this2 = this;
+
+    if (mediaInfo.ks) {
+      this.ks = mediaInfo.ks;
+      this._isAnonymous = false;
+    }
+
+    this._dataLoader = new _loaders_data_loader_manager__WEBPACK_IMPORTED_MODULE_3__["default"](this.partnerId, this.ks, this._networkRetryConfig);
+    return new Promise(function (resolve, reject) {
+      var entryId = mediaInfo.entryId;
+
+      if (entryId) {
+        var ks = _this2.ks;
+
+        if (!ks) {
+          ks = '{1:result:ks}';
+
+          _this2._dataLoader.add(_loaders_session_loader__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            partnerId: _this2.partnerId
+          });
+        }
+
+        var contextType = mediaInfo.contextType || _response_types_kaltura_playback_context__WEBPACK_IMPORTED_MODULE_9__["default"].Type.PLAYBACK;
+        var mediaType = mediaInfo.mediaType || _response_types_kaltura_asset__WEBPACK_IMPORTED_MODULE_8__["default"].Type.MEDIA;
+        var assetReferenceType = mediaInfo.assetReferenceType || _response_types_kaltura_asset__WEBPACK_IMPORTED_MODULE_8__["default"].AssetReferenceType.MEDIA;
+        var playbackContext = {
+          mediaProtocol: mediaInfo.protocol,
+          assetFileIds: mediaInfo.fileIds,
+          context: contextType
+        };
+
+        if (mediaInfo.streamerType) {
+          playbackContext.streamerType = mediaInfo.streamerType;
+        }
+
+        if (mediaInfo.urlType) {
+          playbackContext.urlType = mediaInfo.urlType;
+        }
+
+        if (mediaInfo.adapterData) {
+          playbackContext.adapterData = mediaInfo.adapterData;
+        }
+
+        _this2._dataLoader.add(_loaders_asset_loader__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          entryId: entryId,
+          ks: ks,
+          type: mediaType,
+          playbackContext: playbackContext,
+          assetReferenceType: assetReferenceType
+        });
+
+        var requestData = {
+          contextType: contextType,
+          mediaType: mediaType,
+          formats: mediaInfo.formats || []
+        };
+        return _this2._dataLoader.fetchData().then(function (response) {
+          try {
+            resolve(_this2._parseDataFromResponse(response, requestData));
+          } catch (err) {
+            reject(err);
+          }
+        }, function (err) {
+          reject(err);
+        });
+      } else {
+        reject(new _util_error_error__WEBPACK_IMPORTED_MODULE_11__["default"](_util_error_error__WEBPACK_IMPORTED_MODULE_11__["default"].Severity.CRITICAL, _util_error_error__WEBPACK_IMPORTED_MODULE_11__["default"].Category.PROVIDER, _util_error_error__WEBPACK_IMPORTED_MODULE_11__["default"].Code.MISSING_MANDATORY_PARAMS, {
+          message: 'missing entry id'
+        }));
+      }
+    });
+  };
+
+  _proto._parseDataFromResponse = function _parseDataFromResponse(data, requestData) {
+    this._logger.debug('Data parsing started');
+
+    var mediaConfig = {
+      session: {
+        isAnonymous: this._isAnonymous,
+        partnerId: this.partnerId
+      },
+      sources: this._getDefaultSourcesObject(),
+      plugins: {}
+    };
+
+    if (this.uiConfId) {
+      mediaConfig.session.uiConfId = this.uiConfId;
+    }
+
+    if (data) {
+      if (data.has(_loaders_session_loader__WEBPACK_IMPORTED_MODULE_4__["default"].id)) {
+        var sessionLoader = data.get(_loaders_session_loader__WEBPACK_IMPORTED_MODULE_4__["default"].id);
+
+        if (sessionLoader && sessionLoader.response) {
+          mediaConfig.session.ks = sessionLoader.response;
+        }
+      } else {
+        mediaConfig.session.ks = this.ks;
+      }
+
+      if (data.has(_loaders_asset_loader__WEBPACK_IMPORTED_MODULE_5__["default"].id)) {
+        var assetLoader = data.get(_loaders_asset_loader__WEBPACK_IMPORTED_MODULE_5__["default"].id);
+
+        if (assetLoader && assetLoader.response && Object.keys(assetLoader.response).length) {
+          var response = assetLoader.response;
+
+          if (_provider_parser__WEBPACK_IMPORTED_MODULE_7__["default"].hasBlockAction(response)) {
+            throw new _util_error_error__WEBPACK_IMPORTED_MODULE_11__["default"](_util_error_error__WEBPACK_IMPORTED_MODULE_11__["default"].Severity.CRITICAL, _util_error_error__WEBPACK_IMPORTED_MODULE_11__["default"].Category.SERVICE, _util_error_error__WEBPACK_IMPORTED_MODULE_11__["default"].Code.BLOCK_ACTION, {
+              action: _provider_parser__WEBPACK_IMPORTED_MODULE_7__["default"].getBlockAction(response),
+              messages: _provider_parser__WEBPACK_IMPORTED_MODULE_7__["default"].getErrorMessages(response)
+            });
+          }
+
+          var mediaEntry = _provider_parser__WEBPACK_IMPORTED_MODULE_7__["default"].getMediaEntry(response, requestData);
+          Object.assign(mediaConfig.sources, this._getSourcesObject(mediaEntry));
+
+          this._verifyHasSources(mediaConfig.sources);
+
+          var bumper = _provider_parser__WEBPACK_IMPORTED_MODULE_7__["default"].getBumper(response);
+
+          if (bumper) {
+            Object.assign(mediaConfig.plugins, {
+              bumper: bumper
+            });
+          }
+        }
+      }
+    }
+
+    this._logger.debug('Data parsing finished', mediaConfig);
+
+    return mediaConfig;
+  }
+  /**
+   * Gets playlist config from entry list.
+   * @param {ProviderEntryListObject} entryListInfo - ott entry list info
+   * @returns {Promise<ProviderPlaylistObject>} - The provider playlist config
+   */
+  ;
+
+  _proto.getEntryListConfig = function getEntryListConfig(entryListInfo) {
+    var _this3 = this;
+
+    if (entryListInfo.ks) {
+      this.ks = entryListInfo.ks;
+      this._isAnonymous = false;
+    }
+
+    this._dataLoader = new _loaders_data_loader_manager__WEBPACK_IMPORTED_MODULE_3__["default"](this.partnerId, this.ks, this._networkRetryConfig);
+    return new Promise(function (resolve, reject) {
+      var entries = entryListInfo.entries;
+
+      if (entries && entries.length) {
+        var ks = _this3.ks;
+
+        if (!ks) {
+          ks = '{1:result:ks}';
+
+          _this3._dataLoader.add(_loaders_session_loader__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            partnerId: _this3.partnerId
+          });
+        }
+
+        _this3._dataLoader.add(_loaders_asset_list_loader__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          entries: entries,
+          ks: ks
+        });
+
+        _this3._dataLoader.fetchData().then(function (response) {
+          resolve(_this3._parseEntryListDataFromResponse(response, entries));
+        }, function (err) {
+          reject(err);
+        });
+      } else {
+        reject({
+          success: false,
+          data: 'Missing mandatory parameter'
+        });
+      }
+    });
+  };
+
+  _proto._parseEntryListDataFromResponse = function _parseEntryListDataFromResponse(data, requestEntries) {
+    var _this4 = this;
+
+    this._logger.debug('Data parsing started');
+
+    var playlistConfig = {
+      id: '',
+      metadata: {
+        name: '',
+        description: ''
+      },
+      poster: '',
+      items: []
+    };
+
+    if (data && data.has(_loaders_asset_list_loader__WEBPACK_IMPORTED_MODULE_6__["default"].id)) {
+      var playlistLoader = data.get(_loaders_asset_list_loader__WEBPACK_IMPORTED_MODULE_6__["default"].id);
+
+      if (playlistLoader && playlistLoader.response) {
+        var entryList = _provider_parser__WEBPACK_IMPORTED_MODULE_7__["default"].getEntryList(playlistLoader.response, requestEntries);
+        entryList.items.forEach(function (i) {
+          return playlistConfig.items.push({
+            sources: _this4._getSourcesObject(i)
+          });
+        });
+      }
+    }
+
+    this._logger.debug('Data parsing finished', playlistConfig);
+
+    return playlistConfig;
+  };
+
+  _proto._getDefaultSourcesObject = function _getDefaultSourcesObject() {
+    return {
+      hls: [],
+      dash: [],
+      progressive: [],
+      id: '',
+      duration: 0,
+      type: _entities_media_entry__WEBPACK_IMPORTED_MODULE_10__["default"].Type.UNKNOWN,
+      poster: '',
+      dvr: false,
+      vr: null,
+      metadata: {
+        name: '',
+        description: '',
+        tags: ''
+      }
+    };
+  };
+
+  _proto._getSourcesObject = function _getSourcesObject(mediaEntry) {
+    var sourcesObject = this._getDefaultSourcesObject();
+
+    var mediaSources = mediaEntry.sources.toJSON();
+    sourcesObject.hls = mediaSources.hls;
+    sourcesObject.dash = mediaSources.dash;
+    sourcesObject.progressive = mediaSources.progressive;
+    sourcesObject.id = mediaEntry.id;
+    sourcesObject.duration = mediaEntry.duration;
+    sourcesObject.type = mediaEntry.type;
+    sourcesObject.dvr = !!mediaEntry.dvrStatus;
+    sourcesObject.poster = mediaEntry.poster;
+
+    if (mediaEntry.metadata && mediaEntry.metadata.metas && typeof mediaEntry.metadata.metas.tags === 'string' && mediaEntry.metadata.metas.tags.indexOf('360') > -1) {
+      sourcesObject.vr = {};
+    }
+
+    Object.assign(sourcesObject.metadata, mediaEntry.metadata);
+    return sourcesObject;
+  };
+
+  return OTTProvider;
+}(_common_base_provider__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+
+
+/***/ }),
+
+/***/ "./k-provider/ott/response-types/kaltura-asset.js":
+/*!********************************************************!*\
+  !*** ./k-provider/ott/response-types/kaltura-asset.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return KalturaAsset; });
+/* harmony import */ var _common_base_service_result__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../common/base-service-result */ "./k-provider/common/base-service-result.js");
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var KalturaAsset = /*#__PURE__*/function (_ServiceResult) {
+  _inheritsLoose(KalturaAsset, _ServiceResult);
+
+  /**
+   * @member - The asset name
+   * @type {string}
+   */
+
+  /**
+   * @member - The asset name description
+   * @type {string}
+   */
+
+  /**
+   * @member - The asset tags
+   * @type {Array<Object>}
+   */
+
+  /**
+   * @member - The asset metas
+   * @type {Array<Object>}
+   */
+
+  /**
+   * @member - The asset images
+   * @type {Array<any>}
+   */
+
+  /**
+   * @constructor
+   * @param {Object} response The response
+   */
+  function KalturaAsset(response) {
+    var _this;
+
+    _this = _ServiceResult.call(this, response) || this;
+
+    _defineProperty(_assertThisInitialized(_this), "name", '');
+
+    _defineProperty(_assertThisInitialized(_this), "description", '');
+
+    _defineProperty(_assertThisInitialized(_this), "tags", []);
+
+    _defineProperty(_assertThisInitialized(_this), "metas", []);
+
+    _defineProperty(_assertThisInitialized(_this), "pictures", []);
+
+    if (!_this.hasError) {
+      _this.id = response.id;
+      _this.name = response.name;
+      _this.description = response.description;
+      _this.metas = _this._formatTagsMetas(response.metas);
+      _this.tags = _this._formatTagsMetas(response.tags);
+      _this.pictures = response.images;
+    }
+
+    return _this;
+  }
+
+  var _proto = KalturaAsset.prototype;
+
+  _proto._formatTagsMetas = function _formatTagsMetas(objectToParse) {
+    var parsed = [];
+    Object.keys(objectToParse).forEach(function (key) {
+      if (objectToParse[key].objects) {
+        var value = '';
+        objectToParse[key].objects.forEach(function (object) {
+          value += object.value + '|';
+        });
+        parsed.push({
+          key: key,
+          value: value
+        });
+      } else {
+        parsed.push({
+          key: key,
+          value: objectToParse[key].value
+        });
+      }
+    });
+    return parsed;
+  };
+
+  return KalturaAsset;
+}(_common_base_service_result__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+_defineProperty(KalturaAsset, "Type", {
+  MEDIA: 'media',
+  RECORDING: 'recording',
+  EPG: 'epg'
+});
+
+_defineProperty(KalturaAsset, "AssetReferenceType", {
+  MEDIA: 'media',
+  EPG_INTERNAL: 'epg_internal',
+  EPG_EXTERNAL: 'epg_external',
+  NPVR: 'nPVR'
+});
+
+
+
+/***/ }),
+
+/***/ "./k-provider/ott/response-types/kaltura-bumper-playback-plugin-data.js":
+/*!******************************************************************************!*\
+  !*** ./k-provider/ott/response-types/kaltura-bumper-playback-plugin-data.js ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return KalturaBumpersPlaybackPluginData; });
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var KalturaBumpersPlaybackPluginData =
+/**
+ * @constructor
+ * @param {Object} data - The response
+ */
+function KalturaBumpersPlaybackPluginData(data) {
+  this.streamertype = data.streamertype;
+  this.url = data.url;
+};
+
+_defineProperty(KalturaBumpersPlaybackPluginData, "StreamerType", {
+  HLS: 'hls',
+  DASH: 'dash',
+  PROGRESSIVE: 'progressive'
+});
+
+
+
+/***/ }),
+
+/***/ "./k-provider/ott/response-types/kaltura-playback-context.js":
+/*!*******************************************************************!*\
+  !*** ./k-provider/ott/response-types/kaltura-playback-context.js ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return KalturaPlaybackContext; });
+/* harmony import */ var _common_base_service_result__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../common/base-service-result */ "./k-provider/common/base-service-result.js");
+/* harmony import */ var _common_response_types_kaltura_access_control_message__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../common/response-types/kaltura-access-control-message */ "./k-provider/common/response-types/kaltura-access-control-message.js");
+/* harmony import */ var _kaltura_rule_action__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./kaltura-rule-action */ "./k-provider/ott/response-types/kaltura-rule-action.js");
+/* harmony import */ var _kaltura_playback_source__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./kaltura-playback-source */ "./k-provider/ott/response-types/kaltura-playback-source.js");
+/* harmony import */ var _kaltura_bumper_playback_plugin_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./kaltura-bumper-playback-plugin-data */ "./k-provider/ott/response-types/kaltura-bumper-playback-plugin-data.js");
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+var KalturaPlaybackContext = /*#__PURE__*/function (_ServiceResult) {
+  _inheritsLoose(KalturaPlaybackContext, _ServiceResult);
+
+  /**
+   * @member - The playback sources
+   * @type {Array<KalturaPlaybackSource>}
+   */
+
+  /**
+   * @member - Array of actions as received from the rules that invalidated
+   * @type {Array<KalturaRuleAction>}
+   */
+
+  /**
+   * @member - Array of access control massages
+   * @type {Array<KalturaAccessControlMessage>}
+   */
+
+  /**
+   * @member - Array of bumper plugins
+   * @type {Array<KalturaBumpersPlaybackPluginData>}
+   */
+
+  /**
+   * @constructor
+   * @param {Object} response The response
+   */
+  function KalturaPlaybackContext(response) {
+    var _this;
+
+    _this = _ServiceResult.call(this, response) || this;
+
+    _defineProperty(_assertThisInitialized(_this), "sources", []);
+
+    _defineProperty(_assertThisInitialized(_this), "actions", []);
+
+    _defineProperty(_assertThisInitialized(_this), "messages", []);
+
+    _defineProperty(_assertThisInitialized(_this), "plugins", []);
+
+    if (!_this.hasError) {
+      var messages = response.messages;
+
+      if (messages) {
+        messages.map(function (message) {
+          return _this.messages.push(new _common_response_types_kaltura_access_control_message__WEBPACK_IMPORTED_MODULE_1__["KalturaAccessControlMessage"](message));
+        });
+      }
+
+      var actions = response.actions;
+
+      if (actions) {
+        actions.map(function (action) {
+          return _this.actions.push(new _kaltura_rule_action__WEBPACK_IMPORTED_MODULE_2__["default"](action));
+        });
+      }
+
+      var sources = response.sources;
+
+      if (sources) {
+        sources.map(function (source) {
+          return _this.sources.push(new _kaltura_playback_source__WEBPACK_IMPORTED_MODULE_3__["default"](source));
+        });
+      }
+
+      var plugins = response.plugins;
+
+      if (plugins) {
+        plugins.map(function (plugin) {
+          return _this.plugins.push(new _kaltura_bumper_playback_plugin_data__WEBPACK_IMPORTED_MODULE_4__["default"](plugin));
+        });
+      }
+    }
+
+    return _this;
+  }
+
+  var _proto = KalturaPlaybackContext.prototype;
+
+  _proto.hasBlockAction = function hasBlockAction() {
+    return this.getBlockAction() !== undefined;
+  };
+
+  _proto.getBlockAction = function getBlockAction() {
+    return this.actions.find(function (action) {
+      return action.type === _kaltura_rule_action__WEBPACK_IMPORTED_MODULE_2__["default"].Type.BLOCK;
+    });
+  };
+
+  _proto.getErrorMessages = function getErrorMessages() {
+    return this.messages;
+  };
+
+  return KalturaPlaybackContext;
+}(_common_base_service_result__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+_defineProperty(KalturaPlaybackContext, "Type", {
+  TRAILER: 'TRAILER',
+  CATCHUP: 'CATCHUP',
+  START_OVER: 'START_OVER',
+  PLAYBACK: 'PLAYBACK'
+});
+
+
+
+/***/ }),
+
+/***/ "./k-provider/ott/response-types/kaltura-playback-source.js":
+/*!******************************************************************!*\
+  !*** ./k-provider/ott/response-types/kaltura-playback-source.js ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return KalturaPlaybackSource; });
+/* harmony import */ var _common_response_types_kaltura_drm_playback_plugin_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../common/response-types/kaltura-drm-playback-plugin-data */ "./k-provider/common/response-types/kaltura-drm-playback-plugin-data.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var KalturaPlaybackSource = /*#__PURE__*/function () {
+  /**
+   * @constructor
+   * @param {Object} source The response
+   */
+  function KalturaPlaybackSource(source) {
+    var _this = this;
+
+    _defineProperty(this, "drm", []);
+
+    this.format = source.format;
+    this.adsPolicy = source.adsPolicy;
+    this.adsParam = source.adsParam;
+    this.duration = source.duration;
+    this.url = source.url;
+    this.type = source.type;
+    this.fileId = source.id;
+    this.protocols = source.protocols;
+
+    if (source.drm) {
+      source.drm.map(function (drm) {
+        return _this.drm.push(new _common_response_types_kaltura_drm_playback_plugin_data__WEBPACK_IMPORTED_MODULE_0__["KalturaDrmPlaybackPluginData"](drm));
+      });
+    }
+  }
+  /**
+   * Checks if source has DRM data
+   * @function hasDrmData
+   * @returns {boolean} Is source has DRM
+   */
+
+
+  var _proto = KalturaPlaybackSource.prototype;
+
+  _proto.hasDrmData = function hasDrmData() {
+    return this.drm && this.drm.length > 0;
+  }
+  /**
+   * Returns source desired protocol if supported
+   * @param {string} protocol - the desired protocol for the source (base play url protocol)
+   * @returns {string} - protocol if protocol is in the protocols list - if not empty string returned
+   */
+  ;
+
+  _proto.getProtocol = function getProtocol(protocol) {
+    var returnValue = '';
+
+    if (this.protocols && this.protocols.length > 0) {
+      var protocolsArr = this.protocols.split(',');
+      protocolsArr.forEach(function (p) {
+        if (p === protocol) {
+          returnValue = p;
+        }
+      });
+    } else if (protocol === 'http') {
+      return protocol;
+    }
+
+    return returnValue;
+  };
+
+  return KalturaPlaybackSource;
+}();
+
+
+
+/***/ }),
+
+/***/ "./k-provider/ott/response-types/kaltura-rule-action.js":
+/*!**************************************************************!*\
+  !*** ./k-provider/ott/response-types/kaltura-rule-action.js ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return KalturaRuleAction; });
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var KalturaRuleAction =
+/**
+ * @constructor
+ * @param {Object} data - The response
+ */
+function KalturaRuleAction(data) {
+  this.type = data.type;
+};
+
+_defineProperty(KalturaRuleAction, "Type", {
+  BLOCK: 'BLOCK',
+  START_DATE_OFFSET: 'START_DATE_OFFSET',
+  END_DATE_OFFSET: 'END_DATE_OFFSET',
+  USER_BLOCK: 'USER_BLOCK',
+  ALLOW_PLAYBACK: 'ALLOW_PLAYBACK',
+  BLOCK_PLAYBACK: 'BLOCK_PLAYBACK',
+  APPLY_DISCOUNT_MODULE: 'APPLY_DISCOUNT_MODULE'
+});
+
+
+
+/***/ }),
+
+/***/ "./k-provider/ott/services/asset-service.js":
+/*!**************************************************!*\
+  !*** ./k-provider/ott/services/asset-service.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return OTTAssetService; });
+/* harmony import */ var _ott_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ott-service */ "./k-provider/ott/services/ott-service.js");
+/* harmony import */ var _util_request_builder__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../util/request-builder */ "./util/request-builder.js");
+function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
+
+
+
+var SERVICE_NAME = 'asset';
+
+var OTTAssetService = /*#__PURE__*/function (_OTTService) {
+  _inheritsLoose(OTTAssetService, _OTTService);
+
+  function OTTAssetService() {
+    return _OTTService.apply(this, arguments) || this;
+  }
+
+  /**
+   * Creates an instance of RequestBuilder for session.startWidgetSession
+   * @function anonymousSession
+   * @param {string} serviceUrl The service base URL
+   * @param {string} ks The partner ID
+   * @param {string} assetId The asset ID
+   * @param {string} type The asset type (media/recording/epg)
+   * @param {ProviderPlaybackContextOptions} playbackContextOptions The playbackContextOptions
+   * @returns {RequestBuilder} The request builder
+   * @static
+   */
+  OTTAssetService.getPlaybackContext = function getPlaybackContext(serviceUrl, ks, assetId, type, playbackContextOptions) {
+    var headers = new Map();
+    headers.set('Content-Type', 'application/json');
+    var request = new _util_request_builder__WEBPACK_IMPORTED_MODULE_1__["default"](headers);
+    request.service = SERVICE_NAME;
+    request.action = 'getPlaybackContext';
+    request.method = 'POST';
+    request.url = request.getUrl(serviceUrl);
+    var contextDataParams = {
+      objectType: 'KalturaPlaybackContextOptions'
+    };
+    Object.assign(contextDataParams, playbackContextOptions);
+    request.params = {
+      assetId: assetId,
+      assetType: type,
+      contextDataParams: contextDataParams,
+      ks: ks
+    };
+    return request;
+  };
+
+  OTTAssetService.get = function get(serviceUrl, ks, assetId, assetReferenceType) {
+    var headers = new Map();
+    headers.set('Content-Type', 'application/json');
+    var request = new _util_request_builder__WEBPACK_IMPORTED_MODULE_1__["default"](headers);
+    request.service = SERVICE_NAME;
+    request.action = 'get';
+    request.method = 'POST';
+    request.url = request.getUrl(serviceUrl);
+    request.params = {
+      id: assetId,
+      assetReferenceType: assetReferenceType,
+      ks: ks
+    };
+    return request;
+  };
+
+  return OTTAssetService;
+}(_ott_service__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+
+
+/***/ }),
+
+/***/ "./k-provider/ott/services/ott-service.js":
+/*!************************************************!*\
+  !*** ./k-provider/ott/services/ott-service.js ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return OTTService; });
+/* harmony import */ var _common_multi_request_builder__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../common/multi-request-builder */ "./k-provider/common/multi-request-builder.js");
+/* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../config */ "./k-provider/ott/config.js");
+
+
+var SERVICE_NAME = 'multirequest';
+
+var OTTService = /*#__PURE__*/function () {
+  function OTTService() {}
+
+  /**
+   * Gets a new instance of MultiRequestBuilder with ott params
+   * @function getMultiRequest
+   * @param {string} ks The ks
+   * @param {string} partnerId The partner ID
+   * @returns {MultiRequestBuilder} The multi request builder
+   * @static
+   */
+  OTTService.getMultiRequest = function getMultiRequest(ks, partnerId) {
+    var config = _config__WEBPACK_IMPORTED_MODULE_1__["default"].get();
+    var ottParams = config.serviceParams;
+
+    if (ks) {
+      Object.assign(ottParams, {
+        ks: ks
+      });
+    }
+
+    if (partnerId) {
+      Object.assign(ottParams, {
+        partnerId: partnerId
+      });
+    }
+
+    var headers = new Map();
+    headers.set('Content-Type', 'application/json');
+    var multiReq = new _common_multi_request_builder__WEBPACK_IMPORTED_MODULE_0__["default"](headers);
+    multiReq.method = 'POST';
+    multiReq.service = SERVICE_NAME;
+    multiReq.url = multiReq.getUrl(config.serviceUrl);
+    multiReq.params = ottParams;
+    return multiReq;
+  };
+
+  return OTTService;
+}();
+
+
+
+/***/ }),
+
+/***/ "./k-provider/ott/services/user-service.js":
+/*!*************************************************!*\
+  !*** ./k-provider/ott/services/user-service.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return OTTUserService; });
+/* harmony import */ var _ott_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ott-service */ "./k-provider/ott/services/ott-service.js");
+/* harmony import */ var _util_request_builder__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../util/request-builder */ "./util/request-builder.js");
+function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
+
+
+
+var SERVICE_NAME = 'ottuser';
+
+var OTTUserService = /*#__PURE__*/function (_OTTService) {
+  _inheritsLoose(OTTUserService, _OTTService);
+
+  function OTTUserService() {
+    return _OTTService.apply(this, arguments) || this;
+  }
+
+  /**
+   * Creates an instance of RequestBuilder for session.startWidgetSession
+   * @function anonymousSession
+   * @param {string} serviceUrl The service base URL
+   * @param {string} partnerId The partner ID
+   * @param {string} udid The udid
+   * @returns {RequestBuilder} The request builder
+   * @static
+   */
+  OTTUserService.anonymousLogin = function anonymousLogin(serviceUrl, partnerId, udid) {
+    var headers = new Map();
+    headers.set('Content-Type', 'application/json');
+    var request = new _util_request_builder__WEBPACK_IMPORTED_MODULE_1__["default"](headers);
+    request.service = SERVICE_NAME;
+    request.action = 'anonymousLogin';
+    request.method = 'POST';
+    request.url = request.getUrl(serviceUrl);
+    var params = {
+      partnerId: partnerId
+    };
+
+    if (udid) {
+      Object.assign(params, {
+        udid: udid
+      });
+    }
+
+    request.params = params;
+    return request;
+  };
+
+  return OTTUserService;
+}(_ott_service__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+
+
+/***/ }),
+
+/***/ "./util/clone.js":
+/*!***********************!*\
+  !*** ./util/clone.js ***!
+  \***********************/
+/*! exports provided: clone */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clone", function() { return clone; });
+var clone = function clone(data) {
+  var node;
+
+  if (Array.isArray(data)) {
+    node = data.length > 0 ? data.slice(0) : [];
+    node.forEach(function (e, i) {
+      if (typeof e === 'object' && e !== {} || Array.isArray(e) && e.length > 0) {
+        node[i] = clone(e);
+      }
+    });
+  } else if (typeof data === 'object') {
+    node = Object.assign({}, data);
+    Object.keys(node).forEach(function (key) {
+      if (typeof node[key] === 'object' && node[key] !== {} || Array.isArray(node[key]) && node[key].length > 0) {
+        node[key] = clone(node[key]);
+      }
+    });
+  } else {
+    node = data;
+  }
+
+  return node;
+};
+
+
+
+/***/ }),
+
+/***/ "./util/error/category.js":
+/*!********************************!*\
+  !*** ./util/error/category.js ***!
+  \********************************/
+/*! exports provided: Category */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Category", function() { return Category; });
+var Category = {
+  /** Errors from the network stack. */
+  NETWORK: 1,
+  SERVICE: 2,
+  PROVIDER: 3
+};
+
+
+/***/ }),
+
+/***/ "./util/error/code.js":
+/*!****************************!*\
+  !*** ./util/error/code.js ***!
+  \****************************/
+/*! exports provided: Code */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Code", function() { return Code; });
+var Code = {
+  /**
+   * A network request was made using an unsupported URI scheme.
+   */
+  UNSUPPORTED_SCHEME: 1000,
+
+  /**
+   * An HTTP network request returned an HTTP status that indicated a failure.
+   */
+  BAD_HTTP_STATUS: 1001,
+
+  /**
+   * An HTTP network request failed with an error, but not from the server.
+   */
+  HTTP_ERROR: 1002,
+
+  /**
+   * A network request timed out.
+   */
+  TIMEOUT: 1003,
+
+  /**
+   * A network request was made with a malformed data URI.
+   */
+  MALFORMED_DATA_URI: 1004,
+
+  /**
+   * The server responsded with 2xx response, but it couldn't be parsed
+   */
+  BAD_SERVER_RESPONSE: 1005,
+
+  /**
+   * The server response had a valid structure but contained an error from the API
+   */
+  MULTIREQUEST_API_ERROR: 1006,
+
+  /**
+   * The server response had a valid structure and valid API result, but it did not match the request
+   */
+  API_RESPONSE_MISMATCH: 1007,
+
+  /**
+   * The server responded with an error
+   */
+  ERROR: 2000,
+
+  /**
+   * The server responded with a block action
+   */
+  BLOCK_ACTION: 2001,
+
+  /**
+   * The server responded with status import or pre convert
+   */
+  MEDIA_STATUS_NOT_READY: 2002,
+
+  /**
+   * The provider is missing mandatory parameter/s
+   */
+  MISSING_MANDATORY_PARAMS: 3000,
+
+  /**
+   * The server responded with empty sources objects (for HLS, Dash and progressive)
+   */
+  MISSING_PLAY_SOURCE: 3001,
+
+  /**
+   * The provider doesn't implement the called api
+   */
+  METHOD_NOT_IMPLEMENTED: 3002
+};
+
+
+/***/ }),
+
+/***/ "./util/error/error.js":
+/*!*****************************!*\
+  !*** ./util/error/error.js ***!
+  \*****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Error; });
+/* harmony import */ var _logger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../logger */ "./util/logger.js");
+/* harmony import */ var _severity__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./severity */ "./util/error/severity.js");
+/* harmony import */ var _code__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./code */ "./util/error/code.js");
+/* harmony import */ var _category__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./category */ "./util/error/category.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+var CLASS_NAME = 'Error';
+/**
+ * @classdesc This is a description of the error class.
+ */
+
+var Error =
+/**
+ * @enum {number}
+ */
+
+/**
+ * @enum {number}
+ */
+
+/**
+ * @enum {number}
+ */
+
+/**
+ * @constructor
+ * @param {number} severity - error's severity
+ * @param {number} category - error's category.
+ * @param {number} code - error's code.
+ * @param {any} data - additional data for the error.
+ */
+function Error(severity, category, code, data) {
+  if (data === void 0) {
+    data = {};
+  }
+
+  this.severity = severity;
+  this.category = category;
+  this.code = code;
+  this.data = data;
+
+  Error._logger.error("Category:" + category + " | Code:" + code + " |", data);
+};
+
+_defineProperty(Error, "Severity", _severity__WEBPACK_IMPORTED_MODULE_1__["Severity"]);
+
+_defineProperty(Error, "Category", _category__WEBPACK_IMPORTED_MODULE_3__["Category"]);
+
+_defineProperty(Error, "Code", _code__WEBPACK_IMPORTED_MODULE_2__["Code"]);
+
+_defineProperty(Error, "_logger", Object(_logger__WEBPACK_IMPORTED_MODULE_0__["default"])(CLASS_NAME));
+
+
+
+/***/ }),
+
+/***/ "./util/error/severity.js":
+/*!********************************!*\
+  !*** ./util/error/severity.js ***!
+  \********************************/
+/*! exports provided: Severity */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Severity", function() { return Severity; });
+var Severity = {
+  /**
+   * An error occurred, but the Player is attempting to recover from the error.
+   *
+   * If the Player cannot ultimately recover, it still may not throw a CRITICAL
+   * error.  For example, retrying for a media segment will never result in
+   * a CRITICAL error (the Player will just retry forever).
+   */
+  RECOVERABLE: 1,
+
+  /**
+   * A critical error that the library cannot recover from.  These usually cause
+   * the Player to stop loading or updating.  A new manifest must be loaded
+   * to reset the library.
+   */
+  CRITICAL: 2
+};
+
+
+/***/ }),
+
+/***/ "./util/logger.js":
+/*!************************!*\
+  !*** ./util/logger.js ***!
+  \************************/
+/*! exports provided: default, getLogLevel, setLogLevel, setLogger, LogLevel */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLogLevel", function() { return getLogLevel; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setLogLevel", function() { return setLogLevel; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setLogger", function() { return setLogger; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LogLevel", function() { return LogLevel; });
+var JsLogger = {
+  get: function get() {
+    return {
+      VERSION: '',
+      DEBUG: {
+        value: '',
+        name: ''
+      },
+      ERROR: {
+        value: '',
+        name: ''
+      },
+      INFO: {
+        value: '',
+        name: ''
+      },
+      OFF: {
+        value: '',
+        name: ''
+      },
+      TIME: {
+        value: '',
+        name: ''
+      },
+      TRACE: {
+        value: '',
+        name: ''
+      },
+      WARN: {
+        value: '',
+        name: ''
+      },
+      createDefaultHandler: function createDefaultHandler() {},
+      debug: function debug() {},
+      enabledFor: function enabledFor() {},
+      error: function error() {},
+      get: function get() {},
+      getLevel: function getLevel() {},
+      info: function info() {},
+      log: function log() {},
+      setHandler: function setHandler() {},
+      setLevel: function setLevel() {},
+      time: function time() {},
+      timeEnd: function timeEnd() {},
+      trace: function trace() {},
+      useDefaults: function useDefaults() {},
+      warn: function warn() {}
+    };
+  }
+};
+var LogLevel = {};
+/**
+ * set logger
+ * @param {LoggerType} logger - the logger
+ * @returns {void}
+ */
+
+function setLogger(logger) {
+  if (logger && typeof logger.getLogger === 'function') {
+    JsLogger.get = logger.getLogger;
+  }
+
+  if (logger && logger.LogLevel) {
+    LogLevel = logger.LogLevel;
+  }
+}
+/**
+ * get a logger
+ * @param {?string} name - the logger name
+ * @returns {Object} - the logger class
+ */
+
+
+function getLogger(name) {
+  //$FlowFixMe
+  return JsLogger.get(name);
+}
+/**
+ * get the log level
+ * @param {?string} name - the logger name
+ * @returns {LogLevelObject} - the log level
+ */
+
+
+function getLogLevel(name) {
+  return getLogger(name).getLevel();
+}
+/**
+ * sets the logger level
+ * @param {LogLevelObject} level - the log level
+ * @param {?string} name - the logger name
+ * @returns {void}
+ */
+
+
+function setLogLevel(level, name) {
+  getLogger(name).setLevel(level);
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (getLogger);
+
+
+/***/ }),
+
+/***/ "./util/request-builder.js":
+/*!*********************************!*\
+  !*** ./util/request-builder.js ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return RequestBuilder; });
+/* harmony import */ var _error_error__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./error/error */ "./util/error/error.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+var KALTURA_HEADER_PREFIX = 'x-';
+
+var RequestBuilder = /*#__PURE__*/function () {
+  /**
+   * @member - Service name
+   * @type {string}
+   */
+
+  /**
+   * @member - Service action
+   * @type {string}
+   */
+
+  /**
+   * @member - Service params
+   * @type {any}
+   */
+
+  /**
+   * @memberof - Service headers
+   * @type {Map<string, string>}
+   */
+
+  /**
+   * @memberof - Service URL
+   * @type {string}
+   */
+
+  /**
+   * @memberof - Service method (POST,GET,DELETE etc..)
+   * @type {string}
+   */
+
+  /**
+   * @memberof - Service tag
+   * @type {string}
+   */
+
+  /**
+   * @memberof - the response headers of the arra
+   * @type {Array<string>}
+   */
+
+  /**
+   * @description network retry configuration
+   * @memberof RequestBuilder
+   * @type {ProviderNetworkRetryParameters}
+   */
+
+  /**
+   * @description number of xhr attempts for the same multi - request.
+   * @memberof RequestBuilder
+   * @type {number}
+   * @private
+   */
+
+  /**
+   * @constructor
+   * @param {Map<string, string>} headers The request headers
+   */
+  function RequestBuilder(headers) {
+    if (headers === void 0) {
+      headers = new Map();
+    }
+
+    _defineProperty(this, "retryConfig", {
+      async: true,
+      timeout: 0,
+      maxAttempts: 4
+    });
+
+    _defineProperty(this, "_attemptCounter", 1);
+
+    this.headers = headers;
+  }
+  /**
+   * Builds restful service URL
+   * @function getUrl
+   * @param {string} serviceUrl - The service base URL
+   * @returns {string} The service URL
+   */
+
+
+  var _proto = RequestBuilder.prototype;
+
+  _proto.getUrl = function getUrl(serviceUrl) {
+    return serviceUrl + '/service/' + this.service + (this.action ? '/action/' + this.action : '');
+  }
+  /**
+   * Executes service
+   * @function doHttpRequest
+   * @returns {Promise.<any>} Service response as promise
+   */
+  ;
+
+  _proto.doHttpRequest = function doHttpRequest() {
+    var _this = this;
+
+    var promise = new Promise(function (resolve, reject) {
+      _this._requestPromise = {
+        resolve: resolve,
+        reject: reject
+      };
+    });
+
+    if (!this.url) {
+      this._requestPromise.reject(new _error_error__WEBPACK_IMPORTED_MODULE_0__["default"](_error_error__WEBPACK_IMPORTED_MODULE_0__["default"].Severity.CRITICAL, _error_error__WEBPACK_IMPORTED_MODULE_0__["default"].Category.NETWORK, _error_error__WEBPACK_IMPORTED_MODULE_0__["default"].Code.MALFORMED_DATA_URI, {
+        url: this.url
+      }));
+    }
+
+    this._createXHR();
+
+    return promise;
+  };
+
+  _proto._createXHR = function _createXHR() {
+    var _this2 = this;
+
+    var request = new XMLHttpRequest();
+
+    request.onreadystatechange = function () {
+      if (request.readyState === 4) {
+        if (request.status === 200) {
+          try {
+            var response = JSON.parse(request.responseText);
+            _this2.responseHeaders = _this2._getResponseHeaders(request); // the promise returns the response for backwards compatibility
+
+            return _this2._requestPromise.resolve(response);
+          } catch (error) {
+            _this2._requestPromise.reject(_this2._createError(request, _error_error__WEBPACK_IMPORTED_MODULE_0__["default"].Code.BAD_SERVER_RESPONSE, {
+              text: request.responseText
+            }));
+          }
+        }
+      }
+    };
+
+    request.open(this.method, this.url, this.retryConfig.async);
+
+    if (this.retryConfig.async && this.retryConfig.timeout) {
+      request.timeout = this.retryConfig.timeout;
+    }
+
+    var requestTime = performance.now();
+
+    request.ontimeout = function () {
+      _this2._handleError(request, _error_error__WEBPACK_IMPORTED_MODULE_0__["default"].Code.TIMEOUT, {
+        timeout: (performance.now() - requestTime) / 1000,
+        statusText: request.statusText
+      });
+    };
+
+    request.onerror = request.onabort = function () {
+      _this2._handleError(request, _error_error__WEBPACK_IMPORTED_MODULE_0__["default"].Code.HTTP_ERROR, {
+        text: request.responseText,
+        statusText: request.statusText
+      });
+    };
+
+    this.headers.forEach(function (value, key) {
+      request.setRequestHeader(key, value);
+    });
+    request.send(this.params);
+  };
+
+  _proto._getResponseHeaders = function _getResponseHeaders(request) {
+    return request.getAllResponseHeaders().split('\n').filter(function (header) {
+      return header.toLowerCase().indexOf(KALTURA_HEADER_PREFIX) === 0;
+    });
+  };
+
+  _proto._handleError = function _handleError(request, code, data) {
+    var error = this._createError(request, code, data);
+
+    request.onreadystatechange = function () {};
+
+    request.onerror = function () {};
+
+    request.ontimeout = function () {};
+
+    request.onabort = function () {};
+
+    if (this.retryConfig.maxAttempts && this._attemptCounter < this.retryConfig.maxAttempts) {
+      this._attemptCounter++;
+
+      this._createXHR();
+    } else {
+      return this._requestPromise.reject(error);
+    }
+  };
+
+  _proto._createError = function _createError(request, code, data) {
+    Object.assign(data, {
+      url: this.url,
+      headers: this._getResponseHeaders(request),
+      attempt: this._attemptCounter
+    });
+    return new _error_error__WEBPACK_IMPORTED_MODULE_0__["default"](_error_error__WEBPACK_IMPORTED_MODULE_0__["default"].Severity.CRITICAL, _error_error__WEBPACK_IMPORTED_MODULE_0__["default"].Category.NETWORK, code, data);
+  };
+
+  return RequestBuilder;
+}();
+
+
+
+/***/ })
+
+/******/ });
+});
 //# sourceMappingURL=playkit-ott-provider.js.map
