@@ -2,18 +2,10 @@
 import OTTService from '../ott-service';
 import RequestBuilder from '../../../../util/request-builder';
 import OTTConfiguration from '../../config';
-import getLogger from '../../../../util/logger';
 
 const SERVICE_NAME: string = 'bookmark';
 
 export default class OTTBookmarkService extends OTTService {
-  /**
-   * The BookmarkService logger
-   * @member {OTTBookmarkService} _logger
-   * @private
-   * @static
-   */
-  static _logger: any = getLogger('BookmarkService');
   /**
    * Creates an instance of RequestBuilder for session.startWidgetSession
    * @function add
