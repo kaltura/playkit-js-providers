@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.31.0](https://github.com/kaltura/playkit-js-providers/compare/v2.30.0...v2.31.0) (2021-11-10)
+
+
+### Features
+
+* **FEC-11611:** [Web] Pass the program ID when sending a bookmark ([#155](https://github.com/kaltura/playkit-js-providers/issues/155)) ([b68d788](https://github.com/kaltura/playkit-js-providers/commit/b68d788)), closes [kaltura/playkit-js-ott-analytics#64](https://github.com/kaltura/playkit-js-providers/issues/64)
+* **FEC-11611:** [Web] Pass the program ID when sending a bookmark ([#156](https://github.com/kaltura/playkit-js-providers/issues/156)) ([fa6c6d9](https://github.com/kaltura/playkit-js-providers/commit/fa6c6d9))
+
+
+
 ## [2.30.0](https://github.com/kaltura/playkit-js-providers/compare/v2.29.1...v2.30.0) (2021-08-26)
 
 
