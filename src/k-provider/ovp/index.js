@@ -2,6 +2,7 @@
 import OVPProvider from './provider';
 import RequestBuilder from '../../util/request-builder';
 import * as ResponseTypes from './response-types';
+import {OVPConfiguration} from './config';
 
 declare var __VERSION__: string;
 declare var __NAME__: string;
@@ -9,4 +10,4 @@ declare var __NAME__: string;
 const NAME = __NAME__ + '-ovp';
 const VERSION = __VERSION__;
 
-export {OVPProvider as Provider, NAME, VERSION, RequestBuilder, ResponseTypes};
+export {OVPProvider as Provider, NAME, VERSION, RequestBuilder, ResponseTypes, OVPConfiguration};
