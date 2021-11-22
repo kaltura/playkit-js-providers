@@ -12,6 +12,7 @@ export default class BaseProvider<MI> {
   _playerVersion: string;
   _logger: any;
   _isAnonymous: boolean;
+  _env: ?ProviderEnvConfigObject;
   _networkRetryConfig: ProviderNetworkRetryParameters = {
     async: true,
     timeout: 0,
@@ -50,6 +51,10 @@ export default class BaseProvider<MI> {
     return this._isAnonymous;
   }
 
+  get env() {
+    return this._env;
+  }
+
   constructor(options: ProviderOptionsObject, playerVersion: string) {
     setLogger(options.logger);
     this._partnerId = options.partnerId;
@@ -58,6 +63,7 @@ export default class BaseProvider<MI> {
     this._isAnonymous = !options.ks;
     this._ks = options.ks || '';
     this._playerVersion = playerVersion;
+    this._env = options.env;
   }
 
   // eslint-disable-next-line no-unused-vars
