@@ -25,6 +25,10 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
     this._networkRetryConfig = Object.assign(this._networkRetryConfig, options.networkRetryParameters);
   }
 
+  get env() {
+    return OTTConfiguration.get();
+  }
+
   /**
    * Gets the backend media config.
    * @param {OTTProviderMediaInfoObject} mediaInfo - ott media info

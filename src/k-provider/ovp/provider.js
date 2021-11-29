@@ -27,6 +27,10 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     this._networkRetryConfig = Object.assign(this._networkRetryConfig, options.networkRetryParameters);
   }
 
+  get env() {
+    return OVPConfiguration.get();
+  }
+
   /**
    * Gets the backend media config.
    * @param {OVPProviderMediaInfoObject} mediaInfo - ovp media info
