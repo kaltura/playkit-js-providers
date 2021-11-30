@@ -12,7 +12,7 @@ import OTTConfiguration from '../../../../src/k-provider/ott/config';
 const partnerId = 198;
 const playerVersion = '1.2.3';
 
-describe('default config', () => {
+describe('default configuration', () => {
   const defaultConfig = OTTConfiguration.get();
 
   beforeEach(() => {
