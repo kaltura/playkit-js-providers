@@ -16,11 +16,11 @@ describe('default config', () => {
   const defaultConfig = OTTConfiguration.get();
 
   beforeEach(() => {
-    OTTConfiguration.set({...defaultConfig});
+    OTTConfiguration.set(defaultConfig);
   });
 
   afterEach(() => {
-    OTTConfiguration.set({...defaultConfig});
+    OTTConfiguration.set(defaultConfig);
   });
 
   it('should use config values if they are set', () => {
