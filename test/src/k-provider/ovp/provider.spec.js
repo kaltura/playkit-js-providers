@@ -4,6 +4,54 @@ import * as MEDIA_CONFIG_DATA from './media-config-data';
 import {MultiRequestResult} from '../../../../src/k-provider/common/multi-request-builder';
 import MultiRequestBuilder from '../../../../src/k-provider/common/multi-request-builder';
 import Error from '../../../../src/util/error/error';
+import OVPConfiguration from '../../../../src/k-provider/ovp/config';
+
+describe('default configuration', () => {
+  const partnerId = 1082342;
+  const playerVersion = '1.2.3';
+
+  const defaultConfig = OVPConfiguration.get();
+
+  beforeEach(() => {
+    OVPConfiguration.set(defaultConfig);
+  });
+
+  afterEach(() => {
+    OVPConfiguration.set(defaultConfig);
+  });
+
+  it('should use config values if they are set', () => {
+    const provider = new OVPProvider(
+      {
+        partnerId: partnerId,
+        env: {
+          serviceUrl: '111',
+          cdnUrl: '222',
+          serviceParams: {
+            apiVersion: '333',
+            format: 4
+          },
+          useApiCaptions: false
+        }
+      },
+      playerVersion
+    );
+    provider.env.serviceUrl.should.equal('111');
+    provider.env.cdnUrl.should.equal('222');
+    provider.env.serviceParams.apiVersion.should.equal('333');
+    provider.env.serviceParams.format.should.equal(4);
+    provider.env.useApiCaptions.should.equal(false);
+  });
+
+  it('should use default values if config values are not set', () => {
+    const provider = new OVPProvider({partnerId: partnerId}, playerVersion);
+    provider.env.serviceUrl.should.equal(defaultConfig.serviceUrl);
+    provider.env.cdnUrl.should.equal(defaultConfig.cdnUrl);
+    provider.env.serviceParams.apiVersion.should.equal(defaultConfig.serviceParams.apiVersion);
+    provider.env.serviceParams.format.should.equal(defaultConfig.serviceParams.format);
+    provider.env.useApiCaptions.should.equal(defaultConfig.useApiCaptions);
+  });
+});
 
 describe('OVPProvider.partnerId:1082342', function () {
   let provider, sandbox;

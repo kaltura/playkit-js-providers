@@ -7,9 +7,32 @@ import KalturaAsset from '../../../../src/k-provider/ott/response-types/kaltura-
 import KalturaPlaybackContext from '../../../../src/k-provider/ott/response-types/kaltura-playback-context';
 import OTTAssetLoader from '../../../../src/k-provider/ott/loaders/asset-loader';
 import Error from '../../../../src/util/error/error';
+import OTTConfiguration from '../../../../src/k-provider/ott/config';
 
 const partnerId = 198;
 const playerVersion = '1.2.3';
+
+describe('default configuration', () => {
+  const defaultConfig = OTTConfiguration.get();
+
+  beforeEach(() => {
+    OTTConfiguration.set(defaultConfig);
+  });
+
+  afterEach(() => {
+    OTTConfiguration.set(defaultConfig);
+  });
+
+  it('should use config values if they are set', () => {
+    const provider = new OTTProvider({partnerId: partnerId, env: {serviceParams: {apiVersion: '5.2.7'}}}, playerVersion);
+    provider.env.serviceParams.apiVersion.should.equal('5.2.7');
+  });
+
+  it('should use default values if config values are not set', () => {
+    const provider = new OTTProvider({partnerId: partnerId}, playerVersion);
+    provider.env.serviceParams.apiVersion.should.equal(defaultConfig.serviceParams.apiVersion);
+  });
+});
 
 describe('OTTProvider.partnerId:198', function () {
   let provider, sandbox;
