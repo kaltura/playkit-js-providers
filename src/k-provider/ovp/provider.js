@@ -14,6 +14,7 @@ import Error from '../../util/error/error';
 
 export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject> {
   _filterOptionsConfig: ProviderFilterOptionsObject = {redirectFromEntryId: true};
+  _anonymousKs: string;
   /**
    * @constructor
    * @param {ProviderOptionsObject} options - provider options
@@ -25,10 +26,19 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     OVPConfiguration.set(options.env);
     this._setFilterOptionsConfig(options.filterOptions);
     this._networkRetryConfig = Object.assign(this._networkRetryConfig, options.networkRetryParameters);
+    this._anonymousKs = '';
   }
 
   get env() {
     return OVPConfiguration.get();
+  }
+
+  get anonymousKs(): string {
+    return this._anonymousKs;
+  }
+
+  set anonymousKs(value: string): void {
+    this._anonymousKs = value;
   }
 
   /**
