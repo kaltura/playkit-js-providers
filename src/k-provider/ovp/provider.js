@@ -89,23 +89,24 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
   }
 
   doRequest(loaders: Array<RequestLoader>, ks?: string): Promise<any> {
-    let theKs: string = ks || this.userKs;
-    const dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, theKs, this._networkRetryConfig);
+    if (ks) {
+      this.ks = ks;
+      this._isAnonymous = false;
+    }
+    const dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, this.userKs, this._networkRetryConfig);
 
     return new Promise((resolve, reject) => {
-      let isKs: boolean = true;
-      if (!theKs) {
-        isKs = false;
-        theKs = '{1:result:ks}';
+      if (!this.userKs) {
         dataLoader.add(OVPSessionLoader, {widgetId: this.widgetId});
       }
       loaders.forEach((loaderRequest: RequestLoader) => {
-        if (!isKs) loaderRequest.params.ks = theKs;
+        if (!this.userKs) loaderRequest.params.ks = '{1:result:ks}';
         dataLoader.add(loaderRequest.loader, loaderRequest.params);
       });
       return dataLoader.fetchData().then(
         response => {
           try {
+            this._parseKsFromResponse(response);
             resolve(response);
           } catch (err) {
             reject(err);
@@ -117,6 +118,26 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
       );
     });
   }
+
+  _parseKsFromResponse(data: Map<string, Function>): string {
+    let ks = '';
+    if (data) {
+      if (data.has(OVPSessionLoader.id)) {
+        const sessionLoader = data.get(OVPSessionLoader.id);
+        if (sessionLoader && sessionLoader.response) {
+          ks = sessionLoader.response;
+          if (this.widgetId !== this.defaultWidgetId) {
+            this.ks = ks;
+            this._isAnonymous = false;
+          } else {
+            this.anonymousKs = ks;
+          }
+        }
+      }
+    }
+    return ks;
+  }
+
   _getEntryRedirectFilter(mediaInfo: Object): boolean {
     return typeof mediaInfo.redirectFromEntryId === 'boolean'
       ? mediaInfo.redirectFromEntryId
@@ -145,20 +166,11 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     if (this.uiConfId) {
       mediaConfig.session.uiConfId = this.uiConfId;
     }
+
+    const ks = this._parseKsFromResponse(data);
+    ks ? (mediaConfig.session.ks = ks) : (mediaConfig.session.ks = this.ks);
+
     if (data) {
-      if (data.has(OVPSessionLoader.id)) {
-        const sessionLoader = data.get(OVPSessionLoader.id);
-        if (sessionLoader && sessionLoader.response) {
-          mediaConfig.session.ks = sessionLoader.response;
-          if (this.widgetId !== this.defaultWidgetId) {
-            this.ks = mediaConfig.session.ks;
-          } else {
-            this.anonymousKs = mediaConfig.session.ks;
-          }
-        }
-      } else {
-        mediaConfig.session.ks = this.ks;
-      }
       if (data.has(OVPMediaEntryLoader.id)) {
         const mediaLoader = data.get(OVPMediaEntryLoader.id);
         if (mediaLoader && mediaLoader.response) {
