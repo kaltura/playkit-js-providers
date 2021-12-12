@@ -5,6 +5,8 @@ import {MultiRequestResult} from '../../../../src/k-provider/common/multi-reques
 import MultiRequestBuilder from '../../../../src/k-provider/common/multi-request-builder';
 import Error from '../../../../src/util/error/error';
 import OVPConfiguration from '../../../../src/k-provider/ovp/config';
+import OVPMediaEntryLoader from '../../../../src/k-provider/ovp/loaders/media-entry-loader';
+import OVPSessionLoader from '../../../../src/k-provider/ovp/loaders/session-loader';
 
 describe('default configuration', () => {
   const partnerId = 1082342;
@@ -891,5 +893,66 @@ describe('getPlaybackContext', () => {
         done(err);
       }
     );
+  });
+});
+
+describe('doRequest', () => {
+  let provider, params;
+  const partnerId = 1068292;
+  const playerVersion = '1.2.3';
+  const ks =
+    'NDIxYjc3MmJhMmI1YTBhYTc1N2U2ODI0NjA4MWU0YzVhNGI3ZDQzM3wxMDY4MjkyOzEwNjgyOTI7MTYzOTM5NDk2OTsyOzE2MzkzMDg1NjkuOTg1NTtwaGlsbC5wcmljZUBkaXNuZXkuY29tOyosZGlzYWJsZWVudGl0bGVtZW50Ozs';
+
+  beforeEach(() => {
+    provider = new OVPProvider({partnerId: partnerId}, playerVersion);
+    params = {
+      referenceId: '',
+      entryId: '1_rwbj3j0a',
+      redirectFromEntryId: true,
+      ks: ''
+    };
+  });
+
+  it('should add session request to the multirequest and use that KS', done => {
+    provider
+      .doRequest([{loader: OVPMediaEntryLoader, params}])
+      .then((data: Map<string, any>) => {
+        data.has(OVPSessionLoader.id).should.be.true;
+        data.get(OVPSessionLoader.id).response.should.not.equal('');
+        provider.isAnonymous.should.be.true;
+        done();
+      })
+      .catch(err => {
+        done(err);
+      });
+  });
+
+  it('should use KS from provider and not add session service', done => {
+    params.ks = ks;
+    provider.ks = ks;
+    provider
+      .doRequest([{loader: OVPMediaEntryLoader, params}])
+      .then((data: Map<string, any>) => {
+        data.has(OVPSessionLoader.id).should.be.false;
+        done();
+      })
+      .catch(err => {
+        done(err);
+      });
+  });
+
+  it('should use external KS and not add session service', done => {
+    params.ks = ks;
+    provider
+      .doRequest([{loader: OVPMediaEntryLoader, params}], ks)
+      .then((data: Map<string, any>) => {
+        provider.ks.should.equals(ks);
+        data.has(OVPSessionLoader.id).should.be.false;
+        provider.isAnonymous.should.be.false;
+        done();
+      })
+      .catch(err => {
+        done(err);
+      });
   });
 });
