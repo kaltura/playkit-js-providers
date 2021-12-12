@@ -76,11 +76,24 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
 
   doRequest(loaders: Array<RequestLoader>, externalKS?: string): Promise<any> {
     let ks: string = externalKS || this.ks || this.anonymousKS;
-    const promise = ks ? Promise.resolve() : this._doKsRequest();
-    return promise.then(returnedKs => {
-      if (returnedKs) {
-        ks = returnedKs;
-      }
+    if (!ks) {
+      return new Promise((resolve, reject) => {
+        this._doKsRequest().then(returnedKS => {
+          this._doRequest(loaders, returnedKS).then(
+            response => {
+              try {
+                resolve(response);
+              } catch (err) {
+                reject(err);
+              }
+            },
+            err => {
+              reject(err);
+            }
+          );
+        });
+      });
+    } else {
       return new Promise((resolve, reject) => {
         this._doRequest(loaders, ks).then(
           response => {
@@ -95,7 +108,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
           }
         );
       });
-    });
+    }
   }
 
   _doRequest(loaders: Array<RequestLoader>, ks: string): Promise<any> {
