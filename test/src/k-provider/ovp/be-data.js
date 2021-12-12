@@ -3644,6 +3644,18 @@ const EntryWithBumperWitNoSources = {
   ]
 };
 
+const Session = {
+  response: [
+    {
+      ks:
+        'NDIxYjc3MmJhMmI1YTBhYTc1N2U2ODI0NjA4MWU0YzVhNGI3ZDQzM3wxMDY4MjkyOzEwNjgyOTI7MTYzOTM5NDk2OTsyOzE2MzkzMDg1NjkuOTg1NTtwaGlsbC5wcmljZUBkaXNuZXkuY29tOyosZGlzYWJsZWVudGl0bGVtZW50Ozs',
+      objectType: 'KalturaStartWidgetSessionResponse',
+      partnerId: 1068292,
+      userId: 0
+    }
+  ]
+};
+
 export {
   AnonymousMocEntryWithoutUIConfNoDrmData,
   BlockActionEntry,
@@ -3667,5 +3679,6 @@ export {
   EntryWithBumperWitNoSources,
   EntryWithBumper as EntryExternalCaptionNoKS,
   EntryWithBumperWithKs as EntryExternalCaptionWithKS,
-  EntryDirectWithKs
+  EntryDirectWithKs,
+  Session
 };

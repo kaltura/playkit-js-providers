@@ -897,7 +897,7 @@ describe('getPlaybackContext', () => {
 });
 
 describe('doRequest', () => {
-  let provider, params;
+  let provider, params, sandbox;
   const partnerId = 1068292;
   const playerVersion = '1.2.3';
   const ks =
@@ -913,12 +913,23 @@ describe('doRequest', () => {
     };
   });
 
+  afterEach(() => {
+    sandbox.restore();
+    MultiRequestBuilder.prototype.execute.restore();
+  });
+
   it('should add session request to the multirequest and use that KS', done => {
+    sandbox = sinon.createSandbox();
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
+      return new Promise(resolve => {
+        resolve({response: new MultiRequestResult(BE_DATA.Session.response)});
+      });
+    });
     provider
       .doRequest([{loader: OVPMediaEntryLoader, params}])
       .then((data: Map<string, any>) => {
         data.has(OVPSessionLoader.id).should.be.true;
-        data.get(OVPSessionLoader.id).response.should.not.equal('');
+        data.get(OVPSessionLoader.id).response.should.equal(ks);
         provider.isAnonymous.should.be.true;
         done();
       })
@@ -927,7 +938,13 @@ describe('doRequest', () => {
       });
   });
 
-  it('should use KS from provider and not add session service', done => {
+  it('should use KS from provider', done => {
+    sandbox = sinon.createSandbox();
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
+      return new Promise(resolve => {
+        resolve({response: {}});
+      });
+    });
     params.ks = ks;
     provider.ks = ks;
     provider
@@ -941,7 +958,33 @@ describe('doRequest', () => {
       });
   });
 
-  it('should use external KS and not add session service', done => {
+  it('should use anonymous KS from provider', done => {
+    sandbox = sinon.createSandbox();
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
+      return new Promise(resolve => {
+        resolve({response: {}});
+      });
+    });
+    params.ks = ks;
+    provider.anonymousKs = ks;
+    provider
+      .doRequest([{loader: OVPMediaEntryLoader, params}])
+      .then((data: Map<string, any>) => {
+        data.has(OVPSessionLoader.id).should.be.false;
+        done();
+      })
+      .catch(err => {
+        done(err);
+      });
+  });
+
+  it('should use external KS', done => {
+    sandbox = sinon.createSandbox();
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
+      return new Promise(resolve => {
+        resolve({response: {}});
+      });
+    });
     params.ks = ks;
     provider
       .doRequest([{loader: OVPMediaEntryLoader, params}], ks)
