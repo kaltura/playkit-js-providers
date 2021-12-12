@@ -121,17 +121,15 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
 
   _parseKsFromResponse(data: Map<string, Function>): string {
     let ks = '';
-    if (data) {
-      if (data.has(OVPSessionLoader.id)) {
-        const sessionLoader = data.get(OVPSessionLoader.id);
-        if (sessionLoader && sessionLoader.response) {
-          ks = sessionLoader.response;
-          if (this.widgetId !== this.defaultWidgetId) {
-            this.ks = ks;
-            this._isAnonymous = false;
-          } else {
-            this.anonymousKs = ks;
-          }
+    if (data && data.has(OVPSessionLoader.id)) {
+      const sessionLoader = data.get(OVPSessionLoader.id);
+      if (sessionLoader && sessionLoader.response) {
+        ks = sessionLoader.response;
+        if (this.widgetId !== this.defaultWidgetId) {
+          this.ks = ks;
+          this._isAnonymous = false;
+        } else {
+          this.anonymousKs = ks;
         }
       }
     }
