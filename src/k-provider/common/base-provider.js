@@ -7,7 +7,6 @@ export default class BaseProvider<MI> {
   _partnerId: number;
   _widgetId: ?string;
   _ks: string;
-  _anonymousKS: string;
   _uiConfId: ?number;
   _dataLoader: DataLoaderManager;
   _playerVersion: string;
@@ -43,14 +42,6 @@ export default class BaseProvider<MI> {
     this._ks = value;
   }
 
-  get anonymousKS(): string {
-    return this._anonymousKS;
-  }
-
-  set anonymousKS(value: string): void {
-    this._anonymousKS = value;
-  }
-
   get playerVersion(): string {
     return this._playerVersion;
   }
@@ -66,7 +57,6 @@ export default class BaseProvider<MI> {
     this._uiConfId = options.uiConfId;
     this._isAnonymous = !options.ks;
     this._ks = options.ks || '';
-    this._anonymousKS = '';
     this._playerVersion = playerVersion;
   }
 
