@@ -49,7 +49,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
       const entryId = mediaInfo.entryId;
       const referenceId = mediaInfo.referenceId;
       if (entryId || referenceId) {
-        let ks: string = this.ks;
+        let ks: string = this.ks || this.anonymousKs;
         if (!ks) {
           ks = '{1:result:ks}';
           this._dataLoader.add(OVPSessionLoader, {widgetId: this.widgetId});
@@ -74,11 +74,19 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     });
   }
 
-  doRequest(loaders: Array<RequestLoader>): Promise<any> {
-    const dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, this.ks, this._networkRetryConfig);
+  doRequest(loaders: Array<RequestLoader>, ks?: string): Promise<any> {
+    let theKs: string = ks || this.ks || this.anonymousKs;
+    const dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, theKs, this._networkRetryConfig);
 
     return new Promise((resolve, reject) => {
+      let isKs: boolean = true;
+      if (!theKs) {
+        isKs = false;
+        theKs = '{1:result:ks}';
+        dataLoader.add(OVPSessionLoader, {widgetId: this.widgetId});
+      }
       loaders.forEach((loaderRequest: RequestLoader) => {
+        if (!isKs) loaderRequest.params.ks = theKs;
         dataLoader.add(loaderRequest.loader, loaderRequest.params);
       });
       return dataLoader.fetchData().then(
@@ -130,6 +138,8 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
           mediaConfig.session.ks = sessionLoader.response;
           if (this.widgetId !== this.defaultWidgetId) {
             this.ks = mediaConfig.session.ks;
+          } else {
+            this.anonymousKs = mediaConfig.session.ks;
           }
         }
       } else {
@@ -190,7 +200,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     return new Promise((resolve, reject) => {
       const playlistId = playlistInfo.playlistId;
       if (playlistId) {
-        let ks: string = this.ks;
+        let ks: string = this.ks || this.anonymousKs;
         if (!ks) {
           ks = '{1:result:ks}';
           this._dataLoader.add(OVPSessionLoader, {widgetId: this.widgetId});
@@ -245,7 +255,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     return new Promise((resolve, reject) => {
       const entries = entryListInfo.entries;
       if (entries && entries.length) {
-        let ks: string = this.ks;
+        let ks: string = this.ks || this.anonymousKs;
         if (!ks) {
           ks = '{1:result:ks}';
           this._dataLoader.add(OVPSessionLoader, {widgetId: this.widgetId});
