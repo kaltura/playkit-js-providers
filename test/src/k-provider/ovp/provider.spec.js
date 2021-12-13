@@ -969,6 +969,7 @@ describe('doRequest', () => {
     provider
       .doRequest([{loader: OVPMediaEntryLoader, params}], ks)
       .then((data: Map<string, any>) => {
+        provider.ks.should.equal('');
         data.has(OVPSessionLoader.id).should.be.false;
         provider.isAnonymous.should.be.true;
         done();
