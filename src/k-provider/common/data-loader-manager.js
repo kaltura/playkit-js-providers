@@ -54,7 +54,7 @@ export default class DataLoaderManager {
       // Add requests to multiRequest queue
       requests.forEach(request => {
         request.params = request.params || {};
-        request.params.ks = params.ks || ks;
+        request.params.ks = request.params.ks || ks;
         this._multiRequest.add(request);
       });
       // Create range array of current execution_loader requests
