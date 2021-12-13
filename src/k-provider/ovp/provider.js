@@ -83,8 +83,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
         dataLoader.add(OVPSessionLoader, {widgetId: this.widgetId});
       }
       loaders.forEach((loaderRequest: RequestLoader) => {
-        loaderRequest.params.ks = theKs || '{1:result:ks}';
-        dataLoader.add(loaderRequest.loader, loaderRequest.params);
+        dataLoader.add(loaderRequest.loader, loaderRequest.params, theKs || '{1:result:ks}');
       });
       return dataLoader.fetchData().then(
         response => {
