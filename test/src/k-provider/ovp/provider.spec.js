@@ -931,6 +931,10 @@ describe('doRequest', () => {
         data.has(OVPSessionLoader.id).should.be.true;
         data.get(OVPSessionLoader.id).response.should.equal(ks);
         provider.isAnonymous.should.be.true;
+        data.has(OVPMediaEntryLoader.id).should.be.true;
+        const mediaLoader = data.get(OVPMediaEntryLoader.id);
+        const request = mediaLoader._requests.find(request => request.service === 'baseEntry');
+        request.params.ks.should.equal('{1:result:ks}');
         done();
       })
       .catch(err => {
@@ -951,6 +955,9 @@ describe('doRequest', () => {
       .doRequest([{loader: OVPMediaEntryLoader, params}])
       .then((data: Map<string, any>) => {
         data.has(OVPSessionLoader.id).should.be.false;
+        const mediaLoader = data.get(OVPMediaEntryLoader.id);
+        const request = mediaLoader._requests.find(request => request.service === 'baseEntry');
+        request.params.ks.should.equal(provider.ks);
         done();
       })
       .catch(err => {
@@ -972,6 +979,9 @@ describe('doRequest', () => {
         provider.ks.should.equal('');
         data.has(OVPSessionLoader.id).should.be.false;
         provider.isAnonymous.should.be.true;
+        const mediaLoader = data.get(OVPMediaEntryLoader.id);
+        const request = mediaLoader._requests.find(request => request.service === 'baseEntry');
+        request.params.ks.should.equal(ks);
         done();
       })
       .catch(err => {
