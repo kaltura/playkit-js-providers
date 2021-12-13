@@ -166,7 +166,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     }
 
     const ks = this._parseKsFromResponse(data);
-    ks ? (mediaConfig.session.ks = ks) : (mediaConfig.session.ks = this.ks);
+    mediaConfig.session.ks = ks ? ks : this.ks;
 
     if (data) {
       if (data.has(OVPMediaEntryLoader.id)) {
@@ -247,6 +247,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
   _parsePlaylistDataFromResponse(data: Map<string, Function>): ProviderPlaylistObject {
     this._logger.debug('Data parsing started');
     const playlistConfig: ProviderPlaylistObject = this._getPlaylistObject();
+    this._parseKsFromResponse(data);
     if (data && data.has(OVPPlaylistLoader.id)) {
       const playlistLoader = data.get(OVPPlaylistLoader.id);
       if (playlistLoader && playlistLoader.response) {
@@ -303,6 +304,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
   _parseEntryListDataFromResponse(data: Map<string, Function>): ProviderPlaylistObject {
     this._logger.debug('Data parsing started');
     const playlistConfig: ProviderPlaylistObject = this._getPlaylistObject();
+    this._parseKsFromResponse(data);
     if (data && data.has(OVPEntryListLoader.id)) {
       const playlistLoader = data.get(OVPEntryListLoader.id);
       if (playlistLoader && playlistLoader.response) {
