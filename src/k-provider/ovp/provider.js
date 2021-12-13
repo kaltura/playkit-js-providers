@@ -83,13 +83,12 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
         dataLoader.add(OVPSessionLoader, {widgetId: this.widgetId});
       }
       loaders.forEach((loaderRequest: RequestLoader) => {
-        loaderRequest.params.ks = this.ks || '{1:result:ks}';
+        loaderRequest.params.ks = theKs || '{1:result:ks}';
         dataLoader.add(loaderRequest.loader, loaderRequest.params);
       });
       return dataLoader.fetchData().then(
         response => {
           try {
-            this._parseKsFromResponse(response);
             resolve(response);
           } catch (err) {
             reject(err);
@@ -100,21 +99,6 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
         }
       );
     });
-  }
-
-  _parseKsFromResponse(data: Map<string, Function>): string {
-    let ks = '';
-    if (data && data.has(OVPSessionLoader.id)) {
-      const sessionLoader = data.get(OVPSessionLoader.id);
-      if (sessionLoader && sessionLoader.response) {
-        ks = sessionLoader.response;
-        if (this.widgetId !== this.defaultWidgetId) {
-          this.ks = ks;
-          this._isAnonymous = false;
-        }
-      }
-    }
-    return ks;
   }
 
   _getEntryRedirectFilter(mediaInfo: Object): boolean {
@@ -146,10 +130,18 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
       mediaConfig.session.uiConfId = this.uiConfId;
     }
 
-    const ks = this._parseKsFromResponse(data);
-    mediaConfig.session.ks = ks ? ks : this.ks;
-
     if (data) {
+      if (data.has(OVPSessionLoader.id)) {
+        const sessionLoader = data.get(OVPSessionLoader.id);
+        if (sessionLoader && sessionLoader.response) {
+          mediaConfig.session.ks = sessionLoader.response;
+          if (this.widgetId !== this.defaultWidgetId) {
+            this.ks = mediaConfig.session.ks;
+          }
+        }
+      } else {
+        mediaConfig.session.ks = this.ks;
+      }
       if (data.has(OVPMediaEntryLoader.id)) {
         const mediaLoader = data.get(OVPMediaEntryLoader.id);
         if (mediaLoader && mediaLoader.response) {
@@ -228,7 +220,6 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
   _parsePlaylistDataFromResponse(data: Map<string, Function>): ProviderPlaylistObject {
     this._logger.debug('Data parsing started');
     const playlistConfig: ProviderPlaylistObject = this._getPlaylistObject();
-    this._parseKsFromResponse(data);
     if (data && data.has(OVPPlaylistLoader.id)) {
       const playlistLoader = data.get(OVPPlaylistLoader.id);
       if (playlistLoader && playlistLoader.response) {
@@ -285,7 +276,6 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
   _parseEntryListDataFromResponse(data: Map<string, Function>): ProviderPlaylistObject {
     this._logger.debug('Data parsing started');
     const playlistConfig: ProviderPlaylistObject = this._getPlaylistObject();
-    this._parseKsFromResponse(data);
     if (data && data.has(OVPEntryListLoader.id)) {
       const playlistLoader = data.get(OVPEntryListLoader.id);
       if (playlistLoader && playlistLoader.response) {
