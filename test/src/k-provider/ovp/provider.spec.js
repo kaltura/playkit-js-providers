@@ -896,7 +896,7 @@ describe('getPlaybackContext', () => {
   });
 });
 
-describe.only('doRequest', () => {
+describe('doRequest', () => {
   let provider, params, sandbox;
   const partnerId = 1068292;
   const playerVersion = '1.2.3';
