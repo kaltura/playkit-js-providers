@@ -50,8 +50,10 @@ export default class DataLoaderManager {
       // Get the requests
       let requests = execution_loader.requests;
       this._multiRequest.retryConfig = this._networkRetryConfig;
-      // Add requests to muktiRequest queue
+      // Add requests to multiRequest queue
       requests.forEach(request => {
+        request.params = request.params || {};
+        request.params.ks = request.params.ks || params.ks;
         this._multiRequest.add(request);
       });
       // Create range array of current execution_loader requests
