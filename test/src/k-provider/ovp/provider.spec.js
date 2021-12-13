@@ -896,7 +896,7 @@ describe('getPlaybackContext', () => {
   });
 });
 
-describe('doRequest', () => {
+describe.only('doRequest', () => {
   let provider, params, sandbox;
   const partnerId = 1068292;
   const playerVersion = '1.2.3';
@@ -969,9 +969,8 @@ describe('doRequest', () => {
     provider
       .doRequest([{loader: OVPMediaEntryLoader, params}], ks)
       .then((data: Map<string, any>) => {
-        provider.ks.should.equals(ks);
         data.has(OVPSessionLoader.id).should.be.false;
-        provider.isAnonymous.should.be.false;
+        provider.isAnonymous.should.be.true;
         done();
       })
       .catch(err => {
