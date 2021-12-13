@@ -958,26 +958,6 @@ describe('doRequest', () => {
       });
   });
 
-  it('should use anonymous KS from provider', done => {
-    sandbox = sinon.createSandbox();
-    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
-      return new Promise(resolve => {
-        resolve({response: {}});
-      });
-    });
-    params.ks = ks;
-    provider.anonymousKs = ks;
-    provider
-      .doRequest([{loader: OVPMediaEntryLoader, params}])
-      .then((data: Map<string, any>) => {
-        data.has(OVPSessionLoader.id).should.be.false;
-        done();
-      })
-      .catch(err => {
-        done(err);
-      });
-  });
-
   it('should use external KS', done => {
     sandbox = sinon.createSandbox();
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {

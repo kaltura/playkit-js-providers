@@ -14,7 +14,6 @@ import Error from '../../util/error/error';
 
 export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject> {
   _filterOptionsConfig: ProviderFilterOptionsObject = {redirectFromEntryId: true};
-  _anonymousKs: string;
   /**
    * @constructor
    * @param {ProviderOptionsObject} options - provider options
@@ -26,23 +25,10 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     OVPConfiguration.set(options.env);
     this._setFilterOptionsConfig(options.filterOptions);
     this._networkRetryConfig = Object.assign(this._networkRetryConfig, options.networkRetryParameters);
-    this._anonymousKs = '';
   }
 
   get env() {
     return OVPConfiguration.get();
-  }
-
-  get anonymousKs(): string {
-    return this._anonymousKs;
-  }
-
-  set anonymousKs(value: string): void {
-    this._anonymousKs = value;
-  }
-
-  get userKs(): string {
-    return this.ks || this._anonymousKs;
   }
 
   /**
@@ -58,12 +44,12 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     if (this.widgetId !== this.defaultWidgetId) {
       this._isAnonymous = false;
     }
-    this._dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, this.userKs, this._networkRetryConfig);
+    this._dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, this.ks, this._networkRetryConfig);
     return new Promise((resolve, reject) => {
       const entryId = mediaInfo.entryId;
       const referenceId = mediaInfo.referenceId;
       if (entryId || referenceId) {
-        let ks: string = this.userKs;
+        let ks: string = this.ks;
         if (!ks) {
           ks = '{1:result:ks}';
           this._dataLoader.add(OVPSessionLoader, {widgetId: this.widgetId});
@@ -89,18 +75,15 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
   }
 
   doRequest(loaders: Array<RequestLoader>, ks?: string): Promise<any> {
-    if (ks) {
-      this.ks = ks;
-      this._isAnonymous = false;
-    }
-    const dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, this.userKs, this._networkRetryConfig);
+    let theKs: string = ks || this.ks;
+    const dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, theKs, this._networkRetryConfig);
 
     return new Promise((resolve, reject) => {
-      if (!this.userKs) {
+      if (!theKs) {
         dataLoader.add(OVPSessionLoader, {widgetId: this.widgetId});
       }
       loaders.forEach((loaderRequest: RequestLoader) => {
-        if (!this.userKs) loaderRequest.params.ks = '{1:result:ks}';
+        loaderRequest.params.ks = this.ks || '{1:result:ks}';
         dataLoader.add(loaderRequest.loader, loaderRequest.params);
       });
       return dataLoader.fetchData().then(
@@ -128,8 +111,6 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
         if (this.widgetId !== this.defaultWidgetId) {
           this.ks = ks;
           this._isAnonymous = false;
-        } else {
-          this.anonymousKs = ks;
         }
       }
     }
@@ -220,11 +201,11 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     if (this.widgetId !== this.defaultWidgetId) {
       this._isAnonymous = false;
     }
-    this._dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, this.userKs, this._networkRetryConfig);
+    this._dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, this.ks, this._networkRetryConfig);
     return new Promise((resolve, reject) => {
       const playlistId = playlistInfo.playlistId;
       if (playlistId) {
-        let ks: string = this.userKs;
+        let ks: string = this.ks;
         if (!ks) {
           ks = '{1:result:ks}';
           this._dataLoader.add(OVPSessionLoader, {widgetId: this.widgetId});
@@ -276,11 +257,11 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     if (this.widgetId !== this.defaultWidgetId) {
       this._isAnonymous = false;
     }
-    this._dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, this.userKs, this._networkRetryConfig);
+    this._dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, this.ks, this._networkRetryConfig);
     return new Promise((resolve, reject) => {
       const entries = entryListInfo.entries;
       if (entries && entries.length) {
-        let ks: string = this.userKs;
+        let ks: string = this.ks;
         if (!ks) {
           ks = '{1:result:ks}';
           this._dataLoader.add(OVPSessionLoader, {widgetId: this.widgetId});
