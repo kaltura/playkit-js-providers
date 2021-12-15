@@ -5,6 +5,8 @@ import {MultiRequestResult} from '../../../../src/k-provider/common/multi-reques
 import MultiRequestBuilder from '../../../../src/k-provider/common/multi-request-builder';
 import Error from '../../../../src/util/error/error';
 import OVPConfiguration from '../../../../src/k-provider/ovp/config';
+import OVPMediaEntryLoader from '../../../../src/k-provider/ovp/loaders/media-entry-loader';
+import OVPSessionLoader from '../../../../src/k-provider/ovp/loaders/session-loader';
 
 describe('default configuration', () => {
   const partnerId = 1082342;
@@ -891,5 +893,95 @@ describe('getPlaybackContext', () => {
         done(err);
       }
     );
+  });
+});
+
+describe('doRequest', () => {
+  let provider, params, sandbox;
+  const partnerId = 1068292;
+  const playerVersion = '1.2.3';
+  const ks =
+    'NDIxYjc3MmJhMmI1YTBhYTc1N2U2ODI0NjA4MWU0YzVhNGI3ZDQzM3wxMDY4MjkyOzEwNjgyOTI7MTYzOTM5NDk2OTsyOzE2MzkzMDg1NjkuOTg1NTtwaGlsbC5wcmljZUBkaXNuZXkuY29tOyosZGlzYWJsZWVudGl0bGVtZW50Ozs';
+
+  beforeEach(() => {
+    provider = new OVPProvider({partnerId: partnerId}, playerVersion);
+    params = {
+      referenceId: '',
+      entryId: '1_rwbj3j0a',
+      redirectFromEntryId: true,
+      ks: ''
+    };
+  });
+
+  afterEach(() => {
+    sandbox.restore();
+    MultiRequestBuilder.prototype.execute.restore();
+  });
+
+  it('should add session request to the multirequest and use that KS', done => {
+    sandbox = sinon.createSandbox();
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
+      return new Promise(resolve => {
+        resolve({response: new MultiRequestResult(BE_DATA.Session.response)});
+      });
+    });
+    provider
+      .doRequest([{loader: OVPMediaEntryLoader, params}])
+      .then((data: Map<string, any>) => {
+        data.has(OVPSessionLoader.id).should.be.true;
+        data.get(OVPSessionLoader.id).response.should.equal(ks);
+        provider.isAnonymous.should.be.true;
+        const mediaLoader = data.get(OVPMediaEntryLoader.id);
+        mediaLoader._requests[1].params.ks.should.equal('{1:result:ks}');
+        done();
+      })
+      .catch(err => {
+        done(err);
+      });
+  });
+
+  it('should use KS from provider', done => {
+    sandbox = sinon.createSandbox();
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
+      return new Promise(resolve => {
+        resolve({response: {}});
+      });
+    });
+    params.ks = ks;
+    provider.ks = ks;
+    provider
+      .doRequest([{loader: OVPMediaEntryLoader, params}])
+      .then((data: Map<string, any>) => {
+        data.has(OVPSessionLoader.id).should.be.false;
+        const mediaLoader = data.get(OVPMediaEntryLoader.id);
+        mediaLoader._requests[0].params.ks.should.equal(provider.ks);
+        done();
+      })
+      .catch(err => {
+        done(err);
+      });
+  });
+
+  it('should use external KS', done => {
+    sandbox = sinon.createSandbox();
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
+      return new Promise(resolve => {
+        resolve({response: {}});
+      });
+    });
+    params.ks = ks;
+    provider
+      .doRequest([{loader: OVPMediaEntryLoader, params}], ks)
+      .then((data: Map<string, any>) => {
+        provider.ks.should.equal('');
+        data.has(OVPSessionLoader.id).should.be.false;
+        provider.isAnonymous.should.be.true;
+        const mediaLoader = data.get(OVPMediaEntryLoader.id);
+        mediaLoader._requests[0].params.ks.should.equal(ks);
+        done();
+      })
+      .catch(err => {
+        done(err);
+      });
   });
 });
