@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.32.0](https://github.com/kaltura/playkit-js-providers/compare/v2.31.0...v2.32.0) (2021-12-21)
+
+
+### Features
+
+* **FEC-11608:** Provider - Expose default service Url ([#157](https://github.com/kaltura/playkit-js-providers/issues/157)) ([42c5cd9](https://github.com/kaltura/playkit-js-providers/commit/42c5cd9))
+* **FEC-11696:** add ks paramater in doRequest ([#159](https://github.com/kaltura/playkit-js-providers/issues/159)) ([4f0f245](https://github.com/kaltura/playkit-js-providers/commit/4f0f245))
+
+
+### Tests
+
+* add unit tests for default config ([#158](https://github.com/kaltura/playkit-js-providers/issues/158)) ([4934a1d](https://github.com/kaltura/playkit-js-providers/commit/4934a1d))
+
+
+
 ## [2.31.0](https://github.com/kaltura/playkit-js-providers/compare/v2.30.0...v2.31.0) (2021-11-10)
 
 
