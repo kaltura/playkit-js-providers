@@ -1,3 +1,7 @@
+export {KalturaUserEntryListResponse} from './kaltura-user-entry-list-response';
+export {KalturaUserEntry} from './kaltura-user-entry';
+export {KalturaQuizResponse} from './kaltura-quiz-response';
+export {KalturaQuiz} from './kaltura-quiz';
 export {KalturaBaseEntryListResponse} from './kaltura-base-entry-list-response';
 export {KalturaMediaEntry} from './kaltura-media-entry';
 export {KalturaAccessControlModifyRequestHostRegexAction} from './kaltura-access-control-modify-request-host-regex-action';
