@@ -1,3 +1,5 @@
+import BaseServiceResult from '../../common/base-service-result';
+
 export {KalturaBaseEntryListResponse} from './kaltura-base-entry-list-response';
 export {KalturaMediaEntry} from './kaltura-media-entry';
 export {KalturaAccessControlModifyRequestHostRegexAction} from './kaltura-access-control-modify-request-host-regex-action';
@@ -13,3 +15,4 @@ export {KalturaRuleAction} from './kaltura-rule-action';
 export {KalturaUIConfResponse} from './kaltura-ui-conf-response';
 export {KalturaDrmPlaybackPluginData} from '../../common/response-types/kaltura-drm-playback-plugin-data';
 export {KalturaAccessControlMessage} from '../../common/response-types/kaltura-access-control-message';
+export {BaseServiceResult};
