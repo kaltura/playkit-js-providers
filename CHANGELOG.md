@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.33.0](https://github.com/kaltura/playkit-js-providers/compare/v2.32.0...v2.33.0) (2022-02-16)
+
+
+### Bug Fixes
+
+* **FEV-1164:** export ServiceResult as part of ResponseTypes  ([#165](https://github.com/kaltura/playkit-js-providers/issues/165)) ([7444a2b](https://github.com/kaltura/playkit-js-providers/commit/7444a2b))
+
+
+### Features
+
+* **FEV-1164:** export ServiceResult ([#162](https://github.com/kaltura/playkit-js-providers/issues/162)) ([20a64cb](https://github.com/kaltura/playkit-js-providers/commit/20a64cb))
+
+
+
 ## [2.32.0](https://github.com/kaltura/playkit-js-providers/compare/v2.31.0...v2.32.0) (2021-12-21)
 
 
