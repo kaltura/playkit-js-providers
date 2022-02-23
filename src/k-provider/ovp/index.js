@@ -10,4 +10,4 @@ declare var __NAME__: string;
 const NAME = __NAME__ + '-ovp';
 const VERSION = __VERSION__;
 
-export {OVPProvider as Provider, OVPProviderParser, NAME, VERSION, RequestBuilder, ResponseTypes};
+export {OVPProvider as Provider, OVPProviderParser as ProviderParser, NAME, VERSION, RequestBuilder, ResponseTypes};
