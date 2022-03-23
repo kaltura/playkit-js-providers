@@ -1238,6 +1238,76 @@ const EntryWithNoBumper = {
   plugins: {}
 };
 
+const EntryOfPartner0 = {
+  session: {
+    isAnonymous: false,
+    partnerId: 0,
+    ks:
+      'djJ8MTY0NTE2MXzvlA0ktfU5h5Q_sBfvomsONiVGDO4zRRaJHvTBmnxd9eGmGQq3yvwzedJ8elff4L85A8hbCNE5rhDZsPMqDBFT_cfr1ytLeTLyEhS_ZjyYzEpZWUxzrsXjvgiSo9np4Y9H1pH6avyV4TpknfDDX20H59wjh3QhpZRn3DLryzgoTQ'
+  },
+  sources: {
+    hls: [
+      {
+        id: '0_pi55vv3r_13942,applehttp',
+        url:
+          'https://cdnapisec.kaltura.com/p/0/sp/000/playManifest/entryId/0_pi55vv3r/protocol/https/format/applehttp/flavorIds/0_6gg99kvm/ks/djJ8MTY0NTE2MXzvlA0ktfU5h5Q_sBfvomsONiVGDO4zRRaJHvTBmnxd9eGmGQq3yvwzedJ8elff4L85A8hbCNE5rhDZsPMqDBFT_cfr1ytLeTLyEhS_ZjyYzEpZWUxzrsXjvgiSo9np4Y9H1pH6avyV4TpknfDDX20H59wjh3QhpZRn3DLryzgoTQ/a.m3u8',
+        mimetype: 'application/x-mpegURL'
+      },
+      {
+        id: '0_pi55vv3r_13952,applehttp',
+        url:
+          'https://cdnapisec.kaltura.com/p/0/sp/000/playManifest/entryId/0_pi55vv3r/protocol/https/format/applehttp/flavorIds/0_6gg99kvm/ks/djJ8MTY0NTE2MXzvlA0ktfU5h5Q_sBfvomsONiVGDO4zRRaJHvTBmnxd9eGmGQq3yvwzedJ8elff4L85A8hbCNE5rhDZsPMqDBFT_cfr1ytLeTLyEhS_ZjyYzEpZWUxzrsXjvgiSo9np4Y9H1pH6avyV4TpknfDDX20H59wjh3QhpZRn3DLryzgoTQ/a.m3u8',
+        mimetype: 'application/x-mpegURL'
+      },
+      {
+        id: '0_pi55vv3r_21633,applehttp',
+        url:
+          'https://cdnapisec.kaltura.com/p/0/sp/000/playManifest/entryId/0_pi55vv3r/protocol/https/format/applehttp/flavorIds/0_6gg99kvm/ks/djJ8MTY0NTE2MXzvlA0ktfU5h5Q_sBfvomsONiVGDO4zRRaJHvTBmnxd9eGmGQq3yvwzedJ8elff4L85A8hbCNE5rhDZsPMqDBFT_cfr1ytLeTLyEhS_ZjyYzEpZWUxzrsXjvgiSo9np4Y9H1pH6avyV4TpknfDDX20H59wjh3QhpZRn3DLryzgoTQ/a.m3u8',
+        mimetype: 'application/x-mpegURL'
+      }
+    ],
+    dash: [
+      {
+        id: '0_pi55vv3r_4662,mpegdash',
+        url:
+          'https://cdnapisec.kaltura.com/p/0/sp/000/playManifest/entryId/0_pi55vv3r/protocol/https/format/mpegdash/flavorIds/0_6gg99kvm/ks/djJ8MTY0NTE2MXzvlA0ktfU5h5Q_sBfvomsONiVGDO4zRRaJHvTBmnxd9eGmGQq3yvwzedJ8elff4L85A8hbCNE5rhDZsPMqDBFT_cfr1ytLeTLyEhS_ZjyYzEpZWUxzrsXjvgiSo9np4Y9H1pH6avyV4TpknfDDX20H59wjh3QhpZRn3DLryzgoTQ/a.mpd',
+        mimetype: 'application/dash+xml'
+      },
+      {
+        id: '0_pi55vv3r_12972,mpegdash',
+        url:
+          'https://cdnapisec.kaltura.com/p/0/sp/000/playManifest/entryId/0_pi55vv3r/protocol/https/format/mpegdash/flavorIds/0_6gg99kvm/ks/djJ8MTY0NTE2MXzvlA0ktfU5h5Q_sBfvomsONiVGDO4zRRaJHvTBmnxd9eGmGQq3yvwzedJ8elff4L85A8hbCNE5rhDZsPMqDBFT_cfr1ytLeTLyEhS_ZjyYzEpZWUxzrsXjvgiSo9np4Y9H1pH6avyV4TpknfDDX20H59wjh3QhpZRn3DLryzgoTQ/a.mpd',
+        mimetype: 'application/dash+xml'
+      }
+    ],
+    progressive: [
+      {
+        id: '0_6gg99kvm5642,url',
+        url:
+          'https://cdnapisec.kaltura.com/p/0/sp/000/playManifest/entryId/0_pi55vv3r/protocol/https/format/url/flavorIds/0_6gg99kvm/ks/djJ8MTY0NTE2MXzvlA0ktfU5h5Q_sBfvomsONiVGDO4zRRaJHvTBmnxd9eGmGQq3yvwzedJ8elff4L85A8hbCNE5rhDZsPMqDBFT_cfr1ytLeTLyEhS_ZjyYzEpZWUxzrsXjvgiSo9np4Y9H1pH6avyV4TpknfDDX20H59wjh3QhpZRn3DLryzgoTQ/a.mp4',
+        mimetype: 'video/mp4',
+        bandwidth: 280576,
+        width: 320,
+        height: 240,
+        label: 'Undefined'
+      }
+    ],
+    id: '0_pi55vv3r',
+    duration: 11,
+    type: 'Vod',
+    poster: 'https://cfvod.kaltura.com/p/1645161/sp/164516100/thumbnail/entry_id/0_pi55vv3r/version/100002',
+    dvr: false,
+    vr: null,
+    metadata: {
+      name: 'Titanic in 5 Seconds',
+      description: 'Titanic movie summarized in 5 seconds',
+      tags: 'titanic, short'
+    },
+    captions: []
+  },
+  plugins: {}
+};
+
 export {
   NoPluginsNoDrm,
   RegexAppliedSources,
@@ -1250,5 +1320,6 @@ export {
   WrongUiConfID,
   EntryWithBumper,
   EntryWithBumperWithKs,
-  EntryWithNoBumper
+  EntryWithNoBumper,
+  EntryOfPartner0
 };
