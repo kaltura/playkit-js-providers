@@ -26,7 +26,7 @@ export default class PlaySourceUrlBuilder {
     const {partnerId, entryId, ks, uiConfId, format, protocol, extension, flavorIds} = urlParams;
 
     //verify mandatory params
-    if (!serviceUrlOrigin || !(partnerId || partnerId === 0) || !entryId || !format || !protocol) {
+    if (!serviceUrlOrigin || isNaN(Number.parseInt(partnerId)) || !entryId || !format || !protocol) {
       return '';
     }
 
