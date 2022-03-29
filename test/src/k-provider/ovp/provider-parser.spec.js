@@ -26,7 +26,7 @@ describe('provider parser', function () {
     it('should return a valid adaptive source for a valid input', () => {
       const context = new KalturaPlaybackContext({});
       context.flavorAssets = kalturaDashSourceFlavorAssets;
-      const adaptiveSource = OVPProviderParser._parseAdaptiveSource(kalturaDashSource, context, 'myKS', 'myPid', 1234, 1234);
+      const adaptiveSource = OVPProviderParser._parseAdaptiveSource(kalturaDashSource, context, 'myKS', '4321', 1234, 1234);
       adaptiveSource.should.exist;
       adaptiveSource.id.should.equal('1234_911,mpegdash');
       adaptiveSource.mimetype.should.equal('application/dash+xml');
@@ -35,7 +35,7 @@ describe('provider parser', function () {
     it('should return null if play url is empty', () => {
       const context = new KalturaPlaybackContext({});
       context.flavorAssets = kalturaSourceProtocolMismatchFlavorAssets;
-      const adaptiveSource = OVPProviderParser._parseAdaptiveSource(kalturaSourceProtocolMismatch, context, 'myKS', 'myPid', 1234, 1234);
+      const adaptiveSource = OVPProviderParser._parseAdaptiveSource(kalturaSourceProtocolMismatch, context, 'myKS', 4321, 1234, 1234);
       (adaptiveSource === null).should.be.true;
     });
   });

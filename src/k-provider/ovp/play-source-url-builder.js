@@ -26,7 +26,8 @@ export default class PlaySourceUrlBuilder {
     const {partnerId, entryId, ks, uiConfId, format, protocol, extension, flavorIds} = urlParams;
 
     //verify mandatory params
-    if (!serviceUrlOrigin || !partnerId || !entryId || !format || !protocol) {
+    //$FlowFixMe
+    if (!serviceUrlOrigin || isNaN(Number.parseInt(partnerId)) || !entryId || !format || !protocol) {
       return '';
     }
 

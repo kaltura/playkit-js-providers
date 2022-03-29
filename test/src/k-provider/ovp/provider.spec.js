@@ -348,6 +348,46 @@ describe('OVPProvider.partnerId:1068292', function () {
   });
 });
 
+describe('OVPProvider.partnerId:0', function () {
+  let provider, sandbox;
+  const partnerId = 0;
+  const ks =
+    'djJ8MTY0NTE2MXzvlA0ktfU5h5Q_sBfvomsONiVGDO4zRRaJHvTBmnxd9eGmGQq3yvwzedJ8elff4L85A8hbCNE5rhDZsPMqDBFT_cfr1ytLeTLyEhS_ZjyYzEpZWUxzrsXjvgiSo9np4Y9H1pH6avyV4TpknfDDX20H59wjh3QhpZRn3DLryzgoTQ';
+  const playerVersion = '1.2.3';
+
+  beforeEach(() => {
+    sandbox = sinon.createSandbox();
+    provider = new OVPProvider({partnerId: partnerId, ks: ks}, playerVersion);
+  });
+
+  afterEach(() => {
+    sandbox.restore();
+    MultiRequestBuilder.prototype.execute.restore();
+  });
+
+  it('should return entry', done => {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
+      return new Promise(resolve => {
+        resolve({response: new MultiRequestResult(BE_DATA.Partner0EntryData.response)});
+      });
+    });
+    provider.getMediaConfig({entryId: '0_pi55vv3r'}).then(
+      mediaConfig => {
+        try {
+          let data = JSON.parse(JSON.stringify(MEDIA_CONFIG_DATA.EntryOfPartner0));
+          mediaConfig.should.deep.equal(data);
+          done();
+        } catch (err) {
+          done(err);
+        }
+      },
+      err => {
+        done(err);
+      }
+    );
+  });
+});
+
 describe('getMediaConfig', function () {
   let provider, sandbox;
   const partnerId = 1068292;
