@@ -258,7 +258,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
         }
         const redirectFromEntryId = this._getEntryRedirectFilter(entryListInfo);
         this._dataLoader.add(OVPEntryListLoader, {entries, ks, redirectFromEntryId});
-        this._dataLoader.fetchData().then(
+        this._dataLoader.fetchData(false).then(
           response => {
             resolve(this._parseEntryListDataFromResponse(response));
           },

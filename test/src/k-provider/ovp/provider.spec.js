@@ -797,6 +797,32 @@ describe('getEntryListConfig', function () {
       }
     );
   });
+
+  it('should load a partial playlist by entry list if some requests have an error', done => {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
+      return new Promise(resolve => {
+        resolve({response: new MultiRequestResult([...BE_DATA.PlaylistByEntryList.response, BE_DATA.WrongEntryIDWithoutUIConf.response])});
+      });
+    });
+
+    provider.getEntryListConfig({entries: ['0_nwkp7jtx', {entryId: '0_wifqaipd'}, '0_p8aigvgu'], ks}).then(
+      entryListConfig => {
+        try {
+          entryListConfig.id.should.equal('');
+          entryListConfig.items.length.should.equal(3);
+          entryListConfig.metadata.name.should.equal('');
+          entryListConfig.metadata.description.should.equal('');
+          entryListConfig.poster.should.equal('');
+          done();
+        } catch (err) {
+          done(err);
+        }
+      },
+      err => {
+        done(err);
+      }
+    );
+  });
 });
 
 describe('getPlaybackContext', () => {

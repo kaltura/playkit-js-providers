@@ -30,9 +30,10 @@ export default class MultiRequestBuilder extends RequestBuilder {
   /**
    * Executes a multi request
    * @function execute
+   * @param {boolean} requestsMustSucceed whether all of the requests must succeed or not
    * @returns {Promise} The multirequest execution promise
    */
-  execute(): Promise<Object> {
+  execute(requestsMustSucceed?: boolean): Promise<Object> {
     return new Promise((resolve, reject) => {
       try {
         this.params = JSON.stringify(this.params);
@@ -47,7 +48,7 @@ export default class MultiRequestBuilder extends RequestBuilder {
       }
       this.doHttpRequest().then(
         data => {
-          const multiRequestResult = new MultiRequestResult(data);
+          const multiRequestResult = new MultiRequestResult(data, requestsMustSucceed);
           if (multiRequestResult.success) {
             resolve({
               headers: this.responseHeaders,
@@ -86,21 +87,22 @@ export class MultiRequestResult {
   /**
    * @constructor
    * @param {Object} response data
+   * @param {boolean} requestsMustSucceed whether all of the requests must succeed
    */
-  constructor(response: Object) {
-    this.success = true;
+  constructor(response: Object, requestsMustSucceed?: boolean = true) {
     const result = response.result ? response.result : response;
     const responseArr = Array.isArray(result) ? result : [result];
-    responseArr.forEach(result => {
-      const serviceResult: ServiceResult = new ServiceResult(result);
-      this.results.push(serviceResult);
-      if (serviceResult.hasError) {
-        MultiRequestResult._logger.error(
-          `Service returned an error with error code: ${serviceResult.error.code} and message: ${serviceResult.error.message}.`
-        );
-        this.success = false;
-        return;
-      }
-    });
+
+    this.results = responseArr.map(result => new ServiceResult(result));
+    const errorResults = this.results.filter(serviceResult => serviceResult.hasError);
+
+    if ((requestsMustSucceed && errorResults.length) || errorResults.length === this.results.length) {
+      MultiRequestResult._logger.error(
+        `Service returned an error with error code: ${errorResults[0].error.code} and message: ${errorResults[0].error.message}.`
+      );
+      this.success = false;
+    } else {
+      this.success = true;
+    }
   }
 }
