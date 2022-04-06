@@ -92,16 +92,19 @@ export class MultiRequestResult {
   constructor(response: Object, requestsMustSucceed?: boolean = true) {
     const result = response.result ? response.result : response;
     const responseArr = Array.isArray(result) ? result : [result];
-
-    this.results = responseArr.map(result => new ServiceResult(result));
+    const results = responseArr.map(result => new ServiceResult(result));
     const errorResults = this.results.filter(serviceResult => serviceResult.hasError);
 
     if ((requestsMustSucceed && errorResults.length) || errorResults.length === this.results.length) {
-      MultiRequestResult._logger.error(
-        `Service returned an error with error code: ${errorResults[0].error.code} and message: ${errorResults[0].error.message}.`
-      );
+      errorResults.forEach(serviceResult => {
+        MultiRequestResult._logger.error(
+          `Service returned an error with error code: ${serviceResult.error.code} and message: ${serviceResult.error.message}.`
+        );
+      });
+      this.results = results;
       this.success = false;
     } else {
+      this.results = this.results.filter(serviceResult => !serviceResult.hasError);
       this.success = true;
     }
   }
