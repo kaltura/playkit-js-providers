@@ -95,12 +95,13 @@ export class MultiRequestResult {
     const results = responseArr.map(result => new ServiceResult(result));
     const errorResults = this.results.filter(serviceResult => serviceResult.hasError);
 
+    errorResults.forEach(serviceResult => {
+      MultiRequestResult._logger.error(
+        `Service returned an error with error code: ${serviceResult.error.code} and message: ${serviceResult.error.message}.`
+      );
+    });
+
     if ((requestsMustSucceed && errorResults.length) || errorResults.length === this.results.length) {
-      errorResults.forEach(serviceResult => {
-        MultiRequestResult._logger.error(
-          `Service returned an error with error code: ${serviceResult.error.code} and message: ${serviceResult.error.message}.`
-        );
-      });
       this.results = results;
       this.success = false;
     } else {
