@@ -313,6 +313,36 @@ describe('getEntryListConfig', function () {
       }
     );
   });
+
+  it('should load a partial playlist by entry list if some requests have an error', done => {
+    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
+      return new Promise(resolve => {
+        resolve({
+          response: new MultiRequestResult({
+            result: [...BE_DATA.AnonymousPlaylistByEntryList.response.result, BE_DATA.InvalidKSFormat.response.result.error]
+          })
+        });
+      });
+    });
+
+    provider.getEntryListConfig({entries: ['259153', {entryId: '258459'}], ks}).then(
+      entryListConfig => {
+        try {
+          entryListConfig.id.should.equal('');
+          entryListConfig.items.length.should.equal(2);
+          entryListConfig.metadata.name.should.equal('');
+          entryListConfig.metadata.description.should.equal('');
+          entryListConfig.poster.should.equal('');
+          done();
+        } catch (err) {
+          done(err);
+        }
+      },
+      err => {
+        done(err);
+      }
+    );
+  });
 });
 
 describe('getEntryWithBumper', function () {

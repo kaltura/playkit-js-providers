@@ -161,7 +161,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
           this._dataLoader.add(OTTSessionLoader, {partnerId: this.partnerId});
         }
         this._dataLoader.add(OTTAssetListLoader, {entries, ks});
-        this._dataLoader.fetchData().then(
+        this._dataLoader.fetchData(false).then(
           response => {
             resolve(this._parseEntryListDataFromResponse(response, entries));
           },

@@ -66,12 +66,13 @@ export default class DataLoaderManager {
 
   /**
    * Get data from all loaders using multi request
+   * @param {boolean} requestsMustSucceed whether all of the requests must succeed or not
    * @function
    * @returns {Promise} Promise
    */
-  fetchData(): Promise<any> {
+  fetchData(requestsMustSucceed?: boolean): Promise<any> {
     return new Promise((resolve, reject) => {
-      this._multiRequest.execute().then(
+      this._multiRequest.execute(requestsMustSucceed).then(
         data => {
           this._multiResponse = data.response;
           let preparedData: Object = this.prepareData(data.response);
