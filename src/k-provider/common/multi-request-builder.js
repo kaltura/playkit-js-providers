@@ -93,7 +93,7 @@ export class MultiRequestResult {
     const result = response.result ? response.result : response;
     const responseArr = Array.isArray(result) ? result : [result];
     const results = responseArr.map(result => new ServiceResult(result));
-    const errorResults = this.results.filter(serviceResult => serviceResult.hasError);
+    const errorResults = results.filter(serviceResult => serviceResult.hasError);
 
     errorResults.forEach(serviceResult => {
       MultiRequestResult._logger.error(
@@ -101,8 +101,8 @@ export class MultiRequestResult {
       );
     });
 
+    this.results = results;
     if ((requestsMustSucceed && errorResults.length) || errorResults.length === this.results.length) {
-      this.results = results;
       this.success = false;
     } else {
       this.results = this.results.filter(serviceResult => !serviceResult.hasError);
