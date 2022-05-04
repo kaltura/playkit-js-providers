@@ -1051,3 +1051,37 @@ describe('doRequest', () => {
       });
   });
 });
+
+describe('buildPosterSrc', () => {
+  let provider;
+  const poster = 'https//my/kaltura/poster';
+
+  beforeEach(() => {
+    provider = new OVPProvider({loadThumbnailWithKs: false, isAnonymous: true}, '3.1.0');
+  });
+
+  it('should build poster src without KS - configuration is false', function () {
+    const posterResult = provider._buildPosterSrc(poster);
+    posterResult.should.equal('https//my/kaltura/poster');
+  });
+
+  it('should build poster src without KS - user is anonymous', function () {
+    const posterResult = provider._buildPosterSrc(poster);
+    posterResult.should.equal('https//my/kaltura/poster');
+  });
+
+  it('should build poster src with KS', function () {
+    provider._loadThumbnailWithKs = true;
+    provider._isAnonymous = false;
+    provider.ks = '123';
+    const posterResult = provider._buildPosterSrc(poster);
+    posterResult.should.equal('https//my/kaltura/poster/ks/123');
+  });
+
+  it('should build poster without KS - no KS was provided', function () {
+    provider._loadThumbnailWithKs = true;
+    provider._isAnonymous = false;
+    const posterResult = provider._buildPosterSrc(poster);
+    posterResult.should.equal('https//my/kaltura/poster');
+  });
+});
