@@ -14,8 +14,6 @@ import Error from '../../util/error/error';
 
 export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject> {
   _filterOptionsConfig: ProviderFilterOptionsObject = {redirectFromEntryId: true};
-  _loadThumbnailWithKs: boolean;
-
   /**
    * @constructor
    * @param {ProviderOptionsObject} options - provider options
@@ -27,15 +25,10 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     OVPConfiguration.set(options.env);
     this._setFilterOptionsConfig(options.filterOptions);
     this._networkRetryConfig = Object.assign(this._networkRetryConfig, options.networkRetryParameters);
-    this._loadThumbnailWithKs = options.loadThumbnailWithKs || false;
   }
 
   get env() {
     return OVPConfiguration.get();
-  }
-
-  get loadThumbnailWithKs() {
-    return this._loadThumbnailWithKs;
   }
 
   /**
@@ -231,7 +224,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
       if (playlistLoader && playlistLoader.response) {
         const playlist = OVPProviderParser.getPlaylist(playlistLoader.response);
         playlistConfig.id = playlist.id;
-        playlistConfig.poster = this._buildPosterSrc(playlist.poster);
+        playlistConfig.poster = playlist.poster;
         playlistConfig.metadata.name = playlist.name;
         playlistConfig.metadata.description = playlist.description;
         playlist.items.forEach(i => playlistConfig.items.push({sources: this._getSourcesObject(i)}));
@@ -334,7 +327,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     sourcesObject.duration = mediaEntry.duration;
     sourcesObject.type = mediaEntry.type;
     sourcesObject.dvr = !!mediaEntry.dvrStatus;
-    sourcesObject.poster = this._buildPosterSrc(mediaEntry.poster);
+    sourcesObject.poster = mediaEntry.poster;
     if (mediaEntry.sources.captions) {
       sourcesObject.captions = mediaEntry.sources.captions;
     }
@@ -343,9 +336,5 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     }
     Object.assign(sourcesObject.metadata, mediaEntry.metadata);
     return sourcesObject;
-  }
-
-  _buildPosterSrc(poster: string): string {
-    return this.loadThumbnailWithKs && !this.isAnonymous && this.ks ? poster + `/ks/${this.ks}` : poster;
   }
 }

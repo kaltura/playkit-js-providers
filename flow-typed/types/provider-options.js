@@ -10,6 +10,5 @@ declare type ProviderOptionsObject = {
   env?: ProviderEnvConfigObject,
   networkRetryParameters?: ProviderNetworkRetryParameters,
   filterOptions?: ProviderFilterOptionsObject,
-  ignoreServerConfig?: boolean,
-  loadThumbnailWithKs?: boolean
+  ignoreServerConfig?: boolean
 };

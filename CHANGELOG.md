@@ -673,15 +673,14 @@ All notable changes to this project will be documented in this file. See [standa
 
 API has been changed.
 
-* Provider constructor now gets ``(providerOptions: ProviderOptionsObject, playerVersion: string)`` when `ProviderOptionsObject` defined as:
+* Provider constructor now gets ``(providerOptions: ProviderOptionsObject, playerVersion: string)`` when `ProviderOptionsObject` defined as: 
 ```json
 {
   partnerId: number,
   logLevel?: string,
   ks?: string,
   uiConfId?: number,
-  env?: ProviderEnvConfigObject,
-  loadThumbnailWithKs?: boolean
+  env?: ProviderEnvConfigObject
 };
 ```
 * Change config API from `getConfig()` to `getMediaConfig()`
