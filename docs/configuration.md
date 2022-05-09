@@ -31,7 +31,8 @@ var provider = new playkit.providers.ott.Provider(config);
   env: ProviderEnvConfigObject, // optional
   networkRetryParameters: ProviderNetworkRetryParameters, // optional
   filterOptions: ProviderFilterOptionsObject, // optional
-  ignoreServerConfig: boolean // optional
+  ignoreServerConfig: boolean, // optional
+  loadThumbnailWithKs: boolean // optional
 }
 ```
 
@@ -202,3 +203,13 @@ var provider = new playkit.providers.ott.Provider(config);
 >
 >
 > ##### Description: Instructs the player to ignore the server configuration.
+
+> ##
+>
+> ### config.loadThumbnailWithKs
+>
+> ##### Type: `boolean`
+>
+> ##### Default: `false`
+>
+> ##### Description: Defines whether to add KS to OVP thumbnail API request or not.>

@@ -8,7 +8,8 @@ const defaultConfig: Object = {
     apiVersion: '3.3.0',
     format: 1
   },
-  useApiCaptions: true
+  useApiCaptions: true,
+  loadThumbnailWithKs: false
 };
 
 export default class OVPConfiguration {
