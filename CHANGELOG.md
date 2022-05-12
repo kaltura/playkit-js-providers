@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.35.0](https://github.com/kaltura/playkit-js-providers/compare/v2.34.0...v2.35.0) (2022-05-12)
+
+
+### Bug Fixes
+
+* **FEC-11882:** V3- Playlist/Related plugin - if entries list includes broken entry ID, the list doesn't load at all ([#175](https://github.com/kaltura/playkit-js-providers/issues/175)) ([97bc9dc](https://github.com/kaltura/playkit-js-providers/commit/97bc9dc))
+* **FEC-12084:** OVP Provider doesn't play entries of partner 0 ([#174](https://github.com/kaltura/playkit-js-providers/issues/174)) ([c736951](https://github.com/kaltura/playkit-js-providers/commit/c736951))
+* **FEC-12166:** canary not working-error 1006 ([#176](https://github.com/kaltura/playkit-js-providers/issues/176)) ([15a81b4](https://github.com/kaltura/playkit-js-providers/commit/15a81b4))
+
+
+### Features
+
+* **FEC-12229:** append KS to thumbnail API ([#177](https://github.com/kaltura/playkit-js-providers/issues/177)) ([9db2419](https://github.com/kaltura/playkit-js-providers/commit/9db2419))
+
+
+
 ## [2.34.0](https://github.com/kaltura/playkit-js-providers/compare/v2.33.0...v2.34.0) (2022-03-23)
 
 
