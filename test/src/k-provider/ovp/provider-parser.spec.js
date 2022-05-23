@@ -90,7 +90,6 @@ describe('provider parser', function () {
 
     it('should not add external captions to live media', () => {
       const mediaEntry = OVPProviderParser.getMediaEntry(...liveMediaEntryData);
-      console.log(mediaEntry.sources);
       mediaEntry.sources.should.not.haveOwnProperty('captions');
     });
   });
