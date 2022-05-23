@@ -10,7 +10,7 @@ import {
   kalturaSourceProtocolMismatch,
   kalturaSourceProtocolMismatchFlavorAssets
 } from './playback-sources-data';
-import {youtubeMediaEntryResult, youtubeMediaEntryData} from './provider-parser-data';
+import {youtubeMediaEntryResult, youtubeMediaEntryData, liveMediaEntryData} from './provider-parser-data';
 
 describe('provider parser', function () {
   let sandbox;
@@ -80,6 +80,18 @@ describe('provider parser', function () {
       const mediaEntryObject = mediaEntry.toJSON();
       Object.keys(mediaEntryObject).forEach(key => mediaEntryObject[key] === undefined && delete mediaEntryObject[key]);
       mediaEntryObject.should.deep.equal(youtubeMediaEntryResult);
+    });
+
+    it('should add external captions to the media sources', () => {
+      const mediaEntry = OVPProviderParser.getMediaEntry(...youtubeMediaEntryData);
+      mediaEntry.sources.should.haveOwnProperty('captions');
+      mediaEntry.sources.captions.length.should.equal(1);
+    });
+
+    it('should not add external captions to live media', () => {
+      const mediaEntry = OVPProviderParser.getMediaEntry(...liveMediaEntryData);
+      console.log(mediaEntry.sources);
+      mediaEntry.sources.should.not.haveOwnProperty('captions');
     });
   });
 });
