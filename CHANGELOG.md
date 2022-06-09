@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.35.1](https://github.com/kaltura/playkit-js-providers/compare/v2.35.0...v2.35.1) (2022-06-09)
+
+
+### Bug Fixes
+
+* **FEC-12243:** simulive - The live stream will show the captions from the Simulive entry ([#178](https://github.com/kaltura/playkit-js-providers/issues/178)) ([8339e96](https://github.com/kaltura/playkit-js-providers/commit/8339e96))
+
+
+
 ## [2.35.0](https://github.com/kaltura/playkit-js-providers/compare/v2.34.0...v2.35.0) (2022-05-12)
 
 
