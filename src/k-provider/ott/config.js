@@ -3,7 +3,7 @@ import {clone} from '../../util/clone';
 
 const defaultConfig: Object = {
   serviceParams: {
-    apiVersion: '5.2.6'
+    apiVersion: '7.8.1'
   }
 };
 
