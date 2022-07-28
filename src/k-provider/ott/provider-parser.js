@@ -116,6 +116,7 @@ export default class OTTProviderParser {
     if (mediaAsset.data.epgId) metaData.epgId = mediaAsset.data.epgId;
     if (mediaAsset.data.recordingId) metaData.recordingId = mediaAsset.data.recordingId;
     if (requestData && requestData.mediaType) metaData.mediaType = requestData.mediaType;
+    if (requestData && requestData.contextType) metaData.contextType = requestData.contextType;
     mediaEntry.metadata = metaData;
     mediaEntry.poster = OTTProviderParser._getPoster(mediaAsset.pictures);
     mediaEntry.id = mediaAsset.id;

@@ -34,6 +34,7 @@ export default class OTTBookmarkService extends OTTService {
     const bookmarkServiceParams: Object = {
       objectType: 'KalturaBookmark',
       type: bookmark.type,
+      context: bookmark.context,
       id: bookmark.id,
       position: bookmark.position,
       playerData: playerData

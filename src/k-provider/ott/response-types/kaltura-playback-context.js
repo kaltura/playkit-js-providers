@@ -7,6 +7,7 @@ import KalturaBumpersPlaybackPluginData from './kaltura-bumper-playback-plugin-d
 
 export default class KalturaPlaybackContext extends ServiceResult {
   static Type: {[type: string]: string} = {
+    DOWNLOAD: 'DOWNLOAD',
     TRAILER: 'TRAILER',
     CATCHUP: 'CATCHUP',
     START_OVER: 'START_OVER',
