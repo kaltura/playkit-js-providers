@@ -11,7 +11,7 @@ const customLaunchers = {
 module.exports = function (config) {
   let karmaConf = {
     logLevel: config.LOG_INFO,
-    browsers: ['Chrome', 'Firefox'],
+    browsers: ['Chrome'],
     concurrency: 1,
     singleRun: true,
     colors: true,
