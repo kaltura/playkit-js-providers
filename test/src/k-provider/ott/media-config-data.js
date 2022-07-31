@@ -145,6 +145,7 @@ const NoPluginsWithDrm = {
         QUALITY: 'hd|hd|hd|',
         Studio: 'Pixar|Pixar|Pixar|'
       },
+      contextType: 'PLAYBACK',
       description:
         "After the Bergens invade Troll Village, Poppy, the happiest Troll ever born, and the curmudgeonly Branch set off on a journey to rescue her friends. DreamWorks Animation's TROLLS is an irreverent comedy extravaganza with incredible music! From the genius creators of SHREK, TROLLS stars Anna Kendrick as Poppy, the optimistic leader of the Trolls, and her polar opposite, Branch, played by Justin Timberlake. Together, this unlikely pair of Trolls must embark on an adventure that takes them far beyond the only world they've ever known."
     },
@@ -511,6 +512,7 @@ const FilteredSourcesByDeviceType = {
         QUALITY: 'hd|hd|hd|',
         Studio: 'Pixar|Pixar|Pixar|'
       },
+      contextType: 'PLAYBACK',
       description:
         "After the Bergens invade Troll Village, Poppy, the happiest Troll ever born, and the curmudgeonly Branch set off on a journey to rescue her friends. DreamWorks Animation's TROLLS is an irreverent comedy extravaganza with incredible music! From the genius creators of SHREK, TROLLS stars Anna Kendrick as Poppy, the optimistic leader of the Trolls, and her polar opposite, Branch, played by Justin Timberlake. Together, this unlikely pair of Trolls must embark on an adventure that takes them far beyond the only world they've ever known."
     }
@@ -733,6 +735,7 @@ const LiveEntryNoDrm = {
         QUALITY: 'hd|',
         Source: 'Web3|'
       },
+      contextType: 'START_OVER',
       description: '***nadya_aes***',
       epgId: '454032895'
     }
@@ -769,6 +772,7 @@ const EntryWithBumper = {
     dvr: false,
     vr: null,
     metadata: {
+      contextType: 'PLAYBACK',
       mediaType: mediaTypeConf,
       name: 'avichay series1 VOD',
       description: 'avichay VOD',
