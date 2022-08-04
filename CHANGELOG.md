@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.36.0](https://github.com/kaltura/playkit-js-providers/compare/v2.35.1...v2.36.0) (2022-08-04)
+
+
+### Features
+
+* **FEC-12414:**  add contextType to mediaEntry Metadata & upgrade API version 7.8.1 ([#182](https://github.com/kaltura/playkit-js-providers/issues/182)) ([9734376](https://github.com/kaltura/playkit-js-providers/commit/9734376))
+
+
+
 ### [2.35.1](https://github.com/kaltura/playkit-js-providers/compare/v2.35.0...v2.35.1) (2022-06-09)
 
 
