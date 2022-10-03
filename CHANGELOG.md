@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.36.1](https://github.com/kaltura/playkit-js-providers/compare/v2.36.0...v2.36.1) (2022-10-03)
+
+
+### Bug Fixes
+
+* **FEC-12588:** 360 player loads whenever you have a tag that contains 360 (ie. wells360fargo) ([#183](https://github.com/kaltura/playkit-js-providers/issues/183)) ([2670c2a](https://github.com/kaltura/playkit-js-providers/commit/2670c2a))
+
+
+
 ## [2.36.0](https://github.com/kaltura/playkit-js-providers/compare/v2.35.1...v2.36.0) (2022-08-04)
 
 
