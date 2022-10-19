@@ -121,6 +121,7 @@ const NoPluginsWithDrm = {
     metadata: {
       mediaType: mediaTypeConf,
       name: 'Trolls',
+      entryId: '1_tmeqe2n9',
       epgId: '454032895',
       recordingId: '774036475',
       metas: {
@@ -488,6 +489,7 @@ const FilteredSourcesByDeviceType = {
     metadata: {
       mediaType: KalturaAsset.Type.RECORDING,
       name: 'Trolls',
+      entryId: '1_tmeqe2n9',
       epgId: '454032895',
       recordingId: '774036475',
       metas: {
@@ -772,6 +774,7 @@ const EntryWithBumper = {
     dvr: false,
     vr: null,
     metadata: {
+      entryId: '0_tle49uqr',
       contextType: 'PLAYBACK',
       mediaType: mediaTypeConf,
       name: 'avichay series1 VOD',

@@ -72,6 +72,7 @@ const youtubeMediaEntryResult = {
   },
   duration: 0,
   metadata: {
+    entryId: '1234',
     description: 'youtube description',
     name: 'test youtube entry',
     tags: ''
