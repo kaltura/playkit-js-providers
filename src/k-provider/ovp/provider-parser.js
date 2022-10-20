@@ -152,6 +152,7 @@ class OVPProviderParser {
     mediaEntry.duration = entry.duration;
     mediaEntry.metadata = OVPProviderParser._parseMetadata(metadataList);
     mediaEntry.metadata.description = entry.description || '';
+    mediaEntry.metadata.entryId = entry.id || '';
     mediaEntry.metadata.name = entry.name || '';
     mediaEntry.metadata.tags = entry.tags || '';
     mediaEntry.status = entry.status;

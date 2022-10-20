@@ -14,6 +14,7 @@ const NoPluginsNoDrm = {
     type: 'Vod',
     poster: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
     metadata: {
+      entryId: '1_rsrdfext',
       name: 'FO21934-HDTX-SWE',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.',
@@ -253,6 +254,7 @@ const RegexAppliedSources = {
     dvr: false,
     vr: null,
     metadata: {
+      entryId: '1_rsrdfext',
       name: 'FO21934-HDTX-SWE',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.',
@@ -292,6 +294,7 @@ const NoPluginsWithDrm = {
     type: 'Vod',
     poster: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
     metadata: {
+      entryId: '1_rwbj3j0a',
       name: 'DRM TEST',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.',
@@ -353,6 +356,7 @@ const WithPluginsNoDrm = {
     type: 'Vod',
     poster: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
     metadata: {
+      entryId: '1_rsrdfext',
       name: 'FO21934-HDTX-SWE',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.',
@@ -493,6 +497,7 @@ const WithPluginsWithDrm = {
     type: 'Vod',
     poster: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
     metadata: {
+      entryId: '1_rwbj3j0a',
       name: 'DRM TEST',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.',
@@ -553,6 +558,7 @@ const AudioEntryWithoutPlugins = {
     type: 'Audio',
     poster: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
     metadata: {
+      entryId: '0_vyzw3ceu',
       name: 'TEST_WAESP_PLACINGTEST_DUAL',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.',
@@ -612,6 +618,7 @@ const ImageEntryWithoutPlugins = {
     type: 'Image',
     poster: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
     metadata: {
+      entryId: '0_84zz779s',
       name: 'Channel HU-TEST-STG-Attila-160203 Thumbnail',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.',
@@ -979,6 +986,7 @@ const EntryWithBumper = {
     dvr: false,
     vr: null,
     metadata: {
+      entryId: '0_wifqaipd',
       name: 'MPEG Dash with MultiAudio New Transcoding',
       description: '',
       tags: '',
@@ -1093,6 +1101,7 @@ const EntryWithBumperWithKs = {
     dvr: false,
     vr: null,
     metadata: {
+      entryId: '0_wifqaipd',
       name: 'MPEG Dash with MultiAudio New Transcoding',
       description: '',
       tags: '',
@@ -1210,6 +1219,7 @@ const EntryWithNoBumper = {
     dvr: false,
     vr: null,
     metadata: {
+      entryId: '0_wifqaipd',
       name: 'MPEG Dash with MultiAudio New Transcoding',
       description: '',
       tags: '',
@@ -1300,6 +1310,7 @@ const EntryOfPartner0 = {
     vr: null,
     metadata: {
       name: 'Titanic in 5 Seconds',
+      entryId: '0_pi55vv3r',
       description: 'Titanic movie summarized in 5 seconds',
       tags: 'titanic, short'
     },
