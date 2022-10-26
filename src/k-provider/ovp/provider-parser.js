@@ -21,6 +21,7 @@ import {KalturaRuleAction} from './response-types/kaltura-rule-action';
 import {KalturaAccessControlMessage} from '../common/response-types/kaltura-access-control-message';
 import type {OVPMediaEntryLoaderResponse} from './loaders/media-entry-loader';
 import {ExternalCaptionsBuilder} from './external-captions-builder';
+import ImageSource from "../../entities/image-source";
 
 class OVPProviderParser {
   static _logger = getLogger('OVPProviderParser');
@@ -230,6 +231,10 @@ class OVPProviderParser {
       sources.progressive = OVPProviderParser._parseProgressiveSources(progressiveSource, playbackContext, ks, partnerId, uiConfId, entry.id);
     };
 
+    const parseImageSources = () => {
+      sources.image = new ImageSource(entry);
+    };
+
     const parseExternalMedia = () => {
       const mediaSource = new MediaSource();
       mediaSource.mimetype = 'video/youtube';
@@ -240,9 +245,12 @@ class OVPProviderParser {
 
     if (entry.type === KalturaMediaEntry.EntryType.EXTERNAL_MEDIA.value) {
       parseExternalMedia();
+    } else if (entry.entryType === KalturaMediaEntry.MediaType.IMAGE.value) {
+      parseImageSources();
     } else if (kalturaSources && kalturaSources.length > 0) {
       parseAdaptiveSources();
       parseProgressiveSources();
+      parseImageSources();
     }
     return sources;
   }

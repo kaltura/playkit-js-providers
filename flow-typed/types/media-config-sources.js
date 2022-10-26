@@ -1,8 +1,11 @@
 // @flow
+import ImageSource from "../../src/entities/image-source";
+
 declare type ProviderMediaConfigSourcesObject = {
-  dash: Array<ProviderMediaSourceObject>,
-  hls: Array<ProviderMediaSourceObject>,
-  progressive: Array<ProviderMediaSourceObject>,
+  dash: Array<ProviderVideoMediaSourceObject>,
+  hls: Array<ProviderVideoMediaSourceObject>,
+  progressive: Array<ProviderVideoMediaSourceObject>,
+  image: ImageSource,
   duration: number,
   type: string,
   id: string,
