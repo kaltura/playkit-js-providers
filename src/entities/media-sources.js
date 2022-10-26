@@ -1,7 +1,7 @@
 // @flow
 import MediaSource from './media-source';
 import {MediaFormat} from './media-format';
-import ImageSource from "./image-source";
+import ImageSource from './image-source';
 
 export default class MediaSources {
   /**

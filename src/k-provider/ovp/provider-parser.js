@@ -21,7 +21,7 @@ import {KalturaRuleAction} from './response-types/kaltura-rule-action';
 import {KalturaAccessControlMessage} from '../common/response-types/kaltura-access-control-message';
 import type {OVPMediaEntryLoaderResponse} from './loaders/media-entry-loader';
 import {ExternalCaptionsBuilder} from './external-captions-builder';
-import ImageSource from "../../entities/image-source";
+import ImageSource from '../../entities/image-source';
 
 class OVPProviderParser {
   static _logger = getLogger('OVPProviderParser');
