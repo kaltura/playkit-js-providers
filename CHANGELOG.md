@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.37.0](https://github.com/kaltura/playkit-js-providers/compare/v2.36.1...v2.37.0) (2022-11-02)
+
+
+### Features
+
+* **FEC-12625:** add entry id to media metadata ([#184](https://github.com/kaltura/playkit-js-providers/issues/184)) ([6355806](https://github.com/kaltura/playkit-js-providers/commit/6355806))
+
+
+
 ### [2.36.1](https://github.com/kaltura/playkit-js-providers/compare/v2.36.0...v2.36.1) (2022-10-03)
 
 
