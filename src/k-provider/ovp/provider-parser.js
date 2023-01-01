@@ -252,7 +252,6 @@ class OVPProviderParser {
     } else if (kalturaSources && kalturaSources.length > 0) {
       parseAdaptiveSources();
       parseProgressiveSources();
-      parseImageSources();
     }
     return sources;
   }
