@@ -303,7 +303,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
       hls: [],
       dash: [],
       progressive: [],
-      image: undefined,
+      image: [],
       id: '',
       duration: 0,
       type: MediaEntry.Type.UNKNOWN,

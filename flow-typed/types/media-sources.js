@@ -5,6 +5,6 @@ declare type ProviderMediaSourcesObject = {
   progressive: Array<ProviderMediaSourceObject>,
   dash: Array<ProviderMediaSourceObject>,
   hls: Array<ProviderMediaSourceObject>,
-  image: ImageSource,
+  image: Array<ImageSource>,
   captions?: Array<PKExternalCaptionObject>
 };

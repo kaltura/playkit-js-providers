@@ -148,7 +148,6 @@ class OVPProviderParser {
   }
 
   static _fillBaseData(mediaEntry: MediaEntry, entry: KalturaMediaEntry, metadataList: ?KalturaMetadataListResponse) {
-    mediaEntry.poster = entry.poster;
     mediaEntry.id = entry.id;
     mediaEntry.duration = entry.duration;
     mediaEntry.metadata = OVPProviderParser._parseMetadata(metadataList);
@@ -163,6 +162,9 @@ class OVPProviderParser {
       mediaEntry.dvrStatus = entry.dvrStatus;
     }
 
+    if (mediaEntry.type !== MediaEntry.Type.IMAGE) {
+      mediaEntry.poster = entry.poster;
+    }
     return mediaEntry;
   }
 
@@ -232,7 +234,7 @@ class OVPProviderParser {
     };
 
     const parseImageSources = () => {
-      sources.image = new ImageSource(entry);
+      sources.image.push(new ImageSource(entry));
     };
 
     const parseExternalMedia = () => {

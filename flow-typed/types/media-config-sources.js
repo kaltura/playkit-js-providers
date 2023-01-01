@@ -5,7 +5,7 @@ declare type ProviderMediaConfigSourcesObject = {
   dash: Array<ProviderVideoMediaSourceObject>,
   hls: Array<ProviderVideoMediaSourceObject>,
   progressive: Array<ProviderVideoMediaSourceObject>,
-  image: ImageSource,
+  image: Array<ImageSource>,
   duration: number,
   type: string,
   id: string,

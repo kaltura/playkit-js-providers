@@ -22,7 +22,7 @@ export default class MediaSources {
    * @public
    */
   hls: Array<MediaSource>;
-  image: ImageSource;
+  image: Array<ImageSource>;
   captions: Array<PKExternalCaptionObject>;
 
   /**
@@ -32,6 +32,7 @@ export default class MediaSources {
     this.progressive = [];
     this.dash = [];
     this.hls = [];
+    this.image = [];
   }
 
   /**
@@ -67,7 +68,7 @@ export default class MediaSources {
       progressive: [],
       dash: [],
       hls: [],
-      image: undefined
+      image: []
     };
     this.progressive.forEach(p => response.progressive.push(p.toJSON()));
     this.hls.forEach(h => response.hls.push(h.toJSON()));

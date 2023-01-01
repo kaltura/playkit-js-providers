@@ -26,7 +26,7 @@ export default class ImageSource {
     this.id = entry.id;
     this.url = entry.dataUrl;
     this.mimetype = 'image/jpeg';
-    this.templateUrl = ImageSource.createTemplateUrl(entry.url);
+    this.templateUrl = ImageSource.createTemplateUrl(entry.dataUrl);
   }
 
   /**
