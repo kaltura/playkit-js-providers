@@ -7,12 +7,5 @@ declare type ProviderMediaSourceObject = {
   width?: number,
   height?: number,
   label?: string,
-};
-
-declare type ProviderVideoMediaSourceObject = ProviderMediaSourceObject & {
   drmData?: Array<ProviderDrmDataObject>
 };
-
-declare type ProviderImageMediaSourceObject = ProviderMediaSourceObject;
-
-

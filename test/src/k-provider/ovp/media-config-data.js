@@ -136,7 +136,7 @@ const NoPluginsNoDrm = {
           'https://cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/https/format/applehttp/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/a.m3u8'
       }
     ],
-    image:[]
+    image: []
   }
 };
 
