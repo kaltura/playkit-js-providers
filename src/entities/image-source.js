@@ -1,5 +1,7 @@
 //@flow
 
+const BASE_THUMBNAIL_URL_TEMPLATE = '.+entry_id/[a-zA-Z0-9_]+/';
+
 export default class ImageSource {
   /**
    * @member - media source id
@@ -24,9 +26,8 @@ export default class ImageSource {
 
   constructor(entry: Object) {
     this.id = entry.id;
-    this.url = entry.dataUrl;
+    this.url = ImageSource.extractBaseThumbnailUrl(entry.dataUrl);
     this.mimetype = 'image/jpeg';
-    this.templateUrl = ImageSource.createTemplateUrl(entry.dataUrl);
   }
 
   /**
@@ -34,7 +35,7 @@ export default class ImageSource {
    * @param {string} url - dataUrl.
    * @returns {string} - The template url .
    */
-  static createTemplateUrl(url: string): string {
-    return url;
+  static extractBaseThumbnailUrl(url: string): string {
+    return url.match(BASE_THUMBNAIL_URL_TEMPLATE)[0];
   }
 }
