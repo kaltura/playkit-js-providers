@@ -14,11 +14,6 @@ export default class ImageSource {
    */
   url: string;
   /**
-   * @member - media source templateUrl
-   * @type {string}
-   */
-  templateUrl: string;
-  /**
    * @member - media source mimetype
    * @type {string}
    */
@@ -36,6 +31,6 @@ export default class ImageSource {
    * @returns {string} - The template url .
    */
   static extractBaseThumbnailUrl(url: string): string {
-    return url.match(BASE_THUMBNAIL_URL_TEMPLATE)[0];
+    return url.match(BASE_THUMBNAIL_URL_TEMPLATE)[0].slice(0, -1);
   }
 }
