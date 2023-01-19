@@ -68,7 +68,8 @@ const youtubeMediaEntryResult = {
       }
     ],
     dash: [],
-    hls: []
+    hls: [],
+    image: []
   },
   duration: 0,
   metadata: {

@@ -135,7 +135,8 @@ const NoPluginsNoDrm = {
         url:
           'https://cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/https/format/applehttp/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/a.m3u8'
       }
-    ]
+    ],
+    image: []
   }
 };
 
@@ -175,6 +176,7 @@ const RegexAppliedSources = {
         mimetype: 'application/dash+xml'
       }
     ],
+    image: [],
     progressive: [
       {
         id: '1_ha0nqwz810081,url',
@@ -336,7 +338,8 @@ const NoPluginsWithDrm = {
           }
         ]
       }
-    ]
+    ],
+    image: []
   }
 };
 
@@ -477,7 +480,8 @@ const WithPluginsNoDrm = {
         url:
           'https://cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/https/format/applehttp/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/a.m3u8?uiConfId=38621471'
       }
-    ]
+    ],
+    image: []
   }
 };
 
@@ -539,7 +543,8 @@ const WithPluginsWithDrm = {
           }
         ]
       }
-    ]
+    ],
+    image: []
   }
 };
 
@@ -599,7 +604,8 @@ const AudioEntryWithoutPlugins = {
         url:
           'https://cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/0_vyzw3ceu/protocol/https/format/applehttp/flavorIds/0_hawbhpz3/a.m3u8'
       }
-    ]
+    ],
+    image: []
   }
 };
 
@@ -979,6 +985,7 @@ const EntryWithBumper = {
         label: 'Undefined'
       }
     ],
+    image: [],
     id: '0_wifqaipd',
     duration: 741,
     type: 'Vod',
@@ -1094,6 +1101,7 @@ const EntryWithBumperWithKs = {
         label: 'Undefined'
       }
     ],
+    image: [],
     id: '0_wifqaipd',
     duration: 741,
     type: 'Vod',
@@ -1212,6 +1220,7 @@ const EntryWithNoBumper = {
         label: 'Undefined'
       }
     ],
+    image: [],
     id: '0_wifqaipd',
     duration: 741,
     type: 'Vod',
@@ -1302,6 +1311,7 @@ const EntryOfPartner0 = {
         label: 'Undefined'
       }
     ],
+    image: [],
     id: '0_pi55vv3r',
     duration: 11,
     type: 'Vod',

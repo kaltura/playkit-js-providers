@@ -202,6 +202,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
       hls: [],
       dash: [],
       progressive: [],
+      image: [],
       id: '',
       duration: 0,
       type: MediaEntry.Type.UNKNOWN,
