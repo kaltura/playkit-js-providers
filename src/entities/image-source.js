@@ -26,11 +26,12 @@ export default class ImageSource {
   }
 
   /**
-   * Convert url to template url.
+   * Extract the base thumbnail url.
    * @param {string} url - dataUrl.
-   * @returns {string} - The template url .
+   * @returns {string} - The base thumbnail url.
    */
   static extractBaseThumbnailUrl(url: string): string {
+    // $FlowFixMe
     return url.match(BASE_THUMBNAIL_URL_TEMPLATE)[0].slice(0, -1);
   }
 }
