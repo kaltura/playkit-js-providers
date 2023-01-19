@@ -22,7 +22,7 @@ export default class ImageSource {
   constructor(entry: Object) {
     this.id = entry.id;
     this.url = ImageSource.extractBaseThumbnailUrl(entry.dataUrl);
-    this.mimetype = 'image/jpeg';
+    this.mimetype = '';
   }
 
   /**
