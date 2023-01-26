@@ -528,22 +528,6 @@ class OVPProviderParser {
           cdnUrl = cdnUrl.replace(regExp, regexAction.replacement);
           if (regexAction.checkAliveTimeoutMs && regexAction.checkAliveTimeoutMs > 0) {
             const urlPing = cdnUrl + '/api_v3/service/system/action/ping/format/1';
-            // http://kesqa1.ecdn.kaltura.io/kAPI/qa-apache-php7.dev.kaltura.com/api_v3/service/system/action/ping/format/1
-
-            // const controller = new AbortController();
-            // const timeoutId = setTimeout(() => {
-            //   controller.abort();
-            // }, regexAction.checkAliveTimeoutMs);
-            //
-            // fetch(urlPing, {
-            //   signal: controller.signal
-            // })
-            //   .then(response => {
-            //     resolve(response.ok);
-            //   })
-            //   .catch(() => resolve(false))
-            //   .finally(clearTimeout(timeoutId));
-
             const req = new XMLHttpRequest();
             req.open('GET', urlPing);
             req.timeout = regexAction.checkAliveTimeoutMs;
