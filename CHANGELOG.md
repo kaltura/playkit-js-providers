@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.38.0](https://github.com/kaltura/playkit-js-providers/compare/v2.37.0...v2.38.0) (2023-01-26)
+
+
+### Features
+
+* **FEC-12611:** Kaltura Image Entry Support - Load Kaltura Image Entries with or without KS ([#190](https://github.com/kaltura/playkit-js-providers/issues/190)) ([e1c6ac5](https://github.com/kaltura/playkit-js-providers/commit/e1c6ac5)), closes [kaltura/kaltura-player-js#598](https://github.com/kaltura/playkit-js-providers/issues/598) [kaltura/playkit-js#697](https://github.com/kaltura/playkit-js-providers/issues/697) [kaltura/playkit-js-image-player#1](https://github.com/kaltura/playkit-js-providers/issues/1) [kaltura/playkit-js-ui#718](https://github.com/kaltura/playkit-js-providers/issues/718)
+
+
+
 ## [2.37.0](https://github.com/kaltura/playkit-js-providers/compare/v2.36.1...v2.37.0) (2022-11-02)
 
 
