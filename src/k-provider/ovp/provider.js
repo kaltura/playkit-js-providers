@@ -151,19 +151,24 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
               messages: OVPProviderParser.getErrorMessages(response)
             });
           }
-          const mediaEntry = OVPProviderParser.getMediaEntry(this.isAnonymous ? '' : this.ks, this.partnerId, this.uiConfId, response);
-          Object.assign(mediaConfig.sources, this._getSourcesObject(mediaEntry));
-          this._verifyMediaStatus(mediaEntry);
-          this._verifyHasSources(mediaConfig.sources);
-          const bumper = OVPProviderParser.getBumper(response, this.isAnonymous ? '' : this.ks, this.partnerId);
-          if (bumper) {
-            Object.assign(mediaConfig.plugins, {bumper});
-          }
+          return new Promise(resolve => {
+            OVPProviderParser.getMediaEntry(this.isAnonymous ? '' : this.ks, this.partnerId, this.uiConfId, response).then(arrayResult => {
+              const mediaEntry = arrayResult[0];
+              const shouldReplaceRegex = arrayResult[1];
+              Object.assign(mediaConfig.sources, this._getSourcesObject(mediaEntry));
+              this._verifyMediaStatus(mediaEntry);
+              this._verifyHasSources(mediaConfig.sources);
+              const bumper = OVPProviderParser.getBumper(response, this.isAnonymous ? '' : this.ks, this.partnerId, shouldReplaceRegex);
+              if (bumper) {
+                Object.assign(mediaConfig.plugins, {bumper});
+              }
+              this._logger.debug('Data parsing finished', mediaConfig);
+              resolve(mediaConfig);
+            });
+          });
         }
       }
     }
-    this._logger.debug('Data parsing finished', mediaConfig);
-    return mediaConfig;
   }
 
   /**

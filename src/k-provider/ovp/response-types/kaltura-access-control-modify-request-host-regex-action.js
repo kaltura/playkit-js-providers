@@ -17,6 +17,11 @@ export class KalturaAccessControlModifyRequestHostRegexAction extends KalturaRul
    * @type {number}
    */
   replacmenServerNodeId: number;
+  /**
+   * @member - checkAliveTimeout in milliseconds
+   * @type {number}
+   */
+  checkAliveTimeoutMs: number;
 
   /**
    * @constructor
@@ -27,5 +32,6 @@ export class KalturaAccessControlModifyRequestHostRegexAction extends KalturaRul
     this.pattern = data.pattern;
     this.replacement = data.replacement;
     this.replacmenServerNodeId = data.replacmenServerNodeId;
+    this.checkAliveTimeoutMs = data.checkAliveTimeoutMs;
   }
 }

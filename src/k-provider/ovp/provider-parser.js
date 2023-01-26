@@ -37,19 +37,34 @@ class OVPProviderParser {
    * @static
    * @public
    */
-  static getMediaEntry(ks: string, partnerId: number, uiConfId: ?number, mediaEntryResponse: any): MediaEntry {
+  static getMediaEntry(ks: string, partnerId: number, uiConfId: ?number, mediaEntryResponse: any): Promise<MediaEntry> {
     const mediaEntry = new MediaEntry();
     const entry = mediaEntryResponse.entry;
     const playbackContext = mediaEntryResponse.playBackContextResult;
     const metadataList = mediaEntryResponse.metadataListResult;
     const kalturaSources = playbackContext.sources;
 
-    mediaEntry.sources = OVPProviderParser._getParsedSources(kalturaSources, ks, partnerId, uiConfId, entry, playbackContext);
-    OVPProviderParser._fillBaseData(mediaEntry, entry, metadataList);
-    if (mediaEntry.type !== MediaEntry.Type.LIVE && OVPConfiguration.get().useApiCaptions && playbackContext.data.playbackCaptions) {
-      mediaEntry.sources.captions = ExternalCaptionsBuilder.createConfig(playbackContext.data.playbackCaptions, ks);
-    }
-    return mediaEntry;
+    return new Promise(resolve => {
+      OVPProviderParser._shouldReplaceUrls(playbackContext).then(shouldReplaceUrlsWithRegex => {
+        mediaEntry.sources = OVPProviderParser._getParsedSources(
+          kalturaSources,
+          ks,
+          partnerId,
+          uiConfId,
+          entry,
+          playbackContext,
+          shouldReplaceUrlsWithRegex
+        );
+        OVPProviderParser._fillBaseData(mediaEntry, entry, metadataList);
+        if (mediaEntry.type !== MediaEntry.Type.LIVE && OVPConfiguration.get().useApiCaptions && playbackContext.data.playbackCaptions) {
+          mediaEntry.sources.captions = ExternalCaptionsBuilder.createConfig(playbackContext.data.playbackCaptions, ks);
+        }
+        if (shouldReplaceUrlsWithRegex && OVPConfiguration.get().replaceECDNAllUrls) {
+          OVPProviderParser._handleRegexAction(playbackContext, mediaEntry);
+        }
+        resolve(mediaEntry);
+      });
+    });
   }
 
   /**
@@ -128,18 +143,27 @@ class OVPProviderParser {
    * @param {any} assetResponse - The asset response.
    * @param {string} ks - The ks
    * @param {number} partnerId - The partner ID
+   * @param {boolean} shouldReplaceUrlsWithRegex - Indicates whether the bumper url should be replaced with regex
    * @returns {?Bumper} - The bumper
    * @static
    * @public
    */
-  static getBumper(assetResponse: any, ks: string, partnerId: number): ?Bumper {
+  static getBumper(assetResponse: any, ks: string, partnerId: number, shouldReplaceUrlsWithRegex: boolean): ?Bumper {
     const playbackContext = assetResponse.playBackContextResult;
     const bumperData: KalturaBumper = playbackContext.bumperData[0];
     if (bumperData) {
       const bumperSources = bumperData && bumperData.sources;
       const progressiveBumper = bumperSources.find(bumper => isProgressiveSource(bumper.format));
       if (progressiveBumper) {
-        const parsedSources = OVPProviderParser._parseProgressiveSources(progressiveBumper, playbackContext, ks, partnerId, 0, bumperData.entryId);
+        const parsedSources = OVPProviderParser._parseProgressiveSources(
+          progressiveBumper,
+          playbackContext,
+          ks,
+          partnerId,
+          0,
+          bumperData.entryId,
+          shouldReplaceUrlsWithRegex && OVPConfiguration.get().replaceECDNAllUrls
+        );
         if (parsedSources[0]) {
           return new Bumper({url: parsedSources[0].url, clickThroughUrl: bumperData.clickThroughUrl});
         }
@@ -202,6 +226,7 @@ class OVPProviderParser {
    * @param {number} uiConfId - The uiConf ID
    * @param {Object} entry - The entry
    * @param {KalturaPlaybackContext} playbackContext - The playback context
+   * @param {boolean} shouldReplaceUrlsWithRegex - Indicates whether the play urls should be replaced with regex
    * @return {MediaSources} - A media sources
    * @static
    * @private
@@ -212,11 +237,20 @@ class OVPProviderParser {
     partnerId: number,
     uiConfId: ?number,
     entry: Object,
-    playbackContext: KalturaPlaybackContext
+    playbackContext: KalturaPlaybackContext,
+    shouldReplaceUrlsWithRegex: boolean
   ): MediaSources {
     const sources = new MediaSources();
     const addAdaptiveSource = (source: KalturaPlaybackSource) => {
-      const parsedSource = OVPProviderParser._parseAdaptiveSource(source, playbackContext, ks, partnerId, uiConfId, entry.id);
+      const parsedSource = OVPProviderParser._parseAdaptiveSource(
+        source,
+        playbackContext,
+        ks,
+        partnerId,
+        uiConfId,
+        entry.id,
+        shouldReplaceUrlsWithRegex
+      );
       if (parsedSource) {
         const sourceFormat = SupportedStreamFormat.get(source.format);
         sources.map(parsedSource, sourceFormat);
@@ -230,11 +264,23 @@ class OVPProviderParser {
         //match progressive source with supported protocol(http/s)
         return isProgressiveSource(source.format) && source.getProtocol(OVPProviderParser._getBaseProtocol()) !== '';
       });
-      sources.progressive = OVPProviderParser._parseProgressiveSources(progressiveSource, playbackContext, ks, partnerId, uiConfId, entry.id);
+      sources.progressive = OVPProviderParser._parseProgressiveSources(
+        progressiveSource,
+        playbackContext,
+        ks,
+        partnerId,
+        uiConfId,
+        entry.id,
+        shouldReplaceUrlsWithRegex
+      );
     };
 
     const parseImageSources = () => {
-      sources.image.push(new ImageSource(entry));
+      const imageEntry = new ImageSource(entry);
+      if (shouldReplaceUrlsWithRegex) {
+        OVPProviderParser._applyRegexAction(playbackContext, imageEntry.url);
+      }
+      sources.image.push(imageEntry);
     };
 
     const parseExternalMedia = () => {
@@ -265,6 +311,7 @@ class OVPProviderParser {
    * @param {number} partnerId - The partner ID
    * @param {number} uiConfId - The uiConf ID
    * @param {string} entryId - The entry id
+   * @param {boolean} shouldReplaceUrlsWithRegex - Indicates whether the play url should be replaced with regex
    * @returns {?MediaSource} - The parsed adaptive kalturaSource
    * @static
    * @private
@@ -275,7 +322,8 @@ class OVPProviderParser {
     ks: string,
     partnerId: number,
     uiConfId: ?number,
-    entryId: string
+    entryId: string,
+    shouldReplaceUrlsWithRegex = false
   ): ?MediaSource {
     const mediaSource: MediaSource = new MediaSource();
     if (kalturaSource) {
@@ -312,7 +360,7 @@ class OVPProviderParser {
         OVPProviderParser._logger.warn(message);
         return null;
       }
-      mediaSource.url = OVPProviderParser._applyRegexAction(playbackContext, playUrl);
+      mediaSource.url = shouldReplaceUrlsWithRegex ? OVPProviderParser._applyRegexAction(playbackContext, playUrl) : playUrl;
       mediaSource.id = entryId + '_' + deliveryProfileId + ',' + format;
       if (kalturaSource.hasDrmData()) {
         const drmParams: Array<Drm> = [];
@@ -334,6 +382,7 @@ class OVPProviderParser {
    * @param {number} partnerId - The partner ID
    * @param {number} uiConfId - The uiConf ID
    * @param {string} entryId - The entry id
+   * @param {boolean} shouldReplaceUrlsWithRegex - Indicates whether the play url should be replaced with regex
    * @returns {Array<MediaSource>} - The parsed progressive kalturaSources
    * @static
    * @private
@@ -344,7 +393,8 @@ class OVPProviderParser {
     ks: string,
     partnerId: number,
     uiConfId: ?number,
-    entryId: string
+    entryId: string,
+    shouldReplaceUrlsWithRegex = false
   ): Array<MediaSource> {
     const videoSources: Array<MediaSource> = [];
     const audioSources: Array<MediaSource> = [];
@@ -375,7 +425,7 @@ class OVPProviderParser {
           OVPProviderParser._logger.warn(`failed to create play url from source, discarding source: (${entryId}_${deliveryProfileId}), ${format}.`);
           return null;
         } else {
-          mediaSource.url = OVPProviderParser._applyRegexAction(playbackContext, playUrl);
+          mediaSource.url = shouldReplaceUrlsWithRegex ? OVPProviderParser._applyRegexAction(playbackContext, playUrl) : playUrl;
           if (flavor.height && flavor.width) {
             videoSources.push(mediaSource);
           } else {
@@ -452,20 +502,79 @@ class OVPProviderParser {
    * Applies the request host regex on the url
    * @function _applyRegexAction
    * @param {KalturaPlaybackContext} playbackContext - The playback context
-   * @param {string} playUrl - The original url
+   * @param {string} url - The original url
    * @returns {string} - The request host regex applied url
    * @static
    * @private
    */
-  static _applyRegexAction(playbackContext: KalturaPlaybackContext, playUrl: string): string {
+  static _applyRegexAction(playbackContext: KalturaPlaybackContext, url: string): string {
     const regexAction = playbackContext.getRequestHostRegexAction();
     if (regexAction) {
       const regex = new RegExp(regexAction.pattern, 'i');
-      if (playUrl.match(regex)) {
-        return playUrl.replace(regex, regexAction.replacement + '/');
+      if (url.match(regex)) {
+        return url.replace(regex, regexAction.replacement + '/');
       }
     }
-    return playUrl;
+    return url;
+  }
+
+  static _handleRegexAction(playbackContext: KalturaPlaybackContext, mediaEntry: MediaEntry) {
+    if (mediaEntry.sources.captions.length > 0) {
+      mediaEntry.sources.captions.forEach(src => (src.url = OVPProviderParser._applyRegexAction(playbackContext, src.url)));
+    }
+    if (mediaEntry.poster) {
+      mediaEntry.poster = OVPProviderParser._applyRegexAction(playbackContext, mediaEntry.poster);
+    }
+  }
+
+  static _shouldReplaceUrls(playbackContext: KalturaPlaybackContext): Promise<boolean> {
+    let cdnUrl = OVPConfiguration.get()?.cdnUrl || '';
+    const regexAction = playbackContext.getRequestHostRegexAction();
+    return new Promise(resolve => {
+      if (regexAction && regexAction.pattern && regexAction.replacement) {
+        const regExp = new RegExp(regexAction.pattern, 'i');
+        if (cdnUrl.match(regExp)) {
+          cdnUrl = cdnUrl.replace(regExp, regexAction.replacement);
+          if (regexAction.checkAliveTimeoutMs && regexAction.checkAliveTimeoutMs > 0) {
+            const urlPing = cdnUrl + '/api_v3/service/system/action/ping/format/1';
+            // http://kesqa1.ecdn.kaltura.io/kAPI/qa-apache-php7.dev.kaltura.com/api_v3/service/system/action/ping/format/1
+
+            // const controller = new AbortController();
+            // const timeoutId = setTimeout(() => {
+            //   controller.abort();
+            // }, regexAction.checkAliveTimeoutMs);
+            //
+            // fetch(urlPing, {
+            //   signal: controller.signal
+            // })
+            //   .then(response => {
+            //     resolve(response.ok);
+            //   })
+            //   .catch(() => resolve(false))
+            //   .finally(clearTimeout(timeoutId));
+
+            const req = new XMLHttpRequest();
+            req.open('GET', urlPing);
+            req.timeout = regexAction.checkAliveTimeoutMs;
+            req.onreadystatechange = () => {
+              if (req.readyState === 4) {
+                resolve(req.status === 200);
+              }
+            };
+            req.ontimeout = () => {
+              resolve(false);
+            };
+            req.send();
+          } else {
+            resolve(true);
+          }
+        } else {
+          resolve(false);
+        }
+      } else {
+        resolve(false);
+      }
+    });
   }
 }
 

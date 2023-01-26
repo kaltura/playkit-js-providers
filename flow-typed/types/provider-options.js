@@ -11,5 +11,6 @@ declare type ProviderOptionsObject = {
   networkRetryParameters?: ProviderNetworkRetryParameters,
   filterOptions?: ProviderFilterOptionsObject,
   ignoreServerConfig?: boolean,
-  loadThumbnailWithKs?: boolean
+  loadThumbnailWithKs?: boolean,
+  replaceECDNAllUrls?: boolean
 };
