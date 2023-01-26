@@ -143,27 +143,18 @@ class OVPProviderParser {
    * @param {any} assetResponse - The asset response.
    * @param {string} ks - The ks
    * @param {number} partnerId - The partner ID
-   * @param {boolean} shouldReplaceUrlsWithRegex - Indicates whether the bumper url should be replaced with regex
    * @returns {?Bumper} - The bumper
    * @static
    * @public
    */
-  static getBumper(assetResponse: any, ks: string, partnerId: number, shouldReplaceUrlsWithRegex: boolean): ?Bumper {
+  static getBumper(assetResponse: any, ks: string, partnerId: number): ?Bumper {
     const playbackContext = assetResponse.playBackContextResult;
     const bumperData: KalturaBumper = playbackContext.bumperData[0];
     if (bumperData) {
       const bumperSources = bumperData && bumperData.sources;
       const progressiveBumper = bumperSources.find(bumper => isProgressiveSource(bumper.format));
       if (progressiveBumper) {
-        const parsedSources = OVPProviderParser._parseProgressiveSources(
-          progressiveBumper,
-          playbackContext,
-          ks,
-          partnerId,
-          0,
-          bumperData.entryId,
-          shouldReplaceUrlsWithRegex && OVPConfiguration.get().replaceECDNAllUrls
-        );
+        const parsedSources = OVPProviderParser._parseProgressiveSources(progressiveBumper, playbackContext, ks, partnerId, 0, bumperData.entryId);
         if (parsedSources[0]) {
           return new Bumper({url: parsedSources[0].url, clickThroughUrl: bumperData.clickThroughUrl});
         }

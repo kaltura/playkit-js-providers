@@ -152,13 +152,11 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
             });
           }
           return new Promise(resolve => {
-            OVPProviderParser.getMediaEntry(this.isAnonymous ? '' : this.ks, this.partnerId, this.uiConfId, response).then(arrayResult => {
-              const mediaEntry = arrayResult[0];
-              const shouldReplaceRegex = arrayResult[1];
+            OVPProviderParser.getMediaEntry(this.isAnonymous ? '' : this.ks, this.partnerId, this.uiConfId, response).then(mediaEntry => {
               Object.assign(mediaConfig.sources, this._getSourcesObject(mediaEntry));
               this._verifyMediaStatus(mediaEntry);
               this._verifyHasSources(mediaConfig.sources);
-              const bumper = OVPProviderParser.getBumper(response, this.isAnonymous ? '' : this.ks, this.partnerId, shouldReplaceRegex);
+              const bumper = OVPProviderParser.getBumper(response, this.isAnonymous ? '' : this.ks, this.partnerId);
               if (bumper) {
                 Object.assign(mediaConfig.plugins, {bumper});
               }
