@@ -312,7 +312,6 @@ class OVPProviderParser {
         OVPProviderParser._logger.warn(message);
         return null;
       }
-      // mediaSource.url = OVPProviderParser._applyRegexAction(playbackContext, playUrl);
       mediaSource.url = playUrl;
       mediaSource.id = entryId + '_' + deliveryProfileId + ',' + format;
       if (kalturaSource.hasDrmData()) {
@@ -376,7 +375,6 @@ class OVPProviderParser {
           OVPProviderParser._logger.warn(`failed to create play url from source, discarding source: (${entryId}_${deliveryProfileId}), ${format}.`);
           return null;
         } else {
-          // mediaSource.url = OVPProviderParser._applyRegexAction(playbackContext, playUrl);
           mediaSource.url = playUrl;
           if (flavor.height && flavor.width) {
             videoSources.push(mediaSource);
