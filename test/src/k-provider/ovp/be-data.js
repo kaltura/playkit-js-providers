@@ -411,6 +411,19 @@ AnonymousMocEntryWithRequestHostRegexAction.response[2].actions = [
     objectType: 'KalturaAccessControlModifyRequestHostRegexAction'
   }
 ];
+AnonymousMocEntryWithRequestHostRegexAction.response[2].playbackCaptions = [
+  {
+    label: 'English',
+    format: '2',
+    language: 'English',
+    webVttUrl:
+      'https://cfvod.kaltura.com/api_v3/index.php/service/caption_captionasset/action/serveWebVTT/captionAssetId/1_6jfbcdz9/segmentIndex/-1/version/11/captions.vtt',
+    url: 'https://cfvod.kaltura.com/api_v3/index.php/service/caption_captionAsset/action/serve/captionAssetId/1_6jfbcdz9/v/11',
+    isDefault: true,
+    languageCode: 'en',
+    objectType: 'KalturaCaptionPlaybackPluginData'
+  }
+];
 
 const AnonymousMocEntryWithoutUIConfWithDrmData = {
   response: [
