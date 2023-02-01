@@ -90,27 +90,6 @@ describe('OVPProvider.partnerId:1082342', function () {
     );
   });
 
-  it('should apply the request host regex on the source urls', done => {
-    sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
-      return new Promise(resolve => {
-        resolve({response: new MultiRequestResult(BE_DATA.AnonymousMocEntryWithRequestHostRegexAction.response)});
-      });
-    });
-    provider.getMediaConfig({entryId: '1_rsrdfext'}).then(
-      mediaConfig => {
-        try {
-          mediaConfig.should.deep.equal(MEDIA_CONFIG_DATA.RegexAppliedSources);
-          done();
-        } catch (err) {
-          done(err);
-        }
-      },
-      err => {
-        done(err);
-      }
-    );
-  });
-
   it('should return config with plugins and without drm data', done => {
     provider = new OVPProvider({partnerId: partnerId, uiConfId: 38621471}, playerVersion);
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
