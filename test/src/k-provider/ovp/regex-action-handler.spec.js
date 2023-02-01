@@ -1,6 +1,7 @@
 import {finalMediaConfigAllSourcesModified, mediaConfig, responseDataFromBE} from './regex-action-handler-data';
 import RegexActionHandler from '../../../../src/k-provider/ovp/regex-action-handler';
 import OVPMediaEntryLoader from '../../../../src/k-provider/ovp/loaders/media-entry-loader';
+import OVPConfiguration from '../../../../src/k-provider/ovp/config';
 
 describe('handleRegexAction', function () {
   let data = new Map();
@@ -14,6 +15,7 @@ describe('handleRegexAction', function () {
   });
 
   it('should modify all URLs', done => {
+    OVPConfiguration.set({replaceECDNAllUrls: true});
     mediaConfigForTest = {...mediaConfig};
     RegexActionHandler.handleRegexAction(mediaConfigForTest, data).then(
       mediaConfigRes => {
