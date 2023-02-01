@@ -61,8 +61,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
           response => {
             try {
               const mediaConfig = this._parseDataFromResponse(response);
-              const finalMediaConfig = RegexActionHandler.handleRegexAction(mediaConfig, response);
-              resolve(finalMediaConfig);
+              RegexActionHandler.handleRegexAction(mediaConfig, response).then(resolve);
             } catch (err) {
               reject(err);
             }

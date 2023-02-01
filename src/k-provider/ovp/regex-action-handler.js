@@ -31,30 +31,31 @@ class RegexActionHandler {
    * @function _pingECDNAndReplaceUrls
    * @param {ProviderMediaConfigObject} mediaConfig - The media config
    * @param {KalturaAccessControlModifyRequestHostRegexAction} regexAction - The regex action
-   * @param {string} urlPing - The url to ping
+   * @param {string} cdnUrl - The CDN url
    * @returns {Promise<ProviderMediaConfigObject>} - The media config with old or modified urls
    * @static
    * @private
    */
-  static _pingECDNAndReplaceUrls(
+  static _pingECDNAndModifyUrls(
     mediaConfig: ProviderMediaConfigObject,
     regexAction: KalturaAccessControlModifyRequestHostRegexAction,
-    urlPing: string
+    cdnUrl: string
   ): Promise<ProviderMediaConfigObject> {
     return new Promise(resolve => {
+      const urlPing = cdnUrl + '/api_v3/service/system/action/ping/format/1';
       const req = new XMLHttpRequest();
       req.open('GET', urlPing);
       req.timeout = regexAction.checkAliveTimeoutMs;
       req.onreadystatechange = () => {
         if (req.readyState === 4) {
           if (req.status === 200) {
-            RegexActionHandler._modifyUrls(mediaConfig, regexAction);
+            RegexActionHandler._modifyHostUrls(mediaConfig, regexAction);
           }
           resolve(mediaConfig);
         }
       };
       req.ontimeout = () => {
-        RegexActionHandler._logger.warn(`Got timeout while pinging the ECDN url. ping url: ${urlPing}`);
+        RegexActionHandler._logger.warn(`Got timeout while pinging the ECDN url. the ping url: ${urlPing}`);
         resolve(mediaConfig);
       };
       req.send();
@@ -69,29 +70,31 @@ class RegexActionHandler {
    * @returns {ProviderMediaConfigObject} - The media config with old or modified urls
    * @static
    */
-  static async handleRegexAction(mediaConfig: ProviderMediaConfigObject, data: Map<string, Function>): ProviderMediaConfigObject {
-    let cdnUrl = OVPConfiguration.get()?.cdnUrl || '';
-    const regexAction = RegexActionHandler._extractRegexActionFromData(data);
-    if (regexAction && regexAction.pattern && regexAction.replacement) {
-      const regExp = new RegExp(regexAction.pattern, 'i');
-      if (cdnUrl.match(regExp)) {
-        cdnUrl = cdnUrl.replace(regExp, regexAction.replacement);
-        if (regexAction.checkAliveTimeoutMs && regexAction.checkAliveTimeoutMs > 0) {
-          let urlToPing = cdnUrl + '/api_v3/service/system/action/ping/format/1';
-          const finalMediaConfig = await RegexActionHandler._pingECDNAndReplaceUrls(mediaConfig, regexAction, urlToPing);
-          return finalMediaConfig;
-        } else {
-          RegexActionHandler._modifyUrls(mediaConfig, regexAction);
-          return mediaConfig;
-        }
+  static handleRegexAction(mediaConfig: ProviderMediaConfigObject, data: Map<string, Function>): Promise<ProviderMediaConfigObject> {
+    return new Promise(resolve => {
+      let cdnUrl = OVPConfiguration.get().cdnUrl;
+      const regexAction = RegexActionHandler._extractRegexActionFromData(data);
+      const regExp = RegexActionHandler._getRegExp(regexAction);
+
+      if (!cdnUrl || !regExp || !cdnUrl.match(regExp)) {
+        RegexActionHandler._logger.debug('not applying regex action - could be cdnUrl or regExp are undefined, or cdnUrl doesnt match regExp.');
+        resolve(mediaConfig);
       }
-    } else {
-      return mediaConfig;
-    }
+
+      cdnUrl = cdnUrl.replace(regExp, regexAction.replacement);
+
+      if (regexAction.checkAliveTimeoutMs > 0) {
+        RegexActionHandler._logger.debug('executing ping request...');
+        RegexActionHandler._pingECDNAndModifyUrls(mediaConfig, regexAction, cdnUrl).then(resolve);
+      } else {
+        RegexActionHandler._modifyHostUrls(mediaConfig, regexAction);
+        resolve(mediaConfig);
+      }
+    });
   }
 
   /**
-   * Modify the urls
+   * Modify the host urls - injects the configured cdn before the original host, to route requests
    * @function _modifyUrls
    * @param {ProviderMediaConfigObject} mediaConfig - The media config
    * @param {KalturaAccessControlModifyRequestHostRegexAction} regexAction - The regex action
@@ -99,25 +102,23 @@ class RegexActionHandler {
    * @static
    * @private
    */
-  static _modifyUrls(mediaConfig: ProviderMediaConfigObject, regexAction: KalturaAccessControlModifyRequestHostRegexAction) {
+  static _modifyHostUrls(mediaConfig: ProviderMediaConfigObject, regexAction: KalturaAccessControlModifyRequestHostRegexAction) {
     RegexActionHandler._logger.debug(`Starting to modify urls...`);
     const sources = mediaConfig.sources;
-    if (sources.hls.length > 0) {
-      sources.hls.forEach(src => (src.url = RegexActionHandler._applyRegexAction(regexAction, src.url)));
-    }
-    if (sources.dash.length > 0) {
-      sources.dash.forEach(src => (src.url = RegexActionHandler._applyRegexAction(regexAction, src.url)));
-    }
-    if (sources.progressive.length > 0) {
-      sources.progressive.forEach(src => (src.url = RegexActionHandler._applyRegexAction(regexAction, src.url)));
-    }
-    if (sources.image.length > 0) {
-      sources.image.forEach(src => (src.url = RegexActionHandler._applyRegexAction(regexAction, src.url)));
-    }
+
+    const applyRegexActionToSources = sources => {
+      sources.forEach(src => (src.url = RegexActionHandler._applyRegexAction(regexAction, src.url)));
+    };
+
+    applyRegexActionToSources(sources.hls);
+    applyRegexActionToSources(sources.dash);
+    applyRegexActionToSources(sources.progressive);
+    applyRegexActionToSources(sources.image);
+
     if (OVPConfiguration.get().replaceECDNAllUrls) {
-      if (sources.captions.length > 0) {
-        sources.captions.forEach(src => (src.url = RegexActionHandler._applyRegexAction(regexAction, src.url)));
-      }
+      RegexActionHandler._logger.debug(`replaceECDNAllUrls flag is on - modifying captions and poster URLs`);
+      applyRegexActionToSources(sources.captions);
+
       if (sources.poster) {
         sources.poster = RegexActionHandler._applyRegexAction(regexAction, sources.poster);
       }
@@ -133,13 +134,23 @@ class RegexActionHandler {
    * @static
    * @private
    */
-  static _extractRegexActionFromData(data: any): ?KalturaAccessControlModifyRequestHostRegexAction {
+  static _extractRegexActionFromData(data: Map<string, Function>): ?KalturaAccessControlModifyRequestHostRegexAction {
     if (data.has(OVPMediaEntryLoader.id)) {
-      const mediaLoader = data.get(OVPMediaEntryLoader.id);
-      if (mediaLoader && mediaLoader.response) {
-        const response = (mediaLoader: OVPMediaEntryLoader).response;
-        return response.playBackContextResult.getRequestHostRegexAction();
-      }
+      return data.get(OVPMediaEntryLoader.id)?.response?.playBackContextResult.getRequestHostRegexAction();
+    }
+  }
+
+  /**
+   * Extracts the regex action from the data response
+   * @function _extractRegexActionFromData
+   * @param {KalturaAccessControlModifyRequestHostRegexAction} regexAction - The regex action
+   * @returns {RegExp} The regex expression
+   * @static
+   * @private
+   */
+  static _getRegExp(regexAction: KalturaAccessControlModifyRequestHostRegexAction): ?RegExp {
+    if (regexAction && regexAction.pattern && regexAction.replacement) {
+      return new RegExp(regexAction.pattern, 'i');
     }
   }
 }
