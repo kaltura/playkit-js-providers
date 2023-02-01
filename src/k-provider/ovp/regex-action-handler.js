@@ -76,19 +76,20 @@ class RegexActionHandler {
       const regexAction = RegexActionHandler._extractRegexActionFromData(data);
       const regExp = RegexActionHandler._getRegExp(regexAction);
 
-      if (!cdnUrl || !regExp || !cdnUrl.match(regExp)) {
-        RegexActionHandler._logger.debug('not applying regex action - could be cdnUrl or regExp are undefined, or cdnUrl doesnt match regExp.');
+      if (!cdnUrl || !regexAction || !regExp || !cdnUrl.match(regExp)) {
+        RegexActionHandler._logger.debug('exiting handleRegexAction - not applying regex action.');
         resolve(mediaConfig);
       }
 
-      cdnUrl = cdnUrl.replace(regExp, regexAction.replacement);
-
-      if (regexAction.checkAliveTimeoutMs > 0) {
-        RegexActionHandler._logger.debug('executing ping request...');
-        RegexActionHandler._pingECDNAndModifyUrls(mediaConfig, regexAction, cdnUrl).then(resolve);
-      } else {
-        RegexActionHandler._modifyHostUrls(mediaConfig, regexAction);
-        resolve(mediaConfig);
+      if (regexAction) {
+        cdnUrl = cdnUrl.replace(regExp, regexAction.replacement);
+        if (regexAction.checkAliveTimeoutMs > 0) {
+          RegexActionHandler._logger.debug('executing ping request...');
+          RegexActionHandler._pingECDNAndModifyUrls(mediaConfig, regexAction, cdnUrl).then(resolve);
+        } else {
+          RegexActionHandler._modifyHostUrls(mediaConfig, regexAction);
+          resolve(mediaConfig);
+        }
       }
     });
   }
@@ -117,9 +118,12 @@ class RegexActionHandler {
 
     if (OVPConfiguration.get().replaceECDNAllUrls) {
       RegexActionHandler._logger.debug(`replaceECDNAllUrls flag is on - modifying captions and poster URLs`);
-      applyRegexActionToSources(sources.captions);
+      if (sources.captions) {
+        applyRegexActionToSources(sources.captions);
+      }
 
-      if (sources.poster) {
+      // fix flow - poster can also be an array, but only for ott.
+      if (typeof sources.poster === 'string') {
         sources.poster = RegexActionHandler._applyRegexAction(regexAction, sources.poster);
       }
     }
@@ -136,7 +140,11 @@ class RegexActionHandler {
    */
   static _extractRegexActionFromData(data: Map<string, Function>): ?KalturaAccessControlModifyRequestHostRegexAction {
     if (data.has(OVPMediaEntryLoader.id)) {
-      return data.get(OVPMediaEntryLoader.id)?.response?.playBackContextResult.getRequestHostRegexAction();
+      const mediaLoader = data.get(OVPMediaEntryLoader.id);
+      if (mediaLoader && mediaLoader.response) {
+        const response = (mediaLoader: OVPMediaEntryLoader).response;
+        return response.playBackContextResult.getRequestHostRegexAction();
+      }
     }
   }
 
