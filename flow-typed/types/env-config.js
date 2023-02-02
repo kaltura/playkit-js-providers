@@ -4,5 +4,5 @@ declare type ProviderEnvConfigObject = {
   cdnUrl?: string,
   analyticsServiceUrl?: string,
   useApiCaptions?: boolean,
-  replaceECDNAllUrls?: boolean
+  replaceHostOnlyManifestUrls?: boolean
 };

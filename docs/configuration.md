@@ -99,7 +99,7 @@ var provider = new playkit.providers.ott.Provider(config);
 >  serviceUrl: string,
 >  cdnUrl: string,
 >  useApiCaptions: boolean,
->  replaceECDNAllUrls: boolean // optional
+>  replaceHostOnlyManifestUrls: boolean // optional
 > }
 > ```
 >
@@ -112,7 +112,7 @@ var provider = new playkit.providers.ott.Provider(config);
 >  serviceUrl: "//www.kaltura.com/api_v3",
 >  cdnUrl: "//cdnapisec.kaltura.com",
 >  useApiCaptions: true,
->  replaceECDNAllUrls: true
+>  replaceHostOnlyManifestUrls: false
 > }
 > ```
 >
@@ -135,13 +135,13 @@ var provider = new playkit.providers.ott.Provider(config);
 > >
 > > ##### Description: Show captions on platforms that don't support inband captions (for example: playing using Flash). This flag is for the OVP provider, and can be turned off by setting its value to `false`.
 >
-> > ### config.env.replaceECDNAllUrls
+> > ### config.env.replaceHostOnlyManifestUrls
 > >
 > > ##### Type: `boolean`
 > >
-> > ##### Default: true
+> > ##### Default: false
 > >
-> > ##### Description: Defines whether to modify captions and poster URLs, in addition to play manifest URLs. This flag is for OVP provider, and can be turned off by setting its value to `false`.
+> > ##### Description: Defines whether to replace host only for play manifest URLs or to replace also for captions and poster URLs. This flag is for OVP provider, and can be turned on by setting its value to `true`.
 
 ##
 

@@ -15,7 +15,7 @@ describe('handleRegexAction', function () {
   });
 
   it('should modify all URLs', done => {
-    OVPConfiguration.set({replaceECDNAllUrls: true});
+    OVPConfiguration.set({replaceHostOnlyPlayManifestUrls: true});
     mediaConfigForTest = {...mediaConfig};
     RegexActionHandler.handleRegexAction(mediaConfigForTest, data).then(
       mediaConfigRes => {
