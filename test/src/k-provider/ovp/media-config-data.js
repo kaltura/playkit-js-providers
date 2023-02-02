@@ -141,7 +141,6 @@ const NoPluginsNoDrm = {
 };
 
 const RegexAppliedPlayManifestSources = {
-  plugins: {},
   session: {
     isAnonymous: true,
     partnerId: 1082342,
@@ -288,7 +287,8 @@ const RegexAppliedPlayManifestSources = {
       HLSOnly: 'android',
       ChannelName: 'Disney Channel SE'
     }
-  }
+  },
+  plugins: {}
 };
 
 const RegexAppliedAllSources = {
