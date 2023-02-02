@@ -112,7 +112,7 @@ describe('OVPProvider.partnerId:1082342', function () {
   });
 
   it('should apply the request host regex only to the playManifest source urls', done => {
-    OVPConfiguration.set({replaceHostOnlyPlayManifestUrls: false});
+    OVPConfiguration.set({replaceHostOnlyPlayManifestUrls: true});
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
       return new Promise(resolve => {
         resolve({response: new MultiRequestResult(BE_DATA.AnonymousMocEntryWithRequestHostRegexAction.response)});
