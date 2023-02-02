@@ -140,14 +140,23 @@ const NoPluginsNoDrm = {
   }
 };
 
-const RegexAppliedSources = {
+const RegexAppliedPlayManifestSources = {
   session: {
     isAnonymous: true,
     partnerId: 1082342,
     ks: 'OGM0ZWM0Y2IwOWI5ZjM0MDcyZmQ3YmYxNzBiMGEwNGYxNWQ0ZTcyOXwxMDgyMzQyOzEwODIzNDI7MTQ5MDExNTg5MzswOzE0OTAwMjk0OTMuMTY3ODswO3ZpZXc6Kix3aWRnZXQ6MTs7'
   },
-  plugins: {},
   sources: {
+    captions: [
+      {
+        default: true,
+        type: 'vtt',
+        language: 'en',
+        label: 'English',
+        url:
+          'https://cfvod.kaltura.com/api_v3/index.php/service/caption_captionasset/action/serveWebVTT/captionAssetId/1_6jfbcdz9/segmentIndex/-1/version/11/captions.vtt'
+      }
+    ],
     hls: [
       {
         id: '1_rsrdfext_10091,applehttp',
@@ -278,6 +287,159 @@ const RegexAppliedSources = {
       HLSOnly: 'android',
       ChannelName: 'Disney Channel SE'
     }
+  },
+  plugins: {}
+};
+
+const RegexAppliedAllSources = {
+  session: {
+    isAnonymous: true,
+    partnerId: 1082342,
+    ks: 'OGM0ZWM0Y2IwOWI5ZjM0MDcyZmQ3YmYxNzBiMGEwNGYxNWQ0ZTcyOXwxMDgyMzQyOzEwODIzNDI7MTQ5MDExNTg5MzswOzE0OTAwMjk0OTMuMTY3ODswO3ZpZXc6Kix3aWRnZXQ6MTs7'
+  },
+  plugins: {},
+  sources: {
+    hls: [
+      {
+        id: '1_rsrdfext_10091,applehttp',
+        url:
+          'https://qa-kes-ebu-01.dev.kaltura.com/kAPI/cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/https/format/applehttp/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/a.m3u8',
+        mimetype: 'application/x-mpegURL'
+      },
+      {
+        id: '1_rsrdfext_11241,applehttp',
+        url:
+          'https://qa-kes-ebu-01.dev.kaltura.com/kAPI/cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/https/format/applehttp/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/a.m3u8',
+        mimetype: 'application/x-mpegURL'
+      }
+    ],
+    dash: [
+      {
+        id: '1_rsrdfext_11611,mpegdash',
+        url:
+          'https://qa-kes-ebu-01.dev.kaltura.com/kAPI/cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/https/format/mpegdash/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/a.mpd',
+        mimetype: 'application/dash+xml'
+      },
+      {
+        id: '1_rsrdfext_11261,mpegdash',
+        url:
+          'https://qa-kes-ebu-01.dev.kaltura.com/kAPI/cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/https/format/mpegdash/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/a.mpd',
+        mimetype: 'application/dash+xml'
+      }
+    ],
+    image: [],
+    progressive: [
+      {
+        id: '1_ha0nqwz810081,url',
+        url:
+          'https://qa-kes-ebu-01.dev.kaltura.com/kAPI/cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/https/format/url/flavorIds/1_ha0nqwz8/a.mp4',
+        mimetype: 'video/mp4',
+        bandwidth: 482304,
+        width: 640,
+        height: 360,
+        label: 'Undefined'
+      },
+      {
+        id: '1_gw7u4nf110081,url',
+        url:
+          'https://qa-kes-ebu-01.dev.kaltura.com/kAPI/cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/https/format/url/flavorIds/1_gw7u4nf1/a.mp4',
+        mimetype: 'video/mp4',
+        bandwidth: 686080,
+        width: 640,
+        height: 360,
+        label: 'Undefined'
+      },
+      {
+        id: '1_rql6sqaa10081,url',
+        url:
+          'https://qa-kes-ebu-01.dev.kaltura.com/kAPI/cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/https/format/url/flavorIds/1_rql6sqaa/a.mp4',
+        mimetype: 'video/mp4',
+        bandwidth: 987136,
+        width: 640,
+        height: 360,
+        label: 'Undefined'
+      },
+      {
+        id: '1_sufd1yd910081,url',
+        url:
+          'https://qa-kes-ebu-01.dev.kaltura.com/kAPI/cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/https/format/url/flavorIds/1_sufd1yd9/a.mp4',
+        mimetype: 'video/mp4',
+        bandwidth: 1584128,
+        width: 1280,
+        height: 720,
+        label: 'Undefined'
+      },
+      {
+        id: '1_9xvkk7a510081,url',
+        url:
+          'https://qa-kes-ebu-01.dev.kaltura.com/kAPI/cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/https/format/url/flavorIds/1_9xvkk7a5/a.mp4',
+        mimetype: 'video/mp4',
+        bandwidth: 2691072,
+        width: 1280,
+        height: 720,
+        label: 'Undefined'
+      },
+      {
+        id: '1_4typ4pat10081,url',
+        url:
+          'https://qa-kes-ebu-01.dev.kaltura.com/kAPI/cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/https/format/url/flavorIds/1_4typ4pat/a.mp4',
+        mimetype: 'video/mp4',
+        bandwidth: 4227072,
+        width: 1920,
+        height: 1080,
+        label: 'Undefined'
+      },
+      {
+        id: '1_n75294r410081,url',
+        url:
+          'https://qa-kes-ebu-01.dev.kaltura.com/kAPI/cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/https/format/url/flavorIds/1_n75294r4/a.mov',
+        mimetype: 'video/mp4',
+        bandwidth: 18454528,
+        width: 1920,
+        height: 1080,
+        label: 'English'
+      }
+    ],
+    id: '1_rsrdfext',
+    duration: 55,
+    type: 'Vod',
+    poster:
+      'http://qa-kes-ebu-01.dev.kaltura.com/kAPI/kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
+    dvr: false,
+    vr: null,
+    metadata: {
+      entryId: '1_rsrdfext',
+      name: 'FO21934-HDTX-SWE',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.',
+      tags: '',
+      OriginalFilename: 'FO21934-HDTX-SWE.mov',
+      Locale: 'sv_SE',
+      PropertyCode: 'FTA-nm',
+      SiteSection: 'tv-dc',
+      ContentType: 'clip',
+      BusinessUnit: 'Disney Channel',
+      Origin: 'IBMS',
+      PromoType: 'Show - TV',
+      StartDate: '1483225200',
+      EndDate: '1485903600',
+      AgeConsent: 'No Age Consent',
+      TXID: 'FO21934-HDTX-SWE',
+      ZeroTouchIds: 'se-dc-lf',
+      ScheduleSource: 'VOD',
+      HLSOnly: 'android',
+      ChannelName: 'Disney Channel SE'
+    },
+    captions: [
+      {
+        default: true,
+        type: 'vtt',
+        language: 'en',
+        label: 'English',
+        url:
+          'https://qa-kes-ebu-01.dev.kaltura.com/kAPI/cfvod.kaltura.com/api_v3/index.php/service/caption_captionasset/action/serveWebVTT/captionAssetId/1_6jfbcdz9/segmentIndex/-1/version/11/captions.vtt'
+      }
+    ]
   }
 };
 
@@ -1331,7 +1493,7 @@ const EntryOfPartner0 = {
 
 export {
   NoPluginsNoDrm,
-  RegexAppliedSources,
+  RegexAppliedPlayManifestSources,
   NoPluginsWithDrm,
   WithPluginsNoDrm,
   WithPluginsWithDrm,
@@ -1342,5 +1504,6 @@ export {
   EntryWithBumper,
   EntryWithBumperWithKs,
   EntryWithNoBumper,
-  EntryOfPartner0
+  EntryOfPartner0,
+  RegexAppliedAllSources
 };

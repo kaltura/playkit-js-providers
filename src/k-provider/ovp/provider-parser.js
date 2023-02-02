@@ -312,7 +312,7 @@ class OVPProviderParser {
         OVPProviderParser._logger.warn(message);
         return null;
       }
-      mediaSource.url = OVPProviderParser._applyRegexAction(playbackContext, playUrl);
+      mediaSource.url = playUrl;
       mediaSource.id = entryId + '_' + deliveryProfileId + ',' + format;
       if (kalturaSource.hasDrmData()) {
         const drmParams: Array<Drm> = [];
@@ -375,7 +375,7 @@ class OVPProviderParser {
           OVPProviderParser._logger.warn(`failed to create play url from source, discarding source: (${entryId}_${deliveryProfileId}), ${format}.`);
           return null;
         } else {
-          mediaSource.url = OVPProviderParser._applyRegexAction(playbackContext, playUrl);
+          mediaSource.url = playUrl;
           if (flavor.height && flavor.width) {
             videoSources.push(mediaSource);
           } else {
@@ -446,26 +446,6 @@ class OVPProviderParser {
 
   static getErrorMessages(response: OVPMediaEntryLoaderResponse): Array<KalturaAccessControlMessage> {
     return response.playBackContextResult.getErrorMessages();
-  }
-
-  /**
-   * Applies the request host regex on the url
-   * @function _applyRegexAction
-   * @param {KalturaPlaybackContext} playbackContext - The playback context
-   * @param {string} playUrl - The original url
-   * @returns {string} - The request host regex applied url
-   * @static
-   * @private
-   */
-  static _applyRegexAction(playbackContext: KalturaPlaybackContext, playUrl: string): string {
-    const regexAction = playbackContext.getRequestHostRegexAction();
-    if (regexAction) {
-      const regex = new RegExp(regexAction.pattern, 'i');
-      if (playUrl.match(regex)) {
-        return playUrl.replace(regex, regexAction.replacement + '/');
-      }
-    }
-    return playUrl;
   }
 }
 

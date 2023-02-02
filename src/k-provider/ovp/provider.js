@@ -11,6 +11,7 @@ import BaseProvider from '../common/base-provider';
 import MediaEntry from '../../entities/media-entry';
 import OVPEntryListLoader from './loaders/entry-list-loader';
 import Error from '../../util/error/error';
+import RegexActionHandler from './regex-action-handler';
 
 export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject> {
   _filterOptionsConfig: ProviderFilterOptionsObject = {redirectFromEntryId: true};
@@ -59,7 +60,8 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
         return this._dataLoader.fetchData().then(
           response => {
             try {
-              resolve(this._parseDataFromResponse(response));
+              const mediaConfig = this._parseDataFromResponse(response);
+              RegexActionHandler.handleRegexAction(mediaConfig, response).then(resolve);
             } catch (err) {
               reject(err);
             }

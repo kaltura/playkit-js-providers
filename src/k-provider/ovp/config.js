@@ -9,7 +9,8 @@ const defaultConfig: Object = {
     format: 1
   },
   useApiCaptions: true,
-  loadThumbnailWithKs: false
+  loadThumbnailWithKs: false,
+  replaceHostOnlyManifestUrls: false
 };
 
 export default class OVPConfiguration {
