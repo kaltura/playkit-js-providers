@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.39.0](https://github.com/kaltura/playkit-js-providers/compare/v2.38.0...v2.39.0) (2023-02-22)
+
+
+### Bug Fixes
+
+* **FEC-12929:** Add an image preview on "next-screen" in image item on playlist ([#202](https://github.com/kaltura/playkit-js-providers/issues/202)) ([c6b1c99](https://github.com/kaltura/playkit-js-providers/commit/c6b1c99))
+
+
+### Features
+
+* **FEC-12850:** ECDN Fallback Option Upon Inaccessible API Gateway ([#201](https://github.com/kaltura/playkit-js-providers/issues/201)) ([fbcf62b](https://github.com/kaltura/playkit-js-providers/commit/fbcf62b))
+
+
+
 ## [2.38.0](https://github.com/kaltura/playkit-js-providers/compare/v2.37.0...v2.38.0) (2023-01-26)
 
 
