@@ -81,7 +81,8 @@
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "regenerator-runtime": "^0.13.11"
   },
   "keywords": [],
   "license": "AGPL-3.0",
