@@ -1,5 +1,5 @@
 {
-  "name": "playkit-js-providers",
+  "name": "@playkit-js/playkit-js-providers",
   "version": "2.39.0",
   "description": "",
   "scripts": {
@@ -27,11 +27,6 @@
       "prettier --write",
       "git add"
     ]
-  },
-  "standard-version": {
-    "scripts": {
-      "postbump": "yarn run build && npm run commit:dist"
-    }
   },
   "devDependencies": {
     "@babel/cli": "^7.10.1",
