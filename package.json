@@ -11,7 +11,7 @@
     "test": "NODE_ENV=test karma start --color --mode development",
     "test:watch": "NODE_ENV=test karma start --browsers=Chrome --single-run=false --auto-watch",
     "release": "standard-version",
-    "publish": "git push --follow-tags --no-verify origin master",
+    "pushTaggedRelease": "git push --follow-tags --no-verify origin master",
     "eslint": "eslint . --color",
     "flow": "flow check",
     "commit:dist": "git add --force --all dist && (git commit -m 'chore: update dist' || exit 0)",
