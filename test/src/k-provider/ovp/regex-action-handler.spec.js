@@ -10,7 +10,8 @@ import OVPConfiguration from '../../../../src/k-provider/ovp/config';
 
 describe('handleRegexAction', function () {
   let data = new Map();
-  let mediaEntryLoader, mediaConfigForTest;
+  let mediaEntryLoader;
+  let mediaConfigForTest = {...mediaConfig};
 
   before(() => {
     mediaEntryLoader = new OVPMediaEntryLoader({entryId: 'a', ks: 'a', redirectFromEntryId: true});
@@ -19,11 +20,11 @@ describe('handleRegexAction', function () {
   });
 
   afterEach(() => {
-    RegexActionHandler._pingECDNUrl.restore();
+    RegexActionHandler._isECDNUrlAlive.restore();
   });
 
   it('should modify all URLs', done => {
-    sinon.stub(RegexActionHandler, '_pingECDNUrl').callsFake(function () {
+    sinon.stub(RegexActionHandler, '_isECDNUrlAlive').callsFake(function () {
       return new Promise(resolve => {
         resolve(true);
       });
@@ -46,7 +47,7 @@ describe('handleRegexAction', function () {
   });
 
   it('should modify only the manifest URLs', done => {
-    sinon.stub(RegexActionHandler, '_pingECDNUrl').callsFake(function () {
+    sinon.stub(RegexActionHandler, '_isECDNUrlAlive').callsFake(function () {
       return new Promise(resolve => {
         resolve(true);
       });
@@ -69,7 +70,7 @@ describe('handleRegexAction', function () {
   });
 
   it('should not modify the sources URLs', done => {
-    sinon.stub(RegexActionHandler, '_pingECDNUrl').callsFake(function () {
+    sinon.stub(RegexActionHandler, '_isECDNUrlAlive').callsFake(function () {
       return new Promise(resolve => {
         resolve(false);
       });

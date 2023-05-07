@@ -27,7 +27,7 @@ class RegexActionHandler {
   }
 
   /**
-   * Ping the ECDN url
+   * Ping the ECDN url to check if alive
    * @function _pingECDNUrl
    * @param {KalturaAccessControlModifyRequestHostRegexAction} regexAction - The regex action
    * @param {string} cdnUrl - The CDN url
@@ -35,7 +35,7 @@ class RegexActionHandler {
    * @static
    * @private
    */
-  static async _pingECDNUrl(regexAction: KalturaAccessControlModifyRequestHostRegexAction, cdnUrl: string) {
+  static async _isECDNUrlAlive(regexAction: KalturaAccessControlModifyRequestHostRegexAction, cdnUrl: string) {
     const urlPing = cdnUrl + '/api_v3/service/system/action/ping/format/1';
     const req = new XMLHttpRequest();
     req.open('GET', urlPing);
@@ -73,7 +73,11 @@ class RegexActionHandler {
       regexAction &&
       regExp &&
       cdnUrl.match(regExp) &&
-      !(regexAction.checkAliveTimeoutMs > 0 && !(await RegexActionHandler._pingECDNUrl(regexAction, cdnUrl)))
+      // we need to make the replacement in all cases except for when the checkAliveTimeoutMs > 0 && the ping has failed
+      !(
+        regexAction.checkAliveTimeoutMs > 0 &&
+        !(await RegexActionHandler._isECDNUrlAlive(regexAction, cdnUrl.replace(regExp, regexAction.replacement)))
+      )
     ) {
       RegexActionHandler._replaceHostUrls(mediaConfig, regexAction);
       return mediaConfig;
