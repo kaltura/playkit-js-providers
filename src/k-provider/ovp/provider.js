@@ -33,7 +33,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
   }
 
   /**
-   * Gets the backend media config.
+   * Gets the backend media config object.
    * @param {OVPProviderMediaInfoObject} mediaInfo - ovp media info
    * @returns {Promise<ProviderMediaConfigObject>} - The provider media config
    */
