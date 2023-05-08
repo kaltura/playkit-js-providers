@@ -169,7 +169,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
   }
 
   /**
-   * Checks media is ready for playback (not being imported or converted)
+   * Checks if media is ready for playback (not being imported or converted)
    * @param {MediaEntry} mediaEntry - the media entry info
    * @returns {void}
    */
