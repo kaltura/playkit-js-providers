@@ -1,85 +1,77 @@
-'use strict';
-
-const clone = require('clone');
 const webpack = require('webpack');
 const path = require('path');
 const packageData = require('./package.json');
+const TerserPlugin = require('terser-webpack-plugin');
 
-let plugins = [
+const isProduction = process.env.NODE_ENV === 'production';
+
+const plugins = [
   new webpack.DefinePlugin({
     __VERSION__: JSON.stringify(packageData.version),
     __NAME__: JSON.stringify(packageData.name)
   })
 ];
 
-const baseConfig = {
-  context: __dirname + '/src',
-  entry: {},
-  output: {
-    path: path.join(__dirname, 'dist'),
-    libraryTarget: 'umd',
-    devtoolModuleFilenameTemplate: './providers/[resource-path]'
+const config = {
+  entry: {
+    ovp: './src/k-provider/ovp/index.js',
+    ott: './src/k-provider/ott/index.js',
+    analytics: './src/k-provider/ovp/services/analytics/index.js',
+    bookmark: './src/k-provider/ott/services/bookmark/index.js',
+    stats: './src/k-provider/ovp/services/stats/index.js'
   },
-  devtool: 'source-map',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: pathData =>
+      pathData.chunk.name === 'ovp' || pathData.chunk.name === 'ott' ? 'playkit-[name]-provider.js' : 'playkit-[name]-service.js',
+    libraryTarget: 'umd',
+    clean: true
+  },
   plugins: plugins,
   module: {
     rules: [
       {
         test: /\.js$/,
-        use: [
-          {
-            loader: 'babel-loader'
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            // presets: [['@babel/preset-env', {targets: 'defaults'}], '@babel/preset-flow']  The ideal targets in the feature
+            presets: [
+              [
+                '@babel/preset-env',
+                {
+                  targets: ['chrome >= 47', 'firefox >= 51', 'ie >= 11', 'safari >= 8', 'ios >= 8', 'android >= 4'],
+                  loose: true,
+                  bugfixes: true
+                }
+              ],
+              '@babel/preset-flow'
+            ]
           }
-        ],
-        exclude: [/node_modules/]
-      },
-      {
-        test: /\.js$/,
-        exclude: [/node_modules/],
-        enforce: 'pre',
-        use: [
-          {
-            loader: 'eslint-loader',
-            options: {
-              rules: {
-                semi: 0
-              }
-            }
-          }
-        ]
+        }
       }
     ]
   },
-  devServer: {
-    contentBase: __dirname + '/src'
-  },
-  resolve: {
-    modules: [path.resolve(__dirname, 'src'), 'node_modules']
+  optimization: {
+    minimizer: [
+      new TerserPlugin({
+        extractComments: false
+      })
+    ]
   }
 };
 
-const providersConfig = clone(baseConfig);
-const servicesConfig = clone(baseConfig);
-
-Object.assign(providersConfig.entry, {
-  ott: 'k-provider/ott/index.js',
-  ovp: 'k-provider/ovp/index.js'
-});
-
-Object.assign(providersConfig.output, {
-  filename: 'playkit-[name]-provider.js',
-  library: ['playkit', 'providers', '[name]']
-});
-
-Object.assign(servicesConfig.entry, {
-  analytics: 'k-provider/ovp/services/analytics/index.js',
-  stats: 'k-provider/ovp/services/stats/index.js',
-  bookmark: 'k-provider/ott/services/bookmark/index.js'
-});
-
-Object.assign(servicesConfig.output, {
-  filename: 'playkit-[name]-service.js',
-  library: ['playkit', 'services', '[name]']
-});
-
-module.exports = [providersConfig, servicesConfig];
+module.exports = () => {
+  if (isProduction) {
+    config.mode = 'production';
+  } else {
+    config.mode = 'development';
+    config.devtool = 'eval-source-map';
+    config.devServer = {
+      static: path.resolve(__dirname, 'dist'),
+      compress: true
+    };
+  }
+  return config;
+};
