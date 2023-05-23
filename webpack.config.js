@@ -3,6 +3,13 @@ const path = require('path');
 const packageData = require('./package.json');
 const TerserPlugin = require('terser-webpack-plugin');
 
+/********************************************************************************************************
+ *  Tip
+ *  when you run webpack dev server
+ *  If you're having trouble, navigating to the /webpack-dev-server route will show where files are served.
+ *  For example, http://localhost:9000/webpack-dev-server.
+ ********************************************************************************************************/
+
 const isProduction = process.env.NODE_ENV === 'production';
 
 const plugins = [
@@ -69,7 +76,9 @@ module.exports = () => {
     config.mode = 'development';
     config.devtool = 'eval-source-map';
     config.devServer = {
-      static: path.resolve(__dirname, 'dist'),
+      static: {
+        directory: path.join(__dirname, 'dist')
+      },
       compress: true
     };
   }
