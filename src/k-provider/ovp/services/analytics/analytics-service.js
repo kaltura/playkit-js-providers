@@ -30,6 +30,7 @@ export default class OVPAnalyticsService extends OVPService {
     request.service = SERVICE_NAME;
     request.action = 'trackEvent';
     request.method = 'GET';
+    request.retryConfig.maxAttempts = 1;
     request.tag = 'analytics-trackEvent';
     request.params = serviceParams;
     request.url = serviceUrl + '?service=' + request.service + '&action=' + request.action + '&' + param(request.params);
