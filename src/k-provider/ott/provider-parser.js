@@ -113,6 +113,8 @@ export default class OTTProviderParser {
     const metaData = OTTProviderParser.reconstructMetadata(mediaAsset);
     metaData.description = mediaAsset.description;
     metaData.name = mediaAsset.name;
+    metaData.createdAt = mediaAsset.createDate;
+    metaData.endDate = mediaAsset.endDate;
     if (mediaAsset.data.entryId) metaData.entryId = mediaAsset.data.entryId;
     if (mediaAsset.data.epgId) metaData.epgId = mediaAsset.data.epgId;
     if (mediaAsset.data.recordingId) metaData.recordingId = mediaAsset.data.recordingId;

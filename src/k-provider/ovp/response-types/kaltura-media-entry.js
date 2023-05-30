@@ -119,6 +119,18 @@ export class KalturaMediaEntry {
   status: number;
 
   /**
+   * @member - Entry creation date as Unix timestamp (In seconds)
+   * @type {number}
+   */
+  createdAt: number;
+
+   /**
+   * @member - Entry end date as Unix timestamp (In seconds)
+   * @type {number}
+   */
+   endDate: number;
+
+  /**
    * @constructor
    * @param {Object} entry The json response
    */
@@ -137,5 +149,7 @@ export class KalturaMediaEntry {
     this.status = entry.status;
     this.dvrStatus = entry.dvrStatus;
     this.tags = entry.tags;
+    this.createdAt = entry.createdAt;
+    this.endDate = entry.endDate;
   }
 }

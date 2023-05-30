@@ -20,6 +20,16 @@ export default class KalturaAsset extends ServiceResult {
    */
   id: number;
   /**
+   * @member - The asset createDate - Specifies when was the Asset was created. Date and time represented as epoch
+   * @type {number}
+   */
+  createDate: number;
+  /**
+   * @member - The asset endDate - epoch For VOD: till when the asset be available in the catalog. For EPG/Linear: program end time and date
+   * @type {number}
+   */
+  endDate: number;
+  /**
    * @member - The asset name
    * @type {string}
    */
@@ -55,6 +65,8 @@ export default class KalturaAsset extends ServiceResult {
       this.id = response.id;
       this.name = response.name;
       this.description = response.description;
+      this.createDate = response.createDate;
+      this.endDate = response.endDate;
       this.metas = this._formatTagsMetas(response.metas);
       this.tags = this._formatTagsMetas(response.tags);
       this.pictures = response.images;
