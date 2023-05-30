@@ -124,11 +124,11 @@ export class KalturaMediaEntry {
    */
   createdAt: number;
 
-   /**
+  /**
    * @member - Entry end date as Unix timestamp (In seconds)
    * @type {number}
    */
-   endDate: number;
+  endDate: number;
 
   /**
    * @constructor
