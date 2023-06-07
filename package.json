@@ -1,6 +1,6 @@
 {
   "name": "@playkit-js/playkit-js-providers",
-  "version": "2.39.3",
+  "version": "2.39.4",
   "description": "",
   "scripts": {
     "clean": "rm -rf ./dist",
