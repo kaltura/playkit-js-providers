@@ -142,7 +142,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
   }
 
   /**
-   * Gets playlist config from entry list.
+   * Gets the playlist config from entry list.
    * @param {ProviderEntryListObject} entryListInfo - ott entry list info
    * @returns {Promise<ProviderPlaylistObject>} - The provider playlist config
    */
@@ -202,6 +202,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
       hls: [],
       dash: [],
       progressive: [],
+      image: [],
       id: '',
       duration: 0,
       type: MediaEntry.Type.UNKNOWN,

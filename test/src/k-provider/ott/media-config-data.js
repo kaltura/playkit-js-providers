@@ -12,6 +12,7 @@ const NoPluginsWithDrm = {
   plugins: {},
   sources: {
     progressive: [],
+    image: [],
     dash: [
       {
         id: '728180,mpegdash',
@@ -121,8 +122,10 @@ const NoPluginsWithDrm = {
     metadata: {
       mediaType: mediaTypeConf,
       name: 'Trolls',
+      entryId: '1_tmeqe2n9',
       epgId: '454032895',
       recordingId: '774036475',
+      endDate: 5233691520,
       metas: {
         'App Link': '',
         'Catchup allowed': false,
@@ -453,6 +456,7 @@ const FilteredSourcesByDeviceType = {
     ],
     progressive: [],
     dash: [],
+    image: [],
     hls: [
       {
         id: '728182,applehttp',
@@ -488,8 +492,10 @@ const FilteredSourcesByDeviceType = {
     metadata: {
       mediaType: KalturaAsset.Type.RECORDING,
       name: 'Trolls',
+      entryId: '1_tmeqe2n9',
       epgId: '454032895',
       recordingId: '774036475',
+      endDate: 5233691520,
       metas: {
         'App Link': '',
         'Catchup allowed': false,
@@ -696,6 +702,7 @@ const LiveEntryNoDrm = {
         height: 800
       }
     ],
+    image: [],
     progressive: [],
     dash: [],
     hls: [
@@ -715,6 +722,7 @@ const LiveEntryNoDrm = {
     metadata: {
       mediaType: KalturaAsset.Type.EPG,
       name: 'USA',
+      endDate: 2524608000,
       metas: {
         'App Link': '',
         'Catchup allowed': false,
@@ -765,6 +773,7 @@ const EntryWithBumper = {
       }
     ],
     progressive: [],
+    image: [],
     id: 324284,
     duration: 60,
     type: 'Vod',
@@ -772,6 +781,9 @@ const EntryWithBumper = {
     dvr: false,
     vr: null,
     metadata: {
+      createdAt: 1559544691,
+      endDate: 1572451200,
+      entryId: '0_tle49uqr',
       contextType: 'PLAYBACK',
       mediaType: mediaTypeConf,
       name: 'avichay series1 VOD',

@@ -1,6 +1,7 @@
 // @flow
 import MediaSource from './media-source';
 import {MediaFormat} from './media-format';
+import ImageSource from './image-source';
 
 export default class MediaSources {
   /**
@@ -21,6 +22,7 @@ export default class MediaSources {
    * @public
    */
   hls: Array<MediaSource>;
+  image: Array<ImageSource>;
   captions: Array<PKExternalCaptionObject>;
 
   /**
@@ -30,6 +32,7 @@ export default class MediaSources {
     this.progressive = [];
     this.dash = [];
     this.hls = [];
+    this.image = [];
   }
 
   /**
@@ -64,11 +67,13 @@ export default class MediaSources {
     const response: ProviderMediaSourcesObject = {
       progressive: [],
       dash: [],
-      hls: []
+      hls: [],
+      image: []
     };
     this.progressive.forEach(p => response.progressive.push(p.toJSON()));
     this.hls.forEach(h => response.hls.push(h.toJSON()));
     this.dash.forEach(d => response.dash.push(d.toJSON()));
+    response.image = this.image;
     return response;
   }
 }

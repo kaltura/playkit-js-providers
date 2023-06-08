@@ -2,6 +2,87 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.39.4 (2023-06-07)
+
+
+### Bug Fixes
+
+* **FEC-13134:** add ceratedAt and endedDate to media entry metadata if available ([#216](https://github.com/kaltura/playkit-js-providers/issues/216)) ([28f6822](https://github.com/kaltura/playkit-js-providers/commit/28f6822))
+
+
+
+### 2.39.3 (2023-05-17)
+
+
+### Bug Fixes
+
+* **FEC-13123:** replace travis with github actions ([#210](https://github.com/kaltura/playkit-js-providers/issues/210)) ([edd6027](https://github.com/kaltura/playkit-js-providers/commit/edd6027))
+
+
+
+### 2.39.2 (2023-05-08)
+
+
+
+### 2.39.1 (2023-05-08)
+
+
+### Bug Fixes
+
+* **FEC-13123:** replace travis with github actions ([#208](https://github.com/kaltura/playkit-js-providers/issues/208)) ([0ca0f3c](https://github.com/kaltura/playkit-js-providers/commit/0ca0f3c))
+
+
+
+## [2.39.0](https://github.com/kaltura/playkit-js-providers/compare/v2.38.0...v2.39.0) (2023-02-22)
+
+
+### Bug Fixes
+
+* **FEC-12929:** Add an image preview on "next-screen" in image item on playlist ([#202](https://github.com/kaltura/playkit-js-providers/issues/202)) ([c6b1c99](https://github.com/kaltura/playkit-js-providers/commit/c6b1c99))
+
+
+### Features
+
+* **FEC-12850:** ECDN Fallback Option Upon Inaccessible API Gateway ([#201](https://github.com/kaltura/playkit-js-providers/issues/201)) ([fbcf62b](https://github.com/kaltura/playkit-js-providers/commit/fbcf62b))
+
+
+
+## [2.38.0](https://github.com/kaltura/playkit-js-providers/compare/v2.37.0...v2.38.0) (2023-01-26)
+
+
+### Features
+
+* **FEC-12611:** Kaltura Image Entry Support - Load Kaltura Image Entries with or without KS ([#190](https://github.com/kaltura/playkit-js-providers/issues/190)) ([e1c6ac5](https://github.com/kaltura/playkit-js-providers/commit/e1c6ac5)), closes [kaltura/kaltura-player-js#598](https://github.com/kaltura/playkit-js-providers/issues/598) [kaltura/playkit-js#697](https://github.com/kaltura/playkit-js-providers/issues/697) [kaltura/playkit-js-image-player#1](https://github.com/kaltura/playkit-js-providers/issues/1) [kaltura/playkit-js-ui#718](https://github.com/kaltura/playkit-js-providers/issues/718)
+
+
+
+## [2.37.0](https://github.com/kaltura/playkit-js-providers/compare/v2.36.1...v2.37.0) (2022-11-02)
+
+
+### Features
+
+* **FEC-12625:** add entry id to media metadata ([#184](https://github.com/kaltura/playkit-js-providers/issues/184)) ([6355806](https://github.com/kaltura/playkit-js-providers/commit/6355806))
+
+
+
+### [2.36.1](https://github.com/kaltura/playkit-js-providers/compare/v2.36.0...v2.36.1) (2022-10-03)
+
+
+### Bug Fixes
+
+* **FEC-12588:** 360 player loads whenever you have a tag that contains 360 (ie. wells360fargo) ([#183](https://github.com/kaltura/playkit-js-providers/issues/183)) ([2670c2a](https://github.com/kaltura/playkit-js-providers/commit/2670c2a))
+
+
+
+## [2.36.0](https://github.com/kaltura/playkit-js-providers/compare/v2.35.1...v2.36.0) (2022-08-04)
+
+
+### Features
+
+* **FEC-12414:**  add contextType to mediaEntry Metadata & upgrade API version 7.8.1 ([#182](https://github.com/kaltura/playkit-js-providers/issues/182)) ([9734376](https://github.com/kaltura/playkit-js-providers/commit/9734376))
+
+
+
 ### [2.35.1](https://github.com/kaltura/playkit-js-providers/compare/v2.35.0...v2.35.1) (2022-06-09)
 
 

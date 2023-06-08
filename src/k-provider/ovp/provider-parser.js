@@ -21,6 +21,7 @@ import {KalturaRuleAction} from './response-types/kaltura-rule-action';
 import {KalturaAccessControlMessage} from '../common/response-types/kaltura-access-control-message';
 import type {OVPMediaEntryLoaderResponse} from './loaders/media-entry-loader';
 import {ExternalCaptionsBuilder} from './external-captions-builder';
+import ImageSource from '../../entities/image-source';
 
 class OVPProviderParser {
   static _logger = getLogger('OVPProviderParser');
@@ -152,7 +153,10 @@ class OVPProviderParser {
     mediaEntry.duration = entry.duration;
     mediaEntry.metadata = OVPProviderParser._parseMetadata(metadataList);
     mediaEntry.metadata.description = entry.description || '';
+    mediaEntry.metadata.entryId = entry.id || '';
     mediaEntry.metadata.name = entry.name || '';
+    if (entry.createdAt) mediaEntry.metadata.createdAt = entry.createdAt;
+    if (entry.endDate) mediaEntry.metadata.endDate = entry.endDate;
     mediaEntry.metadata.tags = entry.tags || '';
     mediaEntry.status = entry.status;
 
@@ -229,6 +233,10 @@ class OVPProviderParser {
       sources.progressive = OVPProviderParser._parseProgressiveSources(progressiveSource, playbackContext, ks, partnerId, uiConfId, entry.id);
     };
 
+    const parseImageSources = () => {
+      sources.image.push(new ImageSource(entry));
+    };
+
     const parseExternalMedia = () => {
       const mediaSource = new MediaSource();
       mediaSource.mimetype = 'video/youtube';
@@ -239,6 +247,8 @@ class OVPProviderParser {
 
     if (entry.type === KalturaMediaEntry.EntryType.EXTERNAL_MEDIA.value) {
       parseExternalMedia();
+    } else if (entry.entryType === KalturaMediaEntry.MediaType.IMAGE.value) {
+      parseImageSources();
     } else if (kalturaSources && kalturaSources.length > 0) {
       parseAdaptiveSources();
       parseProgressiveSources();
@@ -302,7 +312,7 @@ class OVPProviderParser {
         OVPProviderParser._logger.warn(message);
         return null;
       }
-      mediaSource.url = OVPProviderParser._applyRegexAction(playbackContext, playUrl);
+      mediaSource.url = playUrl;
       mediaSource.id = entryId + '_' + deliveryProfileId + ',' + format;
       if (kalturaSource.hasDrmData()) {
         const drmParams: Array<Drm> = [];
@@ -365,7 +375,7 @@ class OVPProviderParser {
           OVPProviderParser._logger.warn(`failed to create play url from source, discarding source: (${entryId}_${deliveryProfileId}), ${format}.`);
           return null;
         } else {
-          mediaSource.url = OVPProviderParser._applyRegexAction(playbackContext, playUrl);
+          mediaSource.url = playUrl;
           if (flavor.height && flavor.width) {
             videoSources.push(mediaSource);
           } else {
@@ -436,26 +446,6 @@ class OVPProviderParser {
 
   static getErrorMessages(response: OVPMediaEntryLoaderResponse): Array<KalturaAccessControlMessage> {
     return response.playBackContextResult.getErrorMessages();
-  }
-
-  /**
-   * Applies the request host regex on the url
-   * @function _applyRegexAction
-   * @param {KalturaPlaybackContext} playbackContext - The playback context
-   * @param {string} playUrl - The original url
-   * @returns {string} - The request host regex applied url
-   * @static
-   * @private
-   */
-  static _applyRegexAction(playbackContext: KalturaPlaybackContext, playUrl: string): string {
-    const regexAction = playbackContext.getRequestHostRegexAction();
-    if (regexAction) {
-      const regex = new RegExp(regexAction.pattern, 'i');
-      if (playUrl.match(regex)) {
-        return playUrl.replace(regex, regexAction.replacement + '/');
-      }
-    }
-    return playUrl;
   }
 }
 

@@ -11,6 +11,7 @@ import BaseProvider from '../common/base-provider';
 import MediaEntry from '../../entities/media-entry';
 import OVPEntryListLoader from './loaders/entry-list-loader';
 import Error from '../../util/error/error';
+import RegexActionHandler from './regex-action-handler';
 
 export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject> {
   _filterOptionsConfig: ProviderFilterOptionsObject = {redirectFromEntryId: true};
@@ -32,7 +33,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
   }
 
   /**
-   * Gets the backend media config.
+   * Gets the backend media config object.
    * @param {OVPProviderMediaInfoObject} mediaInfo - ovp media info
    * @returns {Promise<ProviderMediaConfigObject>} - The provider media config
    */
@@ -59,7 +60,8 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
         return this._dataLoader.fetchData().then(
           response => {
             try {
-              resolve(this._parseDataFromResponse(response));
+              const mediaConfig = this._parseDataFromResponse(response);
+              RegexActionHandler.handleRegexAction(mediaConfig, response).then(resolve);
             } catch (err) {
               reject(err);
             }
@@ -167,7 +169,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
   }
 
   /**
-   * Checks media is ready for playback (not being imported or converted)
+   * Checks if media is ready for playback (not being imported or converted)
    * @param {MediaEntry} mediaEntry - the media entry info
    * @returns {void}
    */
@@ -303,6 +305,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
       hls: [],
       dash: [],
       progressive: [],
+      image: [],
       id: '',
       duration: 0,
       type: MediaEntry.Type.UNKNOWN,
@@ -323,6 +326,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     sourcesObject.hls = mediaSources.hls;
     sourcesObject.dash = mediaSources.dash;
     sourcesObject.progressive = mediaSources.progressive;
+    sourcesObject.image = mediaSources.image;
     sourcesObject.id = mediaEntry.id;
     sourcesObject.duration = mediaEntry.duration;
     sourcesObject.type = mediaEntry.type;
@@ -331,7 +335,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     if (mediaEntry.sources.captions) {
       sourcesObject.captions = mediaEntry.sources.captions;
     }
-    if (mediaEntry.metadata && typeof mediaEntry.metadata.tags === 'string' && mediaEntry.metadata.tags.indexOf('360') > -1) {
+    if (mediaEntry.metadata && typeof mediaEntry.metadata.tags === 'string' && mediaEntry.metadata.tags.split(', ').includes('360')) {
       sourcesObject.vr = {};
     }
     Object.assign(sourcesObject.metadata, mediaEntry.metadata);
