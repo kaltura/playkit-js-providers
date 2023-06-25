@@ -151,6 +151,18 @@ export class KalturaMediaEntry {
   endDate: number;
 
   /**
+   * @member - Number of plays
+   * @type {number}
+   */
+  plays: number;
+
+  /**
+   * @member - Number of views
+   * @type {number}
+   */
+  views: number;
+
+  /**
    * @constructor
    * @param {Object} entry The json response
    */
