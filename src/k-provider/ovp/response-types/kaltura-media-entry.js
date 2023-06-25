@@ -22,20 +22,6 @@ export class KalturaMediaEntry {
     LIVE_STREAM_QUICK_TIME: {value: 204}
   };
 
-  static LiveStatus: {[liveStatus: string]: {value: number}} = {
-    ERROR: {value: -1},
-    STOPPED: {value: 0},
-    PLAYABLE: {value: 1},
-    BROADCASTING: {value: 2},
-    AUTHENTICATED: {value: 3},
-    MARKED_FOR_DELETION: {value: 4},
-    TASK_PENDING: {value: 5},
-    TASK_QUEUED: {value: 6},
-    TASK_PROCESSING: {value: 7},
-    TASK_UPLOADING: {value: 8},
-    TASK_FINISHED: {value: 9}
-  };
-
   static EntryStatus: {[status: string]: string | number} = {
     ERROR_IMPORTING: -2,
     ERROR_CONVERTING: -1,
@@ -133,12 +119,6 @@ export class KalturaMediaEntry {
   status: number;
 
   /**
-   * @member - Entry Live status
-   * @type {}
-   */
-  liveStatus: number;
-
-  /**
    * @member - Entry creation date as Unix timestamp (In seconds)
    * @type {number}
    */
@@ -167,7 +147,6 @@ export class KalturaMediaEntry {
     this.duration = entry.duration;
     this.poster = entry.thumbnailUrl;
     this.status = entry.status;
-    this.liveStatus = entry.liveStatus;
     this.dvrStatus = entry.dvrStatus;
     this.tags = entry.tags;
     this.createdAt = entry.createdAt;
