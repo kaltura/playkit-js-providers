@@ -184,5 +184,7 @@ export class KalturaMediaEntry {
     this.tags = entry.tags;
     this.createdAt = entry.createdAt;
     this.endDate = entry.endDate;
+    this.plays = entry.plays;
+    this.views = entry.views;
   }
 }
