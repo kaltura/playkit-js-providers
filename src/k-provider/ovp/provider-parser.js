@@ -157,6 +157,8 @@ class OVPProviderParser {
     mediaEntry.metadata.name = entry.name || '';
     if (entry.createdAt) mediaEntry.metadata.createdAt = entry.createdAt;
     if (entry.endDate) mediaEntry.metadata.endDate = entry.endDate;
+    if (entry.views) mediaEntry.metadata.views = entry.views;
+    if (entry.plays) mediaEntry.metadata.plays = entry.plays;
     mediaEntry.metadata.tags = entry.tags || '';
     mediaEntry.status = entry.status;
 
