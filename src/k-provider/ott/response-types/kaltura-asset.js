@@ -56,6 +56,18 @@ export default class KalturaAsset extends ServiceResult {
   pictures: Array<any> = [];
 
   /**
+   * @member - Number of plays
+   * @type {number}
+   */
+  plays: number;
+
+  /**
+   * @member - Number of views
+   * @type {number}
+   */
+  views: number;
+
+  /**
    * @constructor
    * @param {Object} response The response
    */
@@ -67,6 +79,8 @@ export default class KalturaAsset extends ServiceResult {
       this.description = response.description;
       this.createDate = response.createDate;
       this.endDate = response.endDate;
+      this.plays = response.plays;
+      this.views = response.views;
       this.metas = this._formatTagsMetas(response.metas);
       this.tags = this._formatTagsMetas(response.tags);
       this.pictures = response.images;

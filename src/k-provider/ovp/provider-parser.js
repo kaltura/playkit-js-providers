@@ -155,13 +155,14 @@ class OVPProviderParser {
     mediaEntry.metadata.description = entry.description || '';
     mediaEntry.metadata.entryId = entry.id || '';
     mediaEntry.metadata.name = entry.name || '';
-    if (entry.liveStatus) mediaEntry.metadata.liveStatus = entry.liveStatus;
     if (entry.createdAt) mediaEntry.metadata.createdAt = entry.createdAt;
     if (entry.endDate) mediaEntry.metadata.endDate = entry.endDate;
+    if (entry.views) mediaEntry.metadata.views = entry.views;
+    if (entry.plays) mediaEntry.metadata.plays = entry.plays;
     mediaEntry.metadata.tags = entry.tags || '';
     mediaEntry.status = entry.status;
 
-    mediaEntry.type = OVPProviderParser._getEntryType(entry.entryType, entry.type, entry.liveStatus);
+    mediaEntry.type = OVPProviderParser._getEntryType(entry.entryType, entry.type);
     if (mediaEntry.type === MediaEntry.Type.LIVE) {
       mediaEntry.dvrStatus = entry.dvrStatus;
     }
@@ -169,7 +170,7 @@ class OVPProviderParser {
     return mediaEntry;
   }
 
-  static _getEntryType(entryTypeEnum: number, typeEnum: number | string, liveStatus: number): string {
+  static _getEntryType(entryTypeEnum: number, typeEnum: number | string): string {
     let type = MediaEntry.Type.UNKNOWN;
     switch (entryTypeEnum) {
       case KalturaMediaEntry.MediaType.IMAGE.value:
@@ -186,9 +187,6 @@ class OVPProviderParser {
           case KalturaMediaEntry.EntryType.LIVE_STREAM.value:
           case KalturaMediaEntry.EntryType.LIVE_CHANNEL.value:
             type = MediaEntry.Type.LIVE;
-            if (liveStatus === KalturaMediaEntry.LiveStatus.STOPPED.value) {
-              type = MediaEntry.Type.VOD;
-            }
             break;
           default:
             type = MediaEntry.Type.UNKNOWN;
