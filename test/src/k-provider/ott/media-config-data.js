@@ -125,6 +125,7 @@ const NoPluginsWithDrm = {
       entryId: '1_tmeqe2n9',
       epgId: '454032895',
       recordingId: '774036475',
+      endDate: 5233691520,
       metas: {
         'App Link': '',
         'Catchup allowed': false,
@@ -494,6 +495,7 @@ const FilteredSourcesByDeviceType = {
       entryId: '1_tmeqe2n9',
       epgId: '454032895',
       recordingId: '774036475',
+      endDate: 5233691520,
       metas: {
         'App Link': '',
         'Catchup allowed': false,
@@ -720,6 +722,7 @@ const LiveEntryNoDrm = {
     metadata: {
       mediaType: KalturaAsset.Type.EPG,
       name: 'USA',
+      endDate: 2524608000,
       metas: {
         'App Link': '',
         'Catchup allowed': false,
@@ -778,6 +781,8 @@ const EntryWithBumper = {
     dvr: false,
     vr: null,
     metadata: {
+      createdAt: 1559544691,
+      endDate: 1572451200,
       entryId: '0_tle49uqr',
       contextType: 'PLAYBACK',
       mediaType: mediaTypeConf,

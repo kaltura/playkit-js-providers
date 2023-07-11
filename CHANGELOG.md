@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.39.4 (2023-06-07)
+
+
+### Bug Fixes
+
+* **FEC-13134:** add ceratedAt and endedDate to media entry metadata if available ([#216](https://github.com/kaltura/playkit-js-providers/issues/216)) ([28f6822](https://github.com/kaltura/playkit-js-providers/commit/28f6822))
+
+
+
 ### 2.39.3 (2023-05-17)
 
 
