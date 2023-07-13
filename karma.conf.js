@@ -19,16 +19,12 @@ module.exports = function (config) {
       'test/setup/karma.js': ['webpack', 'sourcemap']
     },
     reporters: ['mocha'],
-    coverageIstanbulReporter: {
-      reports: ['lcov', 'text-summary'],
-      fixWebpackSourcePaths: true
-    },
     webpack: webpackConfig,
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: false,
-    browsers: ['ChromeHeadless'],
+    browsers: ['Chrome', 'Safari', 'Firefox'],
     singleRun: true,
     concurrency: Infinity,
 
