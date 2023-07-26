@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.39.5 (2023-07-26)
+
+
+### Bug Fixes
+
+* **FEC-13134:** add views and plays counts to media entry metadata if available ([#220](https://github.com/kaltura/playkit-js-providers/issues/220)) ([9ee39ec](https://github.com/kaltura/playkit-js-providers/commit/9ee39ec))
+
+
+
 ### 2.39.4 (2023-06-07)
 
 
