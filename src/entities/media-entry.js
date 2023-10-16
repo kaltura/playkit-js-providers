@@ -67,6 +67,12 @@ export default class MediaEntry {
   assetReferenceType: string;
 
   /**
+   * @member - The download URL of the entry.
+   * @type {string}
+   */
+  downloadUrl: string;
+
+  /**
    * @constructor
    */
   constructor() {
@@ -90,7 +96,8 @@ export default class MediaEntry {
       metadata: this.metadata,
       type: this.type,
       poster: this.poster,
-      assetReferenceType: this.assetReferenceType
+      assetReferenceType: this.assetReferenceType,
+      downloadUrl: this.downloadUrl
     };
   }
 }

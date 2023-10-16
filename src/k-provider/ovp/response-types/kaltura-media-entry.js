@@ -143,6 +143,12 @@ export class KalturaMediaEntry {
   views: number;
 
   /**
+   * @member - The download URL of the entry.
+   * @type {string}
+   */
+  downloadUrl: string;
+
+  /**
    * @constructor
    * @param {Object} entry The json response
    */
@@ -165,5 +171,6 @@ export class KalturaMediaEntry {
     this.endDate = entry.endDate;
     this.plays = entry.plays;
     this.views = entry.views;
+    this.downloadUrl = entry.downloadUrl;
   }
 }
