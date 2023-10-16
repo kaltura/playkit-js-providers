@@ -80,7 +80,8 @@ const youtubeMediaEntryResult = {
     tags: ''
   },
   type: 'Unknown',
-  poster: 'https://cfvod.kaltura.com/p/1111/sp/1111/thumbnail/entry_id/1234/version/100001'
+  poster: 'https://cfvod.kaltura.com/p/1111/sp/1111/thumbnail/entry_id/1234/version/100001',
+  downloadUrl: ''
 };
 
 const liveMediaEntryData = [
