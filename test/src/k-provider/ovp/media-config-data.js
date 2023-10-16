@@ -136,7 +136,8 @@ const NoPluginsNoDrm = {
           'https://cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/https/format/applehttp/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/a.m3u8'
       }
     ],
-    image: []
+    image: [],
+    downloadUrl: ''
   }
 };
 
@@ -286,7 +287,8 @@ const RegexAppliedPlayManifestSources = {
       ScheduleSource: 'VOD',
       HLSOnly: 'android',
       ChannelName: 'Disney Channel SE'
-    }
+    },
+    downloadUrl: ''
   },
   plugins: {}
 };
@@ -439,7 +441,8 @@ const RegexAppliedAllSources = {
         url:
           'https://qa-kes-ebu-01.dev.kaltura.com/kAPI/cfvod.kaltura.com/api_v3/index.php/service/caption_captionasset/action/serveWebVTT/captionAssetId/1_6jfbcdz9/segmentIndex/-1/version/11/captions.vtt'
       }
-    ]
+    ],
+    downloadUrl: ''
   }
 };
 
@@ -501,7 +504,8 @@ const NoPluginsWithDrm = {
         ]
       }
     ],
-    image: []
+    image: [],
+    downloadUrl: ''
   }
 };
 
@@ -643,7 +647,8 @@ const WithPluginsNoDrm = {
           'https://cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/1_rsrdfext/protocol/https/format/applehttp/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/a.m3u8?uiConfId=38621471'
       }
     ],
-    image: []
+    image: [],
+    downloadUrl: ''
   }
 };
 
@@ -706,7 +711,8 @@ const WithPluginsWithDrm = {
         ]
       }
     ],
-    image: []
+    image: [],
+    downloadUrl: ''
   }
 };
 
@@ -767,7 +773,8 @@ const AudioEntryWithoutPlugins = {
           'https://cdnapisec.kaltura.com/p/1082342/sp/108234200/playManifest/entryId/0_vyzw3ceu/protocol/https/format/applehttp/flavorIds/0_hawbhpz3/a.m3u8'
       }
     ],
-    image: []
+    image: [],
+    downloadUrl: ''
   }
 };
 
@@ -794,7 +801,8 @@ const ImageEntryWithoutPlugins = {
     },
     dash: [],
     hls: [],
-    progressive: []
+    progressive: [],
+    downloadUrl: ''
   }
 };
 
@@ -860,6 +868,7 @@ const WrongUiConfID = [
           description:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.',
           thumbnailUrl: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
+          downloadUrl: '',
           objectType: 'KalturaMediaEntry'
         }
       ],
@@ -1177,7 +1186,8 @@ const EntryWithBumper = {
         label: 'Esp',
         url: 'http://cdntesting.qa.mkaltura.com/api_v3/index.php/service/caption_captionAsset/action/serve/captionAssetId/0_njhnv6na/v/2'
       }
-    ]
+    ],
+    downloadUrl: ''
   },
   plugins: {
     bumper: {
@@ -1295,7 +1305,8 @@ const EntryWithBumperWithKs = {
         url:
           'http://cdntesting.qa.mkaltura.com/api_v3/index.php/service/caption_captionasset/action/serveWebVTT/captionAssetId/0_njhnv6na/segmentIndex/-1/version/2/captions.vtt?testParam=abc&ks=YmMzNzUyZWM4ZmVkYjRiMzRlOTBlYTZjMGY2YTI1NzRkZDUwZjZjNnwxMDkxOzEwOTE7MTYwNTcyMjI5NDsyOzE2MDU2MzU4OTQuMTA0MzthdmkuYmFydWNoQGthbHR1cmEuY29tOyosZGlzYWJsZWVudGl0bGVtZW50Ozs'
       }
-    ]
+    ],
+    downloadUrl: ''
   },
   plugins: {
     bumper: {
@@ -1414,7 +1425,8 @@ const EntryWithNoBumper = {
         url:
           'http://cdntesting.qa.mkaltura.com/api_v3/index.php/service/caption_captionAsset/action/serve/captionAssetId/0_njhnv6na/v/2/ks/YmMzNzUyZWM4ZmVkYjRiMzRlOTBlYTZjMGY2YTI1NzRkZDUwZjZjNnwxMDkxOzEwOTE7MTYwNTcyMjI5NDsyOzE2MDU2MzU4OTQuMTA0MzthdmkuYmFydWNoQGthbHR1cmEuY29tOyosZGlzYWJsZWVudGl0bGVtZW50Ozs'
       }
-    ]
+    ],
+    downloadUrl: ''
   },
   plugins: {}
 };
@@ -1486,7 +1498,8 @@ const EntryOfPartner0 = {
       description: 'Titanic movie summarized in 5 seconds',
       tags: 'titanic, short'
     },
-    captions: []
+    captions: [],
+    downloadUrl: ''
   },
   plugins: {}
 };
