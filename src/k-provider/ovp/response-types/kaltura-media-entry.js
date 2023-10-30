@@ -125,6 +125,12 @@ export class KalturaMediaEntry {
   createdAt: number;
 
   /**
+   * @member - Entry updation date as Unix timestamp (In seconds)
+   * @type {number}
+   */
+  updatedAt: number;
+
+  /**
    * @member - Entry end date as Unix timestamp (In seconds)
    * @type {number}
    */
@@ -147,6 +153,12 @@ export class KalturaMediaEntry {
    * @type {string}
    */
   downloadUrl: string;
+
+  /**
+   * @member - ID of entry creator.
+   * @type {string}
+   */
+  creatorId: string;
 
   /**
    * @constructor
