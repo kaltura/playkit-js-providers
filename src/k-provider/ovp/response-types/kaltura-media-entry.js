@@ -168,6 +168,8 @@ export class KalturaMediaEntry {
     this.dvrStatus = entry.dvrStatus;
     this.tags = entry.tags;
     this.createdAt = entry.createdAt;
+    this.updatedAt = entry.updatedAt;
+    this.creatorId = entry.creatorId;
     this.endDate = entry.endDate;
     this.plays = entry.plays;
     this.views = entry.views;
