@@ -10,7 +10,8 @@
     "./playkit-bookmark-service": "./dist/playkit-bookmark-service.js"
   },
   "scripts": {
-    "build:dev": "webpack serve --open --mode=development",
+    "serve": "yarn run build:dev && webpack serve --open --mode=development",
+    "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --node-env=production",
     "watch": "webpack --watch",
     "test": "NODE_ENV=test karma start --color --mode development",
@@ -24,6 +25,8 @@
   "devDependencies": {
     "@babel/cli": "^7.10.1",
     "@babel/core": "^7.21.8",
+    "@babel/preset-typescript": "^7.22.15",
+    "typescript": "^5.2.2",
     "@babel/plugin-proposal-class-properties": "^7.10.1",
     "@babel/plugin-transform-flow-strip-types": "^7.10.1",
     "@babel/preset-env": "^7.21.5",
