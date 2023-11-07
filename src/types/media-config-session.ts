@@ -1,6 +1,6 @@
 // @flow
 declare type ProviderMediaConfigSessionObject = {
-  partnerId: number,
-  uiConfId?: number,
-  ks?: string
+  partnerId: number;
+  uiConfId?: number;
+  ks?: string;
 };

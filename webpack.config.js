@@ -37,13 +37,19 @@ const config = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: [['@babel/preset-env', {
-              loose: true,
-              bugfixes: true,
-              "targets": {
-                "browsers": ["chrome >= 47", "firefox >= 51", "ie >= 11", "safari >= 8", "ios >= 8", "android >= 4"]
-              }
-            }], '@babel/preset-typescript'],
+            presets: [
+              [
+                '@babel/preset-env',
+                {
+                  loose: true,
+                  bugfixes: true,
+                  targets: {
+                    browsers: ['chrome >= 47', 'firefox >= 51', 'ie >= 11', 'safari >= 8', 'ios >= 8', 'android >= 4']
+                  }
+                }
+              ],
+              '@babel/preset-typescript'
+            ],
             plugins: [['@babel/plugin-transform-runtime']]
           }
         }

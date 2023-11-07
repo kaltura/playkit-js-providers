@@ -1,5 +1,5 @@
 // @flow
-import ImageSource from "../../src/entities/image-source";
+import ImageSource from '../../src/entities/image-source';
 
 declare type ProviderMediaConfigSourcesObject = {
   dash: Array<ProviderMediaSourceObject>,

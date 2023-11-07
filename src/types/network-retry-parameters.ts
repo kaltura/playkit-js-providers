@@ -1,6 +1,6 @@
 // @flow
 declare type ProviderNetworkRetryParameters = {
-  async?: boolean,
-  timeout?: number,
-  maxAttempts?: number
+  async?: boolean;
+  timeout?: number;
+  maxAttempts?: number;
 };

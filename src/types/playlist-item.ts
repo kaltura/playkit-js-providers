@@ -1,4 +1,4 @@
 // @flow
 declare type ProviderPlaylistItemObject = {
-  sources: ProviderMediaConfigSourcesObject
+  sources: ProviderMediaConfigSourcesObject;
 };
