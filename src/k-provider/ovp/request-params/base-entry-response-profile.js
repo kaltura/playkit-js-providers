@@ -1,6 +1,6 @@
 //@flow
 const FIELDS =
-  'id,referenceId,name,description,thumbnailUrl,dataUrl,duration,msDuration,flavorParamsIds,mediaType,type,tags,dvrStatus,externalSourceType,status,createdAt,endDate,plays,views';
+  'id,referenceId,name,description,thumbnailUrl,dataUrl,duration,msDuration,flavorParamsIds,mediaType,type,tags,dvrStatus,externalSourceType,status,createdAt,updatedAt,endDate,plays,views,downloadUrl,creatorId';
 const RESPONSE_PROFILE_TYPE = {
   INCLUDE_FIELDS: 1,
   EXCLUDE_FIELDS: 2

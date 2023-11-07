@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.39.6 (2023-10-31)
+
+
+### Bug Fixes
+
+* **FEC-13143:** add last update and ownerId to media metadata ([#224](https://github.com/kaltura/playkit-js-providers/issues/224)) ([716749e](https://github.com/kaltura/playkit-js-providers/commit/716749e))
+
+
+
+### 2.39.5 (2023-07-26)
+
+
+### Bug Fixes
+
+* **FEC-13134:** add views and plays counts to media entry metadata if available ([#220](https://github.com/kaltura/playkit-js-providers/issues/220)) ([9ee39ec](https://github.com/kaltura/playkit-js-providers/commit/9ee39ec))
+
+
+
 ### 2.39.4 (2023-06-07)
 
 

@@ -151,11 +151,14 @@ class OVPProviderParser {
     mediaEntry.poster = entry.poster;
     mediaEntry.id = entry.id;
     mediaEntry.duration = entry.duration;
+    mediaEntry.downloadUrl = entry.downloadUrl || '';
     mediaEntry.metadata = OVPProviderParser._parseMetadata(metadataList);
     mediaEntry.metadata.description = entry.description || '';
     mediaEntry.metadata.entryId = entry.id || '';
     mediaEntry.metadata.name = entry.name || '';
     if (entry.createdAt) mediaEntry.metadata.createdAt = entry.createdAt;
+    if (entry.updatedAt) mediaEntry.metadata.updatedAt = entry.updatedAt;
+    if (entry.creatorId) mediaEntry.metadata.creatorId = entry.creatorId;
     if (entry.endDate) mediaEntry.metadata.endDate = entry.endDate;
     if (entry.views) mediaEntry.metadata.views = entry.views;
     if (entry.plays) mediaEntry.metadata.plays = entry.plays;

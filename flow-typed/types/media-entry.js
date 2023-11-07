@@ -8,5 +8,6 @@ declare type ProviderMediaEntryObject = {
   status: number,
   metadata: Object,
   type: string,
-  poster: string | Array<Object>
+  poster: string | Array<Object>,
+  downloadUrl: string
 };
