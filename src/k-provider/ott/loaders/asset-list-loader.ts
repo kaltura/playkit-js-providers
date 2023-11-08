@@ -3,10 +3,11 @@ import RequestBuilder from '../../../util/request-builder';
 import OTTConfiguration from '../config';
 import OTTAssetService from '../services/asset-service';
 import KalturaAsset from '../response-types/kaltura-asset';
+import {ILoader} from '../../../types';
 
 export default class OTTAssetListLoader implements ILoader {
   _entries: Array<string>;
-  _requests: Array<RequestBuilder>;
+  _requests!: Array<RequestBuilder>;
   _response: any = {playlistItems: {entries: []}};
 
   static get id(): string {
@@ -17,7 +18,7 @@ export default class OTTAssetListLoader implements ILoader {
    * @constructor
    * @param {Object} params loader params
    */
-  constructor(params: Object) {
+  constructor(params: any) {
     this.requests = this.buildRequests(params);
     this._entries = params.entries;
   }
@@ -47,7 +48,7 @@ export default class OTTAssetListLoader implements ILoader {
    * @returns {RequestBuilder} The request builder
    * @static
    */
-  buildRequests(params: Object): Array<RequestBuilder> {
+  buildRequests(params: any): Array<RequestBuilder> {
     const config = OTTConfiguration.get();
     const requests: Array<RequestBuilder> = [];
     params.entries.forEach(entry => {

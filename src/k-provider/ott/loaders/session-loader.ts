@@ -2,10 +2,11 @@
 import UserService from '../services/user-service';
 import OTTConfiguration from '../config';
 import RequestBuilder from '../../../util/request-builder';
+import {ILoader} from '../../../types';
 
 export default class OTTSessionLoader implements ILoader {
   _partnerId: number;
-  _requests: Array<RequestBuilder>;
+  _requests!: Array<RequestBuilder>;
   _response: any = {};
 
   static get id(): string {
@@ -16,7 +17,7 @@ export default class OTTSessionLoader implements ILoader {
    * @constructor
    * @param {Object} params loader params
    */
-  constructor(params: Object) {
+  constructor(params: any) {
     this.requests = this.buildRequests(params);
     this._partnerId = params.partnerId;
   }
@@ -44,7 +45,7 @@ export default class OTTSessionLoader implements ILoader {
    * @returns {RequestBuilder} The request builder
    * @static
    */
-  buildRequests(params: Object): Array<RequestBuilder> {
+  buildRequests(params: any): Array<RequestBuilder> {
     const config = OTTConfiguration.get();
     const requests: Array<RequestBuilder> = [];
     requests.push(UserService.anonymousLogin(config.serviceUrl, params.partnerId, params.udid));

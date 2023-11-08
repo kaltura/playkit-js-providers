@@ -1,4 +1,3 @@
-// @flow
 import RequestBuilder from '../../../../util/request-builder';
 import OTTConfiguration from '../../config';
 import OTTBookmarkService from './bookmark-service';

@@ -1,6 +1,6 @@
-// @flow
 import MultiRequestBuilder, {MultiRequestResult} from './multi-request-builder';
 import Error from '../../util/error/error';
+import {ILoader, ProviderNetworkRetryParameters} from '../../types';
 
 export default class DataLoaderManager {
   /**
@@ -14,13 +14,13 @@ export default class DataLoaderManager {
    * @type {MultiRequestBuilder}
    * @protected
    */
-  _multiRequest: MultiRequestBuilder;
+  _multiRequest!: MultiRequestBuilder;
   /**
    * @member - Loaders multi response
    * @type {MultiRequestResult}
    * @private
    */
-  _multiResponse: MultiRequestResult;
+  _multiResponse!: MultiRequestResult;
   /**
    * @member - Loaders to execute
    * @type {Map<string,Function>}
@@ -42,7 +42,7 @@ export default class DataLoaderManager {
    * @param {string} ks ks
    * @returns {void}
    */
-  add(loader: Function, params: Object, ks?: string): void {
+  add(loader: {new(...params): ILoader, id: string}, params: any, ks?: string): void {
     let execution_loader = new loader(params);
     if (execution_loader.isValid()) {
       this._loaders.set(loader.id, execution_loader);
@@ -75,7 +75,7 @@ export default class DataLoaderManager {
       this._multiRequest.execute(requestsMustSucceed).then(
         data => {
           this._multiResponse = data.response;
-          let preparedData: Object = this.prepareData(data.response);
+          let preparedData: any = this.prepareData(data.response);
           if (preparedData.success) {
             resolve(this._loaders);
           } else {

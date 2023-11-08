@@ -1,4 +1,3 @@
-//@flow
 import MultiRequestBuilder from '../../common/multi-request-builder';
 import OTTConfiguration from '../config';
 

@@ -1,4 +1,3 @@
-// @flow
 import BaseProvider from '../common/base-provider';
 import getLogger from '../../util/logger';
 import OTTConfiguration from './config';
@@ -11,6 +10,16 @@ import KalturaAsset from './response-types/kaltura-asset';
 import KalturaPlaybackContext from './response-types/kaltura-playback-context';
 import MediaEntry from '../../entities/media-entry';
 import Error from '../../util/error/error';
+import {
+  ILoader,
+  OTTProviderMediaInfoObject,
+  ProviderEntryListObject,
+  ProviderMediaConfigObject,
+  ProviderMediaConfigSourcesObject, ProviderMediaInfoObject,
+  ProviderOptionsObject,
+  ProviderPlaybackContextOptions,
+  ProviderPlaylistObject
+} from '../../types';
 
 export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject> {
   /**
@@ -95,7 +104,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
     });
   }
 
-  _parseDataFromResponse(data: Map<string, Function>, requestData: Object): ProviderMediaConfigObject {
+  _parseDataFromResponse(data: Map<string, ILoader>, requestData: Object): ProviderMediaConfigObject {
     this._logger.debug('Data parsing started');
     const mediaConfig: ProviderMediaConfigObject = {
       session: {
@@ -104,7 +113,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
       },
       sources: this._getDefaultSourcesObject(),
       plugins: {}
-    };
+    } as ProviderMediaConfigObject;
     if (this.uiConfId) {
       mediaConfig.session.uiConfId = this.uiConfId;
     }
@@ -120,7 +129,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
       if (data.has(OTTAssetLoader.id)) {
         const assetLoader = data.get(OTTAssetLoader.id);
         if (assetLoader && assetLoader.response && Object.keys(assetLoader.response).length) {
-          const response = (assetLoader: OTTAssetLoader).response;
+          const response = (assetLoader as unknown as OTTAssetLoader).response;
           if (OTTProviderParser.hasBlockAction(response)) {
             throw new Error(Error.Severity.CRITICAL, Error.Category.SERVICE, Error.Code.BLOCK_ACTION, {
               action: OTTProviderParser.getBlockAction(response),
@@ -175,7 +184,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
     });
   }
 
-  _parseEntryListDataFromResponse(data: Map<string, Function>, requestEntries: Array<ProviderMediaInfoObject>): ProviderPlaylistObject {
+  _parseEntryListDataFromResponse(data: Map<string, ILoader>, requestEntries: Array<ProviderMediaInfoObject>): ProviderPlaylistObject {
     this._logger.debug('Data parsing started');
     const playlistConfig: ProviderPlaylistObject = {
       id: '',

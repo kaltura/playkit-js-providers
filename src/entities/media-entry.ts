@@ -44,7 +44,7 @@ export default class MediaEntry {
    * @member - entry metadata
    * @type {Object}
    */
-  metadata: Object;
+  metadata: any;
   /**
    * @member - DVR status
    * @type {number}

@@ -1,4 +1,3 @@
-//@flow
 import ServiceResult from '../../common/base-service-result';
 import {KalturaAccessControlMessage} from '../../common/response-types/kaltura-access-control-message';
 import KalturaRuleAction from './kaltura-rule-action';
@@ -22,7 +21,7 @@ export default class KalturaPlaybackContext extends ServiceResult {
    * @member - Array of actions as received from the rules that invalidated
    * @type {Array<KalturaRuleAction>}
    */
-  actions: Array<KalturaRuleAction> = [];
+  actions: KalturaRuleAction[] = [];
   /**
    * @member - Array of access control massages
    * @type {Array<KalturaAccessControlMessage>}
@@ -38,7 +37,7 @@ export default class KalturaPlaybackContext extends ServiceResult {
    * @constructor
    * @param {Object} response The response
    */
-  constructor(response: Object) {
+  constructor(response: any) {
     super(response);
     if (!this.hasError) {
       const messages = response.messages;
@@ -64,7 +63,7 @@ export default class KalturaPlaybackContext extends ServiceResult {
     return this.getBlockAction() !== undefined;
   }
 
-  getBlockAction(): ?KalturaRuleAction {
+  getBlockAction(): KalturaRuleAction | undefined {
     return this.actions.find(action => action.type === KalturaRuleAction.Type.BLOCK);
   }
 

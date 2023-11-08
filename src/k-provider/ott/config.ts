@@ -1,7 +1,7 @@
-//@flow
 import {clone} from '../../util/clone';
+import {ProviderEnvConfigObject} from '../../types';
 
-const defaultConfig: Object = {
+const defaultConfig: any = {
   serviceParams: {
     apiVersion: '7.8.1'
   }
@@ -14,7 +14,7 @@ export default class OTTConfiguration {
     }
   }
 
-  static get(): Object {
+  static get(): any {
     return clone(defaultConfig);
   }
 }

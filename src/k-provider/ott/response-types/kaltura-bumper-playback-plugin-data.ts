@@ -1,4 +1,3 @@
-//@flow
 export default class KalturaBumpersPlaybackPluginData {
   static StreamerType: {[type: string]: string} = {
     HLS: 'hls',
@@ -21,7 +20,7 @@ export default class KalturaBumpersPlaybackPluginData {
    * @constructor
    * @param {Object} data - The response
    */
-  constructor(data: Object) {
+  constructor(data: any) {
     this.streamertype = data.streamertype;
     this.url = data.url;
   }

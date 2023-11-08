@@ -1,16 +1,16 @@
-//@flow
 import OTTAssetService from '../services/asset-service';
 import OTTConfiguration from '../config';
 import RequestBuilder from '../../../util/request-builder';
 import KalturaPlaybackContext from '../response-types/kaltura-playback-context';
 import KalturaAsset from '../response-types/kaltura-asset';
+import {ILoader} from '../../../types';
 
 type OTTAssetLoaderResponse = {mediaDataResult: KalturaAsset, playBackContextResult: KalturaPlaybackContext};
 export type {OTTAssetLoaderResponse};
 
 export default class OTTAssetLoader implements ILoader {
   _entryId: string;
-  _requests: Array<RequestBuilder>;
+  _requests!: Array<RequestBuilder>;
   _response: any = {};
 
   static get id(): string {
@@ -21,7 +21,7 @@ export default class OTTAssetLoader implements ILoader {
    * @constructor
    * @param {Object} params loader params
    */
-  constructor(params: Object) {
+  constructor(params: any) {
     this.requests = this.buildRequests(params);
     this._entryId = params.entryId;
   }
@@ -50,7 +50,7 @@ export default class OTTAssetLoader implements ILoader {
    * @returns {RequestBuilder} The request builder
    * @static
    */
-  buildRequests(params: Object): Array<RequestBuilder> {
+  buildRequests(params: any): Array<RequestBuilder> {
     const config = OTTConfiguration.get();
     const requests: Array<RequestBuilder> = [];
     requests.push(OTTAssetService.get(config.serviceUrl, params.ks, params.entryId, params.assetReferenceType));

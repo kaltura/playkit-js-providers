@@ -1,4 +1,3 @@
-// @flow
 import OTTProvider from './provider';
 import KalturaPlaybackContext from './response-types/kaltura-playback-context';
 import KalturaAsset from './response-types/kaltura-asset';

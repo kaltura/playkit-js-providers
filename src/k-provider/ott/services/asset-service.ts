@@ -1,6 +1,6 @@
-//@flow
 import OTTService from './ott-service';
 import RequestBuilder from '../../../util/request-builder';
+import {ProviderPlaybackContextOptions} from '../../../types';
 
 const SERVICE_NAME: string = 'asset';
 

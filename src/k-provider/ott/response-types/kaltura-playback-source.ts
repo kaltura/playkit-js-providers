@@ -1,4 +1,3 @@
-//@flow
 import {KalturaDrmPlaybackPluginData} from '../../common/response-types/kaltura-drm-playback-plugin-data';
 
 export type OTTKalturaPlaybackSource = KalturaPlaybackSource;
@@ -18,7 +17,7 @@ export default class KalturaPlaybackSource {
    * @constructor
    * @param {Object} source The response
    */
-  constructor(source: Object) {
+  constructor(source: any) {
     this.format = source.format;
     this.adsPolicy = source.adsPolicy;
     this.adsParam = source.adsParam;

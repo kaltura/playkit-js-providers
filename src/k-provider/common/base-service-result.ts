@@ -1,4 +1,3 @@
-//@flow
 export default class ServiceResult {
   /**
    * @member - Is service returned an error
@@ -9,18 +8,18 @@ export default class ServiceResult {
    * @member - The service error
    * @type {ServiceError}
    */
-  error: ServiceError;
+  error!: ServiceError;
   /**
    * @member - The service result data
    * @type {Object}
    */
-  data: Object;
+  data: any;
 
   /**
    * @constructor
    * @param {Object} response - Service response
    */
-  constructor(response: Object) {
+  constructor(response: any) {
     if (response.objectType === 'KalturaAPIException') {
       this.hasError = true;
       this.error = new ServiceError(response.code, response.message);

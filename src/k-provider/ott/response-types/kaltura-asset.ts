@@ -1,4 +1,3 @@
-//@flow
 import ServiceResult from '../../common/base-service-result';
 
 export default class KalturaAsset extends ServiceResult {
@@ -18,17 +17,17 @@ export default class KalturaAsset extends ServiceResult {
    * @member - The asset id
    * @type {number}
    */
-  id: number;
+  id!: number;
   /**
    * @member - The asset createDate - Specifies when was the Asset was created. Date and time represented as epoch
    * @type {number}
    */
-  createDate: number;
+  createDate!: number;
   /**
    * @member - The asset endDate - epoch For VOD: till when the asset be available in the catalog. For EPG/Linear: program end time and date
    * @type {number}
    */
-  endDate: number;
+  endDate!: number;
   /**
    * @member - The asset name
    * @type {string}
@@ -59,19 +58,19 @@ export default class KalturaAsset extends ServiceResult {
    * @member - Number of plays
    * @type {number}
    */
-  plays: number;
+  plays!: number;
 
   /**
    * @member - Number of views
    * @type {number}
    */
-  views: number;
+  views!: number;
 
   /**
    * @constructor
    * @param {Object} response The response
    */
-  constructor(response: Object) {
+  constructor(response: any) {
     super(response);
     if (!this.hasError) {
       this.id = response.id;
@@ -87,8 +86,8 @@ export default class KalturaAsset extends ServiceResult {
     }
   }
 
-  _formatTagsMetas(objectToParse: any): Array<Object> {
-    const parsed = [];
+  _formatTagsMetas(objectToParse: any): Array<any> {
+    const parsed: { key: string; value: any; }[] = [];
     Object.keys(objectToParse).forEach(function (key) {
       if (objectToParse[key].objects) {
         let value = '';

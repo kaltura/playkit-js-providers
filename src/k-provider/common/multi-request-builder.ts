@@ -1,4 +1,3 @@
-//@flow
 import RequestBuilder from '../../util/request-builder';
 import getLogger from '../../util/logger';
 import ServiceResult from './base-service-result';
@@ -33,7 +32,7 @@ export default class MultiRequestBuilder extends RequestBuilder {
    * @param {boolean} requestsMustSucceed whether all of the requests must succeed or not
    * @returns {Promise} The multirequest execution promise
    */
-  execute(requestsMustSucceed?: boolean): Promise<Object> {
+  execute(requestsMustSucceed?: boolean): Promise<any> {
     return new Promise((resolve, reject) => {
       try {
         this.params = JSON.stringify(this.params);
@@ -89,7 +88,7 @@ export class MultiRequestResult {
    * @param {Object} response data
    * @param {boolean} requestsMustSucceed whether all of the requests must succeed
    */
-  constructor(response: Object, requestsMustSucceed?: boolean = true) {
+  constructor(response: any, requestsMustSucceed: boolean = true) {
     const result = response.result ? response.result : response;
     const responseArr = Array.isArray(result) ? result : [result];
     const results = responseArr.map(result => new ServiceResult(result));

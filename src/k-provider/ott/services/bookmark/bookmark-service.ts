@@ -1,4 +1,3 @@
-//@flow
 import OTTService from '../ott-service';
 import RequestBuilder from '../../../../util/request-builder';
 import OTTConfiguration from '../../config';
@@ -15,7 +14,7 @@ export default class OTTBookmarkService extends OTTService {
    * @returns {RequestBuilder} - The request builder
    * @static
    */
-  static add(serviceUrl: string, ks: string, bookmark: Object): RequestBuilder {
+  static add(serviceUrl: string, ks: string, bookmark: any): RequestBuilder {
     const headers: Map<string, string> = new Map();
     headers.set('Content-Type', 'application/json');
     const request = new RequestBuilder(headers);
@@ -31,7 +30,7 @@ export default class OTTBookmarkService extends OTTService {
       currentBitrate: bookmark.playerData.currentBitrate,
       fileId: bookmark.playerData.fileId
     };
-    const bookmarkServiceParams: Object = {
+    const bookmarkServiceParams: any = {
       objectType: 'KalturaBookmark',
       type: bookmark.type,
       context: bookmark.context,

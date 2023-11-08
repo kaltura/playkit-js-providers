@@ -1,14 +1,14 @@
-// @flow
-import {getLogLevel, setLogLevel, setLogger, type LogLevelType, LogLevel} from '../../util/logger';
+import {getLogLevel, setLogLevel, setLogger, LogLevelType, LogLevel} from '../../util/logger';
 import DataLoaderManager from './data-loader-manager';
 import Error from '../../util/error/error';
+import {ProviderEntryListObject, ProviderMediaConfigObject, ProviderPlaylistInfoObject, ProviderMediaConfigSourcesObject, ProviderNetworkRetryParameters, ProviderOptionsObject, ProviderPlaylistObject} from '../../types';
 
 export default class BaseProvider<MI> {
   _partnerId: number;
-  _widgetId: ?string;
+  _widgetId?: string;
   _ks: string;
-  _uiConfId: ?number;
-  _dataLoader: DataLoaderManager;
+  _uiConfId?: number;
+  _dataLoader!: DataLoaderManager;
   _playerVersion: string;
   _logger: any;
   _isAnonymous: boolean;
@@ -30,7 +30,7 @@ export default class BaseProvider<MI> {
     return '_' + this._partnerId;
   }
 
-  get uiConfId(): ?number {
+  get uiConfId(): number | undefined {
     return this._uiConfId;
   }
 
@@ -38,7 +38,7 @@ export default class BaseProvider<MI> {
     return this._ks;
   }
 
-  set ks(value: string): void {
+  set ks(value: string) {
     this._ks = value;
   }
 
@@ -104,7 +104,7 @@ export default class BaseProvider<MI> {
     return getLogLevel(name);
   }
 
-  setLogLevel(level: Object, name?: string): void {
+  setLogLevel(level: any, name?: string): void {
     setLogLevel(level, name);
   }
 }

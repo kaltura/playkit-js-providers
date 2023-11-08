@@ -1,4 +1,3 @@
-//@flow
 export class KalturaDrmPlaybackPluginData {
   static Scheme: {[scheme: string]: string} = {
     'drm.PLAYREADY_CENC': 'com.microsoft.playready',
@@ -25,7 +24,7 @@ export class KalturaDrmPlaybackPluginData {
    * @member - The drm certificate
    * @type {?string}
    */
-  certificate: ?string;
+  certificate?: string;
 
   /**
    * @constructor

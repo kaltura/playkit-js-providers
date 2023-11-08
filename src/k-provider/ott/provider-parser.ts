@@ -1,4 +1,3 @@
-//@flow
 import getLogger from '../../util/logger';
 import KalturaPlaybackSource from './response-types/kaltura-playback-source';
 import KalturaPlaybackContext from './response-types/kaltura-playback-context';
@@ -15,10 +14,11 @@ import KalturaRuleAction from './response-types/kaltura-rule-action';
 import {KalturaAccessControlMessage} from '../common/response-types/kaltura-access-control-message';
 import type {OTTAssetLoaderResponse} from './loaders/asset-loader';
 import KalturaBumpersPlaybackPluginData from './response-types/kaltura-bumper-playback-plugin-data';
+import {ProviderMediaInfoObject} from '../../types';
 
 const LIVE_ASST_OBJECT_TYPE: string = 'KalturaLiveAsset';
 
-const MediaTypeCombinations: {[mediaType: string]: Object} = {
+const MediaTypeCombinations: {[mediaType: string]: any} = {
   [KalturaAsset.Type.MEDIA]: {
     [KalturaPlaybackContext.Type.TRAILER]: () => ({type: MediaEntry.Type.VOD}),
     [KalturaPlaybackContext.Type.PLAYBACK]: mediaAssetData => {
@@ -51,7 +51,7 @@ export default class OTTProviderParser {
    * @static
    * @public
    */
-  static getMediaEntry(assetResponse: any, requestData: Object): MediaEntry {
+  static getMediaEntry(assetResponse: any, requestData: any): MediaEntry {
     const mediaEntry = new MediaEntry();
     OTTProviderParser._fillBaseData(mediaEntry, assetResponse, requestData);
     const playbackContext = assetResponse.playBackContextResult;
@@ -98,7 +98,7 @@ export default class OTTProviderParser {
    * @static
    * @public
    */
-  static getBumper(assetResponse: any): ?Bumper {
+  static getBumper(assetResponse: any): Bumper | unknown {
     const playbackContext = assetResponse.playBackContextResult;
     const progressiveBumper = playbackContext.plugins.find(
       bumper => bumper.streamertype === KalturaBumpersPlaybackPluginData.StreamerType.PROGRESSIVE
@@ -131,7 +131,7 @@ export default class OTTProviderParser {
    * @param {Object} mediaAsset the mediaAsset that contains the response with the metadata.
    * @returns {Object} reconstructed metadata object
    */
-  static reconstructMetadata(mediaAsset: Object): Object {
+  static reconstructMetadata(mediaAsset: any): any {
     const metadata = {
       metas: OTTProviderParser.addToMetaObject(mediaAsset.metas),
       tags: OTTProviderParser.addToMetaObject(mediaAsset.tags)
@@ -144,7 +144,7 @@ export default class OTTProviderParser {
    * @param {Array<Object>} list a list of objects
    * @returns {Object} an mapped object of the arrayed list.
    */
-  static addToMetaObject(list: Array<Object>): Object {
+  static addToMetaObject(list: Array<any>): any {
     let categoryObj = {};
     if (list) {
       list.forEach(item => {
@@ -160,7 +160,7 @@ export default class OTTProviderParser {
    * @returns {string | Array<Object>} - Poster base url or array of poster candidates.
    * @private
    */
-  static _getPoster(pictures: Array<Object>): string | Array<Object> {
+  static _getPoster(pictures: Array<any>): string | Array<any> {
     if (pictures && pictures.length > 0) {
       const picObj = pictures[0];
       const url = picObj.url;
@@ -182,7 +182,7 @@ export default class OTTProviderParser {
    * @returns {Object} - The type data object.
    * @private
    */
-  static _getMediaType(mediaAssetData: Object, mediaType: string, contextType: string): Object {
+  static _getMediaType(mediaAssetData: any, mediaType: string, contextType: string): any {
     let typeData = {type: MediaEntry.Type.UNKNOWN};
     if (MediaTypeCombinations[mediaType] && MediaTypeCombinations[mediaType][contextType]) {
       typeData = MediaTypeCombinations[mediaType][contextType](mediaAssetData);
@@ -243,7 +243,7 @@ export default class OTTProviderParser {
    * @static
    * @private
    */
-  static _parseAdaptiveSource(kalturaSource: ?KalturaPlaybackSource): ?MediaSource {
+  static _parseAdaptiveSource(kalturaSource?: KalturaPlaybackSource): MediaSource | null {
     const mediaSource = new MediaSource();
     if (kalturaSource) {
       const playUrl = kalturaSource.url;
@@ -274,7 +274,7 @@ export default class OTTProviderParser {
     return response.playBackContextResult.hasBlockAction();
   }
 
-  static getBlockAction(response: OTTAssetLoaderResponse): ?KalturaRuleAction {
+  static getBlockAction(response: OTTAssetLoaderResponse): KalturaRuleAction | undefined {
     return response.playBackContextResult.getBlockAction();
   }
 

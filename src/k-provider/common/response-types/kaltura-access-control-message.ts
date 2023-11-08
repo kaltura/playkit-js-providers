@@ -1,4 +1,3 @@
-//@flow
 export class KalturaAccessControlMessage {
   /**
    * @member - The access control message
@@ -15,7 +14,7 @@ export class KalturaAccessControlMessage {
    * @constructor
    * @param {Object} data The json response
    */
-  constructor(data: Object) {
+  constructor(data: any) {
     this.message = data.message;
     this.code = data.code;
   }

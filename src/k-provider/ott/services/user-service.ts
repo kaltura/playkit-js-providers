@@ -1,4 +1,3 @@
-//@flow
 import OTTService from './ott-service';
 import RequestBuilder from '../../../util/request-builder';
 

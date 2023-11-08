@@ -15,9 +15,9 @@ const plugins = [
 const config = {
   entry: {
     ovp: './src/k-provider/ovp/index.js',
-    ott: './src/k-provider/ott/index.js',
+    ott: './src/k-provider/ott/index.ts',
     analytics: './src/k-provider/ovp/services/analytics/index.js',
-    bookmark: './src/k-provider/ott/services/bookmark/index.js',
+    bookmark: './src/k-provider/ott/services/bookmark/index.ts',
     stats: './src/k-provider/ovp/services/stats/index.js'
   },
   output: {

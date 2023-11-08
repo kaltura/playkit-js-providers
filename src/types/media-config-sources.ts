@@ -8,12 +8,12 @@ export type ProviderMediaConfigSourcesObject = {
   hls: Array<ProviderMediaSourceObject>;
   progressive: Array<ProviderMediaSourceObject>;
   image: Array<ImageSource>;
-  duration: number;
+  duration?: number;
   type: string;
-  id: string;
-  poster: string | Array<Object>;
+  id?: string;
+  poster?: string | Array<Object>;
   dvr: boolean;
-  vr?: Object;
+  vr?: any;
   metadata: ProviderMediaConfigMetadataObject;
   captions?: Array<PKExternalCaptionObject>;
   downloadUrl?: string;
