@@ -1,5 +1,3 @@
-//@flow
-
 type SeverityType = {[severity: string]: number};
 
 const Severity: SeverityType = {

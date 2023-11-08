@@ -1,4 +1,3 @@
-//@flow
 export type LogLevelObject = {value: number, name: string};
 export type LogLevelType = {[level: string]: LogLevelObject};
 export type loggerFunctionType = {
@@ -66,7 +65,7 @@ let LogLevel: LogLevelType = {};
  * @param {LoggerType} logger - the logger
  * @returns {void}
  */
-function setLogger(logger: ?LoggerType): void {
+function setLogger(logger?: LoggerType): void {
   if (logger && typeof logger.getLogger === 'function') {
     JsLogger.get = logger.getLogger;
   }
@@ -80,8 +79,8 @@ function setLogger(logger: ?LoggerType): void {
  * @param {?string} name - the logger name
  * @returns {Object} - the logger class
  */
-function getLogger(name?: string): Object {
-  //$FlowFixMe
+function getLogger(name?: string): any {
+  //@ts-ignore
   return JsLogger.get(name);
 }
 

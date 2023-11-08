@@ -1,4 +1,3 @@
-//@flow
 type CategoryType = {[category: string]: number};
 
 const Category: CategoryType = {

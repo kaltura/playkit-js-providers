@@ -1,5 +1,5 @@
 const param = a => {
-  let s = [],
+  let s: string[] = [],
     rbracket = /\[\]$/,
     isArray = function (obj) {
       return Object.prototype.toString.call(obj) === '[object Array]';

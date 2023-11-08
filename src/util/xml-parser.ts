@@ -1,4 +1,3 @@
-//@flow
 export default class XmlParser {
   /**
    * Parses xml string to json object
@@ -6,13 +5,13 @@ export default class XmlParser {
    * @returns {{}} The parsed xml as Json object
    * @static
    */
-  static xmlToJson(xml: Object) {
-    let obj = {};
+  static xmlToJson(xml: Document | ChildNode) {
+    let obj: any = {};
     if (xml.nodeType === 1) {
-      if (xml.attributes.length > 0) {
+      if (xml['attributes'].length > 0) {
         obj['@attributes'] = {};
-        for (let j = 0; j < xml.attributes.length; j++) {
-          let attribute = xml.attributes.item(j);
+        for (let j = 0; j < xml['attributes'].length; j++) {
+          let attribute = xml['attributes'].item(j);
           obj['@attributes'][attribute.nodeName] = attribute.nodeValue;
         }
       }

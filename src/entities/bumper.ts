@@ -16,7 +16,7 @@ export default class Bumper {
    * @constructor
    * @param {Object} data - The bumper response
    */
-  constructor(data: Object) {
+  constructor(data: any) {
     this.url = data.url;
     this.clickThroughUrl = data.clickThroughUrl;
   }

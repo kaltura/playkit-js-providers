@@ -1,4 +1,3 @@
-//@flow
 import getLogger from '../logger';
 import {Severity} from './severity';
 import type {SeverityType} from './severity';

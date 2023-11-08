@@ -1,5 +1,3 @@
-//@flow
-
 import MediaEntry from '../entities/media-entry';
 
 export default class EntryList {

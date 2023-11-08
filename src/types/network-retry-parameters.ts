@@ -1,5 +1,5 @@
 export type ProviderNetworkRetryParameters = {
-  async?: boolean;
+  async: boolean;
   timeout?: number;
   maxAttempts?: number;
 };

@@ -1,7 +1,7 @@
-// @flow
 import MediaSource from './media-source';
 import {MediaFormat} from './media-format';
 import ImageSource from './image-source';
+import {PKExternalCaptionObject, ProviderMediaFormatType, ProviderMediaSourcesObject} from '../types';
 
 export default class MediaSources {
   /**
@@ -23,7 +23,7 @@ export default class MediaSources {
    */
   hls: Array<MediaSource>;
   image: Array<ImageSource>;
-  captions: Array<PKExternalCaptionObject>;
+  captions?: Array<PKExternalCaptionObject>;
 
   /**
    * @constructor
@@ -41,7 +41,7 @@ export default class MediaSources {
    * @param {MediaFormat} mediaFormat - The media format of the source.
    * @returns {void}
    */
-  map(source: MediaSource, mediaFormat: ?ProviderMediaFormatType) {
+  map(source: MediaSource, mediaFormat?: ProviderMediaFormatType) {
     if (mediaFormat) {
       switch (mediaFormat.name) {
         case MediaFormat.MP4.name:

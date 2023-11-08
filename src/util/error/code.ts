@@ -1,5 +1,3 @@
-//@flow
-
 type CodeType = {[code: string]: number};
 
 const Code: CodeType = {

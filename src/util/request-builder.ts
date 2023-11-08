@@ -1,5 +1,5 @@
-//@flow
 import Error from './error/error';
+import {ProviderNetworkRetryParameters} from '../types';
 
 const KALTURA_HEADER_PREFIX: string = 'x-';
 
@@ -8,12 +8,12 @@ export default class RequestBuilder {
    * @member - Service name
    * @type {string}
    */
-  service: string;
+  service!: string;
   /**
    * @member - Service action
    * @type {string}
    */
-  action: string;
+  action!: string;
   /**
    * @member - Service params
    * @type {any}
@@ -28,22 +28,22 @@ export default class RequestBuilder {
    * @memberof - Service URL
    * @type {string}
    */
-  url: string;
+  url!: string;
   /**
    * @memberof - Service method (POST,GET,DELETE etc..)
    * @type {string}
    */
-  method: string;
+  method!: string;
   /**
    * @memberof - Service tag
    * @type {string}
    */
-  tag: string;
+  tag!: string;
   /**
    * @memberof - the response headers of the arra
    * @type {Array<string>}
    */
-  responseHeaders: Array<string>;
+  responseHeaders!: Array<string>;
   /**
    * @description network retry configuration
    * @memberof RequestBuilder
@@ -69,7 +69,7 @@ export default class RequestBuilder {
    * @type {Object}
    * @private
    */
-  _requestPromise: Object;
+  _requestPromise: any;
 
   /**
    * @constructor
@@ -162,7 +162,7 @@ export default class RequestBuilder {
       .filter(header => header.toLowerCase().indexOf(KALTURA_HEADER_PREFIX) === 0);
   }
 
-  _handleError(request: XMLHttpRequest, code: number, data: Object): Promise<*> | void {
+  _handleError(request: XMLHttpRequest, code: number, data: Object): Promise<void> | void {
     const error = this._createError(request, code, data);
     request.onreadystatechange = function () {};
     request.onerror = function () {};

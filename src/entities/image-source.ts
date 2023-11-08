@@ -1,5 +1,3 @@
-//@flow
-
 const BASE_THUMBNAIL_URL_TEMPLATE = '.+entry_id/[a-zA-Z0-9_]+/';
 
 export default class ImageSource {
@@ -19,7 +17,7 @@ export default class ImageSource {
    */
   mimetype: string;
 
-  constructor(entry: Object) {
+  constructor(entry: any) {
     this.id = entry.id;
     this.url = ImageSource.extractBaseThumbnailUrl(entry.dataUrl);
     this.mimetype = '';
@@ -31,7 +29,7 @@ export default class ImageSource {
    * @returns {string} - The base thumbnail url.
    */
   static extractBaseThumbnailUrl(url: string): string {
-    // $FlowFixMe
+    // @ts-ignore
     return url.match(BASE_THUMBNAIL_URL_TEMPLATE)[0].slice(0, -1);
   }
 }

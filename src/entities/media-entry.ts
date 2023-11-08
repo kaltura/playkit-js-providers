@@ -1,5 +1,6 @@
 //@flow
 import MediaSources from './media-sources';
+import {ProviderMediaEntryObject} from '../types';
 
 export default class MediaEntry {
   static Type: {[type: string]: string} = {
@@ -18,12 +19,12 @@ export default class MediaEntry {
    * @member - entry id
    * @type {string}
    */
-  id: string;
+  id?: string;
   /**
    * @member - entry name
    * @type {string}
    */
-  name: string;
+  name?: string;
   /**
    * @member - entry sources
    * @type {MediaSources}
@@ -33,7 +34,7 @@ export default class MediaEntry {
    * @member - entry duration
    * @type {number}
    */
-  duration: number;
+  duration?: number;
   /**
    * @member - entry type
    * @type {string}
@@ -48,29 +49,29 @@ export default class MediaEntry {
    * @member - DVR status
    * @type {number}
    */
-  dvrStatus: number;
+  dvrStatus?: number;
   /**
    * @member - media status
    * @type {number}
    */
-  status: number;
+  status?: number;
   /**
    * @member - media poster
    * @type {string | Array<Object>}
    */
-  poster: string | Array<Object>;
+  poster?: string | Array<any>;
 
   /**
    * @member - assetReferenceType
    * @type {string }
    */
-  assetReferenceType: string;
+  assetReferenceType?: string;
 
   /**
    * @member - The download URL of the entry.
    * @type {string}
    */
-  downloadUrl: string;
+  downloadUrl?: string;
 
   /**
    * @constructor

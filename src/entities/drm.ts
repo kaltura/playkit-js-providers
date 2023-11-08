@@ -1,4 +1,5 @@
-//@flow
+import {ProviderDrmDataObject} from '../types';
+
 export default class Drm {
   /**
    * @member - license url
@@ -15,7 +16,7 @@ export default class Drm {
    * @member - drm certificate
    * @type {string}
    */
-  certificate: string;
+  certificate?: string;
 
   /**
    * @constructor
@@ -23,7 +24,7 @@ export default class Drm {
    * @param {string} scheme - the drm scheme
    * @param {?string} certificate - the drm certificate
    */
-  constructor(licenseUrl: string, scheme: string, certificate: ?string) {
+  constructor(licenseUrl: string, scheme: string, certificate?: string) {
     this.licenseUrl = licenseUrl;
     this.scheme = scheme;
     if (certificate) {

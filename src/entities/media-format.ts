@@ -1,4 +1,5 @@
-//@flow
+import {ProviderMediaFormatType} from '../types';
+
 export const MediaFormat: {[name: string]: ProviderMediaFormatType} = {
   DASH: {
     name: 'dash',
