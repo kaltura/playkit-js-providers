@@ -31,34 +31,34 @@ export class KalturaUIConfResponse extends ServiceResult {
     ADVANCED: 3
   };
 
-  description: string;
-  objTypeAsString: string;
-  width: number;
-  height: number;
-  htmlParams: string;
-  swfUrl: string;
-  confFilePath: string;
-  confFile: string;
-  confFileFeatures: string;
-  name: string;
-  config: string;
-  confVars: string;
-  useCdn: boolean;
-  tags: string;
-  swfUrlVersion: string;
-  created: Date;
-  updated: Date;
-  html5Url: string;
-  version: string;
-  partnerTags: string;
-  objType: number;
-  creationMode: number;
+  description!: string;
+  objTypeAsString!: string;
+  width!: number;
+  height!: number;
+  htmlParams!: string;
+  swfUrl!: string;
+  confFilePath!: string;
+  confFile!: string;
+  confFileFeatures!: string;
+  name!: string;
+  config!: string;
+  confVars!: string;
+  useCdn!: boolean;
+  tags!: string;
+  swfUrlVersion!: string;
+  created!: Date;
+  updated!: Date;
+  html5Url!: string;
+  version!: string;
+  partnerTags!: string;
+  objType!: number;
+  creationMode!: number;
 
   /**
    * @constructor
    * @param {Object} data The json response
    */
-  constructor(data: Object) {
+  constructor(data: any) {
     super(data);
     if (!this.hasError) {
       this.name = data.name;

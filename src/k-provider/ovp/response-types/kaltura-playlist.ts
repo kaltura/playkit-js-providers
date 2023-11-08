@@ -1,5 +1,3 @@
-//@flow
-
 export class KalturaPlaylist {
   /**
    * @member - playlist id
@@ -26,7 +24,7 @@ export class KalturaPlaylist {
    * @constructor
    * @param {Object} playlist - The json response
    */
-  constructor(playlist: Object) {
+  constructor(playlist: any) {
     this.id = playlist.id;
     this.name = playlist.name;
     this.description = playlist.description;

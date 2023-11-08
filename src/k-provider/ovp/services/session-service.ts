@@ -1,4 +1,3 @@
-//@flow
 import OVPService from './ovp-service';
 import RequestBuilder from '../../../util/request-builder';
 

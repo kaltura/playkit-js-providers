@@ -1,4 +1,3 @@
-//@flow
 export class KalturaRuleAction {
   static Type: {[type: string]: string | number} = {
     DRM_POLICY: 'drm.DRM_POLICY',
@@ -22,7 +21,7 @@ export class KalturaRuleAction {
    * @constructor
    * @param {Object} data - The response
    */
-  constructor(data: Object) {
+  constructor(data: any) {
     this.type = data.type;
   }
 }
