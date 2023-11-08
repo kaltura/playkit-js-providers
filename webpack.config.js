@@ -27,6 +27,9 @@ const config = {
     libraryTarget: 'umd',
     clean: true
   },
+  resolve: {
+    extensions: ['.ts', '.js'],
+  },
   plugins: plugins,
   module: {
     rules: [

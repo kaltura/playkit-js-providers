@@ -25,4 +25,4 @@ jobs:
       type: 'dependency'
       stage: 'canary'
       schema-type: 'playerV3Versions'
-      tests-yarn-run-to-execute: 'build:prod eslint flow test'
+      tests-yarn-run-to-execute: 'build lint type-check test'

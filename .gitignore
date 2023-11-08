@@ -3,5 +3,6 @@ dist
 coverage
 .idea
 *.log
+lib
 
 

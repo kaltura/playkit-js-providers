@@ -23,7 +23,7 @@
     "test:watch": "NODE_ENV=test karma start --browsers=Chrome --single-run=false --auto-watch",
     "release": "standard-version",
     "pushTaggedRelease": "git push --follow-tags --no-verify origin master",
-    "lint": "eslint . --color",
+    "lint": "eslint src/ --ext .js --ext .ts",
     "prettier:fix": "prettier --write ."
   },
   "devDependencies": {
@@ -32,6 +32,7 @@
     "@babel/core": "^7.21.8",
     "@babel/preset-typescript": "^7.22.15",
     "typescript": "^5.2.2",
+    "@babel/plugin-transform-runtime": "^7.22.15",
     "@babel/plugin-proposal-class-properties": "^7.10.1",
     "@babel/plugin-transform-flow-strip-types": "^7.10.1",
     "@babel/preset-env": "^7.21.5",
@@ -45,7 +46,9 @@
     "clone": "^2.1.2",
     "conventional-github-releaser": "3.1.3",
     "cross-env": "^7.0.2",
-    "eslint": "^7.4.0",
+    "eslint": "8.22.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.2",
+    "@typescript-eslint/parser": "^6.7.2",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-flowtype": "^5.2.0",
     "eslint-plugin-import": "^2.22.0",
