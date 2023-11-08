@@ -1,0 +1,1372 @@
+{
+  "metadata": {
+    "toolPackage": "@microsoft/api-extractor",
+    "toolVersion": "7.38.2",
+    "schemaVersion": 1011,
+    "oldestForwardsCompatibleVersion": 1001,
+    "tsdocConfig": {
+      "$schema": "https://developer.microsoft.com/json-schemas/tsdoc/v0/tsdoc.schema.json",
+      "noStandardTags": true,
+      "tagDefinitions": [
+        {
+          "tagName": "@alpha",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@beta",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@defaultValue",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@decorator",
+          "syntaxKind": "block",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@deprecated",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@eventProperty",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@example",
+          "syntaxKind": "block",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@experimental",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@inheritDoc",
+          "syntaxKind": "inline"
+        },
+        {
+          "tagName": "@internal",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@label",
+          "syntaxKind": "inline"
+        },
+        {
+          "tagName": "@link",
+          "syntaxKind": "inline",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@override",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@packageDocumentation",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@param",
+          "syntaxKind": "block",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@privateRemarks",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@public",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@readonly",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@remarks",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@returns",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@sealed",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@see",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@throws",
+          "syntaxKind": "block",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@typeParam",
+          "syntaxKind": "block",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@virtual",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@betaDocumentation",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@internalRemarks",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@preapproved",
+          "syntaxKind": "modifier"
+        }
+      ],
+      "supportForTags": {
+        "@alpha": true,
+        "@beta": true,
+        "@defaultValue": true,
+        "@decorator": true,
+        "@deprecated": true,
+        "@eventProperty": true,
+        "@example": true,
+        "@experimental": true,
+        "@inheritDoc": true,
+        "@internal": true,
+        "@label": true,
+        "@link": true,
+        "@override": true,
+        "@packageDocumentation": true,
+        "@param": true,
+        "@privateRemarks": true,
+        "@public": true,
+        "@readonly": true,
+        "@remarks": true,
+        "@returns": true,
+        "@sealed": true,
+        "@see": true,
+        "@throws": true,
+        "@typeParam": true,
+        "@virtual": true,
+        "@betaDocumentation": true,
+        "@internalRemarks": true,
+        "@preapproved": true
+      },
+      "reportUnsupportedHtmlElements": false
+    }
+  },
+  "kind": "Package",
+  "canonicalReference": "@playkit-js/playkit-js-providers!",
+  "docComment": "",
+  "name": "@playkit-js/playkit-js-providers",
+  "preserveMemberOrder": false,
+  "members": [
+    {
+      "kind": "EntryPoint",
+      "canonicalReference": "@playkit-js/playkit-js-providers!",
+      "name": "",
+      "preserveMemberOrder": false,
+      "members": [
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@playkit-js/playkit-js-providers!AdapterDataConfig:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type AdapterDataConfig = "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    [key: string]: {\n        value: string;\n        objectType?: string;\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/types/adapter-data-config.ts",
+          "releaseTag": "Public",
+          "name": "AdapterDataConfig",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@playkit-js/playkit-js-providers!CaptionType:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type CaptionType = "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    [type: string]: string;\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/types/caption-type.ts",
+          "releaseTag": "Public",
+          "name": "CaptionType",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@playkit-js/playkit-js-providers!ILoader:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ILoader "
+            }
+          ],
+          "fileUrlPath": "src/types/loader.ts",
+          "releaseTag": "Public",
+          "name": "ILoader",
+          "preserveMemberOrder": false,
+          "members": [
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "@playkit-js/playkit-js-providers!ILoader#isValid:member(1)",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "isValid(): "
+                },
+                {
+                  "kind": "Content",
+                  "text": "boolean"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "returnTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [],
+              "name": "isValid"
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@playkit-js/playkit-js-providers!ILoader#requests:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "requests: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Array",
+                  "canonicalReference": "!Array:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "RequestBuilder",
+                  "canonicalReference": "!unknown"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "requests",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 5
+              }
+            },
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@playkit-js/playkit-js-providers!ILoader#response:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "response: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "any"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isReadonly": false,
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "response",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@playkit-js/playkit-js-providers!OTTProviderMediaInfoObject:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type OTTProviderMediaInfoObject = "
+            },
+            {
+              "kind": "Reference",
+              "text": "OVPProviderMediaInfoObject",
+              "canonicalReference": "@playkit-js/playkit-js-providers!OVPProviderMediaInfoObject:type"
+            },
+            {
+              "kind": "Content",
+              "text": " & {\n    mediaType: string;\n    contextType: string;\n    protocol?: string;\n    fileIds?: string;\n    streamerType?: string;\n    urlType?: string;\n    adapterData?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "AdapterDataConfig",
+              "canonicalReference": "@playkit-js/playkit-js-providers!AdapterDataConfig:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    assetReferenceType?: string;\n    formats?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Array",
+              "canonicalReference": "!Array:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<string>;\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/types/media-info.ts",
+          "releaseTag": "Public",
+          "name": "OTTProviderMediaInfoObject",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 7
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@playkit-js/playkit-js-providers!OVPProviderMediaInfoObject:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type OVPProviderMediaInfoObject = "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    entryId?: string;\n    referenceId?: string;\n    ks?: string;\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/types/media-info.ts",
+          "releaseTag": "Public",
+          "name": "OVPProviderMediaInfoObject",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@playkit-js/playkit-js-providers!PKExternalCaptionObject:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type PKExternalCaptionObject = "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    url: string;\n    label: string;\n    language: string;\n    default?: boolean;\n    type?: string;\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/types/external-caption-object.ts",
+          "releaseTag": "Public",
+          "name": "PKExternalCaptionObject",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@playkit-js/playkit-js-providers!ProviderDrmDataObject:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type ProviderDrmDataObject = "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    licenseUrl: string;\n    scheme: string;\n    certificate?: string;\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/types/drm-data.ts",
+          "releaseTag": "Public",
+          "name": "ProviderDrmDataObject",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@playkit-js/playkit-js-providers!ProviderEntryListObject:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type ProviderEntryListObject = "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    entries: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Array",
+              "canonicalReference": "!Array:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "ProviderMediaInfoObject",
+              "canonicalReference": "@playkit-js/playkit-js-providers!ProviderMediaInfoObject:type"
+            },
+            {
+              "kind": "Content",
+              "text": ">;\n    ks?: string;\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/types/entry-list.ts",
+          "releaseTag": "Public",
+          "name": "ProviderEntryListObject",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 6
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@playkit-js/playkit-js-providers!ProviderEnvConfigObject:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type ProviderEnvConfigObject = "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    serviceUrl: string;\n    cdnUrl?: string;\n    analyticsServiceUrl?: string;\n    useApiCaptions?: boolean;\n    replaceHostOnlyManifestUrls?: boolean;\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/types/env-config.ts",
+          "releaseTag": "Public",
+          "name": "ProviderEnvConfigObject",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@playkit-js/playkit-js-providers!ProviderFilterOptionsObject:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type ProviderFilterOptionsObject = "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    redirectFromEntryId?: boolean;\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/types/filter-options.ts",
+          "releaseTag": "Public",
+          "name": "ProviderFilterOptionsObject",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@playkit-js/playkit-js-providers!ProviderMediaConfigMetadataObject:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type ProviderMediaConfigMetadataObject = "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    name: string;\n    description?: string;\n    mediaType?: string;\n    contextType?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "String",
+              "canonicalReference": "!String:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    metas?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Object",
+              "canonicalReference": "!Object:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    tags?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Object",
+              "canonicalReference": "!Object:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    epgId?: string;\n    recordingId?: string;\n    updatedAt?: number;\n    creatorId?: string;\n    views?: number;\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/types/media-config-metadata.ts",
+          "releaseTag": "Public",
+          "name": "ProviderMediaConfigMetadataObject",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 8
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@playkit-js/playkit-js-providers!ProviderMediaConfigObject:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type ProviderMediaConfigObject = "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    session: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ProviderMediaConfigSessionObject",
+              "canonicalReference": "@playkit-js/playkit-js-providers!ProviderMediaConfigSessionObject:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    sources: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ProviderMediaConfigSourcesObject",
+              "canonicalReference": "@playkit-js/playkit-js-providers!ProviderMediaConfigSourcesObject:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    plugins: {\n        [plugin: string]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Object",
+              "canonicalReference": "!Object:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    };\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/types/media-config.ts",
+          "releaseTag": "Public",
+          "name": "ProviderMediaConfigObject",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 8
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@playkit-js/playkit-js-providers!ProviderMediaConfigSessionObject:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type ProviderMediaConfigSessionObject = "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    partnerId: number;\n    uiConfId?: number;\n    ks?: string;\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/types/media-config-session.ts",
+          "releaseTag": "Public",
+          "name": "ProviderMediaConfigSessionObject",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@playkit-js/playkit-js-providers!ProviderMediaConfigSourcesObject:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type ProviderMediaConfigSourcesObject = "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    dash: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Array",
+              "canonicalReference": "!Array:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "ProviderMediaSourceObject",
+              "canonicalReference": "@playkit-js/playkit-js-providers!ProviderMediaSourceObject:type"
+            },
+            {
+              "kind": "Content",
+              "text": ">;\n    hls: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Array",
+              "canonicalReference": "!Array:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "ProviderMediaSourceObject",
+              "canonicalReference": "@playkit-js/playkit-js-providers!ProviderMediaSourceObject:type"
+            },
+            {
+              "kind": "Content",
+              "text": ">;\n    progressive: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Array",
+              "canonicalReference": "!Array:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "ProviderMediaSourceObject",
+              "canonicalReference": "@playkit-js/playkit-js-providers!ProviderMediaSourceObject:type"
+            },
+            {
+              "kind": "Content",
+              "text": ">;\n    image: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Array",
+              "canonicalReference": "!Array:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "ImageSource",
+              "canonicalReference": "!unknown"
+            },
+            {
+              "kind": "Content",
+              "text": ">;\n    duration: number;\n    type: string;\n    id: string;\n    poster: string | "
+            },
+            {
+              "kind": "Reference",
+              "text": "Array",
+              "canonicalReference": "!Array:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "Object",
+              "canonicalReference": "!Object:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ">;\n    dvr: boolean;\n    vr?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Object",
+              "canonicalReference": "!Object:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    metadata: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ProviderMediaConfigMetadataObject",
+              "canonicalReference": "@playkit-js/playkit-js-providers!ProviderMediaConfigMetadataObject:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    captions?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Array",
+              "canonicalReference": "!Array:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "PKExternalCaptionObject",
+              "canonicalReference": "@playkit-js/playkit-js-providers!PKExternalCaptionObject:type"
+            },
+            {
+              "kind": "Content",
+              "text": ">;\n    downloadUrl?: string;\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/types/media-config-sources.ts",
+          "releaseTag": "Public",
+          "name": "ProviderMediaConfigSourcesObject",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 30
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@playkit-js/playkit-js-providers!ProviderMediaEntryObject:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type ProviderMediaEntryObject = "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    id: string;\n    name: string;\n    sources: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ProviderMediaSourcesObject",
+              "canonicalReference": "@playkit-js/playkit-js-providers!ProviderMediaSourcesObject:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    duration: number;\n    dvrStatus: number;\n    status: number;\n    metadata: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Object",
+              "canonicalReference": "!Object:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    type: string;\n    poster: string | "
+            },
+            {
+              "kind": "Reference",
+              "text": "Array",
+              "canonicalReference": "!Array:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "Object",
+              "canonicalReference": "!Object:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ">;\n    downloadUrl: string;\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/types/media-entry.ts",
+          "releaseTag": "Public",
+          "name": "ProviderMediaEntryObject",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 10
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@playkit-js/playkit-js-providers!ProviderMediaFormatType:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type ProviderMediaFormatType = "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    name: string;\n    mimeType: string;\n    pathExt: string;\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/types/media-format.ts",
+          "releaseTag": "Public",
+          "name": "ProviderMediaFormatType",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@playkit-js/playkit-js-providers!ProviderMediaInfoObject:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type ProviderMediaInfoObject = "
+            },
+            {
+              "kind": "Reference",
+              "text": "OVPProviderMediaInfoObject",
+              "canonicalReference": "@playkit-js/playkit-js-providers!OVPProviderMediaInfoObject:type"
+            },
+            {
+              "kind": "Content",
+              "text": " | "
+            },
+            {
+              "kind": "Reference",
+              "text": "OTTProviderMediaInfoObject",
+              "canonicalReference": "@playkit-js/playkit-js-providers!OTTProviderMediaInfoObject:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/types/media-info.ts",
+          "releaseTag": "Public",
+          "name": "ProviderMediaInfoObject",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 4
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@playkit-js/playkit-js-providers!ProviderMediaSourceObject:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type ProviderMediaSourceObject = "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    id: string;\n    url: string;\n    mimetype: string;\n    bandwidth?: number;\n    width?: number;\n    height?: number;\n    label?: string;\n    drmData?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Array",
+              "canonicalReference": "!Array:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "ProviderDrmDataObject",
+              "canonicalReference": "@playkit-js/playkit-js-providers!ProviderDrmDataObject:type"
+            },
+            {
+              "kind": "Content",
+              "text": ">;\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/types/media-source.ts",
+          "releaseTag": "Public",
+          "name": "ProviderMediaSourceObject",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 6
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@playkit-js/playkit-js-providers!ProviderMediaSourcesObject:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type ProviderMediaSourcesObject = "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    progressive: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Array",
+              "canonicalReference": "!Array:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "ProviderMediaSourceObject",
+              "canonicalReference": "@playkit-js/playkit-js-providers!ProviderMediaSourceObject:type"
+            },
+            {
+              "kind": "Content",
+              "text": ">;\n    dash: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Array",
+              "canonicalReference": "!Array:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "ProviderMediaSourceObject",
+              "canonicalReference": "@playkit-js/playkit-js-providers!ProviderMediaSourceObject:type"
+            },
+            {
+              "kind": "Content",
+              "text": ">;\n    hls: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Array",
+              "canonicalReference": "!Array:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "ProviderMediaSourceObject",
+              "canonicalReference": "@playkit-js/playkit-js-providers!ProviderMediaSourceObject:type"
+            },
+            {
+              "kind": "Content",
+              "text": ">;\n    image: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Array",
+              "canonicalReference": "!Array:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "ImageSource",
+              "canonicalReference": "!unknown"
+            },
+            {
+              "kind": "Content",
+              "text": ">;\n    captions?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Array",
+              "canonicalReference": "!Array:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "PKExternalCaptionObject",
+              "canonicalReference": "@playkit-js/playkit-js-providers!PKExternalCaptionObject:type"
+            },
+            {
+              "kind": "Content",
+              "text": ">;\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/types/media-sources.ts",
+          "releaseTag": "Public",
+          "name": "ProviderMediaSourcesObject",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 22
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@playkit-js/playkit-js-providers!ProviderNetworkRetryParameters:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type ProviderNetworkRetryParameters = "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    async?: boolean;\n    timeout?: number;\n    maxAttempts?: number;\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/types/network-retry-parameters.ts",
+          "releaseTag": "Public",
+          "name": "ProviderNetworkRetryParameters",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@playkit-js/playkit-js-providers!ProviderOptionsObject:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type ProviderOptionsObject = "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    partnerId: number;\n    widgetId?: string;\n    logger?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LoggerType",
+              "canonicalReference": "!unknown"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    ks?: string;\n    uiConfId?: number;\n    env?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ProviderEnvConfigObject",
+              "canonicalReference": "@playkit-js/playkit-js-providers!ProviderEnvConfigObject:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    networkRetryParameters?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ProviderNetworkRetryParameters",
+              "canonicalReference": "@playkit-js/playkit-js-providers!ProviderNetworkRetryParameters:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    filterOptions?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ProviderFilterOptionsObject",
+              "canonicalReference": "@playkit-js/playkit-js-providers!ProviderFilterOptionsObject:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    ignoreServerConfig?: boolean;\n    loadThumbnailWithKs?: boolean;\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/types/provider-options.ts",
+          "releaseTag": "Public",
+          "name": "ProviderOptionsObject",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 10
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@playkit-js/playkit-js-providers!ProviderPlaybackContextOptions:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type ProviderPlaybackContextOptions = "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    mediaProtocol?: string;\n    assetFileIds?: string;\n    context?: string;\n    streamerType?: string;\n    urlType?: string;\n    adapterData?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "AdapterDataConfig",
+              "canonicalReference": "@playkit-js/playkit-js-providers!AdapterDataConfig:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/types/playback-context.ts",
+          "releaseTag": "Public",
+          "name": "ProviderPlaybackContextOptions",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 4
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@playkit-js/playkit-js-providers!ProviderPlaylistMetadataObject:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type ProviderPlaylistMetadataObject = "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    name: string;\n    description: string;\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/types/playlist-metadata.ts",
+          "releaseTag": "Public",
+          "name": "ProviderPlaylistMetadataObject",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@playkit-js/playkit-js-providers!ProviderPlaylistObject:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type ProviderPlaylistObject = "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    id: string;\n    metadata: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ProviderPlaylistMetadataObject",
+              "canonicalReference": "@playkit-js/playkit-js-providers!ProviderPlaylistMetadataObject:type"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    poster: string;\n    items: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Array",
+              "canonicalReference": "!Array:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "ProviderPlaylistItemObject",
+              "canonicalReference": "@playkit-js/playkit-js-providers!~ProviderPlaylistItemObject:type"
+            },
+            {
+              "kind": "Content",
+              "text": ">;\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/types/playlist.ts",
+          "releaseTag": "Public",
+          "name": "ProviderPlaylistObject",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 8
+          }
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@playkit-js/playkit-js-providers!RequestLoader:type",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export type RequestLoader = "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    loader: "
+            },
+            {
+              "kind": "Reference",
+              "text": "ILoader",
+              "canonicalReference": "@playkit-js/playkit-js-providers!ILoader:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";\n    params: any;\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "fileUrlPath": "src/types/request-loader.ts",
+          "releaseTag": "Public",
+          "name": "RequestLoader",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 4
+          }
+        }
+      ]
+    }
+  ]
+}

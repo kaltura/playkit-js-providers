@@ -1,5 +1,4 @@
-// @flow
-declare type ProviderPlaylistInfoObject = {
+export type ProviderPlaylistInfoObject = {
   playlistId: string;
   ks?: string;
 };

@@ -1,0 +1,1 @@
+{"version":3,"file":"media-config.d.ts","sourceRoot":"","sources":["../src/types/media-config.ts"],"names":[],"mappings":"AAAA,OAAO,EAAC,gCAAgC,EAAC,MAAM,wBAAwB,CAAC;AACxE,OAAO,EAAC,gCAAgC,EAAC,MAAM,wBAAwB,CAAC;AAExE,MAAM,MAAM,yBAAyB,GAAG;IACtC,OAAO,EAAE,gCAAgC,CAAC;IAC1C,OAAO,EAAE,gCAAgC,CAAC;IAC1C,OAAO,EAAE;QAAC,CAAC,MAAM,EAAE,MAAM,GAAG,MAAM,CAAA;KAAC,CAAC;CACrC,CAAC"}

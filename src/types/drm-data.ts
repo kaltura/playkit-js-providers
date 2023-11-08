@@ -1,5 +1,4 @@
-// @flow
-declare type ProviderDrmDataObject = {
+export type ProviderDrmDataObject = {
   licenseUrl: string;
   scheme: string;
   certificate?: string;

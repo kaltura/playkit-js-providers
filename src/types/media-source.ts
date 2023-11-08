@@ -1,5 +1,6 @@
-// @flow
-declare type ProviderMediaSourceObject = {
+import {ProviderDrmDataObject} from './drm-data';
+
+export type ProviderMediaSourceObject = {
   id: string;
   url: string;
   mimetype: string;

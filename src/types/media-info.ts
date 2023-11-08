@@ -1,11 +1,12 @@
-// @flow
-declare type OVPProviderMediaInfoObject = {
+import {AdapterDataConfig} from './adapter-data-config';
+
+export type OVPProviderMediaInfoObject = {
   entryId?: string;
   referenceId?: string;
   ks?: string;
 };
 
-declare type OTTProviderMediaInfoObject = OVPProviderMediaInfoObject & {
+export type OTTProviderMediaInfoObject = OVPProviderMediaInfoObject & {
   mediaType: string;
   contextType: string;
   protocol?: string;
@@ -17,4 +18,4 @@ declare type OTTProviderMediaInfoObject = OVPProviderMediaInfoObject & {
   formats?: Array<string>;
 };
 
-declare type ProviderMediaInfoObject = OVPProviderMediaInfoObject | OTTProviderMediaInfoObject;
+export type ProviderMediaInfoObject = OVPProviderMediaInfoObject | OTTProviderMediaInfoObject;

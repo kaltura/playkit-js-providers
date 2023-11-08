@@ -1,4 +1,3 @@
-// @flow
-declare type ProviderFilterOptionsObject = {
+export type ProviderFilterOptionsObject = {
   redirectFromEntryId?: boolean;
 };

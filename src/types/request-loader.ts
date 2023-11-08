@@ -1,5 +1,6 @@
-// @flow
-declare type RequestLoader = {
+import {ILoader} from './loader';
+
+export type RequestLoader = {
   loader: ILoader;
-  params: Object;
+  params: any;
 };

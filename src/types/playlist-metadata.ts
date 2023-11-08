@@ -1,5 +1,4 @@
-// @flow
-declare type ProviderPlaylistMetadataObject = {
+export type ProviderPlaylistMetadataObject = {
   name: string;
   description: string;
 };

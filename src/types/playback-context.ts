@@ -1,5 +1,6 @@
-// @flow
-declare type ProviderPlaybackContextOptions = {
+import {AdapterDataConfig} from './adapter-data-config';
+
+export type ProviderPlaybackContextOptions = {
   mediaProtocol?: string;
   assetFileIds?: string;
   context?: string;

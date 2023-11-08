@@ -1,5 +1,4 @@
-// @flow
-declare type ProviderEnvConfigObject = {
+export type ProviderEnvConfigObject = {
   serviceUrl: string;
   cdnUrl?: string;
   analyticsServiceUrl?: string;

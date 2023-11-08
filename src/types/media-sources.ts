@@ -1,7 +1,8 @@
-// @flow
 import ImageSource from '../../src/entities/image-source';
+import {ProviderMediaSourceObject} from './media-source';
+import {PKExternalCaptionObject} from './external-caption-object';
 
-declare type ProviderMediaSourcesObject = {
+export type ProviderMediaSourcesObject = {
   progressive: Array<ProviderMediaSourceObject>;
   dash: Array<ProviderMediaSourceObject>;
   hls: Array<ProviderMediaSourceObject>;

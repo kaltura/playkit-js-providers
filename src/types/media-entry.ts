@@ -1,5 +1,6 @@
-// @flow
-declare type ProviderMediaEntryObject = {
+import {ProviderMediaSourcesObject} from './media-sources';
+
+export type ProviderMediaEntryObject = {
   id: string;
   name: string;
   sources: ProviderMediaSourcesObject;

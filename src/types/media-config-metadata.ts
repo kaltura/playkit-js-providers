@@ -1,5 +1,4 @@
-// @flow
-declare type ProviderMediaConfigMetadataObject = {
+export type ProviderMediaConfigMetadataObject = {
   name: string;
   description?: string;
   mediaType?: string;
