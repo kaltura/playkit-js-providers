@@ -24,7 +24,14 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: false,
-    browsers: ['Chrome', 'Safari', 'Firefox'],
+    // browsers: ['Chrome', 'Safari', 'Firefox'],
+    customLaunchers: {
+      ChromeHeadlessWithFlags: {
+        base: 'ChromeHeadless',
+        flags: ['--no-sandbox', '--autoplay-policy=no-user-gesture-required', '--mute-audio', '--max-web-media-player-count=1000']
+      }
+    },
+    browsers: ['ChromeHeadlessWithFlags'],
     singleRun: true,
     concurrency: Infinity,
 
