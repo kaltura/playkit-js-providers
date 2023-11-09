@@ -1,14 +1,14 @@
-const param = a => {
-  let s: string[] = [],
+const param = (a): any => {
+  const s: string[] = [],
     rbracket = /\[\]$/,
-    isArray = function (obj) {
+    isArray = function (obj): boolean {
       return Object.prototype.toString.call(obj) === '[object Array]';
     },
-    add = function (k, v) {
+    add = function (k, v): any {
       v = typeof v === 'function' ? v() : v === null ? '' : v === undefined ? '' : v;
       s[s.length] = encodeURIComponent(k) + '=' + encodeURIComponent(v);
     },
-    buildParams = function (prefix, obj) {
+    buildParams = function (prefix, obj): any {
       let i, len, key;
 
       if (prefix) {

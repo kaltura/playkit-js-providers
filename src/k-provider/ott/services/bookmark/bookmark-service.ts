@@ -14,7 +14,7 @@ export default class OTTBookmarkService extends OTTService {
    * @returns {RequestBuilder} - The request builder
    * @static
    */
-  static add(serviceUrl: string, ks: string, bookmark: any): RequestBuilder {
+  public static add(serviceUrl: string, ks: string, bookmark: any): RequestBuilder {
     const headers: Map<string, string> = new Map();
     headers.set('Content-Type', 'application/json');
     const request = new RequestBuilder(headers);
@@ -22,7 +22,7 @@ export default class OTTBookmarkService extends OTTService {
     request.action = 'add';
     request.method = 'POST';
     request.url = request.getUrl(serviceUrl);
-    const playerData: Object = {
+    const playerData: any = {
       objectType: 'KalturaBookmarkPlayerData',
       action: bookmark.playerData.action,
       averageBitrate: bookmark.playerData.averageBitrate,

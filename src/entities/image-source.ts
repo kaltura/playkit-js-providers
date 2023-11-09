@@ -5,17 +5,17 @@ export default class ImageSource {
    * @member - media source id
    * @type {string}
    */
-  id: string;
+  public id: string;
   /**
    * @member - media source url
    * @type {string}
    */
-  url: string;
+  public url: string;
   /**
    * @member - media source mimetype
    * @type {string}
    */
-  mimetype: string;
+  public mimetype: string;
 
   constructor(entry: any) {
     this.id = entry.id;
@@ -28,8 +28,10 @@ export default class ImageSource {
    * @param {string} url - dataUrl.
    * @returns {string} - The base thumbnail url.
    */
-  static extractBaseThumbnailUrl(url: string): string {
-    // @ts-ignore
+  public static extractBaseThumbnailUrl(url: string): string {
+    // @ts-expect-error - fff
     return url.match(BASE_THUMBNAIL_URL_TEMPLATE)[0].slice(0, -1);
   }
 }
+
+export {ImageSource}

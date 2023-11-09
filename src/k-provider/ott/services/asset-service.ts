@@ -16,7 +16,7 @@ export default class OTTAssetService extends OTTService {
    * @returns {RequestBuilder} The request builder
    * @static
    */
-  static getPlaybackContext(
+  public static getPlaybackContext(
     serviceUrl: string,
     ks: string,
     assetId: string,
@@ -30,13 +30,13 @@ export default class OTTAssetService extends OTTService {
     request.action = 'getPlaybackContext';
     request.method = 'POST';
     request.url = request.getUrl(serviceUrl);
-    const contextDataParams: Object = {objectType: 'KalturaPlaybackContextOptions'};
+    const contextDataParams: any = {objectType: 'KalturaPlaybackContextOptions'};
     Object.assign(contextDataParams, playbackContextOptions);
     request.params = {assetId: assetId, assetType: type, contextDataParams: contextDataParams, ks: ks};
     return request;
   }
 
-  static get(serviceUrl: string, ks: string, assetId: string, assetReferenceType: string): RequestBuilder {
+  public static get(serviceUrl: string, ks: string, assetId: string, assetReferenceType: string): RequestBuilder {
     const headers: Map<string, string> = new Map();
     headers.set('Content-Type', 'application/json');
     const request = new RequestBuilder(headers);

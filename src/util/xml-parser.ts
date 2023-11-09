@@ -5,13 +5,13 @@ export default class XmlParser {
    * @returns {{}} The parsed xml as Json object
    * @static
    */
-  static xmlToJson(xml: Document | ChildNode) {
+  public static xmlToJson(xml: Document | ChildNode): any {
     let obj: any = {};
     if (xml.nodeType === 1) {
       if (xml['attributes'].length > 0) {
         obj['@attributes'] = {};
         for (let j = 0; j < xml['attributes'].length; j++) {
-          let attribute = xml['attributes'].item(j);
+          const attribute = xml['attributes'].item(j);
           obj['@attributes'][attribute.nodeName] = attribute.nodeValue;
         }
       }
@@ -20,13 +20,13 @@ export default class XmlParser {
     }
     if (xml.hasChildNodes()) {
       for (let i = 0; i < xml.childNodes.length; i++) {
-        let item = xml.childNodes.item(i);
-        let nodeName = item.nodeName;
+        const item = xml.childNodes.item(i);
+        const nodeName = item.nodeName;
         if (typeof obj[nodeName] === 'undefined') {
           obj[nodeName] = this.xmlToJson(item);
         } else {
           if (typeof obj[nodeName].push === 'undefined') {
-            let old = obj[nodeName];
+            const old = obj[nodeName];
             obj[nodeName] = [];
             obj[nodeName].push(old);
           }

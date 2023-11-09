@@ -3,22 +3,22 @@ export class KalturaPlaylist {
    * @member - playlist id
    * @type {string}
    */
-  id: string;
+  public id: string;
   /**
    * @member - playlist name
    * @type {string}
    */
-  name: string;
+  public name: string;
   /**
    * @member - playlist description
    * @type {string}
    */
-  description: string;
+  public description: string;
   /**
    * @member - playlist poster image
    * @type {string}
    */
-  poster: string;
+  public poster: string;
 
   /**
    * @constructor

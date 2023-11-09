@@ -34,7 +34,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
     this._networkRetryConfig = Object.assign(this._networkRetryConfig, options.networkRetryParameters);
   }
 
-  get env() {
+  public get env(): any {
     return OTTConfiguration.get();
   }
 
@@ -43,7 +43,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
    * @param {OTTProviderMediaInfoObject} mediaInfo - ott media info
    * @returns {Promise<ProviderMediaConfigObject>} - The provider media config
    */
-  getMediaConfig(mediaInfo: OTTProviderMediaInfoObject): Promise<ProviderMediaConfigObject> {
+  public getMediaConfig(mediaInfo: OTTProviderMediaInfoObject): Promise<ProviderMediaConfigObject> {
     if (mediaInfo.ks) {
       this.ks = mediaInfo.ks;
       this._isAnonymous = false;
@@ -104,7 +104,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
     });
   }
 
-  _parseDataFromResponse(data: Map<string, ILoader>, requestData: Object): ProviderMediaConfigObject {
+  private _parseDataFromResponse(data: Map<string, ILoader>, requestData: any): ProviderMediaConfigObject {
     this._logger.debug('Data parsing started');
     const mediaConfig: ProviderMediaConfigObject = {
       session: {
@@ -155,7 +155,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
    * @param {ProviderEntryListObject} entryListInfo - ott entry list info
    * @returns {Promise<ProviderPlaylistObject>} - The provider playlist config
    */
-  getEntryListConfig(entryListInfo: ProviderEntryListObject): Promise<ProviderPlaylistObject> {
+  public getEntryListConfig(entryListInfo: ProviderEntryListObject): Promise<ProviderPlaylistObject> {
     if (entryListInfo.ks) {
       this.ks = entryListInfo.ks;
       this._isAnonymous = false;
@@ -184,7 +184,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
     });
   }
 
-  _parseEntryListDataFromResponse(data: Map<string, ILoader>, requestEntries: Array<ProviderMediaInfoObject>): ProviderPlaylistObject {
+  private _parseEntryListDataFromResponse(data: Map<string, ILoader>, requestEntries: Array<ProviderMediaInfoObject>): ProviderPlaylistObject {
     this._logger.debug('Data parsing started');
     const playlistConfig: ProviderPlaylistObject = {
       id: '',
@@ -206,7 +206,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
     return playlistConfig;
   }
 
-  _getDefaultSourcesObject(): ProviderMediaConfigSourcesObject {
+  private _getDefaultSourcesObject(): ProviderMediaConfigSourcesObject {
     return {
       hls: [],
       dash: [],
@@ -226,7 +226,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
     };
   }
 
-  _getSourcesObject(mediaEntry: MediaEntry) {
+  private _getSourcesObject(mediaEntry: MediaEntry): ProviderMediaConfigSourcesObject {
     const sourcesObject: ProviderMediaConfigSourcesObject = this._getDefaultSourcesObject();
     const mediaSources = mediaEntry.sources.toJSON();
     sourcesObject.hls = mediaSources.hls;

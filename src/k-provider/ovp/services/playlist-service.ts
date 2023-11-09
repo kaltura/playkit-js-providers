@@ -14,7 +14,7 @@ export default class OVPPlaylistService extends OVPService {
    * @returns {RequestBuilder} The request builder
    * @static
    */
-  static execute(serviceUrl: string, ks: string, playlistId: string): RequestBuilder {
+  public static execute(serviceUrl: string, ks: string, playlistId: string): RequestBuilder {
     const headers: Map<string, string> = new Map();
     headers.set('Content-Type', 'application/json');
     const request = new RequestBuilder(headers);
@@ -40,7 +40,7 @@ export default class OVPPlaylistService extends OVPService {
    * @returns {RequestBuilder} The request builder
    * @static
    */
-  static get(serviceUrl: string, ks: string, playlistId: string): RequestBuilder {
+  public static get(serviceUrl: string, ks: string, playlistId: string): RequestBuilder {
     const headers: Map<string, string> = new Map();
     headers.set('Content-Type', 'application/json');
     const request = new RequestBuilder(headers);

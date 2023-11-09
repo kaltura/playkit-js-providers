@@ -4,49 +4,49 @@ import Error from '../../util/error/error';
 import {ProviderEntryListObject, ProviderMediaConfigObject, ProviderPlaylistInfoObject, ProviderMediaConfigSourcesObject, ProviderNetworkRetryParameters, ProviderOptionsObject, ProviderPlaylistObject} from '../../types';
 
 export default class BaseProvider<MI> {
-  _partnerId: number;
-  _widgetId?: string;
-  _ks: string;
-  _uiConfId?: number;
-  _dataLoader!: DataLoaderManager;
-  _playerVersion: string;
-  _logger: any;
-  _isAnonymous: boolean;
-  _networkRetryConfig: ProviderNetworkRetryParameters = {
+  private _partnerId: number;
+  private _widgetId?: string;
+  private _ks: string;
+  private _uiConfId?: number;
+  public _dataLoader!: DataLoaderManager;
+  private _playerVersion: string;
+  public _logger: any;
+  protected _isAnonymous: boolean;
+  public _networkRetryConfig: ProviderNetworkRetryParameters = {
     async: true,
     timeout: 0,
     maxAttempts: 4
   };
 
-  get partnerId(): number {
+  public get partnerId(): number {
     return this._partnerId;
   }
 
-  get widgetId(): string {
+  public get widgetId(): string {
     return this._widgetId || this.defaultWidgetId;
   }
 
-  get defaultWidgetId(): string {
+  public get defaultWidgetId(): string {
     return '_' + this._partnerId;
   }
 
-  get uiConfId(): number | undefined {
+  public get uiConfId(): number | undefined {
     return this._uiConfId;
   }
 
-  get ks(): string {
+  public get ks(): string {
     return this._ks;
   }
 
-  set ks(value: string) {
+  public set ks(value: string) {
     this._ks = value;
   }
 
-  get playerVersion(): string {
+  public get playerVersion(): string {
     return this._playerVersion;
   }
 
-  get isAnonymous(): boolean {
+  public get isAnonymous(): boolean {
     return this._isAnonymous;
   }
 
@@ -60,8 +60,8 @@ export default class BaseProvider<MI> {
     this._playerVersion = playerVersion;
   }
 
-  // eslint-disable-next-line no-unused-vars
-  getMediaConfig(mediaInfo: MI): Promise<ProviderMediaConfigObject> {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  public getMediaConfig(mediaInfo: MI): Promise<ProviderMediaConfigObject> {
     return Promise.reject(
       new Error(Error.Severity.CRITICAL, Error.Category.PROVIDER, Error.Code.METHOD_NOT_IMPLEMENTED, {
         message: 'getMediaConfig method must be implement by the derived class'
@@ -69,8 +69,8 @@ export default class BaseProvider<MI> {
     );
   }
 
-  // eslint-disable-next-line no-unused-vars
-  getPlaylistConfig(playlistInfo: ProviderPlaylistInfoObject): Promise<ProviderPlaylistObject> {
+  // eslint-disable-next-line  @typescript-eslint/no-unused-vars
+  public getPlaylistConfig(playlistInfo: ProviderPlaylistInfoObject): Promise<ProviderPlaylistObject> {
     return Promise.reject(
       new Error(Error.Severity.CRITICAL, Error.Category.PROVIDER, Error.Code.METHOD_NOT_IMPLEMENTED, {
         message: 'The provider does not support loading playlist by id'
@@ -78,8 +78,8 @@ export default class BaseProvider<MI> {
     );
   }
 
-  // eslint-disable-next-line no-unused-vars
-  getEntryListConfig(entryListInfo: ProviderEntryListObject): Promise<ProviderPlaylistObject> {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  public getEntryListConfig(entryListInfo: ProviderEntryListObject): Promise<ProviderPlaylistObject> {
     return Promise.reject(
       new Error(Error.Severity.CRITICAL, Error.Category.PROVIDER, Error.Code.METHOD_NOT_IMPLEMENTED, {
         message: 'The provider does not support loading entry list'
@@ -87,7 +87,7 @@ export default class BaseProvider<MI> {
     );
   }
 
-  _verifyHasSources(sources: ProviderMediaConfigSourcesObject) {
+  protected _verifyHasSources(sources: ProviderMediaConfigSourcesObject): void {
     if (sources.hls.concat(sources.dash, sources.progressive, sources.image).length === 0) {
       throw new Error(Error.Severity.CRITICAL, Error.Category.SERVICE, Error.Code.MISSING_PLAY_SOURCE, {
         action: '',
@@ -96,15 +96,17 @@ export default class BaseProvider<MI> {
     }
   }
 
-  get LogLevel(): LogLevelType {
+  public get LogLevel(): LogLevelType {
     return LogLevel;
   }
 
-  getLogLevel(name?: string): Object {
+  public getLogLevel(name?: string): any {
     return getLogLevel(name);
   }
 
-  setLogLevel(level: any, name?: string): void {
+  public setLogLevel(level: any, name?: string): void {
     setLogLevel(level, name);
   }
 }
+
+export {BaseProvider}

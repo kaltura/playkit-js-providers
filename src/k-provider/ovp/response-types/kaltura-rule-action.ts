@@ -1,5 +1,5 @@
 export class KalturaRuleAction {
-  static Type: {[type: string]: string | number} = {
+  public static Type: {[type: string]: string | number} = {
     DRM_POLICY: 'drm.DRM_POLICY',
     BLOCK: 1,
     PREVIEW: 2,
@@ -15,7 +15,7 @@ export class KalturaRuleAction {
    * @member - The type of the action
    * @type {string|number}
    */
-  type: string | number;
+  public type: string | number;
 
   /**
    * @constructor

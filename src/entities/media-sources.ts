@@ -1,6 +1,6 @@
 import MediaSource from './media-source';
 import {MediaFormat} from './media-format';
-import ImageSource from './image-source';
+import {ImageSource} from './image-source';
 import {PKExternalCaptionObject, ProviderMediaFormatType, ProviderMediaSourcesObject} from '../types';
 
 export default class MediaSources {
@@ -9,21 +9,21 @@ export default class MediaSources {
    * @type {Array<MediaSource>}
    * @public
    */
-  progressive: Array<MediaSource>;
+  public progressive: Array<MediaSource>;
   /**
    * Dash media sources container.
    * @type {Array<MediaSource>}
    * @public
    */
-  dash: Array<MediaSource>;
+  public dash: Array<MediaSource>;
   /**
    * Hls media sources container.
    * @type {Array<MediaSource>}
    * @public
    */
-  hls: Array<MediaSource>;
-  image: Array<ImageSource>;
-  captions?: Array<PKExternalCaptionObject>;
+  public hls: Array<MediaSource>;
+  public image: Array<ImageSource>;
+  public captions?: Array<PKExternalCaptionObject>;
 
   /**
    * @constructor
@@ -41,20 +41,20 @@ export default class MediaSources {
    * @param {MediaFormat} mediaFormat - The media format of the source.
    * @returns {void}
    */
-  map(source: MediaSource, mediaFormat?: ProviderMediaFormatType) {
+  public map(source: MediaSource, mediaFormat?: ProviderMediaFormatType): void {
     if (mediaFormat) {
       switch (mediaFormat.name) {
-        case MediaFormat.MP4.name:
-          this.progressive.push(source);
-          break;
-        case MediaFormat.DASH.name:
-          this.dash.push(source);
-          break;
-        case MediaFormat.HLS.name:
-          this.hls.push(source);
-          break;
-        default:
-          break;
+      case MediaFormat.MP4.name:
+        this.progressive.push(source);
+        break;
+      case MediaFormat.DASH.name:
+        this.dash.push(source);
+        break;
+      case MediaFormat.HLS.name:
+        this.hls.push(source);
+        break;
+      default:
+        break;
       }
     }
   }
@@ -63,7 +63,7 @@ export default class MediaSources {
    * Convert class to native js object.
    * @returns {ProviderMediaSourcesObject} - The json class object.
    */
-  toJSON(): ProviderMediaSourcesObject {
+  public toJSON(): ProviderMediaSourcesObject {
     const response: ProviderMediaSourcesObject = {
       progressive: [],
       dash: [],

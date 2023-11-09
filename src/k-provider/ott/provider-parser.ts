@@ -40,7 +40,7 @@ const MediaTypeCombinations: {[mediaType: string]: any} = {
 };
 
 export default class OTTProviderParser {
-  static _logger = getLogger('OTTProviderParser');
+  private static _logger = getLogger('OTTProviderParser');
 
   /**
    * Returns parsed media entry by given OTT response objects.
@@ -51,7 +51,7 @@ export default class OTTProviderParser {
    * @static
    * @public
    */
-  static getMediaEntry(assetResponse: any, requestData: any): MediaEntry {
+  public static getMediaEntry(assetResponse: any, requestData: any): MediaEntry {
     const mediaEntry = new MediaEntry();
     OTTProviderParser._fillBaseData(mediaEntry, assetResponse, requestData);
     const playbackContext = assetResponse.playBackContextResult;
@@ -62,6 +62,7 @@ export default class OTTProviderParser {
     const typeData = OTTProviderParser._getMediaType(mediaAsset.data, requestData.mediaType, requestData.contextType);
     mediaEntry.type = typeData.type;
     mediaEntry.dvrStatus = typeData.dvrStatus;
+    // eslint-disable-next-line prefer-spread
     mediaEntry.duration = Math.max.apply(
       Math,
       kalturaSources.map(source => source.duration)
@@ -78,7 +79,7 @@ export default class OTTProviderParser {
    * @static
    * @public
    */
-  static getEntryList(playlistResponse: any, requestEntries: Array<ProviderMediaInfoObject>): EntryList {
+  public static getEntryList(playlistResponse: any, requestEntries: Array<ProviderMediaInfoObject>): EntryList {
     const entryList = new EntryList();
     const playlistItems = playlistResponse.playlistItems.entries;
     playlistItems.forEach(entry => {
@@ -98,7 +99,7 @@ export default class OTTProviderParser {
    * @static
    * @public
    */
-  static getBumper(assetResponse: any): Bumper | unknown {
+  public static getBumper(assetResponse: any): Bumper | unknown {
     const playbackContext = assetResponse.playBackContextResult;
     const progressiveBumper = playbackContext.plugins.find(
       bumper => bumper.streamertype === KalturaBumpersPlaybackPluginData.StreamerType.PROGRESSIVE
@@ -108,7 +109,7 @@ export default class OTTProviderParser {
     }
   }
 
-  static _fillBaseData(mediaEntry: MediaEntry, assetResponse: any, requestData: any) {
+  private static _fillBaseData(mediaEntry: MediaEntry, assetResponse: any, requestData: any): MediaEntry {
     const mediaAsset = assetResponse.mediaDataResult;
     const metaData = OTTProviderParser.reconstructMetadata(mediaAsset);
     metaData.description = mediaAsset.description;
@@ -131,7 +132,7 @@ export default class OTTProviderParser {
    * @param {Object} mediaAsset the mediaAsset that contains the response with the metadata.
    * @returns {Object} reconstructed metadata object
    */
-  static reconstructMetadata(mediaAsset: any): any {
+  public static reconstructMetadata(mediaAsset: any): any {
     const metadata = {
       metas: OTTProviderParser.addToMetaObject(mediaAsset.metas),
       tags: OTTProviderParser.addToMetaObject(mediaAsset.tags)
@@ -144,8 +145,8 @@ export default class OTTProviderParser {
    * @param {Array<Object>} list a list of objects
    * @returns {Object} an mapped object of the arrayed list.
    */
-  static addToMetaObject(list: Array<any>): any {
-    let categoryObj = {};
+  public static addToMetaObject(list: Array<any>): any {
+    const categoryObj = {};
     if (list) {
       list.forEach(item => {
         categoryObj[item.key] = item.value;
@@ -160,7 +161,7 @@ export default class OTTProviderParser {
    * @returns {string | Array<Object>} - Poster base url or array of poster candidates.
    * @private
    */
-  static _getPoster(pictures: Array<any>): string | Array<any> {
+  public static _getPoster(pictures: Array<any>): string | Array<any> {
     if (pictures && pictures.length > 0) {
       const picObj = pictures[0];
       const url = picObj.url;
@@ -182,7 +183,7 @@ export default class OTTProviderParser {
    * @returns {Object} - The type data object.
    * @private
    */
-  static _getMediaType(mediaAssetData: any, mediaType: string, contextType: string): any {
+  public static _getMediaType(mediaAssetData: any, mediaType: string, contextType: string): any {
     let typeData = {type: MediaEntry.Type.UNKNOWN};
     if (MediaTypeCombinations[mediaType] && MediaTypeCombinations[mediaType][contextType]) {
       typeData = MediaTypeCombinations[mediaType][contextType](mediaAssetData);
@@ -197,7 +198,7 @@ export default class OTTProviderParser {
    * @returns {Array<KalturaPlaybackSource>} - Filtered kalturaSources array.
    * @private
    */
-  static _filterSourcesByFormats(kalturaSources: Array<KalturaPlaybackSource>, formats: Array<string>): Array<KalturaPlaybackSource> {
+  public static _filterSourcesByFormats(kalturaSources: Array<KalturaPlaybackSource>, formats: Array<string>): Array<KalturaPlaybackSource> {
     if (formats.length > 0) {
       kalturaSources = kalturaSources.filter(source => formats.includes(source.type));
     }
@@ -213,19 +214,19 @@ export default class OTTProviderParser {
    * @static
    * @private
    */
-  static _getParsedSources(kalturaSources: Array<KalturaPlaybackSource>): MediaSources {
+  public static _getParsedSources(kalturaSources: Array<KalturaPlaybackSource>): MediaSources {
     const sources = new MediaSources();
-    const addAdaptiveSource = (source: KalturaPlaybackSource) => {
+    const addAdaptiveSource = (source: KalturaPlaybackSource): void => {
       const parsedSource = OTTProviderParser._parseAdaptiveSource(source);
       if (parsedSource) {
         const sourceFormat = SupportedStreamFormat.get(source.format);
         sources.map(parsedSource, sourceFormat);
       }
     };
-    const parseAdaptiveSources = () => {
+    const parseAdaptiveSources = (): void => {
       kalturaSources.filter(source => !isProgressiveSource(source.format)).forEach(addAdaptiveSource);
     };
-    const parseProgressiveSources = () => {
+    const parseProgressiveSources = (): void => {
       kalturaSources.filter(source => isProgressiveSource(source.format)).forEach(addAdaptiveSource);
     };
     if (kalturaSources && kalturaSources.length > 0) {
@@ -243,7 +244,7 @@ export default class OTTProviderParser {
    * @static
    * @private
    */
-  static _parseAdaptiveSource(kalturaSource?: KalturaPlaybackSource): MediaSource | null {
+  public static _parseAdaptiveSource(kalturaSource?: KalturaPlaybackSource): MediaSource | null {
     const mediaSource = new MediaSource();
     if (kalturaSource) {
       const playUrl = kalturaSource.url;
@@ -270,15 +271,15 @@ export default class OTTProviderParser {
     return mediaSource;
   }
 
-  static hasBlockAction(response: OTTAssetLoaderResponse): boolean {
+  public static hasBlockAction(response: OTTAssetLoaderResponse): boolean {
     return response.playBackContextResult.hasBlockAction();
   }
 
-  static getBlockAction(response: OTTAssetLoaderResponse): KalturaRuleAction | undefined {
+  public static getBlockAction(response: OTTAssetLoaderResponse): KalturaRuleAction | undefined {
     return response.playBackContextResult.getBlockAction();
   }
 
-  static getErrorMessages(response: OTTAssetLoaderResponse): Array<KalturaAccessControlMessage> {
+  public static getErrorMessages(response: OTTAssetLoaderResponse): Array<KalturaAccessControlMessage> {
     return response.playBackContextResult.getErrorMessages();
   }
 }

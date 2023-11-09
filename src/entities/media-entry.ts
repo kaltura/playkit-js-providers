@@ -1,16 +1,15 @@
-//@flow
 import MediaSources from './media-sources';
 import {ProviderMediaEntryObject} from '../types';
 
 export default class MediaEntry {
-  static Type: {[type: string]: string} = {
+  public static Type: {[type: string]: string} = {
     VOD: 'Vod',
     LIVE: 'Live',
     IMAGE: 'Image',
     AUDIO: 'Audio',
     UNKNOWN: 'Unknown'
   };
-  static DvrStatus: {[type: string]: number} = {
+  public static DvrStatus: {[type: string]: number} = {
     ON: 1,
     OFF: 0
   };
@@ -19,59 +18,59 @@ export default class MediaEntry {
    * @member - entry id
    * @type {string}
    */
-  id?: string;
+  public id?: string;
   /**
    * @member - entry name
    * @type {string}
    */
-  name?: string;
+  public name?: string;
   /**
    * @member - entry sources
    * @type {MediaSources}
    */
-  sources: MediaSources;
+  public sources: MediaSources;
   /**
    * @member - entry duration
    * @type {number}
    */
-  duration?: number;
+  public duration?: number;
   /**
    * @member - entry type
    * @type {string}
    */
-  type: string;
+  public type: string;
   /**
    * @member - entry metadata
    * @type {Object}
    */
-  metadata: any;
+  public metadata: any;
   /**
    * @member - DVR status
    * @type {number}
    */
-  dvrStatus?: number;
+  public dvrStatus?: number;
   /**
    * @member - media status
    * @type {number}
    */
-  status?: number;
+  public status?: number;
   /**
    * @member - media poster
    * @type {string | Array<Object>}
    */
-  poster?: string | Array<any>;
+  public poster?: string | Array<any>;
 
   /**
    * @member - assetReferenceType
    * @type {string }
    */
-  assetReferenceType?: string;
+  public assetReferenceType?: string;
 
   /**
    * @member - The download URL of the entry.
    * @type {string}
    */
-  downloadUrl?: string;
+  public downloadUrl?: string;
 
   /**
    * @constructor
@@ -86,7 +85,7 @@ export default class MediaEntry {
    * Convert class to native js object.
    * @returns {ProviderMediaEntryObject} - The json class object.
    */
-  toJSON(): ProviderMediaEntryObject {
+  public toJSON(): ProviderMediaEntryObject {
     return {
       id: this.id,
       name: this.name,

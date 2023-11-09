@@ -3,15 +3,15 @@ import {KalturaDrmPlaybackPluginData} from '../../common/response-types/kaltura-
 export type OTTKalturaPlaybackSource = KalturaPlaybackSource;
 
 export default class KalturaPlaybackSource {
-  format: string;
-  protocols: string;
-  drm: Array<KalturaDrmPlaybackPluginData> = [];
-  adsPolicy: string;
-  adsParam: string;
-  duration: number;
-  url: string;
-  type: string;
-  fileId: number;
+  public format: string;
+  public protocols: string;
+  public drm: Array<KalturaDrmPlaybackPluginData> = [];
+  public adsPolicy: string;
+  public adsParam: string;
+  public duration: number;
+  public url: string;
+  public type: string;
+  public fileId: number;
 
   /**
    * @constructor
@@ -36,7 +36,7 @@ export default class KalturaPlaybackSource {
    * @function hasDrmData
    * @returns {boolean} Is source has DRM
    */
-  hasDrmData(): boolean {
+  public hasDrmData(): boolean {
     return this.drm && this.drm.length > 0;
   }
 
@@ -45,10 +45,10 @@ export default class KalturaPlaybackSource {
    * @param {string} protocol - the desired protocol for the source (base play url protocol)
    * @returns {string} - protocol if protocol is in the protocols list - if not empty string returned
    */
-  getProtocol(protocol: string): string {
+  public getProtocol(protocol: string): string {
     let returnValue: string = '';
     if (this.protocols && this.protocols.length > 0) {
-      let protocolsArr: Array<string> = this.protocols.split(',');
+      const protocolsArr: Array<string> = this.protocols.split(',');
       protocolsArr.forEach(p => {
         if (p === protocol) {
           returnValue = p;

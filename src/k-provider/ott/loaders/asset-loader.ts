@@ -9,11 +9,11 @@ type OTTAssetLoaderResponse = {mediaDataResult: KalturaAsset, playBackContextRes
 export type {OTTAssetLoaderResponse};
 
 export default class OTTAssetLoader implements ILoader {
-  _entryId: string;
-  _requests!: Array<RequestBuilder>;
-  _response: any = {};
+  private _entryId: string;
+  private _requests!: Array<RequestBuilder>;
+  private _response: any = {};
 
-  static get id(): string {
+  public static get id(): string {
     return 'asset';
   }
 
@@ -26,20 +26,20 @@ export default class OTTAssetLoader implements ILoader {
     this._entryId = params.entryId;
   }
 
-  set requests(requests: Array<RequestBuilder>) {
+  public set requests(requests: Array<RequestBuilder>) {
     this._requests = requests;
   }
 
-  get requests(): Array<RequestBuilder> {
+  public get requests(): Array<RequestBuilder> {
     return this._requests;
   }
 
-  set response(response: any) {
+  public set response(response: any) {
     this._response.mediaDataResult = new KalturaAsset(response[0].data);
     this._response.playBackContextResult = new KalturaPlaybackContext(response[1].data);
   }
 
-  get response(): OTTAssetLoaderResponse {
+  public get response(): OTTAssetLoaderResponse {
     return this._response;
   }
 
@@ -50,7 +50,7 @@ export default class OTTAssetLoader implements ILoader {
    * @returns {RequestBuilder} The request builder
    * @static
    */
-  buildRequests(params: any): Array<RequestBuilder> {
+  public buildRequests(params: any): Array<RequestBuilder> {
     const config = OTTConfiguration.get();
     const requests: Array<RequestBuilder> = [];
     requests.push(OTTAssetService.get(config.serviceUrl, params.ks, params.entryId, params.assetReferenceType));
@@ -63,7 +63,7 @@ export default class OTTAssetLoader implements ILoader {
    * @function
    * @returns {boolean} Is valid
    */
-  isValid(): boolean {
+  public isValid(): boolean {
     return !!this._entryId;
   }
 }

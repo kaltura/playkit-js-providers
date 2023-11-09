@@ -4,22 +4,22 @@ import ServiceResult from './base-service-result';
 import Error from '../../util/error/error';
 
 export default class MultiRequestBuilder extends RequestBuilder {
-  static _logger = getLogger('MultiRequestBuilder');
+  private static _logger = getLogger('MultiRequestBuilder');
   /**
    * @memberof - MultiRequestBuilder
    * @type {Array<RequestBuilder>}
    */
-  requests: Array<RequestBuilder> = [];
+  public requests: Array<RequestBuilder> = [];
   /**
    * Adds request to requests array
    * @function add
    * @param {RequestBuilder} request The request
    * @returns {MultiRequestBuilder} The multiRequest
    */
-  add(request: RequestBuilder): MultiRequestBuilder {
+  public add(request: RequestBuilder): MultiRequestBuilder {
     this.requests.push(request);
     const requestParams = {};
-    const serviceDef: Object = {service: request.service, action: request.action};
+    const serviceDef: any = {service: request.service, action: request.action};
     Object.assign(requestParams, {[this.requests.length]: Object.assign(serviceDef, request.params)});
     Object.assign(requestParams, this.params);
     this.params = requestParams;
@@ -32,7 +32,7 @@ export default class MultiRequestBuilder extends RequestBuilder {
    * @param {boolean} requestsMustSucceed whether all of the requests must succeed or not
    * @returns {Promise} The multirequest execution promise
    */
-  execute(requestsMustSucceed?: boolean): Promise<any> {
+  public execute(requestsMustSucceed?: boolean): Promise<any> {
     return new Promise((resolve, reject) => {
       try {
         this.params = JSON.stringify(this.params);
@@ -72,17 +72,17 @@ export default class MultiRequestBuilder extends RequestBuilder {
 }
 
 export class MultiRequestResult {
-  static _logger = getLogger('MultiRequestResult');
+  private static _logger = getLogger('MultiRequestResult');
   /**
    * @memberof MultiRequestResult
    * @type {boolean}
    */
-  success: boolean;
+  public success: boolean;
   /**
    * @memberof MultiRequestResult
    * @type {Object}
    */
-  results: Array<ServiceResult> = [];
+  public results: Array<ServiceResult> = [];
   /**
    * @constructor
    * @param {Object} response data

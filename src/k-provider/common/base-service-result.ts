@@ -3,17 +3,17 @@ export default class ServiceResult {
    * @member - Is service returned an error
    * @type {boolean}
    */
-  hasError: boolean = false;
+  public hasError: boolean = false;
   /**
    * @member - The service error
    * @type {ServiceError}
    */
-  error!: ServiceError;
+  public error!: ServiceError;
   /**
    * @member - The service result data
    * @type {Object}
    */
-  data: any;
+  public data: any;
 
   /**
    * @constructor
@@ -37,12 +37,12 @@ class ServiceError {
    * @member - The error code
    * @type {string}
    */
-  code: string;
+  public code: string;
   /**
    * @member - The error message
    * @type {string}
    */
-  message: string;
+  public message: string;
 
   /**
    * @constructor

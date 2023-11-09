@@ -1,8 +1,7 @@
-//@flow
 import ServiceResult from '../../common/base-service-result';
 
 export class KalturaUIConfResponse extends ServiceResult {
-  static Type: {[type: string]: number} = {
+  public static Type: {[type: string]: number} = {
     PLAYER: 1,
     CONTRIBUTION_WIZARD: 2,
     SIMPLE_EDITOR: 3,
@@ -26,33 +25,33 @@ export class KalturaUIConfResponse extends ServiceResult {
     WEBCASTING: 21
   };
 
-  static CreationMode: {[mode: string]: number} = {
+  public static CreationMode: {[mode: string]: number} = {
     WIZARD: 2,
     ADVANCED: 3
   };
 
-  description!: string;
-  objTypeAsString!: string;
-  width!: number;
-  height!: number;
-  htmlParams!: string;
-  swfUrl!: string;
-  confFilePath!: string;
-  confFile!: string;
-  confFileFeatures!: string;
-  name!: string;
-  config!: string;
-  confVars!: string;
-  useCdn!: boolean;
-  tags!: string;
-  swfUrlVersion!: string;
-  created!: Date;
-  updated!: Date;
-  html5Url!: string;
-  version!: string;
-  partnerTags!: string;
-  objType!: number;
-  creationMode!: number;
+  public description!: string;
+  public objTypeAsString!: string;
+  public width!: number;
+  public height!: number;
+  public htmlParams!: string;
+  public swfUrl!: string;
+  public confFilePath!: string;
+  public confFile!: string;
+  public confFileFeatures!: string;
+  public name!: string;
+  public config!: string;
+  public confVars!: string;
+  public useCdn!: boolean;
+  public tags!: string;
+  public swfUrlVersion!: string;
+  public created!: Date;
+  public updated!: Date;
+  public html5Url!: string;
+  public version!: string;
+  public partnerTags!: string;
+  public objType!: number;
+  public creationMode!: number;
 
   /**
    * @constructor

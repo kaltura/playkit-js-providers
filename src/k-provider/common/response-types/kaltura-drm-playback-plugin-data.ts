@@ -1,5 +1,5 @@
 export class KalturaDrmPlaybackPluginData {
-  static Scheme: {[scheme: string]: string} = {
+  public static Scheme: {[scheme: string]: string} = {
     'drm.PLAYREADY_CENC': 'com.microsoft.playready',
     'drm.WIDEVINE_CENC': 'com.widevine.alpha',
     'fairplay.FAIRPLAY': 'com.apple.fairplay',
@@ -12,19 +12,19 @@ export class KalturaDrmPlaybackPluginData {
    * @member - The drm scheme
    * @type {string}
    */
-  scheme: string;
+  public scheme: string;
 
   /**
    * @member - The license URL
    * @type {string}
    */
-  licenseURL: string;
+  public licenseURL: string;
 
   /**
    * @member - The drm certificate
    * @type {?string}
    */
-  certificate?: string;
+  public certificate?: string;
 
   /**
    * @constructor

@@ -6,48 +6,48 @@ export default class MediaSource {
    * @member - media source id
    * @type {string}
    */
-  id!: string;
+  public id!: string;
   /**
    * @member - media source url
    * @type {string}
    */
-  url!: string;
+  public url!: string;
   /**
    * @member - media source mimetype
    * @type {string}
    */
-  mimetype!: string;
+  public mimetype!: string;
   /**
    * @member - media source drm data
    * @type {Array<Drm>}
    */
-  drmData?: Array<Drm>;
+  public drmData?: Array<Drm>;
   /**
    * @member - media source bandwidth
    * @type {number}
    */
-  bandwidth?: number;
+  public bandwidth?: number;
   /**
    * @member - media source width
    * @type {number}
    */
-  width?: number;
+  public width?: number;
   /**
    * @member - media source height
    * @type {number}
    */
-  height?: number;
+  public height?: number;
   /**
    * @member - media source label
    * @type {string}
    */
-  label?: string;
+  public label?: string;
 
   /**
    * Convert class to native js object.
    * @returns {ProviderMediaSourceObject} - The json class object.
    */
-  toJSON(): ProviderMediaSourceObject {
+  public toJSON(): ProviderMediaSourceObject {
     const response: ProviderMediaSourceObject = {
       id: this.id,
       url: this.url,

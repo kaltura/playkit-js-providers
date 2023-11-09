@@ -3,12 +3,12 @@ export class KalturaAccessControlMessage {
    * @member - The access control message
    * @type {string}
    */
-  message: string;
+  public message: string;
   /**
    *  @member - The access control message code
    * @@type {string}
    */
-  code: string;
+  public code: string;
 
   /**
    * @constructor

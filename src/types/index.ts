@@ -1,3 +1,4 @@
+
 export * from './adapter-data-config'
 export * from './caption-type'
 export * from './drm-data'
@@ -22,3 +23,11 @@ export * from './playlist-metadata'
 export * from './playlist-info'
 export * from './provider-options'
 export * from './request-loader'
+
+export { ProviderParser, RequestBuilder, ResponseTypes} from '../k-provider/ovp'
+export { ContextType, MediaType} from '../k-provider/ott'
+import {BaseProvider} from '../k-provider/common/base-provider'
+import OTTProvider from '../k-provider/ott/provider'
+import OVPProvider from '../k-provider/ovp/provider'
+export {OTTProvider, OVPProvider, OTTProvider as Provider, BaseProvider}
+export type IProvider = OTTProvider | OVPProvider;

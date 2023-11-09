@@ -1,4 +1,4 @@
-import ImageSource from '../../src/entities/image-source';
+import {ImageSource} from '../entities/image-source';
 import {ProviderMediaSourceObject} from './media-source';
 import {PKExternalCaptionObject} from './external-caption-object';
 

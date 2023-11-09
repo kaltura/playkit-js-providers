@@ -1,4 +1,4 @@
-import ImageSource from '../../src/entities/image-source';
+import {ImageSource} from '../entities/image-source';
 import {ProviderMediaConfigMetadataObject} from './media-config-metadata';
 import {PKExternalCaptionObject} from './external-caption-object';
 import {ProviderMediaSourceObject} from './media-source';
@@ -11,7 +11,7 @@ export type ProviderMediaConfigSourcesObject = {
   duration?: number;
   type: string;
   id?: string;
-  poster?: string | Array<Object>;
+  poster?: string | Array<any>;
   dvr: boolean;
   vr?: any;
   metadata: ProviderMediaConfigMetadataObject;

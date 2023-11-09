@@ -14,7 +14,7 @@ export default class OVPBaseEntryService extends OVPService {
    * @returns {RequestBuilder} The request builder
    * @static
    */
-  static getPlaybackContext(serviceUrl: string, ks: string, serviceEntryId: string): RequestBuilder {
+  public static getPlaybackContext(serviceUrl: string, ks: string, serviceEntryId: string): RequestBuilder {
     const headers: Map<string, string> = new Map();
     headers.set('Content-Type', 'application/json');
     const request = new RequestBuilder(headers);
@@ -39,7 +39,7 @@ export default class OVPBaseEntryService extends OVPService {
    * @returns {RequestBuilder} The request builder
    * @static
    */
-  static list(serviceUrl: string, ks: string, entryId: string, redirectFromEntryId: boolean, referenceId: string): RequestBuilder {
+  public static list(serviceUrl: string, ks: string, entryId: string, redirectFromEntryId: boolean, referenceId: string): RequestBuilder {
     const headers: Map<string, string> = new Map();
     headers.set('Content-Type', 'application/json');
     const request = new RequestBuilder(headers);
@@ -62,7 +62,7 @@ export default class OVPBaseEntryService extends OVPService {
    * @returns {{ks: string, filter: {redirectFromEntryId: string}, responseProfile: {fields: string, type: number}}} The service params object
    * @static
    */
-  static getEntryListReqParams(entryId: string, ks: string, redirectFromEntryId: boolean, referenceId: string): any {
+  public static getEntryListReqParams(entryId: string, ks: string, redirectFromEntryId: boolean, referenceId: string): any {
     let filterParams = {};
     if (entryId) {
       filterParams = redirectFromEntryId ? {redirectFromEntryId: entryId} : {idEqual: entryId};

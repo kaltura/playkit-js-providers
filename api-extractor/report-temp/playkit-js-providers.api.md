@@ -4,10 +4,6 @@
 
 ```ts
 
-import ImageSource from '../../src/entities/image-source';
-import { LoggerType } from '../../src/util/logger';
-import RequestBuilder from '../../src/util/request-builder';
-
 // @public (undocumented)
 export type AdapterDataConfig = {
     [key: string]: {
@@ -17,7 +13,58 @@ export type AdapterDataConfig = {
 };
 
 // @public (undocumented)
+export class BaseProvider<MI> {
+    constructor(options: ProviderOptionsObject, playerVersion: string);
+    // Warning: (ae-forgotten-export) The symbol "DataLoaderManager" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    _dataLoader: DataLoaderManager;
+    // (undocumented)
+    get defaultWidgetId(): string;
+    // (undocumented)
+    getEntryListConfig(entryListInfo: ProviderEntryListObject): Promise<ProviderPlaylistObject>;
+    // (undocumented)
+    getLogLevel(name?: string): any;
+    // (undocumented)
+    getMediaConfig(mediaInfo: MI): Promise<ProviderMediaConfigObject>;
+    // (undocumented)
+    getPlaylistConfig(playlistInfo: ProviderPlaylistInfoObject): Promise<ProviderPlaylistObject>;
+    // (undocumented)
+    get isAnonymous(): boolean;
+    // (undocumented)
+    protected _isAnonymous: boolean;
+    // (undocumented)
+    get ks(): string;
+    set ks(value: string);
+    // (undocumented)
+    _logger: any;
+    // Warning: (ae-forgotten-export) The symbol "LogLevelType" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    get LogLevel(): LogLevelType;
+    // (undocumented)
+    _networkRetryConfig: ProviderNetworkRetryParameters;
+    // (undocumented)
+    get partnerId(): number;
+    // (undocumented)
+    get playerVersion(): string;
+    // (undocumented)
+    setLogLevel(level: any, name?: string): void;
+    // (undocumented)
+    get uiConfId(): number | undefined;
+    // (undocumented)
+    protected _verifyHasSources(sources: ProviderMediaConfigSourcesObject): void;
+    // (undocumented)
+    get widgetId(): string;
+}
+
+// @public (undocumented)
 export type CaptionType = {
+    [type: string]: string;
+};
+
+// @public (undocumented)
+export const ContextType: {
     [type: string]: string;
 };
 
@@ -32,6 +79,292 @@ export interface ILoader {
 }
 
 // @public (undocumented)
+export type IProvider = OTTProvider | OVPProvider;
+
+// @public (undocumented)
+class KalturaAccessControlMessage {
+    constructor(data: any);
+    code: string;
+    message: string;
+}
+
+// @public (undocumented)
+class KalturaAccessControlModifyRequestHostRegexAction extends KalturaRuleAction {
+    constructor(data: any);
+    checkAliveTimeoutMs: number;
+    pattern: string;
+    replacement: string;
+    replacmenServerNodeId: number;
+}
+
+// @public (undocumented)
+class KalturaBaseEntryListResponse extends ServiceResult {
+    constructor(responseObj: any);
+    entries: Array<KalturaMediaEntry>;
+    totalCount: number;
+}
+
+// @public (undocumented)
+class KalturaBumper {
+    constructor(data: any);
+    clickThroughUrl: string;
+    entryId: string;
+    sources: Array<KalturaPlaybackSource>;
+}
+
+// @public (undocumented)
+class KalturaDrmPlaybackPluginData {
+    constructor(drm: any);
+    certificate?: string;
+    licenseURL: string;
+    // (undocumented)
+    static Scheme: {
+        [scheme: string]: string;
+    };
+    scheme: string;
+}
+
+// @public (undocumented)
+class KalturaFlavorAsset {
+    constructor(data: any);
+    bitrate: number;
+    containerFormat: string;
+    fileExt: string;
+    flavorParamsId: string;
+    frameRate: number;
+    height: number;
+    id: string;
+    isOriginal: boolean;
+    isWeb: boolean;
+    label: string;
+    language: string;
+    // (undocumented)
+    static Status: {
+        [status: string]: number;
+    };
+    status: number;
+    videoCodecId: string;
+    width: number;
+}
+
+// @public (undocumented)
+class KalturaMediaEntries extends ServiceResult {
+    constructor(responseObj: any);
+    entries: Array<KalturaMediaEntry>;
+}
+
+// @public (undocumented)
+class KalturaMediaEntry {
+    constructor(entry: any);
+    createdAt: number;
+    creatorId: string;
+    dataUrl: string;
+    description: string;
+    downloadUrl: string;
+    duration: number;
+    dvrStatus: number;
+    endDate: number;
+    // (undocumented)
+    static EntryModerationStatus: {
+        [status: string]: number;
+    };
+    // (undocumented)
+    static EntryStatus: {
+        [status: string]: string | number;
+    };
+    // (undocumented)
+    static EntryType: {
+        [entryType: string]: {
+            value: number | string;
+        };
+    };
+    entryType: number;
+    externalSourceType: string;
+    flavorParamsIds: string;
+    id: string;
+    // (undocumented)
+    static MediaType: {
+        [mediaType: string]: {
+            value: number;
+        };
+    };
+    name: string;
+    plays: number;
+    poster: string;
+    referenceId: string;
+    status: number;
+    tags: string;
+    type: string | number;
+    updatedAt: number;
+    views: number;
+}
+
+// @public (undocumented)
+class KalturaMetadata {
+    constructor(data: any);
+    // (undocumented)
+    created: Date;
+    // (undocumented)
+    id: number;
+    // (undocumented)
+    metadataObjectType: string | number;
+    // (undocumented)
+    metadataProfileId: number;
+    // (undocumented)
+    metadataProfileVersion: number;
+    // (undocumented)
+    objectId: string;
+    // (undocumented)
+    static ObjectType: {
+        [type: string]: string | number;
+    };
+    // (undocumented)
+    static Status: {
+        [status: string]: number;
+    };
+    // (undocumented)
+    status: number;
+    // (undocumented)
+    updated: Date;
+    // (undocumented)
+    version: number;
+    // (undocumented)
+    xml: string;
+}
+
+// @public (undocumented)
+class KalturaMetadataListResponse extends ServiceResult {
+    constructor(responseObj: any);
+    // (undocumented)
+    metas: Array<KalturaMetadata>;
+    // (undocumented)
+    totalCount: number;
+}
+
+// @public (undocumented)
+class KalturaPlaybackContext extends ServiceResult {
+    constructor(response: any);
+    actions: Array<KalturaRuleAction>;
+    bumperData: Array<KalturaBumper>;
+    flavorAssets: Array<KalturaFlavorAsset>;
+    // (undocumented)
+    getBlockAction(): KalturaRuleAction | undefined;
+    // (undocumented)
+    getErrorMessages(): Array<KalturaAccessControlMessage>;
+    getRequestHostRegexAction(): KalturaAccessControlModifyRequestHostRegexAction | undefined;
+    // (undocumented)
+    hasBlockAction(): boolean;
+    messages: Array<KalturaAccessControlMessage>;
+    sources: Array<KalturaPlaybackSource>;
+}
+
+// @public (undocumented)
+class KalturaPlaybackSource {
+    constructor(source: any);
+    deliveryProfileId: string;
+    drm: Array<KalturaDrmPlaybackPluginData>;
+    flavorIds: string;
+    format: string;
+    getProtocol(protocol: string): string;
+    hasDrmData(): boolean;
+    hasFlavorIds(): boolean;
+    protocols: string;
+    url: string;
+}
+
+// @public (undocumented)
+class KalturaPlaylist {
+    constructor(playlist: any);
+    description: string;
+    id: string;
+    name: string;
+    poster: string;
+}
+
+// @public (undocumented)
+class KalturaRuleAction {
+    constructor(data: any);
+    // (undocumented)
+    static Type: {
+        [type: string]: string | number;
+    };
+    type: string | number;
+}
+
+// @public (undocumented)
+class KalturaUIConfResponse extends ServiceResult {
+    constructor(data: any);
+    // (undocumented)
+    confFile: string;
+    // (undocumented)
+    confFileFeatures: string;
+    // (undocumented)
+    confFilePath: string;
+    // (undocumented)
+    config: string;
+    // (undocumented)
+    confVars: string;
+    // (undocumented)
+    created: Date;
+    // (undocumented)
+    static CreationMode: {
+        [mode: string]: number;
+    };
+    // (undocumented)
+    creationMode: number;
+    // (undocumented)
+    description: string;
+    // (undocumented)
+    height: number;
+    // (undocumented)
+    html5Url: string;
+    // (undocumented)
+    htmlParams: string;
+    // (undocumented)
+    name: string;
+    // (undocumented)
+    objType: number;
+    // (undocumented)
+    objTypeAsString: string;
+    // (undocumented)
+    partnerTags: string;
+    // (undocumented)
+    swfUrl: string;
+    // (undocumented)
+    swfUrlVersion: string;
+    // (undocumented)
+    tags: string;
+    // (undocumented)
+    static Type: {
+        [type: string]: number;
+    };
+    // (undocumented)
+    updated: Date;
+    // (undocumented)
+    useCdn: boolean;
+    // (undocumented)
+    version: string;
+    // (undocumented)
+    width: number;
+}
+
+// @public (undocumented)
+export const MediaType: {
+    [type: string]: string;
+};
+
+// @public (undocumented)
+class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject> {
+    constructor(options: ProviderOptionsObject, playerVersion: string);
+    // (undocumented)
+    get env(): any;
+    getEntryListConfig(entryListInfo: ProviderEntryListObject): Promise<ProviderPlaylistObject>;
+    getMediaConfig(mediaInfo: OTTProviderMediaInfoObject): Promise<ProviderMediaConfigObject>;
+}
+export { OTTProvider }
+export { OTTProvider as Provider }
+
+// @public (undocumented)
 export type OTTProviderMediaInfoObject = OVPProviderMediaInfoObject & {
     mediaType: string;
     contextType: string;
@@ -43,6 +376,18 @@ export type OTTProviderMediaInfoObject = OVPProviderMediaInfoObject & {
     assetReferenceType?: string;
     formats?: Array<string>;
 };
+
+// @public (undocumented)
+export class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject> {
+    constructor(options: ProviderOptionsObject, playerVersion: string);
+    // (undocumented)
+    doRequest(loaders: Array<RequestLoader>, ks?: string): Promise<any>;
+    // (undocumented)
+    get env(): any;
+    getEntryListConfig(entryListInfo: ProviderEntryListObject): Promise<ProviderPlaylistObject>;
+    getMediaConfig(mediaInfo: OVPProviderMediaInfoObject): Promise<ProviderMediaConfigObject>;
+    getPlaylistConfig(playlistInfo: ProviderPlaylistInfoObject): Promise<ProviderPlaylistObject>;
+}
 
 // @public (undocumented)
 export type OVPProviderMediaInfoObject = {
@@ -92,9 +437,9 @@ export type ProviderMediaConfigMetadataObject = {
     name: string;
     description?: string;
     mediaType?: string;
-    contextType?: String;
-    metas?: Object;
-    tags?: Object;
+    contextType?: string;
+    metas?: any;
+    tags?: any;
     epgId?: string;
     recordingId?: string;
     updatedAt?: number;
@@ -107,7 +452,7 @@ export type ProviderMediaConfigObject = {
     session: ProviderMediaConfigSessionObject;
     sources: ProviderMediaConfigSourcesObject;
     plugins: {
-        [plugin: string]: Object;
+        [plugin: string]: any;
     };
 };
 
@@ -116,6 +461,7 @@ export type ProviderMediaConfigSessionObject = {
     partnerId: number;
     uiConfId?: number;
     ks?: string;
+    isAnonymous?: boolean;
 };
 
 // @public (undocumented)
@@ -124,12 +470,12 @@ export type ProviderMediaConfigSourcesObject = {
     hls: Array<ProviderMediaSourceObject>;
     progressive: Array<ProviderMediaSourceObject>;
     image: Array<ImageSource>;
-    duration: number;
+    duration?: number;
     type: string;
-    id: string;
-    poster: string | Array<Object>;
+    id?: string;
+    poster?: string | Array<any>;
     dvr: boolean;
-    vr?: Object;
+    vr?: any;
     metadata: ProviderMediaConfigMetadataObject;
     captions?: Array<PKExternalCaptionObject>;
     downloadUrl?: string;
@@ -137,16 +483,17 @@ export type ProviderMediaConfigSourcesObject = {
 
 // @public (undocumented)
 export type ProviderMediaEntryObject = {
-    id: string;
-    name: string;
+    id?: string;
+    name?: string;
     sources: ProviderMediaSourcesObject;
-    duration: number;
-    dvrStatus: number;
-    status: number;
-    metadata: Object;
+    duration?: number;
+    dvrStatus?: number;
+    status?: number;
+    metadata: any;
     type: string;
-    poster: string | Array<Object>;
-    downloadUrl: string;
+    poster?: string | Array<any>;
+    downloadUrl?: string;
+    assetReferenceType?: string;
 };
 
 // @public (undocumented)
@@ -182,7 +529,7 @@ export type ProviderMediaSourcesObject = {
 
 // @public (undocumented)
 export type ProviderNetworkRetryParameters = {
-    async?: boolean;
+    async: boolean;
     timeout?: number;
     maxAttempts?: number;
 };
@@ -202,6 +549,27 @@ export type ProviderOptionsObject = {
 };
 
 // @public (undocumented)
+export class ProviderParser {
+    static addKsToUrl(url: string, ks: string): string;
+    // (undocumented)
+    static getBlockAction(response: OVPMediaEntryLoaderResponse): KalturaRuleAction | undefined;
+    // Warning: (ae-forgotten-export) The symbol "Bumper" needs to be exported by the entry point index.d.ts
+    static getBumper(assetResponse: any, ks: string, partnerId: number): Bumper | undefined;
+    // Warning: (ae-forgotten-export) The symbol "EntryList" needs to be exported by the entry point index.d.ts
+    static getEntryList(playlistResponse: any): EntryList;
+    // (undocumented)
+    static getErrorMessages(response: OVPMediaEntryLoaderResponse): Array<KalturaAccessControlMessage>;
+    // Warning: (ae-forgotten-export) The symbol "MediaEntry" needs to be exported by the entry point index.d.ts
+    static getMediaEntry(ks: string, partnerId: number, uiConfId: number | undefined, mediaEntryResponse: any): MediaEntry;
+    // Warning: (ae-forgotten-export) The symbol "Playlist" needs to be exported by the entry point index.d.ts
+    static getPlaylist(playlistResponse: any): Playlist;
+    // Warning: (ae-forgotten-export) The symbol "OVPMediaEntryLoaderResponse" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    static hasBlockAction(response: OVPMediaEntryLoaderResponse): boolean;
+}
+
+// @public (undocumented)
 export type ProviderPlaybackContextOptions = {
     mediaProtocol?: string;
     assetFileIds?: string;
@@ -209,6 +577,12 @@ export type ProviderPlaybackContextOptions = {
     streamerType?: string;
     urlType?: string;
     adapterData?: AdapterDataConfig;
+};
+
+// @public (undocumented)
+export type ProviderPlaylistInfoObject = {
+    playlistId: string;
+    ks?: string;
 };
 
 // @public (undocumented)
@@ -226,14 +600,63 @@ export type ProviderPlaylistObject = {
 };
 
 // @public (undocumented)
+export class RequestBuilder {
+    constructor(headers?: Map<string, string>);
+    action: string;
+    doHttpRequest(): Promise<any>;
+    getUrl(serviceUrl: string): string;
+    headers: Map<string, string>;
+    method: string;
+    params: any;
+    responseHeaders: Array<string>;
+    retryConfig: ProviderNetworkRetryParameters;
+    service: string;
+    tag: string;
+    url: string;
+}
+
+// @public (undocumented)
 export type RequestLoader = {
     loader: ILoader;
     params: any;
 };
 
+declare namespace ResponseTypes {
+    export {
+        KalturaBaseEntryListResponse,
+        KalturaMediaEntry,
+        KalturaAccessControlModifyRequestHostRegexAction,
+        KalturaBumper,
+        KalturaFlavorAsset,
+        KalturaMediaEntries,
+        KalturaMetadata,
+        KalturaMetadataListResponse,
+        KalturaPlaybackContext,
+        KalturaPlaybackSource,
+        KalturaPlaylist,
+        KalturaRuleAction,
+        KalturaUIConfResponse,
+        KalturaDrmPlaybackPluginData,
+        KalturaAccessControlMessage,
+        ServiceResult as BaseServiceResult
+    }
+}
+export { ResponseTypes }
+
+// @public (undocumented)
+class ServiceResult {
+    constructor(response: any);
+    data: any;
+    // Warning: (ae-forgotten-export) The symbol "ServiceError" needs to be exported by the entry point index.d.ts
+    error: ServiceError;
+    hasError: boolean;
+}
+
 // Warnings were encountered during analysis:
 //
+// src/types/media-config-sources.ts:10:3 - (ae-forgotten-export) The symbol "ImageSource" needs to be exported by the entry point index.d.ts
 // src/types/playlist.ts:8:3 - (ae-forgotten-export) The symbol "ProviderPlaylistItemObject" needs to be exported by the entry point index.d.ts
+// src/types/provider-options.ts:9:3 - (ae-forgotten-export) The symbol "LoggerType" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 

@@ -1,7 +1,7 @@
 export type LogLevelObject = {value: number, name: string};
 export type LogLevelType = {[level: string]: LogLevelObject};
 export type loggerFunctionType = {
-  VERSION: String,
+  VERSION: string,
   DEBUG: LogLevelObject,
   ERROR: LogLevelObject,
   INFO: LogLevelObject,
@@ -9,30 +9,30 @@ export type loggerFunctionType = {
   TIME: LogLevelObject,
   TRACE: LogLevelObject,
   WARN: LogLevelObject,
-  createDefaultHandler: Function,
-  debug: Function,
-  enabledFor: Function,
-  error: Function,
-  get: Function,
-  getLevel: Function,
-  info: Function,
-  log: Function,
-  setHandler: Function,
-  setLevel: Function,
-  time: Function,
-  timeEnd: Function,
-  trace: Function,
-  useDefaults: Function,
-  warn: Function
+  createDefaultHandler: () => any
+  debug: () => any
+  enabledFor: () => any
+  error: () => any
+  get: () => any
+  getLevel: () => any
+  info: () => any
+  log: () => any
+  setHandler: () => any
+  setLevel: () => any
+  time: () => any
+  timeEnd: () => any
+  trace: () => any
+  useDefaults: () => any
+  warn: () => any
 };
 
-export type LoggerType = {
+type LoggerType = {
   getLogger: loggerFunctionType,
   LogLevel: LogLevelType
 };
 
-let JsLogger = {
-  get: () => ({
+const JsLogger = {
+  get: (): any => ({
     VERSION: '',
     DEBUG: {value: '', name: ''},
     ERROR: {value: '', name: ''},
@@ -41,21 +41,21 @@ let JsLogger = {
     TIME: {value: '', name: ''},
     TRACE: {value: '', name: ''},
     WARN: {value: '', name: ''},
-    createDefaultHandler: () => {},
-    debug: () => {},
-    enabledFor: () => {},
-    error: () => {},
-    get: () => {},
-    getLevel: () => {},
-    info: () => {},
-    log: () => {},
-    setHandler: () => {},
-    setLevel: () => {},
-    time: () => {},
-    timeEnd: () => {},
-    trace: () => {},
-    useDefaults: () => {},
-    warn: () => {}
+    createDefaultHandler: (): any => {},
+    debug: (): any => {},
+    enabledFor: (): any => {},
+    error: (): any => {},
+    get: (): any => {},
+    getLevel: (): any => {},
+    info: (): any => {},
+    log: (): any => {},
+    setHandler: (): any => {},
+    setLevel: (): any => {},
+    time: (): any => {},
+    timeEnd: (): any => {},
+    trace: (): any => {},
+    useDefaults: (): any => {},
+    warn: (): any => {}
   })
 };
 
@@ -80,6 +80,7 @@ function setLogger(logger?: LoggerType): void {
  * @returns {Object} - the logger class
  */
 function getLogger(name?: string): any {
+  // eslint-disable-next-line  @typescript-eslint/ban-ts-comment
   //@ts-ignore
   return JsLogger.get(name);
 }
@@ -104,4 +105,4 @@ function setLogLevel(level: LogLevelObject, name?: string): void {
 }
 
 export default getLogger;
-export {getLogLevel, setLogLevel, setLogger, LogLevel};
+export {getLogLevel, setLogLevel, setLogger, LogLevel, LoggerType};

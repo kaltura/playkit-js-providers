@@ -1,4 +1,4 @@
-import RequestBuilder from '../../src/util/request-builder';
+import RequestBuilder from '../util/request-builder';
 
 export interface ILoader {
   requests: Array<RequestBuilder>;

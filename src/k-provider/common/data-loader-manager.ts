@@ -8,27 +8,27 @@ export default class DataLoaderManager {
    * @type {Map<string,Array<number>>}
    * @private
    */
-  _loadersResponseMap: Map<string, Array<number>> = new Map();
+  private _loadersResponseMap: Map<string, Array<number>> = new Map();
   /**
    * @member - Loaders multi request
    * @type {MultiRequestBuilder}
    * @protected
    */
-  _multiRequest!: MultiRequestBuilder;
+  protected _multiRequest!: MultiRequestBuilder;
   /**
    * @member - Loaders multi response
    * @type {MultiRequestResult}
    * @private
    */
-  _multiResponse!: MultiRequestResult;
+  private _multiResponse!: MultiRequestResult;
   /**
    * @member - Loaders to execute
    * @type {Map<string,Function>}
    * @private
    */
-  _loaders: Map<string, ILoader> = new Map();
+  private _loaders: Map<string, ILoader> = new Map();
 
-  _networkRetryConfig: ProviderNetworkRetryParameters;
+  private _networkRetryConfig: ProviderNetworkRetryParameters;
 
   constructor(networkRetryConfig: ProviderNetworkRetryParameters) {
     this._networkRetryConfig = networkRetryConfig;
@@ -42,14 +42,14 @@ export default class DataLoaderManager {
    * @param {string} ks ks
    * @returns {void}
    */
-  add(loader: {new(...params): ILoader, id: string}, params: any, ks?: string): void {
-    let execution_loader = new loader(params);
+  public add(loader: {new(...params): ILoader, id: string}, params: any, ks?: string): void {
+    const execution_loader = new loader(params);
     if (execution_loader.isValid()) {
       this._loaders.set(loader.id, execution_loader);
       // Get the start index from the multiReqeust before adding current execution_loader requests
-      let startIndex = this._multiRequest.requests.length;
+      const startIndex = this._multiRequest.requests.length;
       // Get the requests
-      let requests = execution_loader.requests;
+      const requests = execution_loader.requests;
       this._multiRequest.retryConfig = this._networkRetryConfig;
       // Add requests to multiRequest queue
       requests.forEach(request => {
@@ -58,7 +58,7 @@ export default class DataLoaderManager {
         this._multiRequest.add(request);
       });
       // Create range array of current execution_loader requests
-      let executionLoaderResponseMap = Array.from(new Array(requests.length), (val, index) => index + startIndex);
+      const executionLoaderResponseMap = Array.from(new Array(requests.length), (val, index) => index + startIndex);
       // Add to map
       this._loadersResponseMap.set(loader.id, executionLoaderResponseMap);
     }
@@ -70,12 +70,12 @@ export default class DataLoaderManager {
    * @function
    * @returns {Promise} Promise
    */
-  fetchData(requestsMustSucceed?: boolean): Promise<any> {
+  public fetchData(requestsMustSucceed?: boolean): Promise<any> {
     return new Promise((resolve, reject) => {
       this._multiRequest.execute(requestsMustSucceed).then(
         data => {
           this._multiResponse = data.response;
-          let preparedData: any = this.prepareData(data.response);
+          const preparedData: any = this.prepareData(data.response);
           if (preparedData.success) {
             resolve(this._loaders);
           } else {
@@ -99,9 +99,9 @@ export default class DataLoaderManager {
    * @param {MultiRequestResult} response - The multi request result
    * @returns {Object} - The prepared data
    */
-  prepareData(response: MultiRequestResult): Object {
+  public prepareData(response: MultiRequestResult): any {
     this._loaders.forEach((loader, name) => {
-      let loaderDataIndexes = this._loadersResponseMap.get(name);
+      const loaderDataIndexes = this._loadersResponseMap.get(name);
       try {
         if (loaderDataIndexes && loaderDataIndexes.length > 0) {
           loader.response = response.results.slice(loaderDataIndexes[0], loaderDataIndexes[loaderDataIndexes.length - 1] + 1);

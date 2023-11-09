@@ -5,7 +5,7 @@ export default class EntryList {
    * @member - entry list items
    * @type {Array<MediaEntry>}
    */
-  items: Array<MediaEntry>;
+  public items: Array<MediaEntry>;
 
   constructor() {
     this.items = [];

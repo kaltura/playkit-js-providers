@@ -13,7 +13,7 @@ export default class OTTUserService extends OTTService {
    * @returns {RequestBuilder} The request builder
    * @static
    */
-  static anonymousLogin(serviceUrl: string, partnerId: number, udid?: string): RequestBuilder {
+  public static anonymousLogin(serviceUrl: string, partnerId: number, udid?: string): RequestBuilder {
     const headers: Map<string, string> = new Map();
     headers.set('Content-Type', 'application/json');
     const request = new RequestBuilder(headers);
@@ -21,7 +21,7 @@ export default class OTTUserService extends OTTService {
     request.action = 'anonymousLogin';
     request.method = 'POST';
     request.url = request.getUrl(serviceUrl);
-    const params: Object = {partnerId: partnerId};
+    const params: any = {partnerId: partnerId};
     if (udid) {
       Object.assign(params, {udid: udid});
     }

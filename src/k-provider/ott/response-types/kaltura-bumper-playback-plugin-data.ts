@@ -1,5 +1,5 @@
 export default class KalturaBumpersPlaybackPluginData {
-  static StreamerType: {[type: string]: string} = {
+  public static StreamerType: {[type: string]: string} = {
     HLS: 'hls',
     DASH: 'dash',
     PROGRESSIVE: 'progressive'
@@ -9,12 +9,12 @@ export default class KalturaBumpersPlaybackPluginData {
    * @member - The streamer type
    * @type {string}
    */
-  streamertype: string;
+  public streamertype: string;
   /**
    * @member - The url
    * @type {string}
    */
-  url: string;
+  public url: string;
 
   /**
    * @constructor

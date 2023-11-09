@@ -5,7 +5,7 @@ import KalturaPlaybackSource from './kaltura-playback-source';
 import KalturaBumpersPlaybackPluginData from './kaltura-bumper-playback-plugin-data';
 
 export default class KalturaPlaybackContext extends ServiceResult {
-  static Type: {[type: string]: string} = {
+  public static Type: {[type: string]: string} = {
     DOWNLOAD: 'DOWNLOAD',
     TRAILER: 'TRAILER',
     CATCHUP: 'CATCHUP',
@@ -16,22 +16,22 @@ export default class KalturaPlaybackContext extends ServiceResult {
    * @member - The playback sources
    * @type {Array<KalturaPlaybackSource>}
    */
-  sources: Array<KalturaPlaybackSource> = [];
+  public sources: Array<KalturaPlaybackSource> = [];
   /**
    * @member - Array of actions as received from the rules that invalidated
    * @type {Array<KalturaRuleAction>}
    */
-  actions: KalturaRuleAction[] = [];
+  public actions: KalturaRuleAction[] = [];
   /**
    * @member - Array of access control massages
    * @type {Array<KalturaAccessControlMessage>}
    */
-  messages: Array<KalturaAccessControlMessage> = [];
+  public messages: Array<KalturaAccessControlMessage> = [];
   /**
    * @member - Array of bumper plugins
    * @type {Array<KalturaBumpersPlaybackPluginData>}
    */
-  plugins: Array<KalturaBumpersPlaybackPluginData> = [];
+  public plugins: Array<KalturaBumpersPlaybackPluginData> = [];
 
   /**
    * @constructor
@@ -59,15 +59,15 @@ export default class KalturaPlaybackContext extends ServiceResult {
     }
   }
 
-  hasBlockAction(): boolean {
+  public hasBlockAction(): boolean {
     return this.getBlockAction() !== undefined;
   }
 
-  getBlockAction(): KalturaRuleAction | undefined {
+  public getBlockAction(): KalturaRuleAction | undefined {
     return this.actions.find(action => action.type === KalturaRuleAction.Type.BLOCK);
   }
 
-  getErrorMessages(): Array<KalturaAccessControlMessage> {
+  public getErrorMessages(): Array<KalturaAccessControlMessage> {
     return this.messages;
   }
 }

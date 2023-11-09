@@ -2,7 +2,7 @@
   "name": "@playkit-js/playkit-js-providers",
   "version": "2.39.6",
   "description": "",
-  "typings": "dist/index.d.ts",
+  "types": "./dist/index.d.ts",
   "exports": {
     "./playkit-ovp-provider": "./dist/playkit-ovp-provider.js",
     "./playkit-ott-provider": "./dist/playkit-ott-provider.js",
@@ -24,6 +24,7 @@
     "release": "standard-version",
     "pushTaggedRelease": "git push --follow-tags --no-verify origin master",
     "lint": "eslint src/ --ext .js --ext .ts",
+    "lint:fix": "yarn run lint -- --fix",
     "prettier:fix": "prettier --write ."
   },
   "devDependencies": {

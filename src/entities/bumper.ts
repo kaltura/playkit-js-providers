@@ -1,16 +1,14 @@
-//@flow
-
 export default class Bumper {
   /**
    * @member - bumper url
    * @type {string}
    */
-  url: string;
+  public url: string;
   /**
    * @member - bumper click through url
    * @type {string}
    */
-  clickThroughUrl: string;
+  public clickThroughUrl: string;
 
   /**
    * @constructor

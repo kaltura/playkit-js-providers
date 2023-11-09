@@ -1,4 +1,4 @@
-import {LoggerType} from '../../src/util/logger';
+import {LoggerType} from '../util/logger';
 import {ProviderEnvConfigObject} from './env-config';
 import {ProviderNetworkRetryParameters} from './network-retry-parameters';
 import {ProviderFilterOptionsObject} from './filter-options';

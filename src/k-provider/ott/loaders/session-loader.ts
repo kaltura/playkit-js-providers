@@ -1,15 +1,14 @@
-//@flow
 import UserService from '../services/user-service';
 import OTTConfiguration from '../config';
 import RequestBuilder from '../../../util/request-builder';
 import {ILoader} from '../../../types';
 
 export default class OTTSessionLoader implements ILoader {
-  _partnerId: number;
-  _requests!: Array<RequestBuilder>;
-  _response: any = {};
+  private _partnerId: number;
+  private _requests!: Array<RequestBuilder>;
+  private _response: any = {};
 
-  static get id(): string {
+  public static get id(): string {
     return 'session';
   }
 
@@ -22,19 +21,19 @@ export default class OTTSessionLoader implements ILoader {
     this._partnerId = params.partnerId;
   }
 
-  set requests(requests: Array<RequestBuilder>) {
+  public set requests(requests: Array<RequestBuilder>) {
     this._requests = requests;
   }
 
-  get requests(): Array<RequestBuilder> {
+  public get requests(): Array<RequestBuilder> {
     return this._requests;
   }
 
-  set response(response: any) {
+  public set response(response: any) {
     this._response.ks = response[0].data.ks;
   }
 
-  get response(): any {
+  public get response(): any {
     return this._response.ks;
   }
 
@@ -45,7 +44,7 @@ export default class OTTSessionLoader implements ILoader {
    * @returns {RequestBuilder} The request builder
    * @static
    */
-  buildRequests(params: any): Array<RequestBuilder> {
+  public buildRequests(params: any): Array<RequestBuilder> {
     const config = OTTConfiguration.get();
     const requests: Array<RequestBuilder> = [];
     requests.push(UserService.anonymousLogin(config.serviceUrl, params.partnerId, params.udid));
@@ -57,7 +56,7 @@ export default class OTTSessionLoader implements ILoader {
    * @function
    * @returns {boolean} Is valid
    */
-  isValid(): boolean {
+  public isValid(): boolean {
     return !!this._partnerId;
   }
 }

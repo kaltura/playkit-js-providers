@@ -2,9 +2,9 @@ export type ProviderMediaConfigMetadataObject = {
   name: string;
   description?: string;
   mediaType?: string;
-  contextType?: String;
-  metas?: Object;
-  tags?: Object;
+  contextType?: string;
+  metas?: any;
+  tags?: any;
   epgId?: string;
   recordingId?: string;
   updatedAt?: number;

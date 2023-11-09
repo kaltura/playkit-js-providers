@@ -8,13 +8,13 @@ const defaultConfig: any = {
 };
 
 export default class OTTConfiguration {
-  static set(clientConfig?: ProviderEnvConfigObject) {
+  public static set(clientConfig?: ProviderEnvConfigObject): void {
     if (clientConfig) {
       Object.assign(defaultConfig, clientConfig);
     }
   }
 
-  static get(): any {
+  public static get(): any {
     return clone(defaultConfig);
   }
 }

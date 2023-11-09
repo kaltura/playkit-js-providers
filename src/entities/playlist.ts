@@ -5,29 +5,29 @@ export default class Playlist {
    * @member - playlist id
    * @type {string}
    */
-  id?: string;
+  public id?: string;
   /**
    * @member - playlist name
    * @type {string}
    */
-  name?: string;
+  public name?: string;
   /**
    * @member - playlist description
    * @type {string}
    */
-  description?: string;
+  public description?: string;
 
   /**
    * @member - playlist poster
    * @type {string}
    */
-  poster?: string;
+  public poster?: string;
 
   /**
    * @member - playlist items
    * @type {Array<MediaEntry>}
    */
-  items: Array<MediaEntry>;
+  public items: Array<MediaEntry>;
 
   constructor() {
     this.items = [];

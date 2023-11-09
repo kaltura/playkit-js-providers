@@ -13,7 +13,7 @@ export default class OVPMetadataService extends OVPService {
    * @returns {RequestBuilder} The request builder
    * @static
    */
-  static list(serviceUrl: string, ks: string, entryId: string): RequestBuilder {
+  public static list(serviceUrl: string, ks: string, entryId: string): RequestBuilder {
     const headers: Map<string, string> = new Map();
     headers.set('Content-Type', 'application/json');
     const request = new RequestBuilder(headers);

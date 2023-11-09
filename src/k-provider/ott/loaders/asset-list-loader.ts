@@ -1,4 +1,3 @@
-//@flow
 import RequestBuilder from '../../../util/request-builder';
 import OTTConfiguration from '../config';
 import OTTAssetService from '../services/asset-service';
@@ -6,11 +5,11 @@ import KalturaAsset from '../response-types/kaltura-asset';
 import {ILoader} from '../../../types';
 
 export default class OTTAssetListLoader implements ILoader {
-  _entries: Array<string>;
-  _requests!: Array<RequestBuilder>;
-  _response: any = {playlistItems: {entries: []}};
+  private _entries: Array<string>;
+  private _requests!: Array<RequestBuilder>;
+  private _response: any = {playlistItems: {entries: []}};
 
-  static get id(): string {
+  public static get id(): string {
     return 'asset_list';
   }
 
@@ -23,21 +22,21 @@ export default class OTTAssetListLoader implements ILoader {
     this._entries = params.entries;
   }
 
-  set requests(requests: Array<RequestBuilder>) {
+  public set requests(requests: Array<RequestBuilder>) {
     this._requests = requests;
   }
 
-  get requests(): Array<RequestBuilder> {
+  public get requests(): Array<RequestBuilder> {
     return this._requests;
   }
 
-  set response(response: any) {
+  public set response(response: any) {
     response.forEach(item => {
       this._response.playlistItems.entries.push({mediaDataResult: new KalturaAsset(item.data)});
     });
   }
 
-  get response(): any {
+  public get response(): any {
     return this._response;
   }
 
@@ -48,7 +47,7 @@ export default class OTTAssetListLoader implements ILoader {
    * @returns {RequestBuilder} The request builder
    * @static
    */
-  buildRequests(params: any): Array<RequestBuilder> {
+  public buildRequests(params: any): Array<RequestBuilder> {
     const config = OTTConfiguration.get();
     const requests: Array<RequestBuilder> = [];
     params.entries.forEach(entry => {
@@ -63,7 +62,7 @@ export default class OTTAssetListLoader implements ILoader {
    * @function
    * @returns {boolean} Is valid
    */
-  isValid(): boolean {
+  public isValid(): boolean {
     return !!(this._entries && this._entries.length);
   }
 }

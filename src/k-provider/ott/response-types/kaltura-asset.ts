@@ -1,13 +1,13 @@
 import ServiceResult from '../../common/base-service-result';
 
 export default class KalturaAsset extends ServiceResult {
-  static Type: {[type: string]: string} = {
+  public static Type: {[type: string]: string} = {
     MEDIA: 'media',
     RECORDING: 'recording',
     EPG: 'epg'
   };
 
-  static AssetReferenceType: {[type: string]: string} = {
+  public static AssetReferenceType: {[type: string]: string} = {
     MEDIA: 'media',
     EPG_INTERNAL: 'epg_internal',
     EPG_EXTERNAL: 'epg_external',
@@ -17,54 +17,54 @@ export default class KalturaAsset extends ServiceResult {
    * @member - The asset id
    * @type {number}
    */
-  id!: number;
+  public id!: number;
   /**
    * @member - The asset createDate - Specifies when was the Asset was created. Date and time represented as epoch
    * @type {number}
    */
-  createDate!: number;
+  public createDate!: number;
   /**
    * @member - The asset endDate - epoch For VOD: till when the asset be available in the catalog. For EPG/Linear: program end time and date
    * @type {number}
    */
-  endDate!: number;
+  public endDate!: number;
   /**
    * @member - The asset name
    * @type {string}
    */
-  name: string = '';
+  public name: string = '';
   /**
    * @member - The asset name description
    * @type {string}
    */
-  description: string = '';
+  public description: string = '';
   /**
    * @member - The asset tags
    * @type {Array<Object>}
    */
-  tags: Array<Object> = [];
+  public tags: Array<any> = [];
   /**
    * @member - The asset metas
    * @type {Array<Object>}
    */
-  metas: Array<Object> = [];
+  public metas: Array<any> = [];
   /**
    * @member - The asset images
    * @type {Array<any>}
    */
-  pictures: Array<any> = [];
+  public pictures: Array<any> = [];
 
   /**
    * @member - Number of plays
    * @type {number}
    */
-  plays!: number;
+  public plays!: number;
 
   /**
    * @member - Number of views
    * @type {number}
    */
-  views!: number;
+  public views!: number;
 
   /**
    * @constructor
@@ -86,12 +86,12 @@ export default class KalturaAsset extends ServiceResult {
     }
   }
 
-  _formatTagsMetas(objectToParse: any): Array<any> {
+  private _formatTagsMetas(objectToParse: any): Array<any> {
     const parsed: { key: string; value: any; }[] = [];
-    Object.keys(objectToParse).forEach(function (key) {
+    Object.keys(objectToParse).forEach((key) => {
       if (objectToParse[key].objects) {
         let value = '';
-        objectToParse[key].objects.forEach(function (object) {
+        objectToParse[key].objects.forEach((object) => {
           value += object.value + '|';
         });
         parsed.push({key: key, value: value});

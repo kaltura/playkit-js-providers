@@ -14,11 +14,11 @@ const plugins = [
 
 const config = {
   entry: {
-    ovp: './src/k-provider/ovp/index.js',
+    ovp: './src/k-provider/ovp/index.ts',
     ott: './src/k-provider/ott/index.ts',
-    analytics: './src/k-provider/ovp/services/analytics/index.js',
+    analytics: './src/k-provider/ovp/services/analytics/index.ts',
     bookmark: './src/k-provider/ott/services/bookmark/index.ts',
-    stats: './src/k-provider/ovp/services/stats/index.js'
+    stats: './src/k-provider/ovp/services/stats/index.ts'
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -57,16 +57,16 @@ const config = {
           }
         }
       },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: [['@babel/preset-env', {targets: 'defaults'}], '@babel/preset-flow']
-          }
-        }
-      }
+      // {
+      //   test: /\.js$/,
+      //   exclude: /node_modules/,
+      //   use: {
+      //     loader: 'babel-loader',
+      //     options: {
+      //       presets: [['@babel/preset-env', {targets: 'defaults'}], '@babel/preset-flow']
+      //     }
+      //   }
+      // }
     ]
   },
   optimization: {

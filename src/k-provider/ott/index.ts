@@ -2,8 +2,8 @@ import OTTProvider from './provider';
 import KalturaPlaybackContext from './response-types/kaltura-playback-context';
 import KalturaAsset from './response-types/kaltura-asset';
 
-declare var __VERSION__: string;
-declare var __NAME__: string;
+declare let __VERSION__: string;
+declare let __NAME__: string;
 
 const NAME = __NAME__ + '-ott';
 const VERSION = __VERSION__;

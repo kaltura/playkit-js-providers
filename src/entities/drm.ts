@@ -5,18 +5,18 @@ export default class Drm {
    * @member - license url
    * @type {string}
    */
-  licenseUrl: string;
+  public licenseUrl: string;
   /**
    * @member - drm scheme
    * @type {string}
    */
-  scheme: string;
+  public scheme: string;
 
   /**
    * @member - drm certificate
    * @type {string}
    */
-  certificate?: string;
+  public certificate?: string;
 
   /**
    * @constructor
@@ -36,7 +36,7 @@ export default class Drm {
    * Convert class to native js object.
    * @returns {ProviderDrmDataObject} - The json class object.
    */
-  toJSON(): ProviderDrmDataObject {
+  public toJSON(): ProviderDrmDataObject {
     const response: ProviderDrmDataObject = {
       licenseUrl: this.licenseUrl,
       scheme: this.scheme
