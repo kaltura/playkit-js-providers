@@ -1,5 +1,6 @@
 import MediaSources from './media-sources';
 import {ProviderMediaEntryObject} from '../types';
+import {Poster} from '../types/poster';
 
 export default class MediaEntry {
   public static Type: {[type: string]: string} = {
@@ -58,7 +59,7 @@ export default class MediaEntry {
    * @member - media poster
    * @type {string | Array<Object>}
    */
-  public poster?: string | Array<any>;
+  public poster?: string | Poster[];
 
   /**
    * @member - assetReferenceType

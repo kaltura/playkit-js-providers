@@ -1,4 +1,5 @@
 import ServiceResult from '../../common/base-service-result';
+import {Poster} from '../../../types';
 
 export default class KalturaAsset extends ServiceResult {
   public static Type: {[type: string]: string} = {
@@ -52,7 +53,7 @@ export default class KalturaAsset extends ServiceResult {
    * @member - The asset images
    * @type {Array<any>}
    */
-  public pictures: Array<any> = [];
+  public pictures: Array<Poster> = [];
 
   /**
    * @member - Number of plays

@@ -15,6 +15,7 @@ import {KalturaAccessControlMessage} from '../common/response-types/kaltura-acce
 import type {OTTAssetLoaderResponse} from './loaders/asset-loader';
 import KalturaBumpersPlaybackPluginData from './response-types/kaltura-bumper-playback-plugin-data';
 import {ProviderMediaInfoObject} from '../../types';
+import {Poster} from '../../types/poster';
 
 const LIVE_ASST_OBJECT_TYPE: string = 'KalturaLiveAsset';
 
@@ -161,7 +162,7 @@ export default class OTTProviderParser {
    * @returns {string | Array<Object>} - Poster base url or array of poster candidates.
    * @private
    */
-  public static _getPoster(pictures: Array<any>): string | Array<any> {
+  public static _getPoster(pictures: Poster[]): string | Poster[] {
     if (pictures && pictures.length > 0) {
       const picObj = pictures[0];
       const url = picObj.url;

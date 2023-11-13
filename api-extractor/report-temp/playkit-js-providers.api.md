@@ -406,6 +406,16 @@ export type PKExternalCaptionObject = {
 };
 
 // @public (undocumented)
+export interface Poster {
+    // (undocumented)
+    height: number;
+    // (undocumented)
+    url: string;
+    // (undocumented)
+    width: number;
+}
+
+// @public (undocumented)
 export type ProviderDrmDataObject = {
     licenseUrl: string;
     scheme: string;
@@ -491,7 +501,7 @@ export type ProviderMediaEntryObject = {
     status?: number;
     metadata: any;
     type: string;
-    poster?: string | Array<any>;
+    poster?: string | Poster[];
     downloadUrl?: string;
     assetReferenceType?: string;
 };
