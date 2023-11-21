@@ -229,6 +229,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
         playlistConfig.poster = playlist.poster;
         playlistConfig.metadata.name = playlist.name;
         playlistConfig.metadata.description = playlist.description;
+        playlistConfig.playlistLastEntryId = playlist.playlistLastEntryId;
         playlist.items.forEach(i => playlistConfig.items.push({sources: this._getSourcesObject(i)}));
       }
     }
@@ -296,6 +297,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
         description: ''
       },
       poster: '',
+      playlistLastEntryId: '',
       items: []
     };
   }

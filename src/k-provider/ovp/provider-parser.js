@@ -2,6 +2,7 @@
 import {KalturaPlaybackContext} from './response-types/kaltura-playback-context';
 import {KalturaMetadataListResponse} from './response-types/kaltura-metadata-list-response';
 import {KalturaMediaEntry} from './response-types/kaltura-media-entry';
+import {KalturaUserEntry} from './response-types/kaltura-user-entry';
 import {KalturaPlaybackSource} from './response-types/kaltura-playback-source';
 import {KalturaBumper} from './response-types/kaltura-bumper';
 import {KalturaDrmPlaybackPluginData} from '../common/response-types/kaltura-drm-playback-plugin-data';
@@ -91,10 +92,14 @@ class OVPProviderParser {
     const playlist = new Playlist();
     const playlistData = playlistResponse.playlistData;
     const playlistItems = playlistResponse.playlistItems.entries;
+    const playlistUserEntries = playlistResponse.playlistUserEntries.entries;
     playlist.id = playlistData.id;
     playlist.name = playlistData.name;
     playlist.description = playlistData.description;
     playlist.poster = playlistData.poster;
+    playlist.playlistLastEntryId = playlistUserEntries.map((entry: KalturaUserEntry) => {
+      return entry.playlistLastEntryId;
+    })[0];
     playlistItems.forEach((entry: KalturaMediaEntry) => {
       const mediaEntry = new MediaEntry();
       OVPProviderParser._fillBaseData(mediaEntry, entry);

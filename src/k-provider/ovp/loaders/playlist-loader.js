@@ -4,6 +4,7 @@ import OVPPlaylistService from '../services/playlist-service';
 import OVPConfiguration from '../config';
 import {KalturaPlaylist} from '../response-types/kaltura-playlist';
 import {KalturaMediaEntries} from '../response-types/kaltura-media-entries';
+import {KalturaUserEntryListResponse} from '../response-types/kaltura-user-entry-list-response';
 
 export default class OVPPlaylistLoader implements ILoader {
   _playlistId: string;
@@ -34,6 +35,7 @@ export default class OVPPlaylistLoader implements ILoader {
   set response(response: any) {
     this._response.playlistData = new KalturaPlaylist(response[0].data);
     this._response.playlistItems = new KalturaMediaEntries(response[1].data);
+    this._response.playlistUserEntries = new KalturaUserEntryListResponse(response[2].data);
   }
 
   get response(): any {
@@ -52,6 +54,7 @@ export default class OVPPlaylistLoader implements ILoader {
     const requests: Array<RequestBuilder> = [];
     requests.push(OVPPlaylistService.get(config.serviceUrl, params.ks, params.playlistId));
     requests.push(OVPPlaylistService.execute(config.serviceUrl, params.ks, params.playlistId));
+    requests.push(OVPPlaylistService.getLastEntryId(config.serviceUrl, params.ks, params.playlistId));
     return requests;
   }
 
