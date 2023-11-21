@@ -31,6 +31,12 @@ export default class Playlist {
    */
   items: Array<MediaEntry>;
 
+  /**
+   * @member - playlist last played entry
+   * @type {string}
+   */
+  playlistLastEntryId: string;
+
   constructor() {
     this.items = [];
   }

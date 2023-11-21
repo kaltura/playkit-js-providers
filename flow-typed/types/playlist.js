@@ -3,5 +3,6 @@ declare type ProviderPlaylistObject = {
   id: string,
   metadata: ProviderPlaylistMetadataObject,
   poster: string,
-  items: Array<ProviderPlaylistItemObject>
+  items: Array<ProviderPlaylistItemObject>,
+  playlistLastEntryId: string
 };
