@@ -46,9 +46,10 @@ const config = {
                 {
                   loose: true,
                   bugfixes: true,
-                  targets: {
-                    browsers: ['chrome >= 47', 'firefox >= 51', 'ie >= 11', 'safari >= 8', 'ios >= 8', 'android >= 4']
-                  }
+                  // targets: {
+                  //   browsers: ['chrome >= 47', 'firefox >= 51', 'ie >= 11', 'safari >= 8', 'ios >= 8', 'android >= 4']
+                  // }
+                  targets: 'defaults'
                 }
               ],
               '@babel/preset-typescript'
