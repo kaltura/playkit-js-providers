@@ -1,4 +1,3 @@
-//@flow
 export class KalturaUserEntry {
   /**
    * @member - The last played playlist entry
@@ -45,7 +44,7 @@ export class KalturaUserEntry {
    * @constructor
    * @param {Object} entry The json response
    */
-  constructor(entry: Object) {
+  constructor(entry: any) {
     this.playlistLastEntryId = entry.playlistLastEntryId;
     this.entryId = entry.entryId;
     this.id = entry.id;

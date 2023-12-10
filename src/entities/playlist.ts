@@ -33,7 +33,7 @@ export default class Playlist {
    * @member - playlist last played entry
    * @type {string}
    */
-  playlistLastEntryId: string;
+  playlistLastEntryId?: string;
 
   constructor() {
     this.items = [];

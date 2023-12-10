@@ -6,4 +6,5 @@ export type ProviderPlaylistObject = {
   metadata: ProviderPlaylistMetadataObject;
   poster: string;
   items: Array<ProviderPlaylistItemObject>;
+  playlistLastEntryId?: string;
 };

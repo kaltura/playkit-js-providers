@@ -16,3 +16,6 @@ export {KalturaUIConfResponse} from './kaltura-ui-conf-response';
 export {KalturaDrmPlaybackPluginData} from '../../common/response-types/kaltura-drm-playback-plugin-data';
 export {KalturaAccessControlMessage} from '../../common/response-types/kaltura-access-control-message';
 export {BaseServiceResult};
+export {KalturaUserEntry} from './kaltura-user-entry'
+export {KalturaUserEntryListResponse} from './kaltura-user-entry-list-response'
+

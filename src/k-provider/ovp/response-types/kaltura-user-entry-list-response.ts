@@ -1,4 +1,3 @@
-//@flow
 import ServiceResult from '../../common/base-service-result';
 import {KalturaUserEntry} from './kaltura-user-entry';
 
@@ -7,18 +6,18 @@ export class KalturaUserEntryListResponse extends ServiceResult {
    * @member - The total count
    * @type {number}
    */
-  totalCount: number;
+  totalCount!: number;
   /**
    * @member - The entries
    * @type {Array<KalturaUserEntry>}
    */
-  entries: Array<KalturaUserEntry>;
+  entries!: Array<KalturaUserEntry>;
 
   /**
    * @constructor
    * @param {Object} responseObj The json response
    */
-  constructor(responseObj: Object) {
+  constructor(responseObj: any) {
     super(responseObj);
     if (!this.hasError) {
       this.totalCount = responseObj.totalCount;
