@@ -30,12 +30,12 @@ const config = {
   resolve: {
     extensions: ['.ts', '.js'],
   },
+  devtool : 'source-map',
   plugins: plugins,
   module: {
     rules: [
       {
-        // test: /\.(ts|js)$/,
-        test: /\.ts$/,
+        test: /\.(ts|js)$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -57,16 +57,6 @@ const config = {
           }
         }
       },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: [['@babel/preset-env', {targets: 'defaults'}], '@babel/preset-flow']
-          }
-        }
-      }
     ]
   },
   optimization: {

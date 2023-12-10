@@ -211,7 +211,7 @@ describe('OTTProvider.partnerId:198', function () {
   });
 
   it('should pass streamerType and urlType on the playback context object', done => {
-    sinon.stub(OTTAssetLoader.prototype, 'buildRequests').callsFake(function (params: Object) {
+    sinon.stub(OTTAssetLoader.prototype, 'buildRequests').callsFake(function (params) {
       try {
         params.playbackContext.streamerType.should.equal('mpegdash');
         params.playbackContext.urlType.should.equal('DIRECT');
@@ -235,7 +235,7 @@ describe('OTTProvider.partnerId:198', function () {
         value: 'HEVC'
       }
     };
-    sinon.stub(OTTAssetLoader.prototype, 'buildRequests').callsFake(function (params: Object) {
+    sinon.stub(OTTAssetLoader.prototype, 'buildRequests').callsFake(function (params) {
       try {
         params.playbackContext.adapterData.should.deep.equal(adapterDataConfig);
         done();

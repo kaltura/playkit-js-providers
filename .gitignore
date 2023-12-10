@@ -4,5 +4,7 @@ coverage
 .idea
 *.log
 lib
+api-extractor/report/
+api-extractor/report-temp/
 
 
