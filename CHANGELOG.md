@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.40.0 (2023-11-26)
+
+
+### Features
+
+* **FEC-13450:** resume playlist from last entry ([#226](https://github.com/kaltura/playkit-js-providers/issues/226)) ([c6ec6c0](https://github.com/kaltura/playkit-js-providers/commit/c6ec6c0))
+
+
+
 ### 2.39.6 (2023-10-31)
 
 

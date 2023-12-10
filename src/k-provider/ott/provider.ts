@@ -193,7 +193,8 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
         description: ''
       },
       poster: '',
-      items: []
+      items: [],
+      playlistLastEntryId: ''
     };
     if (data && data.has(OTTAssetListLoader.id)) {
       const playlistLoader = data.get(OTTAssetListLoader.id);

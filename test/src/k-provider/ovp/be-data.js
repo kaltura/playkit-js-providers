@@ -1815,7 +1815,17 @@ const PlaylistById = {
         downloadUrl: '',
         objectType: 'KalturaMediaEntry'
       }
-    ]
+    ],
+    {
+      objectType: 'KalturaUserEntryListResponse',
+      objects: [
+        {
+          objectType: 'KalturaViewHistoryUserEntry',
+          playlistLastEntryId: '0_15xrxwvo'
+        }
+      ],
+      totalCount: 1
+    }
   ]
 };
 
@@ -1943,7 +1953,12 @@ const AnonymousPlaylistById = {
         downloadUrl: '',
         objectType: 'KalturaMediaEntry'
       }
-    ]
+    ],
+    {
+      objectType: 'KalturaUserEntryListResponse',
+      objects: [],
+      totalCount: 0
+    }
   ]
 };
 

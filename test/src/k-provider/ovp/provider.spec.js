@@ -717,6 +717,7 @@ describe('getPlaylistConfig', function () {
           playlistConfig.metadata.name.should.equal('Playlist_VOD_Only');
           playlistConfig.metadata.description.should.equal('Playlist_VOD_Only_desc');
           playlistConfig.poster.should.equal('http://cdntesting.qa.mkaltura.com/p/1091/sp/0/thumbnail/entry_id/0_wckoqjnn/version/100162');
+          (playlistConfig.playlistLastEntryId === undefined).should.eql(true);
           done();
         } catch (err) {
           done(err);
@@ -742,6 +743,7 @@ describe('getPlaylistConfig', function () {
           playlistConfig.metadata.name.should.equal('Playlist_VOD_Only');
           playlistConfig.metadata.description.should.equal('Playlist_VOD_Only_desc');
           playlistConfig.poster.should.equal('http://cdntesting.qa.mkaltura.com/p/1091/sp/0/thumbnail/entry_id/0_wckoqjnn/version/100162');
+          playlistConfig.playlistLastEntryId.should.equal('0_15xrxwvo');
           done();
         } catch (err) {
           done(err);
