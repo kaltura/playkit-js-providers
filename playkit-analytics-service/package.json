@@ -1,0 +1,5 @@
+{
+  "name": "@playkit-js/playkit-js-providers/playkit-analytics-service",
+  "main": "../dist/playkit-analytics-service.js",
+  "sideEffects": false
+}

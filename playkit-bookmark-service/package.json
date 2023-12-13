@@ -1,0 +1,5 @@
+{
+  "name": "@playkit-js/playkit-js-providers/playkit-bookmark-service",
+  "main": "../dist/pplaykit-bookmark-service.js",
+  "sideEffects": false
+}
