@@ -4,3 +4,6 @@ coverage
 .idea
 *.log
 lib
+api-extractor/report/
+api-extractor/report-temp/
+api-extractor/playkit-js-providers.api.json
