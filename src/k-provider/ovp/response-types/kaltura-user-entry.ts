@@ -3,42 +3,42 @@ export class KalturaUserEntry {
    * @member - The last played playlist entry
    * @type {string}
    */
-  playlistLastEntryId: string;
+  public playlistLastEntryId: string;
   /**
    * @member - The entry referenceId
    * @type {string}
    */
-  entryId: string;
+  private entryId: string;
   /**
    * @member - The entry id
    * @type {number}
    */
-  id: number;
+  private id: number;
   /**
    * @member - username
    * @type {string}
    */
-  userId: string;
+  private userId: string;
   /**
    * @member - partner id
    * @type {number}
    */
-  partnerId: number;
+  private partnerId: number;
   /**
    * @member - entry status
    * @type {number}
    */
-  status: number;
+  private status: number;
   /**
    * @member - Entry creation date as Unix timestamp (In seconds)
    * @type {number}
    */
-  createdAt: number;
+  private createdAt: number;
   /**
    * @member - Entry updation date as Unix timestamp (In seconds)
    * @type {number}
    */
-  updatedAt: number;
+  private updatedAt: number;
 
   /**
    * @constructor

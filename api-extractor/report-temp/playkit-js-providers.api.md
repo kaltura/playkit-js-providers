@@ -351,21 +351,12 @@ class KalturaUIConfResponse extends ServiceResult {
 // @public (undocumented)
 class KalturaUserEntry {
     constructor(entry: any);
-    createdAt: number;
-    entryId: string;
-    id: number;
-    partnerId: number;
     playlistLastEntryId: string;
-    status: number;
-    updatedAt: number;
-    userId: string;
 }
 
 // @public (undocumented)
 class KalturaUserEntryListResponse extends ServiceResult {
     constructor(responseObj: any);
-    entries: Array<KalturaUserEntry>;
-    totalCount: number;
 }
 
 // @public (undocumented)

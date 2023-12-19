@@ -4,7 +4,7 @@ import OVPConfiguration from '../config';
 import {KalturaPlaylist} from '../response-types';
 import {KalturaMediaEntries} from '../response-types';
 import {ILoader} from '../../../types';
-import { KalturaUserEntryListResponse } from "../response-types";
+import { KalturaUserEntryListResponse } from '../response-types';
 
 export default class OVPPlaylistLoader implements ILoader {
   private _playlistId: string;

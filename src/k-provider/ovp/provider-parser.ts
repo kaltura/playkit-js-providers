@@ -1,4 +1,4 @@
-import { KalturaPlaybackContext, KalturaUserEntry } from "./response-types";
+import { KalturaPlaybackContext, KalturaUserEntry } from './response-types';
 import {KalturaMetadataListResponse} from './response-types';
 import {KalturaMediaEntry} from './response-types';
 import {KalturaPlaybackSource} from './response-types';

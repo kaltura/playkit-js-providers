@@ -6,12 +6,12 @@ export class KalturaUserEntryListResponse extends ServiceResult {
    * @member - The total count
    * @type {number}
    */
-  totalCount!: number;
+  private totalCount!: number;
   /**
    * @member - The entries
    * @type {Array<KalturaUserEntry>}
    */
-  entries!: Array<KalturaUserEntry>;
+  private entries!: Array<KalturaUserEntry>;
 
   /**
    * @constructor

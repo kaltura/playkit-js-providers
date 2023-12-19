@@ -69,7 +69,7 @@ export default class OVPPlaylistService extends OVPService {
    * @returns {RequestBuilder} The request builder
    * @static
    */
-  static getLastEntryId(serviceUrl: string, ks: string, playlistId: string): RequestBuilder {
+  public static getLastEntryId(serviceUrl: string, ks: string, playlistId: string): RequestBuilder {
     const headers: Map<string, string> = new Map();
     headers.set('Content-Type', 'application/json');
     const request = new RequestBuilder(headers);
