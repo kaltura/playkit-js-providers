@@ -14,8 +14,7 @@ import KalturaRuleAction from './response-types/kaltura-rule-action';
 import {KalturaAccessControlMessage} from '../common/response-types/kaltura-access-control-message';
 import type {OTTAssetLoaderResponse} from './loaders/asset-loader';
 import KalturaBumpersPlaybackPluginData from './response-types/kaltura-bumper-playback-plugin-data';
-import {ProviderMediaInfoObject} from '../../types';
-import {Poster} from '../../types/poster';
+import {ProviderMediaInfoObject, Poster} from '../../types';
 
 const LIVE_ASST_OBJECT_TYPE: string = 'KalturaLiveAsset';
 

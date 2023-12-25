@@ -29,8 +29,7 @@ export default class ImageSource {
    * @returns {string} - The base thumbnail url.
    */
   public static extractBaseThumbnailUrl(url: string): string {
-    // @ts-expect-error - fff
-    return url.match(BASE_THUMBNAIL_URL_TEMPLATE)[0].slice(0, -1);
+    return url.match(BASE_THUMBNAIL_URL_TEMPLATE)![0].slice(0, -1);
   }
 }
 

@@ -28,7 +28,7 @@ module.exports = (env, {mode}) => {
     resolve: {
       extensions: ['.ts', '.js'],
     },
-    devtool: mode === 'development' ? 'eval-source-map' : 'source-map',
+    devtool: 'source-map',
     plugins: plugins,
     module: {
       rules: [

@@ -21,14 +21,14 @@
     "./playkit-bookmark-service": "./dist/playkit-bookmark-service.js"
   },
   "scripts": {
-    "serve": "yarn run build:dev && webpack serve --open --mode=development",
+    "serve": "webpack serve --open --mode=development",
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --node-env=production",
     "build": "yarn run build:prod && yarn run build:types",
     "build:types": "tsc --build tsconfig-lib.json && mkdir -p lib && api-extractor run --local",
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
-    "watch": "webpack --watch",
+    "watch": "webpack --mode=development --watch",
     "test": "NODE_ENV=test karma start --color --mode development",
     "test:watch": "NODE_ENV=test karma start --browsers=Chrome --single-run=false --auto-watch",
     "release": "standard-version",
@@ -76,8 +76,12 @@
     "standard-version": "^6.0.1",
     "webpack": "^5.83.1",
     "webpack-cli": "^5.1.1",
-    "webpack-dev-server": "^4.15.0"
+    "webpack-dev-server": "^4.15.0",
+    "@playkit-js/browserslist-config": "^1.0.5"
   },
+  "browserslist": [
+    "extends @playkit-js/browserslist-config"
+  ],
   "keywords": [],
   "license": "AGPL-3.0",
   "dependencies": {},
