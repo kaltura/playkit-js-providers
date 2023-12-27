@@ -1017,7 +1017,7 @@ describe('doRequest', () => {
     });
     provider
       .doRequest([{loader: OVPMediaEntryLoader, params}])
-      .then((data: Map<string, any>) => {
+      .then((data) => {
         data.has(OVPSessionLoader.id).should.be.true;
         data.get(OVPSessionLoader.id).response.should.equal(ks);
         provider.isAnonymous.should.be.true;
@@ -1041,7 +1041,7 @@ describe('doRequest', () => {
     provider.ks = ks;
     provider
       .doRequest([{loader: OVPMediaEntryLoader, params}])
-      .then((data: Map<string, any>) => {
+      .then((data) => {
         data.has(OVPSessionLoader.id).should.be.false;
         const mediaLoader = data.get(OVPMediaEntryLoader.id);
         mediaLoader._requests[0].params.ks.should.equal(provider.ks);
@@ -1062,7 +1062,7 @@ describe('doRequest', () => {
     params.ks = ks;
     provider
       .doRequest([{loader: OVPMediaEntryLoader, params}], ks)
-      .then((data: Map<string, any>) => {
+      .then((data) => {
         provider.ks.should.equal('');
         data.has(OVPSessionLoader.id).should.be.false;
         provider.isAnonymous.should.be.true;

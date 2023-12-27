@@ -211,7 +211,6 @@ var provider = new playkit.providers.ott.Provider(config);
 >
 > ##### Type: `boolean`
 >
->
 > ##### Description: Instructs the player to ignore the server configuration.
 
 > ##
