@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.40.1 (2023-12-21)
+
+
+### Bug Fixes
+
+* **FEC-13566:** remove documents from playlist ([#227](https://github.com/kaltura/playkit-js-providers/issues/227)) ([f2a1cb3](https://github.com/kaltura/playkit-js-providers/commit/f2a1cb3))
+
+
+
 ## 2.40.0 (2023-11-26)
 
 
