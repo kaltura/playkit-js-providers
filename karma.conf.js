@@ -22,7 +22,7 @@ module.exports = function (config) {
     webpack: webpackConfig,
     port: 9876,
     colors: true,
-    logLevel: config.LOG_INFO,
+    logLevel: config.LOG_DEBUG,
     autoWatch: false,
     customLaunchers: {
       ChromeHeadlessWithFlags: {
@@ -30,7 +30,7 @@ module.exports = function (config) {
         flags: ['--no-sandbox', '--autoplay-policy=no-user-gesture-required', '--mute-audio', '--max-web-media-player-count=1000']
       }
     },
-    browsers: ['ChromeHeadlessWithFlags'],
+    browsers: ['ChromeHeadlessWithFlags', 'FirefoxHeadless'],
     singleRun: true,
     concurrency: Infinity,
 
