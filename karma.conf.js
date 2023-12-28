@@ -30,7 +30,7 @@ module.exports = function (config) {
         flags: ['--no-sandbox', '--autoplay-policy=no-user-gesture-required', '--mute-audio', '--max-web-media-player-count=1000']
       }
     },
-    browsers: ['ChromeHeadlessWithFlags', 'FirefoxHeadless'],
+    browsers: ['ChromeHeadlessWithFlags'],
     singleRun: true,
     concurrency: Infinity,
 
