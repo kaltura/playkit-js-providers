@@ -1,4 +1,4 @@
-import {ProviderMediaInfoObject} from './media-info';
+import { ProviderMediaInfoObject } from './media-info';
 
 export type ProviderEntryListObject = {
   entries: Array<ProviderMediaInfoObject>;

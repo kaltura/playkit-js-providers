@@ -16,10 +16,10 @@ export default class OTTService {
     const config = OTTConfiguration.get();
     const ottParams = config.serviceParams;
     if (ks) {
-      Object.assign(ottParams, {ks: ks});
+      Object.assign(ottParams, { ks: ks });
     }
     if (partnerId) {
-      Object.assign(ottParams, {partnerId: partnerId});
+      Object.assign(ottParams, { partnerId: partnerId });
     }
     const headers: Map<string, string> = new Map();
     headers.set('Content-Type', 'application/json');

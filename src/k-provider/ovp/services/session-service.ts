@@ -21,7 +21,7 @@ export default class OVPSessionService extends OVPService {
     request.method = 'POST';
     request.url = request.getUrl(serviceUrl);
     request.tag = 'session-startWidget';
-    request.params = {widgetId};
+    request.params = { widgetId };
     return request;
   }
 }

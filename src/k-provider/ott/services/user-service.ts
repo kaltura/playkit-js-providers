@@ -21,9 +21,9 @@ export default class OTTUserService extends OTTService {
     request.action = 'anonymousLogin';
     request.method = 'POST';
     request.url = request.getUrl(serviceUrl);
-    const params: any = {partnerId: partnerId};
+    const params: any = { partnerId: partnerId };
     if (udid) {
-      Object.assign(params, {udid: udid});
+      Object.assign(params, { udid: udid });
     }
     request.params = params;
     return request;

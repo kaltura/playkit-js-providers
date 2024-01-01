@@ -1,8 +1,8 @@
 import OVPUIConfService from '../services/ui-conf-service';
-import {KalturaUIConfResponse} from '../response-types';
+import { KalturaUIConfResponse } from '../response-types';
 import OVPConfiguration from '../config';
 import RequestBuilder from '../../../util/request-builder';
-import {ILoader} from '../../../types';
+import { ILoader } from '../../../types';
 
 export default class OVPUIConfigLoader implements ILoader {
   private _uiConfId: number;

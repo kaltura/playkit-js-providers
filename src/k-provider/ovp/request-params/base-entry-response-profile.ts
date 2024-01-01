@@ -5,7 +5,7 @@ const RESPONSE_PROFILE_TYPE = {
   EXCLUDE_FIELDS: 2
 };
 export class BaseEntryResponseProfile {
-  public static Type: {[type: string]: number} = RESPONSE_PROFILE_TYPE;
+  public static Type: { [type: string]: number } = RESPONSE_PROFILE_TYPE;
   /**
    * @member - the response profile type
    * @type {number}

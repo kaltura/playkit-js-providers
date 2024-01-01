@@ -1,5 +1,5 @@
-import {clone} from '../../util/clone';
-import {ProviderEnvConfigObject} from '../../types';
+import { clone } from '../../util/clone';
+import { ProviderEnvConfigObject } from '../../types';
 
 const defaultConfig: any = {
   serviceParams: {
@@ -19,4 +19,4 @@ export default class OTTConfiguration {
   }
 }
 
-export {OTTConfiguration};
+export { OTTConfiguration };

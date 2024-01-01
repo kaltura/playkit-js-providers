@@ -1,2 +1,2 @@
 // @flow
-declare type CaptionType = {[type: string]: string};
+declare type CaptionType = { [type: string]: string };

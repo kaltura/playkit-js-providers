@@ -2,18 +2,18 @@ import RequestBuilder from '../../../util/request-builder';
 import OVPBaseEntryService from '../services/base-entry-service';
 import OVPMetadataService from '../services/meta-data-service';
 import OVPConfiguration from '../config';
-import {KalturaPlaybackContext} from '../response-types';
-import {KalturaMetadataListResponse} from '../response-types';
-import {KalturaBaseEntryListResponse} from '../response-types';
-import {KalturaMediaEntry} from '../response-types';
-import {ILoader} from '../../../types';
+import { KalturaPlaybackContext } from '../response-types';
+import { KalturaMetadataListResponse } from '../response-types';
+import { KalturaBaseEntryListResponse } from '../response-types';
+import { KalturaMediaEntry } from '../response-types';
+import { ILoader } from '../../../types';
 
 type OVPMediaEntryLoaderResponse = {
-  entry: KalturaMediaEntry,
-  playBackContextResult: KalturaPlaybackContext,
-  metadataListResult: KalturaMetadataListResponse
+  entry: KalturaMediaEntry;
+  playBackContextResult: KalturaPlaybackContext;
+  metadataListResult: KalturaMetadataListResponse;
 };
-export type {OVPMediaEntryLoaderResponse};
+export type { OVPMediaEntryLoaderResponse };
 
 export default class OVPMediaEntryLoader implements ILoader {
   private _entryId: string;

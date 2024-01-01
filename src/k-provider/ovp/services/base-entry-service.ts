@@ -1,6 +1,6 @@
 import OVPService from './ovp-service';
 import RequestBuilder from '../../../util/request-builder';
-import {BaseEntryResponseProfile} from '../request-params/base-entry-response-profile';
+import { BaseEntryResponseProfile } from '../request-params/base-entry-response-profile';
 
 const SERVICE_NAME: string = 'baseEntry';
 
@@ -23,8 +23,8 @@ export default class OVPBaseEntryService extends OVPService {
     request.method = 'POST';
     request.url = request.getUrl(serviceUrl);
     request.tag = 'baseEntry-getPlaybackContext';
-    const contextDataParams = {objectType: 'KalturaContextDataParams', flavorTags: 'all'};
-    request.params = {entryId: serviceEntryId, ks: ks, contextDataParams: contextDataParams};
+    const contextDataParams = { objectType: 'KalturaContextDataParams', flavorTags: 'all' };
+    request.params = { entryId: serviceEntryId, ks: ks, contextDataParams: contextDataParams };
     return request;
   }
 
@@ -65,11 +65,11 @@ export default class OVPBaseEntryService extends OVPService {
   public static getEntryListReqParams(entryId: string, ks: string, redirectFromEntryId: boolean, referenceId: string): any {
     let filterParams = {};
     if (entryId) {
-      filterParams = redirectFromEntryId ? {redirectFromEntryId: entryId} : {idEqual: entryId};
+      filterParams = redirectFromEntryId ? { redirectFromEntryId: entryId } : { idEqual: entryId };
     } else if (referenceId) {
-      filterParams = {objectType: 'KalturaBaseEntryFilter', referenceIdEqual: referenceId};
+      filterParams = { objectType: 'KalturaBaseEntryFilter', referenceIdEqual: referenceId };
     }
 
-    return {ks: ks, filter: filterParams, responseProfile: new BaseEntryResponseProfile()};
+    return { ks: ks, filter: filterParams, responseProfile: new BaseEntryResponseProfile() };
   }
 }

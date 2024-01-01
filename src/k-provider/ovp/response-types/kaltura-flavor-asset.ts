@@ -1,5 +1,5 @@
 export class KalturaFlavorAsset {
-  public static Status: {[status: string]: number} = {
+  public static Status: { [status: string]: number } = {
     ERROR: -1,
     QUEUED: 0,
     CONVERTING: 1,

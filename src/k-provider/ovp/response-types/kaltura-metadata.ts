@@ -1,5 +1,5 @@
 export class KalturaMetadata {
-  public static ObjectType: {[type: string]: string | number} = {
+  public static ObjectType: { [type: string]: string | number } = {
     AD_CUE_POINT: 'adCuePointMetadata.AdCuePoint',
     ANNOTATION: 'annotationMetadata.Annotation',
     CODE_CUE_POINT: 'codeCuePointMetadata.CodeCuePoint',
@@ -11,7 +11,7 @@ export class KalturaMetadata {
     DYNAMIC_OBJECT: 5
   };
 
-  public static Status: {[status: string]: number} = {
+  public static Status: { [status: string]: number } = {
     VALID: 1,
     INVALID: 2,
     DELETED: 3

@@ -1,1 +1,1 @@
-export type CaptionType = {[type: string]: string};
+export type CaptionType = { [type: string]: string };

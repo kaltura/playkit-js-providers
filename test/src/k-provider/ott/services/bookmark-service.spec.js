@@ -27,8 +27,8 @@ describe('bookmark service - add', function () {
     request.action.should.be.equal('add');
     request.method.should.be.equal('POST');
     request.url.should.be.equal(`${serviceUrl}/service/bookmark/action/add`);
-    Object.assign(playerData, {objectType: 'KalturaBookmarkPlayerData'});
-    Object.assign(bookMark, {objectType: 'KalturaBookmark'});
+    Object.assign(playerData, { objectType: 'KalturaBookmarkPlayerData' });
+    Object.assign(bookMark, { objectType: 'KalturaBookmark' });
     JSON.parse(request.params).should.deep.equal({
       bookmark: bookMark,
       ks: ks,

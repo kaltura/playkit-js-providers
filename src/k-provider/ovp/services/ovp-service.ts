@@ -16,9 +16,9 @@ export default class OVPService {
   public static getMultiRequest(playerVersion: string, ks: string, partnerId?: number): MultiRequestBuilder {
     const config = OVPConfiguration.get();
     const ovpParams = config.serviceParams;
-    Object.assign(ovpParams, {ks: ks, clientTag: 'html5:v' + playerVersion});
+    Object.assign(ovpParams, { ks: ks, clientTag: 'html5:v' + playerVersion });
     if (partnerId) {
-      Object.assign(ovpParams, {partnerId: partnerId});
+      Object.assign(ovpParams, { partnerId: partnerId });
     }
     const headers: Map<string, string> = new Map();
     headers.set('Content-Type', 'application/json');

@@ -1,4 +1,4 @@
-import {param} from '../../../src/util/param';
+import { param } from '../../../src/util/param';
 
 describe('param', function () {
   it('should parse object to query params', function () {
@@ -8,7 +8,7 @@ describe('param', function () {
         b: 'canon-literal',
         canon_array: [1, 2]
       },
-      array: ['c', 3, {d: 4}]
+      array: ['c', 3, { d: 4 }]
     };
     let query_params_str = param(obj);
     let query_params_arr = decodeURIComponent(query_params_str).split('&');

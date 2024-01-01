@@ -42,4 +42,4 @@ const param = (a): any => {
   return buildParams('', a).join('&').replace(/%20/g, '+');
 };
 
-export {param};
+export { param };

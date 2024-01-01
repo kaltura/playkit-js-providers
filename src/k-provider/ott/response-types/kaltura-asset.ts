@@ -1,14 +1,14 @@
 import ServiceResult from '../../common/base-service-result';
-import {Poster} from '../../../types';
+import { Poster } from '../../../types';
 
 export default class KalturaAsset extends ServiceResult {
-  public static Type: {[type: string]: string} = {
+  public static Type: { [type: string]: string } = {
     MEDIA: 'media',
     RECORDING: 'recording',
     EPG: 'epg'
   };
 
-  public static AssetReferenceType: {[type: string]: string} = {
+  public static AssetReferenceType: { [type: string]: string } = {
     MEDIA: 'media',
     EPG_INTERNAL: 'epg_internal',
     EPG_EXTERNAL: 'epg_external',
@@ -88,16 +88,16 @@ export default class KalturaAsset extends ServiceResult {
   }
 
   private _formatTagsMetas(objectToParse: any): Array<any> {
-    const parsed: { key: string; value: any; }[] = [];
+    const parsed: { key: string; value: any }[] = [];
     Object.keys(objectToParse).forEach((key) => {
       if (objectToParse[key].objects) {
         let value = '';
         objectToParse[key].objects.forEach((object) => {
           value += object.value + '|';
         });
-        parsed.push({key: key, value: value});
+        parsed.push({ key: key, value: value });
       } else {
-        parsed.push({key: key, value: objectToParse[key].value});
+        parsed.push({ key: key, value: objectToParse[key].value });
       }
     });
     return parsed;

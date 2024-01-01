@@ -8,34 +8,34 @@ import MediaSource from '../../entities/media-source';
 import MediaSources from '../../entities/media-sources';
 import EntryList from '../../entities/entry-list';
 import Bumper from '../../entities/bumper';
-import {SupportedStreamFormat, isProgressiveSource} from '../../entities/media-format';
-import {KalturaDrmPlaybackPluginData} from '../common/response-types/kaltura-drm-playback-plugin-data';
+import { SupportedStreamFormat, isProgressiveSource } from '../../entities/media-format';
+import { KalturaDrmPlaybackPluginData } from '../common/response-types/kaltura-drm-playback-plugin-data';
 import KalturaRuleAction from './response-types/kaltura-rule-action';
-import {KalturaAccessControlMessage} from '../common/response-types/kaltura-access-control-message';
-import type {OTTAssetLoaderResponse} from './loaders/asset-loader';
+import { KalturaAccessControlMessage } from '../common/response-types/kaltura-access-control-message';
+import type { OTTAssetLoaderResponse } from './loaders/asset-loader';
 import KalturaBumpersPlaybackPluginData from './response-types/kaltura-bumper-playback-plugin-data';
-import {ProviderMediaInfoObject, Poster} from '../../types';
+import { ProviderMediaInfoObject, Poster } from '../../types';
 
 const LIVE_ASST_OBJECT_TYPE: string = 'KalturaLiveAsset';
 
-const MediaTypeCombinations: {[mediaType: string]: any} = {
+const MediaTypeCombinations: { [mediaType: string]: any } = {
   [KalturaAsset.Type.MEDIA]: {
-    [KalturaPlaybackContext.Type.TRAILER]: () => ({type: MediaEntry.Type.VOD}),
-    [KalturaPlaybackContext.Type.PLAYBACK]: mediaAssetData => {
+    [KalturaPlaybackContext.Type.TRAILER]: () => ({ type: MediaEntry.Type.VOD }),
+    [KalturaPlaybackContext.Type.PLAYBACK]: (mediaAssetData) => {
       if (mediaAssetData.objectType === LIVE_ASST_OBJECT_TYPE) {
-        return {type: MediaEntry.Type.LIVE, dvrStatus: mediaAssetData.enableTrickPlay ? MediaEntry.DvrStatus.ON : MediaEntry.DvrStatus.OFF};
+        return { type: MediaEntry.Type.LIVE, dvrStatus: mediaAssetData.enableTrickPlay ? MediaEntry.DvrStatus.ON : MediaEntry.DvrStatus.OFF };
       } else if (parseInt(mediaAssetData.externalIds) > 0) {
-        return {type: MediaEntry.Type.LIVE, dvrStatus: MediaEntry.DvrStatus.OFF};
+        return { type: MediaEntry.Type.LIVE, dvrStatus: MediaEntry.DvrStatus.OFF };
       }
-      return {type: MediaEntry.Type.VOD};
+      return { type: MediaEntry.Type.VOD };
     }
   },
   [KalturaAsset.Type.EPG]: {
-    [KalturaPlaybackContext.Type.CATCHUP]: () => ({type: MediaEntry.Type.VOD}),
-    [KalturaPlaybackContext.Type.START_OVER]: () => ({type: MediaEntry.Type.LIVE, dvrStatus: MediaEntry.DvrStatus.ON})
+    [KalturaPlaybackContext.Type.CATCHUP]: () => ({ type: MediaEntry.Type.VOD }),
+    [KalturaPlaybackContext.Type.START_OVER]: () => ({ type: MediaEntry.Type.LIVE, dvrStatus: MediaEntry.DvrStatus.ON })
   },
   [KalturaAsset.Type.RECORDING]: {
-    [KalturaPlaybackContext.Type.PLAYBACK]: () => ({type: MediaEntry.Type.VOD})
+    [KalturaPlaybackContext.Type.PLAYBACK]: () => ({ type: MediaEntry.Type.VOD })
   }
 };
 
@@ -65,7 +65,7 @@ export default class OTTProviderParser {
     // eslint-disable-next-line prefer-spread
     mediaEntry.duration = Math.max.apply(
       Math,
-      kalturaSources.map(source => source.duration)
+      kalturaSources.map((source) => source.duration)
     );
     return mediaEntry;
   }
@@ -82,9 +82,9 @@ export default class OTTProviderParser {
   public static getEntryList(playlistResponse: any, requestEntries: Array<ProviderMediaInfoObject>): EntryList {
     const entryList = new EntryList();
     const playlistItems = playlistResponse.playlistItems.entries;
-    playlistItems.forEach(entry => {
+    playlistItems.forEach((entry) => {
       const mediaEntry = new MediaEntry();
-      const requestData = requestEntries.find(requestEntry => requestEntry.entryId === entry.mediaDataResult.id);
+      const requestData = requestEntries.find((requestEntry) => requestEntry.entryId === entry.mediaDataResult.id);
       OTTProviderParser._fillBaseData(mediaEntry, entry, requestData);
       entryList.items.push(mediaEntry);
     });
@@ -102,7 +102,7 @@ export default class OTTProviderParser {
   public static getBumper(assetResponse: any): Bumper | unknown {
     const playbackContext = assetResponse.playBackContextResult;
     const progressiveBumper = playbackContext.plugins.find(
-      bumper => bumper.streamertype === KalturaBumpersPlaybackPluginData.StreamerType.PROGRESSIVE
+      (bumper) => bumper.streamertype === KalturaBumpersPlaybackPluginData.StreamerType.PROGRESSIVE
     );
     if (progressiveBumper) {
       return new Bumper(progressiveBumper);
@@ -148,7 +148,7 @@ export default class OTTProviderParser {
   public static addToMetaObject(list: Array<any>): any {
     const categoryObj = {};
     if (list) {
-      list.forEach(item => {
+      list.forEach((item) => {
         categoryObj[item.key] = item.value;
       });
     }
@@ -170,7 +170,7 @@ export default class OTTProviderParser {
       if (regex.test(url)) {
         return url;
       }
-      return pictures.map(pic => ({url: pic.url, width: pic.width, height: pic.height}));
+      return pictures.map((pic) => ({ url: pic.url, width: pic.width, height: pic.height }));
     }
     return '';
   }
@@ -184,7 +184,7 @@ export default class OTTProviderParser {
    * @private
    */
   public static _getMediaType(mediaAssetData: any, mediaType: string, contextType: string): any {
-    let typeData = {type: MediaEntry.Type.UNKNOWN};
+    let typeData = { type: MediaEntry.Type.UNKNOWN };
     if (MediaTypeCombinations[mediaType] && MediaTypeCombinations[mediaType][contextType]) {
       typeData = MediaTypeCombinations[mediaType][contextType](mediaAssetData);
     }
@@ -200,7 +200,7 @@ export default class OTTProviderParser {
    */
   public static _filterSourcesByFormats(kalturaSources: Array<KalturaPlaybackSource>, formats: Array<string>): Array<KalturaPlaybackSource> {
     if (formats.length > 0) {
-      kalturaSources = kalturaSources.filter(source => formats.includes(source.type));
+      kalturaSources = kalturaSources.filter((source) => formats.includes(source.type));
     }
     return kalturaSources;
   }
@@ -224,10 +224,10 @@ export default class OTTProviderParser {
       }
     };
     const parseAdaptiveSources = (): void => {
-      kalturaSources.filter(source => !isProgressiveSource(source.format)).forEach(addAdaptiveSource);
+      kalturaSources.filter((source) => !isProgressiveSource(source.format)).forEach(addAdaptiveSource);
     };
     const parseProgressiveSources = (): void => {
-      kalturaSources.filter(source => isProgressiveSource(source.format)).forEach(addAdaptiveSource);
+      kalturaSources.filter((source) => isProgressiveSource(source.format)).forEach(addAdaptiveSource);
     };
     if (kalturaSources && kalturaSources.length > 0) {
       parseAdaptiveSources();
@@ -262,7 +262,7 @@ export default class OTTProviderParser {
       mediaSource.id = kalturaSource.fileId + ',' + kalturaSource.format;
       if (kalturaSource.hasDrmData()) {
         const drmParams: Array<Drm> = [];
-        kalturaSource.drm.forEach(drm => {
+        kalturaSource.drm.forEach((drm) => {
           drmParams.push(new Drm(drm.licenseURL, KalturaDrmPlaybackPluginData.Scheme[drm.scheme], drm.certificate));
         });
         mediaSource.drmData = drmParams;

@@ -1,7 +1,7 @@
 import OTTProvider from '../../../../src/k-provider/ott/provider';
 import * as BE_DATA from './be-data';
 import * as MEDIA_CONFIG_DATA from './media-config-data';
-import {MultiRequestResult} from '../../../../src/k-provider/common/multi-request-builder';
+import { MultiRequestResult } from '../../../../src/k-provider/common/multi-request-builder';
 import MultiRequestBuilder from '../../../../src/k-provider/common/multi-request-builder';
 import KalturaAsset from '../../../../src/k-provider/ott/response-types/kaltura-asset';
 import KalturaPlaybackContext from '../../../../src/k-provider/ott/response-types/kaltura-playback-context';
@@ -24,12 +24,12 @@ describe('default configuration', () => {
   });
 
   it('should use config values if they are set', () => {
-    const provider = new OTTProvider({partnerId: partnerId, env: {serviceParams: {apiVersion: '5.2.7'}}}, playerVersion);
+    const provider = new OTTProvider({ partnerId: partnerId, env: { serviceParams: { apiVersion: '5.2.7' } } }, playerVersion);
     provider.env.serviceParams.apiVersion.should.equal('5.2.7');
   });
 
   it('should use default values if config values are not set', () => {
-    const provider = new OTTProvider({partnerId: partnerId}, playerVersion);
+    const provider = new OTTProvider({ partnerId: partnerId }, playerVersion);
     provider.env.serviceParams.apiVersion.should.equal(defaultConfig.serviceParams.apiVersion);
   });
 });
@@ -38,7 +38,7 @@ describe('OTTProvider.partnerId:198', function () {
   let provider, sandbox;
   beforeEach(() => {
     sandbox = sinon.createSandbox();
-    provider = new OTTProvider({partnerId: partnerId}, playerVersion);
+    provider = new OTTProvider({ partnerId: partnerId }, playerVersion);
   });
 
   afterEach(() => {
@@ -51,14 +51,14 @@ describe('OTTProvider.partnerId:198', function () {
     }
   });
 
-  it('should return config without plugins and with drm data', done => {
+  it('should return config without plugins and with drm data', (done) => {
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
-      return new Promise(resolve => {
-        resolve({response: new MultiRequestResult(BE_DATA.AnonymousEntryWithoutUIConfWithDrmData.response)});
+      return new Promise((resolve) => {
+        resolve({ response: new MultiRequestResult(BE_DATA.AnonymousEntryWithoutUIConfWithDrmData.response) });
       });
     });
-    provider.getMediaConfig({entryId: 480097}).then(
-      mediaConfig => {
+    provider.getMediaConfig({ entryId: 480097 }).then(
+      (mediaConfig) => {
         try {
           mediaConfig.should.deep.equal(MEDIA_CONFIG_DATA.NoPluginsWithDrm);
           done();
@@ -66,16 +66,16 @@ describe('OTTProvider.partnerId:198', function () {
           done(err);
         }
       },
-      err => {
+      (err) => {
         done(err);
       }
     );
   });
 
-  it('should return config filtered by device types', done => {
+  it('should return config filtered by device types', (done) => {
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
-      return new Promise(resolve => {
-        resolve({response: new MultiRequestResult(BE_DATA.AnonymousEntryWithoutUIConfWithDrmData.response)});
+      return new Promise((resolve) => {
+        resolve({ response: new MultiRequestResult(BE_DATA.AnonymousEntryWithoutUIConfWithDrmData.response) });
       });
     });
     provider
@@ -85,7 +85,7 @@ describe('OTTProvider.partnerId:198', function () {
         mediaType: KalturaAsset.Type.RECORDING
       })
       .then(
-        mediaConfig => {
+        (mediaConfig) => {
           try {
             mediaConfig.should.deep.equal(MEDIA_CONFIG_DATA.FilteredSourcesByDeviceType);
             done();
@@ -93,20 +93,20 @@ describe('OTTProvider.partnerId:198', function () {
             done(err);
           }
         },
-        err => {
+        (err) => {
           done(err);
         }
       );
   });
 
-  it('should return entry of live type', done => {
+  it('should return entry of live type', (done) => {
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
-      return new Promise(resolve => {
-        resolve({response: new MultiRequestResult(BE_DATA.LiveEntryNoDrmData.response)});
+      return new Promise((resolve) => {
+        resolve({ response: new MultiRequestResult(BE_DATA.LiveEntryNoDrmData.response) });
       });
     });
-    provider.getMediaConfig({entryId: 276507, contextType: KalturaPlaybackContext.Type.START_OVER, mediaType: KalturaAsset.Type.EPG}).then(
-      mediaConfig => {
+    provider.getMediaConfig({ entryId: 276507, contextType: KalturaPlaybackContext.Type.START_OVER, mediaType: KalturaAsset.Type.EPG }).then(
+      (mediaConfig) => {
         try {
           mediaConfig.should.deep.equal(MEDIA_CONFIG_DATA.LiveEntryNoDrm);
           done();
@@ -114,27 +114,27 @@ describe('OTTProvider.partnerId:198', function () {
           done(err);
         }
       },
-      err => {
+      (err) => {
         done(err);
       }
     );
   });
 
-  it('should return block error for server block response', done => {
+  it('should return block error for server block response', (done) => {
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
-      return new Promise(resolve => {
-        resolve({response: new MultiRequestResult(BE_DATA.BlockActionEntry.response)});
+      return new Promise((resolve) => {
+        resolve({ response: new MultiRequestResult(BE_DATA.BlockActionEntry.response) });
       });
     });
-    provider.getMediaConfig({entryId: 1234}).then(
-      mediaConfig => {
+    provider.getMediaConfig({ entryId: 1234 }).then(
+      (mediaConfig) => {
         try {
           throw new Error('no error returned where block action error was expected', mediaConfig);
         } catch (e) {
           done(e);
         }
       },
-      err => {
+      (err) => {
         const expected = {
           severity: 2,
           category: 2,
@@ -161,7 +161,7 @@ describe('OTTProvider.partnerId:198', function () {
     );
   });
 
-  it('should return error for invalid KS format', done => {
+  it('should return error for invalid KS format', (done) => {
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
       return new Promise((resolve, reject) => {
         reject(
@@ -173,15 +173,15 @@ describe('OTTProvider.partnerId:198', function () {
         );
       });
     });
-    provider.getMediaConfig({entryId: 1234}).then(
-      mediaConfig => {
+    provider.getMediaConfig({ entryId: 1234 }).then(
+      (mediaConfig) => {
         try {
           throw new Error('no error returned where block action error was expected', mediaConfig);
         } catch (e) {
           done(e);
         }
       },
-      err => {
+      (err) => {
         const expected = {
           severity: 2,
           category: 1,
@@ -210,7 +210,7 @@ describe('OTTProvider.partnerId:198', function () {
     );
   });
 
-  it('should pass streamerType and urlType on the playback context object', done => {
+  it('should pass streamerType and urlType on the playback context object', (done) => {
     sinon.stub(OTTAssetLoader.prototype, 'buildRequests').callsFake(function (params) {
       try {
         params.playbackContext.streamerType.should.equal('mpegdash');
@@ -221,10 +221,10 @@ describe('OTTProvider.partnerId:198', function () {
       }
       return [];
     });
-    provider.getMediaConfig({entryId: 1234, streamerType: 'mpegdash', urlType: 'DIRECT'});
+    provider.getMediaConfig({ entryId: 1234, streamerType: 'mpegdash', urlType: 'DIRECT' });
   });
 
-  it('should pass adapterData on the playback context object', done => {
+  it('should pass adapterData on the playback context object', (done) => {
     const adapterDataConfig = {
       supported_files: {
         objectType: 'KalturaStringValue',
@@ -243,7 +243,7 @@ describe('OTTProvider.partnerId:198', function () {
         done(e);
       }
     });
-    provider.getMediaConfig({entryId: 1234, adapterData: adapterDataConfig});
+    provider.getMediaConfig({ entryId: 1234, adapterData: adapterDataConfig });
   });
 });
 
@@ -256,7 +256,7 @@ describe('getEntryListConfig', function () {
 
   beforeEach(() => {
     sandbox = sinon.createSandbox();
-    provider = new OTTProvider({partnerId: partnerId}, playerVersion);
+    provider = new OTTProvider({ partnerId: partnerId }, playerVersion);
   });
 
   afterEach(() => {
@@ -264,14 +264,14 @@ describe('getEntryListConfig', function () {
     MultiRequestBuilder.prototype.execute.restore();
   });
 
-  it('should load a playlist by entry list - anonymous', done => {
+  it('should load a playlist by entry list - anonymous', (done) => {
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
-      return new Promise(resolve => {
-        resolve({response: new MultiRequestResult(BE_DATA.PlaylistByEntryList.response)});
+      return new Promise((resolve) => {
+        resolve({ response: new MultiRequestResult(BE_DATA.PlaylistByEntryList.response) });
       });
     });
-    provider.getEntryListConfig({entries: ['259153', {entryId: '258459'}]}).then(
-      entryListConfig => {
+    provider.getEntryListConfig({ entries: ['259153', { entryId: '258459' }] }).then(
+      (entryListConfig) => {
         try {
           entryListConfig.id.should.equal('');
           entryListConfig.items.length.should.equal(2);
@@ -283,20 +283,20 @@ describe('getEntryListConfig', function () {
           done(err);
         }
       },
-      err => {
+      (err) => {
         done(err);
       }
     );
   });
 
-  it('should load a playlist by entry list - with KS', done => {
+  it('should load a playlist by entry list - with KS', (done) => {
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
-      return new Promise(resolve => {
-        resolve({response: new MultiRequestResult(BE_DATA.AnonymousPlaylistByEntryList.response)});
+      return new Promise((resolve) => {
+        resolve({ response: new MultiRequestResult(BE_DATA.AnonymousPlaylistByEntryList.response) });
       });
     });
-    provider.getEntryListConfig({entries: ['259153', {entryId: '258459'}], ks}).then(
-      entryListConfig => {
+    provider.getEntryListConfig({ entries: ['259153', { entryId: '258459' }], ks }).then(
+      (entryListConfig) => {
         try {
           entryListConfig.id.should.equal('');
           entryListConfig.items.length.should.equal(2);
@@ -308,15 +308,15 @@ describe('getEntryListConfig', function () {
           done(err);
         }
       },
-      err => {
+      (err) => {
         done(err);
       }
     );
   });
 
-  it('should load a partial playlist by entry list if some requests have an error', done => {
+  it('should load a partial playlist by entry list if some requests have an error', (done) => {
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         resolve({
           response: new MultiRequestResult({
             result: [...BE_DATA.AnonymousPlaylistByEntryList.response.result, BE_DATA.InvalidKSFormat.response.result.error]
@@ -325,8 +325,8 @@ describe('getEntryListConfig', function () {
       });
     });
 
-    provider.getEntryListConfig({entries: ['259153', {entryId: '258459'}], ks}).then(
-      entryListConfig => {
+    provider.getEntryListConfig({ entries: ['259153', { entryId: '258459' }], ks }).then(
+      (entryListConfig) => {
         try {
           entryListConfig.id.should.equal('');
           entryListConfig.items.length.should.equal(2);
@@ -338,7 +338,7 @@ describe('getEntryListConfig', function () {
           done(err);
         }
       },
-      err => {
+      (err) => {
         done(err);
       }
     );
@@ -353,7 +353,7 @@ describe('getEntryWithBumper', function () {
 
   beforeEach(() => {
     sandbox = sinon.createSandbox();
-    provider = new OTTProvider({partnerId: partnerId}, playerVersion);
+    provider = new OTTProvider({ partnerId: partnerId }, playerVersion);
   });
 
   afterEach(() => {
@@ -361,14 +361,14 @@ describe('getEntryWithBumper', function () {
     MultiRequestBuilder.prototype.execute.restore();
   });
 
-  it('should load the entry with bumper', done => {
+  it('should load the entry with bumper', (done) => {
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
-      return new Promise(resolve => {
-        resolve({response: new MultiRequestResult(BE_DATA.EntryWithBumper.response)});
+      return new Promise((resolve) => {
+        resolve({ response: new MultiRequestResult(BE_DATA.EntryWithBumper.response) });
       });
     });
-    provider.getMediaConfig({entryId: '324284', fileIds: '630312', ks}).then(
-      mediaConfig => {
+    provider.getMediaConfig({ entryId: '324284', fileIds: '630312', ks }).then(
+      (mediaConfig) => {
         try {
           mediaConfig.should.deep.equal(MEDIA_CONFIG_DATA.EntryWithBumper);
           done();
@@ -376,7 +376,7 @@ describe('getEntryWithBumper', function () {
           done(err);
         }
       },
-      err => {
+      (err) => {
         done(err);
       }
     );

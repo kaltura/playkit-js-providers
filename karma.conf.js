@@ -1,4 +1,4 @@
-const webpackConfig = require('./webpack.config')('development', {mode: 'development'});
+const webpackConfig = require('./webpack.config')('development', { mode: 'development' });
 delete webpackConfig.entry;
 delete webpackConfig.externals;
 delete webpackConfig.output;

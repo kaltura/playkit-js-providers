@@ -33,4 +33,4 @@ export default class ImageSource {
   }
 }
 
-export {ImageSource}
+export { ImageSource };

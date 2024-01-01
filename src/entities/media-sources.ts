@@ -1,7 +1,7 @@
 import MediaSource from './media-source';
-import {MediaFormat} from './media-format';
-import {ImageSource} from './image-source';
-import {PKExternalCaptionObject, ProviderMediaFormatType, ProviderMediaSourcesObject} from '../types';
+import { MediaFormat } from './media-format';
+import { ImageSource } from './image-source';
+import { PKExternalCaptionObject, ProviderMediaFormatType, ProviderMediaSourcesObject } from '../types';
 
 export default class MediaSources {
   /**
@@ -44,17 +44,17 @@ export default class MediaSources {
   public map(source: MediaSource, mediaFormat?: ProviderMediaFormatType): void {
     if (mediaFormat) {
       switch (mediaFormat.name) {
-      case MediaFormat.MP4.name:
-        this.progressive.push(source);
-        break;
-      case MediaFormat.DASH.name:
-        this.dash.push(source);
-        break;
-      case MediaFormat.HLS.name:
-        this.hls.push(source);
-        break;
-      default:
-        break;
+        case MediaFormat.MP4.name:
+          this.progressive.push(source);
+          break;
+        case MediaFormat.DASH.name:
+          this.dash.push(source);
+          break;
+        case MediaFormat.HLS.name:
+          this.hls.push(source);
+          break;
+        default:
+          break;
       }
     }
   }
@@ -70,9 +70,9 @@ export default class MediaSources {
       hls: [],
       image: []
     };
-    this.progressive.forEach(p => response.progressive.push(p.toJSON()));
-    this.hls.forEach(h => response.hls.push(h.toJSON()));
-    this.dash.forEach(d => response.dash.push(d.toJSON()));
+    this.progressive.forEach((p) => response.progressive.push(p.toJSON()));
+    this.hls.forEach((h) => response.hls.push(h.toJSON()));
+    this.dash.forEach((d) => response.dash.push(d.toJSON()));
     response.image = this.image;
     return response;
   }

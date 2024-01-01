@@ -1,8 +1,8 @@
 import getLogger from '../../util/logger';
 import OVPConfiguration from './config';
-import {KalturaAccessControlModifyRequestHostRegexAction} from './response-types';
+import { KalturaAccessControlModifyRequestHostRegexAction } from './response-types';
 import OVPMediaEntryLoader from './loaders/media-entry-loader';
-import {ILoader, ProviderMediaConfigObject} from '../../types';
+import { ILoader, ProviderMediaConfigObject } from '../../types';
 
 class RegexActionHandler {
   private static _logger = getLogger('RegexActionHandler');
@@ -65,7 +65,10 @@ class RegexActionHandler {
    * @returns {Promise<ProviderMediaConfigObject>} - The media config with old or modified urls
    * @static
    */
-  public static async handleRegexAction(mediaConfig: ProviderMediaConfigObject, rawResponse: Map<string, ILoader>): Promise<ProviderMediaConfigObject> {
+  public static async handleRegexAction(
+    mediaConfig: ProviderMediaConfigObject,
+    rawResponse: Map<string, ILoader>
+  ): Promise<ProviderMediaConfigObject> {
     const cdnUrl = OVPConfiguration.get().cdnUrl;
     const regexAction = RegexActionHandler._extractRegexActionFromData(rawResponse);
     const regExp = RegexActionHandler._getRegExp(regexAction);
@@ -101,14 +104,14 @@ class RegexActionHandler {
   private static _replaceHostUrls(mediaConfig: ProviderMediaConfigObject, regexAction: KalturaAccessControlModifyRequestHostRegexAction): void {
     RegexActionHandler._logger.debug('Starting to modify urls...');
     const sources = mediaConfig.sources;
-    const {hls, dash, progressive, image} = sources;
+    const { hls, dash, progressive, image } = sources;
 
-    [...hls, ...dash, ...progressive, ...image].forEach(src => (src.url = RegexActionHandler._applyRegexAction(regexAction, src.url)));
+    [...hls, ...dash, ...progressive, ...image].forEach((src) => (src.url = RegexActionHandler._applyRegexAction(regexAction, src.url)));
 
     if (!OVPConfiguration.get().replaceHostOnlyManifestUrls) {
       RegexActionHandler._logger.debug('replaceHostOnlyManifestUrls flag is off - modifying captions and poster URLs');
       if (sources.captions) {
-        sources.captions.forEach(src => (src.url = RegexActionHandler._applyRegexAction(regexAction, src.url)));
+        sources.captions.forEach((src) => (src.url = RegexActionHandler._applyRegexAction(regexAction, src.url)));
       }
 
       // fix flow - poster can also be an array, but only for ott.

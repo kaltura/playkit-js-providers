@@ -1,10 +1,10 @@
 import getLogger from '../logger';
-import {Severity} from './severity';
-import type {SeverityType} from './severity';
-import {Code} from './code';
-import type {CodeType} from './code';
-import {Category} from './category';
-import type {CategoryType} from './category';
+import { Severity } from './severity';
+import type { SeverityType } from './severity';
+import { Code } from './code';
+import type { CodeType } from './code';
+import { Category } from './category';
+import type { CategoryType } from './category';
 
 const CLASS_NAME: string = 'Error';
 

@@ -1,6 +1,6 @@
-import MultiRequestBuilder, {MultiRequestResult} from './multi-request-builder';
+import MultiRequestBuilder, { MultiRequestResult } from './multi-request-builder';
 import Error from '../../util/error/error';
-import {ILoader, ProviderNetworkRetryParameters} from '../../types';
+import { ILoader, ProviderNetworkRetryParameters } from '../../types';
 
 export default class DataLoaderManager {
   /**
@@ -42,7 +42,7 @@ export default class DataLoaderManager {
    * @param {string} ks ks
    * @returns {void}
    */
-  public add(loader: {new(...params): ILoader, id: string}, params: any, ks?: string): void {
+  public add(loader: { new (...params): ILoader; id: string }, params: any, ks?: string): void {
     const execution_loader = new loader(params);
     if (execution_loader.isValid()) {
       this._loaders.set(loader.id, execution_loader);
@@ -52,7 +52,7 @@ export default class DataLoaderManager {
       const requests = execution_loader.requests;
       this._multiRequest.retryConfig = this._networkRetryConfig;
       // Add requests to multiRequest queue
-      requests.forEach(request => {
+      requests.forEach((request) => {
         request.params = request.params || {};
         request.params.ks = request.params.ks || ks;
         this._multiRequest.add(request);
@@ -73,7 +73,7 @@ export default class DataLoaderManager {
   public fetchData(requestsMustSucceed?: boolean): Promise<any> {
     return new Promise((resolve, reject) => {
       this._multiRequest.execute(requestsMustSucceed).then(
-        data => {
+        (data) => {
           this._multiResponse = data.response;
           const preparedData: any = this.prepareData(data.response);
           if (preparedData.success) {
@@ -86,7 +86,7 @@ export default class DataLoaderManager {
             );
           }
         },
-        err => {
+        (err) => {
           reject(err);
         }
       );
@@ -107,9 +107,9 @@ export default class DataLoaderManager {
           loader.response = response.results.slice(loaderDataIndexes[0], loaderDataIndexes[loaderDataIndexes.length - 1] + 1);
         }
       } catch (err) {
-        return {success: false, error: err};
+        return { success: false, error: err };
       }
     });
-    return {success: true, data: this._loaders};
+    return { success: true, data: this._loaders };
   }
 }

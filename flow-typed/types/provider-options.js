@@ -1,5 +1,5 @@
 // @flow
-import {LoggerType} from '../../src/util/logger';
+import { LoggerType } from '../../src/util/logger';
 
 declare type ProviderOptionsObject = {
   partnerId: number,

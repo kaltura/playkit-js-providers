@@ -1,10 +1,8 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>
-      <html lang="en"> <head> <meta charset="UTF-8"> <title>Title
-    </title>
+    <title><html lang="en"> <head> <meta charset="UTF-8"> <title>Title</title>
     <script src="playkit-ott-provider.js" type="text/javascript"></script>
   </head>
   <body>
@@ -20,7 +18,7 @@
       // Create provider instance
       var provider = new playkit.providers.ott.Provider(options, 'myPlayerVersion');
       // Ask for media config
-      provider.getMediaConfig(mediaInfo).then(mediaConfig => {
+      provider.getMediaConfig(mediaInfo).then((mediaConfig) => {
         console.log(mediaConfig);
       });
     </script>

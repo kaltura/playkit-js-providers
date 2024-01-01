@@ -2,8 +2,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
   response: {
     result: [
       {
-        ks:
-          'djJ8MTk4fHFNlNTFP8NV_WXoPn3CJnQRIJhCe4zD9g5voCHCgHJRanv2ubEBLLl9Gb13CxfBTGWZpTP_pD_fOirT3-L4F0kDIdJRrkShBxjuRI1-0nz2ublJJd48QKzLAqW79y7Lzoj6ngfv1uHGC7xxPtUqcSw=',
+        ks: 'djJ8MTk4fHFNlNTFP8NV_WXoPn3CJnQRIJhCe4zD9g5voCHCgHJRanv2ubEBLLl9Gb13CxfBTGWZpTP_pD_fOirT3-L4F0kDIdJRrkShBxjuRI1-0nz2ublJJd48QKzLAqW79y7Lzoj6ngfv1uHGC7xxPtUqcSw=',
         refreshToken: '261623e4a727475a99898a0b7a39febf',
         objectType: 'KalturaLoginSession'
       },
@@ -22,8 +21,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             ratio: '16:9',
             width: 153,
             height: 86,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/afa4d5c3b56c4476baca9897873d4a34_1/version/3/width/153/height/86/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/afa4d5c3b56c4476baca9897873d4a34_1/version/3/width/153/height/86/quality/100',
             version: 3,
             id: 'afa4d5c3b56c4476baca9897873d4a34_1',
             isDefault: false,
@@ -33,8 +31,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             ratio: '16:9',
             width: 302,
             height: 170,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/afa4d5c3b56c4476baca9897873d4a34_1/version/3/width/302/height/170/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/afa4d5c3b56c4476baca9897873d4a34_1/version/3/width/302/height/170/quality/100',
             version: 3,
             id: 'afa4d5c3b56c4476baca9897873d4a34_1',
             isDefault: false,
@@ -44,8 +41,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             ratio: '16:9',
             width: 568,
             height: 320,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/afa4d5c3b56c4476baca9897873d4a34_1/version/3/width/568/height/320/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/afa4d5c3b56c4476baca9897873d4a34_1/version/3/width/568/height/320/quality/100',
             version: 3,
             id: 'afa4d5c3b56c4476baca9897873d4a34_1',
             isDefault: false,
@@ -55,8 +51,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             ratio: '16:9',
             width: 960,
             height: 540,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/afa4d5c3b56c4476baca9897873d4a34_1/version/3/width/960/height/540/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/afa4d5c3b56c4476baca9897873d4a34_1/version/3/width/960/height/540/quality/100',
             version: 3,
             id: 'afa4d5c3b56c4476baca9897873d4a34_1',
             isDefault: false,
@@ -66,8 +61,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             ratio: '16:9',
             width: 1280,
             height: 720,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/afa4d5c3b56c4476baca9897873d4a34_1/version/3/width/1280/height/720/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/afa4d5c3b56c4476baca9897873d4a34_1/version/3/width/1280/height/720/quality/100',
             version: 3,
             id: 'afa4d5c3b56c4476baca9897873d4a34_1',
             isDefault: false,
@@ -77,8 +71,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             ratio: '16:9',
             width: 2048,
             height: 1152,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/afa4d5c3b56c4476baca9897873d4a34_1/version/3/width/2048/height/1152/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/afa4d5c3b56c4476baca9897873d4a34_1/version/3/width/2048/height/1152/quality/100',
             version: 3,
             id: 'afa4d5c3b56c4476baca9897873d4a34_1',
             isDefault: false,
@@ -88,8 +81,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             ratio: '2:3',
             width: 103,
             height: 154,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/d3d223391f314cab814d06b8c85682a5_2/version/0/width/103/height/154/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/d3d223391f314cab814d06b8c85682a5_2/version/0/width/103/height/154/quality/100',
             version: 0,
             id: 'd3d223391f314cab814d06b8c85682a5_2',
             isDefault: false,
@@ -99,8 +91,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             ratio: '2:3',
             width: 149,
             height: 223,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/d3d223391f314cab814d06b8c85682a5_2/version/0/width/149/height/223/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/d3d223391f314cab814d06b8c85682a5_2/version/0/width/149/height/223/quality/100',
             version: 0,
             id: 'd3d223391f314cab814d06b8c85682a5_2',
             isDefault: false,
@@ -110,8 +101,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             ratio: '2:3',
             width: 212,
             height: 318,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/d3d223391f314cab814d06b8c85682a5_2/version/0/width/212/height/318/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/d3d223391f314cab814d06b8c85682a5_2/version/0/width/212/height/318/quality/100',
             version: 0,
             id: 'd3d223391f314cab814d06b8c85682a5_2',
             isDefault: false,
@@ -121,8 +111,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             ratio: '2:3',
             width: 355,
             height: 534,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/d3d223391f314cab814d06b8c85682a5_2/version/0/width/355/height/534/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/d3d223391f314cab814d06b8c85682a5_2/version/0/width/355/height/534/quality/100',
             version: 0,
             id: 'd3d223391f314cab814d06b8c85682a5_2',
             isDefault: false,
@@ -132,8 +121,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             ratio: '2:3',
             width: 800,
             height: 1111,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/d3d223391f314cab814d06b8c85682a5_2/version/0/width/800/height/1111/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/d3d223391f314cab814d06b8c85682a5_2/version/0/width/800/height/1111/quality/100',
             version: 0,
             id: 'd3d223391f314cab814d06b8c85682a5_2',
             isDefault: false,
@@ -143,8 +131,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             ratio: '2:3',
             width: 600,
             height: 900,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/d3d223391f314cab814d06b8c85682a5_2/version/0/width/600/height/900/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/d3d223391f314cab814d06b8c85682a5_2/version/0/width/600/height/900/quality/100',
             version: 0,
             id: 'd3d223391f314cab814d06b8c85682a5_2',
             isDefault: false,
@@ -154,8 +141,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             ratio: '16:9',
             width: 282,
             height: 158,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/afa4d5c3b56c4476baca9897873d4a34_1/version/3/width/282/height/158/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/afa4d5c3b56c4476baca9897873d4a34_1/version/3/width/282/height/158/quality/100',
             version: 3,
             id: 'afa4d5c3b56c4476baca9897873d4a34_1',
             isDefault: false,
@@ -165,8 +151,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             ratio: '2:3',
             width: 180,
             height: 270,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/d3d223391f314cab814d06b8c85682a5_2/version/0/width/180/height/270/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/d3d223391f314cab814d06b8c85682a5_2/version/0/width/180/height/270/quality/100',
             version: 0,
             id: 'd3d223391f314cab814d06b8c85682a5_2',
             isDefault: false,
@@ -176,8 +161,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             ratio: '16:9',
             width: 105,
             height: 80,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/afa4d5c3b56c4476baca9897873d4a34_1/version/3/width/105/height/80/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/afa4d5c3b56c4476baca9897873d4a34_1/version/3/width/105/height/80/quality/100',
             version: 3,
             id: 'afa4d5c3b56c4476baca9897873d4a34_1',
             isDefault: false,
@@ -187,8 +171,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             ratio: '16:9',
             width: 195,
             height: 150,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/afa4d5c3b56c4476baca9897873d4a34_1/version/3/width/195/height/150/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/afa4d5c3b56c4476baca9897873d4a34_1/version/3/width/195/height/150/quality/100',
             version: 3,
             id: 'afa4d5c3b56c4476baca9897873d4a34_1',
             isDefault: false,
@@ -198,8 +181,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             ratio: '16:9',
             width: 105,
             height: 55,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/afa4d5c3b56c4476baca9897873d4a34_1/version/3/width/105/height/55/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/afa4d5c3b56c4476baca9897873d4a34_1/version/3/width/105/height/55/quality/100',
             version: 3,
             id: 'afa4d5c3b56c4476baca9897873d4a34_1',
             isDefault: false,
@@ -209,8 +191,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             ratio: '16:9',
             width: 70,
             height: 52,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/afa4d5c3b56c4476baca9897873d4a34_1/version/3/width/70/height/52/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/afa4d5c3b56c4476baca9897873d4a34_1/version/3/width/70/height/52/quality/100',
             version: 3,
             id: 'afa4d5c3b56c4476baca9897873d4a34_1',
             isDefault: false,
@@ -220,8 +201,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             ratio: '16:9',
             width: 590,
             height: 445,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/afa4d5c3b56c4476baca9897873d4a34_1/version/3/width/590/height/445/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/afa4d5c3b56c4476baca9897873d4a34_1/version/3/width/590/height/445/quality/100',
             version: 3,
             id: 'afa4d5c3b56c4476baca9897873d4a34_1',
             isDefault: false,
@@ -231,8 +211,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             ratio: '16:9',
             width: 300,
             height: 250,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/afa4d5c3b56c4476baca9897873d4a34_1/version/3/width/300/height/250/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/afa4d5c3b56c4476baca9897873d4a34_1/version/3/width/300/height/250/quality/100',
             version: 3,
             id: 'afa4d5c3b56c4476baca9897873d4a34_1',
             isDefault: false,
@@ -242,8 +221,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             ratio: '2:1',
             width: 200,
             height: 100,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/0d4ddd6656714d4cb0334530a57d1a1a_17/version/0/width/200/height/100/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/0d4ddd6656714d4cb0334530a57d1a1a_17/version/0/width/200/height/100/quality/100',
             version: 0,
             id: '0d4ddd6656714d4cb0334530a57d1a1a_17',
             isDefault: true,
@@ -253,8 +231,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             ratio: '4:3',
             width: 400,
             height: 300,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/b379e398d9ef4a31827fa1c10aa10f47_3/version/0/width/400/height/300/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/b379e398d9ef4a31827fa1c10aa10f47_3/version/0/width/400/height/300/quality/100',
             version: 0,
             id: 'b379e398d9ef4a31827fa1c10aa10f47_3',
             isDefault: true,
@@ -264,8 +241,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             ratio: '16:9',
             width: 1080,
             height: 1960,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/afa4d5c3b56c4476baca9897873d4a34_1/version/3/width/1080/height/1960/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/afa4d5c3b56c4476baca9897873d4a34_1/version/3/width/1080/height/1960/quality/100',
             version: 3,
             id: 'afa4d5c3b56c4476baca9897873d4a34_1',
             isDefault: false,
@@ -277,8 +253,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             assetId: 480097,
             id: 728179,
             type: 'Mobile_Devices_Main_HD',
-            url:
-              'http://cdnapi.kaltura.com/p/2091671/sp/209167100/playManifest/entryId/1_tmeqe2n9/format/applehttp/tags/ipadnew/protocol/http/f/a.m3u8',
+            url: 'http://cdnapi.kaltura.com/p/2091671/sp/209167100/playManifest/entryId/1_tmeqe2n9/format/applehttp/tags/ipadnew/protocol/http/f/a.m3u8',
             duration: 123000,
             externalId: '1_tmeqe2n9_1_uwlzalsz,1_tmeqe2n9_1_hoij0z77',
             objectType: 'KalturaMediaFile'
@@ -287,8 +262,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             assetId: 480097,
             id: 728180,
             type: 'Mobile_Devices_Main_HD_Dash',
-            url:
-              'https://cdnapisec.kaltura.com/p/2091671/sp/209167100/playManifest/entryId/1_tmeqe2n9/format/mpegdash/tags/dash/protocol/http/f/a.mpd',
+            url: 'https://cdnapisec.kaltura.com/p/2091671/sp/209167100/playManifest/entryId/1_tmeqe2n9/format/mpegdash/tags/dash/protocol/http/f/a.mpd',
             duration: 123000,
             externalId: '1_tmeqe2n9_1_uwlzalsz,1_tmeqe2n9_1_hoij0z77,1_tmeqe2n9_1_m1ycz1cx',
             objectType: 'KalturaMediaFile'
@@ -306,8 +280,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             assetId: 480097,
             id: 728182,
             type: 'Mobile_Devices_Main_SD_FP',
-            url:
-              'http://cdnapi.kaltura.com/p/2091671/sp/209167100/playManifest/entryId/1_tmeqe2n9/format/applehttp/tags/ipadnew/protocol/http/f/a.m3u8',
+            url: 'http://cdnapi.kaltura.com/p/2091671/sp/209167100/playManifest/entryId/1_tmeqe2n9/format/applehttp/tags/ipadnew/protocol/http/f/a.m3u8',
             duration: 123000,
             externalId: '1_tmeqe2n9_1_uwlzalsz,1_tmeqe2n9_1_hoij0z77',
             objectType: 'KalturaMediaFile'
@@ -316,8 +289,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             assetId: 480097,
             id: 728183,
             type: 'Mobile_Devices_Main_HD_FP',
-            url:
-              'https://cdnapisec.kaltura.com/p/2091671/sp/209167100/playManifest/entryId/1_tmeqe2n9/format/applehttp/tags/ipadnew/protocol/http/f/a.m3u8',
+            url: 'https://cdnapisec.kaltura.com/p/2091671/sp/209167100/playManifest/entryId/1_tmeqe2n9/format/applehttp/tags/ipadnew/protocol/http/f/a.m3u8',
             duration: 123000,
             externalId: '1_tmeqe2n9_1_uwlzalsz,1_tmeqe2n9_1_hoij0z77',
             objectType: 'KalturaMediaFile'
@@ -326,8 +298,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             assetId: 480097,
             id: 728184,
             type: 'Web_HD_Dash',
-            url:
-              'https://cdnapisec.kaltura.com/p/2091671/sp/209167100/playManifest/entryId/1_tmeqe2n9/format/mpegdash/tags/dash/protocol/https/f/a.mpd',
+            url: 'https://cdnapisec.kaltura.com/p/2091671/sp/209167100/playManifest/entryId/1_tmeqe2n9/format/mpegdash/tags/dash/protocol/https/f/a.mpd',
             duration: 123000,
             externalId: '1_tmeqe2n9_1_uwlzalsz,1_tmeqe2n9_1_hoij0z77,1_tmeqe2n9_1_m1ycz1cx',
             objectType: 'KalturaMediaFile'
@@ -336,8 +307,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             assetId: 480097,
             id: 728185,
             type: 'Web_HD_FP',
-            url:
-              'https://cdnapisec.kaltura.com/p/2091671/sp/209167100/playManifest/entryId/1_tmeqe2n9/format/applehttp/tags/ipadnew/protocol/https/f/a.m3u8',
+            url: 'https://cdnapisec.kaltura.com/p/2091671/sp/209167100/playManifest/entryId/1_tmeqe2n9/format/applehttp/tags/ipadnew/protocol/https/f/a.m3u8',
             duration: 123000,
             externalId: '1_tmeqe2n9_1_uwlzalsz,1_tmeqe2n9_1_hoij0z77',
             objectType: 'KalturaMediaFile'
@@ -346,8 +316,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             assetId: 480097,
             id: 728186,
             type: 'Web HD',
-            url:
-              'https://cdnapisec.kaltura.com/p/2091671/sp/209167100/playManifest/entryId/1_tmeqe2n9/format/applehttp/tags/ipadnew/protocol/https/f/a.m3u8',
+            url: 'https://cdnapisec.kaltura.com/p/2091671/sp/209167100/playManifest/entryId/1_tmeqe2n9/format/applehttp/tags/ipadnew/protocol/https/f/a.m3u8',
             duration: 123000,
             externalId: '1_tmeqe2n9_1_uwlzalsz,1_tmeqe2n9_1_hoij0z77',
             objectType: 'KalturaMediaFile'
@@ -356,8 +325,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             assetId: 480097,
             id: 728187,
             type: 'Mobile_Devices_Main_Download',
-            url:
-              'https://cdnapisec.kaltura.com/p/2091671/sp/209167100/playManifest/entryId/1_tmeqe2n9/format/mpegdash/tags/dash/protocol/http/f/a.mpd',
+            url: 'https://cdnapisec.kaltura.com/p/2091671/sp/209167100/playManifest/entryId/1_tmeqe2n9/format/mpegdash/tags/dash/protocol/http/f/a.mpd',
             duration: 123000,
             externalId: '1_tmeqe2n9_1_uwlzalsz,1_tmeqe2n9_1_hoij0z77,1_tmeqe2n9_1_m1ycz1cx',
             objectType: 'KalturaMediaFile'
@@ -366,55 +334,54 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             assetId: 480097,
             id: 728188,
             type: 'Mobile_Devices_Main_SD',
-            url:
-              'https://cdnapisec.kaltura.com/p/2091671/sp/209167100/playManifest/entryId/1_tmeqe2n9/format/url/tags/widevine/protocol/http/f/a.wvm',
+            url: 'https://cdnapisec.kaltura.com/p/2091671/sp/209167100/playManifest/entryId/1_tmeqe2n9/format/url/tags/widevine/protocol/http/f/a.wvm',
             duration: 123000,
             externalId: '1_tmeqe2n9_1_9crpi8m5,1_tmeqe2n9_1_r64bcvp1',
             objectType: 'KalturaMediaFile'
           }
         ],
         metas: {
-          synopsis: {value: '', objectType: 'KalturaMultilingualStringValue'},
-          'Short title': {value: '', objectType: 'KalturaMultilingualStringValue'},
-          Runtime: {value: '92', objectType: 'KalturaMultilingualStringValue'},
-          'Catchup logo URL': {value: '', objectType: 'KalturaMultilingualStringValue'},
-          'App Link': {value: '', objectType: 'KalturaMultilingualStringValue'},
-          Country: {value: '', objectType: 'KalturaMultilingualStringValue'},
-          QUALITY: {value: '', objectType: 'KalturaMultilingualStringValue'},
-          'Epg ID': {value: '', objectType: 'KalturaMultilingualStringValue'},
-          'Release year': {value: 2017, objectType: 'KalturaDoubleValue'},
-          'Catchup allowed': {value: false, objectType: 'KalturaBooleanValue'}
+          synopsis: { value: '', objectType: 'KalturaMultilingualStringValue' },
+          'Short title': { value: '', objectType: 'KalturaMultilingualStringValue' },
+          Runtime: { value: '92', objectType: 'KalturaMultilingualStringValue' },
+          'Catchup logo URL': { value: '', objectType: 'KalturaMultilingualStringValue' },
+          'App Link': { value: '', objectType: 'KalturaMultilingualStringValue' },
+          Country: { value: '', objectType: 'KalturaMultilingualStringValue' },
+          QUALITY: { value: '', objectType: 'KalturaMultilingualStringValue' },
+          'Epg ID': { value: '', objectType: 'KalturaMultilingualStringValue' },
+          'Release year': { value: 2017, objectType: 'KalturaDoubleValue' },
+          'Catchup allowed': { value: false, objectType: 'KalturaBooleanValue' }
         },
         tags: {
           Free: {
             objects: [
-              {value: 'nirit', objectType: 'KalturaMultilingualStringValue'},
+              { value: 'nirit', objectType: 'KalturaMultilingualStringValue' },
               {
                 value: 'nirit',
                 objectType: 'KalturaMultilingualStringValue'
               },
-              {value: 'nirit', objectType: 'KalturaMultilingualStringValue'}
+              { value: 'nirit', objectType: 'KalturaMultilingualStringValue' }
             ],
             objectType: 'KalturaMultilingualStringValueArray'
           },
           Genre: {
             objects: [
-              {value: 'Comedy', objectType: 'KalturaMultilingualStringValue'},
+              { value: 'Comedy', objectType: 'KalturaMultilingualStringValue' },
               {
                 value: 'Comedy',
                 objectType: 'KalturaMultilingualStringValue'
               },
-              {value: 'Comedy', objectType: 'KalturaMultilingualStringValue'},
+              { value: 'Comedy', objectType: 'KalturaMultilingualStringValue' },
               {
                 value: 'Drama',
                 objectType: 'KalturaMultilingualStringValue'
               },
-              {value: 'Kids', objectType: 'KalturaMultilingualStringValue'},
+              { value: 'Kids', objectType: 'KalturaMultilingualStringValue' },
               {
                 value: 'Kids',
                 objectType: 'KalturaMultilingualStringValue'
               },
-              {value: 'Kids', objectType: 'KalturaMultilingualStringValue'}
+              { value: 'Kids', objectType: 'KalturaMultilingualStringValue' }
             ],
             objectType: 'KalturaMultilingualStringValueArray'
           },
@@ -424,17 +391,17 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
                 value: 'Anna Kendrick',
                 objectType: 'KalturaMultilingualStringValue'
               },
-              {value: 'Anna Kendrick', objectType: 'KalturaMultilingualStringValue'},
+              { value: 'Anna Kendrick', objectType: 'KalturaMultilingualStringValue' },
               {
                 value: 'Anna Kendrick',
                 objectType: 'KalturaMultilingualStringValue'
               },
-              {value: 'Justin Timberlake', objectType: 'KalturaMultilingualStringValue'},
+              { value: 'Justin Timberlake', objectType: 'KalturaMultilingualStringValue' },
               {
                 value: 'Justin Timberlake',
                 objectType: 'KalturaMultilingualStringValue'
               },
-              {value: 'Justin Timberlake', objectType: 'KalturaMultilingualStringValue'}
+              { value: 'Justin Timberlake', objectType: 'KalturaMultilingualStringValue' }
             ],
             objectType: 'KalturaMultilingualStringValueArray'
           },
@@ -444,7 +411,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
                 value: 'Walt Dohrn',
                 objectType: 'KalturaMultilingualStringValue'
               },
-              {value: 'Walt Dohrn', objectType: 'KalturaMultilingualStringValue'},
+              { value: 'Walt Dohrn', objectType: 'KalturaMultilingualStringValue' },
               {
                 value: 'Walt Dohrn',
                 objectType: 'KalturaMultilingualStringValue'
@@ -458,40 +425,40 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
                 value: 'PG',
                 objectType: 'KalturaMultilingualStringValue'
               },
-              {value: 'Parental - 8', objectType: 'KalturaMultilingualStringValue'}
+              { value: 'Parental - 8', objectType: 'KalturaMultilingualStringValue' }
             ],
             objectType: 'KalturaMultilingualStringValueArray'
           },
           Studio: {
             objects: [
-              {value: 'Pixar', objectType: 'KalturaMultilingualStringValue'},
+              { value: 'Pixar', objectType: 'KalturaMultilingualStringValue' },
               {
                 value: 'Pixar',
                 objectType: 'KalturaMultilingualStringValue'
               },
-              {value: 'Pixar', objectType: 'KalturaMultilingualStringValue'}
+              { value: 'Pixar', objectType: 'KalturaMultilingualStringValue' }
             ],
             objectType: 'KalturaMultilingualStringValueArray'
           },
           Country: {
             objects: [
-              {value: 'USA', objectType: 'KalturaMultilingualStringValue'},
+              { value: 'USA', objectType: 'KalturaMultilingualStringValue' },
               {
                 value: 'USA',
                 objectType: 'KalturaMultilingualStringValue'
               },
-              {value: 'USA', objectType: 'KalturaMultilingualStringValue'}
+              { value: 'USA', objectType: 'KalturaMultilingualStringValue' }
             ],
             objectType: 'KalturaMultilingualStringValueArray'
           },
           QUALITY: {
             objects: [
-              {value: 'hd', objectType: 'KalturaMultilingualStringValue'},
+              { value: 'hd', objectType: 'KalturaMultilingualStringValue' },
               {
                 value: 'hd',
                 objectType: 'KalturaMultilingualStringValue'
               },
-              {value: 'hd', objectType: 'KalturaMultilingualStringValue'}
+              { value: 'hd', objectType: 'KalturaMultilingualStringValue' }
             ],
             objectType: 'KalturaMultilingualStringValueArray'
           }
@@ -514,8 +481,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             assetId: 480097,
             id: 728179,
             type: 'Mobile_Devices_Main_HD',
-            url:
-              'http://api-preprod.ott.kaltura.com/v4_6/api_v3/service/assetFile/action/playManifest/partnerId/198/assetId/480097/assetType/media/assetFileId/728179/contextType/PLAYBACK/a.m3u8',
+            url: 'http://api-preprod.ott.kaltura.com/v4_6/api_v3/service/assetFile/action/playManifest/partnerId/198/assetId/480097/assetType/media/assetFileId/728179/contextType/PLAYBACK/a.m3u8',
             duration: 123000,
             externalId: '1_tmeqe2n9_1_uwlzalsz,1_tmeqe2n9_1_hoij0z77',
             objectType: 'KalturaPlaybackSource'
@@ -540,8 +506,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             assetId: 480097,
             id: 728180,
             type: 'Mobile_Devices_Main_HD_Dash',
-            url:
-              'http://api-preprod.ott.kaltura.com/v4_6/api_v3/service/assetFile/action/playManifest/partnerId/198/assetId/480097/assetType/media/assetFileId/728180/contextType/PLAYBACK/a.mpd',
+            url: 'http://api-preprod.ott.kaltura.com/v4_6/api_v3/service/assetFile/action/playManifest/partnerId/198/assetId/480097/assetType/media/assetFileId/728180/contextType/PLAYBACK/a.mpd',
             duration: 123000,
             externalId: '1_tmeqe2n9_1_uwlzalsz,1_tmeqe2n9_1_hoij0z77,1_tmeqe2n9_1_m1ycz1cx',
             objectType: 'KalturaPlaybackSource'
@@ -566,8 +531,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             assetId: 480097,
             id: 728181,
             type: 'Mobile_Devices_Main_SD_Dash',
-            url:
-              'http://api-preprod.ott.kaltura.com/v4_6/api_v3/service/assetFile/action/playManifest/partnerId/198/assetId/480097/assetType/media/assetFileId/728181/contextType/PLAYBACK/a.mpd',
+            url: 'http://api-preprod.ott.kaltura.com/v4_6/api_v3/service/assetFile/action/playManifest/partnerId/198/assetId/480097/assetType/media/assetFileId/728181/contextType/PLAYBACK/a.mpd',
             duration: 123000,
             externalId: '1_tmeqe2n9_1_uwlzalsz,1_tmeqe2n9_1_hoij0z77,1_tmeqe2n9_1_m1ycz1cx',
             objectType: 'KalturaPlaybackSource'
@@ -588,8 +552,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             assetId: 480097,
             id: 728182,
             type: 'Mobile_Devices_Main_SD_FP',
-            url:
-              'http://api-preprod.ott.kaltura.com/v4_6/api_v3/service/assetFile/action/playManifest/partnerId/198/assetId/480097/assetType/media/assetFileId/728182/contextType/PLAYBACK/a.m3u8',
+            url: 'http://api-preprod.ott.kaltura.com/v4_6/api_v3/service/assetFile/action/playManifest/partnerId/198/assetId/480097/assetType/media/assetFileId/728182/contextType/PLAYBACK/a.m3u8',
             duration: 123000,
             externalId: '1_tmeqe2n9_1_uwlzalsz,1_tmeqe2n9_1_hoij0z77',
             objectType: 'KalturaPlaybackSource'
@@ -610,8 +573,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             assetId: 480097,
             id: 728183,
             type: 'Mobile_Devices_Main_HD_FP',
-            url:
-              'http://api-preprod.ott.kaltura.com/v4_6/api_v3/service/assetFile/action/playManifest/partnerId/198/assetId/480097/assetType/media/assetFileId/728183/contextType/PLAYBACK/a.m3u8',
+            url: 'http://api-preprod.ott.kaltura.com/v4_6/api_v3/service/assetFile/action/playManifest/partnerId/198/assetId/480097/assetType/media/assetFileId/728183/contextType/PLAYBACK/a.m3u8',
             duration: 123000,
             externalId: '1_tmeqe2n9_1_uwlzalsz,1_tmeqe2n9_1_hoij0z77',
             objectType: 'KalturaPlaybackSource'
@@ -636,8 +598,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             assetId: 480097,
             id: 728184,
             type: 'Web_HD_Dash',
-            url:
-              'http://api-preprod.ott.kaltura.com/v4_6/api_v3/service/assetFile/action/playManifest/partnerId/198/assetId/480097/assetType/media/assetFileId/728184/contextType/PLAYBACK/a.mpd',
+            url: 'http://api-preprod.ott.kaltura.com/v4_6/api_v3/service/assetFile/action/playManifest/partnerId/198/assetId/480097/assetType/media/assetFileId/728184/contextType/PLAYBACK/a.mpd',
             duration: 123000,
             externalId: '1_tmeqe2n9_1_uwlzalsz,1_tmeqe2n9_1_hoij0z77,1_tmeqe2n9_1_m1ycz1cx',
             objectType: 'KalturaPlaybackSource'
@@ -648,8 +609,7 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             assetId: 480097,
             id: 728187,
             type: 'Mobile_Devices_Main_Download',
-            url:
-              'http://api-preprod.ott.kaltura.com/v4_6/api_v3/service/assetFile/action/playManifest/partnerId/198/assetId/480097/assetType/media/assetFileId/728187/contextType/PLAYBACK/a.mpd',
+            url: 'http://api-preprod.ott.kaltura.com/v4_6/api_v3/service/assetFile/action/playManifest/partnerId/198/assetId/480097/assetType/media/assetFileId/728187/contextType/PLAYBACK/a.mpd',
             duration: 123000,
             externalId: '1_tmeqe2n9_1_uwlzalsz,1_tmeqe2n9_1_hoij0z77,1_tmeqe2n9_1_m1ycz1cx',
             objectType: 'KalturaPlaybackSource'
@@ -660,14 +620,13 @@ const AnonymousEntryWithoutUIConfWithDrmData = {
             assetId: 480097,
             id: 728188,
             type: 'Mobile_Devices_Main_SD',
-            url:
-              'http://api-preprod.ott.kaltura.com/v4_6/api_v3/service/assetFile/action/playManifest/partnerId/198/assetId/480097/assetType/media/assetFileId/728188/contextType/PLAYBACK/a.wvm',
+            url: 'http://api-preprod.ott.kaltura.com/v4_6/api_v3/service/assetFile/action/playManifest/partnerId/198/assetId/480097/assetType/media/assetFileId/728188/contextType/PLAYBACK/a.wvm',
             duration: 123000,
             externalId: '1_tmeqe2n9_1_9crpi8m5,1_tmeqe2n9_1_r64bcvp1',
             objectType: 'KalturaPlaybackSource'
           }
         ],
-        messages: [{message: 'OK', code: 'OK', objectType: 'KalturaAccessControlMessage'}],
+        messages: [{ message: 'OK', code: 'OK', objectType: 'KalturaAccessControlMessage' }],
         objectType: 'KalturaPlaybackContext'
       }
     ],
@@ -679,8 +638,7 @@ const LiveEntryNoDrmData = {
   response: {
     result: [
       {
-        ks:
-          'djJ8MTk4fEiDJqfTA_nqary8_jB-U-W0ne3JNVaZW5JmZDufdRcmcTGy3pAquXoMvFbANe6h63lEhxCo7mMZTsMTP5k4QDmOq99dRsPEsHUwOknv_9wvR_J2pbNzdXmlZ4JlYgO0ZcUr9_7tsZhqrHRfIcgrSj4=',
+        ks: 'djJ8MTk4fEiDJqfTA_nqary8_jB-U-W0ne3JNVaZW5JmZDufdRcmcTGy3pAquXoMvFbANe6h63lEhxCo7mMZTsMTP5k4QDmOq99dRsPEsHUwOknv_9wvR_J2pbNzdXmlZ4JlYgO0ZcUr9_7tsZhqrHRfIcgrSj4=',
         refreshToken: 'b07f74dfe6584790b272eb742577369b',
         objectType: 'KalturaLoginSession'
       },
@@ -699,8 +657,7 @@ const LiveEntryNoDrmData = {
             ratio: '16:9',
             width: 153,
             height: 86,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/153/height/86/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/153/height/86/quality/100',
             version: 0,
             id: '6c5a2e51f3354e75b2e4fe8a5f8dab33_1',
             isDefault: false,
@@ -710,8 +667,7 @@ const LiveEntryNoDrmData = {
             ratio: '16:9',
             width: 302,
             height: 170,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/302/height/170/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/302/height/170/quality/100',
             version: 0,
             id: '6c5a2e51f3354e75b2e4fe8a5f8dab33_1',
             isDefault: false,
@@ -721,8 +677,7 @@ const LiveEntryNoDrmData = {
             ratio: '16:9',
             width: 568,
             height: 320,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/568/height/320/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/568/height/320/quality/100',
             version: 0,
             id: '6c5a2e51f3354e75b2e4fe8a5f8dab33_1',
             isDefault: false,
@@ -732,8 +687,7 @@ const LiveEntryNoDrmData = {
             ratio: '16:9',
             width: 960,
             height: 540,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/960/height/540/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/960/height/540/quality/100',
             version: 0,
             id: '6c5a2e51f3354e75b2e4fe8a5f8dab33_1',
             isDefault: false,
@@ -743,8 +697,7 @@ const LiveEntryNoDrmData = {
             ratio: '16:9',
             width: 1280,
             height: 720,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/1280/height/720/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/1280/height/720/quality/100',
             version: 0,
             id: '6c5a2e51f3354e75b2e4fe8a5f8dab33_1',
             isDefault: false,
@@ -754,8 +707,7 @@ const LiveEntryNoDrmData = {
             ratio: '16:9',
             width: 2048,
             height: 1152,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/2048/height/1152/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/2048/height/1152/quality/100',
             version: 0,
             id: '6c5a2e51f3354e75b2e4fe8a5f8dab33_1',
             isDefault: false,
@@ -765,8 +717,7 @@ const LiveEntryNoDrmData = {
             ratio: '1:1',
             width: 70,
             height: 70,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_12/version/0/width/70/height/70/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_12/version/0/width/70/height/70/quality/100',
             version: 0,
             id: '6c5a2e51f3354e75b2e4fe8a5f8dab33_12',
             isDefault: false,
@@ -776,8 +727,7 @@ const LiveEntryNoDrmData = {
             ratio: '1:1',
             width: 100,
             height: 100,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_12/version/0/width/100/height/100/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_12/version/0/width/100/height/100/quality/100',
             version: 0,
             id: '6c5a2e51f3354e75b2e4fe8a5f8dab33_12',
             isDefault: false,
@@ -787,8 +737,7 @@ const LiveEntryNoDrmData = {
             ratio: '2:3',
             width: 103,
             height: 154,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_2/version/0/width/103/height/154/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_2/version/0/width/103/height/154/quality/100',
             version: 0,
             id: '6c5a2e51f3354e75b2e4fe8a5f8dab33_2',
             isDefault: false,
@@ -798,8 +747,7 @@ const LiveEntryNoDrmData = {
             ratio: '2:3',
             width: 149,
             height: 223,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_2/version/0/width/149/height/223/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_2/version/0/width/149/height/223/quality/100',
             version: 0,
             id: '6c5a2e51f3354e75b2e4fe8a5f8dab33_2',
             isDefault: false,
@@ -809,8 +757,7 @@ const LiveEntryNoDrmData = {
             ratio: '2:3',
             width: 212,
             height: 318,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_2/version/0/width/212/height/318/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_2/version/0/width/212/height/318/quality/100',
             version: 0,
             id: '6c5a2e51f3354e75b2e4fe8a5f8dab33_2',
             isDefault: false,
@@ -820,8 +767,7 @@ const LiveEntryNoDrmData = {
             ratio: '2:3',
             width: 355,
             height: 534,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_2/version/0/width/355/height/534/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_2/version/0/width/355/height/534/quality/100',
             version: 0,
             id: '6c5a2e51f3354e75b2e4fe8a5f8dab33_2',
             isDefault: false,
@@ -831,8 +777,7 @@ const LiveEntryNoDrmData = {
             ratio: '2:3',
             width: 800,
             height: 1111,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_2/version/0/width/800/height/1111/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_2/version/0/width/800/height/1111/quality/100',
             version: 0,
             id: '6c5a2e51f3354e75b2e4fe8a5f8dab33_2',
             isDefault: false,
@@ -842,8 +787,7 @@ const LiveEntryNoDrmData = {
             ratio: '2:3',
             width: 600,
             height: 900,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_2/version/0/width/600/height/900/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_2/version/0/width/600/height/900/quality/100',
             version: 0,
             id: '6c5a2e51f3354e75b2e4fe8a5f8dab33_2',
             isDefault: false,
@@ -853,8 +797,7 @@ const LiveEntryNoDrmData = {
             ratio: '16:9',
             width: 282,
             height: 158,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/282/height/158/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/282/height/158/quality/100',
             version: 0,
             id: '6c5a2e51f3354e75b2e4fe8a5f8dab33_1',
             isDefault: false,
@@ -864,8 +807,7 @@ const LiveEntryNoDrmData = {
             ratio: '2:3',
             width: 180,
             height: 270,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_2/version/0/width/180/height/270/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_2/version/0/width/180/height/270/quality/100',
             version: 0,
             id: '6c5a2e51f3354e75b2e4fe8a5f8dab33_2',
             isDefault: false,
@@ -875,8 +817,7 @@ const LiveEntryNoDrmData = {
             ratio: '16:9',
             width: 105,
             height: 80,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/105/height/80/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/105/height/80/quality/100',
             version: 0,
             id: '6c5a2e51f3354e75b2e4fe8a5f8dab33_1',
             isDefault: false,
@@ -886,8 +827,7 @@ const LiveEntryNoDrmData = {
             ratio: '16:9',
             width: 195,
             height: 150,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/195/height/150/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/195/height/150/quality/100',
             version: 0,
             id: '6c5a2e51f3354e75b2e4fe8a5f8dab33_1',
             isDefault: false,
@@ -897,8 +837,7 @@ const LiveEntryNoDrmData = {
             ratio: '16:9',
             width: 105,
             height: 55,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/105/height/55/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/105/height/55/quality/100',
             version: 0,
             id: '6c5a2e51f3354e75b2e4fe8a5f8dab33_1',
             isDefault: false,
@@ -908,8 +847,7 @@ const LiveEntryNoDrmData = {
             ratio: '16:9',
             width: 70,
             height: 52,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/70/height/52/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/70/height/52/quality/100',
             version: 0,
             id: '6c5a2e51f3354e75b2e4fe8a5f8dab33_1',
             isDefault: false,
@@ -919,8 +857,7 @@ const LiveEntryNoDrmData = {
             ratio: '16:9',
             width: 590,
             height: 445,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/590/height/445/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/590/height/445/quality/100',
             version: 0,
             id: '6c5a2e51f3354e75b2e4fe8a5f8dab33_1',
             isDefault: false,
@@ -930,8 +867,7 @@ const LiveEntryNoDrmData = {
             ratio: '16:9',
             width: 300,
             height: 250,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/300/height/250/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/300/height/250/quality/100',
             version: 0,
             id: '6c5a2e51f3354e75b2e4fe8a5f8dab33_1',
             isDefault: false,
@@ -941,8 +877,7 @@ const LiveEntryNoDrmData = {
             ratio: '1:1',
             width: 500,
             height: 500,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_12/version/0/width/500/height/500/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_12/version/0/width/500/height/500/quality/100',
             version: 0,
             id: '6c5a2e51f3354e75b2e4fe8a5f8dab33_12',
             isDefault: false,
@@ -952,8 +887,7 @@ const LiveEntryNoDrmData = {
             ratio: '2:1',
             width: 200,
             height: 100,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_17/version/0/width/200/height/100/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_17/version/0/width/200/height/100/quality/100',
             version: 0,
             id: '6c5a2e51f3354e75b2e4fe8a5f8dab33_17',
             isDefault: false,
@@ -963,8 +897,7 @@ const LiveEntryNoDrmData = {
             ratio: '4:3',
             width: 400,
             height: 300,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_3/version/0/width/400/height/300/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_3/version/0/width/400/height/300/quality/100',
             version: 0,
             id: '6c5a2e51f3354e75b2e4fe8a5f8dab33_3',
             isDefault: false,
@@ -974,8 +907,7 @@ const LiveEntryNoDrmData = {
             ratio: '16:9',
             width: 1080,
             height: 1960,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/1080/height/1960/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_1/version/0/width/1080/height/1960/quality/100',
             version: 0,
             id: '6c5a2e51f3354e75b2e4fe8a5f8dab33_1',
             isDefault: false,
@@ -985,8 +917,7 @@ const LiveEntryNoDrmData = {
             ratio: '1:1',
             width: 800,
             height: 800,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_12/version/0/width/800/height/800/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/6c5a2e51f3354e75b2e4fe8a5f8dab33_12/version/0/width/800/height/800/quality/100',
             version: 0,
             id: '6c5a2e51f3354e75b2e4fe8a5f8dab33_12',
             isDefault: false,
@@ -998,8 +929,7 @@ const LiveEntryNoDrmData = {
             assetId: 276507,
             id: 552351,
             type: 'Mobile_Devices_Main_SD',
-            url:
-              'http://cdnapi.kaltura.com/p/931702/sp/93170200/playManifest/entryId/1_oorxcge2/format/applehttp/protocol/http/uiConfId/28428751/a.m3u8',
+            url: 'http://cdnapi.kaltura.com/p/931702/sp/93170200/playManifest/entryId/1_oorxcge2/format/applehttp/protocol/http/uiConfId/28428751/a.m3u8',
             duration: 0,
             externalId: '',
             fileSize: 0,
@@ -1009,8 +939,7 @@ const LiveEntryNoDrmData = {
             assetId: 276507,
             id: 552352,
             type: 'Mobile_Devices_Main_HD',
-            url:
-              'http://cdnapi.kaltura.com/p/931702/sp/93170200/playManifest/entryId/1_oorxcge2/format/applehttp/protocol/http/uiConfId/28428751/a.m3u8',
+            url: 'http://cdnapi.kaltura.com/p/931702/sp/93170200/playManifest/entryId/1_oorxcge2/format/applehttp/protocol/http/uiConfId/28428751/a.m3u8',
             duration: 0,
             externalId: '',
             fileSize: 0,
@@ -1132,8 +1061,7 @@ const LiveEntryNoDrmData = {
             assetId: 276507,
             id: 552351,
             type: 'Mobile_Devices_Main_SD',
-            url:
-              'http://api-preprod.ott.kaltura.com/v4_7/api_v3/service/assetFile/action/playManifest/partnerId/198/assetId/276507/assetType/media/assetFileId/552351/contextType/PLAYBACK/a.m3u8',
+            url: 'http://api-preprod.ott.kaltura.com/v4_7/api_v3/service/assetFile/action/playManifest/partnerId/198/assetId/276507/assetType/media/assetFileId/552351/contextType/PLAYBACK/a.m3u8',
             duration: 0,
             externalId: '',
             fileSize: 0,
@@ -1146,8 +1074,7 @@ const LiveEntryNoDrmData = {
             assetId: 276507,
             id: 552352,
             type: 'Mobile_Devices_Main_HD',
-            url:
-              'http://api-preprod.ott.kaltura.com/v4_7/api_v3/service/assetFile/action/playManifest/partnerId/198/assetId/276507/assetType/media/assetFileId/552352/contextType/PLAYBACK/a.m3u8',
+            url: 'http://api-preprod.ott.kaltura.com/v4_7/api_v3/service/assetFile/action/playManifest/partnerId/198/assetId/276507/assetType/media/assetFileId/552352/contextType/PLAYBACK/a.m3u8',
             duration: 0,
             externalId: '',
             fileSize: 0,
@@ -1172,8 +1099,7 @@ const BlockActionEntry = {
   response: {
     result: [
       {
-        ks:
-          'djJ8MTk4fEiDJqfTA_nqary8_jB-U-W0ne3JNVaZW5JmZDufdRcmcTGy3pAquXoMvFbANe6h63lEhxCo7mMZTsMTP5k4QDmOq99dRsPEsHUwOknv_9wvR_J2pbNzdXmlZ4JlYgO0ZcUr9_7tsZhqrHRfIcgrSj4=',
+        ks: 'djJ8MTk4fEiDJqfTA_nqary8_jB-U-W0ne3JNVaZW5JmZDufdRcmcTGy3pAquXoMvFbANe6h63lEhxCo7mMZTsMTP5k4QDmOq99dRsPEsHUwOknv_9wvR_J2pbNzdXmlZ4JlYgO0ZcUr9_7tsZhqrHRfIcgrSj4=',
         refreshToken: 'b07f74dfe6584790b272eb742577369b',
         objectType: 'KalturaLoginSession'
       },
@@ -1201,8 +1127,8 @@ const BlockActionEntry = {
       },
       {
         sources: [],
-        actions: [{type: 'BLOCK', objectType: 'KalturaAccessControlBlockAction'}],
-        messages: [{message: 'Concurrency limitation', code: 'ConcurrencyLimitation', objectType: 'KalturaAccessControlMessage'}],
+        actions: [{ type: 'BLOCK', objectType: 'KalturaAccessControlBlockAction' }],
+        messages: [{ message: 'Concurrency limitation', code: 'ConcurrencyLimitation', objectType: 'KalturaAccessControlMessage' }],
         objectType: 'KalturaPlaybackContext'
       }
     ],
@@ -1226,8 +1152,7 @@ const PlaylistByEntryList = {
   response: {
     result: [
       {
-        ks:
-          'djJ8MTk4fBa3rps5BV6SgJ-skY9XtHSse9q1Z_b6bwviDj24wpk1LPtaUrslmRUQI96GJ9Rqf-T8s2Jx1Xx60QlFWcJj9GutrjgWSb0kIBgFfLG8Wv_2-fAm1QgjgDXYDs2FidSs7UvT1fsgpPyzu27T_H1FY9I=',
+        ks: 'djJ8MTk4fBa3rps5BV6SgJ-skY9XtHSse9q1Z_b6bwviDj24wpk1LPtaUrslmRUQI96GJ9Rqf-T8s2Jx1Xx60QlFWcJj9GutrjgWSb0kIBgFfLG8Wv_2-fAm1QgjgDXYDs2FidSs7UvT1fsgpPyzu27T_H1FY9I=',
         refreshToken: 'd0ee0f31b3ed4f9eaff93ae03d9bcdf5',
         objectType: 'KalturaLoginSession'
       },
@@ -1246,8 +1171,7 @@ const PlaylistByEntryList = {
             ratio: '16:9',
             width: 153,
             height: 86,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/153/height/86/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/153/height/86/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
             isDefault: false,
@@ -1257,8 +1181,7 @@ const PlaylistByEntryList = {
             ratio: '16:9',
             width: 302,
             height: 170,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/302/height/170/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/302/height/170/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
             isDefault: false,
@@ -1268,8 +1191,7 @@ const PlaylistByEntryList = {
             ratio: '16:9',
             width: 568,
             height: 320,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/568/height/320/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/568/height/320/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
             isDefault: false,
@@ -1279,8 +1201,7 @@ const PlaylistByEntryList = {
             ratio: '16:9',
             width: 960,
             height: 540,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/960/height/540/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/960/height/540/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
             isDefault: false,
@@ -1290,8 +1211,7 @@ const PlaylistByEntryList = {
             ratio: '16:9',
             width: 1280,
             height: 720,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/1280/height/720/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/1280/height/720/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
             isDefault: false,
@@ -1301,8 +1221,7 @@ const PlaylistByEntryList = {
             ratio: '16:9',
             width: 2048,
             height: 1152,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/2048/height/1152/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/2048/height/1152/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
             isDefault: false,
@@ -1312,8 +1231,7 @@ const PlaylistByEntryList = {
             ratio: '1:1',
             width: 70,
             height: 70,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_12/version/0/width/70/height/70/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_12/version/0/width/70/height/70/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_12',
             isDefault: false,
@@ -1323,8 +1241,7 @@ const PlaylistByEntryList = {
             ratio: '1:1',
             width: 100,
             height: 100,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_12/version/0/width/100/height/100/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_12/version/0/width/100/height/100/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_12',
             isDefault: false,
@@ -1334,8 +1251,7 @@ const PlaylistByEntryList = {
             ratio: '2:3',
             width: 103,
             height: 154,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/103/height/154/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/103/height/154/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_2',
             isDefault: false,
@@ -1345,8 +1261,7 @@ const PlaylistByEntryList = {
             ratio: '2:3',
             width: 149,
             height: 223,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/149/height/223/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/149/height/223/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_2',
             isDefault: false,
@@ -1356,8 +1271,7 @@ const PlaylistByEntryList = {
             ratio: '2:3',
             width: 212,
             height: 318,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/212/height/318/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/212/height/318/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_2',
             isDefault: false,
@@ -1367,8 +1281,7 @@ const PlaylistByEntryList = {
             ratio: '2:3',
             width: 355,
             height: 534,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/355/height/534/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/355/height/534/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_2',
             isDefault: false,
@@ -1378,8 +1291,7 @@ const PlaylistByEntryList = {
             ratio: '2:3',
             width: 800,
             height: 1111,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/800/height/1111/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/800/height/1111/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_2',
             isDefault: false,
@@ -1389,8 +1301,7 @@ const PlaylistByEntryList = {
             ratio: '2:3',
             width: 600,
             height: 900,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/600/height/900/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/600/height/900/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_2',
             isDefault: false,
@@ -1400,8 +1311,7 @@ const PlaylistByEntryList = {
             ratio: '16:9',
             width: 282,
             height: 158,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/282/height/158/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/282/height/158/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
             isDefault: false,
@@ -1411,8 +1321,7 @@ const PlaylistByEntryList = {
             ratio: '2:3',
             width: 180,
             height: 270,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/180/height/270/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/180/height/270/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_2',
             isDefault: false,
@@ -1422,8 +1331,7 @@ const PlaylistByEntryList = {
             ratio: '16:9',
             width: 105,
             height: 80,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/105/height/80/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/105/height/80/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
             isDefault: false,
@@ -1433,8 +1341,7 @@ const PlaylistByEntryList = {
             ratio: '16:9',
             width: 195,
             height: 150,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/195/height/150/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/195/height/150/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
             isDefault: false,
@@ -1444,8 +1351,7 @@ const PlaylistByEntryList = {
             ratio: '16:9',
             width: 105,
             height: 55,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/105/height/55/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/105/height/55/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
             isDefault: false,
@@ -1455,8 +1361,7 @@ const PlaylistByEntryList = {
             ratio: '16:9',
             width: 70,
             height: 52,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/70/height/52/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/70/height/52/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
             isDefault: false,
@@ -1466,8 +1371,7 @@ const PlaylistByEntryList = {
             ratio: '16:9',
             width: 590,
             height: 445,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/590/height/445/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/590/height/445/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
             isDefault: false,
@@ -1477,8 +1381,7 @@ const PlaylistByEntryList = {
             ratio: '16:9',
             width: 300,
             height: 250,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/300/height/250/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/300/height/250/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
             isDefault: false,
@@ -1488,8 +1391,7 @@ const PlaylistByEntryList = {
             ratio: '1:1',
             width: 500,
             height: 500,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_12/version/0/width/500/height/500/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_12/version/0/width/500/height/500/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_12',
             isDefault: false,
@@ -1499,8 +1401,7 @@ const PlaylistByEntryList = {
             ratio: '2:1',
             width: 200,
             height: 100,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_17/version/0/width/200/height/100/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_17/version/0/width/200/height/100/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_17',
             isDefault: false,
@@ -1510,8 +1411,7 @@ const PlaylistByEntryList = {
             ratio: '4:3',
             width: 400,
             height: 300,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_3/version/0/width/400/height/300/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_3/version/0/width/400/height/300/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_3',
             isDefault: false,
@@ -1521,8 +1421,7 @@ const PlaylistByEntryList = {
             ratio: '16:9',
             width: 1080,
             height: 1960,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/1080/height/1960/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/1080/height/1960/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
             isDefault: false,
@@ -1532,8 +1431,7 @@ const PlaylistByEntryList = {
             ratio: '1:1',
             width: 800,
             height: 800,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_12/version/0/width/800/height/800/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_12/version/0/width/800/height/800/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_12',
             isDefault: false,
@@ -1708,8 +1606,7 @@ const PlaylistByEntryList = {
             ratio: '16:9',
             width: 153,
             height: 86,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/153/height/86/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/153/height/86/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_1',
             isDefault: false,
@@ -1719,8 +1616,7 @@ const PlaylistByEntryList = {
             ratio: '16:9',
             width: 302,
             height: 170,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/302/height/170/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/302/height/170/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_1',
             isDefault: false,
@@ -1730,8 +1626,7 @@ const PlaylistByEntryList = {
             ratio: '16:9',
             width: 568,
             height: 320,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/568/height/320/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/568/height/320/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_1',
             isDefault: false,
@@ -1741,8 +1636,7 @@ const PlaylistByEntryList = {
             ratio: '16:9',
             width: 960,
             height: 540,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/960/height/540/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/960/height/540/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_1',
             isDefault: false,
@@ -1752,8 +1646,7 @@ const PlaylistByEntryList = {
             ratio: '16:9',
             width: 1280,
             height: 720,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/1280/height/720/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/1280/height/720/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_1',
             isDefault: false,
@@ -1763,8 +1656,7 @@ const PlaylistByEntryList = {
             ratio: '16:9',
             width: 2048,
             height: 1152,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/2048/height/1152/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/2048/height/1152/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_1',
             isDefault: false,
@@ -1774,8 +1666,7 @@ const PlaylistByEntryList = {
             ratio: '1:1',
             width: 70,
             height: 70,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_12/version/0/width/70/height/70/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_12/version/0/width/70/height/70/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_12',
             isDefault: false,
@@ -1785,8 +1676,7 @@ const PlaylistByEntryList = {
             ratio: '1:1',
             width: 100,
             height: 100,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_12/version/0/width/100/height/100/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_12/version/0/width/100/height/100/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_12',
             isDefault: false,
@@ -1796,8 +1686,7 @@ const PlaylistByEntryList = {
             ratio: '2:3',
             width: 103,
             height: 154,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/103/height/154/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/103/height/154/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_2',
             isDefault: false,
@@ -1807,8 +1696,7 @@ const PlaylistByEntryList = {
             ratio: '2:3',
             width: 149,
             height: 223,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/149/height/223/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/149/height/223/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_2',
             isDefault: false,
@@ -1818,8 +1706,7 @@ const PlaylistByEntryList = {
             ratio: '2:3',
             width: 212,
             height: 318,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/212/height/318/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/212/height/318/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_2',
             isDefault: false,
@@ -1829,8 +1716,7 @@ const PlaylistByEntryList = {
             ratio: '2:3',
             width: 355,
             height: 534,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/355/height/534/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/355/height/534/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_2',
             isDefault: false,
@@ -1840,8 +1726,7 @@ const PlaylistByEntryList = {
             ratio: '2:3',
             width: 800,
             height: 1111,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/800/height/1111/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/800/height/1111/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_2',
             isDefault: false,
@@ -1851,8 +1736,7 @@ const PlaylistByEntryList = {
             ratio: '2:3',
             width: 600,
             height: 900,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/600/height/900/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/600/height/900/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_2',
             isDefault: false,
@@ -1862,8 +1746,7 @@ const PlaylistByEntryList = {
             ratio: '16:9',
             width: 282,
             height: 158,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/282/height/158/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/282/height/158/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_1',
             isDefault: false,
@@ -1873,8 +1756,7 @@ const PlaylistByEntryList = {
             ratio: '2:3',
             width: 180,
             height: 270,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/180/height/270/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/180/height/270/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_2',
             isDefault: false,
@@ -1884,8 +1766,7 @@ const PlaylistByEntryList = {
             ratio: '16:9',
             width: 105,
             height: 80,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/105/height/80/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/105/height/80/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_1',
             isDefault: false,
@@ -1895,8 +1776,7 @@ const PlaylistByEntryList = {
             ratio: '16:9',
             width: 195,
             height: 150,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/195/height/150/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/195/height/150/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_1',
             isDefault: false,
@@ -1906,8 +1786,7 @@ const PlaylistByEntryList = {
             ratio: '16:9',
             width: 105,
             height: 55,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/105/height/55/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/105/height/55/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_1',
             isDefault: false,
@@ -1917,8 +1796,7 @@ const PlaylistByEntryList = {
             ratio: '16:9',
             width: 70,
             height: 52,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/70/height/52/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/70/height/52/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_1',
             isDefault: false,
@@ -1928,8 +1806,7 @@ const PlaylistByEntryList = {
             ratio: '16:9',
             width: 590,
             height: 445,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/590/height/445/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/590/height/445/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_1',
             isDefault: false,
@@ -1939,8 +1816,7 @@ const PlaylistByEntryList = {
             ratio: '16:9',
             width: 300,
             height: 250,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/300/height/250/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/300/height/250/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_1',
             isDefault: false,
@@ -1950,8 +1826,7 @@ const PlaylistByEntryList = {
             ratio: '1:1',
             width: 500,
             height: 500,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_12/version/0/width/500/height/500/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_12/version/0/width/500/height/500/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_12',
             isDefault: false,
@@ -1961,8 +1836,7 @@ const PlaylistByEntryList = {
             ratio: '2:1',
             width: 200,
             height: 100,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_17/version/0/width/200/height/100/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_17/version/0/width/200/height/100/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_17',
             isDefault: false,
@@ -1972,8 +1846,7 @@ const PlaylistByEntryList = {
             ratio: '4:3',
             width: 400,
             height: 300,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_3/version/0/width/400/height/300/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_3/version/0/width/400/height/300/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_3',
             isDefault: false,
@@ -1983,8 +1856,7 @@ const PlaylistByEntryList = {
             ratio: '16:9',
             width: 1080,
             height: 1960,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/1080/height/1960/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/1080/height/1960/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_1',
             isDefault: false,
@@ -1994,8 +1866,7 @@ const PlaylistByEntryList = {
             ratio: '1:1',
             width: 800,
             height: 800,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_12/version/0/width/800/height/800/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_12/version/0/width/800/height/800/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_12',
             isDefault: false,
@@ -2171,8 +2042,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '16:9',
             width: 153,
             height: 86,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/153/height/86/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/153/height/86/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
             isDefault: false,
@@ -2182,8 +2052,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '16:9',
             width: 302,
             height: 170,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/302/height/170/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/302/height/170/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
             isDefault: false,
@@ -2193,8 +2062,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '16:9',
             width: 568,
             height: 320,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/568/height/320/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/568/height/320/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
             isDefault: false,
@@ -2204,8 +2072,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '16:9',
             width: 960,
             height: 540,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/960/height/540/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/960/height/540/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
             isDefault: false,
@@ -2215,8 +2082,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '16:9',
             width: 1280,
             height: 720,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/1280/height/720/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/1280/height/720/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
             isDefault: false,
@@ -2226,8 +2092,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '16:9',
             width: 2048,
             height: 1152,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/2048/height/1152/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/2048/height/1152/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
             isDefault: false,
@@ -2237,8 +2102,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '1:1',
             width: 70,
             height: 70,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_12/version/0/width/70/height/70/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_12/version/0/width/70/height/70/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_12',
             isDefault: false,
@@ -2248,8 +2112,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '1:1',
             width: 100,
             height: 100,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_12/version/0/width/100/height/100/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_12/version/0/width/100/height/100/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_12',
             isDefault: false,
@@ -2259,8 +2122,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '2:3',
             width: 103,
             height: 154,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/103/height/154/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/103/height/154/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_2',
             isDefault: false,
@@ -2270,8 +2132,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '2:3',
             width: 149,
             height: 223,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/149/height/223/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/149/height/223/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_2',
             isDefault: false,
@@ -2281,8 +2142,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '2:3',
             width: 212,
             height: 318,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/212/height/318/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/212/height/318/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_2',
             isDefault: false,
@@ -2292,8 +2152,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '2:3',
             width: 355,
             height: 534,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/355/height/534/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/355/height/534/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_2',
             isDefault: false,
@@ -2303,8 +2162,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '2:3',
             width: 800,
             height: 1111,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/800/height/1111/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/800/height/1111/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_2',
             isDefault: false,
@@ -2314,8 +2172,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '2:3',
             width: 600,
             height: 900,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/600/height/900/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/600/height/900/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_2',
             isDefault: false,
@@ -2325,8 +2182,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '16:9',
             width: 282,
             height: 158,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/282/height/158/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/282/height/158/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
             isDefault: false,
@@ -2336,8 +2192,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '2:3',
             width: 180,
             height: 270,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/180/height/270/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_2/version/0/width/180/height/270/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_2',
             isDefault: false,
@@ -2347,8 +2202,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '16:9',
             width: 105,
             height: 80,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/105/height/80/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/105/height/80/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
             isDefault: false,
@@ -2358,8 +2212,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '16:9',
             width: 195,
             height: 150,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/195/height/150/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/195/height/150/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
             isDefault: false,
@@ -2369,8 +2222,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '16:9',
             width: 105,
             height: 55,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/105/height/55/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/105/height/55/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
             isDefault: false,
@@ -2380,8 +2232,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '16:9',
             width: 70,
             height: 52,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/70/height/52/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/70/height/52/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
             isDefault: false,
@@ -2391,8 +2242,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '16:9',
             width: 590,
             height: 445,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/590/height/445/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/590/height/445/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
             isDefault: false,
@@ -2402,8 +2252,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '16:9',
             width: 300,
             height: 250,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/300/height/250/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/300/height/250/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
             isDefault: false,
@@ -2413,8 +2262,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '1:1',
             width: 500,
             height: 500,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_12/version/0/width/500/height/500/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_12/version/0/width/500/height/500/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_12',
             isDefault: false,
@@ -2424,8 +2272,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '2:1',
             width: 200,
             height: 100,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_17/version/0/width/200/height/100/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_17/version/0/width/200/height/100/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_17',
             isDefault: false,
@@ -2435,8 +2282,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '4:3',
             width: 400,
             height: 300,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_3/version/0/width/400/height/300/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_3/version/0/width/400/height/300/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_3',
             isDefault: false,
@@ -2446,8 +2292,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '16:9',
             width: 1080,
             height: 1960,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/1080/height/1960/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_1/version/0/width/1080/height/1960/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_1',
             isDefault: false,
@@ -2457,8 +2302,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '1:1',
             width: 800,
             height: 800,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_12/version/0/width/800/height/800/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/a77c3f7b5d084d59b6e5363a3087fc2e_12/version/0/width/800/height/800/quality/100',
             version: 0,
             id: 'a77c3f7b5d084d59b6e5363a3087fc2e_12',
             isDefault: false,
@@ -2633,8 +2477,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '16:9',
             width: 153,
             height: 86,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/153/height/86/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/153/height/86/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_1',
             isDefault: false,
@@ -2644,8 +2487,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '16:9',
             width: 302,
             height: 170,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/302/height/170/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/302/height/170/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_1',
             isDefault: false,
@@ -2655,8 +2497,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '16:9',
             width: 568,
             height: 320,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/568/height/320/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/568/height/320/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_1',
             isDefault: false,
@@ -2666,8 +2507,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '16:9',
             width: 960,
             height: 540,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/960/height/540/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/960/height/540/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_1',
             isDefault: false,
@@ -2677,8 +2517,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '16:9',
             width: 1280,
             height: 720,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/1280/height/720/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/1280/height/720/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_1',
             isDefault: false,
@@ -2688,8 +2527,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '16:9',
             width: 2048,
             height: 1152,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/2048/height/1152/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/2048/height/1152/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_1',
             isDefault: false,
@@ -2699,8 +2537,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '1:1',
             width: 70,
             height: 70,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_12/version/0/width/70/height/70/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_12/version/0/width/70/height/70/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_12',
             isDefault: false,
@@ -2710,8 +2547,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '1:1',
             width: 100,
             height: 100,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_12/version/0/width/100/height/100/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_12/version/0/width/100/height/100/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_12',
             isDefault: false,
@@ -2721,8 +2557,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '2:3',
             width: 103,
             height: 154,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/103/height/154/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/103/height/154/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_2',
             isDefault: false,
@@ -2732,8 +2567,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '2:3',
             width: 149,
             height: 223,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/149/height/223/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/149/height/223/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_2',
             isDefault: false,
@@ -2743,8 +2577,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '2:3',
             width: 212,
             height: 318,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/212/height/318/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/212/height/318/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_2',
             isDefault: false,
@@ -2754,8 +2587,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '2:3',
             width: 355,
             height: 534,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/355/height/534/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/355/height/534/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_2',
             isDefault: false,
@@ -2765,8 +2597,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '2:3',
             width: 800,
             height: 1111,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/800/height/1111/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/800/height/1111/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_2',
             isDefault: false,
@@ -2776,8 +2607,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '2:3',
             width: 600,
             height: 900,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/600/height/900/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/600/height/900/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_2',
             isDefault: false,
@@ -2787,8 +2617,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '16:9',
             width: 282,
             height: 158,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/282/height/158/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/282/height/158/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_1',
             isDefault: false,
@@ -2798,8 +2627,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '2:3',
             width: 180,
             height: 270,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/180/height/270/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_2/version/0/width/180/height/270/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_2',
             isDefault: false,
@@ -2809,8 +2637,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '16:9',
             width: 105,
             height: 80,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/105/height/80/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/105/height/80/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_1',
             isDefault: false,
@@ -2820,8 +2647,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '16:9',
             width: 195,
             height: 150,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/195/height/150/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/195/height/150/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_1',
             isDefault: false,
@@ -2831,8 +2657,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '16:9',
             width: 105,
             height: 55,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/105/height/55/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/105/height/55/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_1',
             isDefault: false,
@@ -2842,8 +2667,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '16:9',
             width: 70,
             height: 52,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/70/height/52/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/70/height/52/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_1',
             isDefault: false,
@@ -2853,8 +2677,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '16:9',
             width: 590,
             height: 445,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/590/height/445/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/590/height/445/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_1',
             isDefault: false,
@@ -2864,8 +2687,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '16:9',
             width: 300,
             height: 250,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/300/height/250/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/300/height/250/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_1',
             isDefault: false,
@@ -2875,8 +2697,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '1:1',
             width: 500,
             height: 500,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_12/version/0/width/500/height/500/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_12/version/0/width/500/height/500/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_12',
             isDefault: false,
@@ -2886,8 +2707,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '2:1',
             width: 200,
             height: 100,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_17/version/0/width/200/height/100/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_17/version/0/width/200/height/100/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_17',
             isDefault: false,
@@ -2897,8 +2717,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '4:3',
             width: 400,
             height: 300,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_3/version/0/width/400/height/300/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_3/version/0/width/400/height/300/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_3',
             isDefault: false,
@@ -2908,8 +2727,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '16:9',
             width: 1080,
             height: 1960,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/1080/height/1960/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_1/version/0/width/1080/height/1960/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_1',
             isDefault: false,
@@ -2919,8 +2737,7 @@ const AnonymousPlaylistByEntryList = {
             ratio: '1:1',
             width: 800,
             height: 800,
-            url:
-              'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_12/version/0/width/800/height/800/quality/100',
+            url: 'http://imageserver-1655531075.eu-west-1.elb.amazonaws.com/ImageServer/Service.svc/GetImage/p/198/entry_id/9ffec13301184334acf6b491ce035ee9_12/version/0/width/800/height/800/quality/100',
             version: 0,
             id: '9ffec13301184334acf6b491ce035ee9_12',
             isDefault: false,
@@ -3106,7 +2923,7 @@ const EntryWithBumper = {
       {
         objectType: 'KalturaPlaybackContext',
         actions: [],
-        messages: [{objectType: 'KalturaAccessControlMessage', code: 'OK', message: 'OK'}],
+        messages: [{ objectType: 'KalturaAccessControlMessage', code: 'OK', message: 'OK' }],
         playbackCaptions: [],
         plugins: [
           {

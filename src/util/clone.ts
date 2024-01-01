@@ -3,14 +3,14 @@ const clone = (data): any => {
   if (Array.isArray(data)) {
     node = data.length > 0 ? data.slice(0) : [];
     node.forEach((e, i) => {
-      if ((typeof e === 'object') || (Array.isArray(e) && e.length > 0)) {
+      if (typeof e === 'object' || (Array.isArray(e) && e.length > 0)) {
         node[i] = clone(e);
       }
     });
   } else if (typeof data === 'object') {
     node = Object.assign({}, data);
-    Object.keys(node).forEach(key => {
-      if ((typeof node[key] === 'object') || (Array.isArray(node[key]) && node[key].length > 0)) {
+    Object.keys(node).forEach((key) => {
+      if (typeof node[key] === 'object' || (Array.isArray(node[key]) && node[key].length > 0)) {
         node[key] = clone(node[key]);
       }
     });
@@ -20,4 +20,4 @@ const clone = (data): any => {
   return node;
 };
 
-export {clone};
+export { clone };

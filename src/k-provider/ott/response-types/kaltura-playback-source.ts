@@ -1,4 +1,4 @@
-import {KalturaDrmPlaybackPluginData} from '../../common/response-types/kaltura-drm-playback-plugin-data';
+import { KalturaDrmPlaybackPluginData } from '../../common/response-types/kaltura-drm-playback-plugin-data';
 
 export type OTTKalturaPlaybackSource = KalturaPlaybackSource;
 
@@ -27,7 +27,7 @@ export default class KalturaPlaybackSource {
     this.fileId = source.id;
     this.protocols = source.protocols;
     if (source.drm) {
-      source.drm.map(drm => this.drm.push(new KalturaDrmPlaybackPluginData(drm)));
+      source.drm.map((drm) => this.drm.push(new KalturaDrmPlaybackPluginData(drm)));
     }
   }
 
@@ -49,7 +49,7 @@ export default class KalturaPlaybackSource {
     let returnValue: string = '';
     if (this.protocols && this.protocols.length > 0) {
       const protocolsArr: Array<string> = this.protocols.split(',');
-      protocolsArr.forEach(p => {
+      protocolsArr.forEach((p) => {
         if (p === protocol) {
           returnValue = p;
         }

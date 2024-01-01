@@ -1,10 +1,10 @@
 import ServiceResult from '../../common/base-service-result';
-import {KalturaAccessControlMessage} from '../../common/response-types/kaltura-access-control-message';
-import {KalturaPlaybackSource} from './kaltura-playback-source';
-import {KalturaAccessControlModifyRequestHostRegexAction} from './kaltura-access-control-modify-request-host-regex-action';
-import {KalturaRuleAction} from './kaltura-rule-action';
-import {KalturaFlavorAsset} from './kaltura-flavor-asset';
-import {KalturaBumper} from './kaltura-bumper';
+import { KalturaAccessControlMessage } from '../../common/response-types/kaltura-access-control-message';
+import { KalturaPlaybackSource } from './kaltura-playback-source';
+import { KalturaAccessControlModifyRequestHostRegexAction } from './kaltura-access-control-modify-request-host-regex-action';
+import { KalturaRuleAction } from './kaltura-rule-action';
+import { KalturaFlavorAsset } from './kaltura-flavor-asset';
+import { KalturaBumper } from './kaltura-bumper';
 
 export class KalturaPlaybackContext extends ServiceResult {
   /**
@@ -42,11 +42,11 @@ export class KalturaPlaybackContext extends ServiceResult {
     if (!this.hasError) {
       const messages = response.messages;
       if (messages) {
-        messages.map(message => this.messages.push(new KalturaAccessControlMessage(message)));
+        messages.map((message) => this.messages.push(new KalturaAccessControlMessage(message)));
       }
       const actions = response.actions;
       if (actions) {
-        actions.map(action => {
+        actions.map((action) => {
           if (action.type === KalturaRuleAction.Type.REQUEST_HOST_REGEX) {
             this.actions.push(new KalturaAccessControlModifyRequestHostRegexAction(action));
           } else {
@@ -56,15 +56,15 @@ export class KalturaPlaybackContext extends ServiceResult {
       }
       const sources = response.sources;
       if (sources) {
-        sources.map(source => this.sources.push(new KalturaPlaybackSource(source)));
+        sources.map((source) => this.sources.push(new KalturaPlaybackSource(source)));
       }
       const flavorAssets = response.flavorAssets;
       if (flavorAssets) {
-        flavorAssets.map(flavor => this.flavorAssets.push(new KalturaFlavorAsset(flavor)));
+        flavorAssets.map((flavor) => this.flavorAssets.push(new KalturaFlavorAsset(flavor)));
       }
       const bumperData = response.bumperData;
       if (bumperData) {
-        bumperData.map(bumper => this.bumperData.push(new KalturaBumper(bumper)));
+        bumperData.map((bumper) => this.bumperData.push(new KalturaBumper(bumper)));
       }
     }
   }
@@ -74,7 +74,7 @@ export class KalturaPlaybackContext extends ServiceResult {
   }
 
   public getBlockAction(): KalturaRuleAction | undefined {
-    return this.actions.find(action => action.type === KalturaRuleAction.Type.BLOCK);
+    return this.actions.find((action) => action.type === KalturaRuleAction.Type.BLOCK);
   }
 
   public getErrorMessages(): Array<KalturaAccessControlMessage> {
@@ -87,7 +87,7 @@ export class KalturaPlaybackContext extends ServiceResult {
    * @returns {?KalturaAccessControlModifyRequestHostRegexAction} The action
    * */
   public getRequestHostRegexAction(): KalturaAccessControlModifyRequestHostRegexAction | undefined {
-    const action = this.actions.find(action => action.type === KalturaRuleAction.Type.REQUEST_HOST_REGEX);
+    const action = this.actions.find((action) => action.type === KalturaRuleAction.Type.REQUEST_HOST_REGEX);
     if (action instanceof KalturaAccessControlModifyRequestHostRegexAction) {
       return action;
     }

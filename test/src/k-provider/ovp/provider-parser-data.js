@@ -142,4 +142,4 @@ const liveMediaEntryData = [
   }
 ];
 
-export {youtubeMediaEntryData, youtubeMediaEntryResult, liveMediaEntryData};
+export { youtubeMediaEntryData, youtubeMediaEntryResult, liveMediaEntryData };

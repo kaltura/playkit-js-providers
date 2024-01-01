@@ -1,5 +1,5 @@
 import ServiceResult from '../../common/base-service-result';
-import {KalturaMediaEntry} from './kaltura-media-entry';
+import { KalturaMediaEntry } from './kaltura-media-entry';
 
 export class KalturaBaseEntryListResponse extends ServiceResult {
   /**
@@ -23,7 +23,7 @@ export class KalturaBaseEntryListResponse extends ServiceResult {
       this.totalCount = responseObj.totalCount;
       if (this.totalCount > 0) {
         this.entries = [];
-        responseObj.objects.map(entry => this.entries.push(new KalturaMediaEntry(entry)));
+        responseObj.objects.map((entry) => this.entries.push(new KalturaMediaEntry(entry)));
       }
     }
   }

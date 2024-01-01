@@ -1,6 +1,6 @@
-import {ImageSource} from '../entities/image-source';
-import {ProviderMediaSourceObject} from './media-source';
-import {PKExternalCaptionObject} from './external-caption-object';
+import { ImageSource } from '../entities/image-source';
+import { ProviderMediaSourceObject } from './media-source';
+import { PKExternalCaptionObject } from './external-caption-object';
 
 export type ProviderMediaSourcesObject = {
   progressive: Array<ProviderMediaSourceObject>;

@@ -3,8 +3,7 @@ const AnonymousMocEntryWithoutUIConfNoDrmData = {
   response: [
     {
       partnerId: 1082342,
-      ks:
-        'OGM0ZWM0Y2IwOWI5ZjM0MDcyZmQ3YmYxNzBiMGEwNGYxNWQ0ZTcyOXwxMDgyMzQyOzEwODIzNDI7MTQ5MDExNTg5MzswOzE0OTAwMjk0OTMuMTY3ODswO3ZpZXc6Kix3aWRnZXQ6MTs7',
+      ks: 'OGM0ZWM0Y2IwOWI5ZjM0MDcyZmQ3YmYxNzBiMGEwNGYxNWQ0ZTcyOXwxMDgyMzQyOzEwODIzNDI7MTQ5MDExNTg5MzswOzE0OTAwMjk0OTMuMTY3ODswO3ZpZXc6Kix3aWRnZXQ6MTs7',
       userId: 0,
       objectType: 'KalturaStartWidgetSessionResponse'
     },
@@ -37,8 +36,7 @@ const AnonymousMocEntryWithoutUIConfNoDrmData = {
           format: 'url',
           protocols: 'http,https',
           flavorIds: '1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4',
-          url:
-            'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/1_rsrdfext/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/deliveryProfileId/10081/protocol/https/format/url/name/a.mov',
+          url: 'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/1_rsrdfext/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/deliveryProfileId/10081/protocol/https/format/url/name/a.mov',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -47,8 +45,7 @@ const AnonymousMocEntryWithoutUIConfNoDrmData = {
           format: 'hdnetworkmanifest',
           protocols: 'http,https',
           flavorIds: '1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4',
-          url:
-            'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/1_rsrdfext/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/deliveryProfileId/10101/protocol/https/format/hdnetworkmanifest/manifest.f4m',
+          url: 'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/1_rsrdfext/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/deliveryProfileId/10101/protocol/https/format/hdnetworkmanifest/manifest.f4m',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -57,8 +54,7 @@ const AnonymousMocEntryWithoutUIConfNoDrmData = {
           format: 'applehttp',
           protocols: 'http,https',
           flavorIds: '1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4',
-          url:
-            'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/1_rsrdfext/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/deliveryProfileId/10091/protocol/https/format/applehttp/a.m3u8',
+          url: 'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/1_rsrdfext/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/deliveryProfileId/10091/protocol/https/format/applehttp/a.m3u8',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -67,8 +63,7 @@ const AnonymousMocEntryWithoutUIConfNoDrmData = {
           format: 'applehttp',
           protocols: 'http,https',
           flavorIds: '1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4',
-          url:
-            'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/1_rsrdfext/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/deliveryProfileId/11241/protocol/https/format/applehttp/a.m3u8',
+          url: 'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/1_rsrdfext/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/deliveryProfileId/11241/protocol/https/format/applehttp/a.m3u8',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -77,8 +72,7 @@ const AnonymousMocEntryWithoutUIConfNoDrmData = {
           format: 'mpegdash',
           protocols: 'http,https',
           flavorIds: '1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4',
-          url:
-            'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/1_rsrdfext/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/deliveryProfileId/11611/protocol/https/format/mpegdash/manifest.mpd',
+          url: 'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/1_rsrdfext/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/deliveryProfileId/11611/protocol/https/format/mpegdash/manifest.mpd',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -87,8 +81,7 @@ const AnonymousMocEntryWithoutUIConfNoDrmData = {
           format: 'mpegdash',
           protocols: 'http,https',
           flavorIds: '1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4',
-          url:
-            'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/1_rsrdfext/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/deliveryProfileId/11261/protocol/https/format/mpegdash/manifest.mpd',
+          url: 'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/1_rsrdfext/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/deliveryProfileId/11261/protocol/https/format/mpegdash/manifest.mpd',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -97,8 +90,7 @@ const AnonymousMocEntryWithoutUIConfNoDrmData = {
           format: 'sl',
           protocols: 'http,https',
           flavorIds: '1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4',
-          url:
-            'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/1_rsrdfext/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/deliveryProfileId/11251/protocol/https/format/sl/a.ism',
+          url: 'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/1_rsrdfext/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/deliveryProfileId/11251/protocol/https/format/sl/a.ism',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         }
@@ -296,8 +288,7 @@ const AnonymousMocEntryWithoutUIConfNoDrmData = {
           createdAt: 1484776887,
           updatedAt: 1484776887,
           status: 1,
-          xml:
-            '<?xml version="1.0" encoding="ASCII"?>\n<metadata><OriginalFilename>FO21934-HDTX-SWE.mov</OriginalFilename>\n<Locale>sv_SE</Locale>\n<PropertyCode>FTA-nm</PropertyCode>\n<SiteSection>tv-dc</SiteSection>\n<ContentType>clip</ContentType>\n<BusinessUnit>Disney Channel</BusinessUnit>\n<Origin>IBMS</Origin>\n<PromoType>Show - TV</PromoType>\n<StartDate>1483225200</StartDate>\n<EndDate>1485903600</EndDate>\n<AgeConsent>No Age Consent</AgeConsent></metadata>\n',
+          xml: '<?xml version="1.0" encoding="ASCII"?>\n<metadata><OriginalFilename>FO21934-HDTX-SWE.mov</OriginalFilename>\n<Locale>sv_SE</Locale>\n<PropertyCode>FTA-nm</PropertyCode>\n<SiteSection>tv-dc</SiteSection>\n<ContentType>clip</ContentType>\n<BusinessUnit>Disney Channel</BusinessUnit>\n<Origin>IBMS</Origin>\n<PromoType>Show - TV</PromoType>\n<StartDate>1483225200</StartDate>\n<EndDate>1485903600</EndDate>\n<AgeConsent>No Age Consent</AgeConsent></metadata>\n',
           objectType: 'KalturaMetadata'
         },
         {
@@ -311,8 +302,7 @@ const AnonymousMocEntryWithoutUIConfNoDrmData = {
           createdAt: 1484776903,
           updatedAt: 1489508219,
           status: 1,
-          xml:
-            '<metadata>\n  <TXID>FO21934-HDTX-SWE</TXID>\n  <ZeroTouchIds>se-dc-lf</ZeroTouchIds>\n  <ScheduleSource>VOD</ScheduleSource>\n  <HLSOnly>android</HLSOnly>\n  <ChannelName>Disney Channel SE</ChannelName>\n</metadata>\n',
+          xml: '<metadata>\n  <TXID>FO21934-HDTX-SWE</TXID>\n  <ZeroTouchIds>se-dc-lf</ZeroTouchIds>\n  <ScheduleSource>VOD</ScheduleSource>\n  <HLSOnly>android</HLSOnly>\n  <ChannelName>Disney Channel SE</ChannelName>\n</metadata>\n',
           objectType: 'KalturaMetadata'
         }
       ],
@@ -326,8 +316,7 @@ const BlockActionEntry = {
   response: [
     {
       partnerId: 1082342,
-      ks:
-        'OGM0ZWM0Y2IwOWI5ZjM0MDcyZmQ3YmYxNzBiMGEwNGYxNWQ0ZTcyOXwxMDgyMzQyOzEwODIzNDI7MTQ5MDExNTg5MzswOzE0OTAwMjk0OTMuMTY3ODswO3ZpZXc6Kix3aWRnZXQ6MTs7',
+      ks: 'OGM0ZWM0Y2IwOWI5ZjM0MDcyZmQ3YmYxNzBiMGEwNGYxNWQ0ZTcyOXwxMDgyMzQyOzEwODIzNDI7MTQ5MDExNTg5MzswOzE0OTAwMjk0OTMuMTY3ODswO3ZpZXc6Kix3aWRnZXQ6MTs7',
       userId: 0,
       objectType: 'KalturaStartWidgetSessionResponse'
     },
@@ -354,7 +343,7 @@ const BlockActionEntry = {
       objectType: 'KalturaBaseEntryListResponse'
     },
     {
-      actions: [{type: 1, objectType: 'KalturaAccessControlBlockAction'}],
+      actions: [{ type: 1, objectType: 'KalturaAccessControlBlockAction' }],
       messages: [
         {
           message: "Un authorized country\nWe're sorry, this content is only available in certain countries.",
@@ -377,8 +366,7 @@ const BlockActionEntry = {
           createdAt: 1484776887,
           updatedAt: 1484776887,
           status: 1,
-          xml:
-            '<?xml version="1.0" encoding="ASCII"?>\n<metadata><OriginalFilename>FO21934-HDTX-SWE.mov</OriginalFilename>\n<Locale>sv_SE</Locale>\n<PropertyCode>FTA-nm</PropertyCode>\n<SiteSection>tv-dc</SiteSection>\n<ContentType>clip</ContentType>\n<BusinessUnit>Disney Channel</BusinessUnit>\n<Origin>IBMS</Origin>\n<PromoType>Show - TV</PromoType>\n<StartDate>1483225200</StartDate>\n<EndDate>1485903600</EndDate>\n<AgeConsent>No Age Consent</AgeConsent></metadata>\n',
+          xml: '<?xml version="1.0" encoding="ASCII"?>\n<metadata><OriginalFilename>FO21934-HDTX-SWE.mov</OriginalFilename>\n<Locale>sv_SE</Locale>\n<PropertyCode>FTA-nm</PropertyCode>\n<SiteSection>tv-dc</SiteSection>\n<ContentType>clip</ContentType>\n<BusinessUnit>Disney Channel</BusinessUnit>\n<Origin>IBMS</Origin>\n<PromoType>Show - TV</PromoType>\n<StartDate>1483225200</StartDate>\n<EndDate>1485903600</EndDate>\n<AgeConsent>No Age Consent</AgeConsent></metadata>\n',
           objectType: 'KalturaMetadata'
         },
         {
@@ -392,8 +380,7 @@ const BlockActionEntry = {
           createdAt: 1484776903,
           updatedAt: 1489508219,
           status: 1,
-          xml:
-            '<metadata>\n  <TXID>FO21934-HDTX-SWE</TXID>\n  <ZeroTouchIds>se-dc-lf</ZeroTouchIds>\n  <ScheduleSource>VOD</ScheduleSource>\n  <HLSOnly>android</HLSOnly>\n  <ChannelName>Disney Channel SE</ChannelName>\n</metadata>\n',
+          xml: '<metadata>\n  <TXID>FO21934-HDTX-SWE</TXID>\n  <ZeroTouchIds>se-dc-lf</ZeroTouchIds>\n  <ScheduleSource>VOD</ScheduleSource>\n  <HLSOnly>android</HLSOnly>\n  <ChannelName>Disney Channel SE</ChannelName>\n</metadata>\n',
           objectType: 'KalturaMetadata'
         }
       ],
@@ -457,8 +444,7 @@ const AnonymousMocEntryWithoutUIConfWithDrmData = {
           format: 'applehttp',
           protocols: 'http,https',
           flavorIds: '1_92dfyrz5,1_9dhh6m0i,1_zudouuah,1_r0wu6y77,1_oz343kla',
-          url:
-            'https://cdnapisec.kaltura.com/p/1068292/sp/1068292/playManifest/entryId/1_rwbj3j0a/flavorIds/1_92dfyrz5,1_9dhh6m0i,1_zudouuah,1_r0wu6y77,1_oz343kla/deliveryProfileId/11311/protocol/https/format/applehttp/a.m3u8',
+          url: 'https://cdnapisec.kaltura.com/p/1068292/sp/1068292/playManifest/entryId/1_rwbj3j0a/flavorIds/1_92dfyrz5,1_9dhh6m0i,1_zudouuah,1_r0wu6y77,1_oz343kla/deliveryProfileId/11311/protocol/https/format/applehttp/a.m3u8',
           drm: [
             {
               certificate: 'ABCD1234',
@@ -475,8 +461,7 @@ const AnonymousMocEntryWithoutUIConfWithDrmData = {
           format: 'mpegdash',
           protocols: 'http,https',
           flavorIds: '1_92dfyrz5,1_9dhh6m0i,1_zudouuah,1_r0wu6y77,1_oz343kla',
-          url:
-            'https://cdnapisec.kaltura.com/p/1068292/sp/1068292/playManifest/entryId/1_rwbj3j0a/flavorIds/1_92dfyrz5,1_9dhh6m0i,1_zudouuah,1_r0wu6y77,1_oz343kla/deliveryProfileId/11331/protocol/https/format/mpegdash/manifest.mpd',
+          url: 'https://cdnapisec.kaltura.com/p/1068292/sp/1068292/playManifest/entryId/1_rwbj3j0a/flavorIds/1_92dfyrz5,1_9dhh6m0i,1_zudouuah,1_r0wu6y77,1_oz343kla/deliveryProfileId/11331/protocol/https/format/mpegdash/manifest.mpd',
           drm: [
             {
               scheme: 'drm.PLAYREADY_CENC',
@@ -498,8 +483,7 @@ const AnonymousMocEntryWithoutUIConfWithDrmData = {
           format: 'sl',
           protocols: 'http,https',
           flavorIds: '1_92dfyrz5,1_9dhh6m0i,1_zudouuah,1_r0wu6y77,1_oz343kla',
-          url:
-            'https://cdnapisec.kaltura.com/p/1068292/sp/1068292/playManifest/entryId/1_rwbj3j0a/flavorIds/1_92dfyrz5,1_9dhh6m0i,1_zudouuah,1_r0wu6y77,1_oz343kla/deliveryProfileId/11321/protocol/https/format/sl/a.ism',
+          url: 'https://cdnapisec.kaltura.com/p/1068292/sp/1068292/playManifest/entryId/1_rwbj3j0a/flavorIds/1_92dfyrz5,1_9dhh6m0i,1_zudouuah,1_r0wu6y77,1_oz343kla/deliveryProfileId/11321/protocol/https/format/sl/a.ism',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         }
@@ -653,8 +637,7 @@ const WrongEntryIDWithoutUIConf = {
   response: [
     {
       partnerId: 1068292,
-      ks:
-        'NjVjMDdlZmUxY2VlMGI2YWMyYmZjOTczOTA5ZjhjNDIwMTJmODI3MXwxMDY4MjkyOzEwNjgyOTI7MTQ5MDE5MzIyNjswOzE0OTAxMDY4MjYuOTc2NDswO3ZpZXc6Kix3aWRnZXQ6MTs7',
+      ks: 'NjVjMDdlZmUxY2VlMGI2YWMyYmZjOTczOTA5ZjhjNDIwMTJmODI3MXwxMDY4MjkyOzEwNjgyOTI7MTQ5MDE5MzIyNjswOzE0OTAxMDY4MjYuOTc2NDswO3ZpZXc6Kix3aWRnZXQ6MTs7',
       userId: 0,
       objectType: 'KalturaStartWidgetSessionResponse'
     },
@@ -686,8 +669,7 @@ const EntryWithUIConfNoDrmData = {
   response: [
     {
       partnerId: 1082342,
-      ks:
-        'YmQ0N2Q0M2QxZTAyMGIzYTY4YzI1ZDk5ZjI1NjhlZWVkOWZmOGViN3wxMDgyMzQyOzEwODIzNDI7MTQ5MDE5NjMwMDswOzE0OTAxMDk5MDAuOTA0NDswO3ZpZXc6Kix3aWRnZXQ6MTs7',
+      ks: 'YmQ0N2Q0M2QxZTAyMGIzYTY4YzI1ZDk5ZjI1NjhlZWVkOWZmOGViN3wxMDgyMzQyOzEwODIzNDI7MTQ5MDE5NjMwMDswOzE0OTAxMDk5MDAuOTA0NDswO3ZpZXc6Kix3aWRnZXQ6MTs7',
       userId: 0,
       objectType: 'KalturaStartWidgetSessionResponse'
     },
@@ -720,8 +702,7 @@ const EntryWithUIConfNoDrmData = {
           format: 'url',
           protocols: 'http,https',
           flavorIds: '1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4',
-          url:
-            'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/1_rsrdfext/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/deliveryProfileId/10081/protocol/https/format/url/name/a.mov',
+          url: 'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/1_rsrdfext/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/deliveryProfileId/10081/protocol/https/format/url/name/a.mov',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -730,8 +711,7 @@ const EntryWithUIConfNoDrmData = {
           format: 'hdnetworkmanifest',
           protocols: 'http,https',
           flavorIds: '1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4',
-          url:
-            'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/1_rsrdfext/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/deliveryProfileId/10101/protocol/https/format/hdnetworkmanifest/manifest.f4m',
+          url: 'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/1_rsrdfext/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/deliveryProfileId/10101/protocol/https/format/hdnetworkmanifest/manifest.f4m',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -740,8 +720,7 @@ const EntryWithUIConfNoDrmData = {
           format: 'applehttp',
           protocols: 'http,https',
           flavorIds: '1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4',
-          url:
-            'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/1_rsrdfext/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/deliveryProfileId/10091/protocol/https/format/applehttp/a.m3u8',
+          url: 'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/1_rsrdfext/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/deliveryProfileId/10091/protocol/https/format/applehttp/a.m3u8',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -750,8 +729,7 @@ const EntryWithUIConfNoDrmData = {
           format: 'applehttp',
           protocols: 'http,https',
           flavorIds: '1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4',
-          url:
-            'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/1_rsrdfext/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/deliveryProfileId/11241/protocol/https/format/applehttp/a.m3u8',
+          url: 'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/1_rsrdfext/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/deliveryProfileId/11241/protocol/https/format/applehttp/a.m3u8',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -760,8 +738,7 @@ const EntryWithUIConfNoDrmData = {
           format: 'mpegdash',
           protocols: 'http,https',
           flavorIds: '1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4',
-          url:
-            'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/1_rsrdfext/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/deliveryProfileId/11611/protocol/https/format/mpegdash/manifest.mpd',
+          url: 'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/1_rsrdfext/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/deliveryProfileId/11611/protocol/https/format/mpegdash/manifest.mpd',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -770,8 +747,7 @@ const EntryWithUIConfNoDrmData = {
           format: 'mpegdash',
           protocols: 'http,https',
           flavorIds: '1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4',
-          url:
-            'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/1_rsrdfext/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/deliveryProfileId/11261/protocol/https/format/mpegdash/manifest.mpd',
+          url: 'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/1_rsrdfext/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/deliveryProfileId/11261/protocol/https/format/mpegdash/manifest.mpd',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -780,8 +756,7 @@ const EntryWithUIConfNoDrmData = {
           format: 'sl',
           protocols: 'http,https',
           flavorIds: '1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4',
-          url:
-            'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/1_rsrdfext/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/deliveryProfileId/11251/protocol/https/format/sl/a.ism',
+          url: 'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/1_rsrdfext/flavorIds/1_ha0nqwz8,1_gw7u4nf1,1_rql6sqaa,1_sufd1yd9,1_9xvkk7a5,1_4typ4pat,1_n75294r4/deliveryProfileId/11251/protocol/https/format/sl/a.ism',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         }
@@ -979,8 +954,7 @@ const EntryWithUIConfNoDrmData = {
           createdAt: 1484776887,
           updatedAt: 1484776887,
           status: 1,
-          xml:
-            '<?xml version="1.0" encoding="ASCII"?>\n<metadata><OriginalFilename>FO21934-HDTX-SWE.mov</OriginalFilename>\n<Locale>sv_SE</Locale>\n<PropertyCode>FTA-nm</PropertyCode>\n<SiteSection>tv-dc</SiteSection>\n<ContentType>clip</ContentType>\n<BusinessUnit>Disney Channel</BusinessUnit>\n<Origin>IBMS</Origin>\n<PromoType>Show - TV</PromoType>\n<StartDate>1483225200</StartDate>\n<EndDate>1485903600</EndDate>\n<AgeConsent>No Age Consent</AgeConsent></metadata>\n',
+          xml: '<?xml version="1.0" encoding="ASCII"?>\n<metadata><OriginalFilename>FO21934-HDTX-SWE.mov</OriginalFilename>\n<Locale>sv_SE</Locale>\n<PropertyCode>FTA-nm</PropertyCode>\n<SiteSection>tv-dc</SiteSection>\n<ContentType>clip</ContentType>\n<BusinessUnit>Disney Channel</BusinessUnit>\n<Origin>IBMS</Origin>\n<PromoType>Show - TV</PromoType>\n<StartDate>1483225200</StartDate>\n<EndDate>1485903600</EndDate>\n<AgeConsent>No Age Consent</AgeConsent></metadata>\n',
           objectType: 'KalturaMetadata'
         },
         {
@@ -994,8 +968,7 @@ const EntryWithUIConfNoDrmData = {
           createdAt: 1484776903,
           updatedAt: 1489508219,
           status: 1,
-          xml:
-            '<metadata>\n  <TXID>FO21934-HDTX-SWE</TXID>\n  <ZeroTouchIds>se-dc-lf</ZeroTouchIds>\n  <ScheduleSource>VOD</ScheduleSource>\n  <HLSOnly>android</HLSOnly>\n  <ChannelName>Disney Channel SE</ChannelName>\n</metadata>\n',
+          xml: '<metadata>\n  <TXID>FO21934-HDTX-SWE</TXID>\n  <ZeroTouchIds>se-dc-lf</ZeroTouchIds>\n  <ScheduleSource>VOD</ScheduleSource>\n  <HLSOnly>android</HLSOnly>\n  <ChannelName>Disney Channel SE</ChannelName>\n</metadata>\n',
           objectType: 'KalturaMetadata'
         }
       ],
@@ -1059,8 +1032,7 @@ const EntryWithUIConfWithDrmData = {
           format: 'applehttp',
           protocols: 'http,https',
           flavorIds: '1_92dfyrz5,1_9dhh6m0i,1_zudouuah,1_r0wu6y77,1_oz343kla',
-          url:
-            'https://cdnapisec.kaltura.com/p/1068292/sp/1068292/playManifest/entryId/1_rwbj3j0a/flavorIds/1_92dfyrz5,1_9dhh6m0i,1_zudouuah,1_r0wu6y77,1_oz343kla/deliveryProfileId/11311/protocol/https/format/applehttp/a.m3u8',
+          url: 'https://cdnapisec.kaltura.com/p/1068292/sp/1068292/playManifest/entryId/1_rwbj3j0a/flavorIds/1_92dfyrz5,1_9dhh6m0i,1_zudouuah,1_r0wu6y77,1_oz343kla/deliveryProfileId/11311/protocol/https/format/applehttp/a.m3u8',
           drm: [
             {
               certificate: 'ABCD1234',
@@ -1077,8 +1049,7 @@ const EntryWithUIConfWithDrmData = {
           format: 'mpegdash',
           protocols: 'http,https',
           flavorIds: '1_92dfyrz5,1_9dhh6m0i,1_zudouuah,1_r0wu6y77,1_oz343kla',
-          url:
-            'https://cdnapisec.kaltura.com/p/1068292/sp/1068292/playManifest/entryId/1_rwbj3j0a/flavorIds/1_92dfyrz5,1_9dhh6m0i,1_zudouuah,1_r0wu6y77,1_oz343kla/deliveryProfileId/11331/protocol/https/format/mpegdash/manifest.mpd',
+          url: 'https://cdnapisec.kaltura.com/p/1068292/sp/1068292/playManifest/entryId/1_rwbj3j0a/flavorIds/1_92dfyrz5,1_9dhh6m0i,1_zudouuah,1_r0wu6y77,1_oz343kla/deliveryProfileId/11331/protocol/https/format/mpegdash/manifest.mpd',
           drm: [
             {
               scheme: 'drm.PLAYREADY_CENC',
@@ -1100,8 +1071,7 @@ const EntryWithUIConfWithDrmData = {
           format: 'sl',
           protocols: 'http,https',
           flavorIds: '1_92dfyrz5,1_9dhh6m0i,1_zudouuah,1_r0wu6y77,1_oz343kla',
-          url:
-            'https://cdnapisec.kaltura.com/p/1068292/sp/1068292/playManifest/entryId/1_rwbj3j0a/flavorIds/1_92dfyrz5,1_9dhh6m0i,1_zudouuah,1_r0wu6y77,1_oz343kla/deliveryProfileId/11321/protocol/https/format/sl/a.ism',
+          url: 'https://cdnapisec.kaltura.com/p/1068292/sp/1068292/playManifest/entryId/1_rwbj3j0a/flavorIds/1_92dfyrz5,1_9dhh6m0i,1_zudouuah,1_r0wu6y77,1_oz343kla/deliveryProfileId/11321/protocol/https/format/sl/a.ism',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         }
@@ -1279,8 +1249,7 @@ const WrongUiConfID = {
   response: [
     {
       partnerId: 1068292,
-      ks:
-        'OGU5Nzc2ZTY0MDdjZGJjYTk1ODQ1Y2YzZjFiMjMzOTdlZWU5ODdmOXwxMDY4MjkyOzEwNjgyOTI7MTQ5MDI1NDgwMDswOzE0OTAxNjg0MDAuMTA2MzswO3ZpZXc6Kix3aWRnZXQ6MTs7',
+      ks: 'OGU5Nzc2ZTY0MDdjZGJjYTk1ODQ1Y2YzZjFiMjMzOTdlZWU5ODdmOXwxMDY4MjkyOzEwNjgyOTI7MTQ5MDI1NDgwMDswOzE0OTAxNjg0MDAuMTA2MzswO3ZpZXc6Kix3aWRnZXQ6MTs7',
       userId: 0,
       objectType: 'KalturaStartWidgetSessionResponse'
     },
@@ -1312,8 +1281,7 @@ const WrongUiConfID = {
           format: 'applehttp',
           protocols: 'http,https',
           flavorIds: '1_92dfyrz5,1_9dhh6m0i,1_zudouuah,1_r0wu6y77,1_oz343kla',
-          url:
-            'https://cdnapisec.kaltura.com/p/1068292/sp/1068292/playManifest/entryId/1_rwbj3j0a/flavorIds/1_92dfyrz5,1_9dhh6m0i,1_zudouuah,1_r0wu6y77,1_oz343kla/deliveryProfileId/11311/protocol/https/format/applehttp/a.m3u8',
+          url: 'https://cdnapisec.kaltura.com/p/1068292/sp/1068292/playManifest/entryId/1_rwbj3j0a/flavorIds/1_92dfyrz5,1_9dhh6m0i,1_zudouuah,1_r0wu6y77,1_oz343kla/deliveryProfileId/11311/protocol/https/format/applehttp/a.m3u8',
           drm: [
             {
               certificate: 'ABCD1234',
@@ -1330,8 +1298,7 @@ const WrongUiConfID = {
           format: 'mpegdash',
           protocols: 'http,https',
           flavorIds: '1_92dfyrz5,1_9dhh6m0i,1_zudouuah,1_r0wu6y77,1_oz343kla',
-          url:
-            'https://cdnapisec.kaltura.com/p/1068292/sp/1068292/playManifest/entryId/1_rwbj3j0a/flavorIds/1_92dfyrz5,1_9dhh6m0i,1_zudouuah,1_r0wu6y77,1_oz343kla/deliveryProfileId/11331/protocol/https/format/mpegdash/manifest.mpd',
+          url: 'https://cdnapisec.kaltura.com/p/1068292/sp/1068292/playManifest/entryId/1_rwbj3j0a/flavorIds/1_92dfyrz5,1_9dhh6m0i,1_zudouuah,1_r0wu6y77,1_oz343kla/deliveryProfileId/11331/protocol/https/format/mpegdash/manifest.mpd',
           drm: [
             {
               scheme: 'drm.PLAYREADY_CENC',
@@ -1353,8 +1320,7 @@ const WrongUiConfID = {
           format: 'sl',
           protocols: 'http,https',
           flavorIds: '1_92dfyrz5,1_9dhh6m0i,1_zudouuah,1_r0wu6y77,1_oz343kla',
-          url:
-            'https://cdnapisec.kaltura.com/p/1068292/sp/1068292/playManifest/entryId/1_rwbj3j0a/flavorIds/1_92dfyrz5,1_9dhh6m0i,1_zudouuah,1_r0wu6y77,1_oz343kla/deliveryProfileId/11321/protocol/https/format/sl/a.ism',
+          url: 'https://cdnapisec.kaltura.com/p/1068292/sp/1068292/playManifest/entryId/1_rwbj3j0a/flavorIds/1_92dfyrz5,1_9dhh6m0i,1_zudouuah,1_r0wu6y77,1_oz343kla/deliveryProfileId/11321/protocol/https/format/sl/a.ism',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         }
@@ -1515,8 +1481,7 @@ const AudioEntryWithoutPlugins = {
   response: [
     {
       partnerId: 1082342,
-      ks:
-        'YWU4Y2I0ZDk4ZmNiMjUyZjA1NmQ1NmMzMTdjZmFjZWEyODc2NDE0YXwxMDgyMzQyOzEwODIzNDI7MTQ5MDg2MTk1OTswOzE0OTA3NzU1NTkuNzk0MzswO3ZpZXc6Kix3aWRnZXQ6MTs7',
+      ks: 'YWU4Y2I0ZDk4ZmNiMjUyZjA1NmQ1NmMzMTdjZmFjZWEyODc2NDE0YXwxMDgyMzQyOzEwODIzNDI7MTQ5MDg2MTk1OTswOzE0OTA3NzU1NTkuNzk0MzswO3ZpZXc6Kix3aWRnZXQ6MTs7',
       userId: 0,
       objectType: 'KalturaStartWidgetSessionResponse'
     },
@@ -1549,8 +1514,7 @@ const AudioEntryWithoutPlugins = {
           format: 'url',
           protocols: 'http,https',
           flavorIds: '0_hawbhpz3',
-          url:
-            'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/0_vyzw3ceu/flavorIds/0_hawbhpz3/deliveryProfileId/10081/protocol/https/format/url/name/a.xml',
+          url: 'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/0_vyzw3ceu/flavorIds/0_hawbhpz3/deliveryProfileId/10081/protocol/https/format/url/name/a.xml',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -1559,8 +1523,7 @@ const AudioEntryWithoutPlugins = {
           format: 'hdnetworkmanifest',
           protocols: 'http,https',
           flavorIds: '0_hawbhpz3',
-          url:
-            'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/0_vyzw3ceu/flavorIds/0_hawbhpz3/deliveryProfileId/10101/protocol/https/format/hdnetworkmanifest/manifest.f4m',
+          url: 'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/0_vyzw3ceu/flavorIds/0_hawbhpz3/deliveryProfileId/10101/protocol/https/format/hdnetworkmanifest/manifest.f4m',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -1569,8 +1532,7 @@ const AudioEntryWithoutPlugins = {
           format: 'applehttp',
           protocols: 'http,https',
           flavorIds: '0_hawbhpz3',
-          url:
-            'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/0_vyzw3ceu/flavorIds/0_hawbhpz3/deliveryProfileId/10091/protocol/https/format/applehttp/a.m3u8',
+          url: 'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/0_vyzw3ceu/flavorIds/0_hawbhpz3/deliveryProfileId/10091/protocol/https/format/applehttp/a.m3u8',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -1579,8 +1541,7 @@ const AudioEntryWithoutPlugins = {
           format: 'applehttp',
           protocols: 'http,https',
           flavorIds: '0_hawbhpz3',
-          url:
-            'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/0_vyzw3ceu/flavorIds/0_hawbhpz3/deliveryProfileId/11241/protocol/https/format/applehttp/a.m3u8',
+          url: 'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/0_vyzw3ceu/flavorIds/0_hawbhpz3/deliveryProfileId/11241/protocol/https/format/applehttp/a.m3u8',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -1589,8 +1550,7 @@ const AudioEntryWithoutPlugins = {
           format: 'mpegdash',
           protocols: 'http,https',
           flavorIds: '0_hawbhpz3',
-          url:
-            'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/0_vyzw3ceu/flavorIds/0_hawbhpz3/deliveryProfileId/11611/protocol/https/format/mpegdash/manifest.mpd',
+          url: 'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/0_vyzw3ceu/flavorIds/0_hawbhpz3/deliveryProfileId/11611/protocol/https/format/mpegdash/manifest.mpd',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -1599,8 +1559,7 @@ const AudioEntryWithoutPlugins = {
           format: 'mpegdash',
           protocols: 'http,https',
           flavorIds: '0_hawbhpz3',
-          url:
-            'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/0_vyzw3ceu/flavorIds/0_hawbhpz3/deliveryProfileId/11261/protocol/https/format/mpegdash/manifest.mpd',
+          url: 'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/0_vyzw3ceu/flavorIds/0_hawbhpz3/deliveryProfileId/11261/protocol/https/format/mpegdash/manifest.mpd',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -1609,8 +1568,7 @@ const AudioEntryWithoutPlugins = {
           format: 'sl',
           protocols: 'http,https',
           flavorIds: '0_hawbhpz3',
-          url:
-            'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/0_vyzw3ceu/flavorIds/0_hawbhpz3/deliveryProfileId/11251/protocol/https/format/sl/a.ism',
+          url: 'https://cdnapisec.kaltura.com/p/1082342/sp/1082342/playManifest/entryId/0_vyzw3ceu/flavorIds/0_hawbhpz3/deliveryProfileId/11251/protocol/https/format/sl/a.ism',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         }
@@ -1656,8 +1614,7 @@ const ImageEntryWithoutPlugins = {
   response: [
     {
       partnerId: 1082342,
-      ks:
-        'YWU4Y2I0ZDk4ZmNiMjUyZjA1NmQ1NmMzMTdjZmFjZWEyODc2NDE0YXwxMDgyMzQyOzEwODIzNDI7MTQ5MDg2MTk1OTswOzE0OTA3NzU1NTkuNzk0MzswO3ZpZXc6Kix3aWRnZXQ6MTs7',
+      ks: 'YWU4Y2I0ZDk4ZmNiMjUyZjA1NmQ1NmMzMTdjZmFjZWEyODc2NDE0YXwxMDgyMzQyOzEwODIzNDI7MTQ5MDg2MTk1OTswOzE0OTA3NzU1NTkuNzk0MzswO3ZpZXc6Kix3aWRnZXQ6MTs7',
       userId: 0,
       objectType: 'KalturaStartWidgetSessionResponse'
     },
@@ -2218,8 +2175,7 @@ const EntryInReady = {
             format: 'url',
             protocols: 'http,https',
             flavorIds: '0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq',
-            url:
-              'https://cdnapisec.kaltura.com/p/2506752/sp/2506752/playManifest/entryId/0_yp010l8a/flavorIds/0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq/deliveryProfileId/5642/protocol/https/format/url/name/a.mp4',
+            url: 'https://cdnapisec.kaltura.com/p/2506752/sp/2506752/playManifest/entryId/0_yp010l8a/flavorIds/0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq/deliveryProfileId/5642/protocol/https/format/url/name/a.mp4',
             drm: [],
             objectType: 'KalturaPlaybackSource'
           },
@@ -2228,8 +2184,7 @@ const EntryInReady = {
             format: 'hdnetworkmanifest',
             protocols: 'https',
             flavorIds: '0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq',
-            url:
-              'https://cdnapisec.kaltura.com/p/2506752/sp/2506752/playManifest/entryId/0_yp010l8a/flavorIds/0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq/deliveryProfileId/3382/protocol/https/format/hdnetworkmanifest/manifest.f4m',
+            url: 'https://cdnapisec.kaltura.com/p/2506752/sp/2506752/playManifest/entryId/0_yp010l8a/flavorIds/0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq/deliveryProfileId/3382/protocol/https/format/hdnetworkmanifest/manifest.f4m',
             drm: [],
             objectType: 'KalturaPlaybackSource'
           },
@@ -2238,8 +2193,7 @@ const EntryInReady = {
             format: 'mpegdash',
             protocols: 'http,https',
             flavorIds: '0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq',
-            url:
-              'https://cdnapisec.kaltura.com/p/2506752/sp/2506752/playManifest/entryId/0_yp010l8a/flavorIds/0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq/deliveryProfileId/4662/protocol/https/format/mpegdash/manifest.mpd',
+            url: 'https://cdnapisec.kaltura.com/p/2506752/sp/2506752/playManifest/entryId/0_yp010l8a/flavorIds/0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq/deliveryProfileId/4662/protocol/https/format/mpegdash/manifest.mpd',
             drm: [],
             objectType: 'KalturaPlaybackSource'
           },
@@ -2248,8 +2202,7 @@ const EntryInReady = {
             format: 'url',
             protocols: 'http',
             flavorIds: '0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq',
-            url:
-              'http://cdnapi.kaltura.com/p/2506752/sp/2506752/playManifest/entryId/0_yp010l8a/flavorIds/0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq/deliveryProfileId/72/protocol/http/format/url/name/a.mp4',
+            url: 'http://cdnapi.kaltura.com/p/2506752/sp/2506752/playManifest/entryId/0_yp010l8a/flavorIds/0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq/deliveryProfileId/72/protocol/http/format/url/name/a.mp4',
             drm: [],
             objectType: 'KalturaPlaybackSource'
           },
@@ -2258,8 +2211,7 @@ const EntryInReady = {
             format: 'url',
             protocols: 'http,https',
             flavorIds: '0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq',
-            url:
-              'https://cdnapisec.kaltura.com/p/2506752/sp/2506752/playManifest/entryId/0_yp010l8a/flavorIds/0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq/deliveryProfileId/92/protocol/https/format/url/name/a.mp4',
+            url: 'https://cdnapisec.kaltura.com/p/2506752/sp/2506752/playManifest/entryId/0_yp010l8a/flavorIds/0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq/deliveryProfileId/92/protocol/https/format/url/name/a.mp4',
             drm: [],
             objectType: 'KalturaPlaybackSource'
           },
@@ -2268,8 +2220,7 @@ const EntryInReady = {
             format: 'hdnetwork',
             protocols: 'http,https',
             flavorIds: '0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq',
-            url:
-              'https://cdnapisec.kaltura.com/p/2506752/sp/2506752/playManifest/entryId/0_yp010l8a/flavorIds/0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq/deliveryProfileId/102/protocol/https/format/hdnetwork/manifest.f4m',
+            url: 'https://cdnapisec.kaltura.com/p/2506752/sp/2506752/playManifest/entryId/0_yp010l8a/flavorIds/0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq/deliveryProfileId/102/protocol/https/format/hdnetwork/manifest.f4m',
             drm: [],
             objectType: 'KalturaPlaybackSource'
           },
@@ -2278,8 +2229,7 @@ const EntryInReady = {
             format: 'applehttp',
             protocols: 'http,https',
             flavorIds: '0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq',
-            url:
-              'https://cdnapisec.kaltura.com/p/2506752/sp/2506752/playManifest/entryId/0_yp010l8a/flavorIds/0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq/deliveryProfileId/13942/protocol/https/format/applehttp/a.m3u8',
+            url: 'https://cdnapisec.kaltura.com/p/2506752/sp/2506752/playManifest/entryId/0_yp010l8a/flavorIds/0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq/deliveryProfileId/13942/protocol/https/format/applehttp/a.m3u8',
             drm: [],
             objectType: 'KalturaPlaybackSource'
           },
@@ -2288,8 +2238,7 @@ const EntryInReady = {
             format: 'rtsp',
             protocols: 'http,https',
             flavorIds: '0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq',
-            url:
-              'https://cdnapisec.kaltura.com/p/2506752/sp/2506752/playManifest/entryId/0_yp010l8a/flavorIds/0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq/deliveryProfileId/122/protocol/https/format/rtsp/name/a.3gp',
+            url: 'https://cdnapisec.kaltura.com/p/2506752/sp/2506752/playManifest/entryId/0_yp010l8a/flavorIds/0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq/deliveryProfileId/122/protocol/https/format/rtsp/name/a.3gp',
             drm: [],
             objectType: 'KalturaPlaybackSource'
           },
@@ -2298,8 +2247,7 @@ const EntryInReady = {
             format: 'applehttp',
             protocols: 'http,https',
             flavorIds: '0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq',
-            url:
-              'https://cdnapisec.kaltura.com/p/2506752/sp/2506752/playManifest/entryId/0_yp010l8a/flavorIds/0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq/deliveryProfileId/13952/protocol/https/format/applehttp/a.m3u8',
+            url: 'https://cdnapisec.kaltura.com/p/2506752/sp/2506752/playManifest/entryId/0_yp010l8a/flavorIds/0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq/deliveryProfileId/13952/protocol/https/format/applehttp/a.m3u8',
             drm: [],
             objectType: 'KalturaPlaybackSource'
           },
@@ -2308,8 +2256,7 @@ const EntryInReady = {
             format: 'hdnetworkmanifest',
             protocols: 'http',
             flavorIds: '0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq',
-            url:
-              'http://cdnapi.kaltura.com/p/2506752/sp/2506752/playManifest/entryId/0_yp010l8a/flavorIds/0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq/deliveryProfileId/132/protocol/http/format/hdnetworkmanifest/manifest.f4m',
+            url: 'http://cdnapi.kaltura.com/p/2506752/sp/2506752/playManifest/entryId/0_yp010l8a/flavorIds/0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq/deliveryProfileId/132/protocol/http/format/hdnetworkmanifest/manifest.f4m',
             drm: [],
             objectType: 'KalturaPlaybackSource'
           },
@@ -2318,8 +2265,7 @@ const EntryInReady = {
             format: 'rtmp',
             protocols: 'rtmp,rtmpe,rtmpt,rtmpte',
             flavorIds: '0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq',
-            url:
-              'http://cdnapi.kaltura.com/p/2506752/sp/2506752/playManifest/entryId/0_yp010l8a/flavorIds/0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq/deliveryProfileId/152/protocol/http/format/rtmp/a.f4m',
+            url: 'http://cdnapi.kaltura.com/p/2506752/sp/2506752/playManifest/entryId/0_yp010l8a/flavorIds/0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq/deliveryProfileId/152/protocol/http/format/rtmp/a.f4m',
             drm: [],
             objectType: 'KalturaPlaybackSource'
           },
@@ -2328,8 +2274,7 @@ const EntryInReady = {
             format: 'rtmp',
             protocols: 'rtmp,rtmpe,rtmpt,rtmpte',
             flavorIds: '0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq',
-            url:
-              'http://cdnapi.kaltura.com/p/2506752/sp/2506752/playManifest/entryId/0_yp010l8a/flavorIds/0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq/deliveryProfileId/162/protocol/http/format/rtmp/a.f4m',
+            url: 'http://cdnapi.kaltura.com/p/2506752/sp/2506752/playManifest/entryId/0_yp010l8a/flavorIds/0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq/deliveryProfileId/162/protocol/http/format/rtmp/a.f4m',
             drm: [],
             objectType: 'KalturaPlaybackSource'
           },
@@ -2338,8 +2283,7 @@ const EntryInReady = {
             format: 'mpegdash',
             protocols: 'http,https',
             flavorIds: '0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq',
-            url:
-              'https://cdnapisec.kaltura.com/p/2506752/sp/2506752/playManifest/entryId/0_yp010l8a/flavorIds/0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq/deliveryProfileId/12972/protocol/https/format/mpegdash/manifest.mpd',
+            url: 'https://cdnapisec.kaltura.com/p/2506752/sp/2506752/playManifest/entryId/0_yp010l8a/flavorIds/0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq/deliveryProfileId/12972/protocol/https/format/mpegdash/manifest.mpd',
             drm: [],
             objectType: 'KalturaPlaybackSource'
           },
@@ -2348,8 +2292,7 @@ const EntryInReady = {
             format: 'url',
             protocols: 'http,https',
             flavorIds: '0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq',
-            url:
-              'https://cdnapisec.kaltura.com/p/2506752/sp/2506752/playManifest/entryId/0_yp010l8a/flavorIds/0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq/deliveryProfileId/5552/protocol/https/format/url/name/a.mp4',
+            url: 'https://cdnapisec.kaltura.com/p/2506752/sp/2506752/playManifest/entryId/0_yp010l8a/flavorIds/0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq/deliveryProfileId/5552/protocol/https/format/url/name/a.mp4',
             drm: [],
             objectType: 'KalturaPlaybackSource'
           },
@@ -2358,8 +2301,7 @@ const EntryInReady = {
             format: 'hdnetworkmanifest',
             protocols: 'http,https',
             flavorIds: '0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq',
-            url:
-              'https://cdnapisec.kaltura.com/p/2506752/sp/2506752/playManifest/entryId/0_yp010l8a/flavorIds/0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq/deliveryProfileId/5612/protocol/https/format/hdnetworkmanifest/manifest.f4m',
+            url: 'https://cdnapisec.kaltura.com/p/2506752/sp/2506752/playManifest/entryId/0_yp010l8a/flavorIds/0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq/deliveryProfileId/5612/protocol/https/format/hdnetworkmanifest/manifest.f4m',
             drm: [],
             objectType: 'KalturaPlaybackSource'
           },
@@ -2368,8 +2310,7 @@ const EntryInReady = {
             format: 'hdnetworkmanifest',
             protocols: 'http,https',
             flavorIds: '0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq',
-            url:
-              'https://cdnapisec.kaltura.com/p/2506752/sp/2506752/playManifest/entryId/0_yp010l8a/flavorIds/0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq/deliveryProfileId/5622/protocol/https/format/hdnetworkmanifest/manifest.f4m',
+            url: 'https://cdnapisec.kaltura.com/p/2506752/sp/2506752/playManifest/entryId/0_yp010l8a/flavorIds/0_jdohwj1e,0_oaesu6dm,0_jfw6tkei,0_69ubhyxq/deliveryProfileId/5622/protocol/https/format/hdnetworkmanifest/manifest.f4m',
             drm: [],
             objectType: 'KalturaPlaybackSource'
           }
@@ -2525,8 +2466,7 @@ const EntryWithBumper = {
           format: 'mpegdash',
           protocols: 'http,https',
           flavorIds: '0_m131krws,0_5407xm9j,0_xcrwyk2n',
-          url:
-            'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/911/protocol/https/format/mpegdash/manifest.mpd',
+          url: 'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/911/protocol/https/format/mpegdash/manifest.mpd',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -2535,8 +2475,7 @@ const EntryWithBumper = {
           format: 'url',
           protocols: 'http,https',
           flavorIds: '0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n',
-          url:
-            'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/261/protocol/https/format/url/name/a.mp4',
+          url: 'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/261/protocol/https/format/url/name/a.mp4',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -2545,8 +2484,7 @@ const EntryWithBumper = {
           format: 'applehttp',
           protocols: 'http,https',
           flavorIds: '0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n',
-          url:
-            'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/861/protocol/https/format/applehttp/a.m3u8',
+          url: 'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/861/protocol/https/format/applehttp/a.m3u8',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -2555,8 +2493,7 @@ const EntryWithBumper = {
           format: 'multicast_silverlight',
           protocols: 'http,https',
           flavorIds: '0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n',
-          url:
-            'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/451/protocol/https/format/multicast_silverlight/a.ism',
+          url: 'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/451/protocol/https/format/multicast_silverlight/a.ism',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -2565,8 +2502,7 @@ const EntryWithBumper = {
           format: 'hdnetwork',
           protocols: 'http,https',
           flavorIds: '0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n',
-          url:
-            'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/231/protocol/https/format/hdnetwork/manifest.f4m',
+          url: 'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/231/protocol/https/format/hdnetwork/manifest.f4m',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -2575,8 +2511,7 @@ const EntryWithBumper = {
           format: 'hdnetworkmanifest',
           protocols: 'http,https',
           flavorIds: '0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n',
-          url:
-            'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/251/protocol/https/format/hdnetworkmanifest/manifest.f4m',
+          url: 'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/251/protocol/https/format/hdnetworkmanifest/manifest.f4m',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         }
@@ -2797,8 +2732,7 @@ const EntryWithBumper = {
               format: 'mpegdash',
               protocols: 'http,https',
               flavorIds: '0_m131krws,0_5407xm9j,0_xcrwyk2n',
-              url:
-                'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_6r7gufsj/flavorIds/0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/911/protocol/https/format/mpegdash/manifest.mpd',
+              url: 'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_6r7gufsj/flavorIds/0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/911/protocol/https/format/mpegdash/manifest.mpd',
               drm: [],
               objectType: 'KalturaPlaybackSource'
             },
@@ -2807,8 +2741,7 @@ const EntryWithBumper = {
               format: 'url',
               protocols: 'http,https',
               flavorIds: '0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n',
-              url:
-                'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_6r7gufsj/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/261/protocol/https/format/url/name/a.mp4',
+              url: 'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_6r7gufsj/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/261/protocol/https/format/url/name/a.mp4',
               drm: [],
               objectType: 'KalturaPlaybackSource'
             },
@@ -2817,8 +2750,7 @@ const EntryWithBumper = {
               format: 'applehttp',
               protocols: 'http,https',
               flavorIds: '0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n',
-              url:
-                'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_6r7gufsj/flavorIds/0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/861/protocol/https/format/applehttp/a.m3u8',
+              url: 'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_6r7gufsj/flavorIds/0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/861/protocol/https/format/applehttp/a.m3u8',
               drm: [],
               objectType: 'KalturaPlaybackSource'
             },
@@ -2827,8 +2759,7 @@ const EntryWithBumper = {
               format: 'multicast_silverlight',
               protocols: 'http,https',
               flavorIds: '0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n',
-              url:
-                'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_6r7gufsj/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/451/protocol/https/format/multicast_silverlight/a.ism',
+              url: 'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_6r7gufsj/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/451/protocol/https/format/multicast_silverlight/a.ism',
               drm: [],
               objectType: 'KalturaPlaybackSource'
             },
@@ -2837,8 +2768,7 @@ const EntryWithBumper = {
               format: 'hdnetwork',
               protocols: 'http,https',
               flavorIds: '0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n',
-              url:
-                'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_6r7gufsj/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/231/protocol/https/format/hdnetwork/manifest.f4m',
+              url: 'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_6r7gufsj/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/231/protocol/https/format/hdnetwork/manifest.f4m',
               drm: [],
               objectType: 'KalturaPlaybackSource'
             },
@@ -2847,8 +2777,7 @@ const EntryWithBumper = {
               format: 'hdnetworkmanifest',
               protocols: 'http,https',
               flavorIds: '0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n',
-              url:
-                'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_6r7gufsj/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/251/protocol/https/format/hdnetworkmanifest/manifest.f4m',
+              url: 'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_6r7gufsj/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/251/protocol/https/format/hdnetworkmanifest/manifest.f4m',
               drm: [],
               objectType: 'KalturaPlaybackSource'
             }
@@ -2924,8 +2853,7 @@ const EntryWithBumperWithKs = {
           format: 'mpegdash',
           protocols: 'http,https',
           flavorIds: '0_m131krws,0_5407xm9j,0_xcrwyk2n',
-          url:
-            'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/911/protocol/https/format/mpegdash/manifest.mpd',
+          url: 'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/911/protocol/https/format/mpegdash/manifest.mpd',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -2934,8 +2862,7 @@ const EntryWithBumperWithKs = {
           format: 'url',
           protocols: 'http,https',
           flavorIds: '0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n',
-          url:
-            'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/261/protocol/https/format/url/name/a.mp4',
+          url: 'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/261/protocol/https/format/url/name/a.mp4',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -2944,8 +2871,7 @@ const EntryWithBumperWithKs = {
           format: 'applehttp',
           protocols: 'http,https',
           flavorIds: '0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n',
-          url:
-            'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/861/protocol/https/format/applehttp/a.m3u8',
+          url: 'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/861/protocol/https/format/applehttp/a.m3u8',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -2954,8 +2880,7 @@ const EntryWithBumperWithKs = {
           format: 'multicast_silverlight',
           protocols: 'http,https',
           flavorIds: '0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n',
-          url:
-            'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/451/protocol/https/format/multicast_silverlight/a.ism',
+          url: 'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/451/protocol/https/format/multicast_silverlight/a.ism',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -2964,8 +2889,7 @@ const EntryWithBumperWithKs = {
           format: 'hdnetwork',
           protocols: 'http,https',
           flavorIds: '0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n',
-          url:
-            'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/231/protocol/https/format/hdnetwork/manifest.f4m',
+          url: 'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/231/protocol/https/format/hdnetwork/manifest.f4m',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -2974,8 +2898,7 @@ const EntryWithBumperWithKs = {
           format: 'hdnetworkmanifest',
           protocols: 'http,https',
           flavorIds: '0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n',
-          url:
-            'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/251/protocol/https/format/hdnetworkmanifest/manifest.f4m',
+          url: 'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/251/protocol/https/format/hdnetworkmanifest/manifest.f4m',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         }
@@ -3196,8 +3119,7 @@ const EntryWithBumperWithKs = {
               format: 'mpegdash',
               protocols: 'http,https',
               flavorIds: '0_m131krws,0_5407xm9j,0_xcrwyk2n',
-              url:
-                'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_6r7gufsj/flavorIds/0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/911/protocol/https/format/mpegdash/manifest.mpd',
+              url: 'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_6r7gufsj/flavorIds/0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/911/protocol/https/format/mpegdash/manifest.mpd',
               drm: [],
               objectType: 'KalturaPlaybackSource'
             },
@@ -3206,8 +3128,7 @@ const EntryWithBumperWithKs = {
               format: 'url',
               protocols: 'http,https',
               flavorIds: '0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n',
-              url:
-                'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_6r7gufsj/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/261/protocol/https/format/url/name/a.mp4',
+              url: 'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_6r7gufsj/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/261/protocol/https/format/url/name/a.mp4',
               drm: [],
               objectType: 'KalturaPlaybackSource'
             },
@@ -3216,8 +3137,7 @@ const EntryWithBumperWithKs = {
               format: 'applehttp',
               protocols: 'http,https',
               flavorIds: '0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n',
-              url:
-                'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_6r7gufsj/flavorIds/0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/861/protocol/https/format/applehttp/a.m3u8',
+              url: 'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_6r7gufsj/flavorIds/0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/861/protocol/https/format/applehttp/a.m3u8',
               drm: [],
               objectType: 'KalturaPlaybackSource'
             },
@@ -3226,8 +3146,7 @@ const EntryWithBumperWithKs = {
               format: 'multicast_silverlight',
               protocols: 'http,https',
               flavorIds: '0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n',
-              url:
-                'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_6r7gufsj/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/451/protocol/https/format/multicast_silverlight/a.ism',
+              url: 'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_6r7gufsj/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/451/protocol/https/format/multicast_silverlight/a.ism',
               drm: [],
               objectType: 'KalturaPlaybackSource'
             },
@@ -3236,8 +3155,7 @@ const EntryWithBumperWithKs = {
               format: 'hdnetwork',
               protocols: 'http,https',
               flavorIds: '0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n',
-              url:
-                'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_6r7gufsj/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/231/protocol/https/format/hdnetwork/manifest.f4m',
+              url: 'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_6r7gufsj/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/231/protocol/https/format/hdnetwork/manifest.f4m',
               drm: [],
               objectType: 'KalturaPlaybackSource'
             },
@@ -3246,8 +3164,7 @@ const EntryWithBumperWithKs = {
               format: 'hdnetworkmanifest',
               protocols: 'http,https',
               flavorIds: '0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n',
-              url:
-                'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_6r7gufsj/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/251/protocol/https/format/hdnetworkmanifest/manifest.f4m',
+              url: 'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_6r7gufsj/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/251/protocol/https/format/hdnetworkmanifest/manifest.f4m',
               drm: [],
               objectType: 'KalturaPlaybackSource'
             }
@@ -3323,8 +3240,7 @@ const EntryDirectWithKs = {
           format: 'mpegdash',
           protocols: 'http,https',
           flavorIds: '',
-          url:
-            'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/911/protocol/https/format/mpegdash/manifest.mpd',
+          url: 'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/911/protocol/https/format/mpegdash/manifest.mpd',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         }
@@ -3399,8 +3315,7 @@ const EntryWithBumperWitNoSources = {
           format: 'mpegdash',
           protocols: 'http,https',
           flavorIds: '0_m131krws,0_5407xm9j,0_xcrwyk2n',
-          url:
-            'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/911/protocol/https/format/mpegdash/manifest.mpd',
+          url: 'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/911/protocol/https/format/mpegdash/manifest.mpd',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -3409,8 +3324,7 @@ const EntryWithBumperWitNoSources = {
           format: 'url',
           protocols: 'http,https',
           flavorIds: '0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n',
-          url:
-            'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/261/protocol/https/format/url/name/a.mp4',
+          url: 'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/261/protocol/https/format/url/name/a.mp4',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -3419,8 +3333,7 @@ const EntryWithBumperWitNoSources = {
           format: 'applehttp',
           protocols: 'http,https',
           flavorIds: '0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n',
-          url:
-            'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/861/protocol/https/format/applehttp/a.m3u8',
+          url: 'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/861/protocol/https/format/applehttp/a.m3u8',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -3429,8 +3342,7 @@ const EntryWithBumperWitNoSources = {
           format: 'multicast_silverlight',
           protocols: 'http,https',
           flavorIds: '0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n',
-          url:
-            'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/451/protocol/https/format/multicast_silverlight/a.ism',
+          url: 'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/451/protocol/https/format/multicast_silverlight/a.ism',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -3439,8 +3351,7 @@ const EntryWithBumperWitNoSources = {
           format: 'hdnetwork',
           protocols: 'http,https',
           flavorIds: '0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n',
-          url:
-            'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/231/protocol/https/format/hdnetwork/manifest.f4m',
+          url: 'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/231/protocol/https/format/hdnetwork/manifest.f4m',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -3449,8 +3360,7 @@ const EntryWithBumperWitNoSources = {
           format: 'hdnetworkmanifest',
           protocols: 'http,https',
           flavorIds: '0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n',
-          url:
-            'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/251/protocol/https/format/hdnetworkmanifest/manifest.f4m',
+          url: 'https://qa-apache-php7.dev.kaltura.com/p/1091/sp/1091/playManifest/entryId/0_wifqaipd/flavorIds/0_ep7yqavp,0_1xcr8gnf,0_h65mfj7f,0_3flmvnwc,0_m131krws,0_5407xm9j,0_xcrwyk2n/deliveryProfileId/251/protocol/https/format/hdnetworkmanifest/manifest.f4m',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         }
@@ -3710,8 +3620,7 @@ const EntryWithBumperWitNoSources = {
 const Session = {
   response: [
     {
-      ks:
-        'NDIxYjc3MmJhMmI1YTBhYTc1N2U2ODI0NjA4MWU0YzVhNGI3ZDQzM3wxMDY4MjkyOzEwNjgyOTI7MTYzOTM5NDk2OTsyOzE2MzkzMDg1NjkuOTg1NTtwaGlsbC5wcmljZUBkaXNuZXkuY29tOyosZGlzYWJsZWVudGl0bGVtZW50Ozs',
+      ks: 'NDIxYjc3MmJhMmI1YTBhYTc1N2U2ODI0NjA4MWU0YzVhNGI3ZDQzM3wxMDY4MjkyOzEwNjgyOTI7MTYzOTM5NDk2OTsyOzE2MzkzMDg1NjkuOTg1NTtwaGlsbC5wcmljZUBkaXNuZXkuY29tOyosZGlzYWJsZWVudGl0bGVtZW50Ozs',
       objectType: 'KalturaStartWidgetSessionResponse',
       partnerId: 1068292,
       userId: 0
@@ -3750,8 +3659,7 @@ const Partner0EntryData = {
           format: 'url',
           protocols: 'http,https',
           flavorIds: '0_6gg99kvm',
-          url:
-            'https://cdnapisec.kaltura.com/p/1645161/sp/1645161/playManifest/entryId/0_pi55vv3r/flavorIds/0_6gg99kvm/deliveryProfileId/5642/protocol/https/format/url/name/a.mp4',
+          url: 'https://cdnapisec.kaltura.com/p/1645161/sp/1645161/playManifest/entryId/0_pi55vv3r/flavorIds/0_6gg99kvm/deliveryProfileId/5642/protocol/https/format/url/name/a.mp4',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -3760,8 +3668,7 @@ const Partner0EntryData = {
           format: 'hdnetworkmanifest',
           protocols: 'https',
           flavorIds: '0_6gg99kvm',
-          url:
-            'https://cdnapisec.kaltura.com/p/1645161/sp/1645161/playManifest/entryId/0_pi55vv3r/flavorIds/0_6gg99kvm/deliveryProfileId/3382/protocol/https/format/hdnetworkmanifest/manifest.f4m',
+          url: 'https://cdnapisec.kaltura.com/p/1645161/sp/1645161/playManifest/entryId/0_pi55vv3r/flavorIds/0_6gg99kvm/deliveryProfileId/3382/protocol/https/format/hdnetworkmanifest/manifest.f4m',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -3770,8 +3677,7 @@ const Partner0EntryData = {
           format: 'mpegdash',
           protocols: 'http,https',
           flavorIds: '0_6gg99kvm',
-          url:
-            'https://cdnapisec.kaltura.com/p/1645161/sp/1645161/playManifest/entryId/0_pi55vv3r/flavorIds/0_6gg99kvm/deliveryProfileId/4662/protocol/https/format/mpegdash/manifest.mpd',
+          url: 'https://cdnapisec.kaltura.com/p/1645161/sp/1645161/playManifest/entryId/0_pi55vv3r/flavorIds/0_6gg99kvm/deliveryProfileId/4662/protocol/https/format/mpegdash/manifest.mpd',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -3780,8 +3686,7 @@ const Partner0EntryData = {
           format: 'url',
           protocols: 'http',
           flavorIds: '0_6gg99kvm',
-          url:
-            'http://cdnapi.kaltura.com/p/1645161/sp/1645161/playManifest/entryId/0_pi55vv3r/flavorIds/0_6gg99kvm/deliveryProfileId/72/protocol/http/format/url/name/a.mp4',
+          url: 'http://cdnapi.kaltura.com/p/1645161/sp/1645161/playManifest/entryId/0_pi55vv3r/flavorIds/0_6gg99kvm/deliveryProfileId/72/protocol/http/format/url/name/a.mp4',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -3790,8 +3695,7 @@ const Partner0EntryData = {
           format: 'url',
           protocols: 'http,https',
           flavorIds: '0_6gg99kvm',
-          url:
-            'https://cdnapisec.kaltura.com/p/1645161/sp/1645161/playManifest/entryId/0_pi55vv3r/flavorIds/0_6gg99kvm/deliveryProfileId/92/protocol/https/format/url/name/a.mp4',
+          url: 'https://cdnapisec.kaltura.com/p/1645161/sp/1645161/playManifest/entryId/0_pi55vv3r/flavorIds/0_6gg99kvm/deliveryProfileId/92/protocol/https/format/url/name/a.mp4',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -3800,8 +3704,7 @@ const Partner0EntryData = {
           format: 'hdnetwork',
           protocols: 'http,https',
           flavorIds: '0_6gg99kvm',
-          url:
-            'https://cdnapisec.kaltura.com/p/1645161/sp/1645161/playManifest/entryId/0_pi55vv3r/flavorIds/0_6gg99kvm/deliveryProfileId/102/protocol/https/format/hdnetwork/manifest.f4m',
+          url: 'https://cdnapisec.kaltura.com/p/1645161/sp/1645161/playManifest/entryId/0_pi55vv3r/flavorIds/0_6gg99kvm/deliveryProfileId/102/protocol/https/format/hdnetwork/manifest.f4m',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -3810,8 +3713,7 @@ const Partner0EntryData = {
           format: 'applehttp',
           protocols: 'http,https',
           flavorIds: '0_6gg99kvm',
-          url:
-            'https://cdnapisec.kaltura.com/p/1645161/sp/1645161/playManifest/entryId/0_pi55vv3r/flavorIds/0_6gg99kvm/deliveryProfileId/13942/protocol/https/format/applehttp/a.m3u8',
+          url: 'https://cdnapisec.kaltura.com/p/1645161/sp/1645161/playManifest/entryId/0_pi55vv3r/flavorIds/0_6gg99kvm/deliveryProfileId/13942/protocol/https/format/applehttp/a.m3u8',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -3820,8 +3722,7 @@ const Partner0EntryData = {
           format: 'rtsp',
           protocols: 'http,https',
           flavorIds: '0_6gg99kvm',
-          url:
-            'https://cdnapisec.kaltura.com/p/1645161/sp/1645161/playManifest/entryId/0_pi55vv3r/flavorIds/0_6gg99kvm/deliveryProfileId/122/protocol/https/format/rtsp/name/a.3gp',
+          url: 'https://cdnapisec.kaltura.com/p/1645161/sp/1645161/playManifest/entryId/0_pi55vv3r/flavorIds/0_6gg99kvm/deliveryProfileId/122/protocol/https/format/rtsp/name/a.3gp',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -3830,8 +3731,7 @@ const Partner0EntryData = {
           format: 'applehttp',
           protocols: 'http,https',
           flavorIds: '0_6gg99kvm',
-          url:
-            'https://cdnapisec.kaltura.com/p/1645161/sp/1645161/playManifest/entryId/0_pi55vv3r/flavorIds/0_6gg99kvm/deliveryProfileId/13952/protocol/https/format/applehttp/a.m3u8',
+          url: 'https://cdnapisec.kaltura.com/p/1645161/sp/1645161/playManifest/entryId/0_pi55vv3r/flavorIds/0_6gg99kvm/deliveryProfileId/13952/protocol/https/format/applehttp/a.m3u8',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -3840,8 +3740,7 @@ const Partner0EntryData = {
           format: 'applehttp',
           protocols: 'http,https',
           flavorIds: '0_6gg99kvm',
-          url:
-            'https://cdnapisec.kaltura.com/p/1645161/sp/1645161/playManifest/entryId/0_pi55vv3r/flavorIds/0_6gg99kvm/deliveryProfileId/21633/protocol/https/format/applehttp/a.m3u8',
+          url: 'https://cdnapisec.kaltura.com/p/1645161/sp/1645161/playManifest/entryId/0_pi55vv3r/flavorIds/0_6gg99kvm/deliveryProfileId/21633/protocol/https/format/applehttp/a.m3u8',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -3850,8 +3749,7 @@ const Partner0EntryData = {
           format: 'hdnetworkmanifest',
           protocols: 'http',
           flavorIds: '0_6gg99kvm',
-          url:
-            'http://cdnapi.kaltura.com/p/1645161/sp/1645161/playManifest/entryId/0_pi55vv3r/flavorIds/0_6gg99kvm/deliveryProfileId/132/protocol/http/format/hdnetworkmanifest/manifest.f4m',
+          url: 'http://cdnapi.kaltura.com/p/1645161/sp/1645161/playManifest/entryId/0_pi55vv3r/flavorIds/0_6gg99kvm/deliveryProfileId/132/protocol/http/format/hdnetworkmanifest/manifest.f4m',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -3860,8 +3758,7 @@ const Partner0EntryData = {
           format: 'rtmp',
           protocols: 'rtmp,rtmpe,rtmpt,rtmpte',
           flavorIds: '0_6gg99kvm',
-          url:
-            'http://cdnapi.kaltura.com/p/1645161/sp/1645161/playManifest/entryId/0_pi55vv3r/flavorIds/0_6gg99kvm/deliveryProfileId/152/protocol/http/format/rtmp/a.f4m',
+          url: 'http://cdnapi.kaltura.com/p/1645161/sp/1645161/playManifest/entryId/0_pi55vv3r/flavorIds/0_6gg99kvm/deliveryProfileId/152/protocol/http/format/rtmp/a.f4m',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -3870,8 +3767,7 @@ const Partner0EntryData = {
           format: 'rtmp',
           protocols: 'rtmp,rtmpe,rtmpt,rtmpte',
           flavorIds: '0_6gg99kvm',
-          url:
-            'http://cdnapi.kaltura.com/p/1645161/sp/1645161/playManifest/entryId/0_pi55vv3r/flavorIds/0_6gg99kvm/deliveryProfileId/162/protocol/http/format/rtmp/a.f4m',
+          url: 'http://cdnapi.kaltura.com/p/1645161/sp/1645161/playManifest/entryId/0_pi55vv3r/flavorIds/0_6gg99kvm/deliveryProfileId/162/protocol/http/format/rtmp/a.f4m',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -3880,8 +3776,7 @@ const Partner0EntryData = {
           format: 'mpegdash',
           protocols: 'http,https',
           flavorIds: '0_6gg99kvm',
-          url:
-            'https://cdnapisec.kaltura.com/p/1645161/sp/1645161/playManifest/entryId/0_pi55vv3r/flavorIds/0_6gg99kvm/deliveryProfileId/12972/protocol/https/format/mpegdash/manifest.mpd',
+          url: 'https://cdnapisec.kaltura.com/p/1645161/sp/1645161/playManifest/entryId/0_pi55vv3r/flavorIds/0_6gg99kvm/deliveryProfileId/12972/protocol/https/format/mpegdash/manifest.mpd',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -3890,8 +3785,7 @@ const Partner0EntryData = {
           format: 'url',
           protocols: 'http,https',
           flavorIds: '0_6gg99kvm',
-          url:
-            'https://cdnapisec.kaltura.com/p/1645161/sp/1645161/playManifest/entryId/0_pi55vv3r/flavorIds/0_6gg99kvm/deliveryProfileId/5552/protocol/https/format/url/name/a.mp4',
+          url: 'https://cdnapisec.kaltura.com/p/1645161/sp/1645161/playManifest/entryId/0_pi55vv3r/flavorIds/0_6gg99kvm/deliveryProfileId/5552/protocol/https/format/url/name/a.mp4',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -3900,8 +3794,7 @@ const Partner0EntryData = {
           format: 'hdnetworkmanifest',
           protocols: 'http,https',
           flavorIds: '0_6gg99kvm',
-          url:
-            'https://cdnapisec.kaltura.com/p/1645161/sp/1645161/playManifest/entryId/0_pi55vv3r/flavorIds/0_6gg99kvm/deliveryProfileId/5612/protocol/https/format/hdnetworkmanifest/manifest.f4m',
+          url: 'https://cdnapisec.kaltura.com/p/1645161/sp/1645161/playManifest/entryId/0_pi55vv3r/flavorIds/0_6gg99kvm/deliveryProfileId/5612/protocol/https/format/hdnetworkmanifest/manifest.f4m',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         },
@@ -3910,8 +3803,7 @@ const Partner0EntryData = {
           format: 'hdnetworkmanifest',
           protocols: 'http,https',
           flavorIds: '0_6gg99kvm',
-          url:
-            'https://cdnapisec.kaltura.com/p/1645161/sp/1645161/playManifest/entryId/0_pi55vv3r/flavorIds/0_6gg99kvm/deliveryProfileId/5622/protocol/https/format/hdnetworkmanifest/manifest.f4m',
+          url: 'https://cdnapisec.kaltura.com/p/1645161/sp/1645161/playManifest/entryId/0_pi55vv3r/flavorIds/0_6gg99kvm/deliveryProfileId/5622/protocol/https/format/hdnetworkmanifest/manifest.f4m',
           drm: [],
           objectType: 'KalturaPlaybackSource'
         }
@@ -3950,7 +3842,7 @@ const Partner0EntryData = {
       bumperData: [],
       objectType: 'KalturaPlaybackContext'
     },
-    {objects: [], totalCount: 0, objectType: 'KalturaMetadataListResponse'}
+    { objects: [], totalCount: 0, objectType: 'KalturaMetadataListResponse' }
   ]
 };
 

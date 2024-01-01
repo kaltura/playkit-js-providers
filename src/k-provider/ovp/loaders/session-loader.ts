@@ -1,7 +1,7 @@
 import OVPSessionService from '../services/session-service';
 import OVPConfiguration from '../config';
 import RequestBuilder from '../../../util/request-builder';
-import {ILoader} from '../../../types';
+import { ILoader } from '../../../types';
 
 export default class OVPSessionLoader implements ILoader {
   private _widgetId: string;
