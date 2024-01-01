@@ -1,6 +1,6 @@
 import DataLoaderManager from '../../common/data-loader-manager';
 import OVPService from '../services/ovp-service';
-import {ProviderNetworkRetryParameters} from '../../../types';
+import { ProviderNetworkRetryParameters } from '../../../types';
 
 /**
  * OTTDataLoaderManager is a class that handles the OVP data loading

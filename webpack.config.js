@@ -9,7 +9,7 @@ const plugins = [
   })
 ];
 
-module.exports = (env, {mode}) => {
+module.exports = (env, { mode }) => {
   return {
     entry: {
       ovp: './src/k-provider/ovp/index.ts',
@@ -20,13 +20,13 @@ module.exports = (env, {mode}) => {
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: pathData =>
+      filename: (pathData) =>
         pathData.chunk.name === 'ovp' || pathData.chunk.name === 'ott' ? 'playkit-[name]-provider.js' : 'playkit-[name]-service.js',
       libraryTarget: 'umd',
       clean: true
     },
     resolve: {
-      extensions: ['.ts', '.js'],
+      extensions: ['.ts', '.js']
     },
     devtool: 'source-map',
     plugins: plugins,
@@ -42,7 +42,7 @@ module.exports = (env, {mode}) => {
                 [
                   '@babel/preset-env',
                   {
-                    bugfixes: true,
+                    bugfixes: true
                   }
                 ],
                 '@babel/preset-typescript'
@@ -50,7 +50,7 @@ module.exports = (env, {mode}) => {
               plugins: [['@babel/plugin-transform-runtime']]
             }
           }
-        },
+        }
       ]
     },
     devServer: {
@@ -59,5 +59,5 @@ module.exports = (env, {mode}) => {
       },
       compress: true
     }
-  }
+  };
 };

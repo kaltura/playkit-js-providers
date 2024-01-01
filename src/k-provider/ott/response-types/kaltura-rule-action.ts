@@ -1,5 +1,5 @@
 export default class KalturaRuleAction {
-  public static Type: {[type: string]: string | number} = {
+  public static Type: { [type: string]: string | number } = {
     BLOCK: 'BLOCK',
     START_DATE_OFFSET: 'START_DATE_OFFSET',
     END_DATE_OFFSET: 'END_DATE_OFFSET',

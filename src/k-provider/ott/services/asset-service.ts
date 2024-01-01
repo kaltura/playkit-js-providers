@@ -1,6 +1,6 @@
 import OTTService from './ott-service';
 import RequestBuilder from '../../../util/request-builder';
-import {ProviderPlaybackContextOptions} from '../../../types';
+import { ProviderPlaybackContextOptions } from '../../../types';
 
 const SERVICE_NAME: string = 'asset';
 
@@ -30,9 +30,9 @@ export default class OTTAssetService extends OTTService {
     request.action = 'getPlaybackContext';
     request.method = 'POST';
     request.url = request.getUrl(serviceUrl);
-    const contextDataParams: any = {objectType: 'KalturaPlaybackContextOptions'};
+    const contextDataParams: any = { objectType: 'KalturaPlaybackContextOptions' };
     Object.assign(contextDataParams, playbackContextOptions);
-    request.params = {assetId: assetId, assetType: type, contextDataParams: contextDataParams, ks: ks};
+    request.params = { assetId: assetId, assetType: type, contextDataParams: contextDataParams, ks: ks };
     return request;
   }
 
@@ -44,7 +44,7 @@ export default class OTTAssetService extends OTTService {
     request.action = 'get';
     request.method = 'POST';
     request.url = request.getUrl(serviceUrl);
-    request.params = {id: assetId, assetReferenceType: assetReferenceType, ks: ks};
+    request.params = { id: assetId, assetReferenceType: assetReferenceType, ks: ks };
     return request;
   }
 }

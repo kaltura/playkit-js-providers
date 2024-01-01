@@ -1,5 +1,5 @@
-import {clone} from '../../util/clone';
-import {ProviderEnvConfigObject} from '../../types';
+import { clone } from '../../util/clone';
+import { ProviderEnvConfigObject } from '../../types';
 
 const defaultConfig: any = {
   serviceUrl: 'https://cdnapisec.kaltura.com/api_v3',
@@ -25,4 +25,4 @@ export default class OVPConfiguration {
   }
 }
 
-export {OVPConfiguration};
+export { OVPConfiguration };

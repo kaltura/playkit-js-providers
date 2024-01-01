@@ -1,6 +1,6 @@
-import {ProviderMediaFormatType} from '../types';
+import { ProviderMediaFormatType } from '../types';
 
-export const MediaFormat: {[name: string]: ProviderMediaFormatType} = {
+export const MediaFormat: { [name: string]: ProviderMediaFormatType } = {
   DASH: {
     name: 'dash',
     mimeType: 'application/dash+xml',
@@ -44,4 +44,4 @@ function isProgressiveSource(formatName: string): boolean {
   return !!sourceFormat && sourceFormat.name === MediaFormat.MP4.name;
 }
 
-export {isProgressiveSource};
+export { isProgressiveSource };

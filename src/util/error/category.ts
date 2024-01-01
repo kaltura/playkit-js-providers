@@ -1,4 +1,4 @@
-type CategoryType = {[category: string]: number};
+type CategoryType = { [category: string]: number };
 
 const Category: CategoryType = {
   /** Errors from the network stack. */
@@ -7,5 +7,5 @@ const Category: CategoryType = {
   PROVIDER: 3
 };
 
-export {Category};
-export type {CategoryType};
+export { Category };
+export type { CategoryType };

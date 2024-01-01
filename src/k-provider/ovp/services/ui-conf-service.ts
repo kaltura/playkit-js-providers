@@ -26,7 +26,7 @@ export default class OVPUIConfService extends OVPService {
       fields: 'config',
       type: 1
     };
-    request.params = {id: uiConfId, responseProfile: responseProfileParams, ks: ks};
+    request.params = { id: uiConfId, responseProfile: responseProfileParams, ks: ks };
     return request;
   }
 }

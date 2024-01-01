@@ -1,4 +1,4 @@
-import {KalturaPlaybackSource} from './kaltura-playback-source';
+import { KalturaPlaybackSource } from './kaltura-playback-source';
 
 export class KalturaBumper {
   /**
@@ -20,6 +20,6 @@ export class KalturaBumper {
   constructor(data: any) {
     this.entryId = data.entryId;
     this.clickThroughUrl = data.url;
-    this.sources = data.sources ? data.sources.map(source => new KalturaPlaybackSource(source)) : [];
+    this.sources = data.sources ? data.sources.map((source) => new KalturaPlaybackSource(source)) : [];
   }
 }

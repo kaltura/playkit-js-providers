@@ -1,7 +1,7 @@
 import OVPService from '../ovp-service';
 import RequestBuilder from '../../../../util/request-builder';
 import OVPConfiguration from '../../config';
-import {param} from '../../../../util/param';
+import { param } from '../../../../util/param';
 
 const SERVICE_NAME: string = 'stats';
 
@@ -19,7 +19,7 @@ export default class OVPStatsService extends OVPService {
   public static collect(serviceUrl: string, ks: string, playerVersion: string, event: any): RequestBuilder {
     const ovpParams = OVPConfiguration.get();
     const serviceParams = {};
-    Object.assign(serviceParams, ovpParams.serviceParams, {ks: ks, clientTag: 'html5:v' + playerVersion}, event);
+    Object.assign(serviceParams, ovpParams.serviceParams, { ks: ks, clientTag: 'html5:v' + playerVersion }, event);
     const request = new RequestBuilder();
     request.service = SERVICE_NAME;
     request.action = 'collect';

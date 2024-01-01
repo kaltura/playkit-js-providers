@@ -15,7 +15,8 @@ import {
   OTTProviderMediaInfoObject,
   ProviderEntryListObject,
   ProviderMediaConfigObject,
-  ProviderMediaConfigSourcesObject, ProviderMediaInfoObject,
+  ProviderMediaConfigSourcesObject,
+  ProviderMediaInfoObject,
   ProviderOptionsObject,
   ProviderPlaybackContextOptions,
   ProviderPlaylistObject
@@ -55,7 +56,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
         let ks: string = this.ks;
         if (!ks) {
           ks = '{1:result:ks}';
-          this._dataLoader.add(OTTSessionLoader, {partnerId: this.partnerId});
+          this._dataLoader.add(OTTSessionLoader, { partnerId: this.partnerId });
         }
         const contextType = mediaInfo.contextType || KalturaPlaybackContext.Type.PLAYBACK;
         const mediaType = mediaInfo.mediaType || KalturaAsset.Type.MEDIA;
@@ -87,19 +88,19 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
           formats: mediaInfo.formats || []
         };
         return this._dataLoader.fetchData().then(
-          response => {
+          (response) => {
             try {
               resolve(this._parseDataFromResponse(response, requestData));
             } catch (err) {
               reject(err);
             }
           },
-          err => {
+          (err) => {
             reject(err);
           }
         );
       } else {
-        reject(new Error(Error.Severity.CRITICAL, Error.Category.PROVIDER, Error.Code.MISSING_MANDATORY_PARAMS, {message: 'missing entry id'}));
+        reject(new Error(Error.Severity.CRITICAL, Error.Category.PROVIDER, Error.Code.MISSING_MANDATORY_PARAMS, { message: 'missing entry id' }));
       }
     });
   }
@@ -141,7 +142,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
           this._verifyHasSources(mediaConfig.sources);
           const bumper = OTTProviderParser.getBumper(response);
           if (bumper) {
-            Object.assign(mediaConfig.plugins, {bumper});
+            Object.assign(mediaConfig.plugins, { bumper });
           }
         }
       }
@@ -167,19 +168,19 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
         let ks: string = this.ks;
         if (!ks) {
           ks = '{1:result:ks}';
-          this._dataLoader.add(OTTSessionLoader, {partnerId: this.partnerId});
+          this._dataLoader.add(OTTSessionLoader, { partnerId: this.partnerId });
         }
-        this._dataLoader.add(OTTAssetListLoader, {entries, ks});
+        this._dataLoader.add(OTTAssetListLoader, { entries, ks });
         this._dataLoader.fetchData(false).then(
-          response => {
+          (response) => {
             resolve(this._parseEntryListDataFromResponse(response, entries));
           },
-          err => {
+          (err) => {
             reject(err);
           }
         );
       } else {
-        reject({success: false, data: 'Missing mandatory parameter'});
+        reject({ success: false, data: 'Missing mandatory parameter' });
       }
     });
   }
@@ -200,7 +201,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
       const playlistLoader = data.get(OTTAssetListLoader.id);
       if (playlistLoader && playlistLoader.response) {
         const entryList = OTTProviderParser.getEntryList(playlistLoader.response, requestEntries);
-        entryList.items.forEach(i => playlistConfig.items.push({sources: this._getSourcesObject(i)}));
+        entryList.items.forEach((i) => playlistConfig.items.push({ sources: this._getSourcesObject(i) }));
       }
     }
     this._logger.debug('Data parsing finished', playlistConfig);

@@ -1,46 +1,46 @@
-export type LogLevelObject = {value: number, name: string};
-export type LogLevelType = {[level: string]: LogLevelObject};
+export type LogLevelObject = { value: number; name: string };
+export type LogLevelType = { [level: string]: LogLevelObject };
 export type loggerFunctionType = {
-  VERSION: string,
-  DEBUG: LogLevelObject,
-  ERROR: LogLevelObject,
-  INFO: LogLevelObject,
-  OFF: LogLevelObject,
-  TIME: LogLevelObject,
-  TRACE: LogLevelObject,
-  WARN: LogLevelObject,
-  createDefaultHandler: () => any
-  debug: () => any
-  enabledFor: () => any
-  error: () => any
-  get: () => any
-  getLevel: () => any
-  info: () => any
-  log: () => any
-  setHandler: () => any
-  setLevel: () => any
-  time: () => any
-  timeEnd: () => any
-  trace: () => any
-  useDefaults: () => any
-  warn: () => any
+  VERSION: string;
+  DEBUG: LogLevelObject;
+  ERROR: LogLevelObject;
+  INFO: LogLevelObject;
+  OFF: LogLevelObject;
+  TIME: LogLevelObject;
+  TRACE: LogLevelObject;
+  WARN: LogLevelObject;
+  createDefaultHandler: () => any;
+  debug: () => any;
+  enabledFor: () => any;
+  error: () => any;
+  get: () => any;
+  getLevel: () => any;
+  info: () => any;
+  log: () => any;
+  setHandler: () => any;
+  setLevel: () => any;
+  time: () => any;
+  timeEnd: () => any;
+  trace: () => any;
+  useDefaults: () => any;
+  warn: () => any;
 };
 
 type LoggerType = {
-  getLogger: loggerFunctionType,
-  LogLevel: LogLevelType
+  getLogger: loggerFunctionType;
+  LogLevel: LogLevelType;
 };
 
 const JsLogger = {
   get: (): any => ({
     VERSION: '',
-    DEBUG: {value: '', name: ''},
-    ERROR: {value: '', name: ''},
-    INFO: {value: '', name: ''},
-    OFF: {value: '', name: ''},
-    TIME: {value: '', name: ''},
-    TRACE: {value: '', name: ''},
-    WARN: {value: '', name: ''},
+    DEBUG: { value: '', name: '' },
+    ERROR: { value: '', name: '' },
+    INFO: { value: '', name: '' },
+    OFF: { value: '', name: '' },
+    TIME: { value: '', name: '' },
+    TRACE: { value: '', name: '' },
+    WARN: { value: '', name: '' },
     createDefaultHandler: (): any => {},
     debug: (): any => {},
     enabledFor: (): any => {},
@@ -105,4 +105,4 @@ function setLogLevel(level: LogLevelObject, name?: string): void {
 }
 
 export default getLogger;
-export {getLogLevel, setLogLevel, setLogger, LogLevel, LoggerType};
+export { getLogLevel, setLogLevel, setLogger, LogLevel, LoggerType };

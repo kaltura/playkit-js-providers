@@ -1,7 +1,7 @@
 import UserService from '../services/user-service';
 import OTTConfiguration from '../config';
 import RequestBuilder from '../../../util/request-builder';
-import {ILoader} from '../../../types';
+import { ILoader } from '../../../types';
 
 export default class OTTSessionLoader implements ILoader {
   private _partnerId: number;

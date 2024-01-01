@@ -1,4 +1,4 @@
-type CodeType = {[code: string]: number};
+type CodeType = { [code: string]: number };
 
 const Code: CodeType = {
   /**
@@ -73,5 +73,5 @@ const Code: CodeType = {
   METHOD_NOT_IMPLEMENTED: 3002
 };
 
-export {Code};
-export type {CodeType};
+export { Code };
+export type { CodeType };

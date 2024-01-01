@@ -1,11 +1,11 @@
 import ServiceResult from '../../common/base-service-result';
-import {KalturaAccessControlMessage} from '../../common/response-types/kaltura-access-control-message';
+import { KalturaAccessControlMessage } from '../../common/response-types/kaltura-access-control-message';
 import KalturaRuleAction from './kaltura-rule-action';
 import KalturaPlaybackSource from './kaltura-playback-source';
 import KalturaBumpersPlaybackPluginData from './kaltura-bumper-playback-plugin-data';
 
 export default class KalturaPlaybackContext extends ServiceResult {
-  public static Type: {[type: string]: string} = {
+  public static Type: { [type: string]: string } = {
     DOWNLOAD: 'DOWNLOAD',
     TRAILER: 'TRAILER',
     CATCHUP: 'CATCHUP',
@@ -42,19 +42,19 @@ export default class KalturaPlaybackContext extends ServiceResult {
     if (!this.hasError) {
       const messages = response.messages;
       if (messages) {
-        messages.map(message => this.messages.push(new KalturaAccessControlMessage(message)));
+        messages.map((message) => this.messages.push(new KalturaAccessControlMessage(message)));
       }
       const actions = response.actions;
       if (actions) {
-        actions.map(action => this.actions.push(new KalturaRuleAction(action)));
+        actions.map((action) => this.actions.push(new KalturaRuleAction(action)));
       }
       const sources = response.sources;
       if (sources) {
-        sources.map(source => this.sources.push(new KalturaPlaybackSource(source)));
+        sources.map((source) => this.sources.push(new KalturaPlaybackSource(source)));
       }
       const plugins = response.plugins;
       if (plugins) {
-        plugins.map(plugin => this.plugins.push(new KalturaBumpersPlaybackPluginData(plugin)));
+        plugins.map((plugin) => this.plugins.push(new KalturaBumpersPlaybackPluginData(plugin)));
       }
     }
   }
@@ -64,7 +64,7 @@ export default class KalturaPlaybackContext extends ServiceResult {
   }
 
   public getBlockAction(): KalturaRuleAction | undefined {
-    return this.actions.find(action => action.type === KalturaRuleAction.Type.BLOCK);
+    return this.actions.find((action) => action.type === KalturaRuleAction.Type.BLOCK);
   }
 
   public getErrorMessages(): Array<KalturaAccessControlMessage> {

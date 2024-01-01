@@ -1,27 +1,27 @@
 export class KalturaMediaEntry {
-  public static EntryType: {[entryType: string]: {value: number | string}} = {
-    AUTOMATIC: {value: -1},
-    EXTERNAL_MEDIA: {value: 'externalMedia.externalMedia'},
-    MEDIA_CLIP: {value: 1},
-    MIX: {value: 2},
-    PLAYLIST: {value: 5},
-    DATA: {value: 6},
-    LIVE_STREAM: {value: 7},
-    LIVE_CHANNEL: {value: 8},
-    DOCUMENT: {value: 10}
+  public static EntryType: { [entryType: string]: { value: number | string } } = {
+    AUTOMATIC: { value: -1 },
+    EXTERNAL_MEDIA: { value: 'externalMedia.externalMedia' },
+    MEDIA_CLIP: { value: 1 },
+    MIX: { value: 2 },
+    PLAYLIST: { value: 5 },
+    DATA: { value: 6 },
+    LIVE_STREAM: { value: 7 },
+    LIVE_CHANNEL: { value: 8 },
+    DOCUMENT: { value: 10 }
   };
 
-  public static MediaType: {[mediaType: string]: {value: number}} = {
-    VIDEO: {value: 1},
-    IMAGE: {value: 2},
-    AUDIO: {value: 5},
-    LIVE_STREAM_FLASH: {value: 201},
-    LIVE_STREAM_WINDOWS_MEDIA: {value: 202},
-    LIVE_STREAM_REAL_MEDIA: {value: 203},
-    LIVE_STREAM_QUICK_TIME: {value: 204}
+  public static MediaType: { [mediaType: string]: { value: number } } = {
+    VIDEO: { value: 1 },
+    IMAGE: { value: 2 },
+    AUDIO: { value: 5 },
+    LIVE_STREAM_FLASH: { value: 201 },
+    LIVE_STREAM_WINDOWS_MEDIA: { value: 202 },
+    LIVE_STREAM_REAL_MEDIA: { value: 203 },
+    LIVE_STREAM_QUICK_TIME: { value: 204 }
   };
 
-  public static EntryStatus: {[status: string]: string | number} = {
+  public static EntryStatus: { [status: string]: string | number } = {
     ERROR_IMPORTING: -2,
     ERROR_CONVERTING: -1,
     SCAN_FAILURE: 'virusScan.ScanFailure',
@@ -36,7 +36,7 @@ export class KalturaMediaEntry {
     NO_CONTENT: 7
   };
 
-  public static EntryModerationStatus: {[status: string]: number} = {
+  public static EntryModerationStatus: { [status: string]: number } = {
     PENDING_MODERATION: 1,
     APPROVED: 2,
     REJECTED: 3,

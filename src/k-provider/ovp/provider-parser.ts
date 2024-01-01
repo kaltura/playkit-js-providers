@@ -1,9 +1,9 @@
 import { KalturaPlaybackContext, KalturaUserEntry } from './response-types';
-import {KalturaMetadataListResponse} from './response-types';
-import {KalturaMediaEntry} from './response-types';
-import {KalturaPlaybackSource} from './response-types';
-import {KalturaBumper} from './response-types';
-import {KalturaDrmPlaybackPluginData} from '../common/response-types/kaltura-drm-playback-plugin-data';
+import { KalturaMetadataListResponse } from './response-types';
+import { KalturaMediaEntry } from './response-types';
+import { KalturaPlaybackSource } from './response-types';
+import { KalturaBumper } from './response-types';
+import { KalturaDrmPlaybackPluginData } from '../common/response-types/kaltura-drm-playback-plugin-data';
 import PlaySourceUrlBuilder from './play-source-url-builder';
 import XmlParser from '../../util/xml-parser';
 import getLogger from '../../util/logger';
@@ -12,15 +12,15 @@ import MediaEntry from '../../entities/media-entry';
 import Drm from '../../entities/drm';
 import MediaSource from '../../entities/media-source';
 import MediaSources from '../../entities/media-sources';
-import {SupportedStreamFormat, isProgressiveSource} from '../../entities/media-format';
+import { SupportedStreamFormat, isProgressiveSource } from '../../entities/media-format';
 import Playlist from '../../entities/playlist';
 import EntryList from '../../entities/entry-list';
 import Bumper from '../../entities/bumper';
-import {KalturaRuleAction} from './response-types';
-import {KalturaAccessControlMessage} from '../common/response-types/kaltura-access-control-message';
-import type {OVPMediaEntryLoaderResponse} from './loaders/media-entry-loader';
-import {ExternalCaptionsBuilder} from './external-captions-builder';
-import {ImageSource} from '../../entities/image-source';
+import { KalturaRuleAction } from './response-types';
+import { KalturaAccessControlMessage } from '../common/response-types/kaltura-access-control-message';
+import type { OVPMediaEntryLoaderResponse } from './loaders/media-entry-loader';
+import { ExternalCaptionsBuilder } from './external-captions-builder';
+import { ImageSource } from '../../entities/image-source';
 
 class OVPProviderParser {
   private static _logger = getLogger('OVPProviderParser');
@@ -117,7 +117,7 @@ class OVPProviderParser {
   public static getEntryList(playlistResponse: any): EntryList {
     const entryList = new EntryList();
     const playlistItems = playlistResponse.playlistItems.entries;
-    playlistItems.forEach(entry => {
+    playlistItems.forEach((entry) => {
       const mediaEntry = new MediaEntry();
       OVPProviderParser._fillBaseData(mediaEntry, entry);
       entryList.items.push(mediaEntry);
@@ -140,11 +140,11 @@ class OVPProviderParser {
     const bumperData: KalturaBumper = playbackContext.bumperData[0];
     if (bumperData) {
       const bumperSources = bumperData && bumperData.sources;
-      const progressiveBumper = bumperSources.find(bumper => isProgressiveSource(bumper.format));
+      const progressiveBumper = bumperSources.find((bumper) => isProgressiveSource(bumper.format));
       if (progressiveBumper) {
         const parsedSources = OVPProviderParser._parseProgressiveSources(progressiveBumper, playbackContext, ks, partnerId, 0, bumperData.entryId);
         if (parsedSources[0]) {
-          return new Bumper({url: parsedSources[0].url, clickThroughUrl: bumperData.clickThroughUrl});
+          return new Bumper({ url: parsedSources[0].url, clickThroughUrl: bumperData.clickThroughUrl });
         }
       }
     }
@@ -179,24 +179,24 @@ class OVPProviderParser {
   private static _getEntryType(entryTypeEnum: number, typeEnum: number | string): string {
     let type = MediaEntry.Type.UNKNOWN;
     switch (entryTypeEnum) {
-    case KalturaMediaEntry.MediaType.IMAGE.value:
-      type = MediaEntry.Type.IMAGE;
-      break;
-    case KalturaMediaEntry.MediaType.AUDIO.value:
-      type = MediaEntry.Type.AUDIO;
-      break;
-    default:
-      switch (typeEnum) {
-      case KalturaMediaEntry.EntryType.MEDIA_CLIP.value:
-        type = MediaEntry.Type.VOD;
+      case KalturaMediaEntry.MediaType.IMAGE.value:
+        type = MediaEntry.Type.IMAGE;
         break;
-      case KalturaMediaEntry.EntryType.LIVE_STREAM.value:
-      case KalturaMediaEntry.EntryType.LIVE_CHANNEL.value:
-        type = MediaEntry.Type.LIVE;
+      case KalturaMediaEntry.MediaType.AUDIO.value:
+        type = MediaEntry.Type.AUDIO;
         break;
       default:
-        type = MediaEntry.Type.UNKNOWN;
-      }
+        switch (typeEnum) {
+          case KalturaMediaEntry.EntryType.MEDIA_CLIP.value:
+            type = MediaEntry.Type.VOD;
+            break;
+          case KalturaMediaEntry.EntryType.LIVE_STREAM.value:
+          case KalturaMediaEntry.EntryType.LIVE_CHANNEL.value:
+            type = MediaEntry.Type.LIVE;
+            break;
+          default:
+            type = MediaEntry.Type.UNKNOWN;
+        }
     }
     return type;
   }
@@ -231,11 +231,11 @@ class OVPProviderParser {
       }
     };
     const parseAdaptiveSources = (): void => {
-      kalturaSources.filter(source => !isProgressiveSource(source.format)).forEach(addAdaptiveSource);
+      kalturaSources.filter((source) => !isProgressiveSource(source.format)).forEach(addAdaptiveSource);
     };
     // eslint-disable-next-line  @typescript-eslint/explicit-function-return-type
     const parseProgressiveSources = () => {
-      const progressiveSource = kalturaSources.find(source => {
+      const progressiveSource = kalturaSources.find((source) => {
         //match progressive source with supported protocol(http/s)
         return isProgressiveSource(source.format) && source.getProtocol(OVPProviderParser._getBaseProtocol()) !== '';
       });
@@ -325,7 +325,7 @@ class OVPProviderParser {
       mediaSource.id = entryId + '_' + deliveryProfileId + ',' + format;
       if (kalturaSource.hasDrmData()) {
         const drmParams: Array<Drm> = [];
-        kalturaSource.drm.forEach(drm => {
+        kalturaSource.drm.forEach((drm) => {
           drmParams.push(new Drm(drm.licenseURL, KalturaDrmPlaybackPluginData.Scheme[drm.scheme], drm.certificate));
         });
         mediaSource.drmData = drmParams;
@@ -362,7 +362,7 @@ class OVPProviderParser {
       const format = kalturaSource.format;
       const deliveryProfileId = kalturaSource.deliveryProfileId;
       const sourceId = deliveryProfileId + ',' + format;
-      playbackContext.flavorAssets.map(flavor => {
+      playbackContext.flavorAssets.map((flavor) => {
         const mediaSource: MediaSource = new MediaSource();
         mediaSource.id = flavor.id + sourceId;
         mediaSource.mimetype = flavor.fileExt === 'mp3' ? 'audio/mp3' : 'video/mp4';
@@ -408,7 +408,7 @@ class OVPProviderParser {
   private static _parseMetadata(metadataList: KalturaMetadataListResponse | undefined): any {
     const metadata: any = {};
     if (metadataList && metadataList.metas && metadataList.metas.length > 0) {
-      metadataList.metas.forEach(meta => {
+      metadataList.metas.forEach((meta) => {
         if (meta.xml) {
           const domParser: DOMParser = new DOMParser();
           meta.xml = meta.xml.replace(/\r?\n|\r/g, '');
@@ -417,7 +417,7 @@ class OVPProviderParser {
           const metaXml: any = domParser.parseFromString(meta.xml, 'text/xml');
           const metasObj: any = XmlParser.xmlToJson(metaXml);
           const metaKeys = Object.keys(metasObj.metadata);
-          metaKeys.forEach(key => {
+          metaKeys.forEach((key) => {
             metadata[key] = metasObj.metadata[key]['#text'];
           });
         }

@@ -1,4 +1,4 @@
-import {AdapterDataConfig} from './adapter-data-config';
+import { AdapterDataConfig } from './adapter-data-config';
 
 export type OVPProviderMediaInfoObject = {
   entryId?: string;

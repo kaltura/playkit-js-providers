@@ -11,4 +11,4 @@ const VERSION = __VERSION__;
 const ContextType = KalturaPlaybackContext.Type;
 const MediaType = KalturaAsset.Type;
 
-export {OTTProvider as Provider, ContextType, MediaType, NAME, VERSION};
+export { OTTProvider as Provider, ContextType, MediaType, NAME, VERSION };

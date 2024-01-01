@@ -1,4 +1,4 @@
-import {ProviderDrmDataObject} from '../types';
+import { ProviderDrmDataObject } from '../types';
 
 export default class Drm {
   /**

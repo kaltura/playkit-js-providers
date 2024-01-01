@@ -1,13 +1,13 @@
 import RequestBuilder from '../../../util/request-builder';
 import OVPConfiguration from '../config';
 import OVPBaseEntryService from '../services/base-entry-service';
-import {KalturaBaseEntryListResponse} from '../response-types/kaltura-base-entry-list-response';
-import {ILoader} from '../../../types';
+import { KalturaBaseEntryListResponse } from '../response-types/kaltura-base-entry-list-response';
+import { ILoader } from '../../../types';
 
 export default class OVPEntryListLoader implements ILoader {
   private _entries: Array<string>;
   private _requests!: Array<RequestBuilder>;
-  private _response: any = {playlistItems: {entries: []}};
+  private _response: any = { playlistItems: { entries: [] } };
 
   public static get id(): string {
     return 'entry_list';
@@ -32,7 +32,7 @@ export default class OVPEntryListLoader implements ILoader {
 
   public set response(response: any) {
     let mediaEntryResponse: KalturaBaseEntryListResponse;
-    response.forEach(item => {
+    response.forEach((item) => {
       mediaEntryResponse = new KalturaBaseEntryListResponse(item.data);
       this._response.playlistItems.entries.push(mediaEntryResponse.entries[0]);
     });
@@ -52,7 +52,7 @@ export default class OVPEntryListLoader implements ILoader {
   public buildRequests(params: any): Array<RequestBuilder> {
     const config = OVPConfiguration.get();
     const requests: Array<RequestBuilder> = [];
-    params.entries.forEach(entry => {
+    params.entries.forEach((entry) => {
       requests.push(OVPBaseEntryService.list(config.serviceUrl, params.ks, entry.entryId || entry, params.redirectFromEntryId, entry.referenceId));
     });
     return requests;

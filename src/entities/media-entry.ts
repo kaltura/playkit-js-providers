@@ -1,16 +1,16 @@
 import MediaSources from './media-sources';
-import {ProviderMediaEntryObject} from '../types';
-import {Poster} from '../types/poster';
+import { ProviderMediaEntryObject } from '../types';
+import { Poster } from '../types/poster';
 
 export default class MediaEntry {
-  public static Type: {[type: string]: string} = {
+  public static Type: { [type: string]: string } = {
     VOD: 'Vod',
     LIVE: 'Live',
     IMAGE: 'Image',
     AUDIO: 'Audio',
     UNKNOWN: 'Unknown'
   };
-  public static DvrStatus: {[type: string]: number} = {
+  public static DvrStatus: { [type: string]: number } = {
     ON: 1,
     OFF: 0
   };

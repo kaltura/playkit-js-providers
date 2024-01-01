@@ -1,5 +1,5 @@
-import {addKsToUrl} from './provider-parser';
-import {CaptionType, PKExternalCaptionObject} from '../../types';
+import { addKsToUrl } from './provider-parser';
+import { CaptionType, PKExternalCaptionObject } from '../../types';
 
 const KalturaCaptionType: CaptionType = {
   SRT: '1',
@@ -8,14 +8,14 @@ const KalturaCaptionType: CaptionType = {
   CAP: '4'
 };
 
-const CaptionsFormatsMap: {[format: string]: string} = {
+const CaptionsFormatsMap: { [format: string]: string } = {
   '3': 'vtt',
   '1': 'srt'
 };
 
 class ExternalCaptionsBuilder {
   public static createConfig(captions: Array<any>, ks: string): Array<PKExternalCaptionObject> {
-    return captions.map(caption => {
+    return captions.map((caption) => {
       let url = caption.url;
       let type = CaptionsFormatsMap[caption.format];
       if ([KalturaCaptionType.DFXP, KalturaCaptionType.CAP].includes(caption.format)) {
@@ -34,4 +34,4 @@ class ExternalCaptionsBuilder {
   }
 }
 
-export {ExternalCaptionsBuilder};
+export { ExternalCaptionsBuilder };

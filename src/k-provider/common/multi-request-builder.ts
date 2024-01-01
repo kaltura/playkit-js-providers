@@ -19,8 +19,8 @@ export default class MultiRequestBuilder extends RequestBuilder {
   public add(request: RequestBuilder): MultiRequestBuilder {
     this.requests.push(request);
     const requestParams = {};
-    const serviceDef: any = {service: request.service, action: request.action};
-    Object.assign(requestParams, {[this.requests.length]: Object.assign(serviceDef, request.params)});
+    const serviceDef: any = { service: request.service, action: request.action };
+    Object.assign(requestParams, { [this.requests.length]: Object.assign(serviceDef, request.params) });
     Object.assign(requestParams, this.params);
     this.params = requestParams;
     return this;
@@ -46,7 +46,7 @@ export default class MultiRequestBuilder extends RequestBuilder {
         );
       }
       this.doHttpRequest().then(
-        data => {
+        (data) => {
           const multiRequestResult = new MultiRequestResult(data, requestsMustSucceed);
           if (multiRequestResult.success) {
             resolve({
@@ -63,7 +63,7 @@ export default class MultiRequestBuilder extends RequestBuilder {
             );
           }
         },
-        err => {
+        (err) => {
           reject(err);
         }
       );
@@ -91,10 +91,10 @@ export class MultiRequestResult {
   constructor(response: any, requestsMustSucceed: boolean = true) {
     const result = response.result ? response.result : response;
     const responseArr = Array.isArray(result) ? result : [result];
-    const results = responseArr.map(result => new ServiceResult(result));
-    const errorResults = results.filter(serviceResult => serviceResult.hasError);
+    const results = responseArr.map((result) => new ServiceResult(result));
+    const errorResults = results.filter((serviceResult) => serviceResult.hasError);
 
-    errorResults.forEach(serviceResult => {
+    errorResults.forEach((serviceResult) => {
       MultiRequestResult._logger.error(
         `Service returned an error with error code: ${serviceResult.error.code} and message: ${serviceResult.error.message}.`
       );
@@ -104,7 +104,7 @@ export class MultiRequestResult {
     if ((requestsMustSucceed && errorResults.length) || errorResults.length === this.results.length) {
       this.success = false;
     } else {
-      this.results = this.results.filter(serviceResult => !serviceResult.hasError);
+      this.results = this.results.filter((serviceResult) => !serviceResult.hasError);
       this.success = true;
     }
   }

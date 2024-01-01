@@ -1,7 +1,7 @@
 import getLogger from '../../util/logger';
 import OVPConfiguration from './config';
 import OVPProviderParser from './provider-parser';
-import {KalturaMediaEntry} from './response-types';
+import { KalturaMediaEntry } from './response-types';
 import OVPMediaEntryLoader from './loaders/media-entry-loader';
 import OVPSessionLoader from './loaders/session-loader';
 import OVPDataLoaderManager from './loaders/data-loader-manager';
@@ -18,12 +18,14 @@ import {
   ProviderFilterOptionsObject,
   ProviderMediaConfigObject,
   ProviderMediaConfigSourcesObject,
-  ProviderOptionsObject, ProviderPlaylistInfoObject,
-  ProviderPlaylistObject, RequestLoader
+  ProviderOptionsObject,
+  ProviderPlaylistInfoObject,
+  ProviderPlaylistObject,
+  RequestLoader
 } from '../../types';
 
 export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject> {
-  private _filterOptionsConfig: ProviderFilterOptionsObject = {redirectFromEntryId: true};
+  private _filterOptionsConfig: ProviderFilterOptionsObject = { redirectFromEntryId: true };
   /**
    * @constructor
    * @param {ProviderOptionsObject} options - provider options
@@ -62,12 +64,12 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
         let ks: string = this.ks;
         if (!ks) {
           ks = '{1:result:ks}';
-          this._dataLoader.add(OVPSessionLoader, {widgetId: this.widgetId});
+          this._dataLoader.add(OVPSessionLoader, { widgetId: this.widgetId });
         }
         const redirectFromEntryId = this._getEntryRedirectFilter(mediaInfo);
-        this._dataLoader.add(OVPMediaEntryLoader, {entryId, ks, redirectFromEntryId, referenceId});
+        this._dataLoader.add(OVPMediaEntryLoader, { entryId, ks, redirectFromEntryId, referenceId });
         return this._dataLoader.fetchData().then(
-          response => {
+          (response) => {
             try {
               const mediaConfig = this._parseDataFromResponse(response);
               RegexActionHandler.handleRegexAction(mediaConfig, response).then(resolve);
@@ -75,12 +77,12 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
               reject(err);
             }
           },
-          err => {
+          (err) => {
             reject(err);
           }
         );
       } else {
-        reject(new Error(Error.Severity.CRITICAL, Error.Category.PROVIDER, Error.Code.MISSING_MANDATORY_PARAMS, {message: 'missing entry id'}));
+        reject(new Error(Error.Severity.CRITICAL, Error.Category.PROVIDER, Error.Code.MISSING_MANDATORY_PARAMS, { message: 'missing entry id' }));
       }
     });
   }
@@ -91,7 +93,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
 
     return new Promise((resolve, reject) => {
       if (!theKs) {
-        dataLoader.add(OVPSessionLoader, {widgetId: this.widgetId});
+        dataLoader.add(OVPSessionLoader, { widgetId: this.widgetId });
       }
       loaders.forEach((loaderRequest: RequestLoader) => {
         // eslint-disable-next-line  @typescript-eslint/ban-ts-comment
@@ -99,14 +101,14 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
         dataLoader.add(loaderRequest.loader, loaderRequest.params, theKs || '{1:result:ks}');
       });
       return dataLoader.fetchData().then(
-        response => {
+        (response) => {
           try {
             resolve(response);
           } catch (err) {
             reject(err);
           }
         },
-        err => {
+        (err) => {
           reject(err);
         }
       );
@@ -170,7 +172,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
           this._verifyHasSources(mediaConfig.sources);
           const bumper = OVPProviderParser.getBumper(response, this.isAnonymous ? '' : this.ks, this.partnerId);
           if (bumper) {
-            Object.assign(mediaConfig.plugins, {bumper});
+            Object.assign(mediaConfig.plugins, { bumper });
           }
         }
       }
@@ -188,7 +190,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     if ([KalturaMediaEntry.EntryStatus.IMPORT, KalturaMediaEntry.EntryStatus.PRECONVERT].includes(mediaEntry.status!)) {
       throw new Error(Error.Severity.CRITICAL, Error.Category.SERVICE, Error.Code.MEDIA_STATUS_NOT_READY, {
         messages: `Status of entry id ${mediaEntry.id} is ${mediaEntry.status} and is still being imported or converted`,
-        data: {status}
+        data: { status }
       });
     }
   }
@@ -212,19 +214,19 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
         let ks: string = this.ks;
         if (!ks) {
           ks = '{1:result:ks}';
-          this._dataLoader.add(OVPSessionLoader, {widgetId: this.widgetId});
+          this._dataLoader.add(OVPSessionLoader, { widgetId: this.widgetId });
         }
-        this._dataLoader.add(OVPPlaylistLoader, {playlistId, ks});
+        this._dataLoader.add(OVPPlaylistLoader, { playlistId, ks });
         this._dataLoader.fetchData().then(
-          response => {
+          (response) => {
             resolve(this._parsePlaylistDataFromResponse(response));
           },
-          err => {
+          (err) => {
             reject(err);
           }
         );
       } else {
-        reject({success: false, data: 'Missing mandatory parameter'});
+        reject({ success: false, data: 'Missing mandatory parameter' });
       }
     });
   }
@@ -241,7 +243,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
         playlistConfig.metadata.name = playlist.name!;
         playlistConfig.metadata.description = playlist.description!;
         playlistConfig.playlistLastEntryId = playlist.playlistLastEntryId;
-        playlist.items.forEach(i => playlistConfig.items.push({sources: this._getSourcesObject(i)}));
+        playlist.items.forEach((i) => playlistConfig.items.push({ sources: this._getSourcesObject(i) }));
       }
     }
     this._logger.debug('Data parsing finished', playlistConfig);
@@ -268,20 +270,20 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
         let ks: string = this.ks;
         if (!ks) {
           ks = '{1:result:ks}';
-          this._dataLoader.add(OVPSessionLoader, {widgetId: this.widgetId});
+          this._dataLoader.add(OVPSessionLoader, { widgetId: this.widgetId });
         }
         const redirectFromEntryId = this._getEntryRedirectFilter(entryListInfo);
-        this._dataLoader.add(OVPEntryListLoader, {entries, ks, redirectFromEntryId});
+        this._dataLoader.add(OVPEntryListLoader, { entries, ks, redirectFromEntryId });
         this._dataLoader.fetchData(false).then(
-          response => {
+          (response) => {
             resolve(this._parseEntryListDataFromResponse(response));
           },
-          err => {
+          (err) => {
             reject(err);
           }
         );
       } else {
-        reject({success: false, data: 'Missing mandatory parameter'});
+        reject({ success: false, data: 'Missing mandatory parameter' });
       }
     });
   }
@@ -293,7 +295,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
       const playlistLoader = data.get(OVPEntryListLoader.id);
       if (playlistLoader && playlistLoader.response) {
         const entryList = OVPProviderParser.getEntryList(playlistLoader.response);
-        entryList.items.forEach(i => playlistConfig.items.push({sources: this._getSourcesObject(i)}));
+        entryList.items.forEach((i) => playlistConfig.items.push({ sources: this._getSourcesObject(i) }));
       }
     }
     this._logger.debug('Data parsing finished', playlistConfig);

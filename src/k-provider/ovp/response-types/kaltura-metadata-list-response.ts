@@ -1,5 +1,5 @@
 import ServiceResult from '../../common/base-service-result';
-import {KalturaMetadata} from './kaltura-metadata';
+import { KalturaMetadata } from './kaltura-metadata';
 
 export class KalturaMetadataListResponse extends ServiceResult {
   public totalCount!: number;
@@ -15,7 +15,7 @@ export class KalturaMetadataListResponse extends ServiceResult {
       this.totalCount = responseObj.totalCount;
       if (this.totalCount > 0) {
         this.metas = [];
-        responseObj.objects.map(meta => this.metas.push(new KalturaMetadata(meta)));
+        responseObj.objects.map((meta) => this.metas.push(new KalturaMetadata(meta)));
       }
     }
   }

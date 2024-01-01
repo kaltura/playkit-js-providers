@@ -3,10 +3,10 @@ import OTTConfiguration from '../config';
 import RequestBuilder from '../../../util/request-builder';
 import KalturaPlaybackContext from '../response-types/kaltura-playback-context';
 import KalturaAsset from '../response-types/kaltura-asset';
-import {ILoader} from '../../../types';
+import { ILoader } from '../../../types';
 
-type OTTAssetLoaderResponse = {mediaDataResult: KalturaAsset, playBackContextResult: KalturaPlaybackContext};
-export type {OTTAssetLoaderResponse};
+type OTTAssetLoaderResponse = { mediaDataResult: KalturaAsset; playBackContextResult: KalturaPlaybackContext };
+export type { OTTAssetLoaderResponse };
 
 export default class OTTAssetLoader implements ILoader {
   private _entryId: string;

@@ -1,4 +1,4 @@
-import {ProviderDrmDataObject} from './drm-data';
+import { ProviderDrmDataObject } from './drm-data';
 
 export type ProviderMediaSourceObject = {
   id: string;

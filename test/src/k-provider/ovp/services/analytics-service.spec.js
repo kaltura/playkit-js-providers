@@ -1,7 +1,7 @@
 import OVPAnalyticsService from '../../../../../src/k-provider/ovp/services/analytics/analytics-service';
 import RequestBuilder from '../../../../../src/util/request-builder';
 import OVPConfiguration from '../../../../../src/k-provider/ovp/config';
-import {param} from '../../../../../src/util/param';
+import { param } from '../../../../../src/util/param';
 
 describe('analytics service - trackEvent', function () {
   const ovpParams = OVPConfiguration.get();
@@ -30,8 +30,8 @@ describe('analytics service - trackEvent', function () {
   it('should be POST request', function () {
     const serviceUrl = 'http://my/url';
     const request = OVPAnalyticsService.trackEvent(serviceUrl, eventParams, 'POST');
-    const {param1, param2, param3} = eventParams;
-    const {eventType, partnerId, entryId, sessionId} = eventParams;
+    const { param1, param2, param3 } = eventParams;
+    const { eventType, partnerId, entryId, sessionId } = eventParams;
     (request instanceof RequestBuilder).should.be.true;
     request.service.should.be.equal('analytics');
     request.action.should.be.equal('trackEvent');
@@ -51,7 +51,7 @@ describe('analytics service - trackEvent', function () {
         })
     );
     request.tag.should.be.equal('analytics-trackEvent');
-    request.params.should.deep.equal(JSON.stringify(Object.assign({}, ovpParams.serviceParams, {param1, param2, param3})));
+    request.params.should.deep.equal(JSON.stringify(Object.assign({}, ovpParams.serviceParams, { param1, param2, param3 })));
   });
 
   it('should be GET request for non POST method', function () {

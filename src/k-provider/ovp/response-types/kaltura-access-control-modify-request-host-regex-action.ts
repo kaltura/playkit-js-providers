@@ -1,4 +1,4 @@
-import {KalturaRuleAction} from './kaltura-rule-action';
+import { KalturaRuleAction } from './kaltura-rule-action';
 
 export class KalturaAccessControlModifyRequestHostRegexAction extends KalturaRuleAction {
   /**

@@ -11,10 +11,10 @@ import OVPConfiguration from '../../../../src/k-provider/ovp/config';
 describe('handleRegexAction', function () {
   let data = new Map();
   let mediaEntryLoader;
-  let mediaConfigForTest = {...mediaConfig};
+  let mediaConfigForTest = { ...mediaConfig };
 
   before(() => {
-    mediaEntryLoader = new OVPMediaEntryLoader({entryId: 'a', ks: 'a', redirectFromEntryId: true});
+    mediaEntryLoader = new OVPMediaEntryLoader({ entryId: 'a', ks: 'a', redirectFromEntryId: true });
     mediaEntryLoader.response = responseDataFromBE;
     data.set('media', mediaEntryLoader);
   });
@@ -23,16 +23,16 @@ describe('handleRegexAction', function () {
     RegexActionHandler._isECDNUrlAlive.restore();
   });
 
-  it('should modify all URLs', done => {
+  it('should modify all URLs', (done) => {
     sinon.stub(RegexActionHandler, '_isECDNUrlAlive').callsFake(function () {
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         resolve(true);
       });
     });
-    OVPConfiguration.set({replaceHostOnlyManifestUrls: false});
-    mediaConfigForTest = JSON.parse(JSON.stringify({...mediaConfig}));
+    OVPConfiguration.set({ replaceHostOnlyManifestUrls: false });
+    mediaConfigForTest = JSON.parse(JSON.stringify({ ...mediaConfig }));
     RegexActionHandler.handleRegexAction(mediaConfigForTest, data).then(
-      mediaConfigRes => {
+      (mediaConfigRes) => {
         try {
           mediaConfigRes.should.deep.eq(finalMediaConfigAllSourcesModified);
           done();
@@ -40,22 +40,22 @@ describe('handleRegexAction', function () {
           done(err);
         }
       },
-      err => {
+      (err) => {
         done(err);
       }
     );
   });
 
-  it('should modify only the manifest URLs', done => {
+  it('should modify only the manifest URLs', (done) => {
     sinon.stub(RegexActionHandler, '_isECDNUrlAlive').callsFake(function () {
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         resolve(true);
       });
     });
-    OVPConfiguration.set({replaceHostOnlyManifestUrls: true});
-    mediaConfigForTest = JSON.parse(JSON.stringify({...mediaConfig}));
+    OVPConfiguration.set({ replaceHostOnlyManifestUrls: true });
+    mediaConfigForTest = JSON.parse(JSON.stringify({ ...mediaConfig }));
     RegexActionHandler.handleRegexAction(mediaConfigForTest, data).then(
-      mediaConfigRes => {
+      (mediaConfigRes) => {
         try {
           mediaConfigRes.should.deep.eq(finalMediaConfigPlayManifestSourcesModified);
           done();
@@ -63,21 +63,21 @@ describe('handleRegexAction', function () {
           done(err);
         }
       },
-      err => {
+      (err) => {
         done(err);
       }
     );
   });
 
-  it('should not modify the sources URLs', done => {
+  it('should not modify the sources URLs', (done) => {
     sinon.stub(RegexActionHandler, '_isECDNUrlAlive').callsFake(function () {
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         resolve(false);
       });
     });
-    mediaConfigForTest = JSON.parse(JSON.stringify({...mediaConfig}));
+    mediaConfigForTest = JSON.parse(JSON.stringify({ ...mediaConfig }));
     RegexActionHandler.handleRegexAction(mediaConfigForTest, data).then(
-      mediaConfigRes => {
+      (mediaConfigRes) => {
         try {
           mediaConfigRes.should.deep.eq(mediaConfig);
           done();
@@ -85,7 +85,7 @@ describe('handleRegexAction', function () {
           done(err);
         }
       },
-      err => {
+      (err) => {
         done(err);
       }
     );

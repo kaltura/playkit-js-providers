@@ -1,4 +1,4 @@
-import {ILoader} from './loader';
+import { ILoader } from './loader';
 
 export type RequestLoader = {
   loader: ILoader;

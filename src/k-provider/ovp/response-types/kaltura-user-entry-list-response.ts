@@ -1,5 +1,5 @@
 import ServiceResult from '../../common/base-service-result';
-import {KalturaUserEntry} from './kaltura-user-entry';
+import { KalturaUserEntry } from './kaltura-user-entry';
 
 export class KalturaUserEntryListResponse extends ServiceResult {
   /**
@@ -23,7 +23,7 @@ export class KalturaUserEntryListResponse extends ServiceResult {
       this.totalCount = responseObj.totalCount;
       this.entries = [];
       if (this.totalCount > 0) {
-        responseObj.objects.map(entry => this.entries.push(new KalturaUserEntry(entry)));
+        responseObj.objects.map((entry) => this.entries.push(new KalturaUserEntry(entry)));
       }
     }
   }

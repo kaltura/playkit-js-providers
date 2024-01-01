@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -22,7 +22,7 @@
       // Create provider instance
       var provider = new playkit.providers.ovp.Provider(options, 'myPlayerVersion');
       // Ask for media config
-      provider.getMediaConfig(mediaInfo).then(mediaConfig => {
+      provider.getMediaConfig(mediaInfo).then((mediaConfig) => {
         console.log(mediaConfig);
       });
     </script>

@@ -1,5 +1,5 @@
 import ServiceResult from '../../common/base-service-result';
-import {KalturaMediaEntry} from './kaltura-media-entry';
+import { KalturaMediaEntry } from './kaltura-media-entry';
 
 export class KalturaMediaEntries extends ServiceResult {
   /**
@@ -16,7 +16,7 @@ export class KalturaMediaEntries extends ServiceResult {
     super(responseObj);
     if (!this.hasError) {
       this.entries = [];
-      responseObj.map(entry => {
+      responseObj.map((entry) => {
         const kalturaMediaEntry = new KalturaMediaEntry(entry);
         if (kalturaMediaEntry.type !== KalturaMediaEntry.EntryType.DOCUMENT.value) {
           // filter out documents

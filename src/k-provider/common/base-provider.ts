@@ -1,7 +1,15 @@
-import {getLogLevel, setLogLevel, setLogger, LogLevelType, LogLevel} from '../../util/logger';
+import { getLogLevel, setLogLevel, setLogger, LogLevelType, LogLevel } from '../../util/logger';
 import DataLoaderManager from './data-loader-manager';
 import Error from '../../util/error/error';
-import {ProviderEntryListObject, ProviderMediaConfigObject, ProviderPlaylistInfoObject, ProviderMediaConfigSourcesObject, ProviderNetworkRetryParameters, ProviderOptionsObject, ProviderPlaylistObject} from '../../types';
+import {
+  ProviderEntryListObject,
+  ProviderMediaConfigObject,
+  ProviderPlaylistInfoObject,
+  ProviderMediaConfigSourcesObject,
+  ProviderNetworkRetryParameters,
+  ProviderOptionsObject,
+  ProviderPlaylistObject
+} from '../../types';
 
 export default class BaseProvider<MI> {
   private _partnerId: number;
@@ -109,4 +117,4 @@ export default class BaseProvider<MI> {
   }
 }
 
-export {BaseProvider}
+export { BaseProvider };

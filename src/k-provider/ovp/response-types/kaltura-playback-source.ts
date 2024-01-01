@@ -1,4 +1,4 @@
-import {KalturaDrmPlaybackPluginData} from '../../common/response-types/kaltura-drm-playback-plugin-data';
+import { KalturaDrmPlaybackPluginData } from '../../common/response-types/kaltura-drm-playback-plugin-data';
 
 export type OVPKalturaPlaybackSource = KalturaPlaybackSource;
 
@@ -45,7 +45,7 @@ export class KalturaPlaybackSource {
     this.protocols = source.protocols;
     this.flavorIds = source.flavorIds;
     if (source.drm) {
-      source.drm.map(drm => this.drm.push(new KalturaDrmPlaybackPluginData(drm)));
+      source.drm.map((drm) => this.drm.push(new KalturaDrmPlaybackPluginData(drm)));
     }
   }
 
@@ -76,7 +76,7 @@ export class KalturaPlaybackSource {
     let returnValue: string = '';
     if (this.protocols && this.protocols.length > 0) {
       const protocolsArr: Array<string> = this.protocols.split(',');
-      protocolsArr.forEach(p => {
+      protocolsArr.forEach((p) => {
         if (p === protocol) {
           returnValue = p;
         }

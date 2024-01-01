@@ -1,5 +1,5 @@
-import {ProviderMediaSourcesObject} from './media-sources';
-import {Poster} from './poster';
+import { ProviderMediaSourcesObject } from './media-sources';
+import { Poster } from './poster';
 
 export type ProviderMediaEntryObject = {
   id?: string;

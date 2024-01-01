@@ -1,7 +1,7 @@
 import OVPStatsService from '../../../../../src/k-provider/ovp/services/stats/stats-service';
 import RequestBuilder from '../../../../../src/util/request-builder';
 import OVPConfiguration from '../../../../../src/k-provider/ovp/config';
-import {param} from '../../../../../src/util/param';
+import { param } from '../../../../../src/util/param';
 
 describe('stats service - collect', function () {
   let ovpParams, ks, event;
@@ -10,7 +10,7 @@ describe('stats service - collect', function () {
   beforeEach(function () {
     ovpParams = OVPConfiguration.get();
     ks = '1234';
-    event = {a: 1};
+    event = { a: 1 };
   });
 
   it('should be proper values', function () {

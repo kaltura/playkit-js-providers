@@ -1,5 +1,5 @@
 import Drm from './drm';
-import {ProviderMediaSourceObject} from '../types';
+import { ProviderMediaSourceObject } from '../types';
 
 export default class MediaSource {
   /**
@@ -59,7 +59,7 @@ export default class MediaSource {
     if (this.label) response.label = this.label;
     if (this.drmData && this.drmData.length > 0) {
       response.drmData = [];
-      this.drmData.forEach(d => {
+      this.drmData.forEach((d) => {
         if (Array.isArray(response.drmData)) {
           response.drmData.push(d.toJSON());
         }

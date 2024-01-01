@@ -1,7 +1,7 @@
 import OVPService from '../ovp-service';
 import RequestBuilder from '../../../../util/request-builder';
 import OVPConfiguration from '../../config';
-import {param} from '../../../../util/param';
+import { param } from '../../../../util/param';
 
 const SERVICE_NAME: string = 'analytics';
 
@@ -43,9 +43,9 @@ export default class OVPAnalyticsService extends OVPService {
     const headers: Map<string, string> = new Map();
     headers.set('Content-Type', 'application/json');
     const request = new RequestBuilder(headers);
-    const {eventType, partnerId, entryId, sessionId} = serviceParams;
-    const urlParams = {eventType, partnerId, entryId, sessionId};
-    ['eventType', 'partnerId', 'entryId', 'sessionId'].forEach(key => delete serviceParams[key]);
+    const { eventType, partnerId, entryId, sessionId } = serviceParams;
+    const urlParams = { eventType, partnerId, entryId, sessionId };
+    ['eventType', 'partnerId', 'entryId', 'sessionId'].forEach((key) => delete serviceParams[key]);
     request.service = SERVICE_NAME;
     request.action = 'trackEvent';
     request.method = 'POST';

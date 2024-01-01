@@ -1,5 +1,5 @@
 import Error from './error/error';
-import {ProviderNetworkRetryParameters} from '../types';
+import { ProviderNetworkRetryParameters } from '../types';
 
 const KALTURA_HEADER_PREFIX: string = 'x-';
 
@@ -159,7 +159,7 @@ export default class RequestBuilder {
     return request
       .getAllResponseHeaders()
       .split('\n')
-      .filter(header => header.toLowerCase().indexOf(KALTURA_HEADER_PREFIX) === 0);
+      .filter((header) => header.toLowerCase().indexOf(KALTURA_HEADER_PREFIX) === 0);
   }
 
   private _handleError(request: XMLHttpRequest, code: number, data: any): Promise<void> | void {

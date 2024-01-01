@@ -1,5 +1,5 @@
 import OVPProviderParser from '../../../../src/k-provider/ovp/provider-parser';
-import {KalturaPlaybackContext} from '../../../../src/k-provider/ovp/response-types/kaltura-playback-context';
+import { KalturaPlaybackContext } from '../../../../src/k-provider/ovp/response-types/kaltura-playback-context';
 import {
   kalturaDashSource,
   kalturaProgressiveSourceNotSecured,
@@ -10,7 +10,7 @@ import {
   kalturaSourceProtocolMismatch,
   kalturaSourceProtocolMismatchFlavorAssets
 } from './playback-sources-data';
-import {youtubeMediaEntryResult, youtubeMediaEntryData, liveMediaEntryData} from './provider-parser-data';
+import { youtubeMediaEntryResult, youtubeMediaEntryData, liveMediaEntryData } from './provider-parser-data';
 
 describe('provider parser', function () {
   let sandbox;
@@ -78,7 +78,7 @@ describe('provider parser', function () {
     it('should return a valid youtube source for a valid input', () => {
       const mediaEntry = OVPProviderParser.getMediaEntry(...youtubeMediaEntryData);
       const mediaEntryObject = mediaEntry.toJSON();
-      Object.keys(mediaEntryObject).forEach(key => mediaEntryObject[key] === undefined && delete mediaEntryObject[key]);
+      Object.keys(mediaEntryObject).forEach((key) => mediaEntryObject[key] === undefined && delete mediaEntryObject[key]);
       mediaEntryObject.should.deep.equal(youtubeMediaEntryResult);
     });
 

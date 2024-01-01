@@ -1,7 +1,7 @@
 import ServiceResult from '../../common/base-service-result';
 
 export class KalturaUIConfResponse extends ServiceResult {
-  public static Type: {[type: string]: number} = {
+  public static Type: { [type: string]: number } = {
     PLAYER: 1,
     CONTRIBUTION_WIZARD: 2,
     SIMPLE_EDITOR: 3,
@@ -25,7 +25,7 @@ export class KalturaUIConfResponse extends ServiceResult {
     WEBCASTING: 21
   };
 
-  public static CreationMode: {[mode: string]: number} = {
+  public static CreationMode: { [mode: string]: number } = {
     WIZARD: 2,
     ADVANCED: 3
   };
