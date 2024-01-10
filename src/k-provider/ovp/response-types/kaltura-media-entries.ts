@@ -16,13 +16,7 @@ export class KalturaMediaEntries extends ServiceResult {
     super(responseObj);
     if (!this.hasError) {
       this.entries = [];
-      responseObj.map(entry => {
-        const kalturaMediaEntry = new KalturaMediaEntry(entry);
-        if (kalturaMediaEntry.type !== KalturaMediaEntry.EntryType.DOCUMENT.value) {
-          // filter out documents
-          this.entries.push(kalturaMediaEntry);
-        }
-      });
+      responseObj.map(entry => this.entries.push(new KalturaMediaEntry(entry)));
     }
   }
 }
