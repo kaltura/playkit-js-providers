@@ -103,7 +103,7 @@ const mediaConfig = {
       }
     ],
     image: [],
-    doc: [],
+    document: [],
     id: '1_5w23wdlc',
     duration: 206,
     type: 'Vod',
@@ -633,7 +633,7 @@ const finalMediaConfigAllSourcesModified = {
       }
     ],
     image: [],
-    doc: [],
+    document: [],
     id: '1_5w23wdlc',
     duration: 206,
     type: 'Vod',
@@ -766,7 +766,7 @@ const finalMediaConfigPlayManifestSourcesModified = {
       }
     ],
     image: [],
-    doc: [],
+    document: [],
     id: '1_5w23wdlc',
     duration: 206,
     type: 'Vod',

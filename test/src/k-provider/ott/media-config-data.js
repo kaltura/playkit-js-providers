@@ -13,7 +13,7 @@ const NoPluginsWithDrm = {
   sources: {
     progressive: [],
     image: [],
-    doc: [],
+    document: [],
     dash: [
       {
         id: '728180,mpegdash',
@@ -458,7 +458,7 @@ const FilteredSourcesByDeviceType = {
     progressive: [],
     dash: [],
     image: [],
-    doc: [],
+    document: [],
     hls: [
       {
         id: '728182,applehttp',
@@ -705,7 +705,7 @@ const LiveEntryNoDrm = {
       }
     ],
     image: [],
-    doc: [],
+    document: [],
     progressive: [],
     dash: [],
     hls: [
@@ -777,7 +777,7 @@ const EntryWithBumper = {
     ],
     progressive: [],
     image: [],
-    doc: [],
+    document: [],
     id: 324284,
     duration: 60,
     type: 'Vod',

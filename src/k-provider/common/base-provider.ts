@@ -88,7 +88,7 @@ export default class BaseProvider<MI> {
   }
 
   protected _verifyHasSources(sources: ProviderMediaConfigSourcesObject): void {
-    if (sources.hls.concat(sources.dash, sources.progressive, sources.image, sources.doc).length === 0) {
+    if (sources.hls.concat(sources.dash, sources.progressive, sources.image, sources.document).length === 0) {
       throw new Error(Error.Severity.CRITICAL, Error.Category.SERVICE, Error.Code.MISSING_PLAY_SOURCE, {
         action: '',
         messages: `No play source for entry id: ${sources.id}`

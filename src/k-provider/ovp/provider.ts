@@ -319,7 +319,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
       dash: [],
       progressive: [],
       image: [],
-      doc: [],
+      document: [],
       id: '',
       duration: 0,
       type: MediaEntry.Type.UNKNOWN,
@@ -341,7 +341,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     sourcesObject.dash = mediaSources.dash;
     sourcesObject.progressive = mediaSources.progressive;
     sourcesObject.image = mediaSources.image;
-    sourcesObject.doc = mediaSources.doc;
+    sourcesObject.document = mediaSources.document;
     sourcesObject.id = mediaEntry.id;
     sourcesObject.duration = mediaEntry.duration;
     sourcesObject.type = mediaEntry.type;

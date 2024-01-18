@@ -21,7 +21,7 @@ import {KalturaAccessControlMessage} from '../common/response-types/kaltura-acce
 import type {OVPMediaEntryLoaderResponse} from './loaders/media-entry-loader';
 import {ExternalCaptionsBuilder} from './external-captions-builder';
 import {ImageSource} from '../../entities/image-source';
-import {DocSource} from '../../entities/doc-source';
+import {DocumentSource} from '../../entities/document-source';
 
 class OVPProviderParser {
   private static _logger = getLogger('OVPProviderParser');
@@ -250,8 +250,8 @@ class OVPProviderParser {
       sources.image.push(new ImageSource(entry));
     };
 
-    const parseDocSources = (): void => {
-      sources.doc.push(new DocSource(entry));
+    const parseDocumentSources = (): void => {
+      sources.document.push(new DocumentSource(entry));
     };
 
     const parseExternalMedia = (): void => {
@@ -267,7 +267,7 @@ class OVPProviderParser {
     } else if (entry.entryType === KalturaMediaEntry.MediaType.IMAGE.value) {
       parseImageSources();
     } else if (entry.type === KalturaMediaEntry.EntryType.DOCUMENT.value) {
-      parseDocSources();
+      parseDocumentSources();
     } else if (kalturaSources && kalturaSources.length > 0) {
       parseAdaptiveSources();
       parseProgressiveSources();

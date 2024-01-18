@@ -1,4 +1,4 @@
-export default class DocSource {
+export default class DocumentSource {
   /**
    * @member - media source id
    * @type {string}
@@ -28,4 +28,4 @@ export default class DocSource {
   }
 }
 
-export {DocSource}
+export {DocumentSource}
