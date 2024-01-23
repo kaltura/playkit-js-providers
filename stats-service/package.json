@@ -1,0 +1,6 @@
+{
+  "name": "@playkit-js/playkit-js-providers/stats-service",
+  "main": "../dist/playkit-stats-service.js",
+  "types": "../dist/index.d.ts",
+  "sideEffects": false
+}
