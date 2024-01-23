@@ -7,11 +7,11 @@
     "dist/**/*",
     "src/**/*",
     "flow-typed/**/*",
-    "playkit-analytics-service/*",
-    "playkit-bookmark-service/*",
-    "playkit-ott-provider/*",
-    "playkit-ovp-provider/*",
-    "playkit-stats-service/*"
+    "analytics-service/*",
+    "bookmark-service/*",
+    "ott-provider/*",
+    "ovp-provider/*",
+    "stats-service/*"
   ],
   "exports": {
     "./ovp-provider": "./dist/playkit-ovp-provider.js",
