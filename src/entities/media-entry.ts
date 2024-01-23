@@ -8,7 +8,8 @@ export default class MediaEntry {
     LIVE: 'Live',
     IMAGE: 'Image',
     AUDIO: 'Audio',
-    UNKNOWN: 'Unknown'
+    UNKNOWN: 'Unknown',
+    DOCUMENT: 'Document'
   };
   public static DvrStatus: {[type: string]: number} = {
     ON: 1,

@@ -1,6 +1,7 @@
 import MediaSource from './media-source';
 import {MediaFormat} from './media-format';
 import {ImageSource} from './image-source';
+import {DocumentSource} from './document-source';
 import {PKExternalCaptionObject, ProviderMediaFormatType, ProviderMediaSourcesObject} from '../types';
 
 export default class MediaSources {
@@ -23,6 +24,7 @@ export default class MediaSources {
    */
   public hls: Array<MediaSource>;
   public image: Array<ImageSource>;
+  public document: Array<DocumentSource>;
   public captions?: Array<PKExternalCaptionObject>;
 
   /**
@@ -33,6 +35,7 @@ export default class MediaSources {
     this.dash = [];
     this.hls = [];
     this.image = [];
+    this.document = [];
   }
 
   /**
@@ -68,12 +71,14 @@ export default class MediaSources {
       progressive: [],
       dash: [],
       hls: [],
-      image: []
+      image: [],
+      document: []
     };
     this.progressive.forEach(p => response.progressive.push(p.toJSON()));
     this.hls.forEach(h => response.hls.push(h.toJSON()));
     this.dash.forEach(d => response.dash.push(d.toJSON()));
     response.image = this.image;
+    response.document = this.document;
     return response;
   }
 }

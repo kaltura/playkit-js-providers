@@ -137,6 +137,7 @@ const NoPluginsNoDrm = {
       }
     ],
     image: [],
+    document: [],
     downloadUrl: ''
   }
 };
@@ -187,6 +188,7 @@ const RegexAppliedPlayManifestSources = {
       }
     ],
     image: [],
+    document: [],
     progressive: [
       {
         id: '1_ha0nqwz810081,url',
@@ -330,6 +332,7 @@ const RegexAppliedAllSources = {
       }
     ],
     image: [],
+    document: [],
     progressive: [
       {
         id: '1_ha0nqwz810081,url',
@@ -505,6 +508,7 @@ const NoPluginsWithDrm = {
       }
     ],
     image: [],
+    document: [],
     downloadUrl: ''
   }
 };
@@ -648,6 +652,7 @@ const WithPluginsNoDrm = {
       }
     ],
     image: [],
+    document: [],
     downloadUrl: ''
   }
 };
@@ -712,6 +717,7 @@ const WithPluginsWithDrm = {
       }
     ],
     image: [],
+    document: [],
     downloadUrl: ''
   }
 };
@@ -774,6 +780,7 @@ const AudioEntryWithoutPlugins = {
       }
     ],
     image: [],
+    document: [],
     downloadUrl: ''
   }
 };
@@ -1157,6 +1164,7 @@ const EntryWithBumper = {
       }
     ],
     image: [],
+    document: [],
     id: '0_wifqaipd',
     duration: 741,
     type: 'Vod',
@@ -1274,6 +1282,7 @@ const EntryWithBumperWithKs = {
       }
     ],
     image: [],
+    document: [],
     id: '0_wifqaipd',
     duration: 741,
     type: 'Vod',
@@ -1394,6 +1403,7 @@ const EntryWithNoBumper = {
       }
     ],
     image: [],
+    document: [],
     id: '0_wifqaipd',
     duration: 741,
     type: 'Vod',
@@ -1486,6 +1496,7 @@ const EntryOfPartner0 = {
       }
     ],
     image: [],
+    document: [],
     id: '0_pi55vv3r',
     duration: 11,
     type: 'Vod',
