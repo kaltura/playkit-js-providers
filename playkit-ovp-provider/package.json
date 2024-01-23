@@ -1,5 +1,0 @@
-{
-  "name": "@playkit-js/playkit-js-providers/playkit-ovp-provider",
-  "main": "../dist/playkit-ovp-provider.js",
-  "sideEffects": false
-}
