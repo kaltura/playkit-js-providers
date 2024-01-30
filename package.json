@@ -11,14 +11,15 @@
     "bookmark-service/*",
     "ott-provider/*",
     "ovp-provider/*",
-    "stats-service/*"
+    "stats-service/*",
+    "types/*"
   ],
   "exports": {
     "./ovp-provider": "./dist/playkit-ovp-provider.js",
     "./ott-provider": "./dist/playkit-ott-provider.js",
     "./analytics-service": "./dist/playkit-analytics-service.js",
     "./stats-service": "./dist/playkit-stats-service.js",
-    "./bookmark-service": "./dist/playkit-bookmark-service.js"
+    "./bookmark-service": "./dist/playkit-bookmark-service.js",
     "./types": "./dist/types.d.ts"
   },
   "scripts": {
