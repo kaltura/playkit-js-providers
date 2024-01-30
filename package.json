@@ -19,18 +19,20 @@
     "./analytics-service": "./dist/playkit-analytics-service.js",
     "./stats-service": "./dist/playkit-stats-service.js",
     "./bookmark-service": "./dist/playkit-bookmark-service.js"
+    "./types": "./dist/types.d.ts"
   },
   "scripts": {
     "serve": "webpack serve --open --mode=development",
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --node-env=production",
     "build": "yarn run build:prod && yarn run build:types",
-    "build:types": "yarn run build:types:ovp && yarn run build:types:ott && yarn run build:types:analytics && yarn run build:types:bookmark && yarn run build:types:stats",
+    "build:types": "yarn run build:types:ovp && yarn run build:types:ott && yarn run build:types:analytics && yarn run build:types:bookmark && yarn run build:types:stats && yarn run build:types:types",
     "build:types:ovp": "tsc --build tsconfig-lib.json && mkdir -p lib && api-extractor run --config api-extracor-config/api-extractor-ovp-provider.json --local",
     "build:types:ott": "tsc --build tsconfig-lib.json && mkdir -p lib && api-extractor run --config api-extracor-config/api-extractor-ott-provider.json --local",
     "build:types:analytics": "tsc --build tsconfig-lib.json && mkdir -p lib && api-extractor run --config api-extracor-config/api-extractor-analytics-service.json --local",
     "build:types:bookmark": "tsc --build tsconfig-lib.json && mkdir -p lib && api-extractor run --config api-extracor-config/api-extractor-bookmark-service.json --local",
     "build:types:stats": "tsc --build tsconfig-lib.json && mkdir -p lib && api-extractor run --config api-extracor-config/api-extractor-stats-service.json --local",
+    "build:types:types": "tsc --build tsconfig-lib.json && mkdir -p lib && api-extractor run --config api-extracor-config/api-extractor-types.json --local",
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
     "watch": "webpack --mode=development --watch",

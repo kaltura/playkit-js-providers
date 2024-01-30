@@ -1,0 +1,5 @@
+{
+  "name": "@playkit-js/playkit-js-providers/types",
+  "types": "../dist/types.d.ts",
+  "sideEffects": false
+}
