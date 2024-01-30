@@ -1,6 +1,6 @@
 {
   "name": "@playkit-js/playkit-js-providers/bookmark-service",
   "main": "../dist/playkit-bookmark-service.js",
-  "types": "../dist/index.d.ts",
+  "types": "../dist/bookmark-service.d.ts",
   "sideEffects": false
 }

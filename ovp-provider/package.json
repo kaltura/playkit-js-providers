@@ -1,6 +1,6 @@
 {
   "name": "@playkit-js/playkit-js-providers/ovp-provider",
   "main": "../dist/playkit-ovp-provider.js",
-  "types": "../dist/index.d.ts",
+  "types": "../dist/ovp-provider.d.ts",
   "sideEffects": false
 }
