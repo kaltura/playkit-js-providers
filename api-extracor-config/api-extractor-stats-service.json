@@ -16,7 +16,9 @@
     "enabled": true,
     "untrimmedFilePath": "<projectFolder>/dist/stats-service.d.ts"
   },
-  "tsdocMetadata": {},
+  "tsdocMetadata": {
+    "tsdocMetadataFilePath": "../dist/tsdoc-metadata.json"
+  },
   "messages": {
     "compilerMessageReporting": {
       "default": {
