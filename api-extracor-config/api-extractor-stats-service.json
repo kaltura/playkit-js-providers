@@ -1,22 +1,24 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/api-extractor/v7/api-extractor.schema.json",
-  "mainEntryPointFilePath": "<projectFolder>/lib/types/index.d.ts",
+  "mainEntryPointFilePath": "<projectFolder>/lib/k-provider/ovp/services/stats/index.d.ts",
   "bundledPackages": [],
   "compiler": {},
   "apiReport": {
-    "enabled": true,
+    "enabled": false,
     "reportFolder": "<projectFolder>/api-extractor/report",
     "reportTempFolder": "<projectFolder>/api-extractor/report-temp"
   },
   "docModel": {
-    "enabled": true,
+    "enabled": false,
     "apiJsonFilePath": "<projectFolder>/api-extractor/<unscopedPackageName>.api.json"
   },
   "dtsRollup": {
     "enabled": true,
-    "untrimmedFilePath": "<projectFolder>/dist/index.d.ts"
+    "untrimmedFilePath": "<projectFolder>/dist/stats-service.d.ts"
   },
-  "tsdocMetadata": {},
+  "tsdocMetadata": {
+    "tsdocMetadataFilePath": "../dist/tsdoc-metadata.json"
+  },
   "messages": {
     "compilerMessageReporting": {
       "default": {

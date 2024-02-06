@@ -1,6 +1,6 @@
 {
   "name": "@playkit-js/playkit-js-providers/ott-provider",
   "main": "../dist/playkit-ott-provider.js",
-  "types": "../dist/index.d.ts",
+  "types": "../dist/ott-provider.d.ts",
   "sideEffects": false
 }

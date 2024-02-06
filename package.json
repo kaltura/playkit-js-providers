@@ -2,7 +2,6 @@
   "name": "@playkit-js/playkit-js-providers",
   "version": "2.40.3",
   "description": "",
-  "types": "./dist/index.d.ts",
   "files": [
     "dist/**/*",
     "src/**/*",
@@ -11,21 +10,29 @@
     "bookmark-service/*",
     "ott-provider/*",
     "ovp-provider/*",
-    "stats-service/*"
+    "stats-service/*",
+    "types/*"
   ],
   "exports": {
     "./ovp-provider": "./dist/playkit-ovp-provider.js",
     "./ott-provider": "./dist/playkit-ott-provider.js",
     "./analytics-service": "./dist/playkit-analytics-service.js",
     "./stats-service": "./dist/playkit-stats-service.js",
-    "./bookmark-service": "./dist/playkit-bookmark-service.js"
+    "./bookmark-service": "./dist/playkit-bookmark-service.js",
+    "./types": "./dist/types.d.ts"
   },
   "scripts": {
     "serve": "webpack serve --open --mode=development",
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --node-env=production",
     "build": "yarn run build:prod && yarn run build:types",
-    "build:types": "tsc --build tsconfig-lib.json && mkdir -p lib && api-extractor run --local",
+    "build:types": "yarn run build:types:ovp && yarn run build:types:ott && yarn run build:types:analytics && yarn run build:types:bookmark && yarn run build:types:stats && yarn run build:types:types",
+    "build:types:ovp": "tsc --build tsconfig-lib.json && mkdir -p lib && api-extractor run --config api-extracor-config/api-extractor-ovp-provider.json --local",
+    "build:types:ott": "tsc --build tsconfig-lib.json && mkdir -p lib && api-extractor run --config api-extracor-config/api-extractor-ott-provider.json --local",
+    "build:types:analytics": "tsc --build tsconfig-lib.json && mkdir -p lib && api-extractor run --config api-extracor-config/api-extractor-analytics-service.json --local",
+    "build:types:bookmark": "tsc --build tsconfig-lib.json && mkdir -p lib && api-extractor run --config api-extracor-config/api-extractor-bookmark-service.json --local",
+    "build:types:stats": "tsc --build tsconfig-lib.json && mkdir -p lib && api-extractor run --config api-extracor-config/api-extractor-stats-service.json --local",
+    "build:types:types": "tsc --build tsconfig-lib.json && mkdir -p lib && api-extractor run --config api-extracor-config/api-extractor-types.json --local",
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
     "watch": "webpack --mode=development --watch",
@@ -43,8 +50,8 @@
     "@babel/plugin-transform-runtime": "^7.22.15",
     "@babel/preset-env": "^7.21.5",
     "@babel/preset-typescript": "^7.22.15",
-    "@microsoft/api-extractor": "^7.38.0",
-    "@playkit-js/browserslist-config": "^1.0.8-canary.0-f5791c1",
+    "@microsoft/api-extractor": "^7.39.4",
+    "@playkit-js/browserslist-config": "1.0.8",
     "@typescript-eslint/eslint-plugin": "^6.7.2",
     "@typescript-eslint/parser": "^6.7.2",
     "babel-eslint": "^10.1.0",

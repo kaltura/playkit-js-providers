@@ -1,6 +1,6 @@
 {
   "name": "@playkit-js/playkit-js-providers/analytics-service",
   "main": "../dist/playkit-analytics-service.js",
-  "types": "../dist/index.d.ts",
+  "types": "../dist/analytics-service.d.ts",
   "sideEffects": false
 }
