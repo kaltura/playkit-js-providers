@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.40.4 (2024-02-25)
+
+
+### Bug Fixes
+
+* **FEC-13671:** Export 5 dedicated TS declaration files for each bundle ([#236](https://github.com/kaltura/playkit-js-providers/issues/236)) ([b3e5269](https://github.com/kaltura/playkit-js-providers/commit/b3e5269))
+
+
+
 ### 2.40.3 (2024-02-04)
 
 
