@@ -85,7 +85,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     });
   }
 
-  public doRequest(loaders: Array<RequestLoader>, ks?: string): Promise<any> {
+  public doRequest(loaders: Array<RequestLoader>, ks?: string, requestsMustSucceed?: boolean): Promise<any> {
     const theKs: string = ks || this.ks;
     const dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, theKs, this._networkRetryConfig);
 
@@ -98,7 +98,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
         // @ts-ignore
         dataLoader.add(loaderRequest.loader, loaderRequest.params, theKs || '{1:result:ks}');
       });
-      return dataLoader.fetchData().then(
+      return dataLoader.fetchData(requestsMustSucceed).then(
         response => {
           try {
             resolve(response);
