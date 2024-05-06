@@ -27,34 +27,39 @@ class RegexActionHandler {
   }
 
   /**
-   * Ping the ECDN url to check if alive
-   * @function _pingECDNUrl
+   * Ping the ECDN url and replace the host urls if needed
+   * @function _pingECDNAndReplaceHostUrls
+   * @param {ProviderMediaConfigObject} mediaConfig - The media config
    * @param {KalturaAccessControlModifyRequestHostRegexAction} regexAction - The regex action
    * @param {string} cdnUrl - The CDN url
-   * @returns {Promise<boolean>} - Whether the media config sources urls should be modified or not
+   * @returns {Promise<ProviderMediaConfigObject>} - The media config with old or modified urls
    * @static
    * @private
    */
-  private static async _isECDNUrlAlive(regexAction: KalturaAccessControlModifyRequestHostRegexAction, cdnUrl: string): Promise<boolean> {
-    const urlPing = cdnUrl + '/api_v3/service/system/action/ping/format/1';
-    const req = new XMLHttpRequest();
-    req.open('GET', urlPing);
-    req.timeout = regexAction.checkAliveTimeoutMs;
-    req.onreadystatechange = (): boolean => {
-      if (req.readyState === 4) {
-        if (req.status === 200) {
-          return true;
+  private static _pingECDNAndReplaceHostUrls(
+    mediaConfig: ProviderMediaConfigObject,
+    regexAction: KalturaAccessControlModifyRequestHostRegexAction,
+    cdnUrl: string
+  ): Promise<ProviderMediaConfigObject> {
+    return new Promise(resolve => {
+      const urlPing = cdnUrl + '/api_v3/service/system/action/ping/format/1';
+      const req = new XMLHttpRequest();
+      req.open('GET', urlPing);
+      req.timeout = regexAction.checkAliveTimeoutMs;
+      req.onreadystatechange = ():void => {
+        if (req.readyState === 4) {
+          if (req.status === 200) {
+            RegexActionHandler._replaceHostUrls(mediaConfig, regexAction);
+          }
+          resolve(mediaConfig);
         }
-        return false;
-      }
-      return false;
-    };
-    req.ontimeout = (): boolean => {
-      RegexActionHandler._logger.warn(`Got timeout while pinging the ECDN url. the ping url: ${urlPing}`);
-      return false;
-    };
-    req.send();
-    return false;
+      };
+      req.ontimeout = ():void => {
+        RegexActionHandler._logger.warn(`Got timeout while pinging the ECDN url. the ping url: ${urlPing}`);
+        resolve(mediaConfig);
+      };
+      req.send();
+    });
   }
 
   /**
@@ -62,31 +67,33 @@ class RegexActionHandler {
    * @function handleRegexAction
    * @param {ProviderMediaConfigObject} mediaConfig - The media config
    * @param {Map<string, Function>} rawResponse - The raw response data from backend
-   * @returns {Promise<ProviderMediaConfigObject>} - The media config with old or modified urls
+   * @returns {ProviderMediaConfigObject} - The media config with old or modified urls
    * @static
    */
-  public static async handleRegexAction(mediaConfig: ProviderMediaConfigObject, rawResponse: Map<string, ILoader>): Promise<ProviderMediaConfigObject> {
-    const cdnUrl = OVPConfiguration.get().cdnUrl;
-    const regexAction = RegexActionHandler._extractRegexActionFromData(rawResponse);
-    const regExp = RegexActionHandler._getRegExp(regexAction);
+  public static handleRegexAction(mediaConfig: ProviderMediaConfigObject, rawResponse: Map<string, ILoader>): Promise<ProviderMediaConfigObject> {
+    return new Promise(resolve => {
+      const cdnUrl = OVPConfiguration.get().cdnUrl;
+      const regexAction = RegexActionHandler._extractRegexActionFromData(rawResponse);
+      const regExp = RegexActionHandler._getRegExp(regexAction);
 
-    if (
-      cdnUrl &&
-      regexAction &&
-      regExp &&
-      cdnUrl.match(regExp) &&
-      // we need to make the replacement in all cases except for when the checkAliveTimeoutMs > 0 && the ping has failed
-      !(
-        regexAction.checkAliveTimeoutMs > 0 &&
-        !(await RegexActionHandler._isECDNUrlAlive(regexAction, cdnUrl.replace(regExp, regexAction.replacement)))
-      )
-    ) {
-      RegexActionHandler._replaceHostUrls(mediaConfig, regexAction);
-      return mediaConfig;
-    }
-
-    RegexActionHandler._logger.debug('exiting handleRegexAction - not applying regex action.');
-    return mediaConfig;
+      if(
+        cdnUrl &&
+         regexAction &&
+         regExp &&
+         cdnUrl.match(regExp)
+      ) {
+        if (regexAction.checkAliveTimeoutMs > 0) {
+          RegexActionHandler._logger.debug('executing ping request...');
+          RegexActionHandler._pingECDNAndReplaceHostUrls(mediaConfig, regexAction, cdnUrl.replace(regExp, regexAction.replacement)).then(resolve);
+        } else {
+          RegexActionHandler._replaceHostUrls(mediaConfig, regexAction);
+          resolve(mediaConfig);
+        }
+      } else {
+        RegexActionHandler._logger.debug('exiting handleRegexAction - not applying regex action.');
+        resolve(mediaConfig);
+      }
+    });
   }
 
   /**
