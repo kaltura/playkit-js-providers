@@ -36,7 +36,7 @@ class RegexActionHandler {
    * @static
    * @private
    */
-  private static _pingECDNAndReplaceHostUrls(
+  private static _isECDNUrlAlive(
     mediaConfig: ProviderMediaConfigObject,
     regexAction: KalturaAccessControlModifyRequestHostRegexAction,
     cdnUrl: string
@@ -84,7 +84,7 @@ class RegexActionHandler {
       ) {
         if (regexAction.checkAliveTimeoutMs > 0) {
           RegexActionHandler._logger.debug('executing ping request...');
-          RegexActionHandler._pingECDNAndReplaceHostUrls(mediaConfig, regexAction, cdnUrl.replace(regExp, regexAction.replacement)).then(resolve);
+          RegexActionHandler._isECDNUrlAlive(mediaConfig, regexAction, cdnUrl.replace(regExp, regexAction.replacement)).then(resolve);
         } else {
           RegexActionHandler._replaceHostUrls(mediaConfig, regexAction);
           resolve(mediaConfig);
