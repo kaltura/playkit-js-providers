@@ -19,6 +19,10 @@ describe('handleRegexAction', function () {
     data.set('media', mediaEntryLoader);
   });
 
+  afterEach(() => {
+    RegexActionHandler._pingECDNAndReplaceHostUrls.restore();
+  });
+
   it('should modify all URLs', done => {
     OVPConfiguration.set({replaceHostOnlyManifestUrls: false});
     mediaConfigForTest = {...mediaConfig};
