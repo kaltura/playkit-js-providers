@@ -21,7 +21,7 @@ describe('handleRegexAction', function () {
 
   it('should modify all URLs', done => {
     OVPConfiguration.set({replaceHostOnlyManifestUrls: false});
-    mediaConfigForTest = JSON.parse(JSON.stringify({...mediaConfig}));
+    mediaConfigForTest = {...mediaConfig};
     RegexActionHandler.handleRegexAction(mediaConfigForTest, data).then(
       mediaConfigRes => {
         try {
