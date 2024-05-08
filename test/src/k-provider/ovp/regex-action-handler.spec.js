@@ -8,8 +8,8 @@ import RegexActionHandler from '../../../../src/k-provider/ovp/regex-action-hand
 import OVPMediaEntryLoader from '../../../../src/k-provider/ovp/loaders/media-entry-loader';
 import OVPConfiguration from '../../../../src/k-provider/ovp/config';
 
-describe('handleRegexAction', function () {
-  let data = new Map();
+describe('handleRegexAction', ()=> {
+  const data = new Map();
   let mediaEntryLoader;
   let mediaConfigForTest = {...mediaConfig};
 
@@ -20,17 +20,19 @@ describe('handleRegexAction', function () {
   });
 
   afterEach(() => {
-    RegexActionHandler._isECDNUrlAlive.restore();
+    RegexActionHandler._pingECDNAndReplaceHostUrls.restore();
   });
 
   it('should modify all URLs', done => {
-    sinon.stub(RegexActionHandler, '_isECDNUrlAlive').callsFake(function () {
+    sinon.stub(RegexActionHandler, '_pingECDNAndReplaceHostUrls').callsFake((mediaConfig, regexAction) => {
       return new Promise(resolve => {
-        resolve(true);
+        RegexActionHandler._replaceHostUrls(mediaConfig, regexAction);
+        resolve(mediaConfig);
       });
     });
+
     OVPConfiguration.set({replaceHostOnlyManifestUrls: false});
-    mediaConfigForTest = JSON.parse(JSON.stringify({...mediaConfig}));
+    mediaConfigForTest =  JSON.parse(JSON.stringify({...mediaConfig}));
     RegexActionHandler.handleRegexAction(mediaConfigForTest, data).then(
       mediaConfigRes => {
         try {
@@ -47,11 +49,13 @@ describe('handleRegexAction', function () {
   });
 
   it('should modify only the manifest URLs', done => {
-    sinon.stub(RegexActionHandler, '_isECDNUrlAlive').callsFake(function () {
+    sinon.stub(RegexActionHandler, '_pingECDNAndReplaceHostUrls').callsFake((mediaConfig, regexAction) => {
       return new Promise(resolve => {
-        resolve(true);
+        RegexActionHandler._replaceHostUrls(mediaConfig, regexAction);
+        resolve(mediaConfig);
       });
     });
+
     OVPConfiguration.set({replaceHostOnlyManifestUrls: true});
     mediaConfigForTest = JSON.parse(JSON.stringify({...mediaConfig}));
     RegexActionHandler.handleRegexAction(mediaConfigForTest, data).then(
@@ -70,9 +74,9 @@ describe('handleRegexAction', function () {
   });
 
   it('should not modify the sources URLs', done => {
-    sinon.stub(RegexActionHandler, '_isECDNUrlAlive').callsFake(function () {
+    sinon.stub(RegexActionHandler, '_pingECDNAndReplaceHostUrls').callsFake((mediaConfig) => {
       return new Promise(resolve => {
-        resolve(false);
+        resolve(mediaConfig);
       });
     });
     mediaConfigForTest = JSON.parse(JSON.stringify({...mediaConfig}));
