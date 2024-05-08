@@ -8,7 +8,7 @@ import RegexActionHandler from '../../../../src/k-provider/ovp/regex-action-hand
 import OVPMediaEntryLoader from '../../../../src/k-provider/ovp/loaders/media-entry-loader';
 import OVPConfiguration from '../../../../src/k-provider/ovp/config';
 
-describe.only('handleRegexAction', ()=> {
+describe('handleRegexAction', ()=> {
   const data = new Map();
   let mediaEntryLoader;
   let mediaConfigForTest = {...mediaConfig};
