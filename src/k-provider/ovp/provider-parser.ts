@@ -174,8 +174,8 @@ class OVPProviderParser {
       mediaEntry.dvrStatus = entry.dvrStatus;
     }
 
-    if (playbackContext && 
-      playbackContext.flavorAssets[0] && 
+    if (playbackContext &&
+      playbackContext.flavorAssets[0] &&
       playbackContext.flavorAssets[0].width && playbackContext.flavorAssets[0].height) {
 
       const {height, width} = playbackContext.flavorAssets[0];
