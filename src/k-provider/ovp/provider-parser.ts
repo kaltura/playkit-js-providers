@@ -310,8 +310,18 @@ class OVPProviderParser {
       }
       // in case playbackSource doesn't have flavors we don't need to build the url and we'll use the provided one.
       if (kalturaSource.hasFlavorIds()) {
-        if (!extension && playbackContext.flavorAssets && playbackContext.flavorAssets.length > 0) {
-          extension = playbackContext.flavorAssets[0].fileExt;
+        if (playbackContext.flavorAssets && playbackContext.flavorAssets.length > 0) {
+          if (!extension) {
+            extension = playbackContext.flavorAssets[0].fileExt;
+          }
+          
+          if (playbackContext.flavorAssets[0].height && playbackContext.flavorAssets[0].width) {
+            mediaSource.height = playbackContext.flavorAssets[0].height;
+            mediaSource.width = playbackContext.flavorAssets[0].width;
+          } else {
+            mediaSource.height = 16;
+            mediaSource.width = 9;
+          }
         }
         playUrl = PlaySourceUrlBuilder.build({
           entryId,
