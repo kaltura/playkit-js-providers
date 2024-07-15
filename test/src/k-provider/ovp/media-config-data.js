@@ -34,7 +34,8 @@ const NoPluginsNoDrm = {
       ScheduleSource: 'VOD',
       HLSOnly: 'android',
       ChannelName: 'Disney Channel SE',
-      tags: ''
+      tags: '',
+      heightRatio: 0.56
     },
     progressive: [
       {
@@ -288,7 +289,8 @@ const RegexAppliedPlayManifestSources = {
       ZeroTouchIds: 'se-dc-lf',
       ScheduleSource: 'VOD',
       HLSOnly: 'android',
-      ChannelName: 'Disney Channel SE'
+      ChannelName: 'Disney Channel SE',
+      heightRatio: 0.56
     },
     downloadUrl: ''
   },
@@ -433,7 +435,8 @@ const RegexAppliedAllSources = {
       ZeroTouchIds: 'se-dc-lf',
       ScheduleSource: 'VOD',
       HLSOnly: 'android',
-      ChannelName: 'Disney Channel SE'
+      ChannelName: 'Disney Channel SE',
+      heightRatio: 0.56
     },
     captions: [
       {
@@ -468,7 +471,8 @@ const NoPluginsWithDrm = {
       name: 'DRM TEST',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.',
-      tags: ''
+      tags: '',
+      heightRatio: 0.57
     },
     progressive: [],
     dash: [
@@ -549,7 +553,8 @@ const WithPluginsNoDrm = {
       ScheduleSource: 'VOD',
       HLSOnly: 'android',
       ChannelName: 'Disney Channel SE',
-      tags: ''
+      tags: '',
+      heightRatio: 0.56
     },
     progressive: [
       {
@@ -677,7 +682,8 @@ const WithPluginsWithDrm = {
       name: 'DRM TEST',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.',
-      tags: ''
+      tags: '',
+      heightRatio: 0.57
     },
     progressive: [],
     dash: [
@@ -741,7 +747,8 @@ const AudioEntryWithoutPlugins = {
       name: 'TEST_WAESP_PLACINGTEST_DUAL',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.',
-      tags: 'dual audio, english, spanish'
+      tags: 'dual audio, english, spanish',
+      heightRatio: 1.78
     },
     progressive: [
       {
@@ -1177,7 +1184,8 @@ const EntryWithBumper = {
       description: '',
       tags: '',
       MediaType: 'Movie',
-      WatchPermissionRule: 'Parrent Allowed'
+      WatchPermissionRule: 'Parrent Allowed',
+      heightRatio: 1.78
     },
     captions: [
       {
@@ -1295,7 +1303,8 @@ const EntryWithBumperWithKs = {
       description: '',
       tags: '',
       MediaType: 'Movie',
-      WatchPermissionRule: 'Parrent Allowed'
+      WatchPermissionRule: 'Parrent Allowed',
+      heightRatio: 1.78
     },
     captions: [
       {
@@ -1416,7 +1425,8 @@ const EntryWithNoBumper = {
       description: '',
       tags: '',
       MediaType: 'Movie',
-      WatchPermissionRule: 'Parrent Allowed'
+      WatchPermissionRule: 'Parrent Allowed',
+      heightRatio: 1.78
     },
     captions: [
       {
@@ -1507,7 +1517,8 @@ const EntryOfPartner0 = {
       name: 'Titanic in 5 Seconds',
       entryId: '0_pi55vv3r',
       description: 'Titanic movie summarized in 5 seconds',
-      tags: 'titanic, short'
+      tags: 'titanic, short',
+      heightRatio: 0.75
     },
     captions: [],
     downloadUrl: ''
