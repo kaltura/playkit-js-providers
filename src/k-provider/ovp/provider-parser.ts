@@ -45,7 +45,7 @@ class OVPProviderParser {
     const kalturaSources = playbackContext.sources;
 
     mediaEntry.sources = OVPProviderParser._getParsedSources(kalturaSources, ks, partnerId, uiConfId, entry, playbackContext);
-    OVPProviderParser._fillBaseData(mediaEntry, entry, metadataList);
+    OVPProviderParser._fillBaseData(mediaEntry, entry, metadataList, playbackContext);
     if (mediaEntry.type !== MediaEntry.Type.LIVE && OVPConfiguration.get().useApiCaptions && playbackContext.data.playbackCaptions) {
       mediaEntry.sources.captions = ExternalCaptionsBuilder.createConfig(playbackContext.data.playbackCaptions, ks);
     }
@@ -151,7 +151,7 @@ class OVPProviderParser {
     }
   }
 
-  private static _fillBaseData(mediaEntry: MediaEntry, entry: KalturaMediaEntry, metadataList?: KalturaMetadataListResponse): MediaEntry {
+  private static _fillBaseData(mediaEntry: MediaEntry, entry: KalturaMediaEntry, metadataList?: KalturaMetadataListResponse, playbackContext?: any): MediaEntry {
     mediaEntry.poster = entry.poster;
     mediaEntry.id = entry.id;
     mediaEntry.duration = entry.duration;
@@ -172,6 +172,16 @@ class OVPProviderParser {
     mediaEntry.type = OVPProviderParser._getEntryType(entry.entryType, entry.type);
     if (mediaEntry.type === MediaEntry.Type.LIVE) {
       mediaEntry.dvrStatus = entry.dvrStatus;
+    }
+
+    if (playbackContext && 
+      playbackContext.flavorAssets[0] && 
+      playbackContext.flavorAssets[0].width && playbackContext.flavorAssets[0].height) {
+
+      const {height, width} = playbackContext.flavorAssets[0];
+      mediaEntry.metadata.heightRatio = +Number(height / width).toFixed(2);
+    } else {
+      mediaEntry.metadata.heightRatio = 1.78;
     }
 
     return mediaEntry;
@@ -310,18 +320,8 @@ class OVPProviderParser {
       }
       // in case playbackSource doesn't have flavors we don't need to build the url and we'll use the provided one.
       if (kalturaSource.hasFlavorIds()) {
-        if (playbackContext.flavorAssets && playbackContext.flavorAssets.length > 0) {
-          if (!extension) {
-            extension = playbackContext.flavorAssets[0].fileExt;
-          }
-          
-          if (playbackContext.flavorAssets[0].height && playbackContext.flavorAssets[0].width) {
-            mediaSource.height = playbackContext.flavorAssets[0].height;
-            mediaSource.width = playbackContext.flavorAssets[0].width;
-          } else {
-            mediaSource.height = 16;
-            mediaSource.width = 9;
-          }
+        if (!extension && playbackContext.flavorAssets && playbackContext.flavorAssets.length > 0) {
+          extension = playbackContext.flavorAssets[0].fileExt;
         }
         playUrl = PlaySourceUrlBuilder.build({
           entryId,
