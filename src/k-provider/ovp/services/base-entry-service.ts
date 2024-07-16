@@ -14,7 +14,7 @@ export default class OVPBaseEntryService extends OVPService {
    * @returns {RequestBuilder} The request builder
    * @static
    */
-  public static getPlaybackContext(serviceUrl: string, ks: string, serviceEntryId: string): RequestBuilder {
+  public static getPlaybackContext(serviceUrl: string, ks: string, serviceEntryId: string, referrer?: string): RequestBuilder {
     const headers: Map<string, string> = new Map();
     headers.set('Content-Type', 'application/json');
     const request = new RequestBuilder(headers);
@@ -23,7 +23,7 @@ export default class OVPBaseEntryService extends OVPService {
     request.method = 'POST';
     request.url = request.getUrl(serviceUrl);
     request.tag = 'baseEntry-getPlaybackContext';
-    const contextDataParams = {objectType: 'KalturaContextDataParams', flavorTags: 'all'};
+    const contextDataParams = {objectType: 'KalturaContextDataParams', flavorTags: 'all', referrer};
     request.params = {entryId: serviceEntryId, ks: ks, contextDataParams: contextDataParams};
     return request;
   }

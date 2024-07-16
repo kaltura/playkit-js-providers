@@ -18,8 +18,10 @@ import {
   ProviderFilterOptionsObject,
   ProviderMediaConfigObject,
   ProviderMediaConfigSourcesObject,
-  ProviderOptionsObject, ProviderPlaylistInfoObject,
-  ProviderPlaylistObject, RequestLoader
+  ProviderOptionsObject,
+  ProviderPlaylistInfoObject,
+  ProviderPlaylistObject,
+  RequestLoader
 } from '../../types';
 
 export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject> {
@@ -65,7 +67,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
           this._dataLoader.add(OVPSessionLoader, {widgetId: this.widgetId});
         }
         const redirectFromEntryId = this._getEntryRedirectFilter(mediaInfo);
-        this._dataLoader.add(OVPMediaEntryLoader, {entryId, ks, redirectFromEntryId, referenceId});
+        this._dataLoader.add(OVPMediaEntryLoader, {entryId, ks, redirectFromEntryId, referenceId, referrer: this._referrer});
         return this._dataLoader.fetchData().then(
           response => {
             try {
@@ -117,8 +119,8 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     return typeof mediaInfo.redirectFromEntryId === 'boolean'
       ? mediaInfo.redirectFromEntryId
       : typeof this._filterOptionsConfig.redirectFromEntryId === 'boolean'
-        ? this._filterOptionsConfig.redirectFromEntryId
-        : true;
+      ? this._filterOptionsConfig.redirectFromEntryId
+      : true;
   }
 
   private _setFilterOptionsConfig(options?: ProviderFilterOptionsObject): void {
