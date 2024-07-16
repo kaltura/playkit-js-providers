@@ -38,6 +38,7 @@
     "watch": "webpack --mode=development --watch",
     "test": "NODE_ENV=test karma start --color --mode development",
     "test:watch": "NODE_ENV=test karma start --browsers=Chrome --single-run=false --auto-watch",
+    "test:debug": "NODE_ENV=test karma start --browsers=Chrome --single-run=false --auto-watch --debug",
     "release": "standard-version",
     "pushTaggedRelease": "git push --follow-tags --no-verify origin master",
     "lint": "eslint src/ --ext .js --ext .ts",

@@ -78,7 +78,8 @@ const youtubeMediaEntryResult = {
     entryId: '1234',
     description: 'youtube description',
     name: 'test youtube entry',
-    tags: ''
+    tags: '',
+    heightRatio: 1.78,
   },
   type: 'Unknown',
   poster: 'https://cfvod.kaltura.com/p/1111/sp/1111/thumbnail/entry_id/1234/version/100001',
