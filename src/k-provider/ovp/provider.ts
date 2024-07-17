@@ -119,8 +119,8 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     return typeof mediaInfo.redirectFromEntryId === 'boolean'
       ? mediaInfo.redirectFromEntryId
       : typeof this._filterOptionsConfig.redirectFromEntryId === 'boolean'
-      ? this._filterOptionsConfig.redirectFromEntryId
-      : true;
+        ? this._filterOptionsConfig.redirectFromEntryId
+        : true;
   }
 
   private _setFilterOptionsConfig(options?: ProviderFilterOptionsObject): void {
