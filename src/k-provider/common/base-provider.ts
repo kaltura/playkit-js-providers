@@ -1,7 +1,15 @@
 import {getLogLevel, setLogLevel, setLogger, LogLevelType, LogLevel} from '../../util/logger';
 import DataLoaderManager from './data-loader-manager';
 import Error from '../../util/error/error';
-import {ProviderEntryListObject, ProviderMediaConfigObject, ProviderPlaylistInfoObject, ProviderMediaConfigSourcesObject, ProviderNetworkRetryParameters, ProviderOptionsObject, ProviderPlaylistObject} from '../../types';
+import {
+  ProviderEntryListObject,
+  ProviderMediaConfigObject,
+  ProviderPlaylistInfoObject,
+  ProviderMediaConfigSourcesObject,
+  ProviderNetworkRetryParameters,
+  ProviderOptionsObject,
+  ProviderPlaylistObject
+} from '../../types';
 
 export default class BaseProvider<MI> {
   private _partnerId: number;
@@ -11,7 +19,9 @@ export default class BaseProvider<MI> {
   public _dataLoader!: DataLoaderManager;
   private _playerVersion: string;
   public _logger: any;
+  public _referrer?: string;
   protected _isAnonymous: boolean;
+
   public _networkRetryConfig: ProviderNetworkRetryParameters = {
     async: true,
     timeout: 0,
@@ -58,6 +68,7 @@ export default class BaseProvider<MI> {
     this._isAnonymous = !options.ks;
     this._ks = options.ks || '';
     this._playerVersion = playerVersion;
+    this._referrer = options.referrer;
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -109,4 +120,4 @@ export default class BaseProvider<MI> {
   }
 }
 
-export {BaseProvider}
+export {BaseProvider};

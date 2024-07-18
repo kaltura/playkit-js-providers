@@ -14,4 +14,5 @@ export type ProviderOptionsObject = {
   filterOptions?: ProviderFilterOptionsObject;
   ignoreServerConfig?: boolean;
   loadThumbnailWithKs?: boolean;
+  referrer?: string;
 };
