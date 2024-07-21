@@ -179,11 +179,8 @@ class OVPProviderParser {
       playbackContext.flavorAssets[0].width && playbackContext.flavorAssets[0].height) {
 
       const {height, width} = playbackContext.flavorAssets[0];
-      mediaEntry.metadata.heightRatio = +Number(height / width).toFixed(2);
-    } else {
-      mediaEntry.metadata.heightRatio = 1.78;
+      mediaEntry.metadata.aspectRatio = +Number(width / height).toFixed(2);
     }
-
     return mediaEntry;
   }
 
