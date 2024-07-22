@@ -23,7 +23,10 @@ export default class OVPBaseEntryService extends OVPService {
     request.method = 'POST';
     request.url = request.getUrl(serviceUrl);
     request.tag = 'baseEntry-getPlaybackContext';
-    const contextDataParams = {objectType: 'KalturaContextDataParams', flavorTags: 'all', referrer};
+    const contextDataParams = {objectType: 'KalturaContextDataParams', flavorTags: 'all'};
+    if (referrer) {
+      contextDataParams['referrer'] = referrer;
+    }
     request.params = {entryId: serviceEntryId, ks: ks, contextDataParams: contextDataParams};
     return request;
   }
