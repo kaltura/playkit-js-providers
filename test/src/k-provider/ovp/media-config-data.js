@@ -35,7 +35,7 @@ const NoPluginsNoDrm = {
       HLSOnly: 'android',
       ChannelName: 'Disney Channel SE',
       tags: '',
-      heightRatio: 0.56
+      aspectRatio: 1.78
     },
     progressive: [
       {
@@ -290,7 +290,7 @@ const RegexAppliedPlayManifestSources = {
       ScheduleSource: 'VOD',
       HLSOnly: 'android',
       ChannelName: 'Disney Channel SE',
-      heightRatio: 0.56
+      aspectRatio: 1.78
     },
     downloadUrl: ''
   },
@@ -436,7 +436,7 @@ const RegexAppliedAllSources = {
       ScheduleSource: 'VOD',
       HLSOnly: 'android',
       ChannelName: 'Disney Channel SE',
-      heightRatio: 0.56
+      aspectRatio: 1.78
     },
     captions: [
       {
@@ -472,7 +472,7 @@ const NoPluginsWithDrm = {
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.',
       tags: '',
-      heightRatio: 0.57
+      aspectRatio: 1.76
     },
     progressive: [],
     dash: [
@@ -554,7 +554,7 @@ const WithPluginsNoDrm = {
       HLSOnly: 'android',
       ChannelName: 'Disney Channel SE',
       tags: '',
-      heightRatio: 0.56
+      aspectRatio: 1.78
     },
     progressive: [
       {
@@ -683,7 +683,7 @@ const WithPluginsWithDrm = {
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.',
       tags: '',
-      heightRatio: 0.57
+      aspectRatio: 1.76
     },
     progressive: [],
     dash: [
@@ -748,7 +748,6 @@ const AudioEntryWithoutPlugins = {
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.',
       tags: 'dual audio, english, spanish',
-      heightRatio: 1.78
     },
     progressive: [
       {
@@ -1185,7 +1184,6 @@ const EntryWithBumper = {
       tags: '',
       MediaType: 'Movie',
       WatchPermissionRule: 'Parrent Allowed',
-      heightRatio: 1.78
     },
     captions: [
       {
@@ -1304,7 +1302,6 @@ const EntryWithBumperWithKs = {
       tags: '',
       MediaType: 'Movie',
       WatchPermissionRule: 'Parrent Allowed',
-      heightRatio: 1.78
     },
     captions: [
       {
@@ -1426,7 +1423,6 @@ const EntryWithNoBumper = {
       tags: '',
       MediaType: 'Movie',
       WatchPermissionRule: 'Parrent Allowed',
-      heightRatio: 1.78
     },
     captions: [
       {
@@ -1518,7 +1514,7 @@ const EntryOfPartner0 = {
       entryId: '0_pi55vv3r',
       description: 'Titanic movie summarized in 5 seconds',
       tags: 'titanic, short',
-      heightRatio: 0.75
+      aspectRatio: 1.33
     },
     captions: [],
     downloadUrl: ''
