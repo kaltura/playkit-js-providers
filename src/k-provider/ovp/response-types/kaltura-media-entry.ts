@@ -181,6 +181,7 @@ export class KalturaMediaEntry {
     this.flavorParamsIds = entry.flavorParamsIds;
     this.duration = entry.duration;
     this.poster = entry.thumbnailUrl;
+    this.rawThumbnailUrl = entry.thumbnailUrl;
     this.status = entry.status;
     this.dvrStatus = entry.dvrStatus;
     this.tags = entry.tags;
@@ -191,6 +192,5 @@ export class KalturaMediaEntry {
     this.plays = entry.plays;
     this.views = entry.views;
     this.downloadUrl = entry.downloadUrl;
-    this.rawThumbnailUrl = entry.thumbnailUrl;
   }
 }
