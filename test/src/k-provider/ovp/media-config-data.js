@@ -13,6 +13,7 @@ const NoPluginsNoDrm = {
     vr: null,
     type: 'Vod',
     poster: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
+    rawThumbnailUrl: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
     metadata: {
       entryId: '1_rsrdfext',
       name: 'FO21934-HDTX-SWE',
@@ -266,6 +267,7 @@ const RegexAppliedPlayManifestSources = {
     duration: 55,
     type: 'Vod',
     poster: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
+    rawThumbnailUrl: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
     dvr: false,
     vr: null,
     metadata: {
@@ -412,6 +414,7 @@ const RegexAppliedAllSources = {
     type: 'Vod',
     poster:
       'http://qa-kes-ebu-01.dev.kaltura.com/kAPI/kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
+    rawThumbnailUrl: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
     dvr: false,
     vr: null,
     metadata: {
@@ -466,6 +469,7 @@ const NoPluginsWithDrm = {
     vr: null,
     type: 'Vod',
     poster: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
+    rawThumbnailUrl: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
     metadata: {
       entryId: '1_rwbj3j0a',
       name: 'DRM TEST',
@@ -532,6 +536,7 @@ const WithPluginsNoDrm = {
     vr: null,
     type: 'Vod',
     poster: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
+    rawThumbnailUrl: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
     metadata: {
       entryId: '1_rsrdfext',
       name: 'FO21934-HDTX-SWE',
@@ -677,6 +682,7 @@ const WithPluginsWithDrm = {
     vr: null,
     type: 'Vod',
     poster: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
+    rawThumbnailUrl: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
     metadata: {
       entryId: '1_rwbj3j0a',
       name: 'DRM TEST',
@@ -742,6 +748,7 @@ const AudioEntryWithoutPlugins = {
     vr: null,
     type: 'Audio',
     poster: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
+    rawThumbnailUrl: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
     metadata: {
       entryId: '0_vyzw3ceu',
       name: 'TEST_WAESP_PLACINGTEST_DUAL',
@@ -805,6 +812,7 @@ const ImageEntryWithoutPlugins = {
     vr: null,
     type: 'Image',
     poster: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
+    rawThumbnailUrl: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
     metadata: {
       entryId: '0_84zz779s',
       name: 'Channel HU-TEST-STG-Attila-160203 Thumbnail',
@@ -1175,6 +1183,7 @@ const EntryWithBumper = {
     duration: 741,
     type: 'Vod',
     poster: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_wifqaipd/version/100042',
+    rawThumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_wifqaipd/version/100042',
     dvr: false,
     vr: null,
     metadata: {
@@ -1293,6 +1302,7 @@ const EntryWithBumperWithKs = {
     duration: 741,
     type: 'Vod',
     poster: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_wifqaipd/version/100042',
+    rawThumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_wifqaipd/version/100042',
     dvr: false,
     vr: null,
     metadata: {
@@ -1414,6 +1424,7 @@ const EntryWithNoBumper = {
     duration: 741,
     type: 'Vod',
     poster: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_wifqaipd/version/100042',
+    rawThumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_wifqaipd/version/100042',
     dvr: false,
     vr: null,
     metadata: {
@@ -1507,6 +1518,7 @@ const EntryOfPartner0 = {
     duration: 11,
     type: 'Vod',
     poster: 'https://cfvod.kaltura.com/p/1645161/sp/164516100/thumbnail/entry_id/0_pi55vv3r/version/100002',
+    rawThumbnailUrl: 'https://cfvod.kaltura.com/p/1645161/sp/164516100/thumbnail/entry_id/0_pi55vv3r/version/100002',
     dvr: false,
     vr: null,
     metadata: {
