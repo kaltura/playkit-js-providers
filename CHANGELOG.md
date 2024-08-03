@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.40.7 (2024-08-03)
+
+
+### Bug Fixes
+
+* **FEC-14049:** Send referrer only if it came from iFrame embed ([#242](https://github.com/kaltura/playkit-js-providers/issues/242)) ([46c81fb](https://github.com/kaltura/playkit-js-providers/commit/46c81fb))
+
+
+
 ### 2.40.6 (2024-05-19)
 
 
