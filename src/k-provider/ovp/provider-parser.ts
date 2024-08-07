@@ -153,6 +153,7 @@ class OVPProviderParser {
 
   private static _fillBaseData(mediaEntry: MediaEntry, entry: KalturaMediaEntry, metadataList?: KalturaMetadataListResponse, playbackContext?: any): MediaEntry {
     mediaEntry.poster = entry.poster;
+    mediaEntry.rawThumbnailUrl = entry.rawThumbnailUrl;
     mediaEntry.id = entry.id;
     mediaEntry.duration = entry.duration;
     mediaEntry.downloadUrl = entry.downloadUrl || '';

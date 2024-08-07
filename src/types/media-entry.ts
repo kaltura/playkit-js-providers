@@ -13,4 +13,5 @@ export type ProviderMediaEntryObject = {
   poster?: string | Poster[];
   downloadUrl?: string;
   assetReferenceType?: string;
+  rawThumbnailUrl?: string;
 };

@@ -326,6 +326,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
       duration: 0,
       type: MediaEntry.Type.UNKNOWN,
       poster: '',
+      rawThumbnailUrl: '',
       dvr: false,
       vr: null,
       metadata: {
@@ -349,6 +350,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     sourcesObject.type = mediaEntry.type;
     sourcesObject.dvr = !!mediaEntry.dvrStatus;
     sourcesObject.poster = mediaEntry.poster;
+    sourcesObject.rawThumbnailUrl = mediaEntry.rawThumbnailUrl;
     sourcesObject.downloadUrl = mediaEntry.downloadUrl;
     if (mediaEntry.sources.captions) {
       sourcesObject.captions = mediaEntry.sources.captions;
