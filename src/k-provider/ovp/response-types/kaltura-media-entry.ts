@@ -160,6 +160,12 @@ export class KalturaMediaEntry {
   public creatorId: string;
 
   /**
+   * @member - The raw thumbnail URL
+   * @type {string}
+   */
+  public rawThumbnailUrl: string;
+
+  /**
    * @constructor
    * @param {Object} entry The json response
    */
@@ -175,6 +181,7 @@ export class KalturaMediaEntry {
     this.flavorParamsIds = entry.flavorParamsIds;
     this.duration = entry.duration;
     this.poster = entry.thumbnailUrl;
+    this.rawThumbnailUrl = entry.thumbnailUrl;
     this.status = entry.status;
     this.dvrStatus = entry.dvrStatus;
     this.tags = entry.tags;

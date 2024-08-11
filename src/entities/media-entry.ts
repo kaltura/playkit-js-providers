@@ -75,6 +75,12 @@ export default class MediaEntry {
   public downloadUrl?: string;
 
   /**
+   * @member - The raw thumbnail URL
+   * @type {string}
+   */
+  public rawThumbnailUrl?: string;
+
+  /**
    * @constructor
    */
   constructor() {
@@ -99,7 +105,8 @@ export default class MediaEntry {
       type: this.type,
       poster: this.poster,
       assetReferenceType: this.assetReferenceType,
-      downloadUrl: this.downloadUrl
+      downloadUrl: this.downloadUrl,
+      rawThumbnailUrl: this.rawThumbnailUrl
     };
   }
 }

@@ -19,4 +19,5 @@ export type ProviderMediaConfigSourcesObject = {
   metadata: ProviderMediaConfigMetadataObject;
   captions?: Array<PKExternalCaptionObject>;
   downloadUrl?: string;
+  rawThumbnailUrl?: string;
 };
