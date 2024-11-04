@@ -182,6 +182,10 @@ class OVPProviderParser {
       const {height, width} = playbackContext.flavorAssets[0];
       mediaEntry.metadata.aspectRatio = +Number(width / height).toFixed(2);
     }
+
+    if (playbackContext) {
+      mediaEntry.metadata.audioFlavors = playbackContext.flavorAssets.filter(flavor => flavor.bitrate && !flavor.width && !flavor.height);
+    }
     return mediaEntry;
   }
 

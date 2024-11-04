@@ -1,3 +1,8 @@
+enum FlavorAssetTags {
+  AUDIO_ONLY = 'audio_only',
+  AUDIO_DESCRIPTION = 'audio_description'
+}
+
 export class KalturaFlavorAsset {
   public static Status: {[status: string]: number} = {
     ERROR: -1,
@@ -85,6 +90,37 @@ export class KalturaFlavorAsset {
   public label: string;
 
   /**
+   * @member - is audio asset has audio description tag
+   * @type {boolean|undefined}
+   */
+  public isAudioDescription?: boolean;
+
+  /**
+   * @function
+   * @param {string} tags The tags
+   * @returns {boolean} Is audio asset
+   * @static
+   */
+  public static isAudioAsset(flavorAsset: any): boolean {
+    let tagsArray: Array<string> = [];
+    if (flavorAsset.tags && typeof flavorAsset.tags === 'string') {
+      tagsArray = flavorAsset.tags.split(',');
+    }
+    return flavorAsset.bitrate && !flavorAsset.height && !flavorAsset.width && tagsArray.includes(FlavorAssetTags.AUDIO_ONLY);
+  }
+
+  /**
+   * @function
+   * @param {string} tags The tags
+   * @returns {boolean} Is audio description
+   * @static
+   */
+  public static getIsAudioDescription(tags = ''): boolean {
+    const tagsArray = tags.split(',');
+    return tagsArray.includes(FlavorAssetTags.AUDIO_DESCRIPTION);
+  }
+
+  /**
    * @constructor
    * @param {Object} data The json response
    */
@@ -104,5 +140,8 @@ export class KalturaFlavorAsset {
     this.status = data.status;
     this.language = data.language;
     this.label = data.label;
+    if (KalturaFlavorAsset.isAudioAsset(data)) {
+      this.isAudioDescription = KalturaFlavorAsset.getIsAudioDescription(data.tags);
+    }
   }
 }
