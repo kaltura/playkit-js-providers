@@ -183,7 +183,7 @@ class OVPProviderParser {
       mediaEntry.metadata.aspectRatio = +Number(width / height).toFixed(2);
     }
 
-    if (playbackContext) {
+    if (playbackContext && Array.isArray(playbackContext.flavorAssets)) {
       mediaEntry.metadata.audioFlavors = playbackContext.flavorAssets.filter(flavor => flavor.bitrate && !flavor.width && !flavor.height);
     }
     return mediaEntry;

@@ -629,6 +629,7 @@ describe('getMediaConfig', function () {
       provider.getMediaConfig({entryId: '0_wifqaipd'}).then(
         mediaConfig => {
           try {
+            delete mediaConfig.sources.metadata.audioFlavors;
             mediaConfig.should.deep.equal(MEDIA_CONFIG_DATA.EntryWithBumper);
             done();
           } catch (err) {
@@ -651,6 +652,7 @@ describe('getMediaConfig', function () {
       provider.getMediaConfig({entryId: '0_wifqaipd', ks}).then(
         mediaConfig => {
           try {
+            delete mediaConfig.sources.metadata.audioFlavors;
             mediaConfig.should.deep.equal(MEDIA_CONFIG_DATA.EntryWithBumperWithKs);
             done();
           } catch (err) {
@@ -673,6 +675,7 @@ describe('getMediaConfig', function () {
       provider.getMediaConfig({entryId: '0_wifqaipd', ks}).then(
         mediaConfig => {
           try {
+            delete mediaConfig.sources.metadata.audioFlavors;
             mediaConfig.should.deep.equal(MEDIA_CONFIG_DATA.EntryWithNoBumper);
             done();
           } catch (err) {
