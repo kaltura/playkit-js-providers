@@ -1,4 +1,37 @@
 //@flow
+const AudioFlavors = [
+  {
+    id: "0_ep7yqavp",
+    flavorParamsId: 582941,
+    fileExt: "mp4",
+    bitrate: 65,
+    width: 0,
+    height: 0,
+    frameRate: 0,
+    isOriginal: false,
+    isWeb: true,
+    containerFormat: "isom",
+    status: 2,
+    language: "English",
+    isAudioDescription: false
+  },
+  {
+    id: "0_1xcr8gnf",
+    flavorParamsId: 583327,
+    fileExt: "mp4",
+    bitrate: 65,
+    width: 0,
+    height: 0,
+    frameRate: 0,
+    isOriginal: false,
+    isWeb: true,
+    containerFormat: "isom",
+    status: 2,
+    language: "Spanish",
+    isAudioDescription: false
+  }
+];
+
 const NoPluginsNoDrm = {
   session: {
     isAnonymous: true,
@@ -1194,6 +1227,7 @@ const EntryWithBumper = {
     dvr: false,
     vr: null,
     metadata: {
+      audioFlavors: AudioFlavors,
       entryId: '0_wifqaipd',
       name: 'MPEG Dash with MultiAudio New Transcoding',
       description: '',
@@ -1313,6 +1347,7 @@ const EntryWithBumperWithKs = {
     dvr: false,
     vr: null,
     metadata: {
+      audioFlavors: AudioFlavors,
       entryId: '0_wifqaipd',
       name: 'MPEG Dash with MultiAudio New Transcoding',
       description: '',
@@ -1435,6 +1470,7 @@ const EntryWithNoBumper = {
     dvr: false,
     vr: null,
     metadata: {
+      audioFlavors: AudioFlavors,
       entryId: '0_wifqaipd',
       name: 'MPEG Dash with MultiAudio New Transcoding',
       description: '',

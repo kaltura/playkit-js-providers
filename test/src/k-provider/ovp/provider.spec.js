@@ -7,6 +7,7 @@ import Error from '../../../../src/util/error/error';
 import OVPConfiguration from '../../../../src/k-provider/ovp/config';
 import OVPMediaEntryLoader from '../../../../src/k-provider/ovp/loaders/media-entry-loader';
 import OVPSessionLoader from '../../../../src/k-provider/ovp/loaders/session-loader';
+import {toPlainObject} from '../../../../src/util/object';
 
 describe('default configuration', () => {
   const partnerId = 1082342;
@@ -629,7 +630,7 @@ describe('getMediaConfig', function () {
       provider.getMediaConfig({entryId: '0_wifqaipd'}).then(
         mediaConfig => {
           try {
-            delete mediaConfig.sources.metadata.audioFlavors;
+            mediaConfig.sources.metadata.audioFlavors = toPlainObject(mediaConfig.sources.metadata.audioFlavors);
             mediaConfig.should.deep.equal(MEDIA_CONFIG_DATA.EntryWithBumper);
             done();
           } catch (err) {
@@ -652,7 +653,7 @@ describe('getMediaConfig', function () {
       provider.getMediaConfig({entryId: '0_wifqaipd', ks}).then(
         mediaConfig => {
           try {
-            delete mediaConfig.sources.metadata.audioFlavors;
+            mediaConfig.sources.metadata.audioFlavors = toPlainObject(mediaConfig.sources.metadata.audioFlavors);
             mediaConfig.should.deep.equal(MEDIA_CONFIG_DATA.EntryWithBumperWithKs);
             done();
           } catch (err) {
@@ -675,7 +676,7 @@ describe('getMediaConfig', function () {
       provider.getMediaConfig({entryId: '0_wifqaipd', ks}).then(
         mediaConfig => {
           try {
-            delete mediaConfig.sources.metadata.audioFlavors;
+            mediaConfig.sources.metadata.audioFlavors = toPlainObject(mediaConfig.sources.metadata.audioFlavors);
             mediaConfig.should.deep.equal(MEDIA_CONFIG_DATA.EntryWithNoBumper);
             done();
           } catch (err) {
