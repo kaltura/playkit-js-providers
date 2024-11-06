@@ -1,4 +1,51 @@
 //@flow
+const AudioFlavors = [
+  {
+    id: "0_ep7yqavp",
+    flavorParamsId: 582941,
+    fileExt: "mp4",
+    bitrate: 65,
+    width: 0,
+    height: 0,
+    frameRate: 0,
+    isOriginal: false,
+    isWeb: true,
+    containerFormat: "isom",
+    status: 2,
+    language: "English",
+    tags: [
+      "mobile",
+      "web",
+      "mbr",
+      "iphone",
+      "audio_only",
+      "alt_audio"
+    ]
+  },
+  {
+    id: "0_1xcr8gnf",
+    flavorParamsId: 583327,
+    fileExt: "mp4",
+    bitrate: 65,
+    width: 0,
+    height: 0,
+    frameRate: 0,
+    isOriginal: false,
+    isWeb: true,
+    containerFormat: "isom",
+    status: 2,
+    language: "Spanish",
+    tags: [
+      "mobile",
+      "web",
+      "mbr",
+      "iphone",
+      "audio_only",
+      "alt_audio"
+    ]
+  }
+];
+
 const NoPluginsNoDrm = {
   session: {
     isAnonymous: true,
@@ -15,6 +62,7 @@ const NoPluginsNoDrm = {
     poster: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
     rawThumbnailUrl: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
     metadata: {
+      audioFlavors: [],
       entryId: '1_rsrdfext',
       name: 'FO21934-HDTX-SWE',
       description:
@@ -271,6 +319,7 @@ const RegexAppliedPlayManifestSources = {
     dvr: false,
     vr: null,
     metadata: {
+      audioFlavors: [],
       entryId: '1_rsrdfext',
       name: 'FO21934-HDTX-SWE',
       description:
@@ -418,6 +467,7 @@ const RegexAppliedAllSources = {
     dvr: false,
     vr: null,
     metadata: {
+      audioFlavors: [],
       entryId: '1_rsrdfext',
       name: 'FO21934-HDTX-SWE',
       description:
@@ -471,6 +521,7 @@ const NoPluginsWithDrm = {
     poster: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
     rawThumbnailUrl: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
     metadata: {
+      audioFlavors: [],
       entryId: '1_rwbj3j0a',
       name: 'DRM TEST',
       description:
@@ -538,6 +589,7 @@ const WithPluginsNoDrm = {
     poster: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
     rawThumbnailUrl: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
     metadata: {
+      audioFlavors: [],
       entryId: '1_rsrdfext',
       name: 'FO21934-HDTX-SWE',
       description:
@@ -684,6 +736,7 @@ const WithPluginsWithDrm = {
     poster: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
     rawThumbnailUrl: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
     metadata: {
+      audioFlavors: [],
       entryId: '1_rwbj3j0a',
       name: 'DRM TEST',
       description:
@@ -750,6 +803,7 @@ const AudioEntryWithoutPlugins = {
     poster: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
     rawThumbnailUrl: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
     metadata: {
+      audioFlavors: [],
       entryId: '0_vyzw3ceu',
       name: 'TEST_WAESP_PLACINGTEST_DUAL',
       description:
@@ -1187,6 +1241,7 @@ const EntryWithBumper = {
     dvr: false,
     vr: null,
     metadata: {
+      audioFlavors: AudioFlavors,
       entryId: '0_wifqaipd',
       name: 'MPEG Dash with MultiAudio New Transcoding',
       description: '',
@@ -1306,6 +1361,7 @@ const EntryWithBumperWithKs = {
     dvr: false,
     vr: null,
     metadata: {
+      audioFlavors: AudioFlavors,
       entryId: '0_wifqaipd',
       name: 'MPEG Dash with MultiAudio New Transcoding',
       description: '',
@@ -1428,6 +1484,7 @@ const EntryWithNoBumper = {
     dvr: false,
     vr: null,
     metadata: {
+      audioFlavors: AudioFlavors,
       entryId: '0_wifqaipd',
       name: 'MPEG Dash with MultiAudio New Transcoding',
       description: '',
@@ -1522,6 +1579,7 @@ const EntryOfPartner0 = {
     dvr: false,
     vr: null,
     metadata: {
+      audioFlavors: [],
       name: 'Titanic in 5 Seconds',
       entryId: '0_pi55vv3r',
       description: 'Titanic movie summarized in 5 seconds',

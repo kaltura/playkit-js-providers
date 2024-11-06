@@ -75,6 +75,7 @@ const youtubeMediaEntryResult = {
   },
   duration: 0,
   metadata: {
+    audioFlavors: [],
     entryId: '1234',
     description: 'youtube description',
     name: 'test youtube entry',

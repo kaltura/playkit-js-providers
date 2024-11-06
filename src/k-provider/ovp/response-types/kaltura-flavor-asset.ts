@@ -85,6 +85,22 @@ export class KalturaFlavorAsset {
   public label: string;
 
   /**
+   * @member - tags
+   * @type {Array<string>}
+   */
+  public tags: Array<string>;
+
+  /**
+   * @function
+   * @param {string} tags The tags
+   * @returns {Array<string>} tags array
+   * @static
+   */
+  public static parseTags(tags = ''): Array<string> {
+    return tags.split(',');
+  }
+
+  /**
    * @constructor
    * @param {Object} data The json response
    */
@@ -104,5 +120,6 @@ export class KalturaFlavorAsset {
     this.status = data.status;
     this.language = data.language;
     this.label = data.label;
+    this.tags = KalturaFlavorAsset.parseTags(data.tags);
   }
 }
