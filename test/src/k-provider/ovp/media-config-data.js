@@ -13,7 +13,14 @@ const AudioFlavors = [
     containerFormat: "isom",
     status: 2,
     language: "English",
-    isAudioDescription: false
+    tags: [
+      "mobile",
+      "web",
+      "mbr",
+      "iphone",
+      "audio_only",
+      "alt_audio"
+    ]
   },
   {
     id: "0_1xcr8gnf",
@@ -28,7 +35,14 @@ const AudioFlavors = [
     containerFormat: "isom",
     status: 2,
     language: "Spanish",
-    isAudioDescription: false
+    tags: [
+      "mobile",
+      "web",
+      "mbr",
+      "iphone",
+      "audio_only",
+      "alt_audio"
+    ]
   }
 ];
 
