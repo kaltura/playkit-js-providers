@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.41.0 (2024-11-14)
+
+
+### Features
+
+* **FEC-14087:** keep audio flavors data ([#244](https://github.com/kaltura/playkit-js-providers/issues/244)) ([fadaac0](https://github.com/kaltura/playkit-js-providers/commit/fadaac0))
+
+
+
 ### 2.40.8 (2024-08-22)
 
 
