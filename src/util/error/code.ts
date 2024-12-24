@@ -57,6 +57,11 @@ const Code: CodeType = {
   MEDIA_STATUS_NOT_READY: 2002,
 
   /**
+   * The server responded with a scheduled restricted code
+   */
+  SCHEDULED_RESTRICTED: 2003,
+
+  /**
    * The provider is missing mandatory parameter/s
    */
 
