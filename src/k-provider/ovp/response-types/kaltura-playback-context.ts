@@ -78,10 +78,6 @@ export class KalturaPlaybackContext extends ServiceResult {
   }
 
   public hasScheduledRestriction(): boolean {
-    return this.getScheduledRestriction();
-  }
-
-  public getScheduledRestriction(): boolean {
     return this.messages.some(message => message.code === KalturaRuleAction.Type.SCHEDULED_RESTRICTED);
   }
 
