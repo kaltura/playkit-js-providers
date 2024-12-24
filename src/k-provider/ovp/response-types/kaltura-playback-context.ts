@@ -78,7 +78,7 @@ export class KalturaPlaybackContext extends ServiceResult {
   }
 
   public hasScheduledRestriction(): boolean {
-    return this.getScheduledRestriction() !== undefined;
+    return this.getScheduledRestriction();
   }
 
   public getScheduledRestriction(): boolean {
