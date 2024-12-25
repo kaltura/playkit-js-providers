@@ -77,6 +77,10 @@ export class KalturaPlaybackContext extends ServiceResult {
     return this.actions.find(action => action.type === KalturaRuleAction.Type.BLOCK);
   }
 
+  public hasScheduledRestriction(): boolean {
+    return this.messages.some(message => message.code === KalturaRuleAction.Type.SCHEDULED_RESTRICTED);
+  }
+
   public getErrorMessages(): Array<KalturaAccessControlMessage> {
     return this.messages;
   }

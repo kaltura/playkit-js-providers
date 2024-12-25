@@ -274,13 +274,7 @@ const AnonymousMocEntryWithoutUIConfNoDrmData = {
         }
       ],
       actions: [],
-      messages: [
-        {
-          message: "Out of scheduling\nWe're sorry, this content is currently unavailable.",
-          code: 'SCHEDULED_RESTRICTED',
-          objectType: 'KalturaAccessControlMessage'
-        }
-      ],
+      messages: [],
       objectType: 'KalturaPlaybackContext'
     },
     {
@@ -957,13 +951,7 @@ const EntryWithUIConfNoDrmData = {
         }
       ],
       actions: [],
-      messages: [
-        {
-          message: "Out of scheduling\nWe're sorry, this content is currently unavailable.",
-          code: 'SCHEDULED_RESTRICTED',
-          objectType: 'KalturaAccessControlMessage'
-        }
-      ],
+      messages: [],
       objectType: 'KalturaPlaybackContext'
     },
     {
