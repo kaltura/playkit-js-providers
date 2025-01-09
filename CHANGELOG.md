@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.41.1 (2025-01-09)
+
+
+### Bug Fixes
+
+* **SUP-45003:** [IKEA Ingka] - past scheduled embedded entries will show a wrong error message for V7 player ([#245](https://github.com/kaltura/playkit-js-providers/issues/245)) ([0a77464](https://github.com/kaltura/playkit-js-providers/commit/0a77464)), closes [kaltura/playkit-js#805](https://github.com/kaltura/playkit-js-providers/issues/805) [kaltura/playkit-js-ui#970](https://github.com/kaltura/playkit-js-providers/issues/970) [kaltura/kaltura-player-js#897](https://github.com/kaltura/playkit-js-providers/issues/897)
+
+
+
 ## 2.41.0 (2024-11-14)
 
 
