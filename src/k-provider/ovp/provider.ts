@@ -42,11 +42,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
 
     this._isAnonymous = !this._ks ? true : undefined;
     if (this._isAnonymous === undefined) {
-      this.initializeUserResponse(OVPConfiguration.serviceUrl, this._ks).then(() => {
-        //user response initialized');
-      }).catch(err => {
-        this._logger.error('Failed to initialize user response', err);
-      });
+      this.initializeUserResponseAsync();
     }
   }
 
@@ -54,12 +50,20 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     return OVPConfiguration.get();
   }
 
+  private async initializeUserResponseAsync(): Promise<void> {
+    await this.initializeUserResponse(OVPConfiguration.serviceUrl, this._ks);
+  }
+
   public async initializeUserResponse(serviceUrl: string, ks: string): Promise<void> {
-    const request = OVPUserService.get(serviceUrl, ks);
-    request.params = JSON.stringify(request.params);
-    const response = await request.doHttpRequest();
-    const userResponse = new KalturaUserGetResponse(response);
-    this._isAnonymous = userResponse.isAnonymous();
+    try {
+      const request = OVPUserService.get(serviceUrl, ks);
+      request.params = JSON.stringify(request.params);
+      const response = await request.doHttpRequest();
+      const userResponse = new KalturaUserGetResponse(response);
+      this._isAnonymous = userResponse.isAnonymous();
+    } catch (err) {
+      this._logger.error('Failed to initialize user response', err);
+    }
   }
 
   /**
