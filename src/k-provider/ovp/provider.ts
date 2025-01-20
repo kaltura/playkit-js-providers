@@ -23,6 +23,8 @@ import {
   ProviderPlaylistObject,
   RequestLoader
 } from '../../types';
+import {KalturaUserGetResponse} from './response-types/kaltura-user-get-response';
+import OVPUserService from './services/user-service';
 
 export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject> {
   private _filterOptionsConfig: ProviderFilterOptionsObject = {redirectFromEntryId: true};
@@ -37,10 +39,25 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     OVPConfiguration.set(options.env);
     this._setFilterOptionsConfig(options.filterOptions);
     this._networkRetryConfig = Object.assign(this._networkRetryConfig, options.networkRetryParameters);
+
+    this._isAnonymous = !this._ks ? true : undefined;
+    if (this._isAnonymous === undefined) {
+      this.initializeUserResponse(OVPConfiguration.serviceUrl, this._ks).catch(err => {
+        this._logger.error('Failed to initialize user response', err);
+      });
+    }
   }
 
   public get env(): any {
     return OVPConfiguration.get();
+  }
+
+  public async initializeUserResponse(serviceUrl: string, ks: string): Promise<void> {
+    const request = OVPUserService.get(serviceUrl, ks);
+    request.params = JSON.stringify(request.params);
+    const response = await request.doHttpRequest();
+    const userResponse = new KalturaUserGetResponse(response);
+    this._isAnonymous = userResponse.isAnonymous();
   }
 
   /**
@@ -51,10 +68,6 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
   public getMediaConfig(mediaInfo: OVPProviderMediaInfoObject): Promise<ProviderMediaConfigObject> {
     if (mediaInfo.ks) {
       this.ks = mediaInfo.ks;
-      this._isAnonymous = false;
-    }
-    if (this.widgetId !== this.defaultWidgetId) {
-      this._isAnonymous = false;
     }
     this._dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, this.ks, this._networkRetryConfig);
     return new Promise((resolve, reject) => {
@@ -207,10 +220,6 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
   public getPlaylistConfig(playlistInfo: ProviderPlaylistInfoObject): Promise<ProviderPlaylistObject> {
     if (playlistInfo.ks) {
       this.ks = playlistInfo.ks;
-      this._isAnonymous = false;
-    }
-    if (this.widgetId !== this.defaultWidgetId) {
-      this._isAnonymous = false;
     }
     this._dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, this.ks, this._networkRetryConfig);
     return new Promise((resolve, reject) => {
@@ -263,10 +272,6 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
   public getEntryListConfig(entryListInfo: ProviderEntryListObject): Promise<ProviderPlaylistObject> {
     if (entryListInfo.ks) {
       this.ks = entryListInfo.ks;
-      this._isAnonymous = false;
-    }
-    if (this.widgetId !== this.defaultWidgetId) {
-      this._isAnonymous = false;
     }
     this._dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, this.ks, this._networkRetryConfig);
     return new Promise((resolve, reject) => {
