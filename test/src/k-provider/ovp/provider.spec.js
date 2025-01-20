@@ -8,7 +8,6 @@ import OVPConfiguration from '../../../../src/k-provider/ovp/config';
 import OVPMediaEntryLoader from '../../../../src/k-provider/ovp/loaders/media-entry-loader';
 import OVPSessionLoader from '../../../../src/k-provider/ovp/loaders/session-loader';
 import {toPlainObject} from '../../../../src/util/object';
-import OVPUserService from '../../../../src/k-provider/ovp/services/user-service';
 
 describe('default configuration', () => {
   const partnerId = 1082342;
@@ -282,7 +281,7 @@ describe('OVPProvider.partnerId:1068292', function () {
       mediaConfig => {
         try {
           let data = JSON.parse(JSON.stringify(MEDIA_CONFIG_DATA.NoPluginsWithDrm));
-          data.session.isAnonymous = undefined;
+          data.session.isAnonymous = false;
           mediaConfig.should.deep.equal(data);
           done();
         } catch (err) {
@@ -333,7 +332,7 @@ describe('OVPProvider.partnerId:1068292', function () {
       mediaConfig => {
         try {
           let data = JSON.parse(JSON.stringify(MEDIA_CONFIG_DATA.WithPluginsWithDrm));
-          data.session.isAnonymous = undefined;
+          data.session.isAnonymous = false;
           mediaConfig.should.deep.equal(data);
           done();
         } catch (err) {
@@ -399,7 +398,6 @@ describe('OVPProvider.partnerId:0', function () {
       mediaConfig => {
         try {
           let data = JSON.parse(JSON.stringify(MEDIA_CONFIG_DATA.EntryOfPartner0));
-          mediaConfig.session.isAnonymous = false;
           mediaConfig.should.deep.equal(data);
           done();
         } catch (err) {
@@ -436,16 +434,13 @@ describe('getMediaConfig', function () {
       MultiRequestBuilder.prototype.execute.restore();
     });
 
-    it('should set anonymous to undefined when given a KS at first', done => {
-      provider = new OVPProvider({partnerId: partnerId, ks: ks}, playerVersion);
+    it('should set anonymous to false when given a KS', done => {
+      provider = new OVPProvider({partnerId: partnerId}, playerVersion);
       provider.getMediaConfig({entryId: '1_rwbj3j0a', ks: ks}).then(
         mediaConfig => {
           try {
-            if (mediaConfig.session.isAnonymous === undefined) {
-              done();
-            } else {
-              done(new Error('isAnonymous is not undefined'));
-            }
+            mediaConfig.session.isAnonymous.should.be.false;
+            done();
           } catch (err) {
             done(err);
           }
@@ -454,39 +449,6 @@ describe('getMediaConfig', function () {
           done(err);
         }
       );
-    });
-
-    it('should set anonymous to false when given a user id as regular string', async () => {
-      const mockResponse = { id: 'roee,dean@kaltura.com' };
-      sandbox.stub(OVPUserService, 'get').returns({
-        doHttpRequest: () => Promise.resolve(mockResponse)
-      });
-
-      provider = new OVPProvider({ partnerId: 1082342 }, '1.2.3');
-      await provider.initializeUserResponse(provider.env.serviceUrl, ks);
-      expect(provider._isAnonymous).to.be.false;
-    });
-
-    it('should set anonymous to true when given user id equal to "0"', async () => {
-      const mockResponse = { id: '0' };
-      sandbox.stub(OVPUserService, 'get').returns({
-        doHttpRequest: () => Promise.resolve(mockResponse)
-      });
-
-      provider = new OVPProvider({ partnerId: 1082342 }, '1.2.3');
-      await provider.initializeUserResponse(provider.env.serviceUrl, ks);
-      expect(provider._isAnonymous).to.be.true;
-    });
-
-    it('should set anonymous to true when given a user id equal to null', async () => {
-      const mockResponse = { id: null };
-      sandbox.stub(OVPUserService, 'get').returns({
-        doHttpRequest: () => Promise.resolve(mockResponse)
-      });
-
-      provider = new OVPProvider({ partnerId: 1082342 }, '1.2.3');
-      await provider.initializeUserResponse(provider.env.serviceUrl, ks);
-      expect(provider._isAnonymous).to.be.true;
     });
 
     it('should use the response KS on request with widgetId', done => {
@@ -528,6 +490,23 @@ describe('getMediaConfig', function () {
         () => {
           try {
             provider._dataLoader._loaders.get('session')._widgetId.should.equal('_123456');
+            done();
+          } catch (err) {
+            done(err);
+          }
+        },
+        err => {
+          done(err);
+        }
+      );
+    });
+
+    it('should set anonymous to false when given a widgetId', done => {
+      provider = new OVPProvider({partnerId, widgetId}, playerVersion);
+      provider.getMediaConfig({entryId: '1_rwbj3j0a'}).then(
+        () => {
+          try {
+            provider._isAnonymous.should.be.false;
             done();
           } catch (err) {
             done(err);
@@ -675,7 +654,6 @@ describe('getMediaConfig', function () {
         mediaConfig => {
           try {
             mediaConfig.sources.metadata.audioFlavors = toPlainObject(mediaConfig.sources.metadata.audioFlavors);
-            mediaConfig.session.isAnonymous = false;
             mediaConfig.should.deep.equal(MEDIA_CONFIG_DATA.EntryWithBumperWithKs);
             done();
           } catch (err) {
@@ -699,7 +677,6 @@ describe('getMediaConfig', function () {
         mediaConfig => {
           try {
             mediaConfig.sources.metadata.audioFlavors = toPlainObject(mediaConfig.sources.metadata.audioFlavors);
-            mediaConfig.session.isAnonymous = false;
             mediaConfig.should.deep.equal(MEDIA_CONFIG_DATA.EntryWithNoBumper);
             done();
           } catch (err) {
@@ -923,10 +900,6 @@ describe('getPlaybackContext', () => {
         try {
           const result = mediaConfig.sources.dash.filter(source => {
             const ksParam = source.url.indexOf('?') === -1 ? 'ks/' : source.url.indexOf('?ks') === -1 ? '&ks=' : '?ks=';
-
-            //manually appending ks to the url because we are using mock ks
-            source.url = source.url + ksParam + ks;
-
             return source.url.indexOf(ksParam + ks) !== -1;
           });
           result.should.deep.equal(mediaConfig.sources.dash);
@@ -954,10 +927,6 @@ describe('getPlaybackContext', () => {
         try {
           const result = mediaConfig.sources.captions.filter(caption => {
             const ksParam = caption.url.indexOf('?') === -1 ? 'ks/' : caption.url.indexOf('?ks') === -1 ? '&ks=' : '?ks=';
-
-            //manually appending ks to the url because we are using mock ks
-            caption.url = caption.url + ksParam + ks;
-
             return caption.url.indexOf(ksParam + ks) !== -1;
           });
           result.should.deep.equal(mediaConfig.sources.captions);

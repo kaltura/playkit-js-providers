@@ -23,10 +23,6 @@ export default class OVPConfiguration {
   public static get(): any {
     return clone(defaultConfig);
   }
-
-  public static get serviceUrl(): string {
-    return defaultConfig.serviceUrl;
-  }
 }
 
 export {OVPConfiguration};
