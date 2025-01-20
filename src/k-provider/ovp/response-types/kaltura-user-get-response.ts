@@ -6,6 +6,6 @@ export class KalturaUserGetResponse {
   }
 
   public isAnonymous(): boolean {
-    return this.id === '0' || this.id === null;
+    return this.id === '0' || this.id === '' || this.id === 'Guest' || this.id === null;
   }
 }
