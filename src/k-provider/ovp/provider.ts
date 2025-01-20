@@ -43,7 +43,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     this._isAnonymous = !this._ks ? true : undefined;
     if (this._isAnonymous === undefined) {
       this.initializeUserResponse(OVPConfiguration.serviceUrl, this._ks).then(() => {
-        this._logger.info('User response initialized');
+        this._logger.info('User response initialized successfully');
       }).catch(err => {
         this._logger.error('Failed to initialize user response', err);
       });
