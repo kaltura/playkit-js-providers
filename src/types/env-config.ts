@@ -4,4 +4,5 @@ export type ProviderEnvConfigObject = {
   analyticsServiceUrl?: string;
   useApiCaptions?: boolean;
   replaceHostOnlyManifestUrls?: boolean;
+  overrideServiceUrl?: string;
 };
