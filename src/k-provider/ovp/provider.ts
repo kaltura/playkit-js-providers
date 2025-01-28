@@ -30,9 +30,10 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
    * @constructor
    * @param {ProviderOptionsObject} options - provider options
    * @param {string} playerVersion - player version
+   * @param {vrTag} - vr tag if exist
    */
-  constructor(options: ProviderOptionsObject, playerVersion: string) {
-    super(options, playerVersion);
+  constructor(options: ProviderOptionsObject, playerVersion: string, vrTag?: string) {
+    super(options, playerVersion, vrTag);
     this._logger = getLogger('OVPProvider');
     OVPConfiguration.set(options.env);
     this._setFilterOptionsConfig(options.filterOptions);
@@ -360,7 +361,8 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     if (mediaEntry.sources.captions) {
       sourcesObject.captions = mediaEntry.sources.captions;
     }
-    if (mediaEntry.metadata && typeof mediaEntry.metadata.tags === 'string' && mediaEntry.metadata.tags.split(', ').includes('360')) {
+
+    if (mediaEntry.metadata && typeof mediaEntry.metadata.tags === 'string' && mediaEntry.metadata.tags.split(', ').includes(this.vrTag)) {
       sourcesObject.vr = {};
     }
     Object.assign(sourcesObject.metadata, mediaEntry.metadata);

@@ -21,6 +21,7 @@ export default class BaseProvider<MI> {
   public _logger: any;
   public _referrer?: string;
   protected _isAnonymous: boolean;
+  public vrTag?: string;
 
   public _networkRetryConfig: ProviderNetworkRetryParameters = {
     async: true,
@@ -60,7 +61,7 @@ export default class BaseProvider<MI> {
     return this._isAnonymous;
   }
 
-  constructor(options: ProviderOptionsObject, playerVersion: string) {
+  constructor(options: ProviderOptionsObject, playerVersion: string, vrTag?: string) {
     setLogger(options.logger);
     this._partnerId = options.partnerId;
     this._widgetId = options.widgetId;
@@ -69,6 +70,7 @@ export default class BaseProvider<MI> {
     this._ks = options.ks || '';
     this._playerVersion = playerVersion;
     this._referrer = options.referrer;
+    this.vrTag = vrTag;
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
