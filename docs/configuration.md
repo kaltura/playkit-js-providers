@@ -99,7 +99,8 @@ var provider = new playkit.providers.ott.Provider(config);
 >  serviceUrl: string,
 >  cdnUrl: string,
 >  useApiCaptions: boolean,
->  replaceHostOnlyManifestUrls: boolean // optional
+>  replaceHostOnlyManifestUrls: boolean, // optional
+>  overrideServiceUrl: string //optional
 > }
 > ```
 >
@@ -112,7 +113,8 @@ var provider = new playkit.providers.ott.Provider(config);
 >  serviceUrl: "//www.kaltura.com/api_v3",
 >  cdnUrl: "//cdnapisec.kaltura.com",
 >  useApiCaptions: true,
->  replaceHostOnlyManifestUrls: false
+>  replaceHostOnlyManifestUrls: false,
+>  overrideServiceUrl : null
 > }
 > ```
 >
