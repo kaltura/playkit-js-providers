@@ -26,7 +26,6 @@ import {
 
 export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject> {
   private _filterOptionsConfig: ProviderFilterOptionsObject = {redirectFromEntryId: true};
-  private _vrPluginIsOn = false
   private _vrTag: string | null = null;
   /**
    * @constructor
@@ -363,7 +362,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
       sourcesObject.captions = mediaEntry.sources.captions;
     }
 
-    if(this._vrPluginIsOn && this._vrTag)
+    if(this._vrTag)
       if (mediaEntry.metadata && typeof mediaEntry.metadata.tags === 'string' && mediaEntry.metadata.tags.split(', ').includes(this._vrTag)) {
         sourcesObject.vr = {};
       }
@@ -372,8 +371,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
   }
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  public _updatePlayerVrPluginIsOn(vrTag: string) {
+  public setVrTag(vrTag: string) {
     this._vrTag = vrTag
-    this._vrPluginIsOn = true
   }
 }
