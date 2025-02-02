@@ -362,10 +362,11 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
       sourcesObject.captions = mediaEntry.sources.captions;
     }
 
-    if(this._vrTag)
+    if(this._vrTag) {
       if (mediaEntry.metadata && typeof mediaEntry.metadata.tags === 'string' && mediaEntry.metadata.tags.split(', ').includes(this._vrTag)) {
         sourcesObject.vr = {};
       }
+    }
     Object.assign(sourcesObject.metadata, mediaEntry.metadata);
     return sourcesObject;
   }
