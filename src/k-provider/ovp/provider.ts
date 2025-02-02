@@ -363,7 +363,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     }
 
     if(this._vrTag) {
-      if (mediaEntry.metadata && typeof mediaEntry.metadata.tags === 'string' && mediaEntry.metadata.tags.split(',').map(tag => tag.trim())) {
+      if (mediaEntry.metadata && typeof mediaEntry.metadata.tags === 'string' && mediaEntry.metadata.tags.split(',').map(tag => tag.trim().includes(this._vrTag))) {
         sourcesObject.vr = {};
       }
     }
