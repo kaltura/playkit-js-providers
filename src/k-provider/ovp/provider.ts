@@ -68,10 +68,16 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
         return this._dataLoader.fetchData().then(
           response => {
             try {
-              // Fetch the userGetResponse response
-              const userGetResponse = response.get(OVPMediaEntryLoader.id).response.userGetResult;
-              // Set isAnonymous
-              this._isAnonymous = userGetResponse.isAnonymous();
+              const mediaEntryLoaderResponse = response.get(OVPMediaEntryLoader.id);
+              if (mediaEntryLoaderResponse?.response?.userGetResult) {
+                // Fetch the userGetResponse response
+                const userGetResponse = new KalturaUserGetResponse(mediaEntryLoaderResponse.response.userGetResult);
+                // Set isAnonymous
+                this._isAnonymous = userGetResponse?.isAnonymous();
+              }
+              else {
+                this._isAnonymous = true;
+              }
               const mediaConfig = this._parseDataFromResponse(response);
               RegexActionHandler.handleRegexAction(mediaConfig, response).then(resolve);
             } catch (err) {
