@@ -26,14 +26,15 @@ import {
 
 export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject> {
   private _filterOptionsConfig: ProviderFilterOptionsObject = {redirectFromEntryId: true};
+  private _vrPluginIsOn = false
+  private _vrTag: string | null = null;
   /**
    * @constructor
    * @param {ProviderOptionsObject} options - provider options
    * @param {string} playerVersion - player version
-   * @param {vrTag} - vr tag if exist
    */
-  constructor(options: ProviderOptionsObject, playerVersion: string, vrTag?: string) {
-    super(options, playerVersion, vrTag);
+  constructor(options: ProviderOptionsObject, playerVersion: string) {
+    super(options, playerVersion);
     this._logger = getLogger('OVPProvider');
     OVPConfiguration.set(options.env);
     this._setFilterOptionsConfig(options.filterOptions);
@@ -362,10 +363,17 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
       sourcesObject.captions = mediaEntry.sources.captions;
     }
 
-    if (mediaEntry.metadata && typeof mediaEntry.metadata.tags === 'string' && mediaEntry.metadata.tags.split(', ').includes(this.vrTag)) {
-      sourcesObject.vr = {};
-    }
+    if(this._vrPluginIsOn && this._vrTag)
+      if (mediaEntry.metadata && typeof mediaEntry.metadata.tags === 'string' && mediaEntry.metadata.tags.split(', ').includes(this._vrTag)) {
+        sourcesObject.vr = {};
+      }
     Object.assign(sourcesObject.metadata, mediaEntry.metadata);
     return sourcesObject;
+  }
+
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  public _updatePlayerVrPluginIsOn(vrTag: string) {
+    this._vrTag = vrTag
+    this._vrPluginIsOn = true
   }
 }
