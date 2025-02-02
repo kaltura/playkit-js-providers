@@ -7,11 +7,14 @@ import {KalturaMetadataListResponse} from '../response-types';
 import {KalturaBaseEntryListResponse} from '../response-types';
 import {KalturaMediaEntry} from '../response-types';
 import {ILoader} from '../../../types';
+import OVPUserService from '../services/user-service';
+import {KalturaUserGetResponse} from '../response-types/kaltura-user-get-response';
 
 type OVPMediaEntryLoaderResponse = {
   entry: KalturaMediaEntry;
   playBackContextResult: KalturaPlaybackContext;
   metadataListResult: KalturaMetadataListResponse;
+  userGetResult: KalturaUserGetResponse;
 };
 export type {OVPMediaEntryLoaderResponse};
 
@@ -49,6 +52,7 @@ export default class OVPMediaEntryLoader implements ILoader {
     this._response.entry = mediaEntryResponse.entries[0];
     this._response.playBackContextResult = new KalturaPlaybackContext(response[1].data);
     this._response.metadataListResult = new KalturaMetadataListResponse(response[2].data);
+    this._response.userGetResult = new KalturaUserGetResponse(response[3].data);
   }
 
   public get response(): OVPMediaEntryLoaderResponse {
@@ -70,6 +74,7 @@ export default class OVPMediaEntryLoader implements ILoader {
     const serviceEntryId = params.ks === '{1:result:ks}' ? '{2:result:objects:0:id}' : '{1:result:objects:0:id}';
     requests.push(OVPBaseEntryService.getPlaybackContext(config.serviceUrl, params.ks, serviceEntryId, params.referrer));
     requests.push(OVPMetadataService.list(config.serviceUrl, params.ks, serviceEntryId));
+    requests.push(OVPUserService.get(config.serviceUrl, params.ks));
     return requests;
   }
 
