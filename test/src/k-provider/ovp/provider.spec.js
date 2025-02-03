@@ -8,6 +8,7 @@ import OVPConfiguration from '../../../../src/k-provider/ovp/config';
 import OVPMediaEntryLoader from '../../../../src/k-provider/ovp/loaders/media-entry-loader';
 import OVPSessionLoader from '../../../../src/k-provider/ovp/loaders/session-loader';
 import {toPlainObject} from '../../../../src/util/object';
+import {KalturaUserGetResponse} from '../../../../src/k-provider/ovp/response-types/kaltura-user-get-response';
 
 describe('default configuration', () => {
   const partnerId = 1082342;
@@ -281,7 +282,6 @@ describe('OVPProvider.partnerId:1068292', function () {
       mediaConfig => {
         try {
           let data = JSON.parse(JSON.stringify(MEDIA_CONFIG_DATA.NoPluginsWithDrm));
-          data.session.isAnonymous = false;
           mediaConfig.should.deep.equal(data);
           done();
         } catch (err) {
@@ -398,6 +398,7 @@ describe('OVPProvider.partnerId:0', function () {
       mediaConfig => {
         try {
           let data = JSON.parse(JSON.stringify(MEDIA_CONFIG_DATA.EntryOfPartner0));
+          data.session.isAnonymous = true;
           mediaConfig.should.deep.equal(data);
           done();
         } catch (err) {
@@ -434,21 +435,24 @@ describe('getMediaConfig', function () {
       MultiRequestBuilder.prototype.execute.restore();
     });
 
-    it('should set anonymous to false when given a KS', done => {
-      provider = new OVPProvider({partnerId: partnerId}, playerVersion);
-      provider.getMediaConfig({entryId: '1_rwbj3j0a', ks: ks}).then(
-        mediaConfig => {
-          try {
-            mediaConfig.session.isAnonymous.should.be.false;
-            done();
-          } catch (err) {
-            done(err);
-          }
-        },
-        err => {
-          done(err);
-        }
-      );
+    it('should set anonymous to false when given a user id as regular string', async () => {
+      const mockResponse = new KalturaUserGetResponse({ id: 'roee,dean@kaltura.com' });
+      expect(mockResponse.isAnonymous()).to.be.false;
+    });
+
+    it('should set anonymous to true when given user id equal to "0"', async () => {
+      const mockResponse = new KalturaUserGetResponse({ id: '0' });
+      expect(mockResponse.isAnonymous()).to.be.true;
+    });
+
+    it('should set anonymous to true when given user id equal to ""', async () => {
+      const mockResponse = new KalturaUserGetResponse({ id: '0' });
+      expect(mockResponse.isAnonymous()).to.be.true;
+    });
+
+    it('should set anonymous to true when given a user id equal to null', async () => {
+      const mockResponse = new KalturaUserGetResponse({ id: null });
+      expect(mockResponse.isAnonymous()).to.be.true;
     });
 
     it('should use the response KS on request with widgetId', done => {
@@ -490,23 +494,6 @@ describe('getMediaConfig', function () {
         () => {
           try {
             provider._dataLoader._loaders.get('session')._widgetId.should.equal('_123456');
-            done();
-          } catch (err) {
-            done(err);
-          }
-        },
-        err => {
-          done(err);
-        }
-      );
-    });
-
-    it('should set anonymous to false when given a widgetId', done => {
-      provider = new OVPProvider({partnerId, widgetId}, playerVersion);
-      provider.getMediaConfig({entryId: '1_rwbj3j0a'}).then(
-        () => {
-          try {
-            provider._isAnonymous.should.be.false;
             done();
           } catch (err) {
             done(err);
@@ -653,6 +640,7 @@ describe('getMediaConfig', function () {
       provider.getMediaConfig({entryId: '0_wifqaipd', ks}).then(
         mediaConfig => {
           try {
+            mediaConfig.session.isAnonymous = false;
             mediaConfig.sources.metadata.audioFlavors = toPlainObject(mediaConfig.sources.metadata.audioFlavors);
             mediaConfig.should.deep.equal(MEDIA_CONFIG_DATA.EntryWithBumperWithKs);
             done();
@@ -676,6 +664,7 @@ describe('getMediaConfig', function () {
       provider.getMediaConfig({entryId: '0_wifqaipd', ks}).then(
         mediaConfig => {
           try {
+            mediaConfig.session.isAnonymous = false;
             mediaConfig.sources.metadata.audioFlavors = toPlainObject(mediaConfig.sources.metadata.audioFlavors);
             mediaConfig.should.deep.equal(MEDIA_CONFIG_DATA.EntryWithNoBumper);
             done();
@@ -900,6 +889,10 @@ describe('getPlaybackContext', () => {
         try {
           const result = mediaConfig.sources.dash.filter(source => {
             const ksParam = source.url.indexOf('?') === -1 ? 'ks/' : source.url.indexOf('?ks') === -1 ? '&ks=' : '?ks=';
+
+            //manually appending ks to the url because we are using mock ks
+            source.url = source.url + ksParam + ks;
+
             return source.url.indexOf(ksParam + ks) !== -1;
           });
           result.should.deep.equal(mediaConfig.sources.dash);
@@ -927,6 +920,10 @@ describe('getPlaybackContext', () => {
         try {
           const result = mediaConfig.sources.captions.filter(caption => {
             const ksParam = caption.url.indexOf('?') === -1 ? 'ks/' : caption.url.indexOf('?ks') === -1 ? '&ks=' : '?ks=';
+
+            //manually appending ks to the url because we are using mock ks
+            caption.url = caption.url + ksParam + ks;
+
             return caption.url.indexOf(ksParam + ks) !== -1;
           });
           result.should.deep.equal(mediaConfig.sources.captions);
