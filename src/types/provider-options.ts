@@ -15,4 +15,5 @@ export type ProviderOptionsObject = {
   ignoreServerConfig?: boolean;
   loadThumbnailWithKs?: boolean;
   referrer?: string;
+  vrTag?: string;
 };

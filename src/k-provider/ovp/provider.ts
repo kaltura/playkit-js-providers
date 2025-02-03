@@ -26,6 +26,7 @@ import {
 
 export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject> {
   private _filterOptionsConfig: ProviderFilterOptionsObject = {redirectFromEntryId: true};
+  private _vrTag: string;
   /**
    * @constructor
    * @param {ProviderOptionsObject} options - provider options
@@ -36,6 +37,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     this._logger = getLogger('OVPProvider');
     OVPConfiguration.set(options.env);
     this._setFilterOptionsConfig(options.filterOptions);
+    this._vrTag = options.vrTag || '360';
     this._networkRetryConfig = Object.assign(this._networkRetryConfig, options.networkRetryParameters);
   }
 
@@ -360,9 +362,10 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     if (mediaEntry.sources.captions) {
       sourcesObject.captions = mediaEntry.sources.captions;
     }
-    if (mediaEntry.metadata && typeof mediaEntry.metadata.tags === 'string' && mediaEntry.metadata.tags.split(', ').includes('360')) {
+    if (mediaEntry.metadata && typeof mediaEntry.metadata.tags === 'string' && mediaEntry.metadata.tags.split(',').some(tag => tag.trim() === this._vrTag)) {
       sourcesObject.vr = {};
     }
+
     Object.assign(sourcesObject.metadata, mediaEntry.metadata);
     return sourcesObject;
   }
