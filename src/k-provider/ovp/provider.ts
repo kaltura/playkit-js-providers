@@ -37,7 +37,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     this._logger = getLogger('OVPProvider');
     OVPConfiguration.set(options.env);
     this._setFilterOptionsConfig(options.filterOptions);
-    this._vrTag = options.vrTag ?? '360';
+    this._vrTag = options.vrTag || '360';
     this._networkRetryConfig = Object.assign(this._networkRetryConfig, options.networkRetryParameters);
   }
 
