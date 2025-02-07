@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.41.3 (2025-02-07)
+
+
+### Bug Fixes
+
+* **SUP-46065:** Player shows VR button based on "360" (or variations) tag ([#257](https://github.com/kaltura/playkit-js-providers/issues/257)) ([31ef303](https://github.com/kaltura/playkit-js-providers/commit/31ef303))
+
+
+
 ### 2.41.2 (2025-01-23)
 
 
