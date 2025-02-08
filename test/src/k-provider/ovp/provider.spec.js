@@ -8,6 +8,8 @@ import OVPConfiguration from '../../../../src/k-provider/ovp/config';
 import OVPMediaEntryLoader from '../../../../src/k-provider/ovp/loaders/media-entry-loader';
 import OVPSessionLoader from '../../../../src/k-provider/ovp/loaders/session-loader';
 import {toPlainObject} from '../../../../src/util/object';
+import OVPUserService from '../../../../src/k-provider/ovp/services/user-service';
+import {KalturaUserGetResponse} from '../../../../src/k-provider/ovp/response-types/kaltura-user-get-response';
 
 describe('default configuration', () => {
   const partnerId = 1082342;
@@ -271,27 +273,28 @@ describe('OVPProvider.partnerId:1068292', function () {
     MultiRequestBuilder.prototype.execute.restore();
   });
 
-  it('should return config without plugins with drm data', done => {
+  it('should return config without plugins with drm data', async () => {
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
       return new Promise(resolve => {
         resolve({response: new MultiRequestResult(BE_DATA.AnonymousMocEntryWithoutUIConfWithDrmData.response)});
       });
     });
-    provider.getMediaConfig({entryId: '1_rwbj3j0a'}).then(
-      mediaConfig => {
-        try {
-          let data = JSON.parse(JSON.stringify(MEDIA_CONFIG_DATA.NoPluginsWithDrm));
-          data.session.isAnonymous = false;
-          mediaConfig.should.deep.equal(data);
-          done();
-        } catch (err) {
-          done(err);
-        }
-      },
-      err => {
-        done(err);
-      }
-    );
+
+    const mockUserResponse = { id: 'roee.dean@kaltura.com' };
+    sandbox.stub(OVPUserService, 'get').returns({
+      doHttpRequest: () => Promise.resolve(mockUserResponse)
+    });
+    await provider.initializeUserResponse(provider.env.serviceUrl, ks);
+    expect(provider._isAnonymous).to.be.false;
+
+    try {
+      const mediaConfig = await provider.getMediaConfig({entryId: '1_rwbj3j0a'});
+      const data = JSON.parse(JSON.stringify(MEDIA_CONFIG_DATA.NoPluginsWithDrm));
+      data.session.isAnonymous = false;
+      mediaConfig.should.deep.equal(data);
+    } catch (err) {
+      throw err;
+    }
   });
 
   it('should return reject when try to get config with wrong entryId', done => {
@@ -318,7 +321,7 @@ describe('OVPProvider.partnerId:1068292', function () {
     );
   });
 
-  it('should return config with plugins and with drm data', done => {
+  it('should return config with plugins and with drm data', async () => {
     provider = new OVPProvider({partnerId: partnerId, ks: ks, uiConfId: 38601981}, playerVersion);
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
       return new Promise(resolve => {
@@ -328,21 +331,22 @@ describe('OVPProvider.partnerId:1068292', function () {
         });
       });
     });
-    provider.getMediaConfig({entryId: '1_rwbj3j0a'}).then(
-      mediaConfig => {
-        try {
-          let data = JSON.parse(JSON.stringify(MEDIA_CONFIG_DATA.WithPluginsWithDrm));
-          data.session.isAnonymous = false;
-          mediaConfig.should.deep.equal(data);
-          done();
-        } catch (err) {
-          done(err);
-        }
-      },
-      err => {
-        done(err);
-      }
-    );
+
+    const mockUserResponse = { id: 'roee.dean@kaltura.com' };
+    sandbox.stub(OVPUserService, 'get').returns({
+      doHttpRequest: () => Promise.resolve(mockUserResponse)
+    });
+    await provider.initializeUserResponse(provider.env.serviceUrl, ks);
+    expect(provider._isAnonymous).to.be.false;
+
+    try {
+      const mediaConfig = await provider.getMediaConfig({entryId: '1_rwbj3j0a'});
+      const data = JSON.parse(JSON.stringify(MEDIA_CONFIG_DATA.WithPluginsWithDrm));
+      data.session.isAnonymous = false;
+      mediaConfig.should.deep.equal(data);
+    } catch (err) {
+      throw err;
+    }
   });
 
   it('should return reject when try to get config with wrong uiConf ID', done => {
@@ -388,26 +392,27 @@ describe('OVPProvider.partnerId:0', function () {
     MultiRequestBuilder.prototype.execute.restore();
   });
 
-  it('should return entry', done => {
+  it('should return entry', async () => {
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
       return new Promise(resolve => {
         resolve({response: new MultiRequestResult(BE_DATA.Partner0EntryData.response)});
       });
     });
-    provider.getMediaConfig({entryId: '0_pi55vv3r'}).then(
-      mediaConfig => {
-        try {
-          let data = JSON.parse(JSON.stringify(MEDIA_CONFIG_DATA.EntryOfPartner0));
-          mediaConfig.should.deep.equal(data);
-          done();
-        } catch (err) {
-          done(err);
-        }
-      },
-      err => {
-        done(err);
-      }
-    );
+
+    const mockUserResponse = { id: 'roee.dean@kaltura.com' };
+    sandbox.stub(OVPUserService, 'get').returns({
+      doHttpRequest: () => Promise.resolve(mockUserResponse)
+    });
+    await provider.initializeUserResponse(provider.env.serviceUrl, ks);
+    expect(provider._isAnonymous).to.be.false;
+
+    try {
+      const mediaConfig = await provider.getMediaConfig({entryId: '0_pi55vv3r'});
+      const data = JSON.parse(JSON.stringify(MEDIA_CONFIG_DATA.EntryOfPartner0));
+      mediaConfig.should.deep.equal(data);
+    } catch (err) {
+      throw err;
+    }
   });
 });
 
@@ -434,21 +439,29 @@ describe('getMediaConfig', function () {
       MultiRequestBuilder.prototype.execute.restore();
     });
 
-    it('should set anonymous to false when given a KS', done => {
-      provider = new OVPProvider({partnerId: partnerId}, playerVersion);
-      provider.getMediaConfig({entryId: '1_rwbj3j0a', ks: ks}).then(
-        mediaConfig => {
-          try {
-            mediaConfig.session.isAnonymous.should.be.false;
-            done();
-          } catch (err) {
-            done(err);
-          }
-        },
-        err => {
-          done(err);
-        }
-      );
+    it('should set anonymous to false when given a user id as regular string', async () => {
+      const mockResponse = new KalturaUserGetResponse({ id: 'roee,dean@kaltura.com' });
+      expect(mockResponse.isAnonymous()).to.be.false;
+    });
+
+    it('should set anonymous to true when given user id equal to "0"', async () => {
+      const mockResponse = new KalturaUserGetResponse({ id: '0' });
+      expect(mockResponse.isAnonymous()).to.be.true;
+    });
+
+    it('should set anonymous to true when given user id equal to ""', async () => {
+      const mockResponse = new KalturaUserGetResponse({ id: '' });
+      expect(mockResponse.isAnonymous()).to.be.true;
+    });
+
+    it('should set anonymous to true when given a user id equal to null', async () => {
+      const mockResponse = new KalturaUserGetResponse({ id: null });
+      expect(mockResponse.isAnonymous()).to.be.true;
+    });
+
+    it('should set anonymous to true when given a user id equal to undefined, as an effect of failed request', async () => {
+      const mockResponse = new KalturaUserGetResponse({ id: undefined });
+      expect(mockResponse.isAnonymous()).to.be.true;
     });
 
     it('should use the response KS on request with widgetId', done => {
@@ -490,23 +503,6 @@ describe('getMediaConfig', function () {
         () => {
           try {
             provider._dataLoader._loaders.get('session')._widgetId.should.equal('_123456');
-            done();
-          } catch (err) {
-            done(err);
-          }
-        },
-        err => {
-          done(err);
-        }
-      );
-    });
-
-    it('should set anonymous to false when given a widgetId', done => {
-      provider = new OVPProvider({partnerId, widgetId}, playerVersion);
-      provider.getMediaConfig({entryId: '1_rwbj3j0a'}).then(
-        () => {
-          try {
-            provider._isAnonymous.should.be.false;
             done();
           } catch (err) {
             done(err);
@@ -643,50 +639,52 @@ describe('getMediaConfig', function () {
       );
     });
 
-    it('should set the bumper plugin with ks', done => {
+    it('should set the bumper plugin with ks', async () => {
       sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
         return new Promise(resolve => {
           resolve({response: new MultiRequestResult(BE_DATA.EntryWithBumperWithKs.response)});
         });
       });
       provider = new OVPProvider({partnerId: partnerId}, playerVersion);
-      provider.getMediaConfig({entryId: '0_wifqaipd', ks}).then(
-        mediaConfig => {
-          try {
-            mediaConfig.sources.metadata.audioFlavors = toPlainObject(mediaConfig.sources.metadata.audioFlavors);
-            mediaConfig.should.deep.equal(MEDIA_CONFIG_DATA.EntryWithBumperWithKs);
-            done();
-          } catch (err) {
-            done(err);
-          }
-        },
-        err => {
-          done(err);
-        }
-      );
+
+      const mockUserResponse = { id: 'roee.dean@kaltura.com' };
+      sandbox.stub(OVPUserService, 'get').returns({
+        doHttpRequest: () => Promise.resolve(mockUserResponse)
+      });
+      await provider.initializeUserResponse(provider.env.serviceUrl, ks);
+      expect(provider._isAnonymous).to.be.false;
+
+      try {
+        const mediaConfig = await provider.getMediaConfig({entryId: '0_wifqaipd', ks});
+        mediaConfig.sources.metadata.audioFlavors = toPlainObject(mediaConfig.sources.metadata.audioFlavors);
+        mediaConfig.should.deep.equal(MEDIA_CONFIG_DATA.EntryWithBumperWithKs);
+      } catch (err) {
+        throw err;
+      }
     });
 
-    it('should not set the bumper plugin when no sources given', done => {
+    it('should not set the bumper plugin when no sources given', async () => {
       sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
         return new Promise(resolve => {
           resolve({response: new MultiRequestResult(BE_DATA.EntryWithBumperWitNoSources.response)});
         });
       });
       provider = new OVPProvider({partnerId: partnerId}, playerVersion);
-      provider.getMediaConfig({entryId: '0_wifqaipd', ks}).then(
-        mediaConfig => {
-          try {
-            mediaConfig.sources.metadata.audioFlavors = toPlainObject(mediaConfig.sources.metadata.audioFlavors);
-            mediaConfig.should.deep.equal(MEDIA_CONFIG_DATA.EntryWithNoBumper);
-            done();
-          } catch (err) {
-            done(err);
-          }
-        },
-        err => {
-          done(err);
-        }
-      );
+
+      const mockUserResponse = { id: 'roee.dean@kaltura.com' };
+      sandbox.stub(OVPUserService, 'get').returns({
+        doHttpRequest: () => Promise.resolve(mockUserResponse)
+      });
+      await provider.initializeUserResponse(provider.env.serviceUrl, ks);
+      expect(provider._isAnonymous).to.be.false;
+
+      try {
+        const mediaConfig = await provider.getMediaConfig({entryId: '0_wifqaipd', ks})
+        mediaConfig.sources.metadata.audioFlavors = toPlainObject(mediaConfig.sources.metadata.audioFlavors);
+        mediaConfig.should.deep.equal(MEDIA_CONFIG_DATA.EntryWithNoBumper);
+      } catch (err) {
+        throw err;
+      }
     });
   });
 });
@@ -887,7 +885,7 @@ describe('getPlaybackContext', () => {
       });
   });
 
-  it('should add KS to direct playbackContext', done => {
+  it('should add KS to direct playbackContext', async () => {
     sandbox = sinon.createSandbox();
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
       return new Promise(resolve => {
@@ -895,26 +893,27 @@ describe('getPlaybackContext', () => {
       });
     });
     provider = new OVPProvider({partnerId: partnerId}, playerVersion);
-    provider.getMediaConfig({entryId: '0_wifqaipd', ks: ks}).then(
-      mediaConfig => {
-        try {
-          const result = mediaConfig.sources.dash.filter(source => {
-            const ksParam = source.url.indexOf('?') === -1 ? 'ks/' : source.url.indexOf('?ks') === -1 ? '&ks=' : '?ks=';
-            return source.url.indexOf(ksParam + ks) !== -1;
-          });
-          result.should.deep.equal(mediaConfig.sources.dash);
-          done();
-        } catch (err) {
-          done(err);
-        }
-      },
-      err => {
-        done(err);
-      }
-    );
+
+    const mockUserResponse = { id: 'roee.dean@kaltura.com' };
+    sandbox.stub(OVPUserService, 'get').returns({
+      doHttpRequest: () => Promise.resolve(mockUserResponse)
+    });
+    await provider.initializeUserResponse(provider.env.serviceUrl, ks);
+    expect(provider._isAnonymous).to.be.false;
+
+    try {
+      const mediaConfig = await provider.getMediaConfig({ entryId: '0_wifqaipd', ks: ks });
+      const result = mediaConfig.sources.dash.filter(source => {
+        const ksParam = source.url.indexOf('?') === -1 ? 'ks/' : source.url.indexOf('?ks') === -1 ? '&ks=' : '?ks=';
+        return source.url.indexOf(ksParam + ks) !== -1;
+      });
+      result.should.deep.equal(mediaConfig.sources.dash);
+    } catch (err) {
+      throw err;
+    }
   });
 
-  it('should add KS to external captions url', done => {
+  it('should add KS to external captions url', async () => {
     sandbox = sinon.createSandbox();
     sinon.stub(MultiRequestBuilder.prototype, 'execute').callsFake(function () {
       return new Promise(resolve => {
@@ -922,23 +921,24 @@ describe('getPlaybackContext', () => {
       });
     });
     provider = new OVPProvider({partnerId: partnerId}, playerVersion);
-    provider.getMediaConfig({entryId: '1_rwbj3j0a', ks: ks}).then(
-      mediaConfig => {
-        try {
-          const result = mediaConfig.sources.captions.filter(caption => {
-            const ksParam = caption.url.indexOf('?') === -1 ? 'ks/' : caption.url.indexOf('?ks') === -1 ? '&ks=' : '?ks=';
-            return caption.url.indexOf(ksParam + ks) !== -1;
-          });
-          result.should.deep.equal(mediaConfig.sources.captions);
-          done();
-        } catch (err) {
-          done(err);
-        }
-      },
-      err => {
-        done(err);
-      }
-    );
+
+    const mockUserResponse = { id: 'roee.dean@kaltura.com' };
+    sandbox.stub(OVPUserService, 'get').returns({
+      doHttpRequest: () => Promise.resolve(mockUserResponse)
+    });
+    await provider.initializeUserResponse(provider.env.serviceUrl, ks);
+    expect(provider._isAnonymous).to.be.false;
+
+    try {
+      const mediaConfig = await provider.getMediaConfig({entryId: '1_rwbj3j0a', ks: ks})
+      const result = mediaConfig.sources.captions.filter(caption => {
+        const ksParam = caption.url.indexOf('?') === -1 ? 'ks/' : caption.url.indexOf('?ks') === -1 ? '&ks=' : '?ks=';
+        return caption.url.indexOf(ksParam + ks) !== -1;
+      });
+      result.should.deep.equal(mediaConfig.sources.captions);
+    } catch (err) {
+      throw err;
+    }
   });
 
   it('should request entryId token {2:result:objects:0:id} in request with anonymous KS', done => {

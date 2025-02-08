@@ -14,13 +14,13 @@ import {
 export default class BaseProvider<MI> {
   private _partnerId: number;
   private _widgetId?: string;
-  private _ks: string;
+  protected _ks: string;
   private _uiConfId?: number;
   public _dataLoader!: DataLoaderManager;
   private _playerVersion: string;
   public _logger: any;
   public _referrer?: string;
-  protected _isAnonymous: boolean;
+  protected _isAnonymous: boolean | undefined;
 
   public _networkRetryConfig: ProviderNetworkRetryParameters = {
     async: true,
@@ -56,7 +56,7 @@ export default class BaseProvider<MI> {
     return this._playerVersion;
   }
 
-  public get isAnonymous(): boolean {
+  public get isAnonymous(): boolean | undefined {
     return this._isAnonymous;
   }
 
