@@ -451,6 +451,65 @@ describe('OVPProvider.partnerId:0', function () {
   });
 });
 
+describe('OVPProvider KS inclusion', function () {
+  let provider, sandbox;
+  const partnerId = 1082342;
+  const playerVersion = '1.2.3';
+  const ks = 'test_ks';
+
+  beforeEach(() => {
+    sandbox = sinon.createSandbox();
+    provider = new OVPProvider({ partnerId: partnerId, ks: ks }, playerVersion);
+
+    sandbox.stub(MultiRequestBuilder.prototype, 'execute').resolves(
+      Promise.resolve({
+        response: new Map([
+          ['session', { response: ks }],
+          ['mediaEntry', { response: {} }]
+        ])
+      })
+    );
+
+    sandbox.stub(provider, '_parseDataFromResponse').callsFake(() => ({
+      session: { ks: ks, isAnonymous: provider._isAnonymous, partnerId: partnerId },
+      sources: {},
+      plugins: {}
+    }));
+
+    sandbox.stub(provider, 'getMediaConfig').callsFake(() => {
+      return Promise.resolve({
+        session: { ks: ks, isAnonymous: provider._isAnonymous, partnerId: partnerId },
+        sources: {},
+        plugins: {}
+      });
+    });
+  });
+
+  afterEach(() => {
+    sandbox.restore();
+  });
+
+  it('should include ks in getMediaConfig response when isAnonymous is true', function (done) {
+    provider._isAnonymous = true;
+    provider.getMediaConfig({ entryId: '1_rsrdfext', ks: ks }).then(
+      (mediaConfig) => {
+        sinon.assert.match(mediaConfig.session.ks, ks);
+        done();
+      }
+    ).catch(done);
+  });
+
+  it('should include ks in getMediaConfig response when isAnonymous is false', function (done) {
+    provider._isAnonymous = false;
+    provider.getMediaConfig({ entryId: '1_rsrdfext', ks: ks }).then(
+      (mediaConfig) => {
+        sinon.assert.match(mediaConfig.session.ks, ks);
+        done();
+      }
+    ).catch(done);
+  });
+});
+
 describe('getMediaConfig', function () {
   let provider, sandbox;
   const partnerId = 1068292;
