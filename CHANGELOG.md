@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.41.4 (2025-02-20)
+
+
+### Bug Fixes
+
+* **FEC-14248:** Anonymous session based on if ks contain user - fix ([#261](https://github.com/kaltura/playkit-js-providers/issues/261)) ([d258629](https://github.com/kaltura/playkit-js-providers/commit/d258629))
+
+
+
 ### 2.41.3 (2025-02-07)
 
 
