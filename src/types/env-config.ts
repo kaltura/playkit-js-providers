@@ -5,4 +5,5 @@ export type ProviderEnvConfigObject = {
   useApiCaptions?: boolean;
   replaceHostOnlyManifestUrls?: boolean;
   overrideServiceUrl?: string;
+  initCallToServer?: string;
 };

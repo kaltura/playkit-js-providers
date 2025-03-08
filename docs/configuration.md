@@ -100,7 +100,8 @@ var provider = new playkit.providers.ott.Provider(config);
 >  cdnUrl: string,
 >  useApiCaptions: boolean,
 >  replaceHostOnlyManifestUrls: boolean, // optional
->  overrideServiceUrl: string //optional
+>  overrideServiceUrl: string, //optional
+>  initCallToServer: string //optional
 > }
 > ```
 >
