@@ -1,6 +1,6 @@
 {
   "name": "@playkit-js/playkit-js-providers",
-  "version": "2.41.4",
+  "version": "2.42.0",
   "description": "",
   "files": [
     "dist/**/*",

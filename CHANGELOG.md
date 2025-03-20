@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.42.0 (2025-03-20)
+
+
+### Features
+
+* **FEC-14415:** add path to initial call to kaltura server ([#262](https://github.com/kaltura/playkit-js-providers/issues/262)) ([07d09a7](https://github.com/kaltura/playkit-js-providers/commit/07d09a7))
+
+
+
 ### 2.41.4 (2025-02-20)
 
 
