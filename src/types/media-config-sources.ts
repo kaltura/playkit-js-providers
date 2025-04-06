@@ -20,4 +20,6 @@ export type ProviderMediaConfigSourcesObject = {
   captions?: Array<PKExternalCaptionObject>;
   downloadUrl?: string;
   rawThumbnailUrl?: string;
+  seekFrom?: number;
+  clipTo?: number;
 };
