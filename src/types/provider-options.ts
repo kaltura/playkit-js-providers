@@ -16,4 +16,5 @@ export type ProviderOptionsObject = {
   loadThumbnailWithKs?: boolean;
   referrer?: string;
   vrTag?: string;
+  unisphereLoaderUrl?: string;
 };
