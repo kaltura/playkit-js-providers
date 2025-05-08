@@ -16,7 +16,9 @@ const youtubeMediaEntryData = [
       duration: 0,
       poster: 'https://cfvod.kaltura.com/p/1111/sp/1111/thumbnail/entry_id/1234/version/100001',
       tags: '',
-      downloadUrl: ''
+      downloadUrl: '',
+      rootEntryId: '',
+      capabilities: ''
     },
     playBackContextResult: {
       hasError: false,
@@ -83,7 +85,9 @@ const youtubeMediaEntryResult = {
   },
   type: 'Unknown',
   poster: 'https://cfvod.kaltura.com/p/1111/sp/1111/thumbnail/entry_id/1234/version/100001',
-  downloadUrl: ''
+  downloadUrl: '',
+  rootEntryId: '',
+  capabilities: []
 };
 
 const liveMediaEntryData = [
@@ -103,7 +107,9 @@ const liveMediaEntryData = [
       duration: 0,
       poster: 'https://cfvod.kaltura.com/p/1111/sp/1111/thumbnail/entry_id/1234/version/100001',
       tags: '',
-      downloadUrl: ''
+      downloadUrl: '',
+      rootEntryId: '',
+      capabilities: ''
     },
     playBackContextResult: {
       hasError: false,

@@ -22,4 +22,6 @@ export type ProviderMediaConfigSourcesObject = {
   rawThumbnailUrl?: string;
   seekFrom?: number;
   clipTo?: number;
+  rootEntryId?: string;
+  capabilities?: Array<string>;
 };

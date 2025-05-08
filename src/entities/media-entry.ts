@@ -81,6 +81,18 @@ export default class MediaEntry {
   public rawThumbnailUrl?: string;
 
   /**
+   * @member - The root entry ID
+   * @type {string}
+   */
+  public rootEntryId?: string;
+
+  /**
+   * @member - The capabilities of the entry
+   * @type {Array<string>}
+   */
+  public capabilities?: Array<string>;
+
+  /**
    * @constructor
    */
   constructor() {
@@ -106,7 +118,9 @@ export default class MediaEntry {
       poster: this.poster,
       assetReferenceType: this.assetReferenceType,
       downloadUrl: this.downloadUrl,
-      rawThumbnailUrl: this.rawThumbnailUrl
+      rawThumbnailUrl: this.rawThumbnailUrl,
+      rootEntryId: this.rootEntryId,
+      capabilities: this.capabilities
     };
   }
 }

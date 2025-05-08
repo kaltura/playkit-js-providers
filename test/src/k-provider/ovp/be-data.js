@@ -24,6 +24,8 @@ const AnonymousMocEntryWithoutUIConfNoDrmData = {
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.',
           thumbnailUrl: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
           downloadUrl: '',
+          rootEntryId: '',
+          capabilities: '',
           objectType: 'KalturaMediaEntry'
         }
       ],
@@ -341,6 +343,8 @@ const BlockActionEntry = {
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.',
           thumbnailUrl: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
           downloadUrl: '',
+          rootEntryId: '',
+          capabilities: '',
           objectType: 'KalturaMediaEntry'
         }
       ],
@@ -438,6 +442,8 @@ const AnonymousMocEntryWithoutUIConfWithDrmData = {
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.',
           thumbnailUrl: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
           downloadUrl: '',
+          rootEntryId: '',
+          capabilities: '',
           objectType: 'KalturaMediaEntry'
         }
       ],
@@ -701,6 +707,8 @@ const EntryWithUIConfNoDrmData = {
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.',
           thumbnailUrl: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
           downloadUrl: '',
+          rootEntryId: '',
+          capabilities: '',
           objectType: 'KalturaMediaEntry'
         }
       ],
@@ -1034,6 +1042,8 @@ const EntryWithUIConfWithDrmData = {
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.',
           thumbnailUrl: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
           downloadUrl: '',
+          rootEntryId: '',
+          capabilities: '',
           objectType: 'KalturaMediaEntry'
         }
       ],
@@ -1287,6 +1297,8 @@ const WrongUiConfID = {
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.',
           thumbnailUrl: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
           downloadUrl: '',
+          rootEntryId: '',
+          capabilities: '',
           objectType: 'KalturaMediaEntry'
         }
       ],
@@ -1524,6 +1536,8 @@ const AudioEntryWithoutPlugins = {
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.',
           thumbnailUrl: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
           downloadUrl: '',
+          rootEntryId: '',
+          capabilities: '',
           objectType: 'KalturaMediaEntry'
         }
       ],
@@ -1664,6 +1678,8 @@ const ImageEntryWithoutPlugins = {
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.',
           thumbnailUrl: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
           downloadUrl: '',
+          rootEntryId: '',
+          capabilities: '',
           objectType: 'KalturaMediaEntry'
         }
       ],
@@ -1706,6 +1722,8 @@ const PlaylistById = {
         type: 1,
         thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_fu4ifhie/version/100002',
         downloadUrl: '',
+        rootEntryId: '',
+        capabilities: '',
         objectType: 'KalturaMediaEntry'
       },
       {
@@ -1719,6 +1737,8 @@ const PlaylistById = {
         type: 1,
         thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_15xrxwvo/version/100002',
         downloadUrl: '',
+        rootEntryId: '',
+        capabilities: '',
         objectType: 'KalturaMediaEntry'
       },
       {
@@ -1732,6 +1752,8 @@ const PlaylistById = {
         type: 1,
         thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_p8aigvgu/version/100022',
         downloadUrl: '',
+        rootEntryId: '',
+        capabilities: '',
         objectType: 'KalturaMediaEntry'
       },
       {
@@ -1746,6 +1768,8 @@ const PlaylistById = {
         type: 1,
         thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_ttfy4uu0/version/100032',
         downloadUrl: '',
+        rootEntryId: '',
+        capabilities: '',
         objectType: 'KalturaMediaEntry'
       },
       {
@@ -1760,6 +1784,8 @@ const PlaylistById = {
         type: 1,
         thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_df8g87v8/version/100032',
         downloadUrl: '',
+        rootEntryId: '',
+        capabilities: '',
         objectType: 'KalturaMediaEntry'
       },
       {
@@ -1774,6 +1800,8 @@ const PlaylistById = {
         type: 1,
         thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_hut6q26s/version/100002',
         downloadUrl: '',
+        rootEntryId: '',
+        capabilities: '',
         objectType: 'KalturaMediaEntry'
       },
       {
@@ -1788,6 +1816,8 @@ const PlaylistById = {
         type: 1,
         thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_x8n0mub7/version/100002',
         downloadUrl: '',
+        rootEntryId: '',
+        capabilities: '',
         objectType: 'KalturaMediaEntry'
       },
       {
@@ -1801,6 +1831,8 @@ const PlaylistById = {
         type: 1,
         thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_4ktof5po/version/100000',
         downloadUrl: '',
+        rootEntryId: '',
+        capabilities: '',
         objectType: 'KalturaMediaEntry'
       }
     ],
@@ -1844,6 +1876,8 @@ const AnonymousPlaylistById = {
         type: 1,
         thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_fu4ifhie/version/100002',
         downloadUrl: '',
+        rootEntryId: '',
+        capabilities: '',
         objectType: 'KalturaMediaEntry'
       },
       {
@@ -1857,6 +1891,8 @@ const AnonymousPlaylistById = {
         type: 1,
         thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_15xrxwvo/version/100002',
         downloadUrl: '',
+        rootEntryId: '',
+        capabilities: '',
         objectType: 'KalturaMediaEntry'
       },
       {
@@ -1870,6 +1906,8 @@ const AnonymousPlaylistById = {
         type: 1,
         thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_p8aigvgu/version/100022',
         downloadUrl: '',
+        rootEntryId: '',
+        capabilities: '',
         objectType: 'KalturaMediaEntry'
       },
       {
@@ -1884,6 +1922,8 @@ const AnonymousPlaylistById = {
         type: 1,
         thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_ttfy4uu0/version/100032',
         downloadUrl: '',
+        rootEntryId: '',
+        capabilities: '',
         objectType: 'KalturaMediaEntry'
       },
       {
@@ -1898,6 +1938,8 @@ const AnonymousPlaylistById = {
         type: 1,
         thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_df8g87v8/version/100032',
         downloadUrl: '',
+        rootEntryId: '',
+        capabilities: '',
         objectType: 'KalturaMediaEntry'
       },
       {
@@ -1912,6 +1954,8 @@ const AnonymousPlaylistById = {
         type: 1,
         thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_hut6q26s/version/100002',
         downloadUrl: '',
+        rootEntryId: '',
+        capabilities: '',
         objectType: 'KalturaMediaEntry'
       },
       {
@@ -1926,6 +1970,8 @@ const AnonymousPlaylistById = {
         type: 1,
         thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_x8n0mub7/version/100002',
         downloadUrl: '',
+        rootEntryId: '',
+        capabilities: '',
         objectType: 'KalturaMediaEntry'
       },
       {
@@ -1939,6 +1985,8 @@ const AnonymousPlaylistById = {
         type: 1,
         thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_4ktof5po/version/100000',
         downloadUrl: '',
+        rootEntryId: '',
+        capabilities: '',
         objectType: 'KalturaMediaEntry'
       }
     ],
@@ -1985,6 +2033,8 @@ const PlaylistByEntryList = {
           type: 1,
           thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_wifqaipd/version/100042',
           downloadUrl: '',
+          rootEntryId: '',
+          capabilities: '',
           objectType: 'KalturaMediaEntry'
         }
       ],
@@ -2003,6 +2053,8 @@ const PlaylistByEntryList = {
           type: 1,
           thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_p8aigvgu/version/100022',
           downloadUrl: '',
+          rootEntryId: '',
+          capabilities: '',
           objectType: 'KalturaMediaEntry'
         }
       ],
@@ -2052,6 +2104,8 @@ const AnonymousPlaylistByEntryList = {
           type: 1,
           thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_wifqaipd/version/100042',
           downloadUrl: '',
+          rootEntryId: '',
+          capabilities: '',
           objectType: 'KalturaMediaEntry'
         }
       ],
@@ -2071,6 +2125,8 @@ const AnonymousPlaylistByEntryList = {
           type: 1,
           thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_p8aigvgu/version/100022',
           downloadUrl: '',
+          rootEntryId: '',
+          capabilities: '',
           objectType: 'KalturaMediaEntry'
         }
       ],
@@ -2102,6 +2158,8 @@ const EntryInImport = {
             type: 1,
             thumbnailUrl: 'http://cfvod.kaltura.com/p/2506752/sp/250675200/thumbnail/entry_id/0_fknc1xml/version/0',
             downloadUrl: '',
+            rootEntryId: '',
+            capabilities: '',
             objectType: 'KalturaMediaEntry'
           }
         ],
@@ -2147,6 +2205,8 @@ const EntryInPreConvert = {
             type: 1,
             thumbnailUrl: 'http://cfvod.kaltura.com/p/2506752/sp/250675200/thumbnail/entry_id/0_fknc1xml/version/0',
             downloadUrl: '',
+            rootEntryId: '',
+            capabilities: '',
             objectType: 'KalturaMediaEntry'
           }
         ],
@@ -2193,6 +2253,8 @@ const EntryInReady = {
             type: 1,
             thumbnailUrl: 'http://cfvod.kaltura.com/p/2506752/sp/250675200/thumbnail/entry_id/0_yp010l8a/version/100022',
             downloadUrl: '',
+            rootEntryId: '',
+            capabilities: '',
             objectType: 'KalturaMediaEntry'
           }
         ],
@@ -2500,6 +2562,8 @@ const EntryWithBumper = {
           type: 1,
           thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_wifqaipd/version/100042',
           downloadUrl: '',
+          rootEntryId: '',
+          capabilities: '',
           objectType: 'KalturaMediaEntry'
         }
       ],
@@ -2899,6 +2963,8 @@ const EntryWithBumperWithKs = {
           type: 1,
           thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_wifqaipd/version/100042',
           downloadUrl: '',
+          rootEntryId: '',
+          capabilities: '',
           objectType: 'KalturaMediaEntry'
         }
       ],
@@ -3298,6 +3364,8 @@ const EntryDirectWithKs = {
           type: 1,
           thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_wifqaipd/version/100042',
           downloadUrl: '',
+          rootEntryId: '',
+          capabilities: '',
           objectType: 'KalturaMediaEntry'
         }
       ],
@@ -3374,6 +3442,8 @@ const EntryWithBumperWitNoSources = {
           type: 1,
           thumbnailUrl: 'http://cdntesting.qa.mkaltura.com/p/1091/sp/109100/thumbnail/entry_id/0_wifqaipd/version/100042',
           downloadUrl: '',
+          rootEntryId: '',
+          capabilities: '',
           objectType: 'KalturaMediaEntry'
         }
       ],
@@ -3725,6 +3795,8 @@ const Partner0EntryData = {
           type: 1,
           thumbnailUrl: 'https://cfvod.kaltura.com/p/1645161/sp/164516100/thumbnail/entry_id/0_pi55vv3r/version/100002',
           downloadUrl: '',
+          rootEntryId: '',
+          capabilities: '',
           objectType: 'KalturaMediaEntry'
         }
       ],

@@ -14,4 +14,6 @@ export type ProviderMediaEntryObject = {
   downloadUrl?: string;
   assetReferenceType?: string;
   rawThumbnailUrl?: string;
+  rootEntryId?: string;
+  capabilities?: Array<string>;
 };

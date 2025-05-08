@@ -366,6 +366,8 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     sourcesObject.poster = mediaEntry.poster;
     sourcesObject.rawThumbnailUrl = mediaEntry.rawThumbnailUrl;
     sourcesObject.downloadUrl = mediaEntry.downloadUrl;
+    sourcesObject.rootEntryId = mediaEntry.rootEntryId;
+    sourcesObject.capabilities = mediaEntry.capabilities;
     if (mediaEntry.sources.captions) {
       sourcesObject.captions = mediaEntry.sources.captions;
     }

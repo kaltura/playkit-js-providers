@@ -166,6 +166,18 @@ export class KalturaMediaEntry {
   public rawThumbnailUrl: string;
 
   /**
+   * @member - The root entry ID
+   * @type {string}
+   */
+  public rootEntryId: string;
+
+  /**
+   * @member - The capabilities of the entry
+   * @type {string}
+   */
+  public capabilities: string;
+
+  /**
    * @constructor
    * @param {Object} entry The json response
    */
@@ -192,5 +204,7 @@ export class KalturaMediaEntry {
     this.plays = entry.plays;
     this.views = entry.views;
     this.downloadUrl = entry.downloadUrl;
+    this.rootEntryId = entry.rootEntryId;
+    this.capabilities = entry.capabilities;
   }
 }
