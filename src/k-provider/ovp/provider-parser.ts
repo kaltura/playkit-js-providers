@@ -170,7 +170,7 @@ class OVPProviderParser {
     mediaEntry.metadata.tags = entry.tags || '';
     mediaEntry.status = entry.status;
     mediaEntry.rootEntryId = entry.rootEntryId;
-    mediaEntry.capabilities = entry.capabilities !== '' ? entry.capabilities.split(',') : [];
+    mediaEntry.capabilities = entry.capabilities ? entry.capabilities.split(',') : [];
 
     mediaEntry.type = OVPProviderParser._getEntryType(entry.entryType, entry.type);
     if (mediaEntry.type === MediaEntry.Type.LIVE) {
