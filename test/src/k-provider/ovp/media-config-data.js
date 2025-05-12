@@ -188,7 +188,9 @@ const NoPluginsNoDrm = {
     ],
     image: [],
     document: [],
-    downloadUrl: ''
+    downloadUrl: '',
+    rootEntryId: '',
+    capabilities: []
   }
 };
 
@@ -343,7 +345,9 @@ const RegexAppliedPlayManifestSources = {
       ChannelName: 'Disney Channel SE',
       aspectRatio: 1.78
     },
-    downloadUrl: ''
+    downloadUrl: '',
+    rootEntryId: '',
+    capabilities: []
   },
   plugins: {}
 };
@@ -501,7 +505,9 @@ const RegexAppliedAllSources = {
           'https://qa-kes-ebu-01.dev.kaltura.com/kAPI/cfvod.kaltura.com/api_v3/index.php/service/caption_captionasset/action/serveWebVTT/captionAssetId/1_6jfbcdz9/segmentIndex/-1/version/11/captions.vtt'
       }
     ],
-    downloadUrl: ''
+    downloadUrl: '',
+    rootEntryId: '',
+    capabilities: []
   }
 };
 
@@ -568,7 +574,9 @@ const NoPluginsWithDrm = {
     ],
     image: [],
     document: [],
-    downloadUrl: ''
+    downloadUrl: '',
+    rootEntryId: '',
+    capabilities: []
   }
 };
 
@@ -715,7 +723,9 @@ const WithPluginsNoDrm = {
     ],
     image: [],
     document: [],
-    downloadUrl: ''
+    downloadUrl: '',
+    rootEntryId: '',
+    capabilities: []
   }
 };
 
@@ -783,7 +793,9 @@ const WithPluginsWithDrm = {
     ],
     image: [],
     document: [],
-    downloadUrl: ''
+    downloadUrl: '',
+    rootEntryId: '',
+    capabilities: []
   }
 };
 
@@ -848,7 +860,9 @@ const AudioEntryWithoutPlugins = {
     ],
     image: [],
     document: [],
-    downloadUrl: ''
+    downloadUrl: '',
+    rootEntryId: '',
+    capabilities: []
   }
 };
 
@@ -877,7 +891,9 @@ const ImageEntryWithoutPlugins = {
     dash: [],
     hls: [],
     progressive: [],
-    downloadUrl: ''
+    downloadUrl: '',
+    rootEntryId: '',
+    capabilities: []
   }
 };
 
@@ -944,6 +960,8 @@ const WrongUiConfID = [
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.',
           thumbnailUrl: 'http://kaltura.com/p/1082342/sp/108234200/thumbnail/entry_id/1_rsrdfext/version/100002/width/640/height/360',
           downloadUrl: '',
+          rootEntryId: '',
+          capabilities: '',
           objectType: 'KalturaMediaEntry'
         }
       ],
@@ -1265,7 +1283,9 @@ const EntryWithBumper = {
         url: 'http://cdntesting.qa.mkaltura.com/api_v3/index.php/service/caption_captionAsset/action/serve/captionAssetId/0_njhnv6na/v/2'
       }
     ],
-    downloadUrl: ''
+    downloadUrl: '',
+    rootEntryId: '',
+    capabilities: []
   },
   plugins: {
     bumper: {
@@ -1387,7 +1407,9 @@ const EntryWithBumperWithKs = {
           'http://cdntesting.qa.mkaltura.com/api_v3/index.php/service/caption_captionasset/action/serveWebVTT/captionAssetId/0_njhnv6na/segmentIndex/-1/version/2/captions.vtt?testParam=abc&ks=YmMzNzUyZWM4ZmVkYjRiMzRlOTBlYTZjMGY2YTI1NzRkZDUwZjZjNnwxMDkxOzEwOTE7MTYwNTcyMjI5NDsyOzE2MDU2MzU4OTQuMTA0MzthdmkuYmFydWNoQGthbHR1cmEuY29tOyosZGlzYWJsZWVudGl0bGVtZW50Ozs'
       }
     ],
-    downloadUrl: ''
+    downloadUrl: '',
+    rootEntryId: '',
+    capabilities: []
   },
   plugins: {
     bumper: {
@@ -1510,7 +1532,9 @@ const EntryWithNoBumper = {
           'http://cdntesting.qa.mkaltura.com/api_v3/index.php/service/caption_captionAsset/action/serve/captionAssetId/0_njhnv6na/v/2/ks/YmMzNzUyZWM4ZmVkYjRiMzRlOTBlYTZjMGY2YTI1NzRkZDUwZjZjNnwxMDkxOzEwOTE7MTYwNTcyMjI5NDsyOzE2MDU2MzU4OTQuMTA0MzthdmkuYmFydWNoQGthbHR1cmEuY29tOyosZGlzYWJsZWVudGl0bGVtZW50Ozs'
       }
     ],
-    downloadUrl: ''
+    downloadUrl: '',
+    rootEntryId: '',
+    capabilities: []
   },
   plugins: {}
 };
@@ -1587,7 +1611,9 @@ const EntryOfPartner0 = {
       aspectRatio: 1.33
     },
     captions: [],
-    downloadUrl: ''
+    downloadUrl: '',
+    rootEntryId: '',
+    capabilities: []
   },
   plugins: {}
 };
