@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.43.0 (2025-05-22)
+
+
+### Features
+
+* **FEC-14439:** Add link to original entry when playing a clip entry ([#264](https://github.com/kaltura/playkit-js-providers/issues/264)) ([cd2217f](https://github.com/kaltura/playkit-js-providers/commit/cd2217f))
+
+
+
 ## 2.42.0 (2025-03-20)
 
 
