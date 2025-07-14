@@ -480,6 +480,10 @@ class OVPProviderParser {
     return response.playBackContextResult.hasScheduledRestriction();
   }
 
+  public static hasModerationRestriction(response: OVPMediaEntryLoaderResponse): boolean {
+    return response.entry.hasModerationRestriction();
+  }
+
   public static getErrorMessages(response: OVPMediaEntryLoaderResponse): Array<KalturaAccessControlMessage> {
     return response.playBackContextResult.getErrorMessages();
   }
