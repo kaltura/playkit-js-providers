@@ -216,6 +216,6 @@ export class KalturaMediaEntry {
   }
 
   public hasModerationRestriction(): boolean {
-    return this.moderationStatus === 1;
+    return this.moderationStatus === KalturaMediaEntry.EntryModerationStatus.PENDING_MODERATION;
   }
 }
