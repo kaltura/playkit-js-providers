@@ -178,6 +178,12 @@ export class KalturaMediaEntry {
   public capabilities: string;
 
   /**
+   * @member - moderation status
+   * @type {number}
+   */
+  public moderationStatus?: number;
+
+  /**
    * @constructor
    * @param {Object} entry The json response
    */
@@ -206,5 +212,10 @@ export class KalturaMediaEntry {
     this.downloadUrl = entry.downloadUrl;
     this.rootEntryId = entry.rootEntryId;
     this.capabilities = entry.capabilities;
+    this.moderationStatus = entry.moderationStatus
+  }
+
+  public hasModerationRestriction(): boolean {
+    return this.moderationStatus === KalturaMediaEntry.EntryModerationStatus.PENDING_MODERATION;
   }
 }
