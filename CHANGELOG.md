@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.43.1 (2025-07-17)
+
+
+### Bug Fixes
+
+* **SUP-48817:** Entries Under Moderation Are Still Playing ([#265](https://github.com/kaltura/playkit-js-providers/issues/265)) ([5cdbfd1](https://github.com/kaltura/playkit-js-providers/commit/5cdbfd1))
+
+
+
 ## 2.43.0 (2025-05-22)
 
 
