@@ -62,10 +62,6 @@ const Code: CodeType = {
   SCHEDULED_RESTRICTED: 2003,
 
   /**
-   * The Moderation status of the entry is pending moderation
-   */
-  MODERATION_RESTRICTED: 2004,
-  /**
    * The provider is missing mandatory parameter/s
    */
 
