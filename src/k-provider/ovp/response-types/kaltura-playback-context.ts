@@ -5,6 +5,7 @@ import {KalturaAccessControlModifyRequestHostRegexAction} from './kaltura-access
 import {KalturaRuleAction} from './kaltura-rule-action';
 import {KalturaFlavorAsset} from './kaltura-flavor-asset';
 import {KalturaBumper} from './kaltura-bumper';
+import {ActiveLiveStreamTime} from './kaltura-active-live-stream-time';
 
 export class KalturaPlaybackContext extends ServiceResult {
   /**
@@ -32,6 +33,8 @@ export class KalturaPlaybackContext extends ServiceResult {
    * @type {Array<KalturaBumper>}
    */
   public bumperData: Array<KalturaBumper> = [];
+
+  public activeLiveStreamTime?: ActiveLiveStreamTime | undefined;
 
   /**
    * @constructor
@@ -65,6 +68,13 @@ export class KalturaPlaybackContext extends ServiceResult {
       const bumperData = response.bumperData;
       if (bumperData) {
         bumperData.map(bumper => this.bumperData.push(new KalturaBumper(bumper)));
+      }
+
+      if (response.activeLiveStreamTime) {
+        this.activeLiveStreamTime = {
+          startTime: response.activeLiveStreamTime.startTime,
+          endTime: response.activeLiveStreamTime.endTime
+        };
       }
     }
   }

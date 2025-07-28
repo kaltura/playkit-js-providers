@@ -1,4 +1,4 @@
-import { KalturaPlaybackContext, KalturaUserEntry } from './response-types';
+import {KalturaPlaybackContext, KalturaUserEntry} from './response-types';
 import {KalturaMetadataListResponse} from './response-types';
 import {KalturaMediaEntry} from './response-types';
 import {KalturaPlaybackSource} from './response-types';
@@ -43,7 +43,7 @@ class OVPProviderParser {
     const playbackContext = mediaEntryResponse.playBackContextResult;
     const metadataList = mediaEntryResponse.metadataListResult;
     const kalturaSources = playbackContext.sources;
-
+    mediaEntry.activeLiveStreamTime = playbackContext.activeLiveStreamTime;
     mediaEntry.sources = OVPProviderParser._getParsedSources(kalturaSources, ks, partnerId, uiConfId, entry, playbackContext);
     OVPProviderParser._fillBaseData(mediaEntry, entry, metadataList, playbackContext);
     if (mediaEntry.type !== MediaEntry.Type.LIVE && OVPConfiguration.get().useApiCaptions && playbackContext.data.playbackCaptions) {
@@ -151,7 +151,12 @@ class OVPProviderParser {
     }
   }
 
-  private static _fillBaseData(mediaEntry: MediaEntry, entry: KalturaMediaEntry, metadataList?: KalturaMetadataListResponse, playbackContext?: any): MediaEntry {
+  private static _fillBaseData(
+    mediaEntry: MediaEntry,
+    entry: KalturaMediaEntry,
+    metadataList?: KalturaMetadataListResponse,
+    playbackContext?: any
+  ): MediaEntry {
     mediaEntry.poster = entry.poster;
     mediaEntry.rawThumbnailUrl = entry.rawThumbnailUrl;
     mediaEntry.id = entry.id;
@@ -177,10 +182,7 @@ class OVPProviderParser {
       mediaEntry.dvrStatus = entry.dvrStatus;
     }
 
-    if (playbackContext &&
-      playbackContext.flavorAssets[0] &&
-      playbackContext.flavorAssets[0].width && playbackContext.flavorAssets[0].height) {
-
+    if (playbackContext && playbackContext.flavorAssets[0] && playbackContext.flavorAssets[0].width && playbackContext.flavorAssets[0].height) {
       const {height, width} = playbackContext.flavorAssets[0];
       mediaEntry.metadata.aspectRatio = +Number(width / height).toFixed(2);
     }
@@ -194,27 +196,27 @@ class OVPProviderParser {
   private static _getEntryType(entryTypeEnum: number, typeEnum: number | string): string {
     let type = MediaEntry.Type.UNKNOWN;
     switch (entryTypeEnum) {
-    case KalturaMediaEntry.MediaType.IMAGE.value:
-      type = MediaEntry.Type.IMAGE;
-      break;
-    case KalturaMediaEntry.MediaType.AUDIO.value:
-      type = MediaEntry.Type.AUDIO;
-      break;
-    default:
-      switch (typeEnum) {
-      case KalturaMediaEntry.EntryType.MEDIA_CLIP.value:
-        type = MediaEntry.Type.VOD;
+      case KalturaMediaEntry.MediaType.IMAGE.value:
+        type = MediaEntry.Type.IMAGE;
         break;
-      case KalturaMediaEntry.EntryType.LIVE_STREAM.value:
-      case KalturaMediaEntry.EntryType.LIVE_CHANNEL.value:
-        type = MediaEntry.Type.LIVE;
-        break;
-      case KalturaMediaEntry.EntryType.DOCUMENT.value:
-        type = MediaEntry.Type.DOCUMENT;
+      case KalturaMediaEntry.MediaType.AUDIO.value:
+        type = MediaEntry.Type.AUDIO;
         break;
       default:
-        type = MediaEntry.Type.UNKNOWN;
-      }
+        switch (typeEnum) {
+          case KalturaMediaEntry.EntryType.MEDIA_CLIP.value:
+            type = MediaEntry.Type.VOD;
+            break;
+          case KalturaMediaEntry.EntryType.LIVE_STREAM.value:
+          case KalturaMediaEntry.EntryType.LIVE_CHANNEL.value:
+            type = MediaEntry.Type.LIVE;
+            break;
+          case KalturaMediaEntry.EntryType.DOCUMENT.value:
+            type = MediaEntry.Type.DOCUMENT;
+            break;
+          default:
+            type = MediaEntry.Type.UNKNOWN;
+        }
     }
     return type;
   }
