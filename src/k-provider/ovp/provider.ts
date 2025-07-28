@@ -373,7 +373,9 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     sourcesObject.downloadUrl = mediaEntry.downloadUrl;
     sourcesObject.rootEntryId = mediaEntry.rootEntryId;
     sourcesObject.capabilities = mediaEntry.capabilities;
-    sourcesObject.activeLiveStreamTime = mediaEntry.activeLiveStreamTime;
+    if (mediaEntry.activeLiveStreamTime) {
+      sourcesObject.activeLiveStreamTime = mediaEntry.activeLiveStreamTime;
+    }
     if (mediaEntry.sources.captions) {
       sourcesObject.captions = mediaEntry.sources.captions;
     }
