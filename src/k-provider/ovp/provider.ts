@@ -44,11 +44,13 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
 
     this._isAnonymous = !this._ks ? true : undefined;
     if (this._isAnonymous === undefined) {
-      this.initializeUserResponse(OVPConfiguration.serviceUrl, this._ks).then(() => {
-        this._logger.info('User response initialized');
-      }).catch(err => {
-        this._logger.error('Failed to initialize user response', err);
-      });
+      this.initializeUserResponse(OVPConfiguration.serviceUrl, this._ks)
+        .then(() => {
+          this._logger.info('User response initialized');
+        })
+        .catch(err => {
+          this._logger.error('Failed to initialize user response', err);
+        });
     }
   }
 
@@ -136,8 +138,8 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     return typeof mediaInfo.redirectFromEntryId === 'boolean'
       ? mediaInfo.redirectFromEntryId
       : typeof this._filterOptionsConfig.redirectFromEntryId === 'boolean'
-        ? this._filterOptionsConfig.redirectFromEntryId
-        : true;
+      ? this._filterOptionsConfig.redirectFromEntryId
+      : true;
   }
 
   private _setFilterOptionsConfig(options?: ProviderFilterOptionsObject): void {
@@ -182,12 +184,12 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
               action: OVPProviderParser.getBlockAction(response),
               messages: OVPProviderParser.getErrorMessages(response)
             });
-          }
-          else if (OVPProviderParser.hasScheduledRestriction(response)) {
+          } else if (OVPProviderParser.hasScheduledRestriction(response)) {
             throw new Error(Error.Severity.CRITICAL, Error.Category.SERVICE, Error.Code.SCHEDULED_RESTRICTED, {
               messages: OVPProviderParser.getErrorMessages(response)
             });
           }
+
           const mediaEntry = OVPProviderParser.getMediaEntry(this.ks, this.partnerId, this.uiConfId, response);
           Object.assign(mediaConfig.sources, this._getSourcesObject(mediaEntry));
           this._verifyMediaStatus(mediaEntry);
@@ -368,10 +370,17 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     sourcesObject.downloadUrl = mediaEntry.downloadUrl;
     sourcesObject.rootEntryId = mediaEntry.rootEntryId;
     sourcesObject.capabilities = mediaEntry.capabilities;
+    if (mediaEntry.activeLiveStreamTime) {
+      sourcesObject.activeLiveStreamTime = mediaEntry.activeLiveStreamTime;
+    }
     if (mediaEntry.sources.captions) {
       sourcesObject.captions = mediaEntry.sources.captions;
     }
-    if (mediaEntry.metadata && typeof mediaEntry.metadata.tags === 'string' && mediaEntry.metadata.tags.split(',').some(tag => tag.trim() === this._vrTag)) {
+    if (
+      mediaEntry.metadata &&
+      typeof mediaEntry.metadata.tags === 'string' &&
+      mediaEntry.metadata.tags.split(',').some(tag => tag.trim() === this._vrTag)
+    ) {
       sourcesObject.vr = {};
     }
 

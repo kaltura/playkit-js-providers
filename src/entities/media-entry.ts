@@ -1,6 +1,7 @@
 import MediaSources from './media-sources';
 import {ProviderMediaEntryObject} from '../types';
 import {Poster} from '../types/poster';
+import {ActiveLiveStreamTime} from '../k-provider/ovp/response-types/kaltura-active-live-stream-time';
 
 export default class MediaEntry {
   public static Type: {[type: string]: string} = {
@@ -91,6 +92,7 @@ export default class MediaEntry {
    * @type {Array<string>}
    */
   public capabilities?: Array<string>;
+  public activeLiveStreamTime?: ActiveLiveStreamTime;
 
   /**
    * @constructor

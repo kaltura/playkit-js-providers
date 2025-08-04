@@ -4,7 +4,6 @@
   "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
   "plugins": ["@typescript-eslint"],
   "rules": {
-    "indent": ["error", 2],
     "react/prefer-stateless-function": "off",
     "max-len": ["warn", { "code": 500 }],
     "eol-last": "off",
