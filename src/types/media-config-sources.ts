@@ -3,7 +3,7 @@ import {DocumentSource} from '../entities/document-source';
 import {ProviderMediaConfigMetadataObject} from './media-config-metadata';
 import {PKExternalCaptionObject} from './external-caption-object';
 import {ProviderMediaSourceObject} from './media-source';
-import {ActiveLiveStreamTime} from 'src/k-provider/ovp/response-types/kaltura-active-live-stream-time';
+import {ActiveLiveStreamTime} from '../k-provider/ovp/response-types/kaltura-active-live-stream-time';
 
 export type ProviderMediaConfigSourcesObject = {
   activeLiveStreamTime?: ActiveLiveStreamTime;
