@@ -188,8 +188,6 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
             throw new Error(Error.Severity.CRITICAL, Error.Category.SERVICE, Error.Code.SCHEDULED_RESTRICTED, {
               messages: OVPProviderParser.getErrorMessages(response)
             });
-          } else if (OVPProviderParser.hasModerationRestriction(response)) {
-            throw new Error(Error.Severity.CRITICAL, Error.Category.SERVICE, Error.Code.MODERATION_RESTRICTED);
           }
 
           const mediaEntry = OVPProviderParser.getMediaEntry(this.ks, this.partnerId, this.uiConfId, response);
