@@ -192,7 +192,6 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
             throw new Error(Error.Severity.CRITICAL, Error.Category.SERVICE, Error.Code.MODERATION_RESTRICTED);
           }
 
-          //debugger;
           const mediaEntry = OVPProviderParser.getMediaEntry(this.ks, this.partnerId, this.uiConfId, response);
           Object.assign(mediaConfig.sources, this._getSourcesObject(mediaEntry));
           this._verifyMediaStatus(mediaEntry);
