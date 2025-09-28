@@ -29,6 +29,9 @@ import {KalturaUserGetResponse} from './response-types/kaltura-user-get-response
 export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject> {
   private _filterOptionsConfig: ProviderFilterOptionsObject = {redirectFromEntryId: true};
   private _vrTag: string;
+  private _retryAttempts = 0;
+  private _maxRetryAttempts = 50;
+  private _retryInterval = 15000;
   /**
    * @constructor
    * @param {ProviderOptionsObject} options - provider options
@@ -239,7 +242,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
         this._dataLoader.add(OVPPlaylistLoader, {playlistId, ks});
         this._dataLoader.fetchData().then(
           response => {
-            resolve(this._parsePlaylistDataFromResponse(response));
+            this._handlePlaylistResponse(response, resolve, reject, playlistInfo);
           },
           err => {
             reject(err);
@@ -249,6 +252,48 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
         reject({success: false, data: 'Missing mandatory parameter'});
       }
     });
+  }
+
+  private _handlePlaylistResponse(
+    response: Map<string, ILoader>,
+    resolve: (value: ProviderPlaylistObject) => void,
+    reject: (reason?: any) => void,
+    playlistInfo: ProviderPlaylistInfoObject
+  ): void {
+    this._logger.debug('Handling playlist response', {attempt: this._retryAttempts + 1, maxAttempts: this._maxRetryAttempts});
+    const playlistData = this._parsePlaylistDataFromResponse(response);
+
+    if (playlistData.items.length > 0) {
+      this._logger.debug('Playlist items found', {itemsCount: playlistData.items.length, totalAttempts: this._retryAttempts + 1});
+      this._retryAttempts = 0;
+      resolve(playlistData);
+    } else {
+      this._retryAttempts++;
+
+      if (this._retryAttempts >= this._maxRetryAttempts) {
+        this._logger.error('Max retry attempts reached - rejecting playlist', {maxAttempts: this._maxRetryAttempts});
+        this._retryAttempts = 0;
+        reject(playlistData);
+      } else {
+        setTimeout(() => {
+          this._dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, this.ks, this._networkRetryConfig);
+          let ks: string = this.ks;
+          if (!ks) {
+            ks = '{1:result:ks}';
+            this._dataLoader.add(OVPSessionLoader, {widgetId: this.widgetId});
+          }
+          this._dataLoader.add(OVPPlaylistLoader, {playlistId: playlistInfo.playlistId, ks});
+          this._dataLoader.fetchData().then(
+            retryResponse => {
+              this._handlePlaylistResponse(retryResponse, resolve, reject, playlistInfo);
+            },
+            err => {
+              reject(err);
+            }
+          );
+        }, this._retryInterval);
+      }
+    }
   }
 
   private _parsePlaylistDataFromResponse(data: Map<string, ILoader>): ProviderPlaylistObject {
