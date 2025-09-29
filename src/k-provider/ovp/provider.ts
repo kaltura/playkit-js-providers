@@ -30,8 +30,8 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
   private _filterOptionsConfig: ProviderFilterOptionsObject = {redirectFromEntryId: true};
   private _vrTag: string;
   private _retryAttempts = 0;
-  private _maxRetryAttempts = 50;
-  private _retryInterval = 15000;
+  private _maxRetryAttempts = 10;
+  private _retryInterval = 10000;
   /**
    * @constructor
    * @param {ProviderOptionsObject} options - provider options
@@ -242,7 +242,11 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
         this._dataLoader.add(OVPPlaylistLoader, {playlistId, ks});
         this._dataLoader.fetchData().then(
           response => {
-            this._handlePlaylistResponse(response, resolve, reject, playlistInfo);
+            try {
+              this._handlePlaylistResponse(response, resolve, reject, playlistInfo);
+            } catch (err) {
+              reject(err);
+            }
           },
           err => {
             reject(err);
@@ -264,36 +268,70 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     const playlistData = this._parsePlaylistDataFromResponse(response);
 
     if (playlistData.items.length > 0) {
-      this._logger.debug('Playlist items found', {itemsCount: playlistData.items.length, totalAttempts: this._retryAttempts + 1});
-      this._retryAttempts = 0;
-      resolve(playlistData);
+      this._handlePlaylistSuccess(playlistData, resolve);
     } else {
-      this._retryAttempts++;
-
-      if (this._retryAttempts >= this._maxRetryAttempts) {
-        this._logger.error('Max retry attempts reached - rejecting playlist', {maxAttempts: this._maxRetryAttempts});
-        this._retryAttempts = 0;
-        reject(playlistData);
-      } else {
-        setTimeout(() => {
-          this._dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, this.ks, this._networkRetryConfig);
-          let ks: string = this.ks;
-          if (!ks) {
-            ks = '{1:result:ks}';
-            this._dataLoader.add(OVPSessionLoader, {widgetId: this.widgetId});
-          }
-          this._dataLoader.add(OVPPlaylistLoader, {playlistId: playlistInfo.playlistId, ks});
-          this._dataLoader.fetchData().then(
-            retryResponse => {
-              this._handlePlaylistResponse(retryResponse, resolve, reject, playlistInfo);
-            },
-            err => {
-              reject(err);
-            }
-          );
-        }, this._retryInterval);
-      }
+      this._handlePlaylistRetry(resolve, reject, playlistInfo);
     }
+  }
+
+  private _handlePlaylistSuccess(
+    playlistData: ProviderPlaylistObject,
+    resolve: (value: ProviderPlaylistObject) => void
+  ): void {
+    this._logger.debug('Playlist items found', {itemsCount: playlistData.items.length, totalAttempts: this._retryAttempts + 1});
+    this._retryAttempts = 0;
+    resolve(playlistData);
+  }
+
+  private _handlePlaylistRetry(
+    resolve: (value: ProviderPlaylistObject) => void,
+    reject: (reason?: any) => void,
+    playlistInfo: ProviderPlaylistInfoObject
+  ): void {
+    this._retryAttempts++;
+
+    if (this._retryAttempts >= this._maxRetryAttempts) {
+      this._handleMaxRetriesReached(reject);
+    } else {
+      this._schedulePlaylistRetry(resolve, reject, playlistInfo);
+    }
+  }
+
+  private _handleMaxRetriesReached(reject: (reason?: any) => void): void {
+    this._logger.error('Max retry attempts reached - rejecting playlist', {maxAttempts: this._maxRetryAttempts});
+    this._retryAttempts = 0;
+    const playlistData = this._getPlaylistObject();
+    reject(playlistData);
+  }
+
+  private _schedulePlaylistRetry(
+    resolve: (value: ProviderPlaylistObject) => void,
+    reject: (reason?: any) => void,
+    playlistInfo: ProviderPlaylistInfoObject
+  ): void {
+    setTimeout(() => {
+      this._dataLoader = new OVPDataLoaderManager(this.playerVersion, this.partnerId, this.ks, this._networkRetryConfig);
+      let ks: string = this.ks;
+      if (!ks) {
+        ks = '{1:result:ks}';
+        this._dataLoader.add(OVPSessionLoader, {widgetId: this.widgetId});
+      }
+      // Add commas to BaseEntryResponseProfile fields to bust cache on retry
+      const retryParams = {
+        playlistId: playlistInfo.playlistId,
+        ks,
+        cacheKey: ','.repeat(this._retryAttempts)
+      };
+      this._dataLoader.add(OVPPlaylistLoader, retryParams);
+      this._dataLoader.fetchData().then(
+        retryResponse => {
+          this._handlePlaylistResponse(retryResponse, resolve, reject, playlistInfo);
+        },
+        err => {
+          reject(err);
+        }
+      );
+    }, this._retryInterval);
   }
 
   private _parsePlaylistDataFromResponse(data: Map<string, ILoader>): ProviderPlaylistObject {
