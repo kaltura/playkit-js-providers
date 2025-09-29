@@ -26,12 +26,13 @@ import {
 import OVPUserService from './services/user-service';
 import {KalturaUserGetResponse} from './response-types/kaltura-user-get-response';
 
+const  MAX_RETRY_ATTEMPTS = 10;
+const  RETRY_INTERVAL = 10000;
+
 export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject> {
   private _filterOptionsConfig: ProviderFilterOptionsObject = {redirectFromEntryId: true};
   private _vrTag: string;
   private _retryAttempts = 0;
-  private _maxRetryAttempts = 10;
-  private _retryInterval = 10000;
   /**
    * @constructor
    * @param {ProviderOptionsObject} options - provider options
@@ -264,7 +265,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     reject: (reason?: any) => void,
     playlistInfo: ProviderPlaylistInfoObject
   ): void {
-    this._logger.debug('Handling playlist response', {attempt: this._retryAttempts + 1, maxAttempts: this._maxRetryAttempts});
+    this._logger.debug('Handling playlist response', {attempt: this._retryAttempts + 1, maxAttempts: MAX_RETRY_ATTEMPTS});
     const playlistData = this._parsePlaylistDataFromResponse(response);
 
     if (playlistData.items.length > 0) {
@@ -288,17 +289,16 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     reject: (reason?: any) => void,
     playlistInfo: ProviderPlaylistInfoObject
   ): void {
-    this._retryAttempts++;
-
-    if (this._retryAttempts >= this._maxRetryAttempts) {
+    if (this._retryAttempts >= MAX_RETRY_ATTEMPTS) {
       this._handleMaxRetriesReached(reject);
     } else {
+      this._retryAttempts++;
       this._schedulePlaylistRetry(resolve, reject, playlistInfo);
     }
   }
 
   private _handleMaxRetriesReached(reject: (reason?: any) => void): void {
-    this._logger.error('Max retry attempts reached - rejecting playlist', {maxAttempts: this._maxRetryAttempts});
+    this._logger.error('Max retry attempts reached - rejecting playlist', {maxAttempts: MAX_RETRY_ATTEMPTS});
     this._retryAttempts = 0;
     const playlistData = this._getPlaylistObject();
     reject(playlistData);
@@ -320,7 +320,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
       const retryParams = {
         playlistId: playlistInfo.playlistId,
         ks,
-        cacheKey: ','.repeat(this._retryAttempts)
+        cacheToken: ','.repeat(this._retryAttempts)
       };
       this._dataLoader.add(OVPPlaylistLoader, retryParams);
       this._dataLoader.fetchData().then(
@@ -331,7 +331,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
           reject(err);
         }
       );
-    }, this._retryInterval);
+    }, RETRY_INTERVAL);
   }
 
   private _parsePlaylistDataFromResponse(data: Map<string, ILoader>): ProviderPlaylistObject {
