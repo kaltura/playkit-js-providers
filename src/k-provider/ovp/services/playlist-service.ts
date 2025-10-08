@@ -14,7 +14,7 @@ export default class OVPPlaylistService extends OVPService {
    * @returns {RequestBuilder} The request builder
    * @static
    */
-  public static execute(serviceUrl: string, ks: string, playlistId: string): RequestBuilder {
+  public static execute(serviceUrl: string, ks: string, playlistId: string, cacheToken?: string): RequestBuilder {
     const headers: Map<string, string> = new Map();
     headers.set('Content-Type', 'application/json');
     const request = new RequestBuilder(headers);
@@ -23,10 +23,17 @@ export default class OVPPlaylistService extends OVPService {
     request.method = 'POST';
     request.url = request.getUrl(serviceUrl);
     request.tag = `${SERVICE_NAME}-execute`;
+
+    const responseProfile = new BaseEntryResponseProfile();
+    // Append commas cache token to fields to bust cache on retry
+    if (cacheToken) {
+      responseProfile.fields = responseProfile.fields + cacheToken;
+    }
+
     request.params = {
       ks: ks,
       id: playlistId,
-      responseProfile: new BaseEntryResponseProfile()
+      responseProfile: responseProfile
     };
     return request;
   }

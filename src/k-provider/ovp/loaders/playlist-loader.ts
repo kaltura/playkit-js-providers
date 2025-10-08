@@ -53,7 +53,7 @@ export default class OVPPlaylistLoader implements ILoader {
     const config = OVPConfiguration.get();
     const requests: Array<RequestBuilder> = [];
     requests.push(OVPPlaylistService.get(config.serviceUrl, params.ks, params.playlistId));
-    requests.push(OVPPlaylistService.execute(config.serviceUrl, params.ks, params.playlistId));
+    requests.push(OVPPlaylistService.execute(config.serviceUrl, params.ks, params.playlistId, params.cacheToken));
     requests.push(OVPPlaylistService.getLastEntryId(config.serviceUrl, params.ks, params.playlistId));
     return requests;
   }
