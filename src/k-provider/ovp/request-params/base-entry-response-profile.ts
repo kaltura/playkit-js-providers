@@ -1,5 +1,5 @@
 const FIELDS =
-  'id,referenceId,name,description,thumbnailUrl,dataUrl,duration,msDuration,flavorParamsIds,mediaType,type,tags,dvrStatus,externalSourceType,status,createdAt,updatedAt,endDate,plays,views,downloadUrl,creatorId,rootEntryId,capabilities';
+  'id,referenceId,name,description,thumbnailUrl,dataUrl,duration,msDuration,flavorParamsIds,mediaType,type,tags,dvrStatus,externalSourceType,status,createdAt,updatedAt,endDate,plays,views,downloadUrl,creatorId,rootEntryId,capabilities,adminTags';
 const RESPONSE_PROFILE_TYPE = {
   INCLUDE_FIELDS: 1,
   EXCLUDE_FIELDS: 2
