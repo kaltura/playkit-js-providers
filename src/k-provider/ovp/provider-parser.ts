@@ -173,6 +173,7 @@ class OVPProviderParser {
     if (entry.views) mediaEntry.metadata.views = entry.views;
     if (entry.plays) mediaEntry.metadata.plays = entry.plays;
     mediaEntry.metadata.tags = entry.tags || '';
+    mediaEntry.metadata.adminTags = entry.adminTags || '';
     mediaEntry.status = entry.status;
     mediaEntry.rootEntryId = entry.rootEntryId;
     mediaEntry.capabilities = entry.capabilities ? entry.capabilities.split(',') : [];
