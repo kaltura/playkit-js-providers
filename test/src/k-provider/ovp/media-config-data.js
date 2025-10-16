@@ -84,6 +84,7 @@ const NoPluginsNoDrm = {
       HLSOnly: 'android',
       ChannelName: 'Disney Channel SE',
       tags: '',
+      adminTags: '',
       aspectRatio: 1.78
     },
     progressive: [
@@ -327,6 +328,7 @@ const RegexAppliedPlayManifestSources = {
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.',
       tags: '',
+      adminTags: '',
       OriginalFilename: 'FO21934-HDTX-SWE.mov',
       Locale: 'sv_SE',
       PropertyCode: 'FTA-nm',
@@ -477,6 +479,7 @@ const RegexAppliedAllSources = {
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.',
       tags: '',
+      adminTags: '',
       OriginalFilename: 'FO21934-HDTX-SWE.mov',
       Locale: 'sv_SE',
       PropertyCode: 'FTA-nm',
@@ -533,6 +536,7 @@ const NoPluginsWithDrm = {
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.',
       tags: '',
+      adminTags: '',
       aspectRatio: 1.76
     },
     progressive: [],
@@ -619,6 +623,7 @@ const WithPluginsNoDrm = {
       HLSOnly: 'android',
       ChannelName: 'Disney Channel SE',
       tags: '',
+      adminTags: '',
       aspectRatio: 1.78
     },
     progressive: [
@@ -752,6 +757,7 @@ const WithPluginsWithDrm = {
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.',
       tags: '',
+      adminTags: '',
       aspectRatio: 1.76
     },
     progressive: [],
@@ -821,6 +827,7 @@ const AudioEntryWithoutPlugins = {
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel semper libero. Curabitur in felis elementum, porttitor sem ac, volutpat mi. Sed dignissim facilisis magna, ac suscipit orci suscipit id. Suspendisse feugiat sapien laoreet auctor convallis. Cras volutpat dictum massa, in pharetra erat placerat eget. Donec at elit est. Donec id cursus elit. Etiam sit amet sapien sed mi aliquam finibus at lobortis diam. Aenean at gravida libero.',
       tags: 'dual audio, english, spanish',
+      adminTags: '',
     },
     progressive: [
       {
@@ -1264,6 +1271,7 @@ const EntryWithBumper = {
       name: 'MPEG Dash with MultiAudio New Transcoding',
       description: '',
       tags: '',
+      adminTags: '',
       MediaType: 'Movie',
       WatchPermissionRule: 'Parrent Allowed',
     },
@@ -1386,6 +1394,7 @@ const EntryWithBumperWithKs = {
       name: 'MPEG Dash with MultiAudio New Transcoding',
       description: '',
       tags: '',
+      adminTags: '',
       MediaType: 'Movie',
       WatchPermissionRule: 'Parrent Allowed',
     },
@@ -1511,6 +1520,7 @@ const EntryWithNoBumper = {
       name: 'MPEG Dash with MultiAudio New Transcoding',
       description: '',
       tags: '',
+      adminTags: '',
       MediaType: 'Movie',
       WatchPermissionRule: 'Parrent Allowed',
     },
@@ -1607,6 +1617,7 @@ const EntryOfPartner0 = {
       name: 'Titanic in 5 Seconds',
       entryId: '0_pi55vv3r',
       description: 'Titanic movie summarized in 5 seconds',
+      adminTags: '',
       tags: 'titanic, short',
       aspectRatio: 1.33
     },
