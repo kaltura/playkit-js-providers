@@ -16,6 +16,7 @@ const youtubeMediaEntryData = [
       duration: 0,
       poster: 'https://cfvod.kaltura.com/p/1111/sp/1111/thumbnail/entry_id/1234/version/100001',
       tags: '',
+      adminTags: 'test-admin-tag',
       downloadUrl: '',
       rootEntryId: '',
       capabilities: ''
@@ -82,6 +83,7 @@ const youtubeMediaEntryResult = {
     description: 'youtube description',
     name: 'test youtube entry',
     tags: '',
+    adminTags: 'test-admin-tag',
   },
   type: 'Unknown',
   poster: 'https://cfvod.kaltura.com/p/1111/sp/1111/thumbnail/entry_id/1234/version/100001',
@@ -107,6 +109,7 @@ const liveMediaEntryData = [
       duration: 0,
       poster: 'https://cfvod.kaltura.com/p/1111/sp/1111/thumbnail/entry_id/1234/version/100001',
       tags: '',
+      adminTags: 'test-admin-tag',
       downloadUrl: '',
       rootEntryId: '',
       capabilities: ''

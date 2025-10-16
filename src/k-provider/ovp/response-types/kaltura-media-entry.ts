@@ -178,6 +178,12 @@ export class KalturaMediaEntry {
   public capabilities: string;
 
   /**
+   * @member - Admin tags
+   * @type {string}
+   */
+  public adminTags: string;
+
+  /**
    * @constructor
    * @param {Object} entry The json response
    */
@@ -197,6 +203,7 @@ export class KalturaMediaEntry {
     this.status = entry.status;
     this.dvrStatus = entry.dvrStatus;
     this.tags = entry.tags;
+    this.adminTags = entry.adminTags;
     this.createdAt = entry.createdAt;
     this.updatedAt = entry.updatedAt;
     this.creatorId = entry.creatorId;
