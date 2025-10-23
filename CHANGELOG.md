@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.44.0 (2025-10-23)
+
+
+### Features
+
+* **FEC-14671:** Add dependOnAdminTag configuration parameter ([feba554](https://github.com/kaltura/playkit-js-providers/commit/feba554))
+
+
+
 ### 2.43.2 (2025-07-31)
 
 
