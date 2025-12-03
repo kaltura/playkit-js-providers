@@ -169,6 +169,7 @@ class OVPProviderParser {
     if (entry.createdAt) mediaEntry.metadata.createdAt = entry.createdAt;
     if (entry.updatedAt) mediaEntry.metadata.updatedAt = entry.updatedAt;
     if (entry.creatorId) mediaEntry.metadata.creatorId = entry.creatorId;
+    if (entry.userId) mediaEntry.metadata.userId = entry.userId;
     if (entry.endDate) mediaEntry.metadata.endDate = entry.endDate;
     if (entry.views) mediaEntry.metadata.views = entry.views;
     if (entry.plays) mediaEntry.metadata.plays = entry.plays;
