@@ -9,5 +9,6 @@ export type ProviderMediaConfigMetadataObject = {
   recordingId?: string;
   updatedAt?: number;
   creatorId?: string;
+  userId?: string;
   views?: number;
 };
