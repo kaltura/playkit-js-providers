@@ -160,6 +160,12 @@ export class KalturaMediaEntry {
   public creatorId: string;
 
   /**
+   * @member - ID of entry owner.
+   * @type {string}
+   */
+  public userId: string;
+
+  /**
    * @member - The raw thumbnail URL
    * @type {string}
    */
@@ -207,6 +213,7 @@ export class KalturaMediaEntry {
     this.createdAt = entry.createdAt;
     this.updatedAt = entry.updatedAt;
     this.creatorId = entry.creatorId;
+    this.userId = entry.userId;
     this.endDate = entry.endDate;
     this.plays = entry.plays;
     this.views = entry.views;
