@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.44.1 (2025-12-18)
+
+
+### Bug Fixes
+
+* **FEC-14589:** Info plugin: Option to hide user ID & other info ([#271](https://github.com/kaltura/playkit-js-providers/issues/271)) ([8701707](https://github.com/kaltura/playkit-js-providers/commit/8701707))
+
+
+
 ## 2.44.0 (2025-10-23)
 
 
