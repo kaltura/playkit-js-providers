@@ -3,6 +3,7 @@ import RequestBuilder from '../../../util/request-builder';
 import {BaseEntryResponseProfile} from '../request-params/base-entry-response-profile';
 
 const SERVICE_NAME: string = 'baseEntry';
+const DEFAULT_LANGUAGE: string = 'multi'; // 'multi' is used to request all multi languages properties
 
 export default class OVPBaseEntryService extends OVPService {
   /**
@@ -51,7 +52,8 @@ export default class OVPBaseEntryService extends OVPService {
     request.method = 'POST';
     request.url = request.getUrl(serviceUrl);
     request.tag = 'list';
-    request.params = OVPBaseEntryService.getEntryListReqParams(entryId, ks, redirectFromEntryId, referenceId);
+    // always use DEFAULT_LANGUAGE ('multi')
+    request.params = OVPBaseEntryService.getEntryListReqParams(entryId, ks, DEFAULT_LANGUAGE, redirectFromEntryId, referenceId);
     return request;
   }
 
@@ -60,12 +62,13 @@ export default class OVPBaseEntryService extends OVPService {
    * @function getEntryListReqParams
    * @param {string} entryId The entry ID
    * @param {string} ks The ks
+   * @param {string} language The language
    * @param {boolean} redirectFromEntryId whether the live entry should continue and play the VOD one after the live stream ends.
    * @param {string} referenceId a Reference id instead of an entry id
    * @returns {{ks: string, filter: {redirectFromEntryId: string}, responseProfile: {fields: string, type: number}}} The service params object
    * @static
    */
-  public static getEntryListReqParams(entryId: string, ks: string, redirectFromEntryId: boolean, referenceId: string): any {
+  public static getEntryListReqParams(entryId: string, ks: string, language: string, redirectFromEntryId: boolean, referenceId: string): any {
     let filterParams = {};
     if (entryId) {
       filterParams = redirectFromEntryId ? {redirectFromEntryId: entryId} : {idEqual: entryId};
@@ -73,6 +76,6 @@ export default class OVPBaseEntryService extends OVPService {
       filterParams = {objectType: 'KalturaBaseEntryFilter', referenceIdEqual: referenceId};
     }
 
-    return {ks: ks, filter: filterParams, responseProfile: new BaseEntryResponseProfile()};
+    return {ks: ks, language: language, filter: filterParams, responseProfile: new BaseEntryResponseProfile()};
   }
 }
