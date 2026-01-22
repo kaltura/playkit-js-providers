@@ -26,13 +26,14 @@ import {
 import OVPUserService from './services/user-service';
 import {KalturaUserGetResponse} from './response-types/kaltura-user-get-response';
 
-const  MAX_RETRY_ATTEMPTS = 10;
-const  RETRY_INTERVAL = 10000;
+const MAX_RETRY_ATTEMPTS = 10;
+const RETRY_INTERVAL = 10000;
 
 export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject> {
   private _filterOptionsConfig: ProviderFilterOptionsObject = {redirectFromEntryId: true};
   private _vrTag: string;
   private _retryAttempts = 0;
+  private _useHeaderForKs: boolean;
   /**
    * @constructor
    * @param {ProviderOptionsObject} options - provider options
@@ -45,6 +46,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     this._setFilterOptionsConfig(options.filterOptions);
     this._vrTag = options.vrTag || '360';
     this._networkRetryConfig = Object.assign(this._networkRetryConfig, options.networkRetryParameters);
+    this._useHeaderForKs = options.useHeaderForKs || false;
 
     this._isAnonymous = !this._ks ? true : undefined;
     if (this._isAnonymous === undefined) {
@@ -181,8 +183,8 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
       }
       if (data.has(OVPMediaEntryLoader.id)) {
         const mediaLoader = data.get(OVPMediaEntryLoader.id);
+        const response = (mediaLoader as OVPMediaEntryLoader).response;
         if (mediaLoader && mediaLoader.response) {
-          const response = (mediaLoader as OVPMediaEntryLoader).response;
           if (OVPProviderParser.hasBlockAction(response)) {
             throw new Error(Error.Severity.CRITICAL, Error.Category.SERVICE, Error.Code.BLOCK_ACTION, {
               action: OVPProviderParser.getBlockAction(response),
@@ -194,7 +196,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
             });
           }
 
-          const mediaEntry = OVPProviderParser.getMediaEntry(this.ks, this.partnerId, this.uiConfId, response);
+          const mediaEntry = OVPProviderParser.getMediaEntry(this._useHeaderForKs ? '' : this.ks, this.partnerId, this.uiConfId, response);
           Object.assign(mediaConfig.sources, this._getSourcesObject(mediaEntry));
           this._verifyMediaStatus(mediaEntry);
           this._verifyHasSources(mediaConfig.sources);
@@ -275,10 +277,7 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
     }
   }
 
-  private _handlePlaylistSuccess(
-    playlistData: ProviderPlaylistObject,
-    resolve: (value: ProviderPlaylistObject) => void
-  ): void {
+  private _handlePlaylistSuccess(playlistData: ProviderPlaylistObject, resolve: (value: ProviderPlaylistObject) => void): void {
     this._logger.debug('Playlist items found', {itemsCount: playlistData.items.length, totalAttempts: this._retryAttempts + 1});
     this._retryAttempts = 0;
     resolve(playlistData);
