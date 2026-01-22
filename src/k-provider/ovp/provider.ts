@@ -183,8 +183,8 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
       }
       if (data.has(OVPMediaEntryLoader.id)) {
         const mediaLoader = data.get(OVPMediaEntryLoader.id);
-        const response = (mediaLoader as OVPMediaEntryLoader).response;
         if (mediaLoader && mediaLoader.response) {
+          const response = (mediaLoader as OVPMediaEntryLoader).response;
           if (OVPProviderParser.hasBlockAction(response)) {
             throw new Error(Error.Severity.CRITICAL, Error.Category.SERVICE, Error.Code.BLOCK_ACTION, {
               action: OVPProviderParser.getBlockAction(response),
