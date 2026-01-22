@@ -15,7 +15,7 @@ const defaultConfig: any = {
 
 export default class OVPConfiguration {
   public static set(clientConfig?: ProviderEnvConfigObject): void {
-    if(clientConfig?.overrideServiceUrl) {
+    if (clientConfig?.overrideServiceUrl) {
       clientConfig.serviceUrl = clientConfig.overrideServiceUrl;
     }
     if (clientConfig) {

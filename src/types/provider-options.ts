@@ -17,4 +17,5 @@ export type ProviderOptionsObject = {
   referrer?: string;
   vrTag?: string;
   unisphereLoaderUrl?: string;
+  useHeaderForKs?: boolean;
 };
