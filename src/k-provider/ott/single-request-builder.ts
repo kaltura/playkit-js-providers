@@ -32,15 +32,13 @@ export default class SingleRequestBuilder {
    * Add a loader to the builder
    * @function add
    * @param {ILoader} loader The loader to add
-   * @returns {SingleRequestBuilder} This SingleRequestBuilder instance
    */
-  public add(loader: ILoader): SingleRequestBuilder {
+  public add(loader: ILoader) {
     this.loaders.set(loader.constructor.name, loader);
-    return this;
   }
 
   /**
-   * Executes a request with proper error handling
+   * Executes a single request
    * @function execute
    * @param {RequestBuilder} request - The request to execute
    * @returns {Promise<ServiceResult>} - Promise with the service result
@@ -70,7 +68,7 @@ export default class SingleRequestBuilder {
   }
 
   /**
-   * Executes multiple requests sequentially with proper error handling
+   * Executes multiple requests sequentially
    * @function executeSequence
    * @param {Array<RequestBuilder>} requests - The requests to execute in order
    * @returns {Promise<SingleRequestsResult>} - Promise with the combined results
@@ -80,7 +78,6 @@ export default class SingleRequestBuilder {
   ): Promise<SingleRequestsResult> {
     const results: Array<ServiceResult> = [];
 
-    // Process all requests
     for (const request of requests) {
       const serviceResult = await this._executeRequest(request);
       results.push(serviceResult);
@@ -109,25 +106,19 @@ export default class SingleRequestBuilder {
   }
 
   /**
-   * Executes all added loaders as separate requests with proper order and dependency handling
+   * Executes all added loaders as separate requests
    * @function execute
    * @returns {Promise<Map<string, ILoader>>} - Promise with the loaded loaders
    */
   public async execute(): Promise<Map<string, ILoader>> {
-    const loadersArray = Array.from(this.loaders.values());
-    const [sessionLoader, assetLoader] = [
-      loadersArray.find(loader => loader.constructor.name === 'OTTSessionLoader'),
-      loadersArray.find(loader => loader.constructor.name === 'OTTAssetLoader')
-    ] as [any, any];
-
+    const sessionLoader = this.loaders.get('OTTSessionLoader');
+    const assetLoader = this.loaders.get('OTTAssetLoader');
     let ks = '';
-
     if (sessionLoader) {
       const serviceResult = await this._executeRequest(sessionLoader.requests[0]);
       sessionLoader.response = [{ data: serviceResult.data }];
       ks = serviceResult.data.ks || '';
     }
-
     if (assetLoader) {
       assetLoader.requests.forEach((request: any) => {
         if (request.params.ks === "{1:result:ks}") {
