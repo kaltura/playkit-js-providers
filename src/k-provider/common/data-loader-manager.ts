@@ -1,7 +1,6 @@
 import MultiRequestBuilder, {MultiRequestResult} from './multi-request-builder';
 import Error from '../../util/error/error';
 import {ILoader, ProviderNetworkRetryParameters} from '../../types';
-// import SingleRequestExecutor from '../ott/single-request-executor';
 import SingleRequestBuilder from '../ott/single-request-builder';
 
 export default class DataLoaderManager {
