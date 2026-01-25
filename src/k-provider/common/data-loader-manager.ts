@@ -1,7 +1,7 @@
 import MultiRequestBuilder, {MultiRequestResult} from './multi-request-builder';
 import Error from '../../util/error/error';
 import {ILoader, ProviderNetworkRetryParameters} from '../../types';
-import SingleRequestBuilder from '../ott/single-request-builder';
+import RequestSequenceBuilder from '../ott/request-sequence-builder';
 
 export default class DataLoaderManager {
   /**
@@ -19,10 +19,10 @@ export default class DataLoaderManager {
 
   /**
    * @member - Loaders single requests
-   * @type {SingleRequestBuilder}
+   * @type {RequestSequenceBuilder}
    * @protected
    */
-  protected _singleRequests!: SingleRequestBuilder;
+  protected _singleRequests!: RequestSequenceBuilder;
   /**
    * @member - Loaders multi response
    * @type {MultiRequestResult}
@@ -40,7 +40,7 @@ export default class DataLoaderManager {
 
   constructor(networkRetryConfig: ProviderNetworkRetryParameters) {
     this._networkRetryConfig = networkRetryConfig;
-    this._singleRequests = new SingleRequestBuilder();
+    this._singleRequests = new RequestSequenceBuilder();
   }
 
   /**
@@ -60,7 +60,7 @@ export default class DataLoaderManager {
         this._singleRequests.add(execution_loader);
       }
       else {
-      // Get the start index from the multiReqeust before adding current execution_loader requests
+      // Get the start index from the multiRequest before adding current execution_loader requests
       const startIndex = this._multiRequest.requests.length;
       // Get the requests
       const requests = execution_loader.requests;
@@ -91,7 +91,6 @@ export default class DataLoaderManager {
         this._singleRequests.execute()
           .then(() => resolve(this._loaders))
           .catch(err => reject(err));
-        return;
       }
       else {
         this._multiRequest.execute(requestsMustSucceed).then(
