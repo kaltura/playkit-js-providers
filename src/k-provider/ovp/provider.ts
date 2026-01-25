@@ -103,6 +103,10 @@ export default class OVPProvider extends BaseProvider<OVPProviderMediaInfoObject
             }
           },
           err => {
+            const baseEntryListResponse = err.data?.results?.find(result => result.data?.objectType === 'KalturaBaseEntryListResponse');
+            if (baseEntryListResponse?.data?.objects?.[0].status === KalturaMediaEntry.EntryStatus.DELETED) {
+              err = new Error(Error.Severity.CRITICAL, Error.Category.SERVICE, Error.Code.DELETED_ENTRY);
+            }
             reject(err);
           }
         );
