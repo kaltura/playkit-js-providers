@@ -33,7 +33,7 @@ export default class RequestSequenceBuilder {
    * @function add
    * @param {ILoader} loader The loader to add
    */
-  public add(loader: ILoader) {
+  public add(loader: ILoader): void {
     this.loaders.set(loader.constructor.name, loader);
   }
 
@@ -83,7 +83,7 @@ export default class RequestSequenceBuilder {
         const serviceResult = await this._executeRequest(request);
         results.push(serviceResult);
       } catch (error) {
-        throw error;
+        this._logger.error(`Request execution failed: ${error.message}`);
       }
     }
     // Create result object and check for success
@@ -133,7 +133,7 @@ export default class RequestSequenceBuilder {
         assetLoader.response = requestsResult.results;
       }
     } catch (error) {
-      throw error;
+      this._logger.error(`loaders execution failed: ${error.message}`);
     }
     return this.loaders;
   }
