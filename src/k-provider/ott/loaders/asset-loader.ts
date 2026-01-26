@@ -12,6 +12,7 @@ export default class OTTAssetLoader implements ILoader {
   private _entryId: string;
   private _requests!: Array<RequestBuilder>;
   private _response: any = {};
+  private _disableMultirequest: boolean = OTTConfiguration.get().ottDisableMultirequest;
 
   public static get id(): string {
     return 'asset';
@@ -41,6 +42,10 @@ export default class OTTAssetLoader implements ILoader {
 
   public get response(): OTTAssetLoaderResponse {
     return this._response;
+  }
+
+  public get disableMultirequest(): boolean {
+    return this._disableMultirequest;
   }
 
   /**

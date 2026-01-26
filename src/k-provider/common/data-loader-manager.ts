@@ -1,6 +1,7 @@
 import MultiRequestBuilder, {MultiRequestResult} from './multi-request-builder';
 import Error from '../../util/error/error';
 import {ILoader, ProviderNetworkRetryParameters} from '../../types';
+import RequestSequenceBuilder from '../ott/request-sequence-builder';
 
 export default class DataLoaderManager {
   /**
@@ -15,6 +16,13 @@ export default class DataLoaderManager {
    * @protected
    */
   protected _multiRequest!: MultiRequestBuilder;
+
+  /**
+   * @member - Loaders single requests
+   * @type {RequestSequenceBuilder}
+   * @protected
+   */
+  protected _singleRequests!: RequestSequenceBuilder;
   /**
    * @member - Loaders multi response
    * @type {MultiRequestResult}
@@ -32,6 +40,7 @@ export default class DataLoaderManager {
 
   constructor(networkRetryConfig: ProviderNetworkRetryParameters) {
     this._networkRetryConfig = networkRetryConfig;
+    this._singleRequests = new RequestSequenceBuilder();
   }
 
   /**
@@ -46,7 +55,12 @@ export default class DataLoaderManager {
     const execution_loader = new loader(params);
     if (execution_loader.isValid()) {
       this._loaders.set(loader.id, execution_loader);
-      // Get the start index from the multiReqeust before adding current execution_loader requests
+      const disableMultirequest = (execution_loader as any).disableMultirequest;
+      if (disableMultirequest) {
+        this._singleRequests.add(execution_loader);
+      }
+      else {
+      // Get the start index from the multiRequest before adding current execution_loader requests
       const startIndex = this._multiRequest.requests.length;
       // Get the requests
       const requests = execution_loader.requests;
@@ -61,6 +75,7 @@ export default class DataLoaderManager {
       const executionLoaderResponseMap = Array.from(new Array(requests.length), (val, index) => index + startIndex);
       // Add to map
       this._loadersResponseMap.set(loader.id, executionLoaderResponseMap);
+      }
     }
   }
 
@@ -72,24 +87,31 @@ export default class DataLoaderManager {
    */
   public fetchData(requestsMustSucceed?: boolean): Promise<any> {
     return new Promise((resolve, reject) => {
-      this._multiRequest.execute(requestsMustSucceed).then(
-        data => {
-          this._multiResponse = data.response;
-          const preparedData: any = this.prepareData(data.response);
-          if (preparedData.success) {
-            resolve(this._loaders);
-          } else {
-            reject(
-              new Error(Error.Severity.CRITICAL, Error.Category.NETWORK, Error.Code.API_RESPONSE_MISMATCH, {
-                headers: data.headers
-              })
-            );
+      if (this._singleRequests.loaders.size > 0) {
+        this._singleRequests.execute()
+          .then(() => resolve(this._loaders))
+          .catch(err => reject(err));
+      }
+      else {
+        this._multiRequest.execute(requestsMustSucceed).then(
+          data => {
+            this._multiResponse = data.response;
+            const preparedData: any = this.prepareData(data.response);
+            if (preparedData.success) {
+              resolve(this._loaders);
+            } else {
+              reject(
+                new Error(Error.Severity.CRITICAL, Error.Category.NETWORK, Error.Code.API_RESPONSE_MISMATCH, {
+                  headers: data.headers
+                })
+              );
+            }
+          },
+          err => {
+            reject(err);
           }
-        },
-        err => {
-          reject(err);
-        }
-      );
+        );
+      }
     });
   }
 

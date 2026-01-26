@@ -7,6 +7,7 @@ export default class OTTSessionLoader implements ILoader {
   private _partnerId: number;
   private _requests!: Array<RequestBuilder>;
   private _response: any = {};
+  private _disableMultirequest: boolean = OTTConfiguration.get().ottDisableMultirequest;
 
   public static get id(): string {
     return 'session';
@@ -35,6 +36,10 @@ export default class OTTSessionLoader implements ILoader {
 
   public get response(): any {
     return this._response.ks;
+  }
+
+  public get disableMultirequest(): boolean {
+    return this._disableMultirequest;
   }
 
   /**
