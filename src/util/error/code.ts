@@ -62,6 +62,11 @@ const Code: CodeType = {
   SCHEDULED_RESTRICTED: 2003,
 
   /**
+   * The entry status is deleted
+   */
+  DELETED_ENTRY: 2004,
+
+  /**
    * The provider is missing mandatory parameter/s
    */
 
