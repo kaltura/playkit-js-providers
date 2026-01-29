@@ -34,7 +34,7 @@ export default class RequestSequenceBuilder {
    * @param {ILoader} loader The loader to add
    */
   public add(loader: ILoader): void {
-    this.loaders.set(loader.requests[0].service, loader);
+    this.loaders.set(loader.requests?.[0]?.service, loader);
   }
 
   /**
