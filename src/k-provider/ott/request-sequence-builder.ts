@@ -34,7 +34,7 @@ export default class RequestSequenceBuilder {
    * @param {ILoader} loader The loader to add
    */
   public add(loader: ILoader): void {
-    this.loaders.set(loader.constructor.name, loader);
+    this.loaders.set(loader.requests?.[0]?.service, loader);
   }
 
   /**
@@ -114,8 +114,8 @@ export default class RequestSequenceBuilder {
    * @returns {Promise<Map<string, ILoader>>} - Promise with the loaded loaders
    */
   public async execute(): Promise<Map<string, ILoader>> {
-    const sessionLoader = this.loaders.get('OTTSessionLoader');
-    const assetLoader = this.loaders.get('OTTAssetLoader');
+    const sessionLoader = this.loaders.get('ottuser');
+    const assetLoader = this.loaders.get('asset');
     let ks = '';
     try {
       if (sessionLoader) {
