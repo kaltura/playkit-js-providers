@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.45.0 (2026-01-29)
+
+
+### Features
+
+* **FEC-14676:** Kaltura web player to call OTT getplaybackcontext API directly ([#276](https://github.com/kaltura/playkit-js-providers/issues/276)) ([98623de](https://github.com/kaltura/playkit-js-providers/commit/98623de)), closes [#274](https://github.com/kaltura/playkit-js-providers/issues/274)
+
+
+
 ### 2.44.1 (2025-12-18)
 
 
