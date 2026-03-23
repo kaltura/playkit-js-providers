@@ -30,9 +30,9 @@ export default class MultiRequestBuilder extends RequestBuilder {
    * Executes a multi request
    * @function execute
    * @param {boolean} requestsMustSucceed whether all of the requests must succeed or not
-   * @returns {Promise} The multirequest execution promise
+   * @param {boolean} filterErrorResults whether the results of the request need to filter error results   * @returns {Promise} The multirequest execution promise
    */
-  public execute(requestsMustSucceed?: boolean): Promise<any> {
+  public execute(requestsMustSucceed?: boolean, filterErrorResults?: boolean): Promise<any> {
     return new Promise((resolve, reject) => {
       try {
         this.params = JSON.stringify(this.params);
@@ -47,7 +47,7 @@ export default class MultiRequestBuilder extends RequestBuilder {
       }
       this.doHttpRequest().then(
         data => {
-          const multiRequestResult = new MultiRequestResult(data, requestsMustSucceed);
+          const multiRequestResult = new MultiRequestResult(data, requestsMustSucceed, filterErrorResults);
           if (multiRequestResult.success) {
             resolve({
               headers: this.responseHeaders,
@@ -87,8 +87,9 @@ export class MultiRequestResult {
    * @constructor
    * @param {Object} response data
    * @param {boolean} requestsMustSucceed whether all of the requests must succeed
+   * @param {boolean} filterErrorResults whether the results of the request need to filter error results
    */
-  constructor(response: any, requestsMustSucceed: boolean = true) {
+  constructor(response: any, requestsMustSucceed: boolean = true, filterErrorResults: boolean = true) {
     const result = response.result ? response.result : response;
     const responseArr = Array.isArray(result) ? result : [result];
     const results = responseArr.map(result => new ServiceResult(result));
@@ -104,7 +105,9 @@ export class MultiRequestResult {
     if ((requestsMustSucceed && errorResults.length) || errorResults.length === this.results.length) {
       this.success = false;
     } else {
-      this.results = this.results.filter(serviceResult => !serviceResult.hasError);
+      if (filterErrorResults) {
+        this.results = this.results.filter(serviceResult => !serviceResult.hasError);
+      }
       this.success = true;
     }
   }

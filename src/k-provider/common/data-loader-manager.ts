@@ -82,10 +82,11 @@ export default class DataLoaderManager {
   /**
    * Get data from all loaders using multi request
    * @param {boolean} requestsMustSucceed whether all of the requests must succeed or not
+   * @param {boolean} filterErrorResults whether the results of the request need to filter error results
    * @function
    * @returns {Promise} Promise
    */
-  public fetchData(requestsMustSucceed?: boolean): Promise<any> {
+  public fetchData(requestsMustSucceed?: boolean, filterErrorResults?: boolean): Promise<any> {
     return new Promise((resolve, reject) => {
       if (this._singleRequests.loaders.size > 0) {
         this._singleRequests.execute()
@@ -93,7 +94,7 @@ export default class DataLoaderManager {
           .catch(err => reject(err));
       }
       else {
-        this._multiRequest.execute(requestsMustSucceed).then(
+        this._multiRequest.execute(requestsMustSucceed, filterErrorResults).then(
           data => {
             this._multiResponse = data.response;
             const preparedData: any = this.prepareData(data.response);
