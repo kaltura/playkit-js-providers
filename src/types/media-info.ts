@@ -4,6 +4,7 @@ export type OVPProviderMediaInfoObject = {
   entryId?: string;
   referenceId?: string;
   ks?: string;
+  clientTag?: string;
 };
 
 export type OTTProviderMediaInfoObject = OVPProviderMediaInfoObject & {

@@ -18,4 +18,5 @@ export type ProviderOptionsObject = {
   vrTag?: string;
   unisphereLoaderUrl?: string;
   useHeaderForKs?: boolean;
+  clientTag?: string;
 };

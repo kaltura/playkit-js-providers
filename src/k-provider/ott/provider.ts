@@ -48,7 +48,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
       this.ks = mediaInfo.ks;
       this._isAnonymous = false;
     }
-    this._dataLoader = new OTTDataLoaderManager(this.partnerId, this.ks, this._networkRetryConfig);
+    this._dataLoader = new OTTDataLoaderManager(this.partnerId, this.ks, this._networkRetryConfig, this.clientTag);
     return new Promise((resolve, reject) => {
       const entryId = mediaInfo.entryId;
       if (entryId) {
@@ -160,7 +160,7 @@ export default class OTTProvider extends BaseProvider<OTTProviderMediaInfoObject
       this.ks = entryListInfo.ks;
       this._isAnonymous = false;
     }
-    this._dataLoader = new OTTDataLoaderManager(this.partnerId, this.ks, this._networkRetryConfig);
+    this._dataLoader = new OTTDataLoaderManager(this.partnerId, this.ks, this._networkRetryConfig, this.clientTag);
     return new Promise((resolve, reject) => {
       const entries = entryListInfo.entries;
       if (entries && entries.length) {
