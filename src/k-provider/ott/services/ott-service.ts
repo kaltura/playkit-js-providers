@@ -9,7 +9,7 @@ export default class OTTService {
    * @function getMultiRequest
    * @param {string} ks The ks
    * @param {string} partnerId The partner ID
-   * @param {string|undefined} clientTag the client tage
+   * @param {string|undefined} clientTag the client tag
    * @returns {MultiRequestBuilder} The multi request builder
    * @static
    */
