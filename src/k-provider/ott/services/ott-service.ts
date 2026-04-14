@@ -9,11 +9,11 @@ export default class OTTService {
    * @function getMultiRequest
    * @param {string} ks The ks
    * @param {string} partnerId The partner ID
-   * @param clientTag
+   * @param {string|undefined} clientTag the client tage
    * @returns {MultiRequestBuilder} The multi request builder
    * @static
    */
-  public static getMultiRequest(ks: string, partnerId?: number, clientTag?: string|undefined): MultiRequestBuilder {
+  public static getMultiRequest(ks: string, partnerId?: number, clientTag?: string | undefined): MultiRequestBuilder {
     const config = OTTConfiguration.get();
     const ottParams = config.serviceParams;
     if (ks) {
