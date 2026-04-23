@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.46.0 (2026-04-23)
+
+
+### Features
+
+* **SUP-52024:** Player Multirequest call - addition of ClientTag parameter in request body ([#278](https://github.com/kaltura/playkit-js-providers/issues/278)) ([899b804](https://github.com/kaltura/playkit-js-providers/commit/899b804))
+
+
+
 ### 2.45.2 (2026-03-26)
 
 
