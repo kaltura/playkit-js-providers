@@ -1,0 +1,137 @@
+{
+  "repositoryName": "playkit-js-providers",
+  "coreResponsibility": "A middleware/provider layer that integrates Kaltura OVP (Online Video Platform) and OTT (Cloud TV/Over-The-Top) backend APIs with the PlayKit JS Player, fetching and transforming media configurations, session management, and analytics/bookmark tracking services.",
+  "domainAndLogicOwnership": {
+    "featureOwnership": [
+      "OVP (Online Video Platform) media provider - fetches media entries, playlists, and entry lists from Kaltura OVP backend",
+      "OTT (Cloud TV) media provider - fetches assets and asset lists from Kaltura Cloud TV backend",
+      "Session management (KS - Kaltura Session) - anonymous and authenticated session handling",
+      "Analytics service - tracking playback events for OVP backend",
+      "Stats service - collecting statistics for OVP backend",
+      "Bookmark service - tracking playback position for OTT backend (resume functionality)",
+      "DRM license URL handling and configuration",
+      "Media source parsing (HLS, DASH, Progressive, Image, Document)",
+      "Playback context resolution and block action handling",
+      "VR/360 content detection",
+      "DVR status management for live streams",
+      "External captions handling",
+      "Bumper plugin configuration from backend"
+    ],
+    "dataHandling": [
+      "MediaEntry - core media entity with sources, metadata, duration, type, poster, DRM, captions",
+      "MediaSources - HLS, DASH, Progressive, Image, Document streaming sources",
+      "MediaConfig - session info, sources, and plugin configurations",
+      "PlaybackContext - streaming URLs, DRM data, actions, bumpers",
+      "Playlist/EntryList - multiple media entries for sequential playback",
+      "Session/KS (Kaltura Session) - authentication token management",
+      "DRM configuration - license URLs, schemes (Widevine, FairPlay, PlayReady), certificates",
+      "Analytics/Stats events - playback tracking data",
+      "Bookmark data - playback position, bitrate, file information for resume"
+    ]
+  },
+  "integrationPoints": {
+    "upstream": [
+      "Kaltura OVP Backend API (baseentry, metadata, playbackcontext, playlist services)",
+      "Kaltura Cloud TV/OTT Backend API (asset, bookmark services)",
+      "Kaltura Session API (widget sessions, user authentication)",
+      "Kaltura Analytics API",
+      "Kaltura Stats API"
+    ],
+    "downstream": [
+      "playkit-js (core player) - consumes MediaConfig for playback",
+      "kaltura-player-js - uses providers to load media before playback",
+      "playkit-js-ui - consumes metadata for display",
+      "playkit-js-kava - may use analytics service data",
+      "Any PlayKit plugin requiring media metadata or session information"
+    ],
+    "externalApis": [
+      "Kaltura API v3 - baseentry.list, baseentry.getPlaybackContext",
+      "Kaltura API v3 - metadata.list",
+      "Kaltura API v3 - playlist.get, playlist.list",
+      "Kaltura API v3 - session.startWidgetSession",
+      "Kaltura API v3 - analytics.trackEvent",
+      "Kaltura API v3 - stats.collect",
+      "Kaltura OTT API - asset.get, asset.getPlaybackContext",
+      "Kaltura OTT API - bookmark.add",
+      "Kaltura API v3 - user.get (for anonymous session detection)"
+    ]
+  },
+  "technicalStack": {
+    "primaryLanguages": ["TypeScript", "JavaScript (ES6)"],
+    "frameworks": ["Webpack", "Babel", "Flow (legacy typing)"],
+    "buildTools": ["Yarn", "Webpack CLI", "API Extractor (for .d.ts generation)"],
+    "testFrameworks": ["Karma", "Mocha", "Chai", "Sinon"],
+    "entryPoints": [
+      "src/k-provider/ovp/index.ts - OVP Provider main entry",
+      "src/k-provider/ott/index.ts - OTT Provider main entry",
+      "src/k-provider/ovp/services/analytics/index.ts - Analytics service entry",
+      "src/k-provider/ovp/services/stats/index.ts - Stats service entry",
+      "src/k-provider/ott/services/bookmark/index.ts - Bookmark service entry",
+      "src/k-provider/ovp/provider.ts - OVPProvider class implementation",
+      "src/k-provider/ott/provider.ts - OTTProvider class implementation",
+      "src/k-provider/common/base-provider.ts - BaseProvider abstract class",
+      "src/entities/media-entry.ts - MediaEntry entity model",
+      "src/entities/media-sources.ts - MediaSources entity model",
+      "src/types/index.ts - TypeScript type definitions"
+    ]
+  },
+  "triageKeywords": [
+    "OVPProvider",
+    "OTTProvider",
+    "getMediaConfig",
+    "getPlaylistConfig",
+    "getEntryListConfig",
+    "playkit-ovp-provider",
+    "playkit-ott-provider",
+    "KalturaSession",
+    "ks",
+    "partnerId",
+    "entryId",
+    "referenceId",
+    "playbackContext",
+    "MISSING_MANDATORY_PARAMS",
+    "MISSING_PLAY_SOURCE",
+    "BLOCK_ACTION",
+    "MEDIA_STATUS_NOT_READY",
+    "SCHEDULED_RESTRICTED",
+    "DELETED_ENTRY",
+    "mediaConfig.sources",
+    "analytics.trackEvent",
+    "stats.collect",
+    "bookmark.add",
+    "session.startWidgetSession",
+    "baseentry.list",
+    "baseentry.getPlaybackContext",
+    "OTT/Cloud TV provider",
+    "OTT asset loading",
+    "DRM license URL",
+    "media entry loader",
+    "multirequest",
+    "API_RESPONSE_MISMATCH",
+    "MULTIREQUEST_API_ERROR"
+  ],
+  "errorCodesOwned": {
+    "network": {
+      "UNSUPPORTED_SCHEME": 1000,
+      "BAD_HTTP_STATUS": 1001,
+      "HTTP_ERROR": 1002,
+      "TIMEOUT": 1003,
+      "MALFORMED_DATA_URI": 1004,
+      "BAD_SERVER_RESPONSE": 1005,
+      "MULTIREQUEST_API_ERROR": 1006,
+      "API_RESPONSE_MISMATCH": 1007
+    },
+    "service": {
+      "ERROR": 2000,
+      "BLOCK_ACTION": 2001,
+      "MEDIA_STATUS_NOT_READY": 2002,
+      "SCHEDULED_RESTRICTED": 2003,
+      "DELETED_ENTRY": 2004
+    },
+    "provider": {
+      "MISSING_MANDATORY_PARAMS": 3000,
+      "MISSING_PLAY_SOURCE": 3001,
+      "METHOD_NOT_IMPLEMENTED": 3002
+    }
+  }
+}
