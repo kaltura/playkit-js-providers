@@ -102,7 +102,7 @@
     "session.startWidgetSession",
     "baseentry.list",
     "baseentry.getPlaybackContext",
-    "Cloud TV provider",
+    "OTT/Cloud TV provider",
     "OTT asset loading",
     "DRM license URL",
     "media entry loader",
