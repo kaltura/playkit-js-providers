@@ -11,4 +11,5 @@ export type ProviderMediaConfigMetadataObject = {
   creatorId?: string;
   userId?: string;
   views?: number;
+  adminTags?: string;
 };
